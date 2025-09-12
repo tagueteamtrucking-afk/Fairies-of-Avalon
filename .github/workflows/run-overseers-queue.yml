@@ -1,263 +1,46 @@
 name: Runner — Process Overseers Queue
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - "apps/overseers/queue/**"
+  workflow_dispatch: {}
 
 permissions:
   contents: write
 
 jobs:
-  run:
+  run-queue:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
 
-      - name: Install PowerShell YAML module
+      - name: Run Queue Runner
         shell: pwsh
+        run: pwsh -File "apps/overseers/ai/queue-runner.ps1"
+
+      - name: Commit generated files
+        shell: bash
         run: |
-          Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
-          Install-Module -Name powershell-yaml -Scope CurrentUser -Force -AllowClobber
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Queue Runner: processed tasks (fairy scaffolds/interfaces/manifests)"
+            git push
+          fi
 
-      - name: Process queued tasks (R1–R3)
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = "Stop"
-          $queue = "apps/overseers/queue"
-          $logs  = "apps/overseers/logs"
-          New-Item -ItemType Directory -Force -Path $queue | Out-Null
-          New-Item -ItemType Directory -Force -Path $logs  | Out-Null
-
-          function Write-File($path, $content) {
-            $dir = Split-Path $path
-            if (!(Test-Path $dir)) { New-Item -Type Directory -Force -Path $dir | Out-Null }
-            $content | Set-Content -Path $path -NoNewline -Encoding UTF8
-          }
-
-          $memPath = "Cody's Memory.yaml"
-          $mem     = ConvertFrom-Yaml (Get-Content -Raw -LiteralPath $memPath)
-
-          $files = Get-ChildItem $queue -Filter *.json -ErrorAction SilentlyContinue | Sort-Object Name
-          if (!$files) { Write-Host "Queue empty"; exit 0 }
-
-          $importMap = @"
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
-    "@pixiv/three-vrm": "https://unpkg.com/@pixiv/three-vrm@2.0.4/dist/three-vrm.module.js"
-  }
-}
-</script>
-"@
-
-          foreach ($f in $files) {
-            $task = Get-Content -Raw -LiteralPath $f.FullName | ConvertFrom-Json
-
-            switch ($task.id) {
-              "R1" {
-                # App shell + PWA + Wings Importer + Overseers Console
-                New-Item -ItemType Directory -Force -Path "pages" | Out-Null
-
-                $home = @"
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fairies of Avalon — home</title>
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#ffffff">
-  <style>body{font:16px/1.5 system-ui,Segoe UI,Arial,sans-serif;margin:2rem}nav a{margin-right:1rem}</style>
-</head>
-<body>
-  <h1>Fairies of Avalon — home</h1>
-  <nav>
-    <a href="/apps/overseers.html">Overseers Console</a>
-    <a href="/wings-importer.html">Wings Importer</a>
-  </nav>
-  <p>Install me: in your browser menu, choose <b>Add to Home Screen</b> or <b>Install App</b>.</p>
-  $importMap
-  <script type="module" src="/app.js"></script>
-</body>
-</html>
-"@
-                Write-File "pages/index.html" $home
-
-                $appjs = @"
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(console.error));
-}
-console.log('Avalon app-shell ready at fairiesofavalon.com');
-"@
-                Write-File "pages/app.js" $appjs
-
-                $manifest = @"
-{
-  "name": "Fairies of Avalon",
-  "short_name": "Avalon",
-  "start_url": "/",
-  "scope": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff"
-}
-"@
-                Write-File "pages/manifest.webmanifest" $manifest
-
-                $sw = @"
-const VERSION = 'sw-v1';
-const ASSETS = ['/', '/app.js', '/wings-importer.html', '/wings-importer.js', '/apps/overseers.html'];
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(ASSETS)));
-});
-self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k)))));
-});
-self.addEventListener('fetch', e => {
-  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
-});
-"@
-                Write-File "pages/sw.js" $sw
-
-                $overseers = @"
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Overseers Console</title>
-  <style>body{font:16px/1.5 system-ui,Segoe UI,Arial,sans-serif;margin:2rem}ul{line-height:1.9}</style>
-</head>
-<body>
-  <h1>Overseers Console</h1>
-  <ul>
-    <li><a href="/docs/Overseers-BRIEF.md">Overseers BRIEF (generated by White Star)</a></li>
-    <li><a href="/data/out/">Overseers Output (AI Core)</a> — route, scopes, QA, policy reports</li>
-    <li><a href="/">Back home</a></li>
-  </ul>
-</body>
-</html>
-"@
-                Write-File "pages/apps/overseers.html" $overseers
-
-                $wings = @"
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wings Lab — Importer</title>
-  <style>
-    html,body { height:100%; margin:0; }
-    canvas { display:block; width:100%; height:100%; }
-    #hint { position:fixed; left:1rem; top:1rem; background:#fff; padding:.5rem .75rem; border-radius:.25rem; box-shadow:0 1px 4px rgba(0,0,0,.15); font:14px/1.4 system-ui,Segoe UI,Arial,sans-serif; }
-  </style>
-</head>
-<body>
-  <div id="hint">Drag &amp; drop a <b>.fbx</b>, <b>.glb</b>, or <b>.gltf</b> here.</div>
-  $importMap
-  <script type="module" src="/wings-importer.js"></script>
-</body>
-</html>
-"@
-                Write-File "pages/wings-importer.html" $wings
-
-                $js = @"
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xf4f4f4);
-
-const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 1.2, 3);
-
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-
-scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.2));
-scene.add(new THREE.GridHelper(10, 20));
-
-function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); }
-animate();
-
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
-
-window.addEventListener('dragover', (e) => e.preventDefault());
-window.addEventListener('drop', (e) => {
-  e.preventDefault();
-  const file = e.dataTransfer?.files?.[0];
-  if (!file) return;
-  console.log('Dropped:', file.name);
-  const note = document.getElementById('hint');
-  if (note) note.textContent = `Loaded file: ${file.name}`;
-});
-"@
-                Write-File "pages/wings-importer.js" $js
-              }
-
-              "R2" {
-                New-Item -ItemType Directory -Force -Path "apps/health-wealth-wellness" | Out-Null
-                $plan = @"
-# Health · Wealth · Wellness — activation plan
-
-Owner: $($task.owner)  |  QA: $($task.qa_owner)
-
-## Initial deliverables
-- Connect data sources (Gmail, QuickBooks, Files) under least privilege.
-- Dashboards: budgets (Abbey), expirations (Themis), revenue (Billie).
-- Ambient audio loop (Stella) with start/stop.
-
-> Update via Overseers Queue. Do not place secrets here (use vault refs).
-"@
-                Write-File "apps/health-wealth-wellness/PLAN.md" $plan
-              }
-
-              "R3" {
-                foreach ($fairy in $mem.entities.fairies) {
-                  $dir = "apps/fairies/$($fairy.id)"
-                  New-Item -ItemType Directory -Force -Path $dir | Out-Null
-                  $md = @"
-# $($fairy.name)
-**ID:** $($fairy.id)
-
-**Domains:** $(($fairy.domains -join ", "))
-**Responsibilities:**
-$(($fairy.responsibilities | ForEach-Object { "- $_" }) -join "`n")
-
-**Environment:** $($fairy.environment.location)
-**Interfaces:** $(($fairy.interfaces_links -join ", "))
-
-> Scaffold created by Overseers Queue (R3). Extend logic next.
-"@
-                  Write-File "$dir/README.md" $md
-                }
-              }
-
-              default { Write-Host "Unknown task id: $($task.id)" }
-            }
-
-            # archive task
-            $task.status = "done"
-            $task.completed_utc = (Get-Date).ToUniversalTime().ToString("o")
-            $out = $task | ConvertTo-Json -Depth 20
-            $dest = Join-Path $logs ([IO.Path]::GetFileName($f.FullName))
-            $out  | Set-Content -Encoding UTF8 -NoNewline -Path $dest
-            Remove-Item -LiteralPath $f.FullName -Force
-          }
-
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Upload runner artifacts
+        uses: actions/upload-artifact@v4
         with:
-          commit_message: "feat(queue-runner): processed tasks (R1–R3)"
+          name: queue-runner-out
+          path: |
+            apps/overseers/out/*
+            apps/overseers/log/*
+          if-no-files-found: warn
+          retention-days: 7

@@ -1,5 +1,29 @@
-const VERSION = 'sw-v1';
-const ASSETS = ['/', '/app.js', '/wings-importer.html', '/wings-importer.js', '/apps/overseers.html'];
-self.addEventListener('install', e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(ASSETS))); });
-self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k))))); });
-self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then(r => r || fetch(e.request))); });
+// Very small offline cache for shell & core pages.
+const CACHE = 'avalon-shell-v1';
+const ASSETS = [
+  '/',
+  '/index.html',
+  '/app.js',
+  '/manifest.webmanifest',
+  '/pages/apps/overseers.html',
+  '/pages/wings-importer.html'
+];
+
+self.addEventListener('install', (e) => {
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
+});
+
+self.addEventListener('activate', (e) => {
+  e.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.map((k) => (k === CACHE ? null : caches.delete(k)))))
+  );
+});
+
+self.addEventListener('fetch', (e) => {
+  const { request } = e;
+  if (request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(request).then((hit) => hit || fetch(request))
+  );
+});

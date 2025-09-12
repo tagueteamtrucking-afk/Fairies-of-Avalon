@@ -1,0 +1,10 @@
+{
+  "wingless": {
+    "Reyczar": "asset/models/wingless/Reyczar.vrm",
+    "WhiteStar": "asset/models/wingless/WhiteStar.vrm"
+  },
+  "with_wings": {
+    "Reyczar": "asset/models/with-wings/Reyczar_wings.vrm",
+    "WhiteStar": "asset/models/with-wings/WhiteStar_wings.vrm"
+  }
+}

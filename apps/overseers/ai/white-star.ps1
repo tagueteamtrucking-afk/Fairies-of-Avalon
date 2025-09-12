@@ -1,8 +1,5 @@
 # White Star — Overseer Experience & Alignment
 # Purpose: fast, safe repo audit + optional cleanup (no secrets, no prompts).
-# Usage in Actions:
-#   pwsh -File "apps/overseers/ai/white-star.ps1" -Action all
-#   pwsh -File "apps/overseers/ai/white-star.ps1" -Action cleanup -Mutate
 
 [CmdletBinding()]
 param(
@@ -13,22 +10,18 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-function Get-ProjectRoot {
-  # ai/ -> overseers/ -> apps/ -> repo root
-  return (Resolve-Path "$PSScriptRoot\..\..\..").Path
-}
+function Get-ProjectRoot { return (Resolve-Path "$PSScriptRoot\..\..\..").Path }
 
 $Root   = Get-ProjectRoot
-$OutDir = (Resolve-Path "$PSScriptRoot\..\out" -ErrorAction SilentlyContinue).Path
-$LogDir = (Resolve-Path "$PSScriptRoot\..\log" -ErrorAction SilentlyContinue).Path
+$OutDir = Join-Path $Root 'apps\overseers\out'
+$LogDir = Join-Path $Root 'apps\overseers\log'
 New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
 New-Item -ItemType Directory -Force -Path $LogDir | Out-Null
 
 function Get-RepoFiles {
   param([string]$Base)
   Get-ChildItem -LiteralPath $Base -Recurse -Force -File |
-    # NOTE: robust exclusion for ".git" regardless of slash style
-    Where-Object { $_.FullName -notmatch '[\\\/]\.git([\\\/]|$)' }
+    Where-Object { $_.FullName -notmatch '[\\\/]\.git([\\\/]|$)' }  # fixed regex
 }
 
 function Ensure-CanonicalAssetTree {
@@ -36,11 +29,10 @@ function Ensure-CanonicalAssetTree {
     'asset\models\wingless',
     'asset\models\with-wings',
     'asset\wings\textures',
-    'asset\textures'
+    'asset\textures',
+    'pages'
   )
-  foreach ($p in $canon) {
-    New-Item -ItemType Directory -Force -Path (Join-Path $Root $p) | Out-Null
-  }
+  foreach ($p in $canon) { New-Item -ItemType Directory -Force -Path (Join-Path $Root $p) | Out-Null }
 }
 
 function Analyze-Assets {
@@ -48,29 +40,25 @@ function Analyze-Assets {
 
   Ensure-CanonicalAssetTree
 
-  $findings = [ordered]@{
-    strays   = @()
-    actions  = @()   # proposed moves
-    warnings = @()
-  }
+  $findings = [ordered]@{ strays=@(); actions=@(); warnings=@() }
 
   $topModels   = Join-Path $Base 'models\avatars'
   $topTextures = Join-Path $Base 'textures'
   $topWings    = Join-Path $Base 'wings'
+  $rootWIHtml  = Join-Path $Base 'wings-importer.html'
+  $rootWIJs    = Join-Path $Base 'wings-importer.js'
 
-  if (Test-Path $topModels)   { $findings.strays += 'Found top-level "models/avatars" (should live under asset/models/wingless).' }
-  if (Test-Path $topTextures) { $findings.strays += 'Found top-level "textures" (should live under asset/textures).' }
-  if (Test-Path $topWings)    { $findings.strays += 'Found top-level "wings" (should live under asset/wings).' }
+  if (Test-Path $topModels)   { $findings.strays += 'Found top-level "models/avatars" → should be asset/models/wingless.' }
+  if (Test-Path $topTextures) { $findings.strays += 'Found top-level "textures" → should be asset/textures.' }
+  if (Test-Path $topWings)    { $findings.strays += 'Found top-level "wings" → should be asset/wings.' }
+  if (Test-Path $rootWIHtml)  { $findings.strays += 'Found root "wings-importer.html" → should be pages/wings-importer.html.' }
+  if (Test-Path $rootWIJs)    { $findings.strays += 'Found root "wings-importer.js" → should be pages/wings-importer.js.' }
 
-  if (Test-Path $topModels) {
-    $findings.actions += @{ move = $topModels; to = (Join-Path $Base 'asset\models\wingless') }
-  }
-  if (Test-Path $topTextures) {
-    $findings.actions += @{ move = $topTextures; to = (Join-Path $Base 'asset\textures') }
-  }
-  if (Test-Path $topWings) {
-    $findings.actions += @{ move = $topWings; to = (Join-Path $Base 'asset\wings') }
-  }
+  if (Test-Path $topModels)   { $findings.actions += @{ move=$topModels; to=(Join-Path $Base 'asset\models\wingless') } }
+  if (Test-Path $topTextures) { $findings.actions += @{ move=$topTextures; to=(Join-Path $Base 'asset\textures') } }
+  if (Test-Path $topWings)    { $findings.actions += @{ move=$topWings; to=(Join-Path $Base 'asset\wings') } }
+  if (Test-Path $rootWIHtml)  { $findings.actions += @{ move=$rootWIHtml; to=(Join-Path $Base 'pages') } }
+  if (Test-Path $rootWIJs)    { $findings.actions += @{ move=$rootWIJs; to=(Join-Path $Base 'pages') } }
 
   return $findings
 }
@@ -79,28 +67,24 @@ function Execute-Moves {
   param($Actions)
   foreach ($a in $Actions) {
     if (-not (Test-Path $a.move)) { continue }
-    New-Item -ItemType Directory -Force -Path $a.to | Out-Null
-    Write-Host "Moving `"$($a.move)`" -> `"$($a.to)`""
-    # Use robocopy for speed & atomicity on Windows
-    robocopy $a.move $a.to /E /MOVE /NFL /NDL /NJH /NJS /NP | Out-Null
+    $dest = $a.to
+    New-Item -ItemType Directory -Force -Path $dest | Out-Null
+    $item = Get-Item -LiteralPath $a.move
+    if ($item.PSIsContainer) {
+      Write-Host "Moving DIR `"$($a.move)`" -> `"$dest`""
+      robocopy $a.move $dest /E /MOVE /NFL /NDL /NJH /NJS /NP | Out-Null
+    } else {
+      Write-Host "Moving FILE `"$($a.move)`" -> `"$dest`""
+      Move-Item -LiteralPath $a.move -Destination $dest -Force
+    }
   }
 }
 
-function Write-Json {
-  param($Object, [string]$Path)
-  $json = $Object | ConvertTo-Json -Depth 8
-  Set-Content -LiteralPath $Path -Encoding UTF8 -NoNewline -Value $json
-}
+function Write-Json { param($Object,[string]$Path); $Object | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $Path -Encoding UTF8 -NoNewline }
 
 $report = [ordered]@{
-  ts          = (Get-Date).ToString('s') + 'Z'
-  actor       = 'white-star'
-  action      = $Action
-  mutate      = [bool]$Mutate
-  status      = 'ok'
-  file_count  = 0
-  warnings    = @()
-  suggestions = @()
+  ts=(Get-Date).ToString('s')+'Z'; actor='white-star'; action=$Action; mutate=[bool]$Mutate
+  status='ok'; file_count=0; warnings=@(); suggestions=@()
 }
 
 try {
@@ -111,9 +95,7 @@ try {
   $report.suggestions = $analysis.actions
   if ($analysis.strays.Count -gt 0) { $report.warnings = $analysis.strays }
 
-  if ($Action -eq 'cleanup' -and $Mutate) {
-    Execute-Moves -Actions $analysis.actions
-  }
+  if ($Action -eq 'cleanup' -and $Mutate) { Execute-Moves -Actions $analysis.actions }
 
 } catch {
   $report.status = 'error'

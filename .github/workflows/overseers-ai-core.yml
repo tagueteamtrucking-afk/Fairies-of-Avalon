@@ -1,51 +1,65 @@
-name: Overseers — AI Core (Rey Czar & White Star)
+name: Overseers — AI Core
 
 on:
   workflow_dispatch:
+    inputs:
+      mutate:
+        description: "Allow file moves (cleanup)"
+        required: false
+        type: boolean
+        default: false
+  push:
+    branches: [ main ]
+    paths:
+      - "apps/overseers/ai/**"
+      - "apps/overseers/queue/**"
+      - ".github/workflows/overseers-ai-core.yml"
 
 permissions:
   contents: write
 
 jobs:
-  aicore:
+  ai-core:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - name: Install PowerShell YAML module
+      - name: White Star — Analyze / Cleanup
         shell: pwsh
         run: |
-          Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
-          Install-Module -Name powershell-yaml -Scope CurrentUser -Force -AllowClobber
+          $mutate = '${{ github.event.inputs.mutate }}'
+          if ($mutate -eq '' -or $mutate -eq 'false') {
+            pwsh -File "apps/overseers/ai/white-star.ps1" -Action all
+          } else {
+            pwsh -File "apps/overseers/ai/white-star.ps1" -Action cleanup -Mutate
+          }
 
-      - name: Ensure output dirs
+      - name: Ray Czar — Queue Status
         shell: pwsh
-        run: |
-          New-Item -ItemType Directory -Force -Path "apps/overseers/out"  | Out-Null
-          New-Item -ItemType Directory -Force -Path "apps/overseers/ai"   | Out-Null
-          New-Item -ItemType Directory -Force -Path "docs"                | Out-Null
+        run: pwsh -File "apps/overseers/ai/ray-czar.ps1" -Action list
 
-      - name: Add AI scripts (if missing) — Rey Czar & White Star
-        shell: pwsh
+      - name: Commit changes (only if any)
+        shell: bash
         run: |
-          function WriteIfMissing($path,$content){ if(!(Test-Path $path)){ $dir=Split-Path $path; if(!(Test-Path $dir)){New-Item -Type Directory -Force -Path $dir|Out-Null}; $content | Set-Content -Path $path -NoNewline -Encoding UTF8 } }
-          $rey = Get-Content -Raw -LiteralPath ".github/ai/rey-czar.ps1" -ErrorAction SilentlyContinue
-          $star = Get-Content -Raw -LiteralPath ".github/ai/white-star.ps1" -ErrorAction SilentlyContinue
-          if($rey){ $rey | Set-Content -Path "apps/overseers/ai/rey-czar.ps1" -NoNewline -Encoding UTF8 }
-          if($star){ $star | Set-Content -Path "apps/overseers/ai/white-star.ps1" -NoNewline -Encoding UTF8 }
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Overseers AI Core: repo cleanup by White Star"
+            git push
+          fi
 
-      - name: Run Rey Czar
-        shell: pwsh
-        run: |
-          pwsh -File "apps/overseers/ai/rey-czar.ps1" -Action all
-
-      - name: Run White Star
-        shell: pwsh
-        run: |
-          pwsh -File "apps/overseers/ai/white-star.ps1" -Action all
-
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Upload Overseers reports
+        uses: actions/upload-artifact@v4
         with:
-          commit_message: "feat(aicore): Rey Czar plan + scopes, White Star QA + BRIEF + policy report"
+          name: overseers-out
+          path: |
+            apps/overseers/out/*
+            apps/overseers/log/*
+          if-no-files-found: warn
+          retention-days: 7

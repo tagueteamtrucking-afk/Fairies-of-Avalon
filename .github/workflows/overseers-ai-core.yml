@@ -24,8 +24,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
+        with: { fetch-depth: 1 }
 
       - name: White Star — Analyze / Cleanup
         shell: pwsh
@@ -37,9 +36,9 @@ jobs:
             pwsh -File "apps/overseers/ai/white-star.ps1" -Action cleanup -Mutate
           }
 
-      - name: Ray Czar — Queue Status
+      - name: Rey Czar — Queue Status
         shell: pwsh
-        run: pwsh -File "apps/overseers/ai/ray-czar.ps1" -Action list
+        run: pwsh -File "apps/overseers/ai/rey-czar.ps1" -Action list
 
       - name: Commit changes (only if any)
         shell: bash

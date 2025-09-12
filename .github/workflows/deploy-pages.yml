@@ -1,0 +1,68 @@
+name: Deploy — GitHub Pages (fairiesofavalon.com)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'pages/**'
+      - 'docs/**'
+      - 'apps/overseers/out/**'
+      - 'asset/wings/**'
+      - 'asset/models/avatars/**'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write CNAME for custom domain
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path "pages" | Out-Null
+          "fairiesofavalon.com" | Set-Content -Path "pages/CNAME" -NoNewline -Encoding UTF8
+
+      - name: Prepare site (copy assets and AI outputs)
+        shell: pwsh
+        run: |
+          if (Test-Path "asset") {
+            New-Item -ItemType Directory -Force -Path "pages/asset" | Out-Null
+            if (Test-Path "asset/wings") {
+              Copy-Item -Recurse -Force "asset/wings" "pages/asset/wings"
+            }
+            if (Test-Path "asset/models/avatars") {
+              New-Item -ItemType Directory -Force -Path "pages/asset/models" | Out-Null
+              Copy-Item -Recurse -Force "asset/models/avatars" "pages/asset/models/avatars"
+            }
+          }
+          if (Test-Path "apps/overseers/out") {
+            New-Item -ItemType Directory -Force -Path "pages/data" | Out-Null
+            Copy-Item -Recurse -Force "apps/overseers/out" "pages/data/out"
+          }
+          if (Test-Path "docs") {
+            Copy-Item -Recurse -Force "docs" "pages/docs"
+          }
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'pages'
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,56 @@
+name: Queue — Full Roster
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  queue:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install PowerShell YAML module
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+          Install-Module -Name powershell-yaml -Scope CurrentUser -Force -AllowClobber
+
+      - name: Enqueue R1–R3 from Memory
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          New-Item -ItemType Directory -Force -Path "apps/overseers/queue" | Out-Null
+          New-Item -ItemType Directory -Force -Path "apps/overseers/logs"  | Out-Null
+
+          $memPath = "Cody's Memory.yaml"
+          $mem     = ConvertFrom-Yaml (Get-Content -Raw -LiteralPath $memPath)
+
+          $tasks   = $mem.plans.overseers_full_roster_queue.tasks
+          $owner   = $mem.plans.overseers_full_roster_queue.owner
+          $qa      = $mem.plans.overseers_full_roster_queue.qa_owner
+
+          foreach ($t in $tasks) {
+            $obj = [ordered]@{
+              id           = $t.id
+              name         = $t.name
+              status       = "queued"
+              owner        = $owner
+              qa_owner     = $qa
+              created_utc  = (Get-Date).ToUniversalTime().ToString("o")
+              source       = "workflow:queue-full-roster"
+            }
+            $json = $obj | ConvertTo-Json -Depth 20
+            $ts   = (Get-Date).ToString("yyyyMMdd-HHmmss")
+            $out  = "apps/overseers/queue/$ts-$($t.id).json"
+            $json | Set-Content -Encoding UTF8 -NoNewline -Path $out
+            Start-Sleep -Milliseconds 120
+          }
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(queue): enqueue full roster (R1–R3)"

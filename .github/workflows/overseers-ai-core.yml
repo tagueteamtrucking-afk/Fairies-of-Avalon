@@ -1,0 +1,51 @@
+name: Overseers — AI Core (Rey Czar & White Star)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  aicore:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install PowerShell YAML module
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+          Install-Module -Name powershell-yaml -Scope CurrentUser -Force -AllowClobber
+
+      - name: Ensure output dirs
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path "apps/overseers/out"  | Out-Null
+          New-Item -ItemType Directory -Force -Path "apps/overseers/ai"   | Out-Null
+          New-Item -ItemType Directory -Force -Path "docs"                | Out-Null
+
+      - name: Add AI scripts (if missing) — Rey Czar & White Star
+        shell: pwsh
+        run: |
+          function WriteIfMissing($path,$content){ if(!(Test-Path $path)){ $dir=Split-Path $path; if(!(Test-Path $dir)){New-Item -Type Directory -Force -Path $dir|Out-Null}; $content | Set-Content -Path $path -NoNewline -Encoding UTF8 } }
+          $rey = Get-Content -Raw -LiteralPath ".github/ai/rey-czar.ps1" -ErrorAction SilentlyContinue
+          $star = Get-Content -Raw -LiteralPath ".github/ai/white-star.ps1" -ErrorAction SilentlyContinue
+          if($rey){ $rey | Set-Content -Path "apps/overseers/ai/rey-czar.ps1" -NoNewline -Encoding UTF8 }
+          if($star){ $star | Set-Content -Path "apps/overseers/ai/white-star.ps1" -NoNewline -Encoding UTF8 }
+
+      - name: Run Rey Czar
+        shell: pwsh
+        run: |
+          pwsh -File "apps/overseers/ai/rey-czar.ps1" -Action all
+
+      - name: Run White Star
+        shell: pwsh
+        run: |
+          pwsh -File "apps/overseers/ai/white-star.ps1" -Action all
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "feat(aicore): Rey Czar plan + scopes, White Star QA + BRIEF + policy report"

@@ -1,56 +1,63 @@
 name: Queue — Full Roster
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 permissions:
   contents: write
 
 jobs:
-  queue:
+  seed:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
 
-      - name: Install PowerShell YAML module
+      - name: Seed queue from Memory build order
         shell: pwsh
         run: |
-          Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
-          Install-Module -Name powershell-yaml -Scope CurrentUser -Force -AllowClobber
+          $Root  = (Get-Location).Path
+          $Queue = Join-Path $Root 'apps\overseers\queue'
+          New-Item -ItemType Directory -Force -Path $Queue | Out-Null
 
-      - name: Enqueue R1–R3 from Memory
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = "Stop"
-          New-Item -ItemType Directory -Force -Path "apps/overseers/queue" | Out-Null
-          New-Item -ItemType Directory -Force -Path "apps/overseers/logs"  | Out-Null
+          $memPath = Join-Path $Root "Cody's Memory.yaml"
+          $mem = Get-Content -Raw -LiteralPath $memPath -Encoding UTF8 | ConvertFrom-Yaml
+          $ids = $mem.build_order_initial
+          if (-not $ids) { throw "No build_order_initial in Memory." }
 
-          $memPath = "Cody's Memory.yaml"
-          $mem     = ConvertFrom-Yaml (Get-Content -Raw -LiteralPath $memPath)
-
-          $tasks   = $mem.plans.overseers_full_roster_queue.tasks
-          $owner   = $mem.plans.overseers_full_roster_queue.owner
-          $qa      = $mem.plans.overseers_full_roster_queue.qa_owner
-
-          foreach ($t in $tasks) {
-            $obj = [ordered]@{
-              id           = $t.id
-              name         = $t.name
-              status       = "queued"
-              owner        = $owner
-              qa_owner     = $qa
-              created_utc  = (Get-Date).ToUniversalTime().ToString("o")
-              source       = "workflow:queue-full-roster"
-            }
-            $json = $obj | ConvertTo-Json -Depth 20
-            $ts   = (Get-Date).ToString("yyyyMMdd-HHmmss")
-            $out  = "apps/overseers/queue/$ts-$($t.id).json"
-            $json | Set-Content -Encoding UTF8 -NoNewline -Path $out
-            Start-Sleep -Milliseconds 120
+          $i = 1
+          foreach ($id in $ids) {
+            $task = @{
+              id       = "scaffold:$id"
+              type     = "scaffold_fairy"
+              fairy_id = "$id"
+              created  = (Get-Date).ToString('s') + 'Z'
+              status   = "queued"
+            } | ConvertTo-Json -Depth 6
+            $file = ("{0:D3}_{1}.json" -f $i, $id)
+            Set-Content -LiteralPath (Join-Path $Queue $file) -Encoding UTF8 -NoNewline -Value $task
+            $i++
           }
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore(queue): enqueue full roster (R1–R3)"
+          # Also ensure models manifest will be generated
+          $mf = @{
+            id      = "write_models_manifest"
+            type    = "write_models_manifest"
+            created = (Get-Date).ToString('s') + 'Z'
+            status  = "queued"
+          } | ConvertTo-Json -Depth 6
+          Set-Content -LiteralPath (Join-Path $Queue ('{0:D3}_models_manifest.json' -f $i)) -Encoding UTF8 -NoNewline -Value $mf
+
+      - name: Commit queued tasks
+        shell: bash
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Queue: seed full roster scaffold tasks"
+            git push
+          fi

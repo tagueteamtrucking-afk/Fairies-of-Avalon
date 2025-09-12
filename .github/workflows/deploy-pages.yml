@@ -1,14 +1,19 @@
-name: Deploy — GitHub Pages (fairiesofavalon.com)
+name: Deploy — GitHub Pages
 
 on:
-  workflow_dispatch:
   push:
+    branches: [ main ]
     paths:
-      - 'pages/**'
-      - 'docs/**'
-      - 'apps/overseers/out/**'
-      - 'asset/wings/**'
-      - 'asset/models/avatars/**'
+      - "index.html"
+      - "pages/**"
+      - "asset/**"
+      - "app.js"
+      - "sw.js"
+      - "manifest.webmanifest"
+      - "CNAME"
+      - ".nojekyll"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -16,50 +21,33 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
-  cancel-in-progress: false
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Write CNAME for custom domain
-        shell: pwsh
-        run: |
-          New-Item -ItemType Directory -Force -Path "pages" | Out-Null
-          "fairiesofavalon.com" | Set-Content -Path "pages/CNAME" -NoNewline -Encoding UTF8
-
-      - name: Prepare site (copy assets and AI outputs)
-        shell: pwsh
-        run: |
-          if (Test-Path "asset") {
-            New-Item -ItemType Directory -Force -Path "pages/asset" | Out-Null
-            if (Test-Path "asset/wings") {
-              Copy-Item -Recurse -Force "asset/wings" "pages/asset/wings"
-            }
-            if (Test-Path "asset/models/avatars") {
-              New-Item -ItemType Directory -Force -Path "pages/asset/models" | Out-Null
-              Copy-Item -Recurse -Force "asset/models/avatars" "pages/asset/models/avatars"
-            }
-          }
-          if (Test-Path "apps/overseers/out") {
-            New-Item -ItemType Directory -Force -Path "pages/data" | Out-Null
-            Copy-Item -Recurse -Force "apps/overseers/out" "pages/data/out"
-          }
-          if (Test-Path "docs") {
-            Copy-Item -Recurse -Force "docs" "pages/docs"
-          }
-
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          path: 'pages'
+          fetch-depth: 1
+
+      - name: Ensure CNAME file exists
+        run: |
+          if [ ! -f CNAME ]; then
+            echo "fairiesofavalon.com" > CNAME
+          fi
+          cat CNAME
+
+      - name: Upload static site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
 
   deploy:
-    needs: build
     runs-on: ubuntu-latest
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

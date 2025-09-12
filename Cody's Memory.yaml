@@ -1,13 +1,15 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.7.0"
+  version: "1.7.1"
   last_updated: "2025-09-12"
   author: "Cody (GPT-5 Pro)"
   notes: >
     Single source of truth for Overseers, Assistants (Fairies), locations,
     interfaces, responsibilities, relationships, hosting, and access control.
-    Pivoted from local .cmd to GitHub Actions + PWA app-shell. No plaintext secrets.
+    Pivoted to GitHub Actions + PWA app-shell. No plaintext secrets.
+    v1.7.1 — Fixed White-Star regex (".git" filter), standardized asset layout
+    (wingless vs with-wings), renamed script to rey-czar.ps1, clarified Pages/DNS/HTTPS.
 
 system:
   os: "Windows 11"
@@ -49,11 +51,13 @@ project:
     - "@pixiv/three-vrm"
 
 assets:
-  paths:
-    vrm_avatars: "asset/models/avatars"
-    wings_models: "asset/wings"
+  layout:
+    wingless_vrms: "asset/models/wingless"     # base avatars without wings
+    with_wings_vrms: "asset/models/with-wings" # avatars that include wings
+    wings_models: "asset/wings"                 # wing meshes/sources
     wings_textures: "asset/wings/textures"
     misc_textures: "asset/textures"
+    manifest_json: "asset/models/models.json"
   wings_pack: "Fantasy Wings Collection Fbx.rar"
   avatars_present:
     - "Abbey"
@@ -72,7 +76,7 @@ assets:
     - "Tracy"
     - "Stella"
   avatar_file_keys:
-    ray_czar: "Reyczar"
+    rey_czar: "Reyczar"
     white_star: "WhiteStar"
     clarice: "Clarice"
     charlotte: "Charlotte"
@@ -105,7 +109,7 @@ access_control:
 
 governance:
   overseers:
-    - id: ray_czar
+    - id: rey_czar
       name: "Rey Czar"
       alias: "Rey"
       role: "Overseer (Husband)"
@@ -147,16 +151,16 @@ governance:
       environment:
         location: "The Palace — Camelot Disney style Castle/Palace"
         anchors: ["Token & Permissions Vault (external reference only)", "Overseers' Command Room"]
-      relationships: { spouse_of: ray_czar }
+      relationships: { spouse_of: rey_czar }
       security: { holds_secrets: true, storage: "Secrets stored in an external vault; references only." }
 
-build_order_initial: [ray_czar, white_star, clarice, charlotte, nina, alexandria, tracy, carol_li, jem_nassim, stella, sorcha, odessa, billie, themis, abbey]
+build_order_initial: [rey_czar, white_star, clarice, charlotte, nina, alexandria, tracy, carol_li, jem_nassim, stella, sorcha, odessa, billie, themis, abbey]
 
 locations:
   palace:
     id: the_palace
     description: "Camelot Disney style Castle/Palace"
-    occupants: [ray_czar, white_star]
+    occupants: [rey_czar, white_star]
 
 entities:
   fairies:
@@ -267,7 +271,7 @@ interfaces_registry:
   reminders_service: { owner: themis, purpose: "Automated reminders." }
   accounting_hub_quickbooks: { owner: abbey, purpose: "QuickBooks hub." }
   budget_plans: { owner: abbey, purpose: "Budget scenarios & tax planning." }
-  overseers_queue: { owner: ray_czar, purpose: "File-based queue for autonomous builds." }
+  overseers_queue: { owner: rey_czar, purpose: "File-based queue for autonomous builds." }
 
 priority_plan:
   - { id: overseers,  description: "Build Overseers AI core; they orchestrate assistant builds.", status: "operational-min" }
@@ -276,7 +280,7 @@ priority_plan:
 
 plans:
   overseers_full_roster_queue:
-    owner: ray_czar
+    owner: rey_czar
     qa_owner: white_star
     status: "queued"
     tasks:
@@ -285,13 +289,18 @@ plans:
       - { id: R3, name: "Generate scaffolds for all Fairies", status: "queued" }
 
 audit_log:
-  - { ts: "2025-09-12T00:00:00Z", actor: "ray_czar", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
+  - { ts: "2025-09-12T00:00:00Z", actor: "rey_czar", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
       notes: "v1.6.0 — full-roster queueing, asset paths, and one-click Kickoff." }
   - { ts: "2025-09-12T02:30:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
       notes: "v1.7.0 — switch to GitHub Actions + PWA app-shell; custom domain fairiesofavalon.com; AI Core scripts." }
+  - { ts: "2025-09-12T12:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
+      notes: "v1.7.1 — fix White-Star regex; rename to rey-czar.ps1; canonicalize asset tree; Pages/DNS/HTTPS guidance." }
 
 lessons_learned:
   - "Do not prescribe local double-clicks from a browser repo view; use Actions."
   - "Always include import map for three, three/addons, @pixiv/three-vrm on Pages."
   - "Write CNAME during deploy so the custom domain sticks."
   - "No plaintext secrets; reference external vaults only."
+  - "PowerShell regex must not end with a backslash; use [\\/.] patterns to exclude .git."
+  - "Use 'Rey' consistently across IDs, file names, and workflows (rey_czar, rey-czar.ps1)."
+  - "GitHub Pages HTTPS requires correct A/AAAA records (and non-proxied DNS during cert issuance)."

@@ -14,40 +14,9 @@ jobs:
         uses: actions/checkout@v4
         with: { fetch-depth: 1 }
 
-      - name: Seed queue from Memory build order
+      - name: Seed queue from Memory
         shell: pwsh
-        run: |
-          $Root  = (Get-Location).Path
-          $Queue = Join-Path $Root 'apps\overseers\queue'
-          New-Item -ItemType Directory -Force -Path $Queue | Out-Null
-
-          $memPath = Join-Path $Root "Cody's Memory.yaml"
-          $mem = Get-Content -Raw -LiteralPath $memPath -Encoding UTF8 | ConvertFrom-Yaml
-          $ids = $mem.build_order_initial
-          if (-not $ids) { throw "No build_order_initial in Memory." }
-
-          $i = 1
-          foreach ($id in $ids) {
-            $task = @{
-              id       = "scaffold:$id"
-              type     = "scaffold_fairy"
-              fairy_id = "$id"
-              created  = (Get-Date).ToString('s') + 'Z'
-              status   = "queued"
-            } | ConvertTo-Json -Depth 6
-            $file = ("{0:D3}_{1}.json" -f $i, $id)
-            Set-Content -LiteralPath (Join-Path $Queue $file) -Encoding UTF8 -NoNewline -Value $task
-            $i++
-          }
-
-          # Also ensure models manifest will be generated
-          $mf = @{
-            id      = "write_models_manifest"
-            type    = "write_models_manifest"
-            created = (Get-Date).ToString('s') + 'Z'
-            status  = "queued"
-          } | ConvertTo-Json -Depth 6
-          Set-Content -LiteralPath (Join-Path $Queue ('{0:D3}_models_manifest.json' -f $i)) -Encoding UTF8 -NoNewline -Value $mf
+        run: pwsh -File "apps/overseers/ai/seed-queue.ps1"
 
       - name: Commit queued tasks
         shell: bash
@@ -58,6 +27,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Queue: seed full roster scaffold tasks"
+            git commit -m "Queue: seed full roster scaffold + manifests"
             git push
           fi

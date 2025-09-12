@@ -1,6 +1,10 @@
 # Overseers Queue Runner
-# Reads apps/overseers/queue/*.json tasks, performs actions, and moves them to apps/overseers/log/.
-# Requires PowerShell 7+ (pwsh). Uses ConvertFrom-Yaml built-in to parse Memory.
+# Processes apps/overseers/queue/*.json and generates:
+#  - pages/fairies/<id>/index.html
+#  - pages/interfaces/<interface>.html
+#  - asset/models/models.json
+#  - asset/wings/manifest.json
+# Auto-installs YAML support in GitHub Actions.
 
 [CmdletBinding()]
 param()
@@ -9,42 +13,50 @@ $ErrorActionPreference = 'Stop'
 
 function Get-ProjectRoot { return (Resolve-Path "$PSScriptRoot\..\..\..").Path }
 
+function Ensure-YamlModule {
+  if (Get-Command ConvertFrom-Yaml -ErrorAction SilentlyContinue) { return }
+  try {
+    Write-Host "Installing YAML support..."
+    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
+    if (-not (Get-PackageProvider -Name NuGet -ListAvailable -ErrorAction SilentlyContinue)) {
+      Install-PackageProvider -Name NuGet -Scope CurrentUser -Force -ErrorAction Stop | Out-Null
+    }
+    Install-Module -Name powershell-yaml -Scope CurrentUser -Force -AllowClobber -ErrorAction Stop | Out-Null
+    Import-Module powershell-yaml -Force -ErrorAction Stop
+  } catch {
+    throw "Failed to install/import 'powershell-yaml': $($_ | Out-String)"
+  }
+}
+
+function HtmlEscape([string]$s) {
+  if ($null -eq $s) { return "" }
+  $s = $s -replace '&','&amp;' -replace '<','&lt;' -replace '>','&gt;' -replace '"','&quot;'
+  return $s
+}
+function Ensure-Dir([string]$p){ New-Item -ItemType Directory -Force -Path $p | Out-Null }
+function Write-Text([string]$p,[string]$c){ Ensure-Dir (Split-Path $p); Set-Content -LiteralPath $p -Encoding UTF8 -NoNewline -Value $c }
+function ToWebPath([string]$full,[string]$root) {
+  $rel = $full.Substring($root.Length).TrimStart('\','/')
+  return ($rel -replace '\\','/')
+}
+
 $Root     = Get-ProjectRoot
 $QueueDir = Join-Path $Root 'apps\overseers\queue'
 $LogDir   = Join-Path $Root 'apps\overseers\log'
 $OutDir   = Join-Path $Root 'apps\overseers\out'
 New-Item -ItemType Directory -Force -Path $QueueDir,$LogDir,$OutDir | Out-Null
 
-# ---- Memory ---------------------------------------------------------------
+# --- Memory ------------------------------------------------------------------
+Ensure-YamlModule
 $MemoryPath = Join-Path $Root "Cody's Memory.yaml"
-if (-not (Test-Path $MemoryPath)) {
-  throw "Memory file not found: $MemoryPath"
-}
-$MEM = Get-Content -Raw -LiteralPath $MemoryPath -Encoding UTF8 | ConvertFrom-Yaml
+if (-not (Test-Path $MemoryPath)) { throw "Memory file not found: $MemoryPath" }
+$MEM = ConvertFrom-Yaml -Yaml (Get-Content -Raw -LiteralPath $MemoryPath -Encoding UTF8)
 
 $FAIRIES    = @{}
 foreach ($f in $MEM.entities.fairies) { $FAIRIES[$f.id] = $f }
 $INTERFACES = $MEM.interfaces_registry
 
-# ---- Helpers --------------------------------------------------------------
-function HtmlEscape([string]$s) {
-  if ($null -eq $s) { return "" }
-  $s = $s -replace '&','&amp;'
-  $s = $s -replace '<','&lt;'
-  $s = $s -replace '>','&gt;'
-  $s = $s -replace '"','&quot;'
-  return $s
-}
-
-function Ensure-Dir([string]$path) {
-  New-Item -ItemType Directory -Force -Path $path | Out-Null
-}
-
-function Write-Text([string]$path,[string]$content) {
-  Ensure-Dir (Split-Path $path)
-  Set-Content -LiteralPath $path -Encoding UTF8 -NoNewline -Value $content
-}
-
+# --- Interface stub ----------------------------------------------------------
 function Ensure-InterfaceStub([string]$id) {
   $iface = $INTERFACES."$id"
   if ($null -eq $iface) { return }
@@ -52,7 +64,6 @@ function Ensure-InterfaceStub([string]$id) {
   Ensure-Dir $dir
   $path = Join-Path $dir "$id.html"
   if (Test-Path $path) { return }
-
   $html = @"
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -78,11 +89,9 @@ a{color:#cde3ff}
   Write-Text -path $path -content $html
 }
 
+# --- Fairy scaffold ----------------------------------------------------------
 function Scaffold-Fairy([string]$id) {
-  if (-not $FAIRIES.ContainsKey($id)) {
-    Write-Warning "Fairy '$id' not found in Memory."
-    return $false
-  }
+  if (-not $FAIRIES.ContainsKey($id)) { Write-Warning "Fairy '$id' not in Memory."; return $false }
   $f = $FAIRIES[$id]
   $dir = Join-Path $Root "pages\fairies\$id"
   Ensure-Dir $dir
@@ -90,9 +99,7 @@ function Scaffold-Fairy([string]$id) {
 
   $domains = if ($f.domains) { ($f.domains -join ', ') } else { '' }
   $respItems = ""
-  if ($f.responsibilities) {
-    foreach ($r in $f.responsibilities) { $respItems += "        <li>" + (HtmlEscape $r) + "</li>`n" }
-  }
+  if ($f.responsibilities) { foreach ($r in $f.responsibilities) { $respItems += "        <li>" + (HtmlEscape $r) + "</li>`n" } }
   $ifaceCards = ""
   if ($f.interfaces_links) {
     foreach ($link in $f.interfaces_links) {
@@ -143,50 +150,114 @@ $ifaceCards  </div>
 </main>
 </body></html>
 "@
-
   Write-Text -path $htmlPath -content $html
-  Write-Host "Scaffolded Fairy page: pages/fairies/$id/index.html"
+  Write-Host "Scaffolded: pages/fairies/$id/index.html"
   return $true
 }
 
+# --- Models manifest ---------------------------------------------------------
 function Write-Models-Manifest {
   $wingless = @{}
   $withwings = @{}
-  $pWingless = Join-Path $Root "asset\models\wingless"
-  $pWith     = Join-Path $Root "asset\models\with-wings"
-  if (Test-Path $pWingless) {
-    Get-ChildItem -Path $pWingless -Filter *.vrm -File -ErrorAction SilentlyContinue | ForEach-Object {
-      $name = [System.IO.Path]::GetFileNameWithoutExtension($_.Name)
-      $wingless[$name] = ("asset/models/wingless/" + $_.Name)
+
+  $mRoot = Join-Path $Root "asset\models"
+  if (Test-Path $mRoot) {
+    $vrms = Get-ChildItem -Path $mRoot -Recurse -File -Include *.vrm -ErrorAction SilentlyContinue
+    foreach ($v in $vrms) {
+      $bn = [IO.Path]::GetFileNameWithoutExtension($v.Name)
+      $rel = ToWebPath $v.FullName $Root
+      $isWithDir = $v.FullName -imatch '[\\\/]with-wings[\\\/]'
+      $isWithName = $bn -imatch '(^|[-_])(wing|wings)$'
+
+      if ($isWithDir -or $isWithName) {
+        $name = ($bn -replace '(^|[-_])(wing|wings)$','').Trim('_','-')
+        if (-not $name) { $name = $bn }
+        $withwings[$name] = $rel
+      } else {
+        $wingless[$bn] = $rel
+      }
     }
   }
-  if (Test-Path $pWith) {
-    Get-ChildItem -Path $pWith -Filter *.vrm -File -ErrorAction SilentlyContinue | ForEach-Object {
-      $base = [System.IO.Path]::GetFileNameWithoutExtension($_.Name)
-      $name = $base -replace '_wings$',''
-      $withwings[$name] = ("asset/models/with-wings/" + $_.Name)
-    }
-  }
+
   $obj = [ordered]@{ wingless = $wingless; with_wings = $withwings }
   $json = $obj | ConvertTo-Json -Depth 6
   $outPath = Join-Path $Root "asset\models\models.json"
   Ensure-Dir (Split-Path $outPath)
   Set-Content -LiteralPath $outPath -Encoding UTF8 -NoNewline -Value $json
-  Write-Host "Wrote asset/models/models.json"
+  Write-Host "Wrote: asset/models/models.json"
 }
 
+# --- Wings manifest ----------------------------------------------------------
+function Get-WingKey([string]$basename) {
+  # Normalize "Wing02", "wing2" => "wing02" when there are trailing digits.
+  $b = $basename
+  if ($b -match '(\d+)$') {
+    $n = [int]$Matches[1]
+    return ('wing{0:D2}' -f $n)
+  } else {
+    return $b.ToLower()
+  }
+}
+function RoleFromSuffix([string]$suffixLower) {
+  switch -regex ($suffixLower) {
+    '^$'                           { return 'base' }
+    '(^|[_\.-])(c|col|color)$'     { return 'color' }
+    '(^|[_\.-])(e|em|emis.*)$'     { return 'emissive' }
+    '(^|[_\.-])(n|nrm|normal)$'    { return 'normal' }
+    'rough|rgh'                    { return 'roughness' }
+    'metal|mtl|mr'                 { return 'metallic' }
+    'ao|occlusion'                 { return 'occlusion' }
+    default                        { return 'other' }
+  }
+}
+function Write-Wings-Manifest {
+  $sets = @{}
+  $meshDir = Join-Path $Root "asset\wings"
+  $texDir  = Join-Path $meshDir "textures"
+  if (-not (Test-Path $meshDir)) { return }
+
+  $meshes = Get-ChildItem -Path $meshDir -File -Include *.fbx,*.glb,*.gltf -ErrorAction SilentlyContinue
+  foreach ($m in $meshes) {
+    if ($m.DirectoryName -imatch '[\\\/]textures$') { continue }
+    $base = [IO.Path]::GetFileNameWithoutExtension($m.Name)
+    $key  = Get-WingKey $base
+    $wObj = @{
+      mesh     = ToWebPath $m.FullName $Root
+      textures = @{}
+    }
+    # Find textures by shared number/prefix (case-insensitive)
+    if (Test-Path $texDir) {
+      $prefix = $base
+      $tex = Get-ChildItem -Path $texDir -File -ErrorAction SilentlyContinue |
+        Where-Object { $_.BaseName -imatch ("^" + [regex]::Escape($prefix) + "($|[_\.-])") }
+      foreach ($t in $tex) {
+        $suffix = ($t.BaseName.Substring([Math]::Min($prefix.Length, $t.BaseName.Length))).ToLower()
+        $role = RoleFromSuffix $suffix
+        $wObj.textures[$role] = ToWebPath $t.FullName $Root
+      }
+    }
+    $sets[$key] = $wObj
+  }
+
+  $obj = [ordered]@{ sets = $sets }
+  $json = $obj | ConvertTo-Json -Depth 8
+  $outPath = Join-Path $Root "asset\wings\manifest.json"
+  Ensure-Dir (Split-Path $outPath)
+  Set-Content -LiteralPath $outPath -Encoding UTF8 -NoNewline -Value $json
+  Write-Host "Wrote: asset/wings/manifest.json"
+}
+
+# --- Task processor ----------------------------------------------------------
 function Process-Task($task) {
   switch ($task.type) {
-    'scaffold_fairy'          { return (Scaffold-Fairy -id $task.fairy_id) }
-    'write_models_manifest'   { Write-Models-Manifest; return $true }
-    default {
-      Write-Warning "Unknown task type: $($task.type)"
-      return $false
-    }
+    'scaffold_fairy'         { return (Scaffold-Fairy -id $task.fairy_id) }
+    'write_models_manifest'  { Write-Models-Manifest; return $true }
+    'write_wings_manifest'   { Write-Wings-Manifest;  return $true }
+    default { Write-Warning "Unknown task type: $($task.type)"; return $false }
   }
 }
 
-# ---- Run --------------------------------------------------------------
+# --- Run ---------------------------------------------------------------------
 $queue = Get-ChildItem -Path $QueueDir -Filter *.json -File -ErrorAction SilentlyContinue | Sort-Object Name
 $processed = 0
 foreach ($file in $queue) {

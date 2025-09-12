@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fairies of Avalon — home</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#ffffff">
+  <style>body{font:16px/1.5 system-ui,Segoe UI,Arial,sans-serif;margin:2rem}nav a{margin-right:1rem}</style>
+</head>
+<body>
+  <h1>Fairies of Avalon — home</h1>
+  <nav>
+    <a href="/apps/overseers.html">Overseers Console</a>
+    <a href="/wings-importer.html">Wings Importer</a>
+  </nav>
+  <p>Install me: in your browser menu, choose <b>Add to Home Screen</b> or <b>Install App</b>.</p>
+  <script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+    "@pixiv/three-vrm": "https://unpkg.com/@pixiv/three-vrm@2.0.4/dist/three-vrm.module.js"
+  }
+}
+</script>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

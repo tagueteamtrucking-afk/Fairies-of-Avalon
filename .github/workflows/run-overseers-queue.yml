@@ -31,7 +31,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Queue Runner: processed tasks (fairy scaffolds/interfaces/manifests)"
+            git commit -m "Queue Runner: processed tasks (fairy scaffolds, interfaces, manifests)"
             git push
           fi
 

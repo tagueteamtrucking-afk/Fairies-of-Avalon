@@ -1,10 +1,10 @@
 {
-  "ts": "2025-09-12T20:59:00Z",
+  "ts": "2025-09-12T23:28:33Z",
   "actor": "white-star",
-  "action": "cleanup",
-  "mutate": true,
+  "action": "all",
+  "mutate": false,
   "status": "ok",
-  "file_count": 37,
+  "file_count": 157,
   "warnings": [],
   "suggestions": []
 }

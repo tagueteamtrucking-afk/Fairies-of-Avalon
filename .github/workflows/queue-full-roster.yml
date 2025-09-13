@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
 
       - name: Setup PowerShell + YAML module
         shell: pwsh
@@ -43,32 +46,27 @@ jobs:
             Write-Host "Queued: $fn"
           }
 
-          # R3 — Scaffold all Fairies (single bundle; dry-run true)
           Write-Req @{
-            id="R3"
-            action="scaffold_fairies_bundle"
-            params=@{ avatars=$avatars }
-            dry_run=$true
-            actor="rey_czar"
-            routing="overseers"
+            id="R3"; action="scaffold_fairies_bundle"; params=@{ avatars=$avatars }
+            dry_run=$true; actor="rey_czar"; routing="overseers"
           } "scaffold-fairies"
 
-          # R4/R5/R6 — operational tasks
           @(
-            @{ id="R4"; action="asset_audit";      dry_run=$false; actor="rey_czar"; routing="overseers" }
-            @{ id="R5"; action="importmap_check";  dry_run=$false; actor="rey_czar"; routing="overseers" }
-            @{ id="R6"; action="memory_snapshot";  dry_run=$false; actor="rey_czar"; routing="overseers" }
-          ) | ForEach-Object {
-            Write-Req $_ $_.action
-          }
+            @{ id="R4"; action="asset_audit";     dry_run=$false; actor="rey_czar"; routing="overseers" }
+            @{ id="R5"; action="importmap_check"; dry_run=$false; actor="rey_czar"; routing="overseers" }
+            @{ id="R6"; action="memory_snapshot"; dry_run=$false; actor="rey_czar"; routing="overseers" }
+          ) | ForEach-Object { Write-Req $_ $_.action }
 
           git add requests
           git config user.email "actions@github.com"
           git config user.name  "GitHub Actions"
+          git fetch origin ${{ github.ref_name }} --depth=0
+          git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
           git commit -m "Queue: Full roster tasks" || echo "Nothing to commit"
 
       - name: Push
-        uses: ad-m/github-push-action@v0.8.0
+        uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref_name }}
+          force_with_lease: true

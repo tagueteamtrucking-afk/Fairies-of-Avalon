@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Overseers Console</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../app.css" />
+
+  <!-- Import maps polyfill + pinned imports (same pins as index.html) -->
+  <script async src="https://unpkg.com/es-module-shims@1.11.0/dist/es-module-shims.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/",
+      "@pixiv/three-vrm": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm@3.4.2/lib/three-vrm.module.js",
+      "@pixiv/three-vrm-animation": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm-animation@3.4.2/lib/three-vrm-animation.module.js"
+    }
+  }
+  </script>
+</head>
+<body class="wallpaper">
+  <header class="topbar">
+    <h1>Overseers Console</h1>
+    <nav><a href="../../index.html">Home</a></nav>
+  </header>
+
+  <main class="grid" id="console">
+    <section class="tile">
+      <h2>Permissions</h2>
+      <div id="perm-summary" class="status">Loading…</div>
+      <div id="perm-list"></div>
+    </section>
+
+    <section class="tile">
+      <h2>How it works</h2>
+      <ol>
+        <li>Drop a <b>.yml</b> in <code>permissions/requests/</code> (no secrets; only vault URIs).</li>
+        <li>Run <b>Overseers — AI Core</b> workflow (or push to the repo).</li>
+        <li>This page refreshes with the new status from <code>apps/overseers/permissions/state.json</code>.</li>
+      </ol>
+      <p class="status">Overseers-first. Least privilege. No plaintext secrets.</p>
+    </section>
+  </main>
+
+  <script type="module" src="./console.js"></script>
+</body>
+</html>

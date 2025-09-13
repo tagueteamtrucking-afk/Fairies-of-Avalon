@@ -1,0 +1,11 @@
+# Example permission request (no secrets)
+id: req-2025-09-13-abbey-qbo-read
+requester: abbey
+scopes:
+  - "quickbooks.read"
+  - "files.read"
+vault_refs:
+  - "vault://palace/permissions"
+justification: "Abbey needs to read transactions to build the budget dashboard."
+requestedAt: "2025-09-13T00:00:00Z"
+status: "requested"

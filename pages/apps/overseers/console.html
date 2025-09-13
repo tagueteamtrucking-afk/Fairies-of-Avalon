@@ -2,66 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Overseers Console</title>
+  <title>Overseers Console — Avalon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="../../app.css" />
-
-  <!-- Import maps polyfill + pinned imports -->
-  <script async src="https://unpkg.com/es-module-shims@1.11.0/dist/es-module-shims.js"></script>
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/",
-      "@pixiv/three-vrm": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm@3.4.2/lib/three-vrm.module.js",
-      "@pixiv/three-vrm-animation": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm-animation@3.4.2/lib/three-vrm-animation.module.js"
-    }
-  }
-  </script>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/app.css" />
+  <style>
+    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card { background: rgba(0,0,0,0.55); padding: 1rem; border-radius: 10px; backdrop-filter: blur(6px); }
+    .muted { opacity: 0.85; font-size: 0.9rem; }
+    .badge { display: inline-block; padding: .15rem .5rem; border-radius: 6px; font-weight: 600; }
+    .ok { background: #1f6d1f; }
+    .warn { background: #8a6d1e; }
+    .fail { background: #7a1e1e; }
+    pre { white-space: pre-wrap; }
+  </style>
 </head>
 <body class="wallpaper">
-  <header class="topbar">
+  <main class="container">
     <h1>Overseers Console</h1>
-    <nav><a href="../../index.html">Home</a></nav>
-  </header>
-
-  <main class="grid" id="console">
-    <section class="tile">
-      <h2>Overseers AI — Power Index</h2>
-      <div class="progress-head">
-        <div id="pi-note" class="progress-note">Loading…</div>
-        <div id="pi-score" class="progress-score">—%</div>
-      </div>
-      <div class="progress-wrap">
-        <div id="pi-bar" class="progress-bar"></div>
-      </div>
-      <div id="pi-kpis" class="kpis"></div>
-      <div class="status" id="pi-details"></div>
-    </section>
-
-    <section class="tile">
-      <h2>Permissions</h2>
-      <div id="perm-summary" class="status">Loading…</div>
-      <div id="perm-list"></div>
-    </section>
-
-    <section class="tile" id="llm-tile">
-      <h2>LLM Readiness</h2>
-      <div id="llm-status" class="status">Loading…</div>
-      <ul id="llm-missing" class="status" style="list-style:disc; padding-left:20px;"></ul>
-    </section>
-
-    <section class="tile">
-      <h2>How it works</h2>
-      <ol>
-        <li>Drop a <b>.yml</b> in <code>permissions/requests/</code> (no secrets; only vault URIs).</li>
-        <li>Run <b>Overseers — AI Core</b> (or just push to the repo).</li>
-        <li>This page reads <code>apps/overseers/progress.json</code> and <code>apps/overseers/permissions/state.json</code>.</li>
-      </ol>
-      <p class="status">Overseers-first. Least privilege. No plaintext secrets.</p>
-    </section>
+    <div id="badges" class="grid"></div>
+    <div id="cards" class="grid"></div>
+    <p class="muted">
+      Data sources:
+      <code>pages/apps/overseers/progress.json</code>,
+      <code>pages/apps/overseers/permissions/state.json</code>,
+      <code>pages/apps/overseers/capabilities.json</code>.
+      <a href="/Cody%27s%20Memory.yaml">Open Memory</a> ·
+      <a id="downloadDiag" href="#" download="progress.json">Download diagnostics</a>
+    </p>
   </main>
-
-  <script type="module" src="./console.js"></script>
+  <script src="./console.js" defer></script>
 </body>
 </html>

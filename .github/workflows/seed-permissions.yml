@@ -1,0 +1,44 @@
+name: Seed — Permissions
+
+on:
+  workflow_dispatch:
+    inputs:
+      grant_all:
+        description: "Also enqueue GRANT tasks now"
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  seed:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+
+      - name: Seed permission tasks
+        shell: pwsh
+        run: |
+          $grant = '${{ github.event.inputs.grant_all }}'
+          if ($grant -and $grant -ne 'false') {
+            pwsh -File "apps/overseers/ai/seed-permissions.ps1" -GrantAll
+          } else {
+            pwsh -File "apps/overseers/ai/seed-permissions.ps1"
+          }
+
+      - name: Commit queued tasks
+        shell: bash
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Queue: seed permission tasks"
+            git push
+          fi

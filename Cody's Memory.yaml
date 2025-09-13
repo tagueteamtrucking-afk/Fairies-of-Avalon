@@ -292,3 +292,15 @@ lessons_learned:
   - "Always include import map for three, three/addons, @pixiv/three-vrm on Pages."
   - "Write CNAME during deploy so the custom domain sticks."
   - "No plaintext secrets; reference external vaults only."
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "1.7.3"
+  last_updated: "2025-09-13"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    Overseers-first. No plaintext secrets.
+    v1.7.3 — Added permissions profiles & queue tasks (request/grant) with vault refs only.
+    Runner installs YAML module automatically, processes permissions tasks, and writes
+    apps/overseers/permissions/state.json. Auto-wings manifest disabled by default.
+    UI updated with wallpaper theme (app.css) and an Overseers Console showing queue/permissions status.

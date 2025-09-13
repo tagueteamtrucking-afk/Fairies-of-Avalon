@@ -1,0 +1,35 @@
+name: Overseers — Memory Snapshot
+on:
+  push:
+    paths:
+      - "Cody's Memory.yaml"
+  workflow_dispatch:
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Snapshot memory
+        shell: pwsh
+        run: |
+          $ts = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
+          $dir = 'memory-history'
+          if (-not (Test-Path $dir)) { New-Item -ItemType Directory $dir | Out-Null }
+          Copy-Item -LiteralPath "Cody's Memory.yaml" -Destination (Join-Path $dir "$ts-Codys-Memory.yaml") -Force
+      - name: Commit snapshot (if any)
+        shell: bash
+        run: |
+          if git status --porcelain | grep -q "memory-history"; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add memory-history
+            git commit -m "chore(overseers): snapshot Memory"
+            git push
+          else
+            echo "No memory changes"
+          fi

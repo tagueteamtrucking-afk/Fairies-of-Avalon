@@ -1,53 +1,106 @@
 {
-  "lastUpdated": "2025-09-13T21:50:51Z",
-  "overall": 93,
-  "categories": [
+  "totals": {
+    "failed": 3,
+    "success": 5,
+    "skipped": 0
+  },
+  "last_run": "2025-09-13T21:53:08.6408136Z",
+  "processed": [
     {
-      "id": "foundation",
-      "label": "Foundation (site + domain)",
-      "weight": 0.35,
-      "score": 100
+      "ts": "2025-09-13T18:48:48.9937869Z",
+      "actor": "rey_czar",
+      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:58\nLine |\n  58 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
+      "status": "failed",
+      "action": "asset_audit",
+      "file": "20250913T184848Z-asset_audit.request.yml",
+      "dry_run": false,
+      "ended": "2025-09-13T21:53:09.0609667Z",
+      "id": "R4",
+      "started": "2025-09-13T21:53:08.6498516Z"
     },
     {
-      "id": "overseers",
-      "label": "Overseers Core (tools + queue)",
-      "weight": 0.45,
-      "score": 92
+      "ts": "2025-09-13T18:48:48.9992936Z",
+      "actor": "rey_czar",
+      "error": "Exception: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:64\nLine |\n  64 |  … EXITCODE -ne 0) { throw \"Import-map check exit code: $LASTEXITCODE\" }\n     |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Import-map check exit code: \n\n",
+      "status": "failed",
+      "action": "importmap_check",
+      "file": "20250913T184848Z-importmap_check.request.yml",
+      "dry_run": false,
+      "ended": "2025-09-13T21:53:09.1330480Z",
+      "id": "R5",
+      "started": "2025-09-13T21:53:09.0678746Z"
     },
     {
-      "id": "assets",
-      "label": "Assets (VRMs + wings)",
-      "weight": 0.2,
-      "score": 84
+      "count": 15,
+      "ts": "2025-09-13T18:48:48.8782458Z",
+      "actor": "rey_czar",
+      "written": 15,
+      "status": "ok",
+      "action": "scaffold_fairies_bundle",
+      "file": "20250913T184848Z-scaffold-fairies.request.yml",
+      "dry_run": true,
+      "ended": "2025-09-13T21:53:09.2331462Z",
+      "id": "R3",
+      "started": "2025-09-13T21:53:09.1342766Z"
+    },
+    {
+      "ts": "2025-09-13T18:48:49.0045446Z",
+      "actor": "rey_czar",
+      "status": "ok",
+      "action": "memory_snapshot",
+      "file": "20250913T184849Z-memory_snapshot.request.yml",
+      "dry_run": false,
+      "ended": "2025-09-13T21:53:09.2510174Z",
+      "id": "R6",
+      "started": "2025-09-13T21:53:09.2362328Z"
+    },
+    {
+      "ts": "2025-09-13T21:15:02.5871963Z",
+      "actor": "rey_czar",
+      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:58\nLine |\n  58 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
+      "status": "failed",
+      "action": "asset_audit",
+      "file": "20250913T211502Z-asset_audit.request.yml",
+      "dry_run": false,
+      "ended": "2025-09-13T21:53:09.3533955Z",
+      "id": "R4",
+      "started": "2025-09-13T21:53:09.2520946Z"
+    },
+    {
+      "ts": "2025-09-13T21:15:02.5935487Z",
+      "actor": "rey_czar",
+      "status": "ok",
+      "action": "importmap_check",
+      "file": "20250913T211502Z-importmap_check.request.yml",
+      "dry_run": false,
+      "ended": "2025-09-13T21:53:09.3666548Z",
+      "id": "R5",
+      "started": "2025-09-13T21:53:09.3546067Z"
+    },
+    {
+      "ts": "2025-09-13T21:15:02.5975135Z",
+      "actor": "rey_czar",
+      "status": "ok",
+      "action": "memory_snapshot",
+      "file": "20250913T211502Z-memory_snapshot.request.yml",
+      "dry_run": false,
+      "ended": "2025-09-13T21:53:09.3757567Z",
+      "id": "R6",
+      "started": "2025-09-13T21:53:09.3677244Z"
+    },
+    {
+      "count": 15,
+      "ts": "2025-09-13T21:15:02.4659835Z",
+      "actor": "rey_czar",
+      "written": 15,
+      "status": "ok",
+      "action": "scaffold_fairies_bundle",
+      "file": "20250913T211502Z-scaffold-fairies.request.yml",
+      "dry_run": true,
+      "ended": "2025-09-13T21:53:09.4221231Z",
+      "id": "R3",
+      "started": "2025-09-13T21:53:09.3768095Z"
     }
   ],
-  "metrics": {
-    "llm_ready": false,
-    "cname": true,
-    "vrm_expected": 15,
-    "importmap_pinned": true,
-    "vrm_wingless": 15,
-    "wings_meshes": 26,
-    "scripts_present": true,
-    "vrm_present": 19,
-    "capabilities_present": true,
-    "wallpapers": 4,
-    "wings_textures": 0,
-    "llm_bridge_workflow": true,
-    "state_ok": true,
-    "grants": 0,
-    "requests": 0,
-    "ai_core_workflow": true,
-    "console_present": true,
-    "vrm_winged": 4,
-    "nojekyll": true,
-    "llm_missing": [
-      "grant_llm_invoke"
-    ],
-    "state_present": true,
-    "pwa_shell": true
-  },
-  "notes": [
-    "This measures Memory + Tools readiness. Brains (LLM connectors) go green once vault refs + grant + bridge exist."
-  ]
+  "pending": 0
 }

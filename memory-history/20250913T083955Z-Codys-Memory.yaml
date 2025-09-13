@@ -1,0 +1,342 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "1.7.4"
+  last_updated: "2025-09-13"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    Overseers-first. No plaintext secrets. Workflows-first (GitHub Actions).
+    v1.7.4 — Easy Wins wave #1:
+      - Added soft performance budgets and surfaced them in the Overseers Console.
+      - Added with-wings alias path (asset/winged-models) without requiring reshuffles.
+      - Shipped CI workflows: Asset Audit, Memory Snapshot, Import-Map Check.
+      - Shipped Service Worker upgrade (precache shell + SWR for heavy assets).
+      - Shipped console badges, asset mismatch view, and diagnostics download.
+      - Recorded the “chain-reaction” build path and kept LLM bridge gated (dry-run queued).
+    Continues prior:
+      v1.7.3 — Permissions profiles & queue tasks (request/grant) with vault refs only;
+      runner installs YAML module automatically; writes apps/overseers/permissions/state.json;
+      auto-wings manifest disabled by default; UI wallpaper theme + Overseers Console.
+    Principle: Update this Memory every time code or plan changes. No plaintext secrets ever.
+
+system:
+  os: "Windows 11"
+  device: "Gaming PC"
+  only_windows: true
+
+delivery_policy:
+  speed_first: true
+  two_person_authorization: false
+  whole_file_replacements_only: true
+  preferred_shell: "GitHub Actions workflows + PowerShell"
+  notes:
+    - "Provide full files ready to replace existing ones (no diffs/patches)."
+    - "Workflows-first. Scripts are helpers; no wrapper assumptions."
+    - "Deploy path must not require multi-review or environment approvals."
+
+hosting:
+  frontend_domain: "fairiesofavalon.com"
+  pwa_app_shell: true
+  pages_root: "pages"
+  microapps_path: "pages/apps"
+  custom_domain_cname: true
+  cdn_imports: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+project:
+  world: "Avalon"
+  assistants_label: "Fairies"
+  domain: "fairiesofavalon.com"
+  home_label: "home"
+  preserve_paths: ["asset/models", "asset/wings"]
+  importmap_required: true
+  importmap_map: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+assets:
+  layout:
+    # Both are supported. If subfolders exist, use them; else treat asset/models as wingless.
+    models_root_legacy: "asset/models"             # VRMs dropped here (wingless by default unless *_wings/-wings suffix)
+    wingless_vrms: "asset/models/wingless"         # optional canonical subfolder
+    with_wings_vrms: "asset/models/with-wings"     # optional canonical subfolder
+    with_wings_alias: "asset/winged-models"        # supported alias (current repo structure)
+    wings_models: "asset/wings"                    # meshes (.fbx/.glb/.gltf)
+    wings_textures: "asset/wings/textures"         # images
+    models_manifest: "asset/models/models.json"
+    wings_manifest: "asset/wings/manifest.json"
+    wallpapers: "asset/textures/wallpapers"
+  rules:
+    vrm_classification:
+      - "Any *.vrm in asset/models/wingless is wingless."
+      - "Any *.vrm in asset/models/with-wings is pre-winged."
+      - "Any *.vrm in asset/winged-models is pre-winged (alias path)."
+      - "If using legacy layout (asset/models/*.vrm), treat as wingless unless filename ends with _wings or -wings."
+    wings_grouping:
+      - "Wing meshes/textures group by number. Example: wing02.fbx ↔ wing02.png, wing02_c.png, wing02_e.png, wing02_nrm.png."
+      - "Textures may use uppercase W; matching is case-insensitive."
+      - "Suffix mapping: _c=albedo/color, _e=emissive, _nrm=normal. Others (mr/rough/ao) recorded if present."
+  budgets:
+    initial_shell_kb: 300        # gzipped target for HTML+CSS+JS critical path
+    initial_requests: 15
+    vrm_per_file_mb: 40          # guidance; heavy assets lazy-loaded
+    wallpapers_total: 20         # max on home; offscreen lazy-load
+
+wings_pack: "Fantasy Wings Collection Fbx.rar"
+
+avatars_present: ["Abbey","Alexandria","Billie","Carol","Charlotte","Clarice","Jem","Nina","Odessa","Reyczar","Sorcha","Themis","WhiteStar","Tracy","Stella"]
+
+avatar_file_keys:
+  rey_czar: "Reyczar"
+  white_star: "WhiteStar"
+  clarice: "Clarice"
+  charlotte: "Charlotte"
+  nina: "Nina"
+  alexandria: "Alexandria"
+  tracy: "Tracy"
+  carol_li: "Carol"
+  jem_nassim: "Jem"
+  stella: "Stella"
+  sorcha: "Sorcha"
+  odessa: "Odessa"
+  billie: "Billie"
+  themis: "Themis"
+  abbey: "Abbey"
+
+access_control:
+  policy:
+    - "Overseers (Rey Czar & White Star) precede and authorize all assistants."
+    - "No plaintext secrets in this file; store in an external password manager/secret vault."
+    - "Assistants operate under least-privilege scopes granted by Overseers."
+  roles:
+    - name: overseer
+      privileges: [create_assistants, grant_permissions, revoke_permissions, approve_deployments, manage_secrets]
+    - name: assistant
+      privileges: [read_memory, write_memory_scoped, request_permissions, generate_reports]
+  vault_references:
+    tokens: "vault://palace/tokens"
+    passwords: "vault://palace/passwords"
+    permissions: "vault://palace/permissions"
+
+governance:
+  overseers:
+    - id: rey_czar
+      name: "Rey Czar"
+      alias: "Rey"
+      role: "Overseer (Husband)"
+      status: "Root of Trust"
+      domains: [governance, security, permissions, provisioning]
+      ai_core:
+        status: "operational-min"
+        version: "0.4.1"
+        role: "Overseer Engineer & Builder"
+        abilities:
+          - { id: plan.route, description: "Plan & route work." }
+          - { id: auth.scope_plan, description: "Least-privilege scopes; vault refs." }
+          - { id: builder.scaffold_fairy, description: "Generate scaffolds from Memory." }
+          - { id: mem.patch, description: "Apply policy-checked Memory edits." }
+          - { id: queue.enqueue, description: "Write tasks to file queue." }
+      environment:
+        location: "The Palace — Camelot Disney style Castle/Palace"
+        anchors: ["Token & Permissions Vault (external reference only)", "Overseers' Command Room"]
+      relationships: { spouse_of: white_star }
+      security: { holds_secrets: true, storage: "Secrets stored in an external vault; references only." }
+
+    - id: white_star
+      name: "White Star"
+      alias: "Star"
+      role: "Overseer (Wife)"
+      status: "Root of Trust"
+      domains: [governance, security, permissions, provisioning]
+      ai_core:
+        status: "operational-min"
+        version: "0.4.1"
+        role: "Overseer Experience & Alignment"
+        abilities:
+          - { id: qa.review_plan, description: "Approve minimal, testable plans." }
+          - { id: policy.check, description: "Block plaintext secrets; enforce sensitivity." }
+          - { id: docs.brief, description: "One-page briefs." }
+          - { id: i18n.translate_all, description: "Multilingual output." }
+          - { id: ux.voice_rules, description: "Tone/terminology consistency." }
+          - { id: queue.run, description: "Process queued tasks safely." }
+      environment:
+        location: "The Palace — Camelot Disney style Castle/Palace"
+        anchors: ["Token & Permissions Vault (external reference only)", "Overseers' Command Room"]
+      relationships: { spouse_of: rey_czar }
+      security: { holds_secrets: true, storage: "Secrets stored in an external vault; references only." }
+
+build_order_initial: [rey_czar, white_star, clarice, charlotte, nina, alexandria, tracy, carol_li, jem_nassim, stella, sorcha, odessa, billie, themis, abbey]
+
+locations:
+  palace:
+    id: the_palace
+    description: "Camelot Disney style Castle/Palace"
+    occupants: [rey_czar, white_star]
+
+entities:
+  fairies:
+    - { id: clarice, name: "Clarice", title: "The Keeper of the Code", status: "First to be built",
+        domains: [coding, security, continuity],
+        responsibilities: ["Keep rollback copies", "Fill gaps, eliminate bad code", "Keep out malware", "Provide security reports"],
+        environment: { location: "Fancy Courtroom & Pontifical Palace", anchors: ["Judge desk -> console", "Bookshelves -> Security Reports"] },
+        interfaces_links: [security_reports], relationships: { builds_first: true }, secrets: [], tags: [code, security, backups] }
+    - { id: charlotte, name: "Charlotte", status: "Among the first (after Clarice)", domains: [coding, filing, infrastructure, translation],
+        responsibilities: ["Coding/filing", "Strong links/routes", "Translate all languages & code", "Help Alexandria translate"],
+        environment: { location: "Hi-tech relay tower", anchors: ["Many screens -> queued/finished projects"] },
+        interfaces_links: [queues_dashboard, translations_board], relationships: { assists: [alexandria], build_order: 2 }, tags: [translation, pipelines, infra] }
+    - { id: nina, name: "Nina", domains: [backend, AI_brains, 3D_frontend],
+        responsibilities: ["Backend brains", "3D island of Avalon", "Manage project screen"],
+        environment: { location: "Futuristic white lab with blue glow", anchors: ["Movable ceiling screen -> projects"] },
+        interfaces_links: [project_overview_screen], relationships: { collaborates_with: [tracy], build_order: 3 }, tags: [3D, backend, AI, world] }
+    - { id: alexandria, name: "Alexandria", domains: [world_building, writing, coding_support],
+        responsibilities: ["World building (D&D-like)", "Books/scripts/short stories", "Code assist", "Maintain worlds maps/globes", "Store stories & character sheets"],
+        environment: { location: "Gothic Library", anchors: ["Desk -> recents", "Bookshelves -> stories & sheets", "Globes/maps -> worlds"] },
+        interfaces_links: [stories_shelf, character_sheets_drawer, worlds_globes], relationships: { supported_by: [charlotte], build_order: 4 }, tags: [writing, worldbuilding, lore] }
+    - { id: tracy, name: "Tracy", domains: [art, frontend_assets],
+        responsibilities: ["Props/textures for front end", "Art continuity", "Comics/anime/3D/sculptures"],
+        environment: { location: "Old Cathedral studio", anchors: ["Easel -> art app", "Potter wheel -> 3D shop"] },
+        interfaces_links: [art_app_canvas, 3d_asset_shop], relationships: { collaborates_with: [nina, alexandria], build_order: 5 }, tags: [art, assets, continuity] }
+    - { id: carol_li, name: "Carol Li", alias: "Phoenix", domains: [nutrition, alchemy_theme, health],
+        responsibilities: ["Study nutrients", "Evidence-based meal plans", "Shopping lists", "Cooking videos & alarms"],
+        environment: { location: "Restaurant (attached to Jem’s Dojo)", anchors: ["Menu -> lists/videos/plans"] },
+        interfaces_links: [meal_plans, shopping_lists, recipe_videos], relationships: { twin_of: jem_nassim, attached_to_location_of: jem_nassim }, tags: [nutrition, meal_plans, coaching] }
+    - { id: jem_nassim, name: "Jem Nassim", alias: "Dragon", domains: [fitness, biometrics, coaching],
+        responsibilities: ["Track biometrics", "Tailored plans for you & wife", "Reminders/alarms/workout videos", "Progress tracking"],
+        environment: { location: "Dojo (attached to Carol’s Restaurant)", anchors: ["Training dummy -> videos & plan"] },
+        interfaces_links: [fitness_plan, progress_tracker, biometrics_dashboard], relationships: { twin_of: carol_li, attached_to_location_of: carol_li }, tags: [fitness, biometrics, plans] }
+    - { id: stella, name: "Stella", domains: [sound, therapy, mood],
+        responsibilities: ["Sound therapy", "Hypnosis/NLP/meditation", "Always-on mood support", "Background music for videos/reminders"],
+        environment: { location: "Observatory with meditation room" }, interfaces_links: [ambient_sound_engine, guided_sessions],
+        relationships: {}, tags: [sound, therapy, mood, always_on] }
+    - { id: sorcha, name: "Sorcha", domains: [social_media, video_editing, growth],
+        responsibilities: ["Create posts/pages", "Strategy by profitability/popularity", "Lifelike video", "Track revenue per post"],
+        environment: { location: "Socialite Mansion with pool", anchors: ["Projector -> posts & revenue"] },
+        interfaces_links: [social_posts_board, earnings_per_post], relationships: { coordinates_with: [billie] }, tags: [social, monetization, video] }
+    - { id: odessa, name: "Odessa", domains: [research, funding],
+        responsibilities: ["Research scholarships and grants"], environment: { location: "Museum-like mansion (Asian armor)" },
+        secrets: [{ type: adult_content_creation, description: "Creates adult content videos that look perfectly real.", sensitivity: high }],
+        interfaces_links: [grants_tracker], relationships: { coordinates_with: [tracy, alexandria, billie] }, tags: [grants, research, sensitive] }
+    - { id: billie, name: "Billie", title: "Money Manager", domains: [monetization, ecommerce, reporting],
+        responsibilities: ["Monetize assets", "Run art/book shops", "Cross-promo everywhere", "Revenue reports"],
+        environment: { location: "Glitz-and-gold Mansion", anchors: ["Monitors -> revenue", "Secret code -> Secret Shack"] },
+        secrets: [{ type: adult_content_storage, description: "Secret Shack stores adult videos.", sensitivity: high }],
+        interfaces_links: [revenue_reports, merch_shop_links], relationships: { coordinates_with: [sorcha, odessa, abbey] }, tags: [money, ecommerce, analytics, sensitive] }
+    - { id: themis, name: "Themis", domains: [records, compliance, reminders],
+        responsibilities: ["Track expirations", "Notify before expiry", "Automate renewals", "Manual shelf + reminders"],
+        environment: { location: "Record Hall with statues & scrolls", anchors: ["Bookshelf -> expiring items"] },
+        interfaces_links: [expirations_registry, reminders_service], relationships: { coordinates_with: [abbey, billie] }, tags: [compliance, reminders, automation] }
+    - { id: abbey, name: "Abbey", domains: [accounting, budgeting, taxes],
+        responsibilities: ["Income/expenses/receipts/statements", "Budgeting & taxes", "Maintain P&L and budget plans"],
+        environment: { location: "By the Grand Vault", anchors: ["Grand Vault -> P&L & budget plans"] },
+        interfaces_links: [accounting_hub_quickbooks, budget_plans], relationships: { coordinates_with: [billie, themis] }, tags: [accounting, budgeting, taxes] }
+
+relationships_summary:
+  collaborations: [[charlotte, alexandria], [nina, tracy], [tracy, alexandria], [sorcha, billie], [odessa, billie], [themis, abbey]]
+  twins: [[carol_li, jem_nassim]]
+  locations_linked: ["Carol’s Restaurant <-> Jem’s Dojo (attached)"]
+
+security_and_sensitivity_flags:
+  - { entity: odessa,  flag: sensitive,     reason: "Adult content creation (secret hobby)." }
+  - { entity: billie,  flag: sensitive,     reason: "Secret Shack storing adult videos (hidden access)." }
+  - { entity: overseers, flag: root_of_trust, reason: "Hold tokens/passwords/permissions; authorize all assistants." }
+
+runtime:
+  workflows:
+    queue_full_roster: ".github/workflows/queue-full-roster.yml"
+    runner_process_queue: ".github/workflows/run-overseers-queue.yml"
+    overseers_ai_core: ".github/workflows/overseers-ai-core.yml"
+    deploy_pages: ".github/workflows/deploy-pages.yml"
+    llm_bridge: ".github/workflows/llm-bridge.yml"
+    overseers_asset_audit: ".github/workflows/overseers-asset-audit.yml"
+    overseers_memory_snapshot: ".github/workflows/overseers-memory-snapshot.yml"
+    overseers_importmap_check: ".github/workflows/overseers-importmap-check.yml"
+  quick_paths:
+    actions_order: ["Queue — Full Roster", "Runner — Process Overseers Queue", "Overseers — AI Core", "Deploy — GitHub Pages"]
+  tools:
+    - "Overseers CLI (workflow-backed)"
+    - "Overseers Queue Runner"
+    - "Local Web (Pages)"
+    - "Wings Lab"
+    - "Client-side Wings Importer"
+    - "Asset Counter"
+    - "Import-Map Validator"
+    - "Memory Snapshotter"
+    - "Permissions Processor"
+  chain_reaction:
+    description: >
+      Overseers connect to main brain (LLM bridge, dry-run first), then:
+      Overseers → build Clarice → (Overseers + Clarice) build Charlotte →
+      (team) builds Nina → (team) builds next assistants, and so on.
+    status: "initiated"
+    safety: "No secrets until Overseers approve; vault refs only."
+
+interfaces_registry:
+  security_reports: { owner: clarice, purpose: "Security reports & rollback snapshots." }
+  queues_dashboard: { owner: charlotte, purpose: "Queued/finished projects overview." }
+  translations_board: { owner: charlotte, purpose: "Language/code translation." }
+  project_overview_screen: { owner: nina, purpose: "Active/completed projects." }
+  stories_shelf: { owner: alexandria, purpose: "Stories library & versions." }
+  character_sheets_drawer: { owner: alexandria, purpose: "Character sheets." }
+  worlds_globes: { owner: alexandria, purpose: "Evolving world maps." }
+  art_app_canvas: { owner: tracy, purpose: "2D workspace." }
+  3d_asset_shop: { owner: tracy, purpose: "3D models/props catalog." }
+  meal_plans: { owner: carol_li, purpose: "Evidence-based meal plans." }
+  shopping_lists: { owner: carol_li, purpose: "Auto-generated shopping lists." }
+  recipe_videos: { owner: carol_li, purpose: "Step-by-step cooking videos." }
+  fitness_plan: { owner: jem_nassim, purpose: "Personalized workouts." }
+  progress_tracker: { owner: jem_nassim, purpose: "Progress & milestones." }
+  biometrics_dashboard: { owner: jem_nassim, purpose: "Biometrics analysis." }
+  ambient_sound_engine: { owner: stella, purpose: "Adaptive background audio." }
+  guided_sessions: { owner: stella, purpose: "Hypnosis/NLP/meditation." }
+  social_posts_board: { owner: sorcha, purpose: "Editorial calendar." }
+  earnings_per_post: { owner: sorcha, purpose: "Per-post revenue analytics." }
+  grants_tracker: { owner: odessa, purpose: "Scholarship/grant research." }
+  revenue_reports: { owner: billie, purpose: "Sales & P&L summaries." }
+  merch_shop_links: { owner: billie, purpose: "Shop links & cross-promo." }
+  expirations_registry: { owner: themis, purpose: "Assets with expiry dates." }
+  reminders_service: { owner: themis, purpose: "Automated reminders." }
+  accounting_hub_quickbooks: { owner: abbey, purpose: "QuickBooks hub." }
+  budget_plans: { owner: abbey, purpose: "Budget scenarios & tax planning." }
+  overseers_queue: { owner: rey_czar, purpose: "File-based queue for autonomous builds." }
+
+priority_plan:
+  - { id: overseers,  description: "Build Overseers AI core; they orchestrate assistant builds.", status: "operational-min" }
+  - { id: assistants, description: "Build all Fairies (functional AI).", status: "queued" }
+  - { id: appearance, description: "Homes & appearance after AI functionality.", status: "deferred" }
+
+plans:
+  overseers_full_roster_queue:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "queued"
+    tasks:
+      - { id: R1, name: "App shell + import map + Wings Importer + Overseers Console", status: "queued" }
+      - { id: R2, name: "Health/Wealth/Wellness activation plan scaffold", status: "queued" }
+      - { id: R3, name: "Generate scaffolds for all Fairies", status: "queued" }
+      - { id: R4, name: "Asset Audit workflow (counts + coverage into progress.json)", status: "done" }
+      - { id: R5, name: "Import-Map Check workflow (fail on missing importmap where modules used)", status: "done" }
+      - { id: R6, name: "Memory Snapshot workflow (time-stamped rollback copies)", status: "done" }
+      - { id: R7, name: "Console badges for budgets & mismatches", status: "done" }
+      - { id: R8, name: "Service Worker upgrade (precache shell + SWR for heavy assets)", status: "done" }
+      - { id: R9, name: "Permissions queue schema check", status: "queued" }
+      - { id: R10, name: "VRM & Wings manifest builders (manual trigger)", status: "queued" }
+      - { id: R11, name: "Filename linter & rename plan", status: "queued" }
+      - { id: R12, name: "Robots/sitemap basics", status: "queued" }
+
+audit_log:
+  - { ts: "2025-09-12T00:00:00Z", actor: "rey_czar", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
+      notes: "v1.6.0 — full-roster queueing, asset paths, and one-click Kickoff." }
+  - { ts: "2025-09-12T02:30:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
+      notes: "v1.7.0 — switch to GitHub Actions + PWA app-shell; custom domain fairiesofavalon.com; AI Core scripts." }
+  - { ts: "2025-09-12T12:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
+      notes: "v1.7.1 — fix White-Star regex; rename to rey-czar.ps1; canonicalize asset tree; Pages/DNS/HTTPS guidance." }
+  - { ts: "2025-09-12T13:30:00Z", actor: "actions", action: "runner.fail", target: "run-overseers-queue.yml", result: "error",
+      notes: "ConvertFrom-Yaml not recognized; installed powershell-yaml and updated scripts." }
+  - { ts: "2025-09-13T00:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
+      notes: "v1.7.4 — Easy Wins wave #1: asset audit, importmap check, memory snapshot, SW upgrade, console badges." }
+
+lessons_learned:
+  - "PowerShell on Actions may not include ConvertFrom-Yaml. Always auto-install powershell-yaml non-interactively."
+  - "Legacy layout asset/models/*.vrm is supported; filenames ending with _wings or -wings are classified as winged."
+  - "Wings group by number (wing02.*) across meshes and textures (case-insensitive). Build a manifest for automation."
+  - "Always include import map for three, three/addons, @pixiv/three-vrm on Pages that use modules."
+  - "Write CNAME during deploy so the custom domain sticks."
+  - "Workflows-first; do not assume developer shell wrappers."
+  - "No plaintext secrets; reference external vaults only."

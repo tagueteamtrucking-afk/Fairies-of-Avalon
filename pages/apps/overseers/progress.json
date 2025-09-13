@@ -1,51 +1,51 @@
 {
-  "lastUpdated": "2025-09-13T18:36:45Z",
+  "lastUpdated": "2025-09-13T18:39:03Z",
   "overall": 93,
   "categories": [
     {
+      "score": 100,
       "id": "foundation",
       "label": "Foundation (site + domain)",
-      "score": 100,
       "weight": 0.35
     },
     {
+      "score": 92,
       "id": "overseers",
       "label": "Overseers Core (tools + queue)",
-      "score": 92,
       "weight": 0.45
     },
     {
+      "score": 84,
       "id": "assets",
       "label": "Assets (VRMs + wings)",
-      "score": 84,
       "weight": 0.2
     }
   ],
   "metrics": {
-    "ai_core_workflow": true,
-    "wallpapers": 4,
-    "vrm_winged": 4,
-    "capabilities_present": true,
-    "importmap_pinned": true,
-    "state_ok": true,
-    "vrm_expected": 15,
-    "grants": 0,
-    "nojekyll": true,
-    "llm_ready": false,
     "llm_missing": [
       "grant_llm_invoke"
     ],
-    "console_present": true,
+    "wallpapers": 4,
+    "ai_core_workflow": true,
     "vrm_present": 19,
-    "state_present": true,
-    "scripts_present": true,
+    "pwa_shell": true,
+    "console_present": true,
+    "llm_ready": false,
+    "vrm_expected": 15,
+    "state_ok": true,
+    "importmap_pinned": true,
+    "capabilities_present": true,
     "vrm_wingless": 15,
+    "cname": true,
+    "wings_textures": 0,
     "requests": 0,
     "wings_meshes": 26,
-    "cname": true,
-    "pwa_shell": true,
-    "wings_textures": 0,
-    "llm_bridge_workflow": true
+    "nojekyll": true,
+    "grants": 0,
+    "llm_bridge_workflow": true,
+    "scripts_present": true,
+    "vrm_winged": 4,
+    "state_present": true
   },
   "notes": [
     "This measures Memory + Tools readiness. Brains (LLM connectors) go green once vault refs + grant + bridge exist."

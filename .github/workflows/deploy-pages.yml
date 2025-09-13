@@ -1,13 +1,17 @@
-name: Deploy — GitHub Pages
+name: "Deploy — GitHub Pages"
 
 on:
-  push:
-    branches: [ "main" ]
-    paths:
-      - "pages/**"
-      - "CNAME"
-      - "asset/textures/wallpapers/**"
   workflow_dispatch:
+  push:
+    paths:
+      - 'pages/**'
+      - 'processed/**'
+      - 'memory-history/**'
+      - 'CNAME'
+      - '.nojekyll'
+  workflow_run:
+    workflows: ["Runner — Process Overseers Queue"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -24,34 +28,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Prepare artifact (copy CNAME + wallpapers)
+      - name: Prepare site artifact
+        shell: bash
         run: |
-          mkdir -p pages
-          cp CNAME pages/CNAME || true
-
-          # Copy wallpapers if present (supports your folder)
-          if [ -d "asset/textures/wallpapers" ]; then
-            mkdir -p pages/wallpapers
-            cp -r asset/textures/wallpapers/* pages/wallpapers/ || true
-          fi
-
-          # Build wallpapers index.json (safe if folder missing/empty)
-          node -e "const fs=require('fs');const p='pages/wallpapers';try{fs.mkdirSync(p,{recursive:true});const list=fs.readdirSync(p).filter(f=>/\.(png|jpe?g|webp)$/i.test(f)).sort();fs.writeFileSync(p+'/index.json',JSON.stringify(list));}catch(e){/* no-op */}"
+          set -euo pipefail
+          rm -rf site
+          mkdir -p site
+          cp -R pages/* site/
+          # include root control files
+          [ -f CNAME ] && cp CNAME site/CNAME || true
+          [ -f .nojekyll ] && cp .nojekyll site/.nojekyll || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "pages"
+          path: site
 
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy to Pages
         uses: actions/deploy-pages@v4
-        with:
-          cname: fairiesofavalon.com

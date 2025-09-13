@@ -1,23 +1,32 @@
-# Fails if any HTML that uses 'three' / '@pixiv/three-vrm' modules lacks an importmap tag.
+# Validates that any HTML file importing 'three' / 'three/addons/' / '@pixiv/three-vrm' includes an <script type="importmap">.
 $ErrorActionPreference = 'Stop'
-$repoRoot = Resolve-Path (Join-Path $PSScriptRoot '..\..')
-$paths = @(
-  Join-Path $repoRoot 'index.html',
-  Join-Path $repoRoot 'pages'
+
+$repoRoot = Resolve-Path (Join-Path $PSScriptRoot '..' '..')
+$targets = @(
+  (Join-Path $repoRoot 'index.html'),
+  (Join-Path $repoRoot 'pages')
 )
 
+# Collect HTML files
 $files = @()
-foreach($p in $paths){
-  if (Test-Path $p){
-    $files += if (Test-Path $p -PathType Leaf) { Get-Item $p } else { Get-ChildItem -Path $p -Filter *.html -Recurse -File }
+foreach($t in $targets){
+  if (Test-Path $t -PathType Leaf) {
+    $files += Get-Item -LiteralPath $t
+  } elseif (Test-Path $t) {
+    $files += Get-ChildItem -LiteralPath $t -Filter *.html -Recurse -File
   }
 }
 
 $violations = @()
+
+# Regex patterns (single-quoted; doubled single-quotes inside)
+$patternUsesModules = 'from\s+["''](@pixiv/three-vrm|three/addons/|three)["'']'
+$patternImportMap   = '<script[^>]+type=["'']importmap["'']'
+
 foreach($f in $files){
   $html = Get-Content -LiteralPath $f.FullName -Raw
-  $usesThree = $html -match "from\s+['""](@pixiv/three-vrm|three/addons/|three)['""]"
-  $hasImportMap = $html -match '<script[^>]+type=["'"]importmap["'"]'
+  $usesThree    = $html -match $patternUsesModules
+  $hasImportMap = $html -match $patternImportMap
   if ($usesThree -and -not $hasImportMap){
     $violations += $f.FullName
   }

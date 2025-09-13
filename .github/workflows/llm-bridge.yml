@@ -1,0 +1,12 @@
+name: LLM Bridge (scaffold)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Note
+        run: |
+          echo "This is a scaffold. When you’re ready, add steps that call your LLM using vault-backed secrets."

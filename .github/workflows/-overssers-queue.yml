@@ -1,0 +1,57 @@
+name: "Runner — Process Overseers Queue"
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "requests/**"
+  schedule:
+    - cron: "*/15 * * * *"  # every 15 minutes
+
+permissions:
+  contents: write
+
+concurrency:
+  group: overseers-queue
+  cancel-in-progress: false
+
+jobs:
+  run-queue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup PowerShell + YAML module
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module powershell-yaml -Scope CurrentUser -Force -AllowClobber
+          Import-Module powershell-yaml
+
+      - name: Process queue
+        shell: pwsh
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}   # optional; dry-run if absent
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }} # optional; ignored unless you extend provider logic
+        run: |
+          $ErrorActionPreference = 'Stop'
+          & "scripts/overseers/process-queue.ps1" -RepoRoot "${{ github.workspace }}" -Verbose
+
+      - name: Commit progress + processed artifacts
+        shell: pwsh
+        run: |
+          git add "pages/apps/overseers/progress.json" || echo "no progress changes"
+          git add processed || echo "no processed changes"
+          git add "memory-history" || echo "no memory-history changes"
+          git config user.email "actions@github.com"
+          git config user.name  "GitHub Actions"
+          git commit -m "Runner: update progress/processed" || echo "Nothing to commit"
+
+      - name: Push
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}

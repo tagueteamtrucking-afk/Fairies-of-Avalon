@@ -1,50 +1,50 @@
 {
-  "lastUpdated": "2025-09-13T08:19:00Z",
+  "lastUpdated": "2025-09-13T08:20:39Z",
   "overall": 93,
   "categories": [
     {
+      "score": 100,
       "label": "Foundation (site + domain)",
       "weight": 0.35,
-      "score": 100,
       "id": "foundation"
     },
     {
+      "score": 92,
       "label": "Overseers Core (tools + queue)",
       "weight": 0.45,
-      "score": 92,
       "id": "overseers"
     },
     {
+      "score": 84,
       "label": "Assets (VRMs + wings)",
       "weight": 0.2,
-      "score": 84,
       "id": "assets"
     }
   ],
   "metrics": {
-    "vrm_present": 19,
-    "ai_core_workflow": true,
-    "console_present": true,
+    "capabilities_present": true,
     "scripts_present": true,
-    "requests": 0,
-    "llm_ready": false,
+    "importmap_pinned": true,
+    "pwa_shell": true,
+    "console_present": true,
     "wings_meshes": 26,
+    "vrm_present": 19,
     "wings_textures": 0,
-    "grants": 0,
+    "nojekyll": true,
+    "llm_ready": false,
     "llm_missing": [
       "grant_llm_invoke"
     ],
-    "capabilities_present": true,
-    "state_present": true,
-    "nojekyll": true,
-    "importmap_pinned": true,
-    "vrm_expected": 15,
     "vrm_winged": 4,
-    "pwa_shell": true,
     "wallpapers": 4,
     "state_ok": true,
+    "grants": 0,
     "vrm_wingless": 15,
+    "state_present": true,
+    "requests": 0,
     "llm_bridge_workflow": true,
+    "ai_core_workflow": true,
+    "vrm_expected": 15,
     "cname": true
   },
   "notes": [

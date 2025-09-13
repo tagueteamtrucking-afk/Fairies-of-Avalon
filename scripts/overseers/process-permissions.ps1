@@ -68,7 +68,6 @@ Archive-Files $requests
 Archive-Files $grants
 
 # ---------- 2) Build Overseers progress.json ----------
-# Checks
 function Has([string]$p) { return Test-Path $p -PathType Leaf -ErrorAction SilentlyContinue }
 function HasDir([string]$p){ return Test-Path $p -PathType Container -ErrorAction SilentlyContinue }
 
@@ -80,6 +79,7 @@ $scriptsOK    = (Has "scripts\overseers\helpers.ps1") -and (Has "scripts\oversee
 $cnameOK      = Has "CNAME"
 $nojekyllOK   = Has ".nojekyll"
 $capabilities = Has "pages\apps\overseers\capabilities.json"
+
 $wallpapersCt = 0
 if (HasDir "asset\textures\wallpapers") {
   $wallpapersCt = (Get-ChildItem "asset\textures\wallpapers" -Include *.png,*.jpg,*.jpeg,*.webp -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count
@@ -94,28 +94,62 @@ if (Has "pages\index.html") {
 $reqCt = (Get-ChildItem "permissions\requests" -Include *.yml,*.yaml -ErrorAction SilentlyContinue | Measure-Object).Count
 $grtCt = (Get-ChildItem "permissions\grants"   -Include *.yml,*.yaml -ErrorAction SilentlyContinue | Measure-Object).Count
 
-# VRMs present vs expected
-$vrmPresent = (Get-ChildItem "asset\models" -Filter *.vrm -ErrorAction SilentlyContinue | Measure-Object).Count
+# VRMs present (wingless + winged)
+$vrmWingless = 0
+if (HasDir "asset\models") {
+  $vrmWingless = (Get-ChildItem "asset\models" -Filter *.vrm -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count
+}
+$vrmWinged = 0
+if (HasDir "asset\winged-models") {
+  $vrmWinged = (Get-ChildItem "asset\winged-models" -Filter *.vrm -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count
+}
+$vrmPresent = $vrmWingless + $vrmWinged
+
+# VRMs expected from Memory.yaml (fallback 15)
 $vrmExpected = $null
 try {
   $memRaw = Get-Content "Cody's Memory.yaml" -Raw -ErrorAction Stop
   $memObj = ConvertFrom-Yaml -Yaml $memRaw
   if ($memObj.assets.avatars_present) { $vrmExpected = $memObj.assets.avatars_present.Count }
 } catch { }
-
-if (-not $vrmExpected) { $vrmExpected = 15 } # default target
+if (-not $vrmExpected) { $vrmExpected = 15 }
 
 $wingsMeshes   = (Get-ChildItem "asset\wings" -Filter *.fbx -ErrorAction SilentlyContinue | Measure-Object).Count
 $wingsTextures = (Get-ChildItem "asset\wings\textures" -Include *.png,*.jpg,*.jpeg,*.webp -ErrorAction SilentlyContinue | Measure-Object).Count
 
-# Scoring (weights sum to 100)
+# LLM readiness checks
+$llmMissing = @()
+# 1) Vault refs in Memory (tokens/passwords/permissions)
+$memHasVaults = $false
+try {
+  if ($memObj -and $memObj.access_control.vault_references.tokens -and $memObj.access_control.vault_references.permissions) { $memHasVaults = $true }
+} catch { }
+if (-not $memHasVaults) { $llmMissing += "vault_refs" }
+# 2) At least one approved grant allowing LLM invocation
+$llmGrant = $false
+foreach ($g in $grts) {
+  if ($g.result -eq "approved") {
+    foreach ($s in $g.grantedScopes) {
+      if ($s -match "^llm\.invoke$" -or $s -match "^openai\.invoke$" -or $s -match "^anthropic\.invoke$") { $llmGrant = $true; break }
+    }
+  }
+  if ($llmGrant) { break }
+}
+if (-not $llmGrant) { $llmMissing += "grant_llm_invoke" }
+# 3) LLM bridge workflow present (scaffold ok)
+$llmBridge = Test-Path ".github\workflows\llm-bridge.yml"
+if (-not $llmBridge) { $llmMissing += "llm_bridge_workflow" }
+
+$llmReady = ($llmMissing.Count -eq 0)
+
+# --------- Scoring (weights sum to 100) ----------
 $points = 0
 function P([bool]$ok, [int]$w) { if ($ok) { return $w } else { return 0 } }
 
 $points += P $pwaShell      12
 $points += P $importPins     8
 $points += P $consoleFiles  10
-# state is OK only if it has a timestamp that's not "never"
+
 $stateOk = $false
 if ($stateFile) {
   try {
@@ -126,26 +160,23 @@ if ($stateFile) {
 $points += P $stateOk       10
 $points += P $workflowAI    10
 $points += P $scriptsOK     10
-# Domain & Pages config
 $points += P ($cnameOK -and $nojekyllOK) 8
-$points += P $capabilities  4
+$points += P $capabilities   4
 $points += P (($reqCt -ge 1) -or ($grtCt -ge 1)) 4
 
-# VRM fraction up to 12 points
+# VRM fraction up to 12 points (wingless + winged count towards presence)
 $vrmFrac = 0.0
 if ($vrmExpected -gt 0) { $vrmFrac = [Math]::Min(1.0, $vrmPresent / $vrmExpected) }
 $points += [int][Math]::Round(12 * $vrmFrac)
 
-# Wings
+# Wings & wallpapers
 $points += P ($wingsMeshes   -ge 1) 4
 $points += P ($wingsTextures -ge 1) 3
-
-# Wallpapers
 $points += P ($wallpapersCt  -ge 1) 5
 
 $overall = [Math]::Min(100, $points)
 
-# Category breakdowns (normalized 0..100 for display)
+# Category breakdowns
 $foundationPoints = 0
 $foundationPoints += P $pwaShell 12
 $foundationPoints += P $importPins 8
@@ -194,12 +225,17 @@ $progress = [pscustomobject]@{
     grants = $grtCt
     vrm_expected = $vrmExpected
     vrm_present = $vrmPresent
+    vrm_wingless = $vrmWingless
+    vrm_winged = $vrmWinged
     wings_meshes = $wingsMeshes
     wings_textures = $wingsTextures
     wallpapers = $wallpapersCt
+    llm_ready = $llmReady
+    llm_missing = $llmMissing
+    llm_bridge_workflow = $llmBridge
   }
   notes = @(
-    "This measures Memory + Tools readiness. Brains (LLM connectors) come next via vault-referenced secrets—no plaintext."
+    "This measures Memory + Tools readiness. Brains (LLM connectors) go green once vault refs + grant + bridge exist."
   )
 }
 

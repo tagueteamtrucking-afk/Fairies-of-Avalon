@@ -5,18 +5,14 @@
   <title>Avalon — Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- PWA -->
   <link rel="manifest" href="./manifest.webmanifest" />
   <meta name="theme-color" content="#0b1020" />
-
-  <!-- App Styles -->
   <link rel="stylesheet" href="./app.css" />
 
-  <!-- Import maps polyfill for older browsers -->
+  <!-- Import maps polyfill -->
   <script async src="https://unpkg.com/es-module-shims@1.11.0/dist/es-module-shims.js"></script>
 
   <!-- Import Map: pin to known-good versions -->
-  <!-- three-vrm v3.4.2 bumped three to 0.177.0; pin r177 for stability. -->
   <script type="importmap">
   {
     "imports": {
@@ -37,21 +33,73 @@
   </header>
 
   <main class="grid">
+    <section class="tile" id="progress-tile">
+      <h2>Overseers AI — Power Index</h2>
+      <div class="progress-head">
+        <div class="progress-note" id="progress-note">Loading…</div>
+        <div class="progress-score" id="progress-score">—%</div>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="kpis" id="progress-kpis"></div>
+    </section>
+
     <a class="tile" href="./apps/overseers/console.html">
       <h2>Overseers Console</h2>
       <p>Queue & permissions status</p>
     </a>
-    <a class="tile" href="./wings-importer.html">
-      <h2>Wings Importer</h2>
-      <p>Attach & preview wings (client‑side)</p>
-    </a>
   </main>
 
   <script>
-    // Register service worker (PWA shell)
+    // Register SW
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
     }
+
+    // Wallpaper: load list if present and pick one
+    (async () => {
+      try {
+        const res = await fetch('./wallpapers/index.json', { cache: 'no-store' });
+        if (res.ok) {
+          const list = await res.json();
+          if (Array.isArray(list) && list.length) {
+            const pic = list[Math.floor(Math.random() * list.length)];
+            document.body.style.backgroundImage = `url('./wallpapers/${encodeURIComponent(pic)}')`;
+            document.body.classList.add('has-image');
+          }
+        }
+      } catch {}
+    })();
+
+    // Progress summary for Home
+    (async () => {
+      const bar = document.getElementById('progress-bar');
+      const scoreEl = document.getElementById('progress-score');
+      const noteEl = document.getElementById('progress-note');
+      const kpis = document.getElementById('progress-kpis');
+
+      try {
+        const res = await fetch('./apps/overseers/progress.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('no progress.json yet');
+        const data = await res.json();
+
+        const pct = Math.max(0, Math.min(100, Number(data.overall || 0)));
+        bar.style.width = pct + '%';
+        scoreEl.textContent = pct + '%';
+        noteEl.textContent = `Last updated: ${data.lastUpdated}`;
+
+        kpis.innerHTML = '';
+        (data.categories || []).forEach(c => {
+          const el = document.createElement('div');
+          el.className = 'kpi';
+          el.innerHTML = `<div class="label">${c.label}</div><div class="value">${c.score}%</div>`;
+          kpis.appendChild(el);
+        });
+      } catch (e) {
+        bar.style.width = '0%';
+        scoreEl.textContent = '0%';
+        noteEl.textContent = 'Run “Overseers — AI Core” once to generate progress.';
+      }
+    })();
   </script>
 </body>
 </html>

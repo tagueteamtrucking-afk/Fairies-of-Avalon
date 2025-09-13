@@ -1,37 +1,47 @@
-/* Fairies of Avalon — global theme (wallpaper + cards) */
-:root{
-  /* Put your image here: upload to asset/textures/wallpapers/avalon-01.jpg */
-  --avalon-bg: url("/asset/textures/wallpapers/avalon-01.jpg");
-  --backdrop: radial-gradient(1200px 600px at 80% 10%, rgba(255,255,255,.08), transparent 70%),
-              linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.55));
+/* Minimal, crisp theme with subtle wallpaper tint */
+:root {
+  --bg: #0b1020;
+  --ink: #eaeef9;
+  --muted: #b8c0d9;
+  --tile: #121a33;
+  --tile-hover: #1a2442;
+  --accent: #7bb7ff;
 }
 
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:system-ui, Segoe UI, Roboto, Arial, sans-serif;
-  color:#f2f4f8;
-  background:#0b0b0b;
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body.wallpaper {
+  background: radial-gradient(1200px 900px at 20% 10%, #142043 0%, #0b1020 60%, #070b17 100%);
+  color: var(--ink);
+  font: 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
 }
-body::before{
-  content:"";
-  position:fixed; inset:0;
-  background:
-    var(--backdrop),
-    var(--avalon-bg),
-    linear-gradient(180deg,#101215,#0b0b0b);
-  background-size:cover, cover, auto;
-  background-position:center center, center center, left top;
-  filter: saturate(1.05) contrast(1.05);
-  z-index:-1;
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.07);
+  background: linear-gradient(to bottom, rgba(8,12,24,0.8), rgba(8,12,24,0.5));
+  backdrop-filter: blur(6px);
 }
-header{padding:14px 16px; border-bottom:1px solid #232323; backdrop-filter:saturate(1.2) blur(4px); background:rgba(12,12,12,.35)}
-header h1{font-size:18px; margin:0; font-weight:600; letter-spacing:.3px}
-nav a{color:#d3e7ff; text-decoration:none; margin-right:14px}
-nav a:hover{text-decoration:underline}
-main{max-width:1100px; margin:22px auto; padding:0 16px}
-.card{border:1px solid #262626; border-radius:12px; padding:16px; margin:16px 0; background:rgba(16,16,16,.75)}
-.card h2,.card h3{margin:0 0 8px}
-.badge{display:inline-block; padding:4px 8px; border:1px solid #2a7; border-radius:999px; font-size:12px}
-a, .link{color:#cde3ff}
-small.muted{color:#aab3c2}
+.topbar h1 { margin: 0; font-size: 20px; letter-spacing: 0.5px; }
+.topbar nav a {
+  color: var(--ink); text-decoration: none; margin-left: 16px; opacity: 0.9;
+}
+.topbar nav a:hover { color: var(--accent); }
+
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px; padding: 24px;
+}
+.tile {
+  display: block; padding: 20px; border-radius: 12px;
+  background: var(--tile); border: 1px solid rgba(255,255,255,0.05);
+  text-decoration: none; color: var(--ink); transition: background 120ms ease;
+}
+.tile:hover { background: var(--tile-hover); }
+.tile h2 { margin: 0 0 6px 0; font-size: 18px; }
+.tile p { margin: 0; color: var(--muted); }
+.status {
+  margin-top: 12px; padding: 8px 10px; border-radius: 8px; background: rgba(0,0,0,0.25);
+  font-size: 14px;
+}
+.badge { display: inline-block; padding: 2px 8px; border-radius: 999px; background: #1f2a4d; color: var(--ink); font-size: 12px; }

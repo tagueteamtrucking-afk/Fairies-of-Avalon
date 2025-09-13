@@ -1,0 +1,68 @@
+{
+  "schema": "avalon-permissions-1",
+  "profiles": {
+    "overseer_full": {
+      "description": "Root orchestration across finance, content, files, comms.",
+      "scopes": [
+        {"service":"gmail","access":"read,send,labels"},
+        {"service":"google_drive","access":"read,write"},
+        {"service":"calendar","access":"read,write"},
+        {"service":"contacts","access":"read,write"},
+        {"service":"quickbooks","access":"read,write"},
+        {"service":"stripe","access":"read,write"},
+        {"service":"shopify","access":"read,write"},
+        {"service":"youtube","access":"channel,upload,analytics"},
+        {"service":"x_twitter","access":"post,dm,analytics"},
+        {"service":"instagram","access":"post,analytics"},
+        {"service":"facebook_pages","access":"manage,post,analytics"},
+        {"service":"notion","access":"pages,databases"},
+        {"service":"openai","access":"api"},
+        {"service":"github","access":"repo,actions"}
+      ],
+      "vault_refs": [
+        "vault://palace/tokens/gmail",
+        "vault://palace/tokens/google",
+        "vault://palace/tokens/quickbooks",
+        "vault://palace/tokens/stripe",
+        "vault://palace/tokens/shopify",
+        "vault://palace/tokens/youtube",
+        "vault://palace/tokens/x-twitter",
+        "vault://palace/tokens/instagram",
+        "vault://palace/tokens/facebook-pages",
+        "vault://palace/tokens/notion",
+        "vault://palace/tokens/openai",
+        "vault://palace/tokens/github"
+      ]
+    },
+    "finance_full": {
+      "description": "Billing, accounting, reporting (Abbey/Billie/Themis).",
+      "scopes": [
+        {"service":"quickbooks","access":"read,write"},
+        {"service":"stripe","access":"read,write"},
+        {"service":"shopify","access":"read,write"},
+        {"service":"banking_aggregator","access":"read"}
+      ],
+      "vault_refs": [
+        "vault://palace/tokens/quickbooks",
+        "vault://palace/tokens/stripe",
+        "vault://palace/tokens/shopify",
+        "vault://palace/tokens/banking"
+      ]
+    },
+    "social_full": {
+      "description": "Publishing and analytics (Sorcha + Billie).",
+      "scopes": [
+        {"service":"youtube","access":"channel,upload,analytics"},
+        {"service":"x_twitter","access":"post,dm,analytics"},
+        {"service":"instagram","access":"post,analytics"},
+        {"service":"facebook_pages","access":"manage,post,analytics"}
+      ],
+      "vault_refs": [
+        "vault://palace/tokens/youtube",
+        "vault://palace/tokens/x-twitter",
+        "vault://palace/tokens/instagram",
+        "vault://palace/tokens/facebook-pages"
+      ]
+    }
+  }
+}

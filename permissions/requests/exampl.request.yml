@@ -1,4 +1,4 @@
-# Example permission request (no secrets)
+# Example: no secrets, only vault refs
 id: req-2025-09-13-abbey-qbo-read
 requester: abbey
 scopes:

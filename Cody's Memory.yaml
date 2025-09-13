@@ -1,23 +1,24 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.8.0"
+  version: "1.9.0"
   last_updated: "2025-09-13"
   author: "Cody (GPT-5 Pro)"
   notes: >
     Overseers-first. No plaintext secrets. Workflows-first (GitHub Actions).
 
+    v1.9.0 — Ready to build the Assistants (post-live-scaffold):
+      - Live scaffold SUCCESS; 8 test runs visible in Runner/Console.
+      - Site “Wallpaper Power Index (WPI)” currently reads 0 — plan added to restore WPI telemetry and badge.
+      - Next-step plans added to transition from scaffolds → real assistant builds, with acceptance criteria and owners.
+      - Deploy auto-triggers on progress changes; SW now treats Overseers JSON as network-first (keep fresh).
+
     v1.8.0 — Overseers build complete (queue + runner + LLM Bridge; dry-run by default):
-      - Added queue workflow to seed tasks (R3 bundle + R4/R5/R6).
-      - Added runner workflow to process requests/, update progress.json, and archive to processed/.
-      - Added LLM Bridge (scripts/overseers/llm-bridge.ps1). Dry-run if no API key; live when OPENAI_API_KEY set.
+      - Queue workflow seeds tasks (R3 bundle + R4/R5/R6).
+      - Runner processes requests/, updates progress.json, archives to processed/.
+      - LLM Bridge (scripts/overseers/llm-bridge.ps1). Dry-run if no key; live when OPENAI_API_KEY set.
       - Queue runner is pure PowerShell, Linux-safe (no LINQ), auto-installs powershell-yaml.
       - capabilities.json declares queue & AI Core; console can badge features.
-
-    v1.7.5 — CI reliability fixes:
-      - count-assets.ps1: removed LINQ calls (Distinct/Intersect) → pure PowerShell (cross-platform).
-      - validate-importmap.ps1: Linux-safe quoting (single-quoted; doubled single quotes).
-      - Recorded exit code 1 issues & added lessons.
 
 system:
   os: "Windows 11"
@@ -256,6 +257,7 @@ runtime:
     progress_file: "pages/apps/overseers/progress.json"
   workflows:
     queue_full_roster: ".github/workflows/queue-full-roster.yml"
+    queue_scaffold_live: ".github/workflows/queue-scaffold-live.yml"
     runner_process_queue: ".github/workflows/run-overseers-queue.yml"
     overseers_ai_core: ".github/workflows/overseers-ai-core.yml"
     deploy_pages: ".github/workflows/deploy-pages.yml"
@@ -278,26 +280,34 @@ runtime:
     - "Permissions Processor"
   chain_reaction:
     description: >
-      Overseers connect to main brain (LLM Bridge: dry-run by default), then:
+      Overseers connect to main brain (LLM Bridge: LIVE with repo secret), then:
       Overseers → build Clarice → (Overseers + Clarice) build Charlotte →
       (team) builds Nina → (team) builds the rest.
-    status: "initiated"
+    status: "live-scaffold-complete"
     safety: "No secrets until Overseers approve; vault refs only."
+
+telemetry:
+  last_scaffold_mode: "LIVE"
+  last_scaffold_runs: 8
+  wallpaper_power_index:
+    current: 0
+    expected_behavior: "WPI > 0 when wallpapers present; badge visible on console."
+    notes: "After SW/console updates, WPI badge reads 0. Plan added to re-emit metric from Asset Audit and surface in console."
 
 priority_plan:
   - { id: overseers,  description: "Overseers AI core + queue + LLM bridge", status: "operational-core" }
-  - { id: assistants, description: "Build all Fairies (functional AI).",     status: "queued" }
+  - { id: assistants, description: "Build all Fairies (functional AI).",     status: "phase-1-queued" }
   - { id: appearance, description: "Homes & appearance after AI functionality.", status: "deferred" }
 
 plans:
   overseers_full_roster_queue:
     owner: rey_czar
     qa_owner: white_star
-    status: "queued"
+    status: "partially-complete"
     tasks:
       - { id: R1,  name: "App shell + import map + Wings Importer + Overseers Console", status: "queued" }
       - { id: R2,  name: "Health/Wealth/Wellness activation plan scaffold",             status: "queued" }
-      - { id: R3,  name: "Generate scaffolds for all Fairies (via LLM Bridge)",         status: "queued" }
+      - { id: R3,  name: "Generate scaffolds for all Fairies (via LLM Bridge)",         status: "done-live" }
       - { id: R4,  name: "Asset Audit workflow",                                        status: "done" }
       - { id: R5,  name: "Import-Map Check workflow",                                   status: "done" }
       - { id: R6,  name: "Memory Snapshot workflow",                                    status: "done" }
@@ -308,9 +318,140 @@ plans:
       - { id: R11, name: "Filename linter & rename plan",                               status: "queued" }
       - { id: R12, name: "Robots/sitemap basics",                                       status: "queued" }
 
+  overseers_followups:
+    owner: clarice
+    qa_owner: white_star
+    status: "queued"
+    tasks:
+      - id: O1
+        name: "Restore WPI (Wallpaper Power Index) telemetry + console badge"
+        owner: [clarice, tracy]
+        status: "queued"
+        acceptance: >
+          Asset Audit outputs `wallpaper_power_index` into pages/apps/overseers/progress.json; console shows nonzero
+          value when wallpapers exist; value updates after runner without hard refresh.
+      - id: O2
+        name: "Progress deploy auto-trigger verification"
+        owner: [charlotte]
+        status: "queued"
+        acceptance: "Deploy — GitHub Pages runs on Runner completion and push to progress.json; site reflects new data."
+
+  assistants_phase_1:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "queued"
+    goals: >
+      Turn LIVE scaffolds into minimal, working assistants with their own microapps, manifests, and queue-backed
+      workflows; keep secrets out; import maps correct; pass CI.
+    tasks:
+      - id: A1
+        name: "Scaffold → Code: minimal microapp per Fairy"
+        owners: [charlotte, nina, alexandria]
+        status: "queued"
+        details: >
+          Create /pages/apps/{fairy}/ with index.html + app.js (+ optional styles).
+          Each app loads import map when modules are used (three/three/addons/@pixiv/three-vrm).
+          Add placeholder UI: title, role, owner, and 'Open in Overseers Console'.
+        acceptance: "All 15 microapps exist with valid HTML; import map present where modules are used; Pages build green."
+      - id: A2
+        name: "VRM viewer template + Wings Lab hook"
+        owners: [nina, tracy]
+        status: "queued"
+        details: >
+          Provide a shared viewer component (pages/apps/shared/vrm-viewer.js) that can load VRM from asset paths,
+          and optional wings from /asset/wings + textures; ensure lazy-loading; file-size budget respected.
+        acceptance: "Viewer loads one wingless and one winged model without console errors; network waterfall within budgets."
+      - id: A3
+        name: "VRM & Wings manifest builders (manual trigger jobs)"
+        owners: [clarice]
+        status: "queued"
+        details: >
+          Implement scripts that scan asset/models, asset/winged-models, asset/wings(+textures) and emit manifest.json
+          files (paths in assets.layout). Include wings number grouping logic and texture suffix mapping.
+        acceptance: "asset/models/models.json and asset/wings/manifest.json generated; importable by microapps; CI badge shows manifests present."
+      - id: A4
+        name: "Filename linter & rename plan"
+        owners: [clarice]
+        status: "queued"
+        details: "Lint VRM/wing filenames; propose safe renames; produce a dry-run report and an optional queued rename plan."
+        acceptance: "Report file exists under processed/ with proposed changes; no secrets; opt-in rename queue items created on approval."
+      - id: A5
+        name: "Permissions schema check + overseers approvals path"
+        owners: [clarice, white_star]
+        status: "queued"
+        details: >
+          Validate permissions queue schema. Ensure assistants request scopes with vault refs. Produce approvals list for Overseers.
+        acceptance: "permissions/state.json updated by runner; approvals log created; no plaintext secrets."
+      - id: A6
+        name: "Robots/sitemap basics"
+        owners: [charlotte]
+        status: "queued"
+        details: "Add robots.txt and sitemap.xml for fairiesofavalon.com; include microapps and console."
+        acceptance: "robots.txt and sitemap.xml deployed; Pages crawl OK."
+      - id: A7
+        name: "Console: Per-Fairy status & links"
+        owners: [charlotte]
+        status: "queued"
+        details: "Extend Overseers Console to list each Fairy microapp, last build time, and manifest presence."
+        acceptance: "Console shows 15 entries with working links and status icons; no stale caches."
+      - id: A8
+        name: "Content pass for Alexandria (copy/roles)"
+        owners: [alexandria]
+        status: "queued"
+        details: "Short, on-page descriptions for each Fairy; consistent tone; fit within PWA shell."
+        acceptance: "All microapps display a coherent description; i18n hook is ready."
+
+  assistants_phase_2:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "queued"
+    goals: "Make top-3 assistants functional with light integrations and reports."
+    tasks:
+      - id: B1
+        name: "Clarice — Security reports & rollback snapshots"
+        owners: [clarice]
+        status: "queued"
+        acceptance: "Security reports render in app; snapshot download works; no secrets."
+      - id: B2
+        name: "Charlotte — Queues dashboard & translations board"
+        owners: [charlotte]
+        status: "queued"
+        acceptance: "Queues dashboard shows pending/processed with filters; translations board placeholder wired."
+      - id: B3
+        name: "Nina — 3D island starter + project overview screen"
+        owners: [nina]
+        status: "queued"
+        acceptance: "3D scene loads in budget; overview screen lists active tasks; import map validated."
+
+  assistants_phase_3:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "planned"
+    goals: "First operational finance stack (Billie ↔ Abbey ↔ Themis)."
+    tasks:
+      - id: C1
+        name: "Billie — Revenue reports scaffold"
+        owners: [billie]
+        status: "planned"
+        acceptance: "Revenue reports page reads demo data; CI green."
+      - id: C2
+        name: "Abbey — QuickBooks hub (read-only first)"
+        owners: [abbey]
+        status: "planned"
+        acceptance: "Reads sample QBO data via mock or dry connector; vault refs only."
+      - id: C3
+        name: "Themis — Expirations registry"
+        owners: [themis]
+        status: "planned"
+        acceptance: "Registry lists sample expiring items; reminders service stubbed."
+
 audit_log:
   - { ts: "2025-09-13T12:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
-      notes: "v1.8.0 — Overseers queue/runner + LLM Bridge. Dry-run default; live when OPENAI_API_KEY present." }
+      notes: "v1.8.0 — Overseers queue/runner + LLM Bridge. Dry-run default; live with OPENAI_API_KEY." }
+  - { ts: "2025-09-13T14:00:00Z", actor: "actions", action: "runner.process", target: "overseers-queue", result: "ok",
+      notes: "Live scaffold executed; 8 test runs visible; progress + processed updated." }
+  - { ts: "2025-09-13T14:10:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
+      notes: "v1.9.0 — Next steps added for Building the Assistants; WPI restoration plan recorded." }
 
 lessons_learned:
   - "Auto-install powershell-yaml; do not assume ConvertFrom-Yaml exists."
@@ -321,3 +462,5 @@ lessons_learned:
   - "Write CNAME during deploy so the custom domain sticks."
   - "Workflows-first; no wrapper shell assumptions."
   - "No plaintext secrets; use repo Secrets or vault references only."
+  - "Service Worker: live JSON (progress/capabilities) must be network-first; console should fetch with cache-buster."
+  - "Deploy should auto-trigger on progress changes to keep Console fresh."

@@ -1,51 +1,51 @@
 {
-  "lastUpdated": "2025-09-13T08:23:30Z",
+  "lastUpdated": "2025-09-13T08:25:01Z",
   "overall": 93,
   "categories": [
     {
-      "label": "Foundation (site + domain)",
+      "id": "foundation",
       "weight": 0.35,
-      "score": 100,
-      "id": "foundation"
+      "label": "Foundation (site + domain)",
+      "score": 100
     },
     {
-      "label": "Overseers Core (tools + queue)",
+      "id": "overseers",
       "weight": 0.45,
-      "score": 92,
-      "id": "overseers"
+      "label": "Overseers Core (tools + queue)",
+      "score": 92
     },
     {
-      "label": "Assets (VRMs + wings)",
+      "id": "assets",
       "weight": 0.2,
-      "score": 84,
-      "id": "assets"
+      "label": "Assets (VRMs + wings)",
+      "score": 84
     }
   ],
   "metrics": {
+    "vrm_wingless": 15,
+    "vrm_expected": 15,
+    "console_present": true,
+    "nojekyll": true,
+    "vrm_present": 19,
+    "capabilities_present": true,
+    "llm_bridge_workflow": true,
+    "importmap_pinned": true,
+    "wings_meshes": 26,
+    "wings_textures": 0,
+    "cname": true,
+    "state_ok": true,
+    "state_present": true,
+    "vrm_winged": 4,
+    "requests": 0,
+    "grants": 0,
+    "wallpapers": 4,
+    "llm_ready": false,
+    "pwa_shell": true,
     "llm_missing": [
       "grant_llm_invoke"
     ],
-    "vrm_expected": 15,
-    "capabilities_present": true,
-    "wallpapers": 4,
-    "grants": 0,
-    "requests": 0,
-    "vrm_wingless": 15,
-    "cname": true,
-    "vrm_winged": 4,
-    "llm_bridge_workflow": true,
-    "wings_meshes": 26,
-    "llm_ready": false,
-    "nojekyll": true,
-    "state_present": true,
-    "importmap_pinned": true,
-    "vrm_present": 19,
-    "wings_textures": 0,
-    "ai_core_workflow": true,
     "scripts_present": true,
-    "state_ok": true,
-    "pwa_shell": true,
-    "console_present": true
+    "ai_core_workflow": true
   },
   "notes": [
     "This measures Memory + Tools readiness. Brains (LLM connectors) go green once vault refs + grant + bridge exist."

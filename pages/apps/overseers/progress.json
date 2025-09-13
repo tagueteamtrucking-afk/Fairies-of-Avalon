@@ -1,52 +1,53 @@
 {
-  "ts": "2025-09-13T08:58:09Z",
-  "paths": {
-    "with_wings_vrms": "asset/models/with-wings",
-    "wallpapers": "asset/textures/wallpapers",
-    "models_root_legacy": "asset/models",
-    "wingless_vrms": "asset/models/wingless",
-    "wings_textures": "asset/wings/textures",
-    "with_wings_alias": "asset/winged-models",
-    "wings_models": "asset/wings"
-  },
-  "assets": {
-    "vrm_wingless": {
-      "count": 15,
-      "size_mb": 174.31
+  "lastUpdated": "2025-09-13T18:34:58Z",
+  "overall": 93,
+  "categories": [
+    {
+      "score": 100,
+      "label": "Foundation (site + domain)",
+      "id": "foundation",
+      "weight": 0.35
     },
-    "wings_meshes": {
-      "count": 26,
-      "size_mb": 35.78
+    {
+      "score": 92,
+      "label": "Overseers Core (tools + queue)",
+      "id": "overseers",
+      "weight": 0.45
     },
-    "wallpapers": {
-      "count": 4,
-      "size_mb": 0.03
-    },
-    "wings_textures": {
-      "count": 81,
-      "size_mb": 16.66
-    },
-    "coverage": {
-      "groups_missing_mesh": [
-        "1432"
-      ],
-      "groups_missing_textures": [],
-      "groups_total": 27,
-      "groups_with_mesh_and_textures": 26
-    },
-    "vrm_with_wings": {
-      "count": 4,
-      "size_mb": 56.27
+    {
+      "score": 84,
+      "label": "Assets (VRMs + wings)",
+      "id": "assets",
+      "weight": 0.2
     }
-  },
-  "budgets": {
-    "wallpapers_total": 20,
-    "initial_shell_kb": 300,
-    "vrm_per_file_mb": 40,
-    "initial_requests": 15
+  ],
+  "metrics": {
+    "vrm_winged": 4,
+    "ai_core_workflow": true,
+    "vrm_expected": 15,
+    "cname": true,
+    "state_ok": true,
+    "nojekyll": true,
+    "console_present": true,
+    "scripts_present": true,
+    "grants": 0,
+    "requests": 0,
+    "llm_bridge_workflow": true,
+    "pwa_shell": true,
+    "wings_meshes": 26,
+    "llm_missing": [
+      "grant_llm_invoke"
+    ],
+    "importmap_pinned": true,
+    "state_present": true,
+    "wings_textures": 0,
+    "vrm_wingless": 15,
+    "llm_ready": false,
+    "capabilities_present": true,
+    "vrm_present": 19,
+    "wallpapers": 4
   },
   "notes": [
-    "Counts include alias path asset/winged-models.",
-    "Budgets are soft; optimize shell weight and lazy-loading."
+    "This measures Memory + Tools readiness. Brains (LLM connectors) go green once vault refs + grant + bridge exist."
   ]
 }

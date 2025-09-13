@@ -1,36 +1,53 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Overseers Console — Avalon</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="manifest" href="/manifest.webmanifest" />
-  <link rel="stylesheet" href="/app.css" />
+  <meta charset="utf-8">
+  <title>Overseers Console · Avalon</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/app.css">
   <style>
-    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-    .card { background: rgba(0,0,0,0.55); padding: 1rem; border-radius: 10px; backdrop-filter: blur(6px); }
-    .muted { opacity: 0.85; font-size: 0.9rem; }
-    .badge { display: inline-block; padding: .15rem .5rem; border-radius: 6px; font-weight: 600; }
-    .ok { background: #1f6d1f; }
-    .warn { background: #8a6d1e; }
-    .fail { background: #7a1e1e; }
-    pre { white-space: pre-wrap; }
+    .badge{display:inline-block;padding:.2rem .5rem;border-radius:.4rem;border:1px solid #999;font-size:.85rem;margin-right:.4rem}
+    .bar{height:10px;background:#ddd;border-radius:6px;overflow:hidden}
+    .bar>div{height:100%;width:0%;transition:width .4s ease}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{padding:.4rem;border-bottom:1px solid #eee;text-align:left}
+    small{color:#666}
   </style>
 </head>
-<body class="wallpaper">
-  <main class="container">
+<body>
+  <main style="max-width:980px;margin:24px auto;padding:0 12px">
     <h1>Overseers Console</h1>
-    <div id="badges" class="grid"></div>
-    <div id="cards" class="grid"></div>
-    <p class="muted">
-      Data sources:
-      <code>pages/apps/overseers/progress.json</code>,
-      <code>pages/apps/overseers/permissions/state.json</code>,
-      <code>pages/apps/overseers/capabilities.json</code>.
-      <a href="/Cody%27s%20Memory.yaml">Open Memory</a> ·
-      <a id="downloadDiag" href="#" download="progress.json">Download diagnostics</a>
-    </p>
+
+    <section class="grid">
+      <div>
+        <h3>AI Core</h3>
+        <div id="ai-status" class="badge">Loading…</div>
+        <div id="ai-mode" class="badge">—</div>
+        <div><small id="last-run">last run: —</small></div>
+      </div>
+      <div>
+        <h3>Queue</h3>
+        <div class="bar"><div id="bar-fill"></div></div>
+        <div style="display:flex;gap:12px;margin-top:6px">
+          <div>Done: <b id="done">0</b>/<span id="total">0</span></div>
+          <div>Success: <b id="success">0</b></div>
+          <div>Pending: <b id="pending">0</b></div>
+          <div>Failed: <b id="failed">0</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>Recent activity</h3>
+      <table>
+        <thead><tr><th>Time (UTC)</th><th>Action</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody id="history"></tbody>
+      </table>
+    </section>
   </main>
+
   <script src="./console.js" defer></script>
 </body>
 </html>

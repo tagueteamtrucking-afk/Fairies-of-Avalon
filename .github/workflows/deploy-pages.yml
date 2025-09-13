@@ -6,6 +6,7 @@ on:
     paths:
       - "pages/**"
       - "CNAME"
+      - "asset/textures/wallpapers/**"
   workflow_dispatch:
 
 permissions:
@@ -22,10 +23,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Prepare artifact
+
+      - name: Prepare artifact (copy CNAME + wallpapers)
         run: |
           mkdir -p pages
           cp CNAME pages/CNAME || true
+
+          # Copy wallpapers if present (supports your folder)
+          if [ -d "asset/textures/wallpapers" ]; then
+            mkdir -p pages/wallpapers
+            cp -r asset/textures/wallpapers/* pages/wallpapers/ || true
+          fi
+
+          # Build wallpapers index.json (safe if folder missing/empty)
+          node -e "const fs=require('fs');const p='pages/wallpapers';try{fs.mkdirSync(p,{recursive:true});const list=fs.readdirSync(p).filter(f=>/\.(png|jpe?g|webp)$/i.test(f)).sort();fs.writeFileSync(p+'/index.json',JSON.stringify(list));}catch(e){/* no-op */}"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -22,6 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.ref }}
           fetch-depth: 0
 
       - name: Setup PowerShell + YAML module
@@ -34,13 +35,13 @@ jobs:
       - name: Process queue
         shell: pwsh
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}   # optional; dry-run if absent
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }} # optional; ignored unless you extend provider logic
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}   # optional; LLM Bridge goes live if present
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           $ErrorActionPreference = 'Stop'
           & "scripts/overseers/process-queue.ps1" -RepoRoot "${{ github.workspace }}" -Verbose
 
-      - name: Commit progress + processed artifacts
+      - name: Prepare git for push
         shell: pwsh
         run: |
           git add "pages/apps/overseers/progress.json" || echo "no progress changes"
@@ -48,10 +49,13 @@ jobs:
           git add "memory-history" || echo "no memory-history changes"
           git config user.email "actions@github.com"
           git config user.name  "GitHub Actions"
+          git fetch origin ${{ github.ref_name }} --depth=0
+          git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
           git commit -m "Runner: update progress/processed" || echo "Nothing to commit"
 
       - name: Push
-        uses: ad-m/github-push-action@v0.8.0
+        uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref_name }}
+          force_with_lease: true

@@ -1,10 +1,46 @@
 {
-  "lastUpdated": "never",
-  "overall": 0,
+  "lastUpdated": "2025-09-13T04:46:56Z",
+  "overall": 91,
   "categories": [
-    { "id": "foundation", "label": "Foundation (site + domain)", "score": 0, "weight": 0.35 },
-    { "id": "overseers",  "label": "Overseers Core (tools + queue)", "score": 0, "weight": 0.45 },
-    { "id": "assets",     "label": "Assets (VRMs + wings)", "score": 0, "weight": 0.20 }
+    {
+      "weight": 0.35,
+      "label": "Foundation (site + domain)",
+      "score": 100,
+      "id": "foundation"
+    },
+    {
+      "weight": 0.45,
+      "label": "Overseers Core (tools + queue)",
+      "score": 92,
+      "id": "overseers"
+    },
+    {
+      "weight": 0.2,
+      "label": "Assets (VRMs + wings)",
+      "score": 74,
+      "id": "assets"
+    }
   ],
-  "metrics": {}
+  "metrics": {
+    "wings_meshes": 26,
+    "importmap_pinned": true,
+    "requests": 0,
+    "scripts_present": true,
+    "vrm_present": 13,
+    "vrm_expected": 15,
+    "state_present": true,
+    "nojekyll": true,
+    "cname": true,
+    "grants": 0,
+    "state_ok": true,
+    "wallpapers": 4,
+    "capabilities_present": true,
+    "ai_core_workflow": true,
+    "pwa_shell": true,
+    "wings_textures": 0,
+    "console_present": true
+  },
+  "notes": [
+    "This measures Memory + Tools readiness. Brains (LLM connectors) come next via vault-referenced secrets—no plaintext."
+  ]
 }

@@ -1,29 +1,20 @@
-// Very small offline cache for shell & core pages.
-const CACHE = 'avalon-shell-v1';
-const ASSETS = [
-  '/',
-  '/index.html',
-  '/app.js',
-  '/manifest.webmanifest',
-  '/pages/apps/overseers.html',
-  '/pages/wings-importer.html'
-];
+// Simple offline cache for the shell; no dynamic caching.
+const NAME = "avalon-shell-v1";
+const PRECACHE = [ "/", "/index.html", "/app.css" ];
 
-self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
+self.addEventListener("install", (e) => {
+  e.waitUntil(caches.open(NAME).then(c => c.addAll(PRECACHE)));
 });
 
-self.addEventListener('activate', (e) => {
+self.addEventListener("activate", (e) => {
   e.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.map((k) => (k === CACHE ? null : caches.delete(k)))))
+    caches.keys().then(keys => Promise.all(keys.filter(k => k !== NAME).map(k => caches.delete(k))))
   );
 });
 
-self.addEventListener('fetch', (e) => {
-  const { request } = e;
-  if (request.method !== 'GET') return;
+self.addEventListener("fetch", (e) => {
+  if (e.request.method !== "GET") return;
   e.respondWith(
-    caches.match(request).then((hit) => hit || fetch(request))
+    caches.match(e.request).then(r => r || fetch(e.request))
   );
 });

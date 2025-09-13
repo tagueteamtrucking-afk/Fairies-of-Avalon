@@ -1,0 +1,37 @@
+/* Fairies of Avalon — global theme (wallpaper + cards) */
+:root{
+  /* Put your image here: upload to asset/textures/wallpapers/avalon-01.jpg */
+  --avalon-bg: url("/asset/textures/wallpapers/avalon-01.jpg");
+  --backdrop: radial-gradient(1200px 600px at 80% 10%, rgba(255,255,255,.08), transparent 70%),
+              linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.55));
+}
+
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  color:#f2f4f8;
+  background:#0b0b0b;
+}
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background:
+    var(--backdrop),
+    var(--avalon-bg),
+    linear-gradient(180deg,#101215,#0b0b0b);
+  background-size:cover, cover, auto;
+  background-position:center center, center center, left top;
+  filter: saturate(1.05) contrast(1.05);
+  z-index:-1;
+}
+header{padding:14px 16px; border-bottom:1px solid #232323; backdrop-filter:saturate(1.2) blur(4px); background:rgba(12,12,12,.35)}
+header h1{font-size:18px; margin:0; font-weight:600; letter-spacing:.3px}
+nav a{color:#d3e7ff; text-decoration:none; margin-right:14px}
+nav a:hover{text-decoration:underline}
+main{max-width:1100px; margin:22px auto; padding:0 16px}
+.card{border:1px solid #262626; border-radius:12px; padding:16px; margin:16px 0; background:rgba(16,16,16,.75)}
+.card h2,.card h3{margin:0 0 8px}
+.badge{display:inline-block; padding:4px 8px; border:1px solid #2a7; border-radius:999px; font-size:12px}
+a, .link{color:#cde3ff}
+small.muted{color:#aab3c2}

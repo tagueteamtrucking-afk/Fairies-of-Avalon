@@ -1,15 +1,14 @@
+
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.7.1"
+  version: "1.7.2"
   last_updated: "2025-09-12"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    Single source of truth for Overseers, Assistants (Fairies), locations,
-    interfaces, responsibilities, relationships, hosting, and access control.
-    Pivoted to GitHub Actions + PWA app-shell. No plaintext secrets.
-    v1.7.1 — Fixed White-Star regex (".git" filter), standardized asset layout
-    (wingless vs with-wings), renamed script to rey-czar.ps1, clarified Pages/DNS/HTTPS.
+    Overseers-first. Actions + PWA shell. No plaintext secrets.
+    v1.7.2 — Fix ConvertFrom-Yaml by auto-installing powershell-yaml in scripts; support VRMs placed directly
+    in asset/models; auto-build wings manifest from asset/wings + textures grouped by number.
 
 system:
   os: "Windows 11"
@@ -30,51 +29,39 @@ hosting:
   pwa_app_shell: true
   pages_root: "pages"
   microapps_path: "pages/apps"
-  custom_domain_cname: true         # write CNAME during deploy workflow
-  cdn_imports:
-    - "three"
-    - "three/addons/"
-    - "@pixiv/three-vrm"
+  custom_domain_cname: true
+  cdn_imports: ["three", "three/addons/", "@pixiv/three-vrm"]
 
 project:
   world: "Avalon"
   assistants_label: "Fairies"
   domain: "fairiesofavalon.com"
   home_label: "home"
-  preserve_paths:
-    - "asset/models"
-    - "asset/wings"
+  preserve_paths: ["asset/models", "asset/wings"]
   importmap_required: true
-  importmap_map:
-    - "three"
-    - "three/addons/"
-    - "@pixiv/three-vrm"
+  importmap_map: ["three", "three/addons/", "@pixiv/three-vrm"]
 
 assets:
   layout:
-    wingless_vrms: "asset/models/wingless"     # base avatars without wings
-    with_wings_vrms: "asset/models/with-wings" # avatars that include wings
-    wings_models: "asset/wings"                 # wing meshes/sources
-    wings_textures: "asset/wings/textures"
-    misc_textures: "asset/textures"
-    manifest_json: "asset/models/models.json"
+    # Both are supported. If subfolders exist, use them; else treat asset/models as wingless.
+    models_root_legacy: "asset/models"            # current VRMs dropped here (wingless by default)
+    wingless_vrms: "asset/models/wingless"        # optional canonical subfolder
+    with_wings_vrms: "asset/models/with-wings"    # optional canonical subfolder
+    wings_models: "asset/wings"                    # meshes (.fbx/.glb/.gltf)
+    wings_textures: "asset/wings/textures"         # images
+    models_manifest: "asset/models/models.json"
+    wings_manifest: "asset/wings/manifest.json"
+  rules:
+    vrm_classification:
+      - "Any *.vrm in asset/models/wingless is wingless."
+      - "Any *.vrm in asset/models/with-wings is pre-winged."
+      - "If using legacy layout (asset/models/*.vrm), treat as wingless unless filename ends with _wings or -wings."
+    wings_grouping:
+      - "Wing meshes/textures group by number. Example: wing02.fbx ↔ wing02.png, wing02_c.png, wing02_e.png, wing02_nrm.png."
+      - "Textures may use uppercase W; matching is case-insensitive."
+      - "Common suffix mapping: _c=albedo/color, _e=emissive, _nrm=normal. Others (mr/rough/ao) recorded if present."
   wings_pack: "Fantasy Wings Collection Fbx.rar"
-  avatars_present:
-    - "Abbey"
-    - "Alexandria"
-    - "Billie"
-    - "Carol"
-    - "Charlotte"
-    - "Clarice"
-    - "Jem"
-    - "Nina"
-    - "Odessa"
-    - "Reyczar"
-    - "Sorcha"
-    - "Themis"
-    - "WhiteStar"
-    - "Tracy"
-    - "Stella"
+  avatars_present: ["Abbey","Alexandria","Billie","Carol","Charlotte","Clarice","Jem","Nina","Odessa","Reyczar","Sorcha","Themis","WhiteStar","Tracy","Stella"]
   avatar_file_keys:
     rey_czar: "Reyczar"
     white_star: "WhiteStar"
@@ -117,7 +104,7 @@ governance:
       domains: [governance, security, permissions, provisioning]
       ai_core:
         status: "operational-min"
-        version: "0.4.0"
+        version: "0.4.1"
         role: "Overseer Engineer & Builder"
         abilities:
           - { id: plan.route, description: "Plan & route work." }
@@ -139,7 +126,7 @@ governance:
       domains: [governance, security, permissions, provisioning]
       ai_core:
         status: "operational-min"
-        version: "0.4.0"
+        version: "0.4.1"
         role: "Overseer Experience & Alignment"
         abilities:
           - { id: qa.review_plan, description: "Approve minimal, testable plans." }
@@ -295,12 +282,13 @@ audit_log:
       notes: "v1.7.0 — switch to GitHub Actions + PWA app-shell; custom domain fairiesofavalon.com; AI Core scripts." }
   - { ts: "2025-09-12T12:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
       notes: "v1.7.1 — fix White-Star regex; rename to rey-czar.ps1; canonicalize asset tree; Pages/DNS/HTTPS guidance." }
+  - { ts: "2025-09-12T13:30:00Z", actor: "actions", action: "runner.fail", target: "run-overseers-queue.yml", result: "error",
+      notes: "ConvertFrom-Yaml not recognized; installed powershell-yaml and updated scripts." }
 
 lessons_learned:
-  - "Do not prescribe local double-clicks from a browser repo view; use Actions."
+  - "PowerShell on Actions may not include ConvertFrom-Yaml. Always auto-install powershell-yaml non-interactively."
+  - "Legacy layout asset/models/*.vrm is supported; filenames ending with _wings or -wings are classified as winged."
+  - "Wings group by number (wing02.*) across meshes and textures (case-insensitive). Build a manifest for automation."
   - "Always include import map for three, three/addons, @pixiv/three-vrm on Pages."
   - "Write CNAME during deploy so the custom domain sticks."
   - "No plaintext secrets; reference external vaults only."
-  - "PowerShell regex must not end with a backslash; use [\\/.] patterns to exclude .git."
-  - "Use 'Rey' consistently across IDs, file names, and workflows (rey_czar, rey-czar.ps1)."
-  - "GitHub Pages HTTPS requires correct A/AAAA records (and non-proxied DNS during cert issuance)."

@@ -16,10 +16,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: PowerShell version
+        shell: pwsh
+        run: '$PSVersionTable | Format-List *'
       - name: Run asset counter
         shell: pwsh
-        run: |
-          pwsh -NoProfile -ExecutionPolicy Bypass -File 'scripts/overseers/count-assets.ps1' -WriteProgressJson
+        run: pwsh -NoProfile -ExecutionPolicy Bypass -File 'scripts/overseers/count-assets.ps1' -WriteProgressJson
       - name: Commit progress.json if changed
         shell: bash
         run: |

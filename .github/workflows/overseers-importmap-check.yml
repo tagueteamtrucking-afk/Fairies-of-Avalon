@@ -1,0 +1,22 @@
+name: Overseers — Import-Map Check
+on:
+  push:
+    paths:
+      - 'pages/**'
+      - 'index.html'
+      - 'scripts/overseers/validate-importmap.ps1'
+  pull_request:
+    paths:
+      - 'pages/**'
+      - 'index.html'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate import map presence
+        shell: pwsh
+        run: |
+          pwsh -NoProfile -ExecutionPolicy Bypass -File 'scripts/overseers/validate-importmap.ps1'

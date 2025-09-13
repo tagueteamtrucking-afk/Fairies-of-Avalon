@@ -18,7 +18,13 @@ function Read-Memory($Path) {
   }
 }
 
-function Count-Files([string]$Path,[string[]]$Include,[switch]$Recurse) {
+function Count-Files {
+  [CmdletBinding()]
+  param(
+    [Parameter(Mandatory)][string]$Path,
+    [Parameter(Mandatory)][string[]]$Include,
+    [switch]$Recurse
+  )
   if (-not (Test-Path -LiteralPath $Path)) { return @{ Count=0; Size=0 } }
   $opt = @{ File=$true; ErrorAction='SilentlyContinue' }
   if ($Recurse) { $opt.Recurse = $true }
@@ -26,14 +32,20 @@ function Count-Files([string]$Path,[string[]]$Include,[switch]$Recurse) {
   @{ Count = ($items | Measure-Object).Count; Size = ($items | Measure-Object Length -Sum).Sum }
 }
 
-function Get-WingGroups([System.IO.FileInfo[]]$Files) {
+function Get-WingGroups {
+  [CmdletBinding()]
+  param([System.IO.FileInfo[]]$Files)
   $rx = [regex]'wing(?<n>\d+)'
-  $groups = New-Object 'System.Collections.Generic.HashSet[string]'
-  foreach ($f in $Files) { $m = $rx.Match($f.Name.ToLower()); if ($m.Success){ [void]$groups.Add($m.Groups['n'].Value) } }
-  $groups
+  $nums = foreach ($f in $Files) {
+    $m = $rx.Match($f.Name.ToLowerInvariant())
+    if ($m.Success) { $m.Groups['n'].Value }
+  }
+  # Return sorted unique strings (pure PowerShell, cross-platform)
+  $nums | Sort-Object -Unique
 }
 
-$repoRoot   = Resolve-Path (Join-Path $PSScriptRoot '..\..')
+# --- Paths & Memory ---
+$repoRoot   = Resolve-Path (Join-Path $PSScriptRoot '..' '..')
 $memoryPath = Join-Path $repoRoot "Cody's Memory.yaml"
 
 Ensure-YamlModule
@@ -50,52 +62,50 @@ $wallsPath        = $mem.assets.layout.wallpapers;       if (-not $wallsPath){$w
 
 function F($p){ Join-Path $repoRoot $p }
 
-# Wingless from legacy root (filter *_wings/-wings)
-$legacyFiles = @()
+# --- VRMs (wingless) from legacy root (filter *_wings/-wings) ---
+$legacyWingless = @()
 if (Test-Path (F $modelsRootLegacy)) {
-  $legacyFiles = Get-ChildItem -LiteralPath (F $modelsRootLegacy) -Filter *.vrm -File -ErrorAction SilentlyContinue |
-                 Where-Object { $_.BaseName -notmatch '(_wings|-wings)$' }
+  $legacyWingless = Get-ChildItem -LiteralPath (F $modelsRootLegacy) -Filter *.vrm -File -ErrorAction SilentlyContinue |
+                    Where-Object { $_.BaseName -notmatch '(_wings|-wings)$' }
 }
-$winglessCount = $legacyFiles.Count
-$winglessBytes = ($legacyFiles | Measure-Object Length -Sum).Sum
+$winglessCount = $legacyWingless.Count
+$winglessBytes = ($legacyWingless | Measure-Object Length -Sum).Sum
 
-foreach($p in @($winglessPath)){
-  if ($p -and (Test-Path (F $p))){
-    $c = Count-Files (F $p) @('*.vrm')
-    $winglessCount += $c.Count; $winglessBytes += $c.Size
-  }
+if ($winglessPath -and (Test-Path (F $winglessPath))) {
+  $c = Count-Files -Path (F $winglessPath) -Include @('*.vrm')
+  $winglessCount += $c.Count; $winglessBytes += $c.Size
 }
 
-# With-wings
+# --- VRMs (with-wings) from canonical + alias ---
 $withWingsCount=0; $withWingsBytes=0
 foreach($p in @($withWingsPath,$withWingsAlias)){
   if ($p -and (Test-Path (F $p))){
-    $c = Count-Files (F $p) @('*.vrm')
+    $c = Count-Files -Path (F $p) -Include @('*.vrm')
     $withWingsCount += $c.Count; $withWingsBytes += $c.Size
   }
 }
 
-# Wings meshes/textures
-$mesh = Count-Files (F $wingsModelsPath) @('*.fbx','*.glb','*.gltf')
-$tex  = Count-Files (F $wingsTexPath)    @('*.png','*.jpg','*.jpeg') -Recurse
-$walls= Count-Files (F $wallsPath)       @('*.png','*.jpg','*.jpeg')
+# --- Wings meshes/textures ---
+$mesh = Count-Files -Path (F $wingsModelsPath) -Include @('*.fbx','*.glb','*.gltf')
+$tex  = Count-Files -Path (F $wingsTexPath)    -Include @('*.png','*.jpg','*.jpeg') -Recurse
+$walls= Count-Files -Path (F $wallsPath)       -Include @('*.png','*.jpg','*.jpeg')
 
 $meshFiles = @(); if (Test-Path (F $wingsModelsPath)){ $meshFiles = Get-ChildItem -LiteralPath (F $wingsModelsPath) -File -Include *.fbx,*.glb,*.gltf }
 $texFiles  = @(); if (Test-Path (F $wingsTexPath)){    $texFiles  = Get-ChildItem -LiteralPath (F $wingsTexPath)    -File -Include *.png,*.jpg,*.jpeg -Recurse }
 
-$meshGroups = Get-WingGroups $meshFiles
-$texGroups  = Get-WingGroups $texFiles
+$meshGroups = @(Get-WingGroups -Files $meshFiles)
+$texGroups  = @(Get-WingGroups -Files $texFiles)
 
-$union     = [System.Linq.Enumerable]::ToArray([System.Linq.Enumerable]::Distinct($meshGroups + $texGroups))
-$intersect = [System.Linq.Enumerable]::ToArray([System.Linq.Enumerable]::Intersect($meshGroups,$texGroups))
-$missingM  = [System.Linq.Enumerable]::ToArray([System.Linq.Enumerable]::Except($texGroups,$meshGroups))
-$missingT  = [System.Linq.Enumerable]::ToArray([System.Linq.Enumerable]::Except($meshGroups,$texGroups))
+# Pure PowerShell set math
+$union     = @(($meshGroups + $texGroups) | Sort-Object -Unique)
+$intersect = @($meshGroups | Where-Object { $texGroups -contains $_ })
+$missingM  = @($texGroups  | Where-Object { $meshGroups -notcontains $_ }) # textures without a matching mesh
+$missingT  = @($meshGroups | Where-Object { $texGroups  -notcontains $_ }) # meshes without textures
 
-function MB($b){ [Math]::Round(($b/1MB),2) }
+function MB($b){ if (-not $b) { return 0 } [Math]::Round(($b/1MB),2) }
 
-$budgets = @{}
-if ($mem -and $mem.assets -and $mem.assets.budgets) { $budgets = $mem.assets.budgets } else {
-  $budgets = @{ initial_shell_kb=300; initial_requests=15; vrm_per_file_mb=40; wallpapers_total=20 }
+$budgets = if ($mem -and $mem.assets -and $mem.assets.budgets) { $mem.assets.budgets } else {
+  @{ initial_shell_kb=300; initial_requests=15; vrm_per_file_mb=40; wallpapers_total=20 }
 }
 
 $result = [ordered]@{
@@ -123,7 +133,10 @@ $result = [ordered]@{
     }
   }
   budgets = $budgets
-  notes = @("Counts include alias path asset/winged-models.","Budgets are soft; optimize shell weight and lazy-loading.")
+  notes = @(
+    "Counts include alias path asset/winged-models.",
+    "Budgets are soft; optimize shell weight and lazy-loading."
+  )
 }
 
 if ($WriteProgressJson) {

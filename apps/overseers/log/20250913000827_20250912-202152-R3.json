@@ -1,9 +1,0 @@
-{
-  "id": "R3",
-  "name": "Generate scaffolds for all Fairies",
-  "status": "queued",
-  "owner": "ray_czar",
-  "qa_owner": "white_star",
-  "created_utc": "2025-09-12T20:21:52.2161106Z",
-  "source": "workflow:queue-full-roster"
-}

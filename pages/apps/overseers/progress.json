@@ -1,53 +1,53 @@
 {
-  "pending": 0,
-  "last_run": "2025-09-13T20:51:40.7164500Z",
-  "processed": [
+  "lastUpdated": "2025-09-13T21:05:06Z",
+  "overall": 93,
+  "categories": [
     {
-      "action": "asset_audit",
-      "started": "2025-09-13T20:51:40.7244353Z",
-      "status": "failed",
-      "id": "R4",
-      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:60\nLine |\n  60 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
-      "file": "20250913T184848Z-asset_audit.request.yml",
-      "ts": "2025-09-13T18:48:48.9937869Z",
-      "actor": "rey_czar",
-      "ended": "2025-09-13T20:51:41.0416638Z"
+      "id": "foundation",
+      "weight": 0.35,
+      "label": "Foundation (site + domain)",
+      "score": 100
     },
     {
-      "action": "importmap_check",
-      "started": "2025-09-13T20:51:41.0479593Z",
-      "status": "failed",
-      "id": "R5",
-      "error": "Exception: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:66\nLine |\n  66 |  … EXITCODE -ne 0) { throw \"Import-map check exit code: $LASTEXITCODE\" }\n     |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Import-map check exit code: \n\n",
-      "file": "20250913T184848Z-importmap_check.request.yml",
-      "ts": "2025-09-13T18:48:48.9992936Z",
-      "actor": "rey_czar",
-      "ended": "2025-09-13T20:51:41.1263211Z"
+      "id": "overseers",
+      "weight": 0.45,
+      "label": "Overseers Core (tools + queue)",
+      "score": 92
     },
     {
-      "action": "scaffold_fairies_bundle",
-      "started": "2025-09-13T20:51:41.1273831Z",
-      "status": "ok",
-      "id": "R3",
-      "file": "20250913T184848Z-scaffold-fairies.request.yml",
-      "ts": "2025-09-13T18:48:48.8782458Z",
-      "actor": "rey_czar",
-      "ended": "2025-09-13T20:51:41.1936505Z"
-    },
-    {
-      "action": "memory_snapshot",
-      "started": "2025-09-13T20:51:41.1966806Z",
-      "status": "ok",
-      "id": "R6",
-      "file": "20250913T184849Z-memory_snapshot.request.yml",
-      "ts": "2025-09-13T18:48:49.0045446Z",
-      "actor": "rey_czar",
-      "ended": "2025-09-13T20:51:41.2086076Z"
+      "id": "assets",
+      "weight": 0.2,
+      "label": "Assets (VRMs + wings)",
+      "score": 84
     }
   ],
-  "totals": {
-    "success": 2,
-    "failed": 2,
-    "skipped": 0
-  }
+  "metrics": {
+    "vrm_expected": 15,
+    "console_present": true,
+    "pwa_shell": true,
+    "scripts_present": true,
+    "nojekyll": true,
+    "importmap_pinned": true,
+    "vrm_winged": 4,
+    "state_ok": true,
+    "grants": 0,
+    "vrm_present": 19,
+    "ai_core_workflow": true,
+    "wings_meshes": 26,
+    "llm_bridge_workflow": true,
+    "vrm_wingless": 15,
+    "state_present": true,
+    "llm_missing": [
+      "grant_llm_invoke"
+    ],
+    "wallpapers": 4,
+    "wings_textures": 0,
+    "cname": true,
+    "capabilities_present": true,
+    "llm_ready": false,
+    "requests": 0
+  },
+  "notes": [
+    "This measures Memory + Tools readiness. Brains (LLM connectors) go green once vault refs + grant + bridge exist."
+  ]
 }

@@ -1,17 +1,17 @@
 # Overseers Queue Seeder — reads Memory and enqueues tasks for all Fairies.
-[CmdletBinding()]param()
+[CmdletBinding()]param(
+  [switch]$IncludeWingsManifest
+)
 $ErrorActionPreference = 'Stop'
 
 function Ensure-YamlModule {
   if (Get-Command ConvertFrom-Yaml -ErrorAction SilentlyContinue) { return }
-  try {
-    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
-    if (-not (Get-PackageProvider -Name NuGet -ListAvailable -ErrorAction SilentlyContinue)) {
-      Install-PackageProvider -Name NuGet -Scope CurrentUser -Force -ErrorAction Stop | Out-Null
-    }
-    Install-Module -Name powershell-yaml -Scope CurrentUser -Force -AllowClobber -ErrorAction Stop | Out-Null
-    Import-Module powershell-yaml -Force -ErrorAction Stop
-  } catch { throw "Failed to install/import 'powershell-yaml': $($_ | Out-String)" }
+  Set-PSRepository -Name PSGallery -InstallationPolicy Trusted -ErrorAction SilentlyContinue
+  if (-not (Get-PackageProvider -Name NuGet -ListAvailable -ErrorAction SilentlyContinue)) {
+    Install-PackageProvider -Name NuGet -Scope CurrentUser -Force -ErrorAction Stop | Out-Null
+  }
+  Install-Module -Name powershell-yaml -Scope CurrentUser -Force -AllowClobber -ErrorAction Stop | Out-Null
+  Import-Module powershell-yaml -Force -ErrorAction Stop
 }
 
 $Root  = (Resolve-Path "$PSScriptRoot\..\..\..").Path
@@ -39,11 +39,14 @@ foreach ($id in $ids) {
   $i++
 }
 
-# Always refresh manifests
+# Always refresh models manifest
 $mf1 = @{ id="write_models_manifest"; type="write_models_manifest"; created=(Get-Date).ToString('s')+'Z'; status="queued" } | ConvertTo-Json -Depth 6
-$mf2 = @{ id="write_wings_manifest";  type="write_wings_manifest";  created=(Get-Date).ToString('s')+'Z'; status="queued" } | ConvertTo-Json -Depth 6
 Set-Content -LiteralPath (Join-Path $Queue ('{0:D3}_models_manifest.json' -f $i)) -Encoding UTF8 -NoNewline -Value $mf1
-Set-Content -LiteralPath (Join-Path $Queue ('{0:D3}_wings_manifest.json'  -f ($i+1))) -Encoding UTF8 -NoNewline -Value $mf2
 
-Write-Host "Queued $($ids.Count) scaffold task(s) + manifests."
+if ($IncludeWingsManifest) {
+  $mf2 = @{ id="write_wings_manifest"; type="write_wings_manifest"; created=(Get-Date).ToString('s')+'Z'; status="queued" } | ConvertTo-Json -Depth 6
+  Set-Content -LiteralPath (Join-Path $Queue ('{0:D3}_wings_manifest.json' -f ($i+1))) -Encoding UTF8 -NoNewline -Value $mf2
+}
+
+Write-Host "Queued $($ids.Count) scaffold task(s) + models manifest."
 exit 0

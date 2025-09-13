@@ -1,5 +1,28 @@
 {
-  "lastUpdated": "never",
-  "requests": [],
+  "lastUpdated": "2025-09-13T04:47:57Z",
+  "requests": [
+    {
+      "id": "req-2025-09-13-abbey-qbo-read",
+      "requester": "abbey",
+      "scopes": [
+        "quickbooks.read",
+        "files.read"
+      ],
+      "justification": "Abbey needs to read transactions to build the budget dashboard.",
+      "requestedAt": "2025-09-13T00:00:00Z",
+      "status": "requested"
+    },
+    {
+      "id": "req-2025-09-13-abbey-qbo-read",
+      "requester": "abbey",
+      "scopes": [
+        "quickbooks.read",
+        "files.read"
+      ],
+      "justification": "Abbey needs to read transactions to build the budget dashboard.",
+      "requestedAt": "2025-09-13T00:00:00Z",
+      "status": "requested"
+    }
+  ],
   "grants": []
 }

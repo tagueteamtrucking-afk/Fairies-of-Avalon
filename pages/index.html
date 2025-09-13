@@ -2,45 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fairies of Avalon</title>
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="theme-color" content="#111" />
-  <link rel="stylesheet" href="/app.css">
+  <title>Avalon — Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Required import map -->
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <meta name="theme-color" content="#0b1020" />
+
+  <!-- App Styles -->
+  <link rel="stylesheet" href="./app.css" />
+
+  <!-- Import maps polyfill for older browsers -->
+  <script async src="https://unpkg.com/es-module-shims@1.11.0/dist/es-module-shims.js"></script>
+
+  <!-- Import Map: pin to known-good versions -->
+  <!-- three-vrm v3.4.2 bumped three to 0.177.0; pin r177 for stability. -->
   <script type="importmap">
   {
     "imports": {
-      "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
-      "three/addons/": "https://unpkg.com/three@0.164.1/examples/jsm/",
-      "@pixiv/three-vrm": "https://unpkg.com/@pixiv/three-vrm@2.0.3/lib/three-vrm.module.js"
+      "three": "https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/",
+      "@pixiv/three-vrm": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm@3.4.2/lib/three-vrm.module.js",
+      "@pixiv/three-vrm-animation": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm-animation@3.4.2/lib/three-vrm-animation.module.js"
     }
   }
   </script>
 </head>
-<body>
-  <header>
+<body class="wallpaper">
+  <header class="topbar">
     <h1>Fairies of Avalon</h1>
     <nav>
-      <a href="/pages/apps/overseers.html">Overseers Console</a>
-      <a href="/pages/wings-importer.html">Wings Lab</a>
+      <a href="./apps/overseers/console.html">Overseers Console</a>
     </nav>
   </header>
 
-  <main>
-    <section class="card">
-      <h2>Welcome to Avalon</h2>
-      <p>This is the lightweight PWA shell. Focus: <strong>Overseers online first</strong>, then the domino build of the other Fairies.</p>
-      <ul>
-        <li>VRMs (wingless) → <code>asset/models/</code> (or <code>asset/models/wingless/</code>)</li>
-        <li>Winged VRMs → <code>asset/models/with-wings/</code> (names may end with <code>_wings</code>)</li>
-        <li>Wings & textures → <code>asset/wings/</code> and <code>asset/wings/textures/</code></li>
-      </ul>
-      <p class="small muted"><small>Upload a wallpaper image to <code>asset/textures/wallpapers/avalon-01.jpg</code> to replace the default gradient.</small></p>
-    </section>
+  <main class="grid">
+    <a class="tile" href="./apps/overseers/console.html">
+      <h2>Overseers Console</h2>
+      <p>Queue & permissions status</p>
+    </a>
+    <a class="tile" href="./wings-importer.html">
+      <h2>Wings Importer</h2>
+      <p>Attach & preview wings (client‑side)</p>
+    </a>
   </main>
 
-  <script type="module" src="/app.js"></script>
+  <script>
+    // Register service worker (PWA shell)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+  </script>
 </body>
 </html>

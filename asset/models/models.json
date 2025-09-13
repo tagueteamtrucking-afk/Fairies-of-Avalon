@@ -1,10 +1,18 @@
 {
   "wingless": {
-    "Reyczar": "asset/models/wingless/Reyczar.vrm",
-    "WhiteStar": "asset/models/wingless/WhiteStar.vrm"
+    "alexandria": "asset/models/alexandria.vrm",
+    "sorcha": "asset/models/sorcha.vrm",
+    "jem": "asset/models/jem.vrm",
+    "tracy": "asset/models/tracy.vrm",
+    "charlotte": "asset/models/charlotte.vrm",
+    "stella": "asset/models/stella.vrm",
+    "odessa": "asset/models/odessa.vrm",
+    "abbey": "asset/models/abbey.vrm",
+    "clarice": "asset/models/clarice.vrm",
+    "themis": "asset/models/themis.vrm",
+    "nina": "asset/models/nina.vrm",
+    "billie": "asset/models/billie.vrm",
+    "carol": "asset/models/carol.vrm"
   },
-  "with_wings": {
-    "Reyczar": "asset/models/with-wings/Reyczar_wings.vrm",
-    "WhiteStar": "asset/models/with-wings/WhiteStar_wings.vrm"
-  }
+  "with_wings": {}
 }

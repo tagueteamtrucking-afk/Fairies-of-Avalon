@@ -1,14 +1,23 @@
-
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.7.2"
-  last_updated: "2025-09-12"
+  version: "1.7.4"
+  last_updated: "2025-09-13"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    Overseers-first. Actions + PWA shell. No plaintext secrets.
-    v1.7.2 — Fix ConvertFrom-Yaml by auto-installing powershell-yaml in scripts; support VRMs placed directly
-    in asset/models; auto-build wings manifest from asset/wings + textures grouped by number.
+    Overseers-first. No plaintext secrets. Workflows-first (GitHub Actions).
+    v1.7.4 — Easy Wins wave #1:
+      - Added soft performance budgets and surfaced them in the Overseers Console.
+      - Added with-wings alias path (asset/winged-models) without requiring reshuffles.
+      - Shipped CI workflows: Asset Audit, Memory Snapshot, Import-Map Check.
+      - Shipped Service Worker upgrade (precache shell + SWR for heavy assets).
+      - Shipped console badges, asset mismatch view, and diagnostics download.
+      - Recorded the “chain-reaction” build path and kept LLM bridge gated (dry-run queued).
+    Continues prior:
+      v1.7.3 — Permissions profiles & queue tasks (request/grant) with vault refs only;
+      runner installs YAML module automatically; writes apps/overseers/permissions/state.json;
+      auto-wings manifest disabled by default; UI wallpaper theme + Overseers Console.
+    Principle: Update this Memory every time code or plan changes. No plaintext secrets ever.
 
 system:
   os: "Windows 11"
@@ -19,9 +28,10 @@ delivery_policy:
   speed_first: true
   two_person_authorization: false
   whole_file_replacements_only: true
-  preferred_shell: "Command Prompt (cmd.exe)"
+  preferred_shell: "GitHub Actions workflows + PowerShell"
   notes:
     - "Provide full files ready to replace existing ones (no diffs/patches)."
+    - "Workflows-first. Scripts are helpers; no wrapper assumptions."
     - "Deploy path must not require multi-review or environment approvals."
 
 hosting:
@@ -44,40 +54,51 @@ project:
 assets:
   layout:
     # Both are supported. If subfolders exist, use them; else treat asset/models as wingless.
-    models_root_legacy: "asset/models"            # current VRMs dropped here (wingless by default)
-    wingless_vrms: "asset/models/wingless"        # optional canonical subfolder
-    with_wings_vrms: "asset/models/with-wings"    # optional canonical subfolder
+    models_root_legacy: "asset/models"             # VRMs dropped here (wingless by default unless *_wings/-wings suffix)
+    wingless_vrms: "asset/models/wingless"         # optional canonical subfolder
+    with_wings_vrms: "asset/models/with-wings"     # optional canonical subfolder
+    with_wings_alias: "asset/winged-models"        # supported alias (current repo structure)
     wings_models: "asset/wings"                    # meshes (.fbx/.glb/.gltf)
     wings_textures: "asset/wings/textures"         # images
     models_manifest: "asset/models/models.json"
     wings_manifest: "asset/wings/manifest.json"
+    wallpapers: "asset/textures/wallpapers"
   rules:
     vrm_classification:
       - "Any *.vrm in asset/models/wingless is wingless."
       - "Any *.vrm in asset/models/with-wings is pre-winged."
+      - "Any *.vrm in asset/winged-models is pre-winged (alias path)."
       - "If using legacy layout (asset/models/*.vrm), treat as wingless unless filename ends with _wings or -wings."
     wings_grouping:
       - "Wing meshes/textures group by number. Example: wing02.fbx ↔ wing02.png, wing02_c.png, wing02_e.png, wing02_nrm.png."
       - "Textures may use uppercase W; matching is case-insensitive."
-      - "Common suffix mapping: _c=albedo/color, _e=emissive, _nrm=normal. Others (mr/rough/ao) recorded if present."
-  wings_pack: "Fantasy Wings Collection Fbx.rar"
-  avatars_present: ["Abbey","Alexandria","Billie","Carol","Charlotte","Clarice","Jem","Nina","Odessa","Reyczar","Sorcha","Themis","WhiteStar","Tracy","Stella"]
-  avatar_file_keys:
-    rey_czar: "Reyczar"
-    white_star: "WhiteStar"
-    clarice: "Clarice"
-    charlotte: "Charlotte"
-    nina: "Nina"
-    alexandria: "Alexandria"
-    tracy: "Tracy"
-    carol_li: "Carol"
-    jem_nassim: "Jem"
-    stella: "Stella"
-    sorcha: "Sorcha"
-    odessa: "Odessa"
-    billie: "Billie"
-    themis: "Themis"
-    abbey: "Abbey"
+      - "Suffix mapping: _c=albedo/color, _e=emissive, _nrm=normal. Others (mr/rough/ao) recorded if present."
+  budgets:
+    initial_shell_kb: 300        # gzipped target for HTML+CSS+JS critical path
+    initial_requests: 15
+    vrm_per_file_mb: 40          # guidance; heavy assets lazy-loaded
+    wallpapers_total: 20         # max on home; offscreen lazy-load
+
+wings_pack: "Fantasy Wings Collection Fbx.rar"
+
+avatars_present: ["Abbey","Alexandria","Billie","Carol","Charlotte","Clarice","Jem","Nina","Odessa","Reyczar","Sorcha","Themis","WhiteStar","Tracy","Stella"]
+
+avatar_file_keys:
+  rey_czar: "Reyczar"
+  white_star: "WhiteStar"
+  clarice: "Clarice"
+  charlotte: "Charlotte"
+  nina: "Nina"
+  alexandria: "Alexandria"
+  tracy: "Tracy"
+  carol_li: "Carol"
+  jem_nassim: "Jem"
+  stella: "Stella"
+  sorcha: "Sorcha"
+  odessa: "Odessa"
+  billie: "Billie"
+  themis: "Themis"
+  abbey: "Abbey"
 
 access_control:
   policy:
@@ -222,6 +243,10 @@ runtime:
     runner_process_queue: ".github/workflows/run-overseers-queue.yml"
     overseers_ai_core: ".github/workflows/overseers-ai-core.yml"
     deploy_pages: ".github/workflows/deploy-pages.yml"
+    llm_bridge: ".github/workflows/llm-bridge.yml"
+    overseers_asset_audit: ".github/workflows/overseers-asset-audit.yml"
+    overseers_memory_snapshot: ".github/workflows/overseers-memory-snapshot.yml"
+    overseers_importmap_check: ".github/workflows/overseers-importmap-check.yml"
   quick_paths:
     actions_order: ["Queue — Full Roster", "Runner — Process Overseers Queue", "Overseers — AI Core", "Deploy — GitHub Pages"]
   tools:
@@ -230,6 +255,17 @@ runtime:
     - "Local Web (Pages)"
     - "Wings Lab"
     - "Client-side Wings Importer"
+    - "Asset Counter"
+    - "Import-Map Validator"
+    - "Memory Snapshotter"
+    - "Permissions Processor"
+  chain_reaction:
+    description: >
+      Overseers connect to main brain (LLM bridge, dry-run first), then:
+      Overseers → build Clarice → (Overseers + Clarice) build Charlotte →
+      (team) builds Nina → (team) builds next assistants, and so on.
+    status: "initiated"
+    safety: "No secrets until Overseers approve; vault refs only."
 
 interfaces_registry:
   security_reports: { owner: clarice, purpose: "Security reports & rollback snapshots." }
@@ -274,6 +310,15 @@ plans:
       - { id: R1, name: "App shell + import map + Wings Importer + Overseers Console", status: "queued" }
       - { id: R2, name: "Health/Wealth/Wellness activation plan scaffold", status: "queued" }
       - { id: R3, name: "Generate scaffolds for all Fairies", status: "queued" }
+      - { id: R4, name: "Asset Audit workflow (counts + coverage into progress.json)", status: "done" }
+      - { id: R5, name: "Import-Map Check workflow (fail on missing importmap where modules used)", status: "done" }
+      - { id: R6, name: "Memory Snapshot workflow (time-stamped rollback copies)", status: "done" }
+      - { id: R7, name: "Console badges for budgets & mismatches", status: "done" }
+      - { id: R8, name: "Service Worker upgrade (precache shell + SWR for heavy assets)", status: "done" }
+      - { id: R9, name: "Permissions queue schema check", status: "queued" }
+      - { id: R10, name: "VRM & Wings manifest builders (manual trigger)", status: "queued" }
+      - { id: R11, name: "Filename linter & rename plan", status: "queued" }
+      - { id: R12, name: "Robots/sitemap basics", status: "queued" }
 
 audit_log:
   - { ts: "2025-09-12T00:00:00Z", actor: "rey_czar", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
@@ -284,23 +329,14 @@ audit_log:
       notes: "v1.7.1 — fix White-Star regex; rename to rey-czar.ps1; canonicalize asset tree; Pages/DNS/HTTPS guidance." }
   - { ts: "2025-09-12T13:30:00Z", actor: "actions", action: "runner.fail", target: "run-overseers-queue.yml", result: "error",
       notes: "ConvertFrom-Yaml not recognized; installed powershell-yaml and updated scripts." }
+  - { ts: "2025-09-13T00:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
+      notes: "v1.7.4 — Easy Wins wave #1: asset audit, importmap check, memory snapshot, SW upgrade, console badges." }
 
 lessons_learned:
   - "PowerShell on Actions may not include ConvertFrom-Yaml. Always auto-install powershell-yaml non-interactively."
   - "Legacy layout asset/models/*.vrm is supported; filenames ending with _wings or -wings are classified as winged."
   - "Wings group by number (wing02.*) across meshes and textures (case-insensitive). Build a manifest for automation."
-  - "Always include import map for three, three/addons, @pixiv/three-vrm on Pages."
+  - "Always include import map for three, three/addons, @pixiv/three-vrm on Pages that use modules."
   - "Write CNAME during deploy so the custom domain sticks."
+  - "Workflows-first; do not assume developer shell wrappers."
   - "No plaintext secrets; reference external vaults only."
-meta:
-  project: Avalon
-  file_name: "Cody's Memory.yaml"
-  version: "1.7.3"
-  last_updated: "2025-09-13"
-  author: "Cody (GPT-5 Pro)"
-  notes: >
-    Overseers-first. No plaintext secrets.
-    v1.7.3 — Added permissions profiles & queue tasks (request/grant) with vault refs only.
-    Runner installs YAML module automatically, processes permissions tasks, and writes
-    apps/overseers/permissions/state.json. Auto-wings manifest disabled by default.
-    UI updated with wallpaper theme (app.css) and an Overseers Console showing queue/permissions status.

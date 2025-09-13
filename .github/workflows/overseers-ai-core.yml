@@ -2,63 +2,32 @@ name: Overseers — AI Core
 
 on:
   workflow_dispatch:
-    inputs:
-      mutate:
-        description: "Allow file moves (cleanup)"
-        required: false
-        type: boolean
-        default: false
   push:
-    branches: [ main ]
     paths:
-      - "apps/overseers/ai/**"
-      - "apps/overseers/queue/**"
-      - ".github/workflows/overseers-ai-core.yml"
+      - "permissions/**"
+      - "scripts/overseers/**"
 
 permissions:
   contents: write
 
 jobs:
-  ai-core:
+  process-permissions:
     runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with: { fetch-depth: 1 }
 
-      - name: White Star — Analyze / Cleanup
+      - name: Run permissions processor
         shell: pwsh
         run: |
-          $mutate = '${{ github.event.inputs.mutate }}'
-          if ($mutate -eq '' -or $mutate -eq 'false') {
-            pwsh -File "apps/overseers/ai/white-star.ps1" -Action all
-          } else {
-            pwsh -File "apps/overseers/ai/white-star.ps1" -Action cleanup -Mutate
-          }
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+          ./scripts/overseers/process-permissions.ps1
 
-      - name: Rey Czar — Queue Status
-        shell: pwsh
-        run: pwsh -File "apps/overseers/ai/rey-czar.ps1" -Action list
-
-      - name: Commit changes (only if any)
+      - name: Commit state.json
         shell: bash
         run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "Overseers AI Core: repo cleanup by White Star"
-            git push
-          fi
-
-      - name: Upload Overseers reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: overseers-out
-          path: |
-            apps/overseers/out/*
-            apps/overseers/log/*
-          if-no-files-found: warn
-          retention-days: 7
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/overseers/permissions/state.json permissions/processed || true
+          git commit -m "Overseers: update permissions state" || echo "Nothing to commit"
+          git push

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="../../app.css" />
 
-  <!-- Import maps polyfill + pinned imports (same pins as index.html) -->
+  <!-- Import maps polyfill + pinned imports -->
   <script async src="https://unpkg.com/es-module-shims@1.11.0/dist/es-module-shims.js"></script>
   <script type="importmap">
   {
@@ -27,6 +27,19 @@
 
   <main class="grid" id="console">
     <section class="tile">
+      <h2>Overseers AI — Power Index</h2>
+      <div class="progress-head">
+        <div id="pi-note" class="progress-note">Loading…</div>
+        <div id="pi-score" class="progress-score">—%</div>
+      </div>
+      <div class="progress-wrap">
+        <div id="pi-bar" class="progress-bar"></div>
+      </div>
+      <div id="pi-kpis" class="kpis"></div>
+      <div class="status" id="pi-details"></div>
+    </section>
+
+    <section class="tile">
       <h2>Permissions</h2>
       <div id="perm-summary" class="status">Loading…</div>
       <div id="perm-list"></div>
@@ -36,8 +49,8 @@
       <h2>How it works</h2>
       <ol>
         <li>Drop a <b>.yml</b> in <code>permissions/requests/</code> (no secrets; only vault URIs).</li>
-        <li>Run <b>Overseers — AI Core</b> workflow (or push to the repo).</li>
-        <li>This page refreshes with the new status from <code>apps/overseers/permissions/state.json</code>.</li>
+        <li>Run <b>Overseers — AI Core</b> (or just push to the repo).</li>
+        <li>This page reads <code>apps/overseers/progress.json</code> and <code>apps/overseers/permissions/state.json</code>.</li>
       </ol>
       <p class="status">Overseers-first. Least privilege. No plaintext secrets.</p>
     </section>

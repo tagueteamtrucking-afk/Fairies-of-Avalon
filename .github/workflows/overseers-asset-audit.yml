@@ -1,0 +1,34 @@
+name: Overseers — Asset Audit
+on:
+  push:
+    paths:
+      - 'asset/**'
+      - 'scripts/overseers/count-assets.ps1'
+      - 'pages/apps/overseers/**'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run asset counter
+        shell: pwsh
+        run: |
+          pwsh -NoProfile -ExecutionPolicy Bypass -File 'scripts/overseers/count-assets.ps1' -WriteProgressJson
+      - name: Commit progress.json if changed
+        shell: bash
+        run: |
+          if git status --porcelain | grep -q "pages/apps/overseers/progress.json"; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add pages/apps/overseers/progress.json
+            git commit -m "chore(overseers): update progress.json [skip ci]"
+            git push
+          else
+            echo "No changes to progress.json"
+          fi

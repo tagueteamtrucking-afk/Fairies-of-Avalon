@@ -6,24 +6,21 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-try {
-  Import-Module powershell-yaml -ErrorAction Stop
-} catch {
+try { Import-Module powershell-yaml -ErrorAction Stop }
+catch {
   Write-Host "::warning::powershell-yaml not loaded; attempting install..."
   Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
   Install-Module powershell-yaml -Scope CurrentUser -Force -AllowClobber
   Import-Module powershell-yaml -ErrorAction Stop
 }
 
-function Read-Yaml([string]$path) {
-  (Get-Content -Raw -Path $path) | ConvertFrom-Yaml
-}
+function Read-Yaml([string]$path) { (Get-Content -Raw -Path $path) | ConvertFrom-Yaml }
 function Write-Json([object]$obj, [string]$path) {
   $json = $obj | ConvertTo-Json -Depth 20
   Set-Content -Path $path -Value $json -Encoding utf8NoBOM
 }
-function UtcNow() { (Get-Date).ToUniversalTime() }
-function UtcIso([datetime]$d) { $d.ToString("o") }
+function UtcNow(){ (Get-Date).ToUniversalTime() }
+function UtcIso([datetime]$d){ $d.ToString("o") }
 
 $RequestsDir  = Join-Path $RepoRoot "requests"
 $ProcessedDir = Join-Path $RepoRoot "processed"
@@ -53,6 +50,7 @@ foreach ($file in $pending) {
     $rec.action = $q.action
     $rec.actor  = $q.actor
     $rec.ts     = $q.ts
+    if ($null -ne $q.dry_run) { $rec.dry_run = [bool]$q.dry_run }
 
     switch ($q.action) {
 
@@ -80,7 +78,6 @@ foreach ($file in $pending) {
       "scaffold_fairies_bundle" {
         $avatars = @()
         if ($q.params -and $q.params.avatars) { $avatars = @($q.params.avatars) }
-
         if (-not $avatars -or $avatars.Count -eq 0) {
           $memPath = Join-Path $RepoRoot "Cody's Memory.yaml"
           if (Test-Path $memPath) {
@@ -95,6 +92,8 @@ foreach ($file in $pending) {
 
         $dryRun = $true
         if (($env:OPENAI_API_KEY -or $env:ANTHROPIC_API_KEY) -and ($q.dry_run -eq $false)) { $dryRun = $false }
+        $rec.dry_run = $dryRun
+        $countOK = 0
 
         foreach ($name in $avatars) {
           $prompt = @"
@@ -102,10 +101,10 @@ Generate a minimal, actionable scaffold plan to build the Avalon Fairy assistant
 
 Constraints:
 - Domain: fairiesofavalon.com (GitHub Pages; PWA shell).
-- Workflows-first. Use GitHub Actions + PowerShell scripts. No plaintext secrets (refer to vault refs or repo Secrets).
-- Asset rules: import map required on module pages for 'three', 'three/addons/', '@pixiv/three-vrm'.
+- Workflows-first. Use GitHub Actions + PowerShell scripts. No plaintext secrets (vault refs or repo Secrets only).
+- Import map required for 'three', 'three/addons/', '@pixiv/three-vrm' on module pages.
 - Asset layout: asset/models (legacy wingless), asset/winged-models (alias), asset/wings + textures.
-- Overseers Queue exists; actions must map to queueable steps.
+- Overseers Queue exists; each item must map to queueable steps.
 
 Deliver (plaintext, <= 250 lines):
 1) Checklist (each item maps to a file or workflow you name).
@@ -114,7 +113,11 @@ Deliver (plaintext, <= 250 lines):
 "@
           $outFile = Join-Path $scaffoldDir ("{0}.plan.txt" -f ($name.ToString().ToLowerInvariant()))
           & (Join-Path $PSScriptRoot "llm-bridge.ps1") -Prompt $prompt -OutFile $outFile -DryRun:($dryRun)
+          if (Test-Path $outFile) { $countOK++ }
         }
+
+        $rec.count = $avatars.Count
+        $rec.written = $countOK
         $rec.status = "ok"
       }
 
@@ -127,9 +130,9 @@ Deliver (plaintext, <= 250 lines):
     $rec.ended = UtcIso (UtcNow)
     $progress.processed += $rec
 
-    if ($rec.status -eq "ok")      { $progress.totals.success++ }
+    if     ($rec.status -eq "ok")      { $progress.totals.success++ }
     elseif ($rec.status -eq "skipped") { $progress.totals.skipped++ }
-    else                           { $progress.totals.failed++ }
+    else                                { $progress.totals.failed++ }
 
     Move-Item -Path $file.FullName -Destination (Join-Path $ProcessedDir $file.Name) -Force
   }

@@ -1,49 +1,49 @@
 {
-  "ts": "2025-09-13T21:45:46Z",
+  "ts": "2025-09-13T21:46:11Z",
   "paths": {
-    "wings_models": "asset/wings",
-    "wings_textures": "asset/wings/textures",
     "wingless_vrms": "asset/models/wingless",
-    "with_wings_vrms": "asset/models/with-wings",
     "models_root_legacy": "asset/models",
+    "wings_textures": "asset/wings/textures",
+    "wallpapers": "asset/textures/wallpapers",
     "with_wings_alias": "asset/winged-models",
-    "wallpapers": "asset/textures/wallpapers"
+    "with_wings_vrms": "asset/models/with-wings",
+    "wings_models": "asset/wings"
   },
   "assets": {
-    "wings_textures": {
-      "size_mb": 16.66,
-      "count": 81
-    },
-    "vrm_wingless": {
-      "size_mb": 174.31,
-      "count": 15
-    },
-    "vrm_with_wings": {
-      "size_mb": 56.27,
-      "count": 4
-    },
-    "wings_meshes": {
-      "size_mb": 35.78,
-      "count": 26
+    "wallpapers": {
+      "count": 4,
+      "size_mb": 0.03
     },
     "coverage": {
-      "groups_with_mesh_and_textures": 26,
       "groups_missing_textures": [],
       "groups_missing_mesh": [
         "1432"
       ],
-      "groups_total": 27
+      "groups_total": 27,
+      "groups_with_mesh_and_textures": 26
     },
-    "wallpapers": {
-      "size_mb": 0.03,
-      "count": 4
+    "wings_meshes": {
+      "count": 26,
+      "size_mb": 35.78
+    },
+    "vrm_wingless": {
+      "count": 15,
+      "size_mb": 174.31
+    },
+    "vrm_with_wings": {
+      "count": 4,
+      "size_mb": 56.27
+    },
+    "wings_textures": {
+      "count": 81,
+      "size_mb": 16.66
     }
   },
   "budgets": {
-    "initial_shell_kb": 300,
-    "vrm_per_file_mb": 40,
+    "wallpapers_total": 20,
     "initial_requests": 15,
-    "wallpapers_total": 20
+    "vrm_per_file_mb": 40,
+    "initial_shell_kb": 300
   },
   "notes": [
     "Counts include alias path asset/winged-models.",

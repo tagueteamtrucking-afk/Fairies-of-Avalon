@@ -1,16 +1,33 @@
 {
-  "policy": {
-    "overseers_first": true,
-    "no_plaintext_secrets": true,
-    "vaults": {
-      "tokens": "vault://palace/tokens",
-      "passwords": "vault://palace/passwords",
-      "permissions": "vault://palace/permissions"
+  "ai_core": {
+    "version": "0.5.0",
+    "status": "operational-core",
+    "llm_bridge": {
+      "providers": ["openai"],
+      "env_keys": ["OPENAI_API_KEY"],
+      "model_default": "gpt-4o-mini",
+      "dry_run_default": true
     }
   },
-  "tools": [
-    { "id": "queue.enqueue", "kind": "file", "path": ".queue/", "write": true },
-    { "id": "mem.patch", "kind": "file", "path": "Cody's Memory.yaml", "write": true },
-    { "id": "permissions.process", "kind": "workflow", "workflow": "Overseers — AI Core" }
+  "queue": {
+    "requests_dir": "requests",
+    "processed_dir": "processed",
+    "known_actions": [
+      "asset_audit",
+      "importmap_check",
+      "memory_snapshot",
+      "scaffold_fairies_bundle"
+    ]
+  },
+  "budgets": {
+    "initial_shell_kb": 300,
+    "initial_requests": 15,
+    "vrm_per_file_mb": 40,
+    "wallpapers_total": 20
+  },
+  "notes": [
+    "Workflows-first. Assistants are built via queue tasks.",
+    "No plaintext secrets; use repo Secrets or external vault refs.",
+    "Import map required on module pages for three/three/addons/@pixiv/three-vrm."
   ]
 }

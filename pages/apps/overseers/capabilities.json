@@ -1,0 +1,16 @@
+{
+  "policy": {
+    "overseers_first": true,
+    "no_plaintext_secrets": true,
+    "vaults": {
+      "tokens": "vault://palace/tokens",
+      "passwords": "vault://palace/passwords",
+      "permissions": "vault://palace/permissions"
+    }
+  },
+  "tools": [
+    { "id": "queue.enqueue", "kind": "file", "path": ".queue/", "write": true },
+    { "id": "mem.patch", "kind": "file", "path": "Cody's Memory.yaml", "write": true },
+    { "id": "permissions.process", "kind": "workflow", "workflow": "Overseers — AI Core" }
+  ]
+}

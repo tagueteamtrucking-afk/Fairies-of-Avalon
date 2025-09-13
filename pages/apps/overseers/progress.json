@@ -1,52 +1,53 @@
 {
-  "ts": "2025-09-13T18:57:15Z",
-  "paths": {
-    "models_root_legacy": "asset/models",
-    "wings_textures": "asset/wings/textures",
-    "wings_models": "asset/wings",
-    "wingless_vrms": "asset/models/wingless",
-    "wallpapers": "asset/textures/wallpapers",
-    "with_wings_alias": "asset/winged-models",
-    "with_wings_vrms": "asset/models/with-wings"
-  },
-  "assets": {
-    "coverage": {
-      "groups_with_mesh_and_textures": 26,
-      "groups_total": 27,
-      "groups_missing_mesh": [
-        "1432"
-      ],
-      "groups_missing_textures": []
+  "last_run": "2025-09-13T19:20:25.9132939Z",
+  "processed": [
+    {
+      "file": "20250913T184848Z-asset_audit.request.yml",
+      "ended": "2025-09-13T19:20:26.2265945Z",
+      "status": "failed",
+      "started": "2025-09-13T19:20:25.9213050Z",
+      "ts": "2025-09-13T18:48:48.9937869Z",
+      "action": "asset_audit",
+      "id": "R4",
+      "actor": "rey_czar",
+      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:60\nLine |\n  60 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n"
     },
-    "wings_textures": {
-      "count": 81,
-      "size_mb": 16.66
+    {
+      "file": "20250913T184848Z-importmap_check.request.yml",
+      "ended": "2025-09-13T19:20:26.3093378Z",
+      "status": "failed",
+      "started": "2025-09-13T19:20:26.2328743Z",
+      "ts": "2025-09-13T18:48:48.9992936Z",
+      "action": "importmap_check",
+      "id": "R5",
+      "actor": "rey_czar",
+      "error": "Exception: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:66\nLine |\n  66 |  … EXITCODE -ne 0) { throw \"Import-map check exit code: $LASTEXITCODE\" }\n     |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Import-map check exit code: \n\n"
     },
-    "wings_meshes": {
-      "count": 26,
-      "size_mb": 35.78
+    {
+      "file": "20250913T184848Z-scaffold-fairies.request.yml",
+      "ended": "2025-09-13T19:20:26.3743311Z",
+      "status": "ok",
+      "started": "2025-09-13T19:20:26.3103771Z",
+      "ts": "2025-09-13T18:48:48.8782458Z",
+      "action": "scaffold_fairies_bundle",
+      "id": "R3",
+      "actor": "rey_czar"
     },
-    "vrm_with_wings": {
-      "count": 4,
-      "size_mb": 56.27
-    },
-    "vrm_wingless": {
-      "count": 15,
-      "size_mb": 174.31
-    },
-    "wallpapers": {
-      "count": 4,
-      "size_mb": 0.03
+    {
+      "file": "20250913T184849Z-memory_snapshot.request.yml",
+      "ended": "2025-09-13T19:20:26.3883175Z",
+      "status": "ok",
+      "started": "2025-09-13T19:20:26.3769852Z",
+      "ts": "2025-09-13T18:48:49.0045446Z",
+      "action": "memory_snapshot",
+      "id": "R6",
+      "actor": "rey_czar"
     }
-  },
-  "budgets": {
-    "initial_requests": 15,
-    "wallpapers_total": 20,
-    "vrm_per_file_mb": 40,
-    "initial_shell_kb": 300
-  },
-  "notes": [
-    "Counts include alias path asset/winged-models.",
-    "Budgets are soft; optimize shell weight and lazy-loading."
-  ]
+  ],
+  "pending": 0,
+  "totals": {
+    "failed": 2,
+    "skipped": 0,
+    "success": 2
+  }
 }

@@ -1,18 +1,23 @@
-# Requires: helpers.ps1
+# Builds BOTH: permissions state.json and overseers progress.json
 . "$PSScriptRoot\helpers.ps1"
 Ensure-YamlModule
 
 $repoRoot = Resolve-Path (Join-Path $PSScriptRoot "..\..")
 Set-Location $repoRoot
 
-# 1) Read requests/grants
-$requests = Read-YamlFiles "permissions\Requests\*.yml"
+# ---------- 1) Read permission requests/grants ----------
+$requests = @()
+$requests += Read-YamlFiles "permissions\Requests\*.yml"
 $requests += Read-YamlFiles "permissions\Requests\*.yaml"
+$requests += Read-YamlFiles "permissions\requests\*.yml"
+$requests += Read-YamlFiles "permissions\requests\*.yaml"
 
-$grants   = Read-YamlFiles "permissions\Grants\*.yml"
-$grants  += Read-YamlFiles "permissions\Grants\*.yaml"
+$grants = @()
+$grants += Read-YamlFiles "permissions\Grants\*.yml"
+$grants += Read-YamlFiles "permissions\Grants\*.yaml"
+$grants += Read-YamlFiles "permissions\grants\*.yml"
+$grants += Read-YamlFiles "permissions\grants\*.yaml"
 
-# 2) Normalize/sort
 function Normalize-Request($r) {
   [pscustomobject]@{
     id            = $r.id
@@ -20,7 +25,7 @@ function Normalize-Request($r) {
     scopes        = @($r.scopes)
     justification = $r.justification
     requestedAt   = $r.requestedAt
-    status        = ($r.status | ForEach-Object { $_ })  # e.g., requested, approved, denied
+    status        = ($r.status | ForEach-Object { $_ })
   }
 }
 function Normalize-Grant($g) {
@@ -28,30 +33,25 @@ function Normalize-Grant($g) {
     id            = $g.id
     requestId     = $g.requestId
     overseer      = $g.overseer
-    result        = $g.result     # approved | denied
+    result        = $g.result
     grantedScopes = @($g.grantedScopes)
     expires       = $g.expires
     grantedAt     = $g.grantedAt
   }
 }
 
-$reqs = @()
-foreach ($r in $requests) { $reqs += (Normalize-Request $r) }
-$grts = @()
-foreach ($g in $grants) { $grts += (Normalize-Grant $g) }
+$reqs = @(); foreach ($r in $requests) { $reqs += (Normalize-Request $r) }
+$grts = @(); foreach ($g in $grants)   { $grts += (Normalize-Grant   $g) }
 
-# 3) Build state object
 $state = [pscustomobject]@{
   lastUpdated = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
   requests    = $reqs
   grants      = $grts
 }
 
-# 4) Write to pages/apps/overseers/permissions/state.json
-$outPath = "pages\apps\overseers\permissions\state.json"
-Write-Json -Data $state -Path $outPath
+Write-Json -Data $state -Path "pages\apps\overseers\permissions\state.json"
 
-# 5) Move processed files to permissions/processed/
+# Archive processed files to permissions/processed/
 $processedDir = "permissions\processed"
 if (-not (Test-Path $processedDir)) { New-Item -ItemType Directory -Path $processedDir | Out-Null }
 function Archive-Files($files) {
@@ -60,13 +60,149 @@ function Archive-Files($files) {
       $name = Split-Path -Leaf $f.sourceFile
       $stamp = Get-Date -UFormat "%Y%m%dT%H%M%SZ"
       $dest = Join-Path $processedDir "$stamp-$name"
-      Move-Item -Path $f.sourceFile -Destination $dest -Force
-    } catch {
-      # If move fails (e.g., race), skip
-    }
+      if (Test-Path $f.sourceFile) { Move-Item -Path $f.sourceFile -Destination $dest -Force }
+    } catch { }
   }
 }
 Archive-Files $requests
 Archive-Files $grants
 
-Write-Host "Permissions processing complete."
+# ---------- 2) Build Overseers progress.json ----------
+# Checks
+function Has([string]$p) { return Test-Path $p -PathType Leaf -ErrorAction SilentlyContinue }
+function HasDir([string]$p){ return Test-Path $p -PathType Container -ErrorAction SilentlyContinue }
+
+$pwaShell     = (Has "pages\index.html") -and (Has "pages\app.css") -and (Has "pages\sw.js") -and (Has "pages\manifest.webmanifest")
+$consoleFiles = (Has "pages\apps\overseers\console.html") -and (Has "pages\apps\overseers\console.js")
+$stateFile    = Has "pages\apps\overseers\permissions\state.json"
+$workflowAI   = Has ".github\workflows\overseers-ai-core.yml"
+$scriptsOK    = (Has "scripts\overseers\helpers.ps1") -and (Has "scripts\overseers\process-permissions.ps1")
+$cnameOK      = Has "CNAME"
+$nojekyllOK   = Has ".nojekyll"
+$capabilities = Has "pages\apps\overseers\capabilities.json"
+$wallpapersCt = 0
+if (HasDir "asset\textures\wallpapers") {
+  $wallpapersCt = (Get-ChildItem "asset\textures\wallpapers" -Include *.png,*.jpg,*.jpeg,*.webp -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count
+}
+
+$importPins = $false
+if (Has "pages\index.html") {
+  $html = Get-Content "pages\index.html" -Raw
+  if ($html -match "three@0\.177\.0" -and $html -match "@pixiv/three-vrm@3\.4\.2") { $importPins = $true }
+}
+
+$reqCt = (Get-ChildItem "permissions\requests" -Include *.yml,*.yaml -ErrorAction SilentlyContinue | Measure-Object).Count
+$grtCt = (Get-ChildItem "permissions\grants"   -Include *.yml,*.yaml -ErrorAction SilentlyContinue | Measure-Object).Count
+
+# VRMs present vs expected
+$vrmPresent = (Get-ChildItem "asset\models" -Filter *.vrm -ErrorAction SilentlyContinue | Measure-Object).Count
+$vrmExpected = $null
+try {
+  $memRaw = Get-Content "Cody's Memory.yaml" -Raw -ErrorAction Stop
+  $memObj = ConvertFrom-Yaml -Yaml $memRaw
+  if ($memObj.assets.avatars_present) { $vrmExpected = $memObj.assets.avatars_present.Count }
+} catch { }
+
+if (-not $vrmExpected) { $vrmExpected = 15 } # default target
+
+$wingsMeshes   = (Get-ChildItem "asset\wings" -Filter *.fbx -ErrorAction SilentlyContinue | Measure-Object).Count
+$wingsTextures = (Get-ChildItem "asset\wings\textures" -Include *.png,*.jpg,*.jpeg,*.webp -ErrorAction SilentlyContinue | Measure-Object).Count
+
+# Scoring (weights sum to 100)
+$points = 0
+function P([bool]$ok, [int]$w) { if ($ok) { return $w } else { return 0 } }
+
+$points += P $pwaShell      12
+$points += P $importPins     8
+$points += P $consoleFiles  10
+# state is OK only if it has a timestamp that's not "never"
+$stateOk = $false
+if ($stateFile) {
+  try {
+    $s = Get-Content "pages\apps\overseers\permissions\state.json" -Raw | ConvertFrom-Json
+    if ($s.lastUpdated -and $s.lastUpdated -ne "never") { $stateOk = $true }
+  } catch { }
+}
+$points += P $stateOk       10
+$points += P $workflowAI    10
+$points += P $scriptsOK     10
+# Domain & Pages config
+$points += P ($cnameOK -and $nojekyllOK) 8
+$points += P $capabilities  4
+$points += P (($reqCt -ge 1) -or ($grtCt -ge 1)) 4
+
+# VRM fraction up to 12 points
+$vrmFrac = 0.0
+if ($vrmExpected -gt 0) { $vrmFrac = [Math]::Min(1.0, $vrmPresent / $vrmExpected) }
+$points += [int][Math]::Round(12 * $vrmFrac)
+
+# Wings
+$points += P ($wingsMeshes   -ge 1) 4
+$points += P ($wingsTextures -ge 1) 3
+
+# Wallpapers
+$points += P ($wallpapersCt  -ge 1) 5
+
+$overall = [Math]::Min(100, $points)
+
+# Category breakdowns (normalized 0..100 for display)
+$foundationPoints = 0
+$foundationPoints += P $pwaShell 12
+$foundationPoints += P $importPins 8
+$foundationPoints += P ($cnameOK -and $nojekyllOK) 8
+$foundationPoints += P ($wallpapersCt -ge 1) 5
+$foundationMax = 12+8+8+5
+$foundationScore = [int][Math]::Round(100.0 * $foundationPoints / $foundationMax)
+
+$overseersPoints = 0
+$overseersPoints += P $consoleFiles 10
+$overseersPoints += P $stateOk 10
+$overseersPoints += P $workflowAI 10
+$overseersPoints += P $scriptsOK 10
+$overseersPoints += P $capabilities 4
+$overseersPoints += P (($reqCt -ge 1) -or ($grtCt -ge 1)) 4
+$overseersMax = 10+10+10+10+4+4
+$overseersScore = [int][Math]::Round(100.0 * $overseersPoints / $overseersMax)
+
+$assetsPoints = 0
+$assetsPoints += [int][Math]::Round(12 * $vrmFrac)
+$assetsPoints += P ($wingsMeshes   -ge 1) 4
+$assetsPoints += P ($wingsTextures -ge 1) 3
+$assetsMax = 12+4+3
+$assetsScore = [int][Math]::Round(100.0 * $assetsPoints / $assetsMax)
+
+$progress = [pscustomobject]@{
+  lastUpdated = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+  overall     = $overall
+  categories  = @(
+    @{ id = "foundation"; label = "Foundation (site + domain)"; score = $foundationScore; weight = 0.35 },
+    @{ id = "overseers";  label = "Overseers Core (tools + queue)"; score = $overseersScore; weight = 0.45 },
+    @{ id = "assets";     label = "Assets (VRMs + wings)"; score = $assetsScore; weight = 0.20 }
+  )
+  metrics = @{
+    pwa_shell = $pwaShell
+    importmap_pinned = $importPins
+    console_present = $consoleFiles
+    state_present = $stateFile
+    state_ok = $stateOk
+    ai_core_workflow = $workflowAI
+    scripts_present = $scriptsOK
+    cname = $cnameOK
+    nojekyll = $nojekyllOK
+    capabilities_present = $capabilities
+    requests = $reqCt
+    grants = $grtCt
+    vrm_expected = $vrmExpected
+    vrm_present = $vrmPresent
+    wings_meshes = $wingsMeshes
+    wings_textures = $wingsTextures
+    wallpapers = $wallpapersCt
+  }
+  notes = @(
+    "This measures Memory + Tools readiness. Brains (LLM connectors) come next via vault-referenced secrets—no plaintext."
+  )
+}
+
+Write-Json -Data $progress -Path "pages\apps\overseers\progress.json"
+
+Write-Host "Permissions + Progress processing complete."

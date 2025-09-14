@@ -1,119 +1,119 @@
 {
-  "totals": {
-    "success": 6,
-    "skipped": 0,
-    "failed": 3
-  },
   "pending": 0,
   "processed": [
     {
-      "action": "asset_audit",
-      "dry_run": false,
       "actor": "rey_czar",
-      "started": "2025-09-13T23:53:40.9960462Z",
-      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:58\nLine |\n  58 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
-      "ended": "2025-09-13T23:53:41.4255540Z",
-      "ts": "2025-09-13T18:48:48.9937869Z",
+      "status": "failed",
+      "id": "R4",
+      "dry_run": false,
       "file": "20250913T184848Z-asset_audit.request.yml",
-      "status": "failed",
-      "id": "R4"
-    },
-    {
-      "action": "importmap_check",
-      "dry_run": false,
-      "actor": "rey_czar",
-      "started": "2025-09-13T23:53:41.4330187Z",
-      "error": "Exception: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:64\nLine |\n  64 |  … EXITCODE -ne 0) { throw \"Import-map check exit code: $LASTEXITCODE\" }\n     |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Import-map check exit code: \n\n",
-      "ended": "2025-09-13T23:53:41.4819849Z",
-      "ts": "2025-09-13T18:48:48.9992936Z",
-      "file": "20250913T184848Z-importmap_check.request.yml",
-      "status": "failed",
-      "id": "R5"
-    },
-    {
-      "action": "scaffold_fairies_bundle",
-      "dry_run": true,
-      "actor": "rey_czar",
-      "started": "2025-09-13T23:53:41.4830819Z",
-      "ended": "2025-09-13T23:53:41.5660589Z",
-      "count": 15,
-      "written": 15,
-      "ts": "2025-09-13T18:48:48.8782458Z",
-      "file": "20250913T184848Z-scaffold-fairies.request.yml",
-      "status": "ok",
-      "id": "R3"
-    },
-    {
-      "action": "memory_snapshot",
-      "dry_run": false,
-      "actor": "rey_czar",
-      "started": "2025-09-13T23:53:41.5688695Z",
-      "ended": "2025-09-13T23:53:41.5812681Z",
-      "ts": "2025-09-13T18:48:49.0045446Z",
-      "file": "20250913T184849Z-memory_snapshot.request.yml",
-      "status": "ok",
-      "id": "R6"
-    },
-    {
+      "ts": "2025-09-13T18:48:48.9937869Z",
+      "started": "2025-09-14T03:13:40.5208034Z",
       "action": "asset_audit",
-      "dry_run": false,
-      "actor": "rey_czar",
-      "started": "2025-09-13T23:53:41.5822014Z",
       "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:58\nLine |\n  58 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
-      "ended": "2025-09-13T23:53:41.6790376Z",
-      "ts": "2025-09-13T21:15:02.5871963Z",
-      "file": "20250913T211502Z-asset_audit.request.yml",
+      "ended": "2025-09-14T03:13:40.9393831Z"
+    },
+    {
+      "actor": "rey_czar",
       "status": "failed",
-      "id": "R4"
-    },
-    {
+      "id": "R5",
+      "dry_run": false,
+      "file": "20250913T184848Z-importmap_check.request.yml",
+      "ts": "2025-09-13T18:48:48.9992936Z",
+      "started": "2025-09-14T03:13:40.9472381Z",
       "action": "importmap_check",
-      "dry_run": false,
-      "actor": "rey_czar",
-      "started": "2025-09-13T23:53:41.6800904Z",
-      "ended": "2025-09-13T23:53:41.6902104Z",
-      "ts": "2025-09-13T21:15:02.5935487Z",
-      "file": "20250913T211502Z-importmap_check.request.yml",
-      "status": "ok",
-      "id": "R5"
+      "error": "Exception: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:64\nLine |\n  64 |  … EXITCODE -ne 0) { throw \"Import-map check exit code: $LASTEXITCODE\" }\n     |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Import-map check exit code: \n\n",
+      "ended": "2025-09-14T03:13:41.0012957Z"
     },
     {
-      "action": "memory_snapshot",
-      "dry_run": false,
       "actor": "rey_czar",
-      "started": "2025-09-13T23:53:41.6911594Z",
-      "ended": "2025-09-13T23:53:41.6975229Z",
-      "ts": "2025-09-13T21:15:02.5975135Z",
-      "file": "20250913T211502Z-memory_snapshot.request.yml",
       "status": "ok",
-      "id": "R6"
-    },
-    {
-      "action": "scaffold_fairies_bundle",
+      "id": "R3",
       "dry_run": true,
-      "actor": "rey_czar",
-      "started": "2025-09-13T23:53:41.6984032Z",
-      "ended": "2025-09-13T23:53:41.7395546Z",
-      "count": 15,
+      "file": "20250913T184848Z-scaffold-fairies.request.yml",
+      "ts": "2025-09-13T18:48:48.8782458Z",
+      "started": "2025-09-14T03:13:41.0024853Z",
       "written": 15,
-      "ts": "2025-09-13T21:15:02.4659835Z",
-      "file": "20250913T211502Z-scaffold-fairies.request.yml",
-      "status": "ok",
-      "id": "R3"
+      "action": "scaffold_fairies_bundle",
+      "count": 15,
+      "ended": "2025-09-14T03:13:41.0917973Z"
     },
     {
-      "action": "scaffold_fairies_bundle",
-      "dry_run": false,
       "actor": "rey_czar",
-      "started": "2025-09-13T23:53:41.7404546Z",
-      "ended": "2025-09-13T23:54:09.2047328Z",
-      "count": 15,
-      "written": 15,
-      "ts": null,
-      "file": "20250913T215629Z-scaffold-live.request.yml",
       "status": "ok",
-      "id": "R3"
+      "id": "R6",
+      "dry_run": false,
+      "file": "20250913T184849Z-memory_snapshot.request.yml",
+      "ts": "2025-09-13T18:48:49.0045446Z",
+      "started": "2025-09-14T03:13:41.0947030Z",
+      "action": "memory_snapshot",
+      "ended": "2025-09-14T03:13:41.1077852Z"
+    },
+    {
+      "actor": "rey_czar",
+      "status": "failed",
+      "id": "R4",
+      "dry_run": false,
+      "file": "20250913T211502Z-asset_audit.request.yml",
+      "ts": "2025-09-13T21:15:02.5871963Z",
+      "started": "2025-09-14T03:13:41.1087561Z",
+      "action": "asset_audit",
+      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:58\nLine |\n  58 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
+      "ended": "2025-09-14T03:13:41.2093638Z"
+    },
+    {
+      "actor": "rey_czar",
+      "status": "ok",
+      "id": "R5",
+      "dry_run": false,
+      "file": "20250913T211502Z-importmap_check.request.yml",
+      "ts": "2025-09-13T21:15:02.5935487Z",
+      "started": "2025-09-14T03:13:41.2105349Z",
+      "action": "importmap_check",
+      "ended": "2025-09-14T03:13:41.2219924Z"
+    },
+    {
+      "actor": "rey_czar",
+      "status": "ok",
+      "id": "R6",
+      "dry_run": false,
+      "file": "20250913T211502Z-memory_snapshot.request.yml",
+      "ts": "2025-09-13T21:15:02.5975135Z",
+      "started": "2025-09-14T03:13:41.2230130Z",
+      "action": "memory_snapshot",
+      "ended": "2025-09-14T03:13:41.2303763Z"
+    },
+    {
+      "actor": "rey_czar",
+      "status": "ok",
+      "id": "R3",
+      "dry_run": true,
+      "file": "20250913T211502Z-scaffold-fairies.request.yml",
+      "ts": "2025-09-13T21:15:02.4659835Z",
+      "started": "2025-09-14T03:13:41.2313228Z",
+      "written": 15,
+      "action": "scaffold_fairies_bundle",
+      "count": 15,
+      "ended": "2025-09-14T03:13:41.2734529Z"
+    },
+    {
+      "actor": "rey_czar",
+      "status": "ok",
+      "id": "R3",
+      "dry_run": false,
+      "file": "20250913T215629Z-scaffold-live.request.yml",
+      "ts": null,
+      "started": "2025-09-14T03:13:41.2744483Z",
+      "written": 15,
+      "action": "scaffold_fairies_bundle",
+      "count": 15,
+      "ended": "2025-09-14T03:14:13.3514627Z"
     }
   ],
-  "last_run": "2025-09-13T23:53:40.9867928Z"
+  "totals": {
+    "failed": 3,
+    "skipped": 0,
+    "success": 6
+  },
+  "last_run": "2025-09-14T03:13:40.5117601Z"
 }

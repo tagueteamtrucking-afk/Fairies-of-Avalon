@@ -1,0 +1,49 @@
+name: "Overseers — Generate Landing"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-landing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Setup PowerShell + YAML
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module powershell-yaml -Scope CurrentUser -Force -AllowClobber
+          Import-Module powershell-yaml
+
+      - name: Generate landing (LLM if available; else fallback)
+        shell: pwsh
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          $ErrorActionPreference='Stop'
+          & "scripts/overseers/generate-landing.ps1" -RepoRoot "${{ github.workspace }}" -Verbose
+
+      - name: Commit landing
+        shell: pwsh
+        run: |
+          git add "pages/themes/landing.generated.html" || echo "no html changes"
+          git add "pages/themes/landing.generated.css"  || echo "no css changes"
+          git config user.email "actions@github.com"
+          git config user.name  "GitHub Actions"
+          git fetch origin ${{ github.ref_name }} --depth=0
+          git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
+          git commit -m "Overseers: landing (generated)" || echo "Nothing to commit"
+
+      - name: Push
+        uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
+          force_with_lease: true

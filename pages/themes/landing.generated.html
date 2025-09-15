@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/app.css">
-  <link rel="stylesheet" href="./landing.generated.css?v=4">
+  <link rel="stylesheet" href="./landing.generated.css?v=6">
   <style>body{margin:0;}</style>
 </head>
 <body>
@@ -43,5 +43,25 @@
       </div>
     </section>
   </main>
+  <script type="module">
+(async ()=>{
+  const hero = document.querySelector(".hero");
+  if (!hero) return;
+  const bg = getComputedStyle(hero).backgroundImage || "";
+  const blank = !bg || bg === "none" || /url\(""\)/.test(bg);
+  async function tryApply(){
+    try{
+      const res = await fetch("/apps/overseers/wallpapers.json?ts=" + Date.now(), { cache: "no-store" });
+      const list = await res.json();
+      if (Array.isArray(list) && list.length){
+        const p = "/" + String(list[0].path || "").replace(/^\/+/, "");
+        const u = p.replace(/ /g,"%20").replace(/\(/g,"%28").replace(/\)/g,"%29");
+        hero.style.backgroundImage = "url('" + u + "')";
+      }
+    }catch{}
+  }
+  if (blank) { await tryApply(); }
+})();
+</script>
 </body>
 </html>

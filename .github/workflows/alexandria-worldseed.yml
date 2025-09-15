@@ -1,0 +1,88 @@
+name: "Alexandria — Generate World Seed"
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: "Creative prompt / premise"
+        required: false
+        default: ""
+      isekai:
+        description: "Force isekai?"
+        required: true
+        default: "false"
+        type: choice
+        options: ["false","true"]
+      dnd:
+        description: "D&D SRD compatible?"
+        required: true
+        default: "false"
+        type: choice
+        options: ["false","true"]
+      count:
+        description: "How many seeds?"
+        required: true
+        default: "1"
+      mode:
+        description: "Generation mode"
+        required: true
+        default: "auto"
+        type: choice
+        options: ["auto","fallback-only"]
+
+permissions:
+  contents: write
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Setup PowerShell + YAML
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module powershell-yaml -Scope CurrentUser -Force -AllowClobber
+          Import-Module powershell-yaml
+
+      - name: Generate world seeds
+        shell: pwsh
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          $ErrorActionPreference='Stop'
+          $mode = "${{ github.event.inputs.mode }}"
+          $force = ($mode -eq "fallback-only")
+          & "scripts/overseers/alexandria-worldseed.ps1" `
+            -RepoRoot "${{ github.workspace }}" `
+            -Prompt   "${{ github.event.inputs.prompt }}" `
+            -Isekai:(${{ github.event.inputs.isekai }} -eq 'true') `
+            -DndCompat:(${{ github.event.inputs.dnd }} -eq 'true') `
+            -Count    [int]"${{ github.event.inputs.count }}" `
+            -ForceFallback:$force
+
+      - name: Commit seeds (if changed)
+        shell: pwsh
+        run: |
+          git add -A "pages/apps/alexandria/worlds"
+          $changes = git status --porcelain -- "pages/apps/alexandria/worlds"
+          if ([string]::IsNullOrWhiteSpace($changes)) {
+            Write-Host "Nothing to commit (no new seeds)."
+          } else {
+            git config user.email "actions@github.com"
+            git config user.name  "GitHub Actions"
+            git fetch origin ${{ github.ref_name }} --prune
+            git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
+            git commit -m "Alexandria: add world seed(s)"
+          }
+
+      - name: Push
+        uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
+          force_with_lease: true

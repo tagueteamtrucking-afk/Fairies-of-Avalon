@@ -1,15 +1,11 @@
 const Rec = window.SpeechRecognition || window.webkitSpeechRecognition || null;
-
 export function sttSupported(){ return !!Rec; }
-
 export class STT{
   constructor({ lang='en-US', interimResults=true, continuous=true } = {}){
     if (!Rec) throw new Error('STT not supported in this browser.');
     const r = this._rec = new Rec();
     r.lang = lang; r.interimResults = interimResults; r.continuous = continuous;
-    this.onResult = ()=>{}; // (text, isFinal)
-    this.onStatus = ()=>{}; // string
-    this._buf = '';
+    this.onResult = ()=>{}; this.onStatus = ()=>{}; this._buf = '';
     r.onstart = ()=> this.onStatus('Listening…');
     r.onend   = ()=> this.onStatus('Stopped.');
     r.onerror = (e)=> this.onStatus(`Error: ${e.error||'unknown'}`);

@@ -2,42 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Charlotte · Avalon</title>
+  <title>Charlotte · Translate & File</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/app.css">
-  <script type="importmap" src="/importmap.json"></script>
-  <style>
-    main{max-width:1100px;margin:24px auto;padding:0 12px}
-    .pill{display:inline-block;padding:.25rem .6rem;border:1px solid #999;border-radius:.6rem;font-size:.85rem;margin-right:.4rem;text-decoration:none;color:inherit}
-    #viewer{width:100%;max-width:780px;height:460px;border-radius:.6rem;border:1px solid #e6e6e6;background:rgba(255,255,255,.05);margin-top:10px}
+  <style>body{margin:0} main{max-width:1000px;margin:28px auto;padding:0 12px}
+  .pill{display:inline-block;padding:.35rem .7rem;border:1px solid #999;border-radius:.6rem;font-size:.9rem;text-decoration:none;color:inherit;background:#fff;margin-right:.4rem}
+  .card{border:1px solid #eee;border-radius:.6rem;padding:14px;background:rgba(255,255,255,.85);margin-bottom:12px}
+  ul{padding-left:1.2rem}
   </style>
 </head>
 <body>
-  <main>
-    <h1>Charlotte</h1>
-    <div>
-      <a class="pill" href="/apps/overseers/hub/">Overseers Hub</a>
-      <a class="pill" href="/apps/overseers/console.html">Console</a>
-      <a class="pill" href="/apps/overseers/hub/vrm-demo.html">VRM Demo</a>
-    </div>
-    <div id="viewer"></div>
-  </main>
-
-  <script type="module">
-    import { createVRMViewer } from '/apps/shared/vrm-viewer.js';
-    import { applyWallpaperTheme } from '/apps/shared/theme.js';
-    await applyWallpaperTheme({ strategy: 'first', overlay: 'dark' }).catch(()=>{});
-    const NAME = ;
-    const models = await fetch('/asset/models/models.json?t=' + Date.now(), { cache: 'no-store' })
-      .then(r=>r.json()).catch(()=>({}));
-    const path = models?.byAvatar?.[NAME];
-    const target = '#viewer';
-    if (path) {
-      await createVRMViewer({ container: target, vrmPath: '/' + String(path).replace(/^\\//,''), wingId: null, enableOrbitControls: true });
-    } else {
-      document.querySelector(target).innerHTML = '<p><small>No VRM mapped for this assistant yet.</small></p>';
-    }
-  </script>
+<main>
+  <h1>Charlotte · Translate & File</h1>
+  <p><a class="pill" href="/.github/workflows/charlotte-translate.yml" target="_blank">Run: Translate (workflow)</a></p>
+  <section class="card">
+    <h2>Recent translations</h2>
+    <ul id="list"><li>Loading…</li></ul>
+  </section>
+</main>
+<script type="module">
+async function j(p){try{const r=await fetch(p+'?t='+Date.now(),{cache:'no-store'}); if(!r.ok) return null; return await r.json();}catch{return null}}
+const list=document.getElementById('list');
+const idx=await j('/apps/charlotte/translations/index.json');
+if(!idx||!Array.isArray(idx)||!idx.length){ list.innerHTML='<li><small>No translations yet. Use the workflow to create one.</small></li>'; }
+else{
+  list.innerHTML = idx.slice(-20).reverse().map(it=>`<li><a href="${it.path}">${it.lang} — ${it.title}</a> <small>${it.ts}</small></li>`).join('');
+}
+</script>
 </body>
 </html>

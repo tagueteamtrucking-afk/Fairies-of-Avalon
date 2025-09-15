@@ -1,18 +1,14 @@
 export function ttsSupported(){ return 'speechSynthesis' in window; }
-
 export function listVoices(){
   return new Promise((resolve)=>{
     if (!ttsSupported()) return resolve([]);
     const v = speechSynthesis.getVoices();
     if (v && v.length) return resolve(v);
     speechSynthesis.addEventListener('voiceschanged', () => resolve(speechSynthesis.getVoices()), { once: true });
-    // Safari sometimes needs a nudge
     setTimeout(() => resolve(speechSynthesis.getVoices()), 1200);
   });
 }
-
 export function cancelSpeak(){ if (ttsSupported()) speechSynthesis.cancel(); }
-
 export async function speak(text, { voiceName, rate=1, pitch=1, volume=1 } = {}){
   if (!ttsSupported()) throw new Error('TTS not supported in this browser.');
   if (!text || !text.trim()) return;

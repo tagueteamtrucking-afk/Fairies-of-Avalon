@@ -29,7 +29,7 @@
       "id": "R5",
       "ended": "2025-09-15T16:47:33.6622138Z",
       "file": "20250913T184848Z-importmap_check.request.yml",
-      "started": "2025-09-15T16:47:33.5934690Z"
+      "started": "2025-09-15T16:47:33.593469Z"
     },
     {
       "status": "ok",
@@ -118,7 +118,7 @@
     {
       "status": "ok",
       "action": "build_manifests",
-      "ts": "2025-09-15T06:36:27.3663610Z",
+      "ts": "2025-09-15T06:36:27.366361Z",
       "actor": "clarice",
       "id": "A3",
       "ended": "2025-09-15T16:47:38.4499275Z",
@@ -143,7 +143,7 @@
       "id": "A3",
       "ended": "2025-09-15T16:47:38.7341369Z",
       "file": "20250915T151633Z-build-manifests.request.yml",
-      "started": "2025-09-15T16:47:38.5550470Z"
+      "started": "2025-09-15T16:47:38.555047Z"
     },
     {
       "status": "ok",
@@ -155,5 +155,11 @@
       "file": "20250915T151633Z-create-microapps.request.yml",
       "started": "2025-09-15T16:47:38.7350185Z"
     }
-  ]
+  ],
+  "telemetry": {
+    "updated": "2025-09-15T17:19:15.7203203Z",
+    "wallpaper_power_index": 20,
+    "wallpapers_total": 20,
+    "wallpapers_count": 4
+  }
 }

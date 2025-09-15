@@ -1,0 +1,261 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "2.4.0"
+  last_updated: "2025-09-15"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    Overseers-first. No plaintext secrets. Workflows-first (GitHub Actions).
+
+    v2.4.0 — Landing Generator + Non-Fatal LLM Guard:
+      - LLM rate-limit handling is policy: treat as WARNING, write fallback content, and exit 0.
+      - Replaced llm-bridge.ps1 and generate-landing.ps1 to always succeed with deterministic output on failure.
+      - Landing generator promoted to first-class workflow; output at pages/themes/landing.generated.html.
+      - VRM Viewer link surfaced in Hub; viewer + wings + wallpapers pipeline confirmed.
+
+system:
+  os: "Windows 11"
+  device: "Gaming PC"
+  only_windows: true
+
+delivery_policy:
+  speed_first: true
+  two_person_authorization: false
+  whole_file_replacements_only: true
+  preferred_shell: "GitHub Actions workflows + PowerShell"
+  notes:
+    - "Provide full files ready to replace existing ones (no diffs/patches)."
+    - "Workflows-first. Scripts are helpers; no wrapper assumptions."
+    - "Deploy path must not require multi-review or environment approvals."
+
+hosting:
+  frontend_domain: "fairiesofavalon.com"
+  pwa_app_shell: true
+  pages_root: "pages"
+  microapps_path: "pages/apps"
+  custom_domain_cname: true
+  cdn_imports: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+project:
+  world: "Avalon"
+  assistants_label: "Fairies"
+  domain: "fairiesofavalon.com"
+  home_label: "home"
+  preserve_paths: ["asset/models", "asset/wings"]
+  importmap_required: true
+  importmap_map: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+assets:
+  layout:
+    models_root_legacy: "asset/models"
+    wingless_vrms: "asset/models/wingless"
+    with_wings_vrms: "asset/models/with-wings"
+    with_wings_alias: "asset/winged-models"
+    wings_models: "asset/wings"
+    wings_textures: "asset/wings/textures"
+    models_manifest: "asset/models/models.json"
+    wings_manifest: "asset/wings/manifest.json"
+    wallpapers: "asset/textures/wallpapers"
+  outputs:
+    wallpapers_manifest: "pages/apps/overseers/wallpapers.json"
+  budgets:
+    initial_shell_kb: 300
+    initial_requests: 15
+    vrm_per_file_mb: 40
+    wallpapers_total: 20
+
+wings_pack: "Fantasy Wings Collection Fbx.rar"
+
+avatars_present:
+  - Abbey
+  - Alexandria
+  - Billie
+  - Carol
+  - Charlotte
+  - Clarice
+  - Jem
+  - Nina
+  - Odessa
+  - Reyczar
+  - Sorcha
+  - Themis
+  - WhiteStar
+  - Tracy
+  - Stella
+
+avatar_file_keys:
+  rey_czar: "Reyczar"
+  white_star: "WhiteStar"
+  clarice: "Clarice"
+  charlotte: "Charlotte"
+  nina: "Nina"
+  alexandria: "Alexandria"
+  tracy: "Tracy"
+  carol_li: "Carol"
+  jem_nassim: "Jem"
+  stella: "Stella"
+  sorcha: "Sorcha"
+  odessa: "Odessa"
+  billie: "Billie"
+  themis: "Themis"
+  abbey: "Abbey"
+
+access_control:
+  policy:
+    - "Overseers (Rey Czar & White Star) precede and authorize all assistants."
+    - "No plaintext secrets in this file; store in an external password manager/secret vault."
+    - "Assistants operate under least-privilege scopes granted by Overseers."
+    - "Overseers inherit all apps/functions and can execute any assistant's actions."
+    - "LLM failures (e.g., rate_limit_exceeded) MUST NOT fail CI; produce fallback and continue (exit 0)."
+  roles:
+    - name: overseer
+      privileges: [create_assistants, grant_permissions, revoke_permissions, approve_deployments, manage_secrets, impersonate_assistant, override_queue]
+    - name: assistant
+      privileges: [read_memory, write_memory_scoped, request_permissions, generate_reports]
+  vault_references:
+    tokens: "vault://palace/tokens"
+    passwords: "vault://palace/passwords"
+    permissions: "vault://palace/permissions"
+
+governance:
+  overseers:
+    - id: rey_czar
+      name: "Rey Czar"
+      alias: "Rey"
+      role: "Overseer (Husband)"
+      status: "Root of Trust"
+      domains: [governance, security, permissions, provisioning]
+      ai_core:
+        status: "operational-core"
+        version: "0.6.2"
+        role: "Overseer Engineer & Builder"
+        abilities:
+          - { id: plan.route, description: "Plan & route work." }
+          - { id: auth.scope_plan, description: "Least-privilege scopes; vault refs." }
+          - { id: builder.scaffold_fairy, description: "Generate scaffolds from Memory." }
+          - { id: mem.patch, description: "Apply policy-checked Memory edits." }
+          - { id: queue.enqueue, description: "Write tasks to file queue." }
+          - { id: impersonate.assistant, description: "Execute any assistant's function via Overseers Hub." }
+      environment:
+        location: "The Palace — Camelot Disney style Castle/Palace"
+        anchors: ["Token & Permissions Vault (external reference only)", "Overseers' Command Room"]
+      relationships: { spouse_of: white_star }
+      security: { holds_secrets: true, storage: "Secrets stored in an external vault; references only." }
+
+    - id: white_star
+      name: "White Star"
+      alias: "Star"
+      role: "Overseer (Wife)"
+      status: "Root of Trust"
+      domains: [governance, security, permissions, provisioning]
+      ai_core:
+        status: "operational-core"
+        version: "0.6.2"
+        role: "Overseer Experience & Alignment"
+        abilities:
+          - { id: qa.review_plan, description: "Approve minimal, testable plans." }
+          - { id: policy.check, description: "Block plaintext secrets; enforce sensitivity." }
+          - { id: docs.brief, description: "One-page briefs." }
+          - { id: i18n.translate_all, description: "Multilingual output." }
+          - { id: queue.run, description: "Process queued tasks safely." }
+          - { id: impersonate.assistant, description: "Execute any assistant's function via Overseers Hub." }
+
+overseers_capabilities:
+  inherits_all_functions: true
+  features:
+    - animate_vrm_with_wings
+    - theme_from_wallpapers
+    - generate_landing
+  hub_app:
+    path: "pages/apps/overseers/hub"
+    features: ["launch", "impersonate", "status", "manifests", "permissions", "viewer_link"]
+  tools_router:
+    llm_bridge:
+      providers: ["openai"]
+      env_keys: ["OPENAI_API_KEY"]
+      default_mode: "live_if_secret_else_dry"
+      failure_policy: "fallback_and_exit0"   # NEW: never fail jobs on LLM errors
+
+runtime:
+  paths:
+    queue_requests: "requests"
+    queue_processed: "processed"
+    progress_file: "pages/apps/overseers/progress.json"
+    permissions_state: "pages/apps/overseers/permissions/state.json"
+    scaffolds_dir: "pages/apps/overseers/scaffolds"
+  workflows:
+    queue_phase_1_seed: ".github/workflows/queue-phase-1.yml"
+    runner_process_queue: ".github/workflows/run-overseers-queue.yml"
+    overseers_manifests: ".github/workflows/overseers-manifests.yml"
+    overseers_yaml_gate: ".github/workflows/overseers-yaml-gate.yml"
+    overseers_generate_landing: ".github/workflows/overseers-generate-landing.yml"
+  quick_paths:
+    actions_order: ["Overseers — YAML Gate", "Overseers — Manifests", "Overseers — Generate Landing", "Deploy — GitHub Pages"]
+  tools:
+    - "Overseers Hub"
+    - "VRM Viewer"
+    - "Wallpaper Theme"
+    - "Landing Generator"
+
+telemetry:
+  wallpaper_power_index:
+    current: 0    # updated by CI
+    produced_by: "overseers_manifests"
+    manifest: "pages/apps/overseers/wallpapers.json"
+  landing:
+    path: "pages/themes/landing.generated.html"
+    generator: "overseers-generate-landing.yml"
+    policy: "LLM fallback allowed; job must succeed"
+
+purpose_map:
+  workflows:
+    - { file: "overseers-generate-landing.yml", purpose: "Generate landing (LLM or fallback).", keep: true }
+    - { file: "overseers-manifests.yml",        purpose: "Build models/wings/wallpapers manifest + WPI.", keep: true }
+    - { file: "run-overseers-queue.yml",        purpose: "Process request queue; commit artifacts.", keep: true }
+    - { file: "overseers-yaml-gate.yml",        purpose: "Validate YAML; auto-restore Memory.", keep: true }
+  scripts:
+    - { file: "llm-bridge.ps1",           purpose: "LLM calls; fallback on error; exit 0.", keep: true }
+    - { file: "generate-landing.ps1",     purpose: "Write landing HTML/CSS using LLM or fallback; exit 0.", keep: true }
+    - { file: "build-manifests.ps1",      purpose: "Build models/wings/assistants + wallpapers.json + WPI.", keep: true }
+    - { file: "create-microapps.ps1",     purpose: "Create /apps/{fairy} skeletons.", keep: true }
+    - { file: "process-permissions.ps1",  purpose: "Grants → permissions state.", keep: true }
+    - { file: "count-assets.ps1",         purpose: "Asset audit counts.", keep: true }
+    - { file: "validate-importmap.ps1",   purpose: "Check import maps on module pages.", keep: true }
+
+priority_plan:
+  - { id: overseers,  description: "Omnicapable Overseers + viewer + landing + guardrails", status: "activated" }
+  - { id: assistants, description: "Build all Fairies (functional AI).", status: "phase-1-in-flight" }
+  - { id: appearance, description: "Homes & appearance after AI functionality.", status: "deferred" }
+
+plans:
+  overseers_guardrail:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "shipped"
+    tasks:
+      - { id: Y1, name: "YAML Gate on push", status: "shipped" }
+      - { id: Y2, name: "Runner uses Read-YamlSafe", status: "shipped" }
+      - { id: Y4, name: "LLM rate-limit fallback + exit0", status: "shipped" }
+
+  assistants_phase_1:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "in-flight"
+    tasks:
+      - { id: A1, name: "Create microapps for all Fairies", status: "queued" }
+      - { id: A2, name: "Shared VRM viewer + wings + theme", status: "done" }
+      - { id: A3, name: "Build manifests + WPI + wallpapers.json", status: "done" }
+      - { id: A5, name: "Generate landing (LLM or fallback)", status: "done" }
+      - { id: A7, name: "Hub/Console: per-Fairy status & links", status: "in-progress" }
+
+audit_log:
+  - { ts: "2025-09-15T00:00:00Z", actor: "actions", action: "overseers.generate_landing", target: "pages/themes/landing.generated.html", result: "ok-with-fallback",
+      notes: "OpenAI rate_limit_exceeded; used deterministic fallback and exited 0." }
+
+lessons_learned:
+  - "LLM rate limits are normal; never fail CI—use fallback and return exit 0."
+  - "Guard every YAML/JSON parse; prefer defaults over crashes."
+  - "Paths with apostrophes require quotes in PowerShell (e.g., \"Cody's Memory.yaml\")."
+  - "Import map required on module pages using three/@pixiv/three-vrm."
+  - "Avoid LINQ in PowerShell; keep scripts portable."
+  - "No plaintext secrets; use repo Secrets or external vault references only."

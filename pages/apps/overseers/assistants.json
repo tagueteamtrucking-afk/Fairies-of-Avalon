@@ -1,92 +1,92 @@
 [
   {
-    "path": "/apps/abbey/",
+    "name": "Abbey",
     "id": "abbey",
-    "microapp_exists": true,
-    "name": "Abbey"
+    "path": "/apps/abbey/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/alexandria/",
+    "name": "Alexandria",
     "id": "alexandria",
-    "microapp_exists": true,
-    "name": "Alexandria"
+    "path": "/apps/alexandria/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/billie/",
+    "name": "Billie",
     "id": "billie",
-    "microapp_exists": true,
-    "name": "Billie"
+    "path": "/apps/billie/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/carol/",
+    "name": "Carol",
     "id": "carol",
-    "microapp_exists": true,
-    "name": "Carol"
+    "path": "/apps/carol/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/charlotte/",
+    "name": "Charlotte",
     "id": "charlotte",
-    "microapp_exists": true,
-    "name": "Charlotte"
+    "path": "/apps/charlotte/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/clarice/",
+    "name": "Clarice",
     "id": "clarice",
-    "microapp_exists": true,
-    "name": "Clarice"
+    "path": "/apps/clarice/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/jem/",
+    "name": "Jem",
     "id": "jem",
-    "microapp_exists": true,
-    "name": "Jem"
+    "path": "/apps/jem/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/nina/",
+    "name": "Nina",
     "id": "nina",
-    "microapp_exists": true,
-    "name": "Nina"
+    "path": "/apps/nina/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/odessa/",
+    "name": "Odessa",
     "id": "odessa",
-    "microapp_exists": true,
-    "name": "Odessa"
+    "path": "/apps/odessa/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/reyczar/",
+    "name": "Reyczar",
     "id": "reyczar",
-    "microapp_exists": true,
-    "name": "Reyczar"
+    "path": "/apps/reyczar/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/sorcha/",
+    "name": "Sorcha",
     "id": "sorcha",
-    "microapp_exists": true,
-    "name": "Sorcha"
+    "path": "/apps/sorcha/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/themis/",
+    "name": "Themis",
     "id": "themis",
-    "microapp_exists": true,
-    "name": "Themis"
+    "path": "/apps/themis/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/whitestar/",
+    "name": "WhiteStar",
     "id": "whitestar",
-    "microapp_exists": true,
-    "name": "WhiteStar"
+    "path": "/apps/whitestar/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/tracy/",
+    "name": "Tracy",
     "id": "tracy",
-    "microapp_exists": true,
-    "name": "Tracy"
+    "path": "/apps/tracy/",
+    "microapp_exists": true
   },
   {
-    "path": "/apps/stella/",
+    "name": "Stella",
     "id": "stella",
-    "microapp_exists": true,
-    "name": "Stella"
+    "path": "/apps/stella/",
+    "microapp_exists": true
   }
 ]

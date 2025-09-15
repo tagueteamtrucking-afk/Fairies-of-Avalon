@@ -1,0 +1,64 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "2.4.1"
+  last_updated: "2025-09-15"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    v2.4.1 — Landing Generator hardening:
+      - Detect LLM Bridge fallback sentinel and switch to deterministic landing (hero + tiles).
+      - Added ForceFallback mode via workflow input; landing always writes CSS.
+      - Guarantees green runs and presentable output even under rate limits.
+
+system: { os: "Windows 11", device: "Gaming PC", only_windows: true }
+
+delivery_policy:
+  speed_first: true
+  two_person_authorization: false
+  whole_file_replacements_only: true
+  preferred_shell: "GitHub Actions workflows + PowerShell"
+
+hosting:
+  frontend_domain: "fairiesofavalon.com"
+  pwa_app_shell: true
+  pages_root: "pages"
+  microapps_path: "pages/apps"
+  custom_domain_cname: true
+  cdn_imports: ["three","three/addons/","@pixiv/three-vrm"]
+
+project:
+  world: "Avalon"
+  assistants_label: "Fairies"
+  domain: "fairiesofavalon.com"
+  home_label: "home"
+  preserve_paths: ["asset/models","asset/wings"]
+  importmap_required: true
+  importmap_map: ["three","three/addons/","@pixiv/three-vrm"]
+
+overseers_capabilities:
+  inherits_all_functions: true
+  features:
+    - animate_vrm_with_wings
+    - theme_from_wallpapers
+    - generate_landing
+  landing_generator:
+    workflow: ".github/workflows/overseers-generate-landing.yml"
+    outputs: ["pages/themes/landing.generated.html","pages/themes/landing.generated.css"]
+    modes: ["auto","fallback-only"]
+    policy:
+      llm_errors: "fallback_and_exit0"
+      detect_bridge_fallback: true    # if Bridge returns fallback stub, write deterministic page
+
+runtime:
+  workflows:
+    overseers_generate_landing: ".github/workflows/overseers-generate-landing.yml"
+    overseers_manifests: ".github/workflows/overseers-manifests.yml"
+    overseers_yaml_gate: ".github/workflows/overseers-yaml-gate.yml"
+    runner_process_queue: ".github/workflows/run-overseers-queue.yml"
+
+telemetry:
+  landing:
+    path: "pages/themes/landing.generated.html"
+    last_mode: "auto"
+    last_status: "ok-or-fallback"
+    cache_bust_hint: "?v=2"

@@ -1,0 +1,42 @@
+{
+  "axes": {
+    "transport": [
+      "summoned",
+      "reincarnated",
+      "portal",
+      "dream-walker",
+      "possession"
+    ],
+    "memory": [
+      "full",
+      "partial",
+      "none",
+      "fragmented",
+      "shared"
+    ],
+    "power_curve": [
+      "none",
+      "tool-based",
+      "class-based",
+      "blessing/curse",
+      "meta-knowledge"
+    ],
+    "integration": [
+      "hiding",
+      "open",
+      "worshipped",
+      "hunted",
+      "bureaucratic"
+    ]
+  },
+  "tropes": [
+    "status window / class system",
+    "knowledge cheat (future or meta)",
+    "return quest vs rooted new life",
+    "translation magic or language barrier",
+    "world rules mismatch \u2192 comedic or tragic friction"
+  ],
+  "safety": [
+    "avoid real-world trauma triggers unless necessary and handled with care"
+  ]
+}

@@ -1,10 +1,7 @@
-.hero{
-  position:relative;min-height:54vh;
-  background-image:url('/asset/textures/wallpapers/castle%20village%2001.jpg');background-size:cover;background-position:center;
-}
+.hero{ position:relative; min-height:54vh; background-size:cover; background-position:center; }
 .hero .overlay{
-  position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.55));
-  color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 1rem;
+  position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.55));
+  color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:4rem 1rem;
 }
 .wrap{max-width:1100px;margin:24px auto;padding:0 12px}
 .cta{display:inline-block;margin:.25rem .35rem;padding:.45rem .8rem;border:1px solid #fff;border-radius:.6rem;color:#fff;text-decoration:none}

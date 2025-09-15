@@ -42,17 +42,23 @@ jobs:
             & "scripts/overseers/generate-landing.ps1" -RepoRoot "${{ github.workspace }}"
           }
 
-      - name: Commit landing artifacts
+      - name: Commit landing artifacts (if changed)
         shell: pwsh
         run: |
-          git add "pages/themes/landing.generated.html" || echo "no html changes"
-          git add "pages/themes/landing.generated.css"  || echo "no css changes"
-          git add "pages/index.html"                    || echo "no index redirect changes"
-          git config user.email "actions@github.com"
-          git config user.name  "GitHub Actions"
-          git fetch origin ${{ github.ref_name }} --prune
-          git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
-          git commit -m "Overseers: landing (mode=${{ github.event.inputs.mode }})" || echo "Nothing to commit"
+          $ErrorActionPreference='Stop'
+          git add "pages/themes/landing.generated.html"
+          git add "pages/themes/landing.generated.css"
+          git add "pages/index.html"
+          $changes = git status --porcelain -- "pages/themes/landing.generated.html" "pages/themes/landing.generated.css" "pages/index.html"
+          if ([string]::IsNullOrWhiteSpace($changes)) {
+            Write-Host "Nothing to commit (landing unchanged)."
+          } else {
+            git config user.email "actions@github.com"
+            git config user.name  "GitHub Actions"
+            git fetch origin ${{ github.ref_name }} --prune
+            git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
+            git commit -m "Overseers: landing (mode=${{ github.event.inputs.mode }})"
+          }
 
       - name: Push
         uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa

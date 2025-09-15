@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>VRM Demo · Overseers Hub</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/app.css" />
+  <script type="importmap" src="/importmap.json"></script>
+  <style>
+    main{max-width:1100px;margin:24px auto;padding:0 12px}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .card{border:1px solid #eee;border-radius:.6rem;padding:12px}
+    #viewer{width:100%;max-width:780px;height:460px;border-radius:.6rem;border:1px solid #e6e6e6;background:rgba(255,255,255,.05)}
+    .pill{display:inline-block;padding:.25rem .6rem;border:1px solid #999;border-radius:.6rem;font-size:.85rem;margin-right:.4rem}
+    label{display:inline-block;margin-right:8px}
+    select{padding:4px 8px}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>VRM Demo</h1>
+    <div class="row">
+      <div class="card">
+        <label for="avatar">Avatar</label>
+        <select id="avatar"></select>
+        <label for="wing">Wings</label>
+        <select id="wing"></select>
+        <a class="pill" href="/apps/overseers/hub/">Back to Hub</a>
+      </div>
+    </div>
+
+    <div id="viewer" class="card"></div>
+
+    <p class="card" id="note"><small>Tip: Use touch/mouse drag to orbit. Wings and blink are animated.</small></p>
+  </main>
+
+  <script type="module" src="./vrm-demo.js"></script>
+</body>
+</html>

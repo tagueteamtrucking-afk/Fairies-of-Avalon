@@ -18,12 +18,11 @@ try { $mem = (Get-Content -Raw -Path $memPath) | ConvertFrom-Yaml } catch { $mem
 $siteName = $mem.project.world; if (-not $siteName) { $siteName = "Avalon" }
 $domain   = $mem.project.domain; if (-not $domain)  { $domain  = "fairiesofavalon.com" }
 
-# Gather context
+# Assistants + wallpapers context
 $assistants = @()
 $assistantsJson = Join-Path $RepoRoot "pages/apps/overseers/assistants.json"
-if (Test-Path $assistantsJson) {
-  try { $assistants = Get-Content -Raw -Path $assistantsJson | ConvertFrom-Json -Depth 40 } catch {}
-}
+if (Test-Path $assistantsJson) { try { $assistants = Get-Content -Raw -Path $assistantsJson | ConvertFrom-Json -Depth 40 } catch {} }
+
 $walls = @()
 $wallsJson = Join-Path $RepoRoot "pages/apps/overseers/wallpapers.json"
 $wall1 = $null
@@ -34,7 +33,6 @@ if (Test-Path $wallsJson) {
   } catch {}
 }
 if (-not $wall1) {
-  # Fallback: scan assets
   $wallDir = Join-Path $RepoRoot "asset/textures/wallpapers"
   if (Test-Path $wallDir) {
     $f = Get-ChildItem $wallDir -File | Where-Object { $_.Extension -match 'png|jpe?g|webp' } | Sort-Object Name | Select-Object -First 1
@@ -50,19 +48,16 @@ $cssOut  = Join-Path $outDir "landing.generated.css"
 $haveOpenAI = [bool]$env:OPENAI_API_KEY
 
 if ($haveOpenAI) {
-  # Compose a compact prompt for the LLM bridge
   $assistantNames = ($assistants | ForEach-Object { $_.name }) -join ', '
   $ctx = @"
 You are generating a minimal, production-safe landing page for the site "$siteName" ($domain).
 Constraints:
-- No framework, plain HTML + a tiny CSS file.
-- Use "/manifest.webmanifest", "/app.css", and if available, "/importmap.json" is fine but not required.
+- Plain HTML + small CSS file (no frameworks).
+- Use "/manifest.webmanifest", "/app.css", and link "./landing.generated.css".
 - If wallpaper exists at "$wall1", use it as a hero background with an overlay.
-- Include a row of assistant tiles for: $assistantNames (use "/apps/{id}/" links from assistants.json when present).
-- Include call-to-action buttons: "Overseers Hub" (/apps/overseers/hub/) and "Open Console" (/apps/overseers/console.html).
-- Keep total HTML under ~300 lines.
-
-Return ONLY the <main>...</main> inner HTML content (no <html>, no <head>), using semantic sections.
+- Include assistant tiles for: $assistantNames (links from assistants.json).
+- Include buttons: "Overseers Hub" (/apps/overseers/hub/) and "Open Console" (/apps/overseers/console.html).
+- Return ONLY the <main>...</main> inner HTML content (no <html>, no <head>).
 "@
 
   $tmpFile = Join-Path $env:RUNNER_TEMP "landing.llm.html"
@@ -93,18 +88,15 @@ Return ONLY the <main>...</main> inner HTML content (no <html>, no <head>), usin
     Set-Content -Path $htmlOut -Value $html -Encoding utf8NoBOM
   }
   catch {
-    Write-Host "::warning:: LLM Bridge failed; writing fallback landing."
-    $haveOpenAI=$false
+    Write-Host "::warning:: LLM Bridge call failed; writing deterministic fallback."
+    $haveOpenAI = $false
   }
 }
 
 if (-not $haveOpenAI) {
-  # Deterministic fallback landing using assets we already have
-  $bg = $wall1
   $tiles = ""
   foreach ($a in $assistants) {
-    $href = $a.path
-    $name = $a.name
+    $href = $a.path; $name = $a.name
     $state = $a.microapp_exists ? "Open" : "Soon"
     $tiles += "<a class=""tile"" href=""$href""><span>$name</span><small>$state</small></a>`n"
   }
@@ -144,6 +136,7 @@ if (-not $haveOpenAI) {
 "@
   Set-Content -Path $htmlOut -Value $html -Encoding utf8NoBOM
 
+  $bg = $wall1
   $css = @"
 .hero{
   position:relative;min-height:54vh;
@@ -162,4 +155,5 @@ if (-not $haveOpenAI) {
   Set-Content -Path $cssOut -Value $css -Encoding utf8NoBOM
 }
 
-Write-Host "Landing generated at $(Resolve-Path $htmlOut)."
+Write-Host "Landing generated at $htmlOut."
+exit 0

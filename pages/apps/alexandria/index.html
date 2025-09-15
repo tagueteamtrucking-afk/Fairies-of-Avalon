@@ -1,86 +1,43 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Alexandria · Worldbuilding Studio</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="manifest" href="/manifest.webmanifest" />
-  <link rel="stylesheet" href="/app.css" />
+  <meta charset="utf-8">
+  <title>Alexandria · Avalon</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/app.css">
+  <script type="importmap" src="/importmap.json"></script>
   <style>
-    body{margin:0}
-    main{max-width:1100px;margin:28px auto;padding:0 12px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
-    .card{border:1px solid #eee;border-radius:.6rem;padding:14px;background:rgba(255,255,255,.85)}
-    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
-    .pill{display:inline-block;padding:.35rem .7rem;border:1px solid #999;border-radius:.6rem;font-size:.9rem;text-decoration:none;color:inherit;background:#fff}
-    textarea{width:100%;min-height:160px;border:1px solid #e6e6e6;border-radius:.5rem;padding:10px;font:14px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
-    select,input[type="range"]{margin-right:8px}
-    .muted{color:#666}
-    .fine{font-size:.9rem}
-    .ok{color:#0b8a2a}
-    .warn{color:#b35b00}
-    .bad{color:#b00020}
-    #sttStatus{min-height:1.2em}
+    main{max-width:1100px;margin:24px auto;padding:0 12px}
+    .pill{display:inline-block;padding:.25rem .6rem;border:1px solid #999;border-radius:.6rem;font-size:.85rem;margin-right:.4rem;text-decoration:none;color:inherit}
+    #viewer{width:100%;max-width:780px;height:460px;border-radius:.6rem;border:1px solid #e6e6e6;background:rgba(255,255,255,.05);margin-top:10px}
   </style>
 </head>
 <body>
   <main>
-    <h1>Alexandria · Worldbuilding Studio</h1>
-    <div class="toolbar">
+    <h1>Alexandria</h1>
+    <div>
       <a class="pill" href="/apps/overseers/hub/">Overseers Hub</a>
       <a class="pill" href="/apps/overseers/console.html">Console</a>
-      <a class="pill" href="/apps/alexandria/knowledge/worldbuilding-checklist.md" target="_blank">Worldbuilding checklist</a>
-      <a class="pill" href="/apps/alexandria/knowledge/isekai.json" target="_blank">Isekai tropes</a>
-      <a class="pill" href="/apps/alexandria/knowledge/dnd5e-srd-notes.md" target="_blank">D&amp;D SRD notes</a>
+      <a class="pill" href="/apps/overseers/hub/vrm-demo.html">VRM Demo</a>
     </div>
-
-    <div class="grid">
-      <section class="card">
-        <h2>Idea → Seed</h2>
-        <p class="muted fine">Tip: spell it “isekai.” Toggle D&amp;D compatibility when you want SRD‑friendly output.</p>
-        <label class="fine">Idea / prompt</label>
-        <textarea id="prompt" placeholder="Example: A stranded space‑mage is isekai’d into a low‑magic archipelago with a dying star‑whale..."></textarea>
-
-        <div class="toolbar">
-          <label class="fine">Isekai <input id="optIsekai" type="checkbox" /></label>
-          <label class="fine">D&amp;D compatible <input id="optDnd" type="checkbox" /></label>
-          <button id="genLocal" class="pill">Generate seed (local)</button>
-          <button id="exportSeed" class="pill">Export seed.json</button>
-          <a class="pill" href="/.github/workflows/alexandria-worldseed.yml" target="_blank">Run LLM seed (workflow)</a>
-        </div>
-
-        <label class="fine">Seed (JSON)</label>
-        <textarea id="seed" placeholder="{ ... }"></textarea>
-      </section>
-
-      <section class="card">
-        <h2>Outline &amp; Voice</h2>
-        <label class="fine">Outline / summary</label>
-        <textarea id="outline" placeholder="High‑level outline appears here..."></textarea>
-
-        <div class="toolbar">
-          <select id="voice"></select>
-          <label class="fine">Rate <input id="rate" type="range" min="0.5" max="1.5" step="0.05" value="1"/></label>
-          <label class="fine">Pitch <input id="pitch" type="range" min="0.5" max="1.5" step="0.05" value="1"/></label>
-        </div>
-        <div class="toolbar">
-          <button id="speak" class="pill">Speak outline</button>
-          <button id="stopSpeak" class="pill">Stop</button>
-        </div>
-
-        <h3>Speech‑to‑Text</h3>
-        <div id="sttStatus" class="muted fine">Ready.</div>
-        <div class="toolbar">
-          <button id="startRec" class="pill">Start recording</button>
-          <button id="stopRec" class="pill">Stop recording</button>
-          <button id="appendToPrompt" class="pill">Append transcript → prompt</button>
-        </div>
-        <textarea id="transcript" placeholder="Transcript will appear here..."></textarea>
-      </section>
-    </div>
+    <div id="viewer"></div>
   </main>
 
-  <script type="module" src="/apps/alexandria/studio.js"></script>
+  <script type="module">
+    import { createVRMViewer } from '/apps/shared/vrm-viewer.js';
+    import { applyWallpaperTheme } from '/apps/shared/theme.js';
+    await applyWallpaperTheme({ strategy: 'first', overlay: 'dark' }).catch(()=>{});
+    const NAME = ;
+    const models = await fetch('/asset/models/models.json?t=' + Date.now(), { cache: 'no-store' })
+      .then(r=>r.json()).catch(()=>({}));
+    const path = models?.byAvatar?.[NAME];
+    const target = '#viewer';
+    if (path) {
+      await createVRMViewer({ container: target, vrmPath: '/' + String(path).replace(/^\\//,''), wingId: null, enableOrbitControls: true });
+    } else {
+      document.querySelector(target).innerHTML = '<p><small>No VRM mapped for this assistant yet.</small></p>';
+    }
+  </script>
 </body>
 </html>

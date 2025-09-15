@@ -3,103 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <title>Avalon — Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <link rel="manifest" href="./manifest.webmanifest" />
-  <meta name="theme-color" content="#0b1020" />
-  <link rel="stylesheet" href="./app.css" />
-
-  <!-- Import maps polyfill -->
-  <script async src="https://unpkg.com/es-module-shims@1.11.0/dist/es-module-shims.js"></script>
-
-  <!-- Import Map: pin to known-good versions -->
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/",
-      "@pixiv/three-vrm": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm@3.4.2/lib/three-vrm.module.js",
-      "@pixiv/three-vrm-animation": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm-animation@3.4.2/lib/three-vrm-animation.module.js"
-    }
-  }
-  </script>
+  <meta http-equiv="refresh" content="0; url=/themes/landing.generated.html">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/app.css" />
+  <style>
+    body{margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center;font:16px system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    .card{border:1px solid #eee;border-radius:.6rem;padding:16px;background:rgba(255,255,255,.82);backdrop-filter:blur(4px)}
+    .pill{display:inline-block;padding:.25rem .6rem;border:1px solid #999;border-radius:.6rem;font-size:.9rem;margin-right:.4rem;text-decoration:none;color:inherit}
+  </style>
 </head>
-<body class="wallpaper">
-  <header class="topbar">
-    <h1>Fairies of Avalon</h1>
-    <nav>
-      <a href="./apps/overseers/console.html">Overseers Console</a>
-    </nav>
-  </header>
-
-  <main class="grid">
-    <section class="tile" id="progress-tile">
-      <h2>Overseers AI — Power Index</h2>
-      <div class="progress-head">
-        <div class="progress-note" id="progress-note">Loading…</div>
-        <div class="progress-score" id="progress-score">—%</div>
-      </div>
-      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
-      <div class="kpis" id="progress-kpis"></div>
-    </section>
-
-    <a class="tile" href="./apps/overseers/console.html">
-      <h2>Overseers Console</h2>
-      <p>Queue & permissions status</p>
-    </a>
-  </main>
-
-  <script>
-    // Register SW
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
-    }
-
-    // Wallpaper: load list if present and pick one
-    (async () => {
-      try {
-        const res = await fetch('./wallpapers/index.json', { cache: 'no-store' });
-        if (res.ok) {
-          const list = await res.json();
-          if (Array.isArray(list) && list.length) {
-            const pic = list[Math.floor(Math.random() * list.length)];
-            document.body.style.backgroundImage = `url('./wallpapers/${encodeURIComponent(pic)}')`;
-            document.body.classList.add('has-image');
-          }
-        }
-      } catch {}
-    })();
-
-    // Progress summary for Home
-    (async () => {
-      const bar = document.getElementById('progress-bar');
-      const scoreEl = document.getElementById('progress-score');
-      const noteEl = document.getElementById('progress-note');
-      const kpis = document.getElementById('progress-kpis');
-
-      try {
-        const res = await fetch('./apps/overseers/progress.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('no progress.json yet');
-        const data = await res.json();
-
-        const pct = Math.max(0, Math.min(100, Number(data.overall || 0)));
-        bar.style.width = pct + '%';
-        scoreEl.textContent = pct + '%';
-        noteEl.textContent = `Last updated: ${data.lastUpdated}`;
-
-        kpis.innerHTML = '';
-        (data.categories || []).forEach(c => {
-          const el = document.createElement('div');
-          el.className = 'kpi';
-          el.innerHTML = `<div class="label">${c.label}</div><div class="value">${c.score}%</div>`;
-          kpis.appendChild(el);
-        });
-      } catch (e) {
-        bar.style.width = '0%';
-        scoreEl.textContent = '0%';
-        noteEl.textContent = 'Run “Overseers — AI Core” once to generate progress.';
-      }
-    })();
+<body>
+  <div class="card">
+    <p>Taking you to the <b>Landing</b>…</p>
+    <p>
+      <a class="pill" href="/themes/landing.generated.html">Open Landing</a>
+      <a class="pill" href="/apps/overseers/hub/">Overseers Hub</a>
+      <a class="pill" href="/apps/overseers/console.html">Console</a>
+    </p>
+  </div>
+  <script type="module">
+    // Optional: wallpaper skin if someone lands here without auto-redirect
+    import { applyWallpaperTheme } from '/apps/shared/theme.js';
+    applyWallpaperTheme({ strategy: 'first', overlay: 'dark' }).catch(()=>{});
   </script>
 </body>
 </html>

@@ -29,7 +29,7 @@ jobs:
           Install-Module powershell-yaml -Scope CurrentUser -Force -AllowClobber
           Import-Module powershell-yaml
 
-      - name: Build manifests + WPI + assistants.json
+      - name: Build manifests + WPI + assistants.json + wallpapers.json
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
@@ -40,13 +40,14 @@ jobs:
         run: |
           git add "asset/models/models.json" || echo "no models manifest changes"
           git add "asset/wings/manifest.json" || echo "no wings manifest changes"
-          git add "pages/apps/overseers/progress.json" || echo "no progress changes"
           git add "pages/apps/overseers/assistants.json" || echo "no assistants changes"
+          git add "pages/apps/overseers/wallpapers.json" || echo "no wallpapers changes"
+          git add "pages/apps/overseers/progress.json" || echo "no progress changes"
           git config user.email "actions@github.com"
           git config user.name  "GitHub Actions"
           git fetch origin ${{ github.ref_name }} --depth=0
           git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
-          git commit -m "Overseers: manifests + WPI + assistants.json" || echo "Nothing to commit"
+          git commit -m "Overseers: manifests + wallpapers + WPI" || echo "Nothing to commit"
 
       - name: Push
         uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa

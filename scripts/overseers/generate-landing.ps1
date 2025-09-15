@@ -15,7 +15,7 @@ function Encode-UrlPath([string]$p){
   ($p -replace ' ', '%20' -replace '\(', '%28' -replace '\)', '%29')
 }
 
-# Load Memory (safe)
+# ---------- Memory ----------
 $memPath = Join-Path $RepoRoot "Cody's Memory.yaml"
 $mem = @{}
 try { $mem = (Get-Content -Raw -Path $memPath) | ConvertFrom-Yaml } catch { $mem=@{} }
@@ -23,7 +23,7 @@ try { $mem = (Get-Content -Raw -Path $memPath) | ConvertFrom-Yaml } catch { $mem
 $siteName = $mem.project.world  ; if (-not $siteName) { $siteName = "Avalon" }
 $domain   = $mem.project.domain ; if (-not $domain)  { $domain  = "fairiesofavalon.com" }
 
-# Assistants + wallpaper context
+# ---------- Context ----------
 $assistants = @()
 $assistantsJson = Join-Path $RepoRoot "pages/apps/overseers/assistants.json"
 if (Test-Path $assistantsJson) { try { $assistants = Get-Content -Raw -Path $assistantsJson | ConvertFrom-Json -Depth 40 } catch {} }
@@ -48,23 +48,19 @@ if (-not $wall1) {
   }
 }
 
-# Outputs
+# ---------- Outputs ----------
 $outDir = Join-Path $RepoRoot "pages/themes"
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 $htmlOut = Join-Path $outDir "landing.generated.html"
 $cssOut  = Join-Path $outDir "landing.generated.css"
-$ver = "6"  # cache-bust
+$ver = "7"  # cache-bust
 
-function Write-CSS([string]$bg){
-  $bgEnc = Encode-UrlPath $bg
-  $css = @"
-.hero{
-  position:relative;min-height:54vh;
-  background-image:url('$bgEnc');background-size:cover;background-position:center;
-}
+function Write-CSS(){
+$css = @"
+.hero{ position:relative; min-height:54vh; background-size:cover; background-position:center; }
 .hero .overlay{
-  position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.55));
-  color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 1rem;
+  position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.55));
+  color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:4rem 1rem;
 }
 .wrap{max-width:1100px;margin:24px auto;padding:0 12px}
 .cta{display:inline-block;margin:.25rem .35rem;padding:.45rem .8rem;border:1px solid #fff;border-radius:.6rem;color:#fff;text-decoration:none}
@@ -75,7 +71,7 @@ function Write-CSS([string]$bg){
   Set-Content -Path $cssOut -Value $css -Encoding utf8NoBOM
 }
 
-# JS runtime “self-heal” (single-quoted here-string: literal, no PowerShell escapes)
+# JS runtime “self-heal” (single-quoted here-string; literal)
 $runtimeHeal = @'
 <script type="module">
 (async ()=>{
@@ -106,7 +102,7 @@ function Write-Deterministic(){
     $state = $a.microapp_exists ? "Open" : "Soon"
     $tiles += "<a class=""tile"" href=""$href""><span>$name</span><small>$state</small></a>`n"
   }
-  $bg = $wall1
+  $bgEnc = Encode-UrlPath $wall1
   $html = @"
 <!doctype html>
 <html lang="en">
@@ -120,7 +116,7 @@ function Write-Deterministic(){
   <style>body{margin:0;}</style>
 </head>
 <body>
-  <header class="hero">
+  <header class="hero" style="background-image:url('$bgEnc')">
     <div class="overlay">
       <h1>$siteName</h1>
       <p>Welcome to $siteName. Explore the Overseers and their Fairies.</p>
@@ -143,7 +139,7 @@ function Write-Deterministic(){
 </html>
 "@
   Set-Content -Path $htmlOut -Value $html -Encoding utf8NoBOM
-  Write-CSS $bg
+  Write-CSS
   Write-Host "Landing (deterministic) generated at $htmlOut"
 }
 
@@ -169,7 +165,7 @@ function Wrap-LLM([string]$inner){
 </html>
 "@
   Set-Content -Path $htmlOut -Value $html -Encoding utf8NoBOM
-  Write-CSS ($wall1)
+  Write-CSS
   Write-Host "Landing (LLM) generated at $htmlOut"
 }
 
@@ -193,7 +189,6 @@ Plain, semantic HTML. No <html>/<head>/<body>.
   } catch { $inner = $null }
 }
 
-# Detect stub → deterministic
 if (-not $inner -or $inner -match 'LLM Bridge Fallback' -or $inner -match 'Generated Content \(Fallback\)') {
   Write-Deterministic
 } else {

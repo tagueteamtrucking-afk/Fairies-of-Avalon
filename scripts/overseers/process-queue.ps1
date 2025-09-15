@@ -79,11 +79,8 @@ foreach ($file in $pending) {
         $avatars = @()
         if ($q.params -and $q.params.avatars) { $avatars = @($q.params.avatars) }
         if (-not $avatars -or $avatars.Count -eq 0) {
-          $memPath = Join-Path $RepoRoot "Cody's Memory.yaml"
-          if (Test-Path $memPath) {
-            $mem = (Get-Content -Raw -Path $memPath) | ConvertFrom-Yaml
-            $avatars = @($mem.avatars_present)
-          }
+          $mem = (Get-Content -Raw -Path (Join-Path $RepoRoot "Cody's Memory.yaml")) | ConvertFrom-Yaml
+          $avatars = @($mem.avatars_present)
         }
         if (-not $avatars -or $avatars.Count -eq 0) { throw "No avatars found to scaffold." }
 
@@ -100,24 +97,39 @@ foreach ($file in $pending) {
 Generate a minimal, actionable scaffold plan to build the Avalon Fairy assistant named '$name'.
 
 Constraints:
-- Domain: fairiesofavalon.com (GitHub Pages; PWA shell).
-- Workflows-first. Use GitHub Actions + PowerShell scripts. No plaintext secrets (vault refs or repo Secrets only).
-- Import map required for 'three', 'three/addons/', '@pixiv/three-vrm' on module pages.
-- Asset layout: asset/models (legacy wingless), asset/winged-models (alias), asset/wings + textures.
-- Overseers Queue exists; each item must map to queueable steps.
+- GitHub Pages PWA shell; workflows-first; no plaintext secrets.
+- Import map required when modules used ('three','three/addons/','@pixiv/three-vrm').
+- Asset layout: asset/models, asset/winged-models, asset/wings(+textures).
+- Map steps to queueable actions.
 
 Deliver (plaintext, <= 250 lines):
-1) Checklist (each item maps to a file or workflow you name).
-2) File inventory to add (paths only).
-3) GitHub Actions job(s): names + triggers + one-sentence purpose.
+1) Checklist (file/workflow per item).
+2) File inventory (paths only).
+3) GitHub Actions jobs: names+triggers+purpose.
 "@
           $outFile = Join-Path $scaffoldDir ("{0}.plan.txt" -f ($name.ToString().ToLowerInvariant()))
           & (Join-Path $PSScriptRoot "llm-bridge.ps1") -Prompt $prompt -OutFile $outFile -DryRun:($dryRun)
           if (Test-Path $outFile) { $countOK++ }
         }
-
         $rec.count = $avatars.Count
         $rec.written = $countOK
+        $rec.status = "ok"
+      }
+
+      "create_microapps" {
+        $avatars = @()
+        if ($q.params -and $q.params.avatars) { $avatars = @($q.params.avatars) }
+        & (Join-Path $PSScriptRoot "create-microapps.ps1") -RepoRoot $RepoRoot -Avatars $avatars
+        $rec.status = "ok"
+      }
+
+      "build_manifests" {
+        & (Join-Path $PSScriptRoot "build-manifests.ps1") -RepoRoot $RepoRoot
+        $rec.status = "ok"
+      }
+
+      "permissions_process" {
+        & (Join-Path $PSScriptRoot "process-permissions.ps1") -RepoRoot $RepoRoot
         $rec.status = "ok"
       }
 

@@ -45,7 +45,7 @@ jobs:
           git add "pages/apps/overseers/progress.json" || echo "no progress changes"
           git config user.email "actions@github.com"
           git config user.name  "GitHub Actions"
-          git fetch origin ${{ github.ref_name }} --depth=0
+          git fetch origin ${{ github.ref_name }} --prune
           git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
           git commit -m "Overseers: manifests + wallpapers + WPI" || echo "Nothing to commit"
 

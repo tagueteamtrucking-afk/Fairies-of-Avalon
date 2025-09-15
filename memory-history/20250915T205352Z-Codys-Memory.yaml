@@ -1,0 +1,13 @@
+meta:
+  version: "2.5.4"
+  last_updated: "2025-09-15"
+  notes: >
+    v2.5.4 — Wallpaper & VRM Demo hardening:
+      - Landing generator: URL-encodes wallpaper paths and embeds runtime self-heal from wallpapers.json; cache-bust v=5.
+      - theme.js: encodes spaces/parentheses in image URLs.
+      - vrm-demo.js: resilient fetch with fallbacks (assistants.json), no crashes if manifests missing.
+      - console.js: WPI fetched with no-store and displayed reliably.
+policies:
+  ci_nonfatal_rules:
+    - "LLM errors → fallback content, exit 0."
+    - "Empty git diffs → skip commit, exit 0."

@@ -17,7 +17,8 @@ export async function applyWallpaperTheme({
   if (!Array.isArray(list) || list.length === 0) return null;
 
   const chosen = strategy === 'random' ? list[Math.floor(Math.random() * list.length)] : list[0];
-  const url = '/' + chosen.path.replace(/^\//, '');
+  const raw = '/' + String(chosen.path || '').replace(/^\/+/, '');
+  const url = raw.replace(/ /g, '%20').replace(/\(/g, '%28').replace(/\)/g, '%29');
 
   el.style.backgroundImage = `url('${url}')`;
   el.style.backgroundSize = 'cover';

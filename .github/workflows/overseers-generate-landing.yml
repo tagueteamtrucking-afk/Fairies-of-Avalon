@@ -38,13 +38,18 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           $force = ("${{ github.event.inputs.mode }}" -eq "fallback-only")
-          & "scripts/overseers/generate-landing.ps1" -RepoRoot "${{ github.workspace }}" @(@{ ForceFallback = $true }[$force])
+          if ($force) {
+            & "scripts/overseers/generate-landing.ps1" -RepoRoot "${{ github.workspace }}" -ForceFallback
+          } else {
+            & "scripts/overseers/generate-landing.ps1" -RepoRoot "${{ github.workspace }}"
+          }
 
       - name: Commit landing artifacts
         shell: pwsh
         run: |
           git add "pages/themes/landing.generated.html" || echo "no html changes"
           git add "pages/themes/landing.generated.css"  || echo "no css changes"
+          git add "pages/index.html"                    || echo "no home redirect changes"
           git config user.email "actions@github.com"
           git config user.name  "GitHub Actions"
           git fetch origin ${{ github.ref_name }} --depth=0

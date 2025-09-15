@@ -10,6 +10,11 @@ try { Import-Module powershell-yaml -ErrorAction Stop } catch {
 }
 
 function IsoNow(){ (Get-Date).ToUniversalTime().ToString("o") }
+function Encode-UrlPath([string]$p){
+  if (-not $p) { return $p }
+  # Encode only risky chars to keep readability
+  ($p -replace ' ', '%20' -replace '\(', '%28' -replace '\)', '%29')
+}
 
 # Load Memory (safe)
 $memPath = Join-Path $RepoRoot "Cody's Memory.yaml"
@@ -49,13 +54,14 @@ $outDir = Join-Path $RepoRoot "pages/themes"
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 $htmlOut = Join-Path $outDir "landing.generated.html"
 $cssOut  = Join-Path $outDir "landing.generated.css"
-$ver = "4"  # bump to bust SW caching when needed
+$ver = "5"  # cache-bust
 
 function Write-CSS([string]$bg){
+  $bgEnc = Encode-UrlPath $bg
   $css = @"
 .hero{
   position:relative;min-height:54vh;
-  background-image:url('$bg');background-size:cover;background-position:center;
+  background-image:url('$bgEnc');background-size:cover;background-position:center;
 }
 .hero .overlay{
   position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.55));
@@ -69,6 +75,29 @@ function Write-CSS([string]$bg){
 "@
   Set-Content -Path $cssOut -Value $css -Encoding utf8NoBOM
 }
+
+$runtimeHeal = @"
+<script type="module">
+(async ()=>{
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const bg = getComputedStyle(hero).backgroundImage || '';
+  const blank = !bg || bg === 'none' || /url\(\"\"\)/.test(bg);
+  const tryApply = async ()=>{
+    try{
+      const res = await fetch('/apps/overseers/wallpapers.json?ts=' + Date.now(), { cache: 'no-store' });
+      const list = await res.json();
+      if (Array.isArray(list) && list.length){
+        const p = '/' + String(list[0].path).replace(/^\/+/,'');
+        const u = p.replace(/ /g,'%20').replace(/\(/g,'%28').replace(/\)/g,'%29');
+        hero.style.backgroundImage = `url('${u}')`;
+      }
+    }catch{}
+  };
+  if (blank) { await tryApply(); }
+})();
+</script>
+"@
 
 function Write-Deterministic(){
   $tiles = ""
@@ -109,6 +138,7 @@ function Write-Deterministic(){
       </div>
     </section>
   </main>
+  $runtimeHeal
 </body>
 </html>
 "@
@@ -134,6 +164,7 @@ function Wrap-LLM([string]$inner){
   <main>
   $inner
   </main>
+  $runtimeHeal
 </body>
 </html>
 "@
@@ -144,7 +175,7 @@ function Wrap-LLM([string]$inner){
 
 if ($ForceFallback) { Write-Deterministic; exit 0 }
 
-# Try LLM bridge; always succeed with fallback
+# Try LLM (non-fatal)
 $haveOpenAI = [bool]$env:OPENAI_API_KEY
 $inner = $null
 if ($haveOpenAI) {

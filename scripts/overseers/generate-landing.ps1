@@ -1,8 +1,5 @@
 [CmdletBinding()]
-param(
-  [string]$RepoRoot=".",
-  [switch]$ForceFallback   # if set, skip LLM and write deterministic landing
-)
+param([string]$RepoRoot=".", [switch]$ForceFallback)
 
 $ErrorActionPreference='Stop'
 
@@ -14,23 +11,21 @@ try { Import-Module powershell-yaml -ErrorAction Stop } catch {
 
 function IsoNow(){ (Get-Date).ToUniversalTime().ToString("o") }
 
-# --- Load Memory (safe) ---
+# Load Memory (safe)
 $memPath = Join-Path $RepoRoot "Cody's Memory.yaml"
 $mem = @{}
 try { $mem = (Get-Content -Raw -Path $memPath) | ConvertFrom-Yaml } catch { $mem=@{} }
 
 $siteName = $mem.project.world  ; if (-not $siteName) { $siteName = "Avalon" }
-$domain   = $mem.project.domain ; if (-not $domain)   { $domain  = "fairiesofavalon.com" }
+$domain   = $mem.project.domain ; if (-not $domain)  { $domain  = "fairiesofavalon.com" }
 
-# --- Assistants + Wallpapers context ---
+# Assistants + wallpaper context
 $assistants = @()
 $assistantsJson = Join-Path $RepoRoot "pages/apps/overseers/assistants.json"
-if (Test-Path $assistantsJson) {
-  try { $assistants = Get-Content -Raw -Path $assistantsJson | ConvertFrom-Json -Depth 40 } catch {}
-}
+if (Test-Path $assistantsJson) { try { $assistants = Get-Content -Raw -Path $assistantsJson | ConvertFrom-Json -Depth 40 } catch {} }
 
-$wallsJson = Join-Path $RepoRoot "pages/apps/overseers/wallpapers.json"
 $wall1 = $null
+$wallsJson = Join-Path $RepoRoot "pages/apps/overseers/wallpapers.json"
 if (Test-Path $wallsJson) {
   try {
     $walls = Get-Content -Raw -Path $wallsJson | ConvertFrom-Json -Depth 40
@@ -49,11 +44,12 @@ if (-not $wall1) {
   }
 }
 
-# --- Outputs ---
+# Outputs
 $outDir = Join-Path $RepoRoot "pages/themes"
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 $htmlOut = Join-Path $outDir "landing.generated.html"
 $cssOut  = Join-Path $outDir "landing.generated.css"
+$ver = "4"  # bump to bust SW caching when needed
 
 function Write-CSS([string]$bg){
   $css = @"
@@ -74,7 +70,7 @@ function Write-CSS([string]$bg){
   Set-Content -Path $cssOut -Value $css -Encoding utf8NoBOM
 }
 
-function Write-Deterministic-Landing(){
+function Write-Deterministic(){
   $tiles = ""
   foreach ($a in $assistants) {
     $href = $a.path; $name = $a.name
@@ -91,7 +87,7 @@ function Write-Deterministic-Landing(){
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/app.css">
-  <link rel="stylesheet" href="./landing.generated.css">
+  <link rel="stylesheet" href="./landing.generated.css?v=$ver">
   <style>body{margin:0;}</style>
 </head>
 <body>
@@ -121,7 +117,7 @@ function Write-Deterministic-Landing(){
   Write-Host "Landing (deterministic) generated at $htmlOut"
 }
 
-function Wrap-LLM-Inner([string]$inner){
+function Wrap-LLM([string]$inner){
   $html = @"
 <!doctype html>
 <html lang="en">
@@ -131,7 +127,7 @@ function Wrap-LLM-Inner([string]$inner){
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="/app.css">
-  <link rel="stylesheet" href="./landing.generated.css">
+  <link rel="stylesheet" href="./landing.generated.css?v=$ver">
   <style>body{margin:0;}</style>
 </head>
 <body>
@@ -142,50 +138,34 @@ function Wrap-LLM-Inner([string]$inner){
 </html>
 "@
   Set-Content -Path $htmlOut -Value $html -Encoding utf8NoBOM
-  # Always write CSS (harmless if LLM doesn't use .hero)
   Write-CSS ($wall1)
   Write-Host "Landing (LLM) generated at $htmlOut"
 }
 
-# --- Main flow ---
-if ($ForceFallback) {
-  Write-Host "::notice:: ForceFallback ON — skipping LLM and writing deterministic landing."
-  Write-Deterministic-Landing
-  exit 0
-}
+if ($ForceFallback) { Write-Deterministic; exit 0 }
 
+# Try LLM bridge; always succeed with fallback
 $haveOpenAI = [bool]$env:OPENAI_API_KEY
 $inner = $null
 if ($haveOpenAI) {
   $assistantNames = ($assistants | ForEach-Object { $_.name }) -join ', '
   $ctx = @"
-You are generating a minimal, production-safe landing page for the site "$siteName" ($domain).
-Constraints:
-- Plain HTML: return ONLY the <main>...</main> inner content (no <html>, no <head>, no <body>).
-- Include a hero section if a wallpaper exists at "$wall1" (optional).
-- Include assistant tiles for: $assistantNames using "/apps/{id}/" links from assistants.json where present.
-- Include buttons: "Overseers Hub" (/apps/overseers/hub/) and "Open Console" (/apps/overseers/console.html).
-- Keep it concise and semantic.
+Return ONLY the <main>...</main> inner HTML for "$siteName" ($domain).
+Include a hero if '$wall1' exists; include tiles for: $assistantNames with /apps/{id}/ links; include buttons to Overseers Hub and Console.
+Plain, semantic HTML. No <html>/<head>/<body>.
 "@
-
-  $tmpFile = Join-Path $env:RUNNER_TEMP "landing.llm.html"
+  $tmp = Join-Path $env:RUNNER_TEMP "landing.llm.html"
   $bridge = Join-Path (Join-Path $RepoRoot "scripts/overseers") "llm-bridge.ps1"
-
   try {
-    & $bridge -Prompt $ctx -OutFile $tmpFile -DryRun:$false
-    $inner = Get-Content -Raw -Path $tmpFile
-  } catch {
-    Write-Host "::warning:: LLM Bridge error — will use deterministic landing."
-    $inner = $null
-  }
+    & $bridge -Prompt $ctx -OutFile $tmp -DryRun:$false
+    $inner = Get-Content -Raw -Path $tmp
+  } catch { $inner = $null }
 }
 
-# Detect Bridge fallback or emptiness → deterministic landing
-if (-not $inner -or $inner -match 'LLM Bridge Fallback') {
-  Write-Deterministic-Landing
-  exit 0
+# Detect stub → deterministic
+if (-not $inner -or $inner -match 'LLM Bridge Fallback' -or $inner -match 'Generated Content \(Fallback\)') {
+  Write-Deterministic
+} else {
+  Wrap-LLM $inner
 }
-
-# Otherwise wrap LLM output
-Wrap-LLM-Inner $inner
 exit 0

@@ -1,46 +1,110 @@
-name: "Overseers — Create Microapps (A1)"
+[CmdletBinding()]
+param(
+  [string]$RepoRoot=".",
+  [string[]]$Avatars=@()
+)
 
-on:
-  workflow_dispatch:
+$ErrorActionPreference='Stop'
 
-permissions:
-  contents: write
+function Make-Slug([string]$n){ if(-not $n){return ""}; return ($n -replace '[^A-Za-z0-9]','').ToLowerInvariant() }
+function IsoNow(){ (Get-Date).ToUniversalTime().ToString("o") }
 
-jobs:
-  create-microapps:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
-          fetch-depth: 0
+# Try Memory -> models.json -> VRM filenames
+$memAvatars=@()
+try {
+  Import-Module powershell-yaml -ErrorAction Stop
+  $memPath = Join-Path $RepoRoot "Cody's Memory.yaml"
+  if (Test-Path $memPath) {
+    $mem = (Get-Content -Raw -Path $memPath) | ConvertFrom-Yaml
+    if ($mem.avatars_present) { $memAvatars = @($mem.avatars_present) }
+  }
+} catch { $memAvatars=@() }
 
-      - name: Setup PowerShell + YAML
-        shell: pwsh
-        run: |
-          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-          Install-Module powershell-yaml -Scope CurrentUser -Force -AllowClobber
-          Import-Module powershell-yaml
+$modelsAvatars=@()
+$modelsJson = Join-Path $RepoRoot "asset/models/models.json"
+if (Test-Path $modelsJson) {
+  try {
+    $models = Get-Content -Raw -Path $modelsJson | ConvertFrom-Json -Depth 40
+    if ($models.byAvatar) { $modelsAvatars = @($models.byAvatar.PSObject.Properties.Name) }
+  } catch { $modelsAvatars=@() }
+}
 
-      - name: Seed /apps/{fairy}/ microapps with VRM preview
-        shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          & "scripts/overseers/create-microapps.ps1" -RepoRoot "${{ github.workspace }}"
+$vrmAvatars=@()
+$modelsRoot = Join-Path $RepoRoot "asset/models"
+if (Test-Path $modelsRoot) {
+  $vrms = Get-ChildItem $modelsRoot -Recurse -File -Filter *.vrm
+  foreach($f in $vrms){
+    $name = [IO.Path]::GetFileNameWithoutExtension($f.Name)
+    $name = $name -replace '[_-]wings$',''  # strip *_wings/-wings suffixes
+    if ($name) { $vrmAvatars += $name }
+  }
+  $vrmAvatars = $vrmAvatars | Sort-Object -Unique
+}
 
-      - name: Commit microapps
-        shell: pwsh
-        run: |
-          git add "pages/apps/**/index.html" || echo "no microapp changes"
-          git config user.email "actions@github.com"
-          git config user.name  "GitHub Actions"
-          git fetch origin ${{ github.ref_name }} --depth=0
-          git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
-          git commit -m "Overseers: seed microapps with VRM preview (A1)" || echo "Nothing to commit"
+# Choose source of truth in order of reliability
+if (-not $Avatars -or $Avatars.Count -eq 0) {
+  if ($memAvatars.Count -gt 0)       { $Avatars = $memAvatars }
+  elseif ($modelsAvatars.Count -gt 0){ $Avatars = $modelsAvatars }
+  else                               { $Avatars = $vrmAvatars }
+}
 
-      - name: Push
-        uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref_name }}
-          force_with_lease: true
+$created = 0
+foreach ($name in $Avatars) {
+  if (-not $name) { continue }
+  $slug = Make-Slug $name
+  $appDir = Join-Path $RepoRoot ("pages/apps/{0}" -f $slug)
+  New-Item -ItemType Directory -Force -Path $appDir | Out-Null
+  $htmlPath = Join-Path $appDir "index.html"
+
+  $html = @"
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>$name · Avalon</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/app.css">
+  <script type="importmap" src="/importmap.json"></script>
+  <style>
+    main{max-width:1100px;margin:24px auto;padding:0 12px}
+    .pill{display:inline-block;padding:.25rem .6rem;border:1px solid #999;border-radius:.6rem;font-size:.85rem;margin-right:.4rem;text-decoration:none;color:inherit}
+    #viewer{width:100%;max-width:780px;height:460px;border-radius:.6rem;border:1px solid #e6e6e6;background:rgba(255,255,255,.05);margin-top:10px}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>$name</h1>
+    <div>
+      <a class="pill" href="/apps/overseers/hub/">Overseers Hub</a>
+      <a class="pill" href="/apps/overseers/console.html">Console</a>
+      <a class="pill" href="/apps/overseers/hub/vrm-demo.html">VRM Demo</a>
+    </div>
+    <div id="viewer"></div>
+  </main>
+
+  <script type="module">
+    import { createVRMViewer } from '/apps/shared/vrm-viewer.js';
+    import { applyWallpaperTheme } from '/apps/shared/theme.js';
+    await applyWallpaperTheme({ strategy: 'first', overlay: 'dark' }).catch(()=>{});
+    const NAME = ${('"'+$name+'"')};
+    const models = await fetch('/asset/models/models.json?t=' + Date.now(), { cache: 'no-store' })
+      .then(r=>r.json()).catch(()=>({}));
+    const path = models?.byAvatar?.[NAME];
+    const target = '#viewer';
+    if (path) {
+      await createVRMViewer({ container: target, vrmPath: '/' + String(path).replace(/^\\//,''), wingId: null, enableOrbitControls: true });
+    } else {
+      document.querySelector(target).innerHTML = '<p><small>No VRM mapped for this assistant yet.</small></p>';
+    }
+  </script>
+</body>
+</html>
+"@
+  Set-Content -Path $htmlPath -Value $html -Encoding utf8NoBOM
+  $created++
+}
+
+Write-Host "Created/updated $created microapps at $(IsoNow)"
+# success
+exit 0

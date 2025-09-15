@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Alexandria · Lore Bible Builder</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/app.css" />
+  <style>
+    body{margin:0}
+    main{max-width:1100px;margin:28px auto;padding:0 12px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width: 1000px){ .grid{grid-template-columns:1fr} }
+    .card{border:1px solid #eee;border-radius:.6rem;padding:14px;background:rgba(255,255,255,.86);margin-bottom:12px}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+    .pill{display:inline-block;padding:.35rem .7rem;border:1px solid #999;border-radius:.6rem;font-size:.9rem;text-decoration:none;color:inherit;background:#fff}
+    textarea,input{width:100%}
+    textarea{min-height:140px}
+    pre{white-space:pre-wrap}
+    .muted{color:#666}
+    .fine{font-size:.9rem}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Alexandria · Lore Bible Builder</h1>
+    <div class="toolbar">
+      <a class="pill" href="/apps/alexandria/">Worldbuilding Studio</a>
+      <a class="pill" href="/.github/workflows/alexandria-worldseed.yml" target="_blank">Run: Generate World Seed</a>
+      <a class="pill" href="/.github/workflows/alexandria-lore-bible.yml" target="_blank">Run: Build Lore Bible (Workflow)</a>
+    </div>
+    <div class="grid">
+      <section class="card">
+        <h2>Preview from Seed</h2>
+        <p class="fine muted">Option A — load a seed JSON by URL (e.g., <code>/apps/alexandria/worlds/seed-*.json</code>)</p>
+        <input id="seedUrl" placeholder="/apps/alexandria/worlds/seed-YYYYMMDDHHMMSS-slug.json"/>
+        <div class="toolbar">
+          <button id="loadUrl" class="pill">Preview from URL</button>
+          <button id="downloadMd" class="pill">Download MD</button>
+        </div>
+        <p class="fine muted">Option B — paste a seed JSON</p>
+        <textarea id="seedJson" placeholder='{"id":"seed-...","title":"...","pillars":{"magic_system":"..."},"factions":[...]}'></textarea>
+        <div class="toolbar">
+          <button id="previewJson" class="pill">Preview from JSON</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Preview</h2>
+        <div class="toolbar">
+          <button id="viewMd" class="pill">View Markdown</button>
+          <button id="viewHtml" class="pill">View HTML</button>
+        </div>
+        <div id="render" class="fine"></div>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Existing Bibles</h2>
+      <div id="bibles">Loading…</div>
+    </section>
+  </main>
+
+<script type="module">
+// Minimal markdown → HTML (headings, bold/italic, lists, code fences)
+function mdToHtml(md){
+  const esc = (s)=>s.replace(/[&<>]/g,m=>({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m]));
+  // code fences
+  md = md.replace(/```([\s\S]*?)```/g, (m,code)=>'@@CODE@@'+btoa(unescape(encodeURIComponent(code)))+'@@ENDCODE@@');
+  // headings
+  md = md.replace(/^###### (.*)$/gm,'<h6>$1</h6>').replace(/^##### (.*)$/gm,'<h5>$1</h5>').replace(/^#### (.*)$/gm,'<h4>$1</h4>').replace(/^### (.*)$/gm,'<h3>$1</h3>').replace(/^## (.*)$/gm,'<h2>$1</h2>').replace(/^# (.*)$/gm,'<h1>$1</h1>');
+  // bold/italic
+  md = md.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>');
+  // lists
+  md = md.replace(/^(\s*)- (.*)$/gm,'$1• $2');
+  md = md.split('\n').map(l=>/^\s*• /.test(l)?'<li>'+l.replace(/^\s*• /,'')+'</li>':l).join('\n');
+  md = md.replace(/(?:<li>.*<\/li>\n?)+/g, m=>'<ul>'+m.replace(/\n/g,'')+'</ul>');
+  // paragraphs
+  md = md.split(/\n\n+/).map(block=>{
+    if (/^<h\d|^<ul>|^@@CODE@@/.test(block)) return block;
+    return '<p>'+block.replace(/\n/g,'<br>')+'</p>';
+  }).join('\n');
+  // restore code
+  md = md.replace(/@@CODE@@([\w+/=]+)@@ENDCODE@@/g,(m,b64)=>'<pre><code>'+esc(decodeURIComponent(escape(atob(b64))))+'</code></pre>');
+  return md;
+}
+
+function slug(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,80); }
+
+function buildOutlineFromSeed(s){
+  const tone = (s.tags && s.tags[1]) || 'balanced';
+  const magic = s?.pillars?.magic_system || 'magic';
+  const travel = s?.pillars?.travel || 'travel';
+  const topo = s?.cosmology?.planar_topology || 'world';
+  const conf = s?.conflict || 'conflict';
+  const f1 = s?.factions?.[0]?.name || 'Faction A';
+  const f2 = s?.factions?.[1]?.name || 'Faction B';
+  return `Act I — Setup:
+• Introduce ${s.protagonist_archetype||'protagonist'}; show ${magic} and ${travel}.
+• Inciting incident tied to ${s.starter_hook||'the core mystery'}.
+
+Act II — Trials:
+• Faction clash: ${f1} vs ${f2}.
+• Conflict escalates (${conf}); secrets of ${topo} surface.
+
+Act III — Resolution:
+• Choice tests values (tone: ${tone}). Gate via ${(s?.cosmology?.portals)||'portals'}.`;
+}
+
+function buildBibleMd(seed){
+  const now = new Date().toISOString();
+  const tags = (seed.tags||[]).join(', ');
+  const outline = buildOutlineFromSeed(seed);
+  return `# ${seed.title} — Lore Bible (v1)
+
+**ID:** ${seed.id}  
+**Tags:** ${tags}  
+**Isekai:** ${seed.isekai ? 'Yes' : 'No'}  
+**D&D Compatible:** ${seed.dnd_compatible ? 'Yes' : 'No'}  
+**Generated:** ${now}
+
+---
+
+## 1. Overview
+
+**Elevator pitch:** ${seed.starter_hook || 'A catalyst forces action.'}
+
+**Genre & Tone:** ${tags || '—'}
+
+**Protagonist archetype:** ${seed.protagonist_archetype || '—'}
+
+**Safety:** Content maturity — ${(seed?.safety?.content_maturity)||'pg-13'}
+
+## 2. Canon — Pillars
+
+- **Magic system:** ${seed?.pillars?.magic_system || '—'}
+- **Tech level:** ${seed?.pillars?.tech_level || '—'}
+- **Travel:** ${seed?.pillars?.travel || '—'}
+
+## 3. Cosmology
+
+- **Planar topology:** ${seed?.cosmology?.planar_topology || '—'}
+- **Portals / thresholds:** ${seed?.cosmology?.portals || '—'}
+
+## 4. Factions
+
+${(seed.factions||[]).map(f=>`- **${f.name}** — motif: ${f.motif}; goal: ${f.goal}`).join('\n') || '- (define at least two factions)'}
+
+**Relationships:**  
+- TBD: alliances, rivalries, proxy conflicts.
+
+## 5. Regions (seeds)
+
+- Region A — hub tied to travel method (${seed?.pillars?.travel||'—'}).
+- Region B — frontier where ${seed?.conflict||'tension'} is visible.
+- Region C — secret or sacred site linked to ${seed?.pillars?.magic_system||'magic'}.
+
+## 6. Culture & Language
+
+- Language notes: ${(seed?.language_notes||['—']).join('; ')}
+- Naming style: consonant clusters + vowel rules (define per culture).
+- Taboos & rituals: define per faction/region.
+
+## 7. Story Outline (derived)
+
+\`\`\`
+${outline}
+\`\`\`
+
+## 8. Character Seeds
+
+- **Allies:** guide, fixer, scholar.  
+- **Antagonists:** zealot of ${seed?.factions?.[1]?.name||'the rival order'}, agent of ${seed?.factions?.[0]?.name||'the protectorate'}.  
+- **Neutrals:** merchant, ferryman, archivist.
+
+## 9. Lexicon (starter)
+
+- **Core term 1** — definition.  
+- **Core term 2** — definition.  
+- **Artifact / spell** — cost, risk, tells.
+
+## 10. Production Notes
+
+- **Art palette:** silhouettes, motifs, color accents.  
+- **Music:** ambient motifs for ${seed?.pillars?.magic_system||'magic'} scenes.  
+- **Props/FX:** travel method markers, faction insignias.
+
+---
+
+## Appendix A — Seed JSON
+\`\`\`json
+${JSON.stringify(seed, null, 2)}
+\`\`\`
+
+*End of v1.*
+`;
+}
+
+function download(name, text){
+  const blob = new Blob([text], {type:'text/markdown'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = name; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
+}
+
+let currentMd = '';
+
+async function loadUrl(){
+  const u = document.getElementById('seedUrl').value.trim();
+  if (!u) { alert('Provide a seed URL.'); return; }
+  try{
+    const r = await fetch(u+'?t='+Date.now(), { cache: 'no-store' });
+    const s = await r.json();
+    currentMd = buildBibleMd(s);
+    renderMd();
+  }catch(e){ alert('Could not load that URL.'); }
+}
+
+function previewJson(){
+  try{
+    const s = JSON.parse(document.getElementById('seedJson').value || '{}');
+    currentMd = buildBibleMd(s);
+    renderMd();
+  }catch(e){ alert('Invalid JSON'); }
+}
+
+function renderMd(){
+  const tgt = document.getElementById('render');
+  if (tgt.dataset.mode === 'html'){
+    tgt.innerHTML = mdToHtml(currentMd);
+  } else {
+    tgt.innerHTML = '<pre>'+currentMd.replace(/[&<>]/g,m=>({ '&':'&amp;','<':'&lt;','>':'&gt;' }[m]))+'</pre>';
+  }
+}
+
+document.getElementById('loadUrl').onclick = loadUrl;
+document.getElementById('previewJson').onclick = previewJson;
+document.getElementById('downloadMd').onclick = ()=>{ if (!currentMd) { alert('Nothing to download.'); return; } download('lore-bible.md', currentMd); };
+document.getElementById('viewMd').onclick = ()=>{ const r=document.getElementById('render'); r.dataset.mode='md'; renderMd(); };
+document.getElementById('viewHtml').onclick = ()=>{ const r=document.getElementById('render'); r.dataset.mode='html'; renderMd(); };
+
+// Existing bibles
+(async ()=>{
+  const el = document.getElementById('bibles');
+  try{
+    const r = await fetch('/apps/alexandria/worlds/bibles/index.json?t='+Date.now(), { cache:'no-store' });
+    if (!r.ok) throw new Error();
+    const list = await r.json();
+    if (!Array.isArray(list) || !list.length){ el.innerHTML = '<p class="fine muted">No bibles yet. Run the workflow.</p>'; return; }
+    el.innerHTML = list.slice(-50).reverse().map(x=>`<div><a href="${x.path}">${x.title}</a> <small>${x.ts}</small></div>`).join('');
+  }catch{ el.innerHTML = '<p class="fine muted">No index yet. Run the workflow to build one.</p>'; }
+})();
+</script>
+</body>
+</html>

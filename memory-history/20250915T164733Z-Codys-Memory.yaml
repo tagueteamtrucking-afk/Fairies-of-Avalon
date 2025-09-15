@@ -1,0 +1,200 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "2.5.0"
+  last_updated: "2025-09-15"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    v2.5.0 — Assistants Phase‑1 go‑time:
+      - Added overseers-create-microapps workflow to seed /apps/{fairy}/ with VRM preview (A1).
+      - Fixed generate-landing workflow invocation (no Object[] param bug).
+      - Landing generator always writes styled page; fallback is deterministic.
+      - Manifests & WPI hardened; VRM viewer + theme shipped.
+
+system:
+  os: "Windows 11"
+  device: "Gaming PC"
+  only_windows: true
+
+delivery_policy:
+  speed_first: true
+  two_person_authorization: false
+  whole_file_replacements_only: true
+  preferred_shell: "GitHub Actions workflows + PowerShell"
+
+hosting:
+  frontend_domain: "fairiesofavalon.com"
+  pwa_app_shell: true
+  pages_root: "pages"
+  microapps_path: "pages/apps"
+  custom_domain_cname: true
+  cdn_imports: ["three","three/addons/","@pixiv/three-vrm"]
+
+project:
+  world: "Avalon"
+  assistants_label: "Fairies"
+  domain: "fairiesofavalon.com"
+  home_label: "home"
+  preserve_paths: ["asset/models","asset/wings"]
+  importmap_required: true
+  importmap_map: ["three","three/addons/","@pixiv/three-vrm"]
+
+assets:
+  layout:
+    models_root_legacy: "asset/models"
+    wingless_vrms: "asset/models/wingless"
+    with_wings_vrms: "asset/models/with-wings"
+    with_wings_alias: "asset/winged-models"
+    wings_models: "asset/wings"
+    wings_textures: "asset/wings/textures"
+    models_manifest: "asset/models/models.json"
+    wings_manifest: "asset/wings/manifest.json"
+    wallpapers: "asset/textures/wallpapers"
+  outputs:
+    wallpapers_manifest: "pages/apps/overseers/wallpapers.json"
+  budgets:
+    initial_shell_kb: 300
+    initial_requests: 15
+    vrm_per_file_mb: 40
+    wallpapers_total: 20
+
+wings_pack: "Fantasy Wings Collection Fbx.rar"
+
+avatars_present: ["Abbey","Alexandria","Billie","Carol","Charlotte","Clarice","Jem","Nina","Odessa","Reyczar","Sorcha","Themis","WhiteStar","Tracy","Stella"]
+
+avatar_file_keys:
+  rey_czar: "Reyczar"
+  white_star: "WhiteStar"
+  clarice: "Clarice"
+  charlotte: "Charlotte"
+  nina: "Nina"
+  alexandria: "Alexandria"
+  tracy: "Tracy"
+  carol_li: "Carol"
+  jem_nassim: "Jem"
+  stella: "Stella"
+  sorcha: "Sorcha"
+  odessa: "Odessa"
+  billie: "Billie"
+  themis: "Themis"
+  abbey: "Abbey"
+
+access_control:
+  policy:
+    - "Overseers (Rey Czar & White Star) precede and authorize all assistants."
+    - "No plaintext secrets in this file; store in an external password manager/secret vault."
+    - "Assistants operate under least-privilege scopes granted by Overseers."
+    - "LLM rate limits/failures MUST NOT fail CI; fallback content and exit 0."
+  roles:
+    - name: overseer
+      privileges: [create_assistants, grant_permissions, revoke_permissions, approve_deployments, manage_secrets, impersonate_assistant, override_queue]
+    - name: assistant
+      privileges: [read_memory, write_memory_scoped, request_permissions, generate_reports]
+  vault_references:
+    tokens: "vault://palace/tokens"
+    passwords: "vault://palace/passwords"
+    permissions: "vault://palace/permissions"
+
+governance:
+  overseers:
+    - id: rey_czar
+      name: "Rey Czar"
+      alias: "Rey"
+      role: "Overseer (Husband)"
+      status: "Root of Trust"
+      domains: [governance, security, permissions, provisioning]
+      ai_core:
+        status: "operational-core"
+        version: "0.6.3"
+        role: "Overseer Engineer & Builder"
+        abilities:
+          - { id: plan.route, description: "Plan & route work." }
+          - { id: auth.scope_plan, description: "Least-privilege scopes; vault refs." }
+          - { id: builder.scaffold_fairy, description: "Generate scaffolds from Memory." }
+          - { id: mem.patch, description: "Apply policy-checked Memory edits." }
+          - { id: queue.enqueue, description: "Write tasks to file queue." }
+          - { id: impersonate.assistant, description: "Execute any assistant's function via Overseers Hub." }
+    - id: white_star
+      name: "White Star"
+      alias: "Star"
+      role: "Overseer (Wife)"
+      status: "Root of Trust"
+      domains: [governance, security, permissions, provisioning]
+      ai_core:
+        status: "operational-core"
+        version: "0.6.3"
+        role: "Overseer Experience & Alignment"
+        abilities:
+          - { id: qa.review_plan, description: "Approve minimal, testable plans." }
+          - { id: policy.check, description: "Block plaintext secrets; enforce sensitivity." }
+          - { id: docs.brief, description: "One-page briefs." }
+          - { id: i18n.translate_all, description: "Multilingual output." }
+          - { id: queue.run, description: "Process queued tasks safely." }
+
+overseers_capabilities:
+  inherits_all_functions: true
+  features:
+    - animate_vrm_with_wings
+    - theme_from_wallpapers
+    - generate_landing
+    - create_microapps
+  hub_app:
+    path: "pages/apps/overseers/hub"
+    features: ["launch","impersonate","status","manifests","permissions","viewer_link"]
+  tools_router:
+    llm_bridge:
+      providers: ["openai"]
+      env_keys: ["OPENAI_API_KEY"]
+      failure_policy: "fallback_and_exit0"
+
+runtime:
+  paths:
+    queue_requests: "requests"
+    queue_processed: "processed"
+    progress_file: "pages/apps/overseers/progress.json"
+    permissions_state: "pages/apps/overseers/permissions/state.json"
+    scaffolds_dir: "pages/apps/overseers/scaffolds"
+  workflows:
+    overseers_yaml_gate: ".github/workflows/overseers-yaml-gate.yml"
+    overseers_manifests: ".github/workflows/overseers-manifests.yml"
+    overseers_generate_landing: ".github/workflows/overseers-generate-landing.yml"
+    overseers_create_microapps: ".github/workflows/overseers-create-microapps.yml"
+    runner_process_queue: ".github/workflows/run-overseers-queue.yml"
+  quick_paths:
+    actions_order: ["Overseers — Manifests & WPI","Overseers — Create Microapps (A1)","Overseers — Generate Landing","Deploy — GitHub Pages"]
+  tools:
+    - "Overseers Hub"
+    - "VRM Viewer"
+    - "Wallpaper Theme"
+    - "Landing Generator"
+    - "Microapps Seeder"
+
+telemetry:
+  wallpaper_power_index:
+    produced_by: "overseers_manifests"
+    manifest: "pages/apps/overseers/wallpapers.json"
+  landing:
+    path: "pages/themes/landing.generated.html"
+    css:  "pages/themes/landing.generated.css"
+    modes: ["auto","fallback-only"]
+  microapps:
+    seeded: false   # set true after overseers-create-microapps run
+
+plans:
+  assistants_phase_1:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "in-flight"
+    tasks:
+      - { id: A1, name: "Create microapps for all Fairies", status: "ready" }
+      - { id: A2, name: "Shared VRM viewer + wings + theme", status: "done" }
+      - { id: A3, name: "Build manifests + WPI + wallpapers.json", status: "done" }
+      - { id: A5, name: "Generate landing (LLM or fallback)", status: "done" }
+      - { id: A7, name: "Hub/Console: per-Fairy status & links", status: "in-progress" }
+
+lessons_learned:
+  - "Avoid fancy splats for optional switches in GH Actions; call script with explicit -ForceFallback when needed."
+  - "Parse JSON to Hashtable (or convert) before adding new properties; never dot-assign into PSCustomObject."
+  - "LLM rate limits are normal; never fail CI—use fallback and return exit 0."
+  - "Import map is required on pages using three/@pixiv/three-vrm."
+  - "Keep scripts portable (no LINQ static calls)."

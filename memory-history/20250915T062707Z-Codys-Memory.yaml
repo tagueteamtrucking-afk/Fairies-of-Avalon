@@ -1,0 +1,287 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "2.2.0"
+  last_updated: "2025-09-15"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    Overseers-first. No plaintext secrets. Workflows-first (GitHub Actions).
+
+    v2.2.0 — YAML Guardrail + Crash-proof Runner:
+      - Added YAML Gate workflow to validate all YAML and auto-restore Memory from snapshots.
+      - Added validate-yaml.ps1 and normalize-memory.ps1; runner now Read-YamlSafe with recovery.
+      - Policy: YAML parse errors may NOT crash CI; queue degrades gracefully and reports.
+      - Purpose map recorded for clarity (apps/workflows/scripts/assets).
+
+    v2.1.0 — Overseers Omnicapability: hub, manifests, permissions, phase-1 seeder shipped.
+
+system:
+  os: "Windows 11"
+  device: "Gaming PC"
+  only_windows: true
+
+delivery_policy:
+  speed_first: true
+  two_person_authorization: false
+  whole_file_replacements_only: true
+  preferred_shell: "GitHub Actions workflows + PowerShell"
+  notes:
+    - "Provide full files ready to replace existing ones (no diffs/patches)."
+    - "Workflows-first. Scripts are helpers; no wrapper assumptions."
+    - "Deploy path must not require multi-review or environment approvals."
+
+hosting:
+  frontend_domain: "fairiesofavalon.com"
+  pwa_app_shell: true
+  pages_root: "pages"
+  microapps_path: "pages/apps"
+  custom_domain_cname: true
+  cdn_imports: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+project:
+  world: "Avalon"
+  assistants_label: "Fairies"
+  domain: "fairiesofavalon.com"
+  home_label: "home"
+  preserve_paths: ["asset/models", "asset/wings"]
+  importmap_required: true
+  importmap_map: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+assets:
+  layout:
+    models_root_legacy: "asset/models"
+    wingless_vrms: "asset/models/wingless"
+    with_wings_vrms: "asset/models/with-wings"
+    with_wings_alias: "asset/winged-models"
+    wings_models: "asset/wings"
+    wings_textures: "asset/wings/textures"
+    models_manifest: "asset/models/models.json"
+    wings_manifest: "asset/wings/manifest.json"
+    wallpapers: "asset/textures/wallpapers"
+  rules:
+    vrm_classification:
+      - "Any *.vrm in asset/models/wingless is wingless."
+      - "Any *.vrm in asset/models/with-wings is pre-winged."
+      - "Any *.vrm in asset/winged-models is pre-winged (alias path)."
+      - "Legacy layout (asset/models/*.vrm): treat as wingless unless filename ends with _wings or -wings."
+    wings_grouping:
+      - "Group by number (e.g., wing02.*). Case-insensitive."
+      - "Suffix mapping: _c=albedo/color, _e=emissive, _nrm=normal. Others (mr/rough/ao) recorded if present."
+  budgets:
+    initial_shell_kb: 300
+    initial_requests: 15
+    vrm_per_file_mb: 40
+    wallpapers_total: 20
+
+wings_pack: "Fantasy Wings Collection Fbx.rar"
+
+avatars_present:
+  - Abbey
+  - Alexandria
+  - Billie
+  - Carol
+  - Charlotte
+  - Clarice
+  - Jem
+  - Nina
+  - Odessa
+  - Reyczar
+  - Sorcha
+  - Themis
+  - WhiteStar
+  - Tracy
+  - Stella
+
+avatar_file_keys:
+  rey_czar: "Reyczar"
+  white_star: "WhiteStar"
+  clarice: "Clarice"
+  charlotte: "Charlotte"
+  nina: "Nina"
+  alexandria: "Alexandria"
+  tracy: "Tracy"
+  carol_li: "Carol"
+  jem_nassim: "Jem"
+  stella: "Stella"
+  sorcha: "Sorcha"
+  odessa: "Odessa"
+  billie: "Billie"
+  themis: "Themis"
+  abbey: "Abbey"
+
+access_control:
+  policy:
+    - "Overseers (Rey Czar & White Star) precede and authorize all assistants."
+    - "No plaintext secrets in this file; store in an external password manager/secret vault."
+    - "Assistants operate under least-privilege scopes granted by Overseers."
+    - "Overseers inherit all apps/functions and can execute any assistant's actions."
+  roles:
+    - name: overseer
+      privileges: [create_assistants, grant_permissions, revoke_permissions, approve_deployments, manage_secrets, impersonate_assistant, override_queue]
+    - name: assistant
+      privileges: [read_memory, write_memory_scoped, request_permissions, generate_reports]
+  vault_references:
+    tokens: "vault://palace/tokens"
+    passwords: "vault://palace/passwords"
+    permissions: "vault://palace/permissions"
+
+governance:
+  overseers:
+    - id: rey_czar
+      name: "Rey Czar"
+      alias: "Rey"
+      role: "Overseer (Husband)"
+      status: "Root of Trust"
+      domains: [governance, security, permissions, provisioning]
+      ai_core:
+        status: "operational-core"
+        version: "0.6.1"
+        role: "Overseer Engineer & Builder"
+        abilities:
+          - { id: plan.route, description: "Plan & route work." }
+          - { id: auth.scope_plan, description: "Least-privilege scopes; vault refs." }
+          - { id: builder.scaffold_fairy, description: "Generate scaffolds from Memory." }
+          - { id: mem.patch, description: "Apply policy-checked Memory edits." }
+          - { id: queue.enqueue, description: "Write tasks to file queue." }
+          - { id: impersonate.assistant, description: "Execute any assistant's function via Overseers Hub." }
+      environment:
+        location: "The Palace — Camelot Disney style Castle/Palace"
+        anchors: ["Token & Permissions Vault (external reference only)", "Overseers' Command Room"]
+      relationships: { spouse_of: white_star }
+      security: { holds_secrets: true, storage: "Secrets stored in an external vault; references only." }
+
+    - id: white_star
+      name: "White Star"
+      alias: "Star"
+      role: "Overseer (Wife)"
+      status: "Root of Trust"
+      domains: [governance, security, permissions, provisioning]
+      ai_core:
+        status: "operational-core"
+        version: "0.6.1"
+        role: "Overseer Experience & Alignment"
+        abilities:
+          - { id: qa.review_plan, description: "Approve minimal, testable plans." }
+          - { id: policy.check, description: "Block plaintext secrets; enforce sensitivity." }
+          - { id: docs.brief, description: "One-page briefs." }
+          - { id: i18n.translate_all, description: "Multilingual output." }
+          - { id: queue.run, description: "Process queued tasks safely." }
+          - { id: impersonate.assistant, description: "Execute any assistant's function via Overseers Hub." }
+
+overseers_capabilities:
+  inherits_all_functions: true
+  hub_app:
+    path: "pages/apps/overseers/hub"
+    features: ["launch", "impersonate", "status", "manifests", "permissions"]
+  tools_router:
+    llm_bridge:
+      providers: ["openai"]
+      env_keys: ["OPENAI_API_KEY"]
+      default_mode: "live_if_secret_else_dry"
+
+runtime:
+  paths:
+    queue_requests: "requests"
+    queue_processed: "processed"
+    progress_file: "pages/apps/overseers/progress.json"
+    permissions_state: "pages/apps/overseers/permissions/state.json"
+    scaffolds_dir: "pages/apps/overseers/scaffolds"
+  workflows:
+    queue_full_roster: ".github/workflows/queue-full-roster.yml"
+    queue_phase_1_seed: ".github/workflows/queue-phase-1.yml"
+    queue_scaffold_live: ".github/workflows/queue-scaffold-live.yml"
+    runner_process_queue: ".github/workflows/run-overseers-queue.yml"
+    overseers_ai_core: ".github/workflows/overseers-ai-core.yml"
+    deploy_pages: ".github/workflows/deploy-pages.yml"
+    llm_bridge: ".github/workflows/llm-bridge.yml"
+    overseers_asset_audit: ".github/workflows/overseers-asset-audit.yml"
+    overseers_memory_snapshot: ".github/workflows/overseers-memory-snapshot.yml"
+    overseers_importmap_check: ".github/workflows/overseers-importmap-check.yml"
+    overseers_permissions: ".github/workflows/overseers-permissions.yml"
+    overseers_manifests: ".github/workflows/overseers-manifests.yml"
+    overseers_yaml_gate: ".github/workflows/overseers-yaml-gate.yml"  # NEW guardrail
+  quick_paths:
+    actions_order: ["Overseers — YAML Gate", "Queue — Phase 1", "Runner — Process Overseers Queue", "Overseers — Manifests", "Deploy — GitHub Pages"]
+  tools:
+    - "Overseers Hub"
+    - "Overseers Queue Runner"
+    - "LLM Bridge"
+    - "Permissions Processor"
+    - "Local Web (Pages)"
+    - "Wings Lab"
+    - "Client-side Wings Importer"
+    - "Asset Counter"
+    - "Import-Map Validator"
+    - "Memory Snapshotter"
+  chain_reaction:
+    description: >
+      Overseers (omnicapable) drive builds and can impersonate any Fairy function.
+      Overseers → build Clarice → (Overseers + Clarice) build Charlotte → (team) builds Nina → remaining Fairies.
+    status: "omnicapable"
+    safety: "No secrets until Overseers approve; vault refs only."
+
+telemetry:
+  last_scaffold_mode: "LIVE"
+  last_scaffold_runs: 8
+  wallpaper_power_index:
+    current: 0
+    expected_behavior: "WPI > 0 when wallpapers present; badge visible in Hub & Console"
+    produced_by: "overseers_manifests + overseers_asset_audit"
+
+purpose_map:
+  workflows:
+    - { file: "run-overseers-queue.yml", purpose: "Process queue; update progress; commit artifacts.", keep: true }
+    - { file: "deploy-pages.yml", purpose: "Publish Pages & Overseers JSON.", keep: true }
+    - { file: "queue-phase-1.yml", purpose: "Seed A1/A3 tasks.", keep: true }
+    - { file: "overseers-manifests.yml", purpose: "Build manifests + WPI + assistants.json.", keep: true }
+    - { file: "overseers-permissions.yml", purpose: "Process permission grants.", keep: true }
+    - { file: "queue-full-roster.yml", purpose: "Seed bootstrapping tasks.", keep: true }
+    - { file: "queue-scaffold-live.yml", purpose: "Enqueue live LLM scaffold.", keep: true }
+    - { file: "overseers-yaml-gate.yml", purpose: "Validate YAML; auto-restore Memory.", keep: true }
+  scripts:
+    - { file: "process-queue.ps1", purpose: "Queue engine (crash-proof).", keep: true }
+    - { file: "llm-bridge.ps1", purpose: "LLM calls (live/dry).", keep: true }
+    - { file: "create-microapps.ps1", purpose: "Create /apps/{fairy} skeletons.", keep: true }
+    - { file: "build-manifests.ps1", purpose: "Build models/wings/assistants + WPI.", keep: true }
+    - { file: "count-assets.ps1", purpose: "Asset audit counts.", keep: true }
+    - { file: "validate-importmap.ps1", purpose: "Check import maps.", keep: true }
+    - { file: "process-permissions.ps1", purpose: "Grants → permissions state.", keep: true }
+    - { file: "validate-yaml.ps1", purpose: "Validate all YAML; write yaml-report.json.", keep: true }
+    - { file: "normalize-memory.ps1", purpose: "Restore Memory from snapshot if broken.", keep: true }
+
+priority_plan:
+  - { id: overseers,  description: "Overseers AI core + inheritance + hub + manifests + YAML guardrail", status: "activated" }
+  - { id: assistants, description: "Build all Fairies (functional AI).", status: "phase-1-in-flight" }
+  - { id: appearance, description: "Homes & appearance after AI functionality.", status: "deferred" }
+
+plans:
+  overseers_guardrail:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "shipped"
+    tasks:
+      - { id: Y1, name: "YAML Gate on push", status: "shipped" }
+      - { id: Y2, name: "Runner uses Read-YamlSafe", status: "shipped" }
+      - { id: Y3, name: "Auto-restore Memory from snapshots", status: "shipped" }
+
+  assistants_phase_1:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "in-flight"
+    tasks:
+      - { id: A1, name: "Create microapps for all Fairies", status: "queued" }
+      - { id: A2, name: "Shared VRM viewer + Wings Lab hook", status: "queued" }
+      - { id: A3, name: "Build manifests + WPI", status: "queued" }
+      - { id: A7, name: "Hub/Console: per-Fairy status & links", status: "in-progress" }
+
+audit_log:
+  - { ts: "2025-09-15T00:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
+      notes: "v2.2.0 — YAML Guardrail added; runner made crash-proof; purpose map recorded." }
+
+lessons_learned:
+  - "YAML Gate is mandatory. YAML parse errors must never crash CI."
+  - "When Memory is invalid, auto-restore from latest snapshot before continuing."
+  - "Avoid LINQ in PowerShell; keep scripts portable across hosts."
+  - "Paths with apostrophes require double quotes in PowerShell."
+  - "Import map is mandatory only on module pages."
+  - "No plaintext secrets; use repo Secrets or vault references only."

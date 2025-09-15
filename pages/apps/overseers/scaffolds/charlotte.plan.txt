@@ -3,11 +3,11 @@ Line |
   58 |    $resp = Invoke-RestMethod -Uri "https://api.openai.com/v1/chat/comp …
      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      |  {   "error": {     "message": "Rate limit reached for gpt-4o-mini in
-     | organization org-KXUphNy9NwGK8j20zNC1DmqW on tokens per min (TPM): Limit
-     | 100000, Used 100000, Requested 48. Please try again in 20m44.16s. Visit
+     | organization org-KXUphNy9NwGK8j20zNC1DmqW on requests per day (RPD):
+     | Limit 200, Used 200, Requested 1. Please try again in 7m12s. Visit
      | https://platform.openai.com/account/rate-limits to learn more. You can
      | increase your rate limit by adding a payment method to your account at
-     | https://platform.openai.com/account/billing.",     "type": "tokens",    
+     | https://platform.openai.com/account/billing.",     "type": "requests",  
      | "param": null,     "code": "rate_limit_exceeded"   } }
 
 

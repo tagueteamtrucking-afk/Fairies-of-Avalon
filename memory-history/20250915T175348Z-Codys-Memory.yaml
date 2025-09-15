@@ -1,0 +1,25 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "2.5.3"
+  last_updated: "2025-09-15"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    v2.5.3 — Green-on-No-Change + Landing Cache-Bust
+      - Workflows guard commits: if git status is empty, skip commit; job remains green.
+      - Generate Landing writes CSS and links with ?v=4; home redirects with ?v=4 to bust caches.
+      - Stub detection: if Bridge returns fallback, write deterministic wallpaper hero + tiles.
+
+policies:
+  ci_nonfatal_rules:
+    - "LLM rate limits: write fallback, exit 0."
+    - "Empty git diffs: skip commit, exit 0."
+
+runtime:
+  workflows:
+    overseers_create_microapps: ".github/workflows/overseers-create-microapps.yml"
+    overseers_generate_landing: ".github/workflows/overseers-generate-landing.yml"
+  landing:
+    html: "pages/themes/landing.generated.html"
+    css:  "pages/themes/landing.generated.css"
+    cache_bust: "v=4"

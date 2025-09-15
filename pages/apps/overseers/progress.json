@@ -48,5 +48,11 @@
   "notes": [
     "Counts include alias path asset/winged-models.",
     "Budgets are soft; optimize shell weight and lazy-loading."
-  ]
+  ],
+  "telemetry": {
+    "wallpaper_power_index": 20,
+    "updated": "2025-09-15T18:22:17.6439467Z",
+    "wallpapers_count": 4,
+    "wallpapers_total": 20
+  }
 }

@@ -3,53 +3,63 @@ import { applyWallpaperTheme } from '/apps/shared/theme.js';
 
 await applyWallpaperTheme({ strategy: 'first', overlay: 'dark' }).catch(()=>{});
 
-const models = await (await fetch('/asset/models/models.json?t=' + Date.now(), { cache: 'no-store' })).json();
-const wings  = await (await fetch('/asset/wings/manifest.json?t=' + Date.now(), { cache: 'no-store' })).json();
-
-const byAvatar = models?.byAvatar || {};
-const wingIds = Object.keys(wings?.wings || {}).sort((a,b)=>Number(a)-Number(b));
-
 const selAvatar = document.getElementById('avatar');
 const selWing   = document.getElementById('wing');
+const note      = document.getElementById('note');
+const viewerDiv = document.getElementById('viewer');
 
-Object.keys(byAvatar).sort().forEach(name => {
-  const opt = document.createElement('option');
-  opt.value = byAvatar[name];
-  opt.textContent = name;
-  selAvatar.appendChild(opt);
-});
-wingIds.forEach(id => {
-  const opt = document.createElement('option');
-  opt.value = id;
-  opt.textContent = 'wing' + id;
-  selWing.appendChild(opt);
-});
+const state = { viewer: null };
 
-// pick defaults
-if (selAvatar.options.length > 0) selAvatar.selectedIndex = 0;
-if (selWing.options.length > 0)   selWing.selectedIndex   = Math.max(0, wingIds.indexOf('1420'));
+function addOpt(sel, value, text){ const o=document.createElement('option'); o.value=value; o.textContent=text; sel.appendChild(o); }
+function clear(sel){ while(sel.firstChild) sel.removeChild(sel.firstChild); }
 
-const viewer = await createVRMViewer({
-  container: '#viewer',
-  vrmPath: selAvatar.value ? ('/' + selAvatar.value.replace(/^\//,'')) : null,
-  wingId: selWing.value || null,
-  modelScale: 1.0,
-  wingsScale: 1.0,
-  enableOrbitControls: true
-});
+async function loadJSON(url){
+  try {
+    const r = await fetch(url + (url.includes('?') ? '' : '?t=') + Date.now(), { cache: 'no-store' });
+    if (!r.ok) throw new Error(r.status + ' ' + r.statusText);
+    return await r.json();
+  } catch { return null; }
+}
 
-selAvatar.addEventListener('change', async () => {
-  // easy reload: dispose and recreate to switch VRM
-  viewer.dispose();
-  await createVRMViewer({
+const models = await loadJSON('/asset/models/models.json');
+const wings  = await loadJSON('/asset/wings/manifest.json');
+
+const byAvatar = models?.byAvatar || {};
+const wingMap  = wings?.wings || {};
+
+if (Object.keys(byAvatar).length === 0) {
+  // Fallback to assistants.json so at least names appear
+  const assistants = (await loadJSON('/apps/overseers/assistants.json')) || [];
+  assistants.forEach(a => addOpt(selAvatar, '', a.name));
+  note.innerHTML = '<small>models.json missing or empty — dropdown shows names only. Run <b>Overseers — Manifests & WPI</b> to regenerate mapping.</small>';
+} else {
+  Object.keys(byAvatar).sort().forEach(name => addOpt(selAvatar, byAvatar[name], name));
+  note.innerHTML = '<small>Tip: Use touch/mouse drag to orbit. Wings and blink are animated.</small>';
+}
+
+const wingIds = Object.keys(wingMap).sort((a,b)=>Number(a)-Number(b));
+if (wingIds.length === 0) {
+  addOpt(selWing, '', 'none');
+} else {
+  wingIds.forEach(id => addOpt(selWing, id, 'wing' + id));
+}
+
+async function mount(){
+  const path = selAvatar.value;
+  if (!path) {
+    viewerDiv.innerHTML = '<p class="card"><small>Select an avatar that has a VRM path in models.json.</small></p>';
+    return;
+  }
+  if (state.viewer) { state.viewer.dispose(); state.viewer = null; }
+  state.viewer = await createVRMViewer({
     container: '#viewer',
-    vrmPath: selAvatar.value ? ('/' + selAvatar.value.replace(/^\//,'')) : null,
+    vrmPath: '/' + String(path).replace(/^\/+/,''),
     wingId: selWing.value || null,
-    modelScale: 1.0,
-    wingsScale: 1.0
+    enableOrbitControls: true
   });
-});
+}
 
-selWing.addEventListener('change', async () => {
-  await viewer.setWing(selWing.value || null);
-});
+selAvatar.addEventListener('change', mount);
+selWing.addEventListener('change', async () => { if (state.viewer) await state.viewer.setWing(selWing.value || null); });
+
+if (selAvatar.options.length) { selAvatar.selectedIndex = 0; await mount(); }

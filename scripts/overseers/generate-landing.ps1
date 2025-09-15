@@ -12,7 +12,6 @@ try { Import-Module powershell-yaml -ErrorAction Stop } catch {
 function IsoNow(){ (Get-Date).ToUniversalTime().ToString("o") }
 function Encode-UrlPath([string]$p){
   if (-not $p) { return $p }
-  # Encode only risky chars to keep readability
   ($p -replace ' ', '%20' -replace '\(', '%28' -replace '\)', '%29')
 }
 
@@ -54,7 +53,7 @@ $outDir = Join-Path $RepoRoot "pages/themes"
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 $htmlOut = Join-Path $outDir "landing.generated.html"
 $cssOut  = Join-Path $outDir "landing.generated.css"
-$ver = "5"  # cache-bust
+$ver = "6"  # cache-bust
 
 function Write-CSS([string]$bg){
   $bgEnc = Encode-UrlPath $bg
@@ -76,28 +75,29 @@ function Write-CSS([string]$bg){
   Set-Content -Path $cssOut -Value $css -Encoding utf8NoBOM
 }
 
-$runtimeHeal = @"
+# JS runtime “self-heal” (single-quoted here-string: literal, no PowerShell escapes)
+$runtimeHeal = @'
 <script type="module">
 (async ()=>{
-  const hero = document.querySelector('.hero');
+  const hero = document.querySelector(".hero");
   if (!hero) return;
-  const bg = getComputedStyle(hero).backgroundImage || '';
-  const blank = !bg || bg === 'none' || /url\(\"\"\)/.test(bg);
-  const tryApply = async ()=>{
+  const bg = getComputedStyle(hero).backgroundImage || "";
+  const blank = !bg || bg === "none" || /url\(""\)/.test(bg);
+  async function tryApply(){
     try{
-      const res = await fetch('/apps/overseers/wallpapers.json?ts=' + Date.now(), { cache: 'no-store' });
+      const res = await fetch("/apps/overseers/wallpapers.json?ts=" + Date.now(), { cache: "no-store" });
       const list = await res.json();
       if (Array.isArray(list) && list.length){
-        const p = '/' + String(list[0].path).replace(/^\/+/,'');
-        const u = p.replace(/ /g,'%20').replace(/\(/g,'%28').replace(/\)/g,'%29');
-        hero.style.backgroundImage = `url('${u}')`;
+        const p = "/" + String(list[0].path || "").replace(/^\/+/, "");
+        const u = p.replace(/ /g,"%20").replace(/\(/g,"%28").replace(/\)/g,"%29");
+        hero.style.backgroundImage = "url('" + u + "')";
       }
     }catch{}
-  };
+  }
   if (blank) { await tryApply(); }
 })();
 </script>
-"@
+'@
 
 function Write-Deterministic(){
   $tiles = ""

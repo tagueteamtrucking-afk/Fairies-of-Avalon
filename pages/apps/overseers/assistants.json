@@ -1,0 +1,92 @@
+[
+  {
+    "id": "abbey",
+    "path": "/apps/abbey/",
+    "name": "Abbey",
+    "microapp_exists": true
+  },
+  {
+    "id": "alexandria",
+    "path": "/apps/alexandria/",
+    "name": "Alexandria",
+    "microapp_exists": true
+  },
+  {
+    "id": "billie",
+    "path": "/apps/billie/",
+    "name": "Billie",
+    "microapp_exists": true
+  },
+  {
+    "id": "carol",
+    "path": "/apps/carol/",
+    "name": "Carol",
+    "microapp_exists": true
+  },
+  {
+    "id": "charlotte",
+    "path": "/apps/charlotte/",
+    "name": "Charlotte",
+    "microapp_exists": true
+  },
+  {
+    "id": "clarice",
+    "path": "/apps/clarice/",
+    "name": "Clarice",
+    "microapp_exists": true
+  },
+  {
+    "id": "jem",
+    "path": "/apps/jem/",
+    "name": "Jem",
+    "microapp_exists": true
+  },
+  {
+    "id": "nina",
+    "path": "/apps/nina/",
+    "name": "Nina",
+    "microapp_exists": true
+  },
+  {
+    "id": "odessa",
+    "path": "/apps/odessa/",
+    "name": "Odessa",
+    "microapp_exists": true
+  },
+  {
+    "id": "reyczar",
+    "path": "/apps/reyczar/",
+    "name": "Reyczar",
+    "microapp_exists": true
+  },
+  {
+    "id": "sorcha",
+    "path": "/apps/sorcha/",
+    "name": "Sorcha",
+    "microapp_exists": true
+  },
+  {
+    "id": "themis",
+    "path": "/apps/themis/",
+    "name": "Themis",
+    "microapp_exists": true
+  },
+  {
+    "id": "whitestar",
+    "path": "/apps/whitestar/",
+    "name": "WhiteStar",
+    "microapp_exists": true
+  },
+  {
+    "id": "tracy",
+    "path": "/apps/tracy/",
+    "name": "Tracy",
+    "microapp_exists": true
+  },
+  {
+    "id": "stella",
+    "path": "/apps/stella/",
+    "name": "Stella",
+    "microapp_exists": true
+  }
+]

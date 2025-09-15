@@ -1,13 +1,6 @@
-### ERROR\nLLM Bridge call failed: Invoke-RestMethod: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/llm-bridge.ps1:58
-Line |
-  58 |    $resp = Invoke-RestMethod -Uri "https://api.openai.com/v1/chat/comp …
-     |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     |  {   "error": {     "message": "Rate limit reached for gpt-4o-mini in
-     | organization org-KXUphNy9NwGK8j20zNC1DmqW on requests per min (RPM):
-     | Limit 3, Used 3, Requested 1. Please try again in 20s. Visit
-     | https://platform.openai.com/account/rate-limits to learn more. You can
-     | increase your rate limit by adding a payment method to your account at
-     | https://platform.openai.com/account/billing.",     "type": "requests",  
-     | "param": null,     "code": "rate_limit_exceeded"   } }
-
-
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-15T15:11:23.8834363Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

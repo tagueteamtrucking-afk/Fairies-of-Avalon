@@ -1,0 +1,37 @@
+name: "Clarice — Integrity Report"
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+      - name: Run integrity scan
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          & "scripts/overseers/clarice-integrity.ps1" -RepoRoot "${{ github.workspace }}"
+      - name: Commit report (if changed)
+        shell: pwsh
+        run: |
+          git add -A "pages/apps/clarice/security-report.json"
+          $changes = git status --porcelain -- "pages/apps/clarice/security-report.json"
+          if ([string]::IsNullOrWhiteSpace($changes)) { Write-Host "Nothing to commit."; }
+          else {
+            git config user.email "actions@github.com"
+            git config user.name  "GitHub Actions"
+            git fetch origin ${{ github.ref_name }} --prune
+            git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
+            git commit -m "Clarice: security report"
+          }
+      - name: Push
+        uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
+          force_with_lease: true

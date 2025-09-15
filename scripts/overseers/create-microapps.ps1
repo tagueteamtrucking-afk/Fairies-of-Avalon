@@ -1,24 +1,53 @@
 [CmdletBinding()]
-param([string]$RepoRoot=".", [string[]]$Avatars=@())
+param(
+  [string]$RepoRoot=".",
+  [string[]]$Avatars=@()
+)
 
 $ErrorActionPreference='Stop'
 
 function Make-Slug([string]$n){ if(-not $n){return ""}; return ($n -replace '[^A-Za-z0-9]','').ToLowerInvariant() }
 function IsoNow(){ (Get-Date).ToUniversalTime().ToString("o") }
 
-# Load Memory for default avatars if none provided
-$memPath = Join-Path $RepoRoot "Cody's Memory.yaml"
-$mem = @{}
+# Try Memory -> models.json -> VRM filenames
+$memAvatars=@()
 try {
   Import-Module powershell-yaml -ErrorAction Stop
-  $mem = (Get-Content -Raw -Path $memPath) | ConvertFrom-Yaml
-} catch { $mem=@{} }
+  $memPath = Join-Path $RepoRoot "Cody's Memory.yaml"
+  if (Test-Path $memPath) {
+    $mem = (Get-Content -Raw -Path $memPath) | ConvertFrom-Yaml
+    if ($mem.avatars_present) { $memAvatars = @($mem.avatars_present) }
+  }
+} catch { $memAvatars=@() }
 
-if (-not $Avatars -or $Avatars.Count -eq 0) {
-  if ($mem.avatars_present) { $Avatars = @($mem.avatars_present) } else { $Avatars = @() }
+$modelsAvatars=@()
+$modelsJson = Join-Path $RepoRoot "asset/models/models.json"
+if (Test-Path $modelsJson) {
+  try {
+    $models = Get-Content -Raw -Path $modelsJson | ConvertFrom-Json -Depth 40
+    if ($models.byAvatar) { $modelsAvatars = @($models.byAvatar.PSObject.Properties.Name) }
+  } catch { $modelsAvatars=@() }
 }
 
-# Try to use models.json mapping at runtime in the page (simpler here)
+$vrmAvatars=@()
+$modelsRoot = Join-Path $RepoRoot "asset/models"
+if (Test-Path $modelsRoot) {
+  $vrms = Get-ChildItem $modelsRoot -Recurse -File -Filter *.vrm
+  foreach($f in $vrms){
+    $name = [IO.Path]::GetFileNameWithoutExtension($f.Name)
+    $name = $name -replace '[_-]wings$',''  # strip *_wings/-wings suffixes
+    if ($name) { $vrmAvatars += $name }
+  }
+  $vrmAvatars = $vrmAvatars | Sort-Object -Unique
+}
+
+# Choose source of truth in order of reliability
+if (-not $Avatars -or $Avatars.Count -eq 0) {
+  if ($memAvatars.Count -gt 0)       { $Avatars = $memAvatars }
+  elseif ($modelsAvatars.Count -gt 0){ $Avatars = $modelsAvatars }
+  else                               { $Avatars = $vrmAvatars }
+}
+
 $created = 0
 foreach ($name in $Avatars) {
   if (-not $name) { continue }
@@ -64,9 +93,9 @@ foreach ($name in $Avatars) {
     const path = models?.byAvatar?.[NAME];
     const target = '#viewer';
     if (path) {
-      await createVRMViewer({ container: target, vrmPath: '/' + path.replace(/^\\//,''), wingId: null, enableOrbitControls: true });
+      await createVRMViewer({ container: target, vrmPath: '/' + String(path).replace(/^\\//,''), wingId: null, enableOrbitControls: true });
     } else {
-      document.querySelector(target).innerHTML = '<p><small>No VRM found for this assistant yet.</small></p>';
+      document.querySelector(target).innerHTML = '<p><small>No VRM mapped for this assistant yet.</small></p>';
     }
   </script>
 </body>
@@ -76,4 +105,6 @@ foreach ($name in $Avatars) {
   $created++
 }
 
-Write-Host "Created/updated $created microapps at $(Get-Date -Format 'u')."
+Write-Host "Created/updated $created microapps at $(IsoNow)"
+# success
+exit 0

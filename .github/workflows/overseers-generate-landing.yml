@@ -2,6 +2,15 @@ name: "Overseers — Generate Landing"
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "Generation mode"
+        required: true
+        default: "auto"
+        type: choice
+        options:
+          - auto
+          - fallback-only
 
 permissions:
   contents: write
@@ -22,15 +31,16 @@ jobs:
           Install-Module powershell-yaml -Scope CurrentUser -Force -AllowClobber
           Import-Module powershell-yaml
 
-      - name: Generate landing (LLM if available; else fallback)
+      - name: Generate landing (LLM or deterministic)
         shell: pwsh
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           $ErrorActionPreference='Stop'
-          & "scripts/overseers/generate-landing.ps1" -RepoRoot "${{ github.workspace }}" -Verbose
+          $force = ("${{ github.event.inputs.mode }}" -eq "fallback-only")
+          & "scripts/overseers/generate-landing.ps1" -RepoRoot "${{ github.workspace }}" @(@{ ForceFallback = $true }[$force])
 
-      - name: Commit landing
+      - name: Commit landing artifacts
         shell: pwsh
         run: |
           git add "pages/themes/landing.generated.html" || echo "no html changes"
@@ -39,7 +49,7 @@ jobs:
           git config user.name  "GitHub Actions"
           git fetch origin ${{ github.ref_name }} --depth=0
           git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
-          git commit -m "Overseers: landing (generated)" || echo "Nothing to commit"
+          git commit -m "Overseers: landing (mode=${{ github.event.inputs.mode }})" || echo "Nothing to commit"
 
       - name: Push
         uses: ad-m/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa

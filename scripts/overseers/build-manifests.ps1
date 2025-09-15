@@ -1,30 +1,18 @@
 [CmdletBinding()]
-param(
-  [string]$RepoRoot = "."
-)
+param([string]$RepoRoot=".")
 
-$ErrorActionPreference = 'Stop'
-
-try { Import-Module powershell-yaml -ErrorAction Stop }
-catch {
+$ErrorActionPreference='Stop'
+try { Import-Module powershell-yaml -ErrorAction Stop } catch {
   Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
   Install-Module powershell-yaml -Scope CurrentUser -Force -AllowClobber
   Import-Module powershell-yaml -ErrorAction Stop
 }
 
-function Make-Slug([string]$name) {
-  if (-not $name) { return "" }
-  return ($name -replace '[^A-Za-z0-9]', '').ToLowerInvariant()
-}
+function Make-Slug([string]$n){ if(-not $n){return ""}; return ($n -replace '[^A-Za-z0-9]','').ToLowerInvariant() }
 function IsoNow(){ (Get-Date).ToUniversalTime().ToString("o") }
-function To-Rel([string]$p){
-  $root = (Resolve-Path -LiteralPath $RepoRoot).Path
-  $full = (Resolve-Path -LiteralPath $p).Path
-  $rel  = $full.Substring($root.Length).TrimStart('\','/')
-  return ($rel -replace '\\','/')
-}
+function To-Rel([string]$p){ $root=(Resolve-Path -LiteralPath $RepoRoot).Path; $full=(Resolve-Path -LiteralPath $p).Path; ($full.Substring($root.Length)).TrimStart('\','/') -replace '\\','/' }
 
-# Load Memory and paths
+# Memory + paths
 $memPath = Join-Path $RepoRoot "Cody's Memory.yaml"
 $mem     = (Get-Content -Raw -Path $memPath) | ConvertFrom-Yaml
 
@@ -39,145 +27,107 @@ $modelsManifest   = Join-Path $RepoRoot $layout.models_manifest
 $wingsManifest    = Join-Path $RepoRoot $layout.wings_manifest
 $wallpapersDir    = Join-Path $RepoRoot $layout.wallpapers
 
-$pagesRoot        = Join-Path $RepoRoot $mem.hosting.pages_root
-$microappsRoot    = Join-Path $RepoRoot $mem.hosting.microapps_path
-$assistantsJson   = Join-Path $RepoRoot "pages/apps/overseers/assistants.json"
-$progressFile     = Join-Path $RepoRoot $mem.runtime.paths.progress_file
+$pagesRoot      = Join-Path $RepoRoot $mem.hosting.pages_root
+$microappsRoot  = Join-Path $RepoRoot $mem.hosting.microapps_path
+$assistantsJson = Join-Path $RepoRoot "pages/apps/overseers/assistants.json"
+$progressFile   = Join-Path $RepoRoot $mem.runtime.paths.progress_file
+$wallpapersJson = Join-Path $RepoRoot "pages/apps/overseers/wallpapers.json"
 
-# Gather VRM lists
-$wingless = @()
-$prewinged = @()
+# Collect VRM
+$wingless=@(); $prewinged=@()
+if (Test-Path $winglessDir)   { $wingless  += Get-ChildItem $winglessDir -Filter *.vrm -File -Recurse | % { To-Rel $_.FullName } }
+if (Test-Path $prewingedDir)  { $prewinged += Get-ChildItem $prewingedDir -Filter *.vrm -File -Recurse | % { To-Rel $_.FullName } }
+if (Test-Path $wingedAliasDir){ $prewinged += Get-ChildItem $wingedAliasDir -Filter *.vrm -File -Recurse | % { To-Rel $_.FullName } }
 
-if (Test-Path $winglessDir)  { $wingless += Get-ChildItem $winglessDir -Filter *.vrm -File -Recurse | ForEach-Object { To-Rel $_.FullName } }
-if (Test-Path $prewingedDir) { $prewinged += Get-ChildItem $prewingedDir -Filter *.vrm -File -Recurse | ForEach-Object { To-Rel $_.FullName } }
-if (Test-Path $wingedAliasDir){ $prewinged += Get-ChildItem $wingedAliasDir -Filter *.vrm -File -Recurse | ForEach-Object { To-Rel $_.FullName } }
-
-# Legacy classification in models_root_legacy
 if (Test-Path $modelsRootLegacy) {
   $files = Get-ChildItem $modelsRootLegacy -Filter *.vrm -File
   foreach ($f in $files) {
-    $name = [System.IO.Path]::GetFileNameWithoutExtension($f.Name).ToLowerInvariant()
-    if ($f.DirectoryName -match [regex]::Escape((Resolve-Path -LiteralPath $winglessDir -ErrorAction SilentlyContinue)?.Path) `
-        -or $f.DirectoryName -match [regex]::Escape((Resolve-Path -LiteralPath $prewingedDir -ErrorAction SilentlyContinue)?.Path)) {
-      continue
-    }
+    $name = [IO.Path]::GetFileNameWithoutExtension($f.Name).ToLowerInvariant()
     if ($name.EndsWith("_wings") -or $name.EndsWith("-wings")) { $prewinged += (To-Rel $f.FullName) }
     else { $wingless += (To-Rel $f.FullName) }
   }
 }
-
-# De-dupe (case-insensitive)
 $wingless  = $wingless  | Sort-Object -Unique
 $prewinged = $prewinged | Sort-Object -Unique
 
-# Build byAvatar map (best-effort)
-$avatars = @($mem.avatars_present)
-$byAvatar = @{}
-foreach ($a in $avatars) {
-  $slug = Make-Slug $a
-  $expect = "$($a).vrm"
-  $candidates = @()
-  $candidates += $wingless | Where-Object { $_.Split('/')[-1] -ieq $expect }
-  $candidates += $prewinged | Where-Object { $_.Split('/')[-1] -ieq $expect }
-  if (-not $candidates -or $candidates.Count -eq 0) {
-    # try lowercased simple slug
-    $candidates += $wingless | Where-Object { $_.ToLower().Contains(("$slug.vrm")) }
-    $candidates += $prewinged | Where-Object { $_.ToLower().Contains(("$slug.vrm")) }
-  }
-  if ($candidates.Count -gt 0) {
-    $byAvatar[$a] = $candidates[0]
-  }
+# byAvatar
+$avatars=@($mem.avatars_present)
+$byAvatar=@{}
+foreach($a in $avatars){
+  $slug=Make-Slug $a; $expect="$a.vrm"
+  $cand = @($wingless + $prewinged) | ? { $_.Split('/')[-1] -ieq $expect }
+  if(-not $cand -or $cand.Count -eq 0){ $cand = @($wingless + $prewinged) | ? { $_.ToLower().Contains("$slug.vrm") } }
+  if($cand.Count -gt 0){ $byAvatar[$a]=$cand[0] }
 }
 
 # Write models manifest
 New-Item -ItemType Directory -Force -Path (Split-Path $modelsManifest -Parent) | Out-Null
-$modelsObj = @{
+@{
   generated = (IsoNow)
   wingless = $wingless
   prewinged = $prewinged
   byAvatar = $byAvatar
-}
-$modelsJson = ($modelsObj | ConvertTo-Json -Depth 6)
-Set-Content -Path $modelsManifest -Value $modelsJson -Encoding utf8NoBOM
+} | ConvertTo-Json -Depth 6 | Set-Content -Path $modelsManifest -Encoding utf8NoBOM
 
-# Wings manifest (group meshes + textures by number)
-$wings = @{}
+# Wings manifest: consolidate meshes + textures (if file exists, we still rebuild from disk to keep fresh)
+$wings=@{}
 if (Test-Path $wingsMeshDir) {
-  Get-ChildItem $wingsMeshDir -Filter *.fbx -File | ForEach-Object {
-    $n = $_.BaseName
-    if ($n -match '(?i)^wing(?<id>\d+)$') {
-      $id = $Matches['id']
-      if (-not $wings.ContainsKey($id)) { $wings[$id] = @{ mesh = $null; textures = @{} } }
-      $wings[$id].mesh = To-Rel $_.FullName
-    }
+  Get-ChildItem $wingsMeshDir -Filter *.fbx -File | % {
+    if ($_.BaseName -match '(?i)^wing(?<id>\d+)$'){ $id=$Matches.id; if(-not $wings.ContainsKey($id)){ $wings[$id]=@{ mesh=$null; textures=@{} } }; $wings[$id].mesh = To-Rel $_.FullName }
   }
 }
 if (Test-Path $wingsTexDir) {
-  Get-ChildItem $wingsTexDir -File | Where-Object { $_.Extension -match 'png|jpg|jpeg|webp' } | ForEach-Object {
-    $bn = $_.BaseName
-    $name = ($bn -replace '\(.*\)', '')  # strip (1)
-    if ($name -match '(?i)^wing(?<id>\d+)(?<suf>_c|_e|_nrm)?$') {
-      $id  = $Matches['id']
-      $suf = $Matches['suf']
-      if (-not $wings.ContainsKey($id)) { $wings[$id] = @{ mesh = $null; textures = @{} } }
+  Get-ChildItem $wingsTexDir -File | ? { $_.Extension -match 'png|jpe?g|webp' } | % {
+    $name = ($_.BaseName -replace '\(.*\)','')
+    if ($name -match '(?i)^wing(?<id>\d+)(?<suf>_c|_e|_nrm)?$'){
+      $id=$Matches.id; $suf=$Matches.suf
+      if(-not $wings.ContainsKey($id)){ $wings[$id]=@{ mesh=$null; textures=@{} } }
       $rel = To-Rel $_.FullName
-      switch -Regex ($suf) {
-        "_c"   { $wings[$id].textures.color    = $rel; break }
-        "_e"   { $wings[$id].textures.emissive = $rel; break }
-        "_nrm" { $wings[$id].textures.normal   = $rel; break }
-        default { $wings[$id].textures.base    = $rel; break }
+      switch ($suf) {
+        '_c'   { $wings[$id].textures.color    = $rel }
+        '_e'   { $wings[$id].textures.emissive = $rel }
+        '_nrm' { $wings[$id].textures.normal   = $rel }
+        default{ $wings[$id].textures.base     = $rel }
       }
     }
   }
 }
-
 New-Item -ItemType Directory -Force -Path (Split-Path $wingsManifest -Parent) | Out-Null
-$wingsObj = @{
-  generated = (IsoNow)
-  wings = $wings
-}
-$wingsJson = ($wingsObj | ConvertTo-Json -Depth 6)
-Set-Content -Path $wingsManifest -Value $wingsJson -Encoding utf8NoBOM
+@{ generated=(IsoNow); wings=$wings } | ConvertTo-Json -Depth 6 | Set-Content -Path $wingsManifest -Encoding utf8NoBOM
 
 # Assistants list for Hub
-$assist = @()
-foreach ($a in $avatars) {
-  $slug = Make-Slug $a
-  $pubPath = "/apps/$slug/"
-  $exists  = Test-Path (Join-Path $microappsRoot $slug "index.html")
-  $assist += @{ name = $a; id = $slug; path = $pubPath; microapp_exists = $exists }
+$assist=@()
+foreach($a in $avatars){
+  $slug=Make-Slug $a; $pub="/apps/$slug/"; $exists=Test-Path (Join-Path $microappsRoot $slug "index.html")
+  $assist += @{ name=$a; id=$slug; path=$pub; microapp_exists=$exists }
 }
 New-Item -ItemType Directory -Force -Path (Split-Path $assistantsJson -Parent) | Out-Null
-$assistJson = ($assist | ConvertTo-Json -Depth 4)
-Set-Content -Path $assistantsJson -Value $assistJson -Encoding utf8NoBOM
+$assist | ConvertTo-Json -Depth 4 | Set-Content -Path $assistantsJson -Encoding utf8NoBOM
 
-# WPI (Wallpaper Power Index)
-$wallpapersTotal = [int]($mem.assets.budgets.wallpapers_total)
-$wallpaperFiles = @()
+# Wallpapers list + WPI
+$wallList=@()
 if (Test-Path $wallpapersDir) {
-  $wallpaperFiles = Get-ChildItem $wallpapersDir -File | Where-Object { $_.Extension -match 'png|jpg|jpeg|webp' }
+  Get-ChildItem $wallpapersDir -File | ? { $_.Extension -match 'png|jpe?g|webp' } | Sort-Object Name | % {
+    $wallList += @{ path = To-Rel $_.FullName; size = $_.Length; name = $_.Name }
+  }
 }
-$count = $wallpaperFiles.Count
-$wpi = 0
-if ($wallpapersTotal -gt 0) {
-  $ratio = [double]([Math]::Min($count, $wallpapersTotal)) / [double]$wallpapersTotal
-  $wpi = [int][Math]::Round($ratio * 100)
-}
+New-Item -ItemType Directory -Force -Path (Split-Path $wallpapersJson -Parent) | Out-Null
+$wallList | ConvertTo-Json -Depth 4 | Set-Content -Path $wallpapersJson -Encoding utf8NoBOM
 
-# Merge into progress.json (non-destructive)
-$progress = @{}
-if (Test-Path $progressFile) {
-  try { $progress = Get-Content -Raw -Path $progressFile | ConvertFrom-Json -Depth 50 } catch { $progress = @{} }
-}
-if (-not $progress) { $progress = @{} }
-if (-not $progress.telemetry) { $progress.telemetry = @{} }
-$progress.telemetry.wallpaper_power_index = $wpi
-$progress.telemetry.wallpapers_count = $count
-$progress.telemetry.wallpapers_total = $wallpapersTotal
-$progress.telemetry.updated = (IsoNow)
+$wallTotal=[int]($mem.assets.budgets.wallpapers_total); $count=$wallList.Count
+$wpi = if($wallTotal -gt 0){ [int][Math]::Round(([Math]::Min($count,$wallTotal)/[double]$wallTotal)*100) } else { 0 }
 
-$progressJson = $progress | ConvertTo-Json -Depth 50
+# Merge telemetry into progress.json
+$progress=@{}
+if (Test-Path $progressFile) { try{ $progress = Get-Content -Raw -Path $progressFile | ConvertFrom-Json -Depth 50 } catch { $progress=@{} } }
+if (-not $progress) { $progress=@{} }
+if (-not $progress.telemetry) { $progress.telemetry=@{} }
+$progress.telemetry.wallpaper_power_index=$wpi
+$progress.telemetry.wallpapers_count=$count
+$progress.telemetry.wallpapers_total=$wallTotal
+$progress.telemetry.updated=(IsoNow)
+
 New-Item -ItemType Directory -Force -Path (Split-Path $progressFile -Parent) | Out-Null
-Set-Content -Path $progressFile -Value $progressJson -Encoding utf8NoBOM
+($progress | ConvertTo-Json -Depth 50) | Set-Content -Path $progressFile -Encoding utf8NoBOM
 
-Write-Host "Manifests built. Wingless=$($wingless.Count) Prewinged=$($prewinged.Count) Wings=$($wings.Keys.Count) WPI=$wpi"
+Write-Host "Manifests built: wingless=$($wingless.Count) prewinged=$($prewinged.Count) wings=$($wings.Keys.Count) wallpapers=$count WPI=$wpi"

@@ -1,0 +1,103 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "2.3.0"
+  last_updated: "2025-09-15"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    v2.3.0 — A2 shipped: VRM + Wings Viewer and Wallpaper Theme
+      - Added global import map (pages/importmap.json).
+      - Added shared modules: pages/apps/shared/vrm-viewer.js and pages/apps/shared/theme.js.
+      - Manifests builder now emits pages/apps/overseers/wallpapers.json and WPI.
+      - Overseers Hub gained /apps/overseers/hub/vrm-demo.html for immediate proof.
+      - Goal: Let Overseers animate VRMs with wings and theme UI from wallpapers.
+
+system: { os: "Windows 11", device: "Gaming PC", only_windows: true }
+
+delivery_policy:
+  speed_first: true
+  two_person_authorization: false
+  whole_file_replacements_only: true
+  preferred_shell: "GitHub Actions workflows + PowerShell"
+
+hosting:
+  frontend_domain: "fairiesofavalon.com"
+  pwa_app_shell: true
+  pages_root: "pages"
+  microapps_path: "pages/apps"
+  custom_domain_cname: true
+  cdn_imports: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+project:
+  world: "Avalon"
+  assistants_label: "Fairies"
+  domain: "fairiesofavalon.com"
+  home_label: "home"
+  preserve_paths: ["asset/models", "asset/wings"]
+  importmap_required: true
+  importmap_map: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+assets:
+  layout:
+    models_root_legacy: "asset/models"
+    wingless_vrms: "asset/models/wingless"
+    with_wings_vrms: "asset/models/with-wings"
+    with_wings_alias: "asset/winged-models"
+    wings_models: "asset/wings"
+    wings_textures: "asset/wings/textures"
+    models_manifest: "asset/models/models.json"
+    wings_manifest: "asset/wings/manifest.json"
+    wallpapers: "asset/textures/wallpapers"
+  outputs:
+    wallpapers_manifest: "pages/apps/overseers/wallpapers.json"
+  budgets:
+    initial_shell_kb: 300
+    initial_requests: 15
+    vrm_per_file_mb: 40
+    wallpapers_total: 20
+
+overseers_capabilities:
+  inherits_all_functions: true
+  features:
+    - animate_vrm_with_wings
+    - theme_from_wallpapers
+  hub_app: { path: "pages/apps/overseers/hub" }
+
+runtime:
+  paths:
+    queue_requests: "requests"
+    queue_processed: "processed"
+    progress_file: "pages/apps/overseers/progress.json"
+    permissions_state: "pages/apps/overseers/permissions/state.json"
+    scaffolds_dir: "pages/apps/overseers/scaffolds"
+  workflows:
+    queue_phase_1_seed: ".github/workflows/queue-phase-1.yml"
+    runner_process_queue: ".github/workflows/run-overseers-queue.yml"
+    overseers_manifests: ".github/workflows/overseers-manifests.yml"
+    overseers_yaml_gate: ".github/workflows/overseers-yaml-gate.yml"
+  tools:
+    - "Overseers Hub"
+    - "VRM Viewer"
+    - "Wallpaper Theme"
+
+telemetry:
+  wallpaper_power_index:
+    current: 0   # CI updates
+    produced_by: "overseers_manifests"
+    manifest: "pages/apps/overseers/wallpapers.json"
+
+plans:
+  assistants_phase_1:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "in-flight"
+    tasks:
+      - { id: A1, name: "Create microapps for all Fairies", status: "queued" }
+      - { id: A2, name: "Shared VRM viewer + wings + theme", status: "done" }
+      - { id: A3, name: "Build manifests + WPI + wallpapers.json", status: "done" }
+      - { id: A7, name: "Hub/Console: per-Fairy status & links", status: "in-progress" }
+
+lessons_learned:
+  - "Pages that import modules must include an import map (three, addons, @pixiv/three-vrm)."
+  - "Viewer must attach wings via humanoid chest; flap idle by default."
+  - "Theme is driven from wallpapers.json; WPI reflects coverage."

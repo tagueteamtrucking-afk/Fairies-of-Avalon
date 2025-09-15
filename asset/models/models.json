@@ -16,28 +16,12 @@
     "asset/models/tracy.vrm",
     "asset/models/whitestar.vrm"
   ],
+  "byAvatar": {},
+  "generated": "2025-09-15T17:46:50.1164627Z",
   "prewinged": [
     "asset/winged-models/WingedAlexandria.vrm",
     "asset/winged-models/WingedBillie.vrm",
     "asset/winged-models/WingedReyCzar.vrm",
     "asset/winged-models/WingedWhiteStar.vrm"
-  ],
-  "byAvatar": {
-    "Nina": "a",
-    "Stella": "a",
-    "Odessa": "a",
-    "Sorcha": "a",
-    "Themis": "a",
-    "WhiteStar": "a",
-    "Reyczar": "a",
-    "Abbey": "a",
-    "Jem": "a",
-    "Charlotte": "a",
-    "Billie": "a",
-    "Clarice": "a",
-    "Carol": "a",
-    "Tracy": "a",
-    "Alexandria": "a"
-  },
-  "generated": "2025-09-15T17:19:15.4880068Z"
+  ]
 }

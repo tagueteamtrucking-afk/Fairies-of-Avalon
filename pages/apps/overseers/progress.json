@@ -29,7 +29,7 @@
     {
       "ts": "2025-09-13T18:48:48.8782458Z",
       "started": "2025-09-15T17:31:46.4341993Z",
-      "ended": "2025-09-15T17:31:46.6555050Z",
+      "ended": "2025-09-15T17:31:46.655505Z",
       "file": "20250913T184848Z-scaffold-fairies.request.yml",
       "status": "ok",
       "dry_run": true,
@@ -42,7 +42,7 @@
     {
       "ts": "2025-09-13T18:48:49.0045446Z",
       "started": "2025-09-15T17:31:46.6586039Z",
-      "ended": "2025-09-15T17:31:46.7811730Z",
+      "ended": "2025-09-15T17:31:46.781173Z",
       "file": "20250913T184849Z-memory_snapshot.request.yml",
       "status": "ok",
       "dry_run": false,
@@ -99,7 +99,7 @@
     },
     {
       "ts": null,
-      "started": "2025-09-15T17:31:47.1733800Z",
+      "started": "2025-09-15T17:31:47.17338Z",
       "ended": "2025-09-15T17:31:58.3300809Z",
       "file": "20250913T215629Z-scaffold-live.request.yml",
       "status": "ok",
@@ -111,7 +111,7 @@
       "count": 15
     },
     {
-      "ts": "2025-09-15T06:36:27.3663610Z",
+      "ts": "2025-09-15T06:36:27.366361Z",
       "started": "2025-09-15T17:31:58.3307639Z",
       "ended": "2025-09-15T17:31:58.5776055Z",
       "file": "20250915T063627Z-build-manifests.request.yml",
@@ -155,5 +155,11 @@
     "failed": 3,
     "success": 10,
     "skipped": 0
+  },
+  "telemetry": {
+    "wallpapers_total": 20,
+    "wallpaper_power_index": 20,
+    "wallpapers_count": 4,
+    "updated": "2025-09-15T17:46:50.3646176Z"
   }
 }

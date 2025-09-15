@@ -1,4 +1,4 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-15T19:40:47.2491489Z -->
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-15T19:53:45.8190953Z -->
 <!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
 <section>
   <h2>Generated Content (Fallback)</h2>

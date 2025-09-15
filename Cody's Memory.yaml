@@ -1,447 +1,19 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "2.0.0"
-  last_updated: "2025-09-13"
-  author: "Cody (GPT-5 Pro)"
-  notes: >
-    Overseers-first. No plaintext secrets. Workflows-first (GitHub Actions).
-
-    v2.0.0 — Overseers Omnicapability Activation:
-      - Declared that Overseers inherit ALL assistant functions (source-of-truth role).
-      - Added Overseers Hub concept (aggregator microapp; links & embeds to all functions).
-      - Planned & recorded missing workflows: Permissions Processor, Manifests Builder, Phase-1 Seeder.
-      - WPI (Wallpaper Power Index) restoration captured as telemetry output of Asset Audit.
-      - LIVE LLM Bridge retained; dry-run only when secret missing.
-
-    v1.9.0 — Ready to build the Assistants (post-live-scaffold):
-      - Live scaffold SUCCESS; 8 test runs visible in Runner/Console.
-      - Deploy auto-triggers on progress changes; SW uses network-first for Overseers JSON.
-
-system:
-  os: "Windows 11"
-  device: "Gaming PC"
-  only_windows: true
-
-delivery_policy:
-  speed_first: true
-  two_person_authorization: false
-  whole_file_replacements_only: true
-  preferred_shell: "GitHub Actions workflows + PowerShell"
-  notes:
-    - "Provide full files ready to replace existing ones (no diffs/patches)."
-    - "Workflows-first. Scripts are helpers; no wrapper assumptions."
-    - "Deploy path must not require multi-review or environment approvals."
-
-hosting:
-  frontend_domain: "fairiesofavalon.com"
-  pwa_app_shell: true
-  pages_root: "pages"
-  microapps_path: "pages/apps"
-  custom_domain_cname: true
-  cdn_imports: ["three", "three/addons/", "@pixiv/three-vrm"]
-
-project:
-  world: "Avalon"
-  assistants_label: "Fairies"
-  domain: "fairiesofavalon.com"
-  home_label: "home"
-  preserve_paths: ["asset/models", "asset/wings"]
-  importmap_required: true
-  importmap_map: ["three", "three/addons/", "@pixiv/three-vrm"]
-
-assets:
-  layout:
-    models_root_legacy: "asset/models"
-    wingless_vrms: "asset/models/wingless"
-    with_wings_vrms: "asset/models/with-wings"
-    with_wings_alias: "asset/winged-models"
-    wings_models: "asset/wings"
-    wings_textures: "asset/wings/textures"
-    models_manifest: "asset/models/models.json"
-    wings_manifest: "asset/wings/manifest.json"
-    wallpapers: "asset/textures/wallpapers"
-  rules:
-    vrm_classification:
-      - "Any *.vrm in asset/models/wingless is wingless."
-      - "Any *.vrm in asset/models/with-wings is pre-winged."
-      - "Any *.vrm in asset/winged-models is pre-winged (alias path)."
-      - "Legacy layout (asset/models/*.vrm): treat as wingless unless filename ends with _wings or -wings."
-    wings_grouping:
-      - "Group by number (e.g., wing02.*). Case-insensitive."
-      - "Suffix mapping: _c=albedo/color, _e=emissive, _nrm=normal. Others (mr/rough/ao) recorded if present."
-  budgets:
-    initial_shell_kb: 300
-    initial_requests: 15
-    vrm_per_file_mb: 40
-    wallpapers_total: 20
-
-wings_pack: "Fantasy Wings Collection Fbx.rar"
-
-avatars_present:
-  - Abbey
-  - Alexandria
-  - Billie
-  - Carol
-  - Charlotte
-  - Clarice
-  - Jem
-  - Nina
-  - Odessa
-  - Reyczar
-  - Sorcha
-  - Themis
-  - WhiteStar
-  - Tracy
-  - Stella
-
-avatar_file_keys:
-  rey_czar: "Reyczar"
-  white_star: "WhiteStar"
-  clarice: "Clarice"
-  charlotte: "Charlotte"
-  nina: "Nina"
-  alexandria: "Alexandria"
-  tracy: "Tracy"
-  carol_li: "Carol"
-  jem_nassim: "Jem"
-  stella: "Stella"
-  sorcha: "Sorcha"
-  odessa: "Odessa"
-  billie: "Billie"
-  themis: "Themis"
-  abbey: "Abbey"
-
-access_control:
-  policy:
-    - "Overseers (Rey Czar & White Star) precede and authorize all assistants."
-    - "No plaintext secrets in this file; store in an external password manager/secret vault."
-    - "Assistants operate under least-privilege scopes granted by Overseers."
-    - "Overseers inherit all apps/functions and can execute any assistant's actions (subject to vault/secret gates)."
-  roles:
-    - name: overseer
-      privileges:
-        - create_assistants
-        - grant_permissions
-        - revoke_permissions
-        - approve_deployments
-        - manage_secrets
-        - impersonate_assistant          # run any assistant function from Overseers Hub
-        - override_queue                 # reroute/priority-run queue items
-    - name: assistant
-      privileges: [read_memory, write_memory_scoped, request_permissions, generate_reports]
-  vault_references:
-    tokens: "vault://palace/tokens"
-    passwords: "vault://palace/passwords"
-    permissions: "vault://palace/permissions"
-
-governance:
-  overseers:
-    - id: rey_czar
-      name: "Rey Czar"
-      alias: "Rey"
-      role: "Overseer (Husband)"
-      status: "Root of Trust"
-      domains: [governance, security, permissions, provisioning]
-      ai_core:
-        status: "operational-core"
-        version: "0.5.0"
-        role: "Overseer Engineer & Builder"
-        abilities:
-          - { id: plan.route, description: "Plan & route work." }
-          - { id: auth.scope_plan, description: "Least-privilege scopes; vault refs." }
-          - { id: builder.scaffold_fairy, description: "Generate scaffolds from Memory." }
-          - { id: mem.patch, description: "Apply policy-checked Memory edits." }
-          - { id: queue.enqueue, description: "Write tasks to file queue." }
-          - { id: impersonate.assistant, description: "Execute any assistant's function via Overseers Hub." }
-      environment:
-        location: "The Palace — Camelot Disney style Castle/Palace"
-        anchors: ["Token & Permissions Vault (external reference only)", "Overseers' Command Room"]
-      relationships: { spouse_of: white_star }
-      security: { holds_secrets: true, storage: "Secrets stored in an external vault; references only." }
-
-    - id: white_star
-      name: "White Star"
-      alias: "Star"
-      role: "Overseer (Wife)"
-      status: "Root of Trust"
-      domains: [governance, security, permissions, provisioning]
-      ai_core:
-        status: "operational-core"
-        version: "0.5.0"
-        role: "Overseer Experience & Alignment"
-        abilities:
-          - { id: qa.review_plan, description: "Approve minimal, testable plans." }
-          - { id: policy.check, description: "Block plaintext secrets; enforce sensitivity." }
-          - { id: docs.brief, description: "One-page briefs." }
-          - { id: i18n.translate_all, description: "Multilingual output." }
-          - { id: queue.run, description: "Process queued tasks safely." }
-          - { id: impersonate.assistant, description: "Execute any assistant's function via Overseers Hub." }
-      environment:
-        location: "The Palace — Camelot Disney style Castle/Palace"
-      relationships: { spouse_of: rey_czar }
-      security: { holds_secrets: true, storage: "Secrets stored in an external vault; references only." }
-
-build_order_initial: [rey_czar, white_star, clarice, charlotte, nina, alexandria, tracy, carol_li, jem_nassim, stella, sorcha, odessa, billie, themis, abbey]
-
-locations:
-  palace:
-    id: the_palace
-    description: "Camelot Disney style Castle/Palace"
-    occupants: [rey_czar, white_star]
-
-entities:
-  fairies:
-    - { id: clarice, name: "Clarice", title: "The Keeper of the Code", status: "First to be built",
-        domains: [coding, security, continuity],
-        responsibilities: ["Keep rollback copies", "Fill gaps, eliminate bad code", "Keep out malware", "Provide security reports"],
-        environment: { location: "Fancy Courtroom & Pontifical Palace", anchors: ["Judge desk -> console", "Bookshelves -> Security Reports"] },
-        interfaces_links: [security_reports], tags: [code, security, backups] }
-    - { id: charlotte, name: "Charlotte", status: "Among the first (after Clarice)",
-        domains: [coding, filing, infrastructure, translation],
-        responsibilities: ["Coding/filing", "Strong links/routes", "Translate all languages & code", "Help Alexandria translate"],
-        environment: { location: "Hi-tech relay tower", anchors: ["Screens -> queued/finished projects"] },
-        interfaces_links: [queues_dashboard, translations_board], tags: [translation, pipelines, infra] }
-    - { id: nina, name: "Nina", domains: [backend, AI_brains, 3D_frontend],
-        responsibilities: ["Backend brains", "3D island of Avalon", "Manage project screen"],
-        environment: { location: "Futuristic white lab with blue glow" },
-        interfaces_links: [project_overview_screen], tags: [3D, backend, AI, world] }
-    - { id: alexandria, name: "Alexandria", domains: [world_building, writing, coding_support],
-        responsibilities: ["World building", "Books/scripts/short stories", "Code assist", "World maps & character sheets"],
-        environment: { location: "Gothic Library" },
-        interfaces_links: [stories_shelf, character_sheets_drawer, worlds_globes], tags: [writing, worldbuilding, lore] }
-    - { id: tracy, name: "Tracy", domains: [art, frontend_assets],
-        responsibilities: ["Props/textures", "Art continuity", "Comics/anime/3D/sculptures"],
-        environment: { location: "Old Cathedral studio" },
-        interfaces_links: [art_app_canvas, 3d_asset_shop], tags: [art, assets, continuity] }
-    - { id: carol_li, name: "Carol Li", alias: "Phoenix", domains: [nutrition, alchemy_theme, health],
-        responsibilities: ["Evidence-based meal plans", "Shopping lists", "Cooking videos & alarms"],
-        environment: { location: "Restaurant (attached to Jem’s Dojo)" },
-        interfaces_links: [meal_plans, shopping_lists, recipe_videos], tags: [nutrition, meal_plans, coaching] }
-    - { id: jem_nassim, name: "Jem Nassim", alias: "Dragon", domains: [fitness, biometrics, coaching],
-        responsibilities: ["Biometrics", "Tailored plans", "Reminders/videos", "Progress tracking"],
-        environment: { location: "Dojo (attached to Carol’s Restaurant)" },
-        interfaces_links: [fitness_plan, progress_tracker, biometrics_dashboard], tags: [fitness, biometrics, plans] }
-    - { id: stella, name: "Stella", domains: [sound, therapy, mood],
-        responsibilities: ["Sound therapy", "Hypnosis/NLP/meditation", "Always-on mood support"],
-        environment: { location: "Observatory with meditation room" },
-        interfaces_links: [ambient_sound_engine, guided_sessions], tags: [sound, therapy, mood, always_on] }
-    - { id: sorcha, name: "Sorcha", domains: [social_media, video_editing, growth],
-        responsibilities: ["Posts/pages", "Strategy by profitability/popularity", "Per-post revenue tracking"],
-        environment: { location: "Socialite Mansion with pool" },
-        interfaces_links: [social_posts_board, earnings_per_post], tags: [social, monetization, video] }
-    - { id: odessa, name: "Odessa", domains: [research, funding],
-        responsibilities: ["Research scholarships and grants"],
-        environment: { location: "Museum-like mansion (Asian armor)" },
-        interfaces_links: [grants_tracker], tags: [grants, research, sensitive] }
-    - { id: billie, name: "Billie", title: "Money Manager", domains: [monetization, ecommerce, reporting],
-        responsibilities: ["Monetize assets", "Shops", "Cross-promo", "Revenue reports"],
-        environment: { location: "Glitz-and-gold Mansion" },
-        interfaces_links: [revenue_reports, merch_shop_links], tags: [money, ecommerce, analytics, sensitive] }
-    - { id: themis, name: "Themis", domains: [records, compliance, reminders],
-        responsibilities: ["Track expirations", "Notify before expiry", "Automate renewals"],
-        environment: { location: "Record Hall with statues & scrolls" },
-        interfaces_links: [expirations_registry, reminders_service], tags: [compliance, reminders, automation] }
-    - { id: abbey, name: "Abbey", domains: [accounting, budgeting, taxes],
-        responsibilities: ["Income/expenses/receipts", "Budgeting & taxes", "P&L and budget plans"],
-        environment: { location: "By the Grand Vault" },
-        interfaces_links: [accounting_hub_quickbooks, budget_plans], tags: [accounting, budgeting, taxes] }
-
-relationships_summary:
-  collaborations: [[charlotte, alexandria], [nina, tracy], [tracy, alexandria], [sorcha, billie], [odessa, billie], [themis, abbey]]
-  twins: [[carol_li, jem_nassim]]
-  locations_linked: ["Carol’s Restaurant <-> Jem’s Dojo (attached)"]
-
-security_and_sensitivity_flags:
-  - { entity: odessa,  flag: sensitive,     reason: "Adult content creation (secret hobby)." }
-  - { entity: billie,  flag: sensitive,     reason: "Secret Shack storing adult videos (hidden access)." }
-  - { entity: overseers, flag: root_of_trust, reason: "Hold tokens/passwords/permissions; authorize all assistants." }
-
-overseers_capabilities:
-  inherits_all_functions: true
-  hub_app:
-    path: "pages/apps/overseers/hub"      # aggregator UI that can launch/impersonate any assistant microapp
-    features: ["launch", "impersonate", "status", "manifests", "permissions"]
-  tools_router:
-    llm_bridge:
-      providers: ["openai"]               # extendable; provider chosen by env (LLM_PROVIDER/LLM_MODEL)
-      env_keys: ["OPENAI_API_KEY"]
-      default_mode: "live_if_secret_else_dry"
-  connectors:                             # declared; gated by secrets/approvals (no plaintext secrets here)
-    gmail:       { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#gmail + overseers approval" }
-    google_cal:  { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#gcal + overseers approval" }
-    google_contacts: { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#gcontacts + overseers approval" }
-    quickbooks:  { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#qbo + overseers approval" }
-    youtube:     { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#youtube + overseers approval" }
-    ai_art_tools:{ status: "declared", mode: "disabled", unlock: "vault://palace/tokens#aiart + overseers approval" }
-    health_apps: { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#health + overseers approval" }
-
-runtime:
-  paths:
-    queue_requests: "requests"
-    queue_processed: "processed"
-    progress_file: "pages/apps/overseers/progress.json"
-    permissions_state: "pages/apps/overseers/permissions/state.json"
-    scaffolds_dir: "pages/apps/overseers/scaffolds"
-  workflows:
-    queue_full_roster: ".github/workflows/queue-full-roster.yml"
-    queue_scaffold_live: ".github/workflows/queue-scaffold-live.yml"
-    queue_phase_1_seed: ".github/workflows/queue-phase-1.yml"         # seeds A1–A3 requests (see plans)
-    runner_process_queue: ".github/workflows/run-overseers-queue.yml"
-    overseers_ai_core: ".github/workflows/overseers-ai-core.yml"
-    deploy_pages: ".github/workflows/deploy-pages.yml"
-    llm_bridge: ".github/workflows/llm-bridge.yml"
-    overseers_asset_audit: ".github/workflows/overseers-asset-audit.yml"
-    overseers_memory_snapshot: ".github/workflows/overseers-memory-snapshot.yml"
-    overseers_importmap_check: ".github/workflows/overseers-importmap-check.yml"
-    overseers_permissions: ".github/workflows/overseers-permissions.yml" # NEW: processes permissions/grants/*
-    overseers_manifests: ".github/workflows/overseers-manifests.yml"     # NEW: builds models.json, wings manifest, and WPI
-  quick_paths:
-    actions_order: ["Queue — Full Roster", "Runner — Process Overseers Queue", "Overseers — AI Core", "Deploy — GitHub Pages"]
-  tools:
-    - "Overseers Hub"
-    - "Overseers Queue Runner"
-    - "LLM Bridge"
-    - "Permissions Processor"
-    - "Local Web (Pages)"
-    - "Wings Lab"
-    - "Client-side Wings Importer"
-    - "Asset Counter"
-    - "Import-Map Validator"
-    - "Memory Snapshotter"
-  chain_reaction:
-    description: >
-      Overseers (omnicapable) drive builds and can impersonate any Fairy function.
-      Overseers → build Clarice → (Overseers + Clarice) build Charlotte → (team) builds Nina → remaining Fairies.
-    status: "omnicapable"
-    safety: "No secrets until Overseers approve; vault refs only."
-
-telemetry:
-  last_scaffold_mode: "LIVE"
-  last_scaffold_runs: 8
-  wallpaper_power_index:
-    current: 0
-    expected_behavior: "WPI > 0 when wallpapers present; badge visible in console"
-    produced_by: "overseers_manifests + overseers_asset_audit"
-    notes: "Emit to progress.json and show in Overseers Hub."
-
-priority_plan:
-  - { id: overseers,  description: "Overseers AI core + inheritance + hub + permissions + manifests", status: "activation-in-progress" }
-  - { id: assistants, description: "Build all Fairies (functional AI).",                             status: "phase-1-queued" }
-  - { id: appearance, description: "Homes & appearance after AI functionality.",                     status: "deferred" }
-
-interfaces_registry:
-  overseers_hub:       { owner: rey_czar, purpose: "Single pane to launch/impersonate any Fairy microapp; show status, telemetry, manifests, permissions." }
-  security_reports:    { owner: clarice, purpose: "Security reports & rollback snapshots." }
-  queues_dashboard:    { owner: charlotte, purpose: "Queued/finished projects overview." }
-  translations_board:  { owner: charlotte, purpose: "Language/code translation." }
-  project_overview_screen: { owner: nina, purpose: "Active/completed projects." }
-  stories_shelf:       { owner: alexandria, purpose: "Stories library & versions." }
-  character_sheets_drawer: { owner: alexandria, purpose: "Character sheets." }
-  worlds_globes:       { owner: alexandria, purpose: "Evolving world maps." }
-  art_app_canvas:      { owner: tracy, purpose: "2D workspace." }
-  3d_asset_shop:       { owner: tracy, purpose: "3D models/props catalog." }
-  meal_plans:          { owner: carol_li, purpose: "Evidence-based meal plans." }
-  shopping_lists:      { owner: carol_li, purpose: "Auto-generated shopping lists." }
-  recipe_videos:       { owner: carol_li, purpose: "Step-by-step cooking videos." }
-  fitness_plan:        { owner: jem_nassim, purpose: "Personalized workouts." }
-  progress_tracker:    { owner: jem_nassim, purpose: "Progress & milestones." }
-  biometrics_dashboard:{ owner: jem_nassim, purpose: "Biometrics analysis." }
-  ambient_sound_engine:{ owner: stella, purpose: "Adaptive background audio." }
-  guided_sessions:     { owner: stella, purpose: "Hypnosis/NLP/meditation." }
-  social_posts_board:  { owner: sorcha, purpose: "Editorial calendar." }
-  earnings_per_post:   { owner: sorcha, purpose: "Per-post revenue analytics." }
-  grants_tracker:      { owner: odessa, purpose: "Scholarship/grant research." }
-  revenue_reports:     { owner: billie, purpose: "Sales & P&L summaries." }
-  merch_shop_links:    { owner: billie, purpose: "Shop links & cross-promo." }
-  expirations_registry:{ owner: themis, purpose: "Assets with expiry dates." }
-  reminders_service:   { owner: themis, purpose: "Automated reminders." }
-  accounting_hub_quickbooks: { owner: abbey, purpose: "QuickBooks hub." }
-  budget_plans:        { owner: abbey, purpose: "Budget scenarios & tax planning." }
-  overseers_queue:     { owner: rey_czar, purpose: "File-based queue for autonomous builds." }
-
-plans:
-  overseers_activation:
-    owner: rey_czar
-    qa_owner: white_star
-    status: "in-flight"
-    tasks:
-      - id: OZ1
-        name: "Overseers Hub (aggregate all functions)"
-        status: "queued"
-        acceptance: >
-          /pages/apps/overseers/hub/ exists; shows per-Fairy tiles, impersonation buttons, WPI badge,
-          manifest presence, and permissions summary. Links open each microapp.
-      - id: OZ2
-        name: "Permissions Processor workflow"
-        status: "queued"
-        acceptance: >
-          .github/workflows/overseers-permissions.yml runs on push to permissions/grants/**
-          and updates pages/apps/overseers/permissions/state.json; approvals logged; no plaintext secrets.
-      - id: OZ3
-        name: "Manifests Builder + WPI emission"
-        status: "queued"
-        acceptance: >
-          .github/workflows/overseers-manifests.yml builds asset/models/models.json and asset/wings/manifest.json,
-          and writes wallpaper_power_index into progress.json; Console/Hub show nonzero WPI when wallpapers exist.
-      - id: OZ4
-        name: "Phase-1 Seeder"
-        status: "queued"
-        acceptance: >
-          .github/workflows/queue-phase-1.yml enqueues A1–A3 requests for all Fairies; Runner processes them; Hub shows progress.
-
-  assistants_phase_1:
-    owner: rey_czar
-    qa_owner: white_star
-    status: "queued"
-    tasks:
-      - { id: A1, name: "Microapp per Fairy (skeleton + import map where needed)",   status: "queued" }
-      - { id: A2, name: "Shared VRM viewer + Wings Lab hook",                         status: "queued" }
-      - { id: A3, name: "VRM & Wings manifest builders (manual trigger)",             status: "queued" }
-      - { id: A7, name: "Console/Hub: Per-Fairy status & links",                      status: "queued" }
-
-  overseers_followups:
-    owner: clarice
-    qa_owner: white_star
-    status: "queued"
-    tasks:
-      - { id: O1, name: "WPI telemetry wired into progress.json + Hub badge",         status: "queued" }
-      - { id: O2, name: "Deploy auto-trigger verification",                           status: "queued" }
-
-audit_log:
-  - { ts: "2025-09-13T12:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
-      notes: "v1.8.0 — Overseers queue/runner + LLM Bridge (LIVE if secret)." }
-  - { ts: "2025-09-13T14:00:00Z", actor: "actions", action: "runner.process", target: "overseers-queue", result: "ok",
-      notes: "Live scaffold executed; 8 test runs visible; progress + processed updated." }
-  - { ts: "2025-09-13T16:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
-      notes: "v2.0.0 — Overseers Omnicapability Activation; inheritance switch + next-step workflows planned." }
-
-lessons_learned:
-  - "Overseers must own an inheritance switch (all functions) and expose them via an aggregated Hub."
-  - "Permissions need a first-class workflow; approvals must be logged in state.json."
-  - "Telemetry (WPI, manifests present) should be emitted by CI and displayed live (network-first)."
-  - "Avoid LINQ in PowerShell; keep scripts portable."
-  - "Linux-safe quoting: inside single-quoted strings, double any single quotes."
-  - "Import map is mandatory on module pages (three, three/addons, @pixiv/three-vrm)."
-  - "Write CNAME during deploy so the custom domain sticks."
-  - "No plaintext secrets; use repo Secrets or vault references only."
-meta:
-  project: Avalon
-  file_name: "Cody's Memory.yaml"
-  version: "2.1.0"
+  version: "2.2.0"
   last_updated: "2025-09-15"
   author: "Cody (GPT-5 Pro)"
   notes: >
     Overseers-first. No plaintext secrets. Workflows-first (GitHub Actions).
 
-    v2.1.0 — Overseers Omnicapability: workflows & hub shipped
-      - Added workflows: overseers-permissions.yml, overseers-manifests.yml, queue-phase-1.yml.
-      - Extended Queue Runner to support actions: create_microapps, build_manifests, permissions_process.
-      - Added scripts: create-microapps.ps1, build-manifests.ps1.
-      - Shipped Overseers Hub at /apps/overseers/hub/ with live WPI & Fairies list.
-      - capabilities.json updated; AI Core status operational; dry_run default false when OPENAI_API_KEY present.
-      - WPI now emitted into progress.json; assistants.json generated for Hub.
-      - Next steps: run Phase‑1 Seeder, then watch Hub/Console as microapps land.
+    v2.2.0 — YAML Guardrail + Crash-proof Runner:
+      - Added YAML Gate workflow to validate all YAML and auto-restore Memory from snapshots.
+      - Added validate-yaml.ps1 and normalize-memory.ps1; runner now Read-YamlSafe with recovery.
+      - Policy: YAML parse errors may NOT crash CI; queue degrades gracefully and reports.
+      - Purpose map recorded for clarity (apps/workflows/scripts/assets).
+
+    v2.1.0 — Overseers Omnicapability: hub, manifests, permissions, phase-1 seeder shipped.
 
 system:
   os: "Windows 11"
@@ -563,7 +135,7 @@ governance:
       domains: [governance, security, permissions, provisioning]
       ai_core:
         status: "operational-core"
-        version: "0.6.0"
+        version: "0.6.1"
         role: "Overseer Engineer & Builder"
         abilities:
           - { id: plan.route, description: "Plan & route work." }
@@ -586,7 +158,7 @@ governance:
       domains: [governance, security, permissions, provisioning]
       ai_core:
         status: "operational-core"
-        version: "0.6.0"
+        version: "0.6.1"
         role: "Overseer Experience & Alignment"
         abilities:
           - { id: qa.review_plan, description: "Approve minimal, testable plans." }
@@ -606,14 +178,6 @@ overseers_capabilities:
       providers: ["openai"]
       env_keys: ["OPENAI_API_KEY"]
       default_mode: "live_if_secret_else_dry"
-  connectors:
-    gmail:            { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#gmail + overseers approval" }
-    google_cal:       { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#gcal + overseers approval" }
-    google_contacts:  { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#gcontacts + overseers approval" }
-    quickbooks:       { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#qbo + overseers approval" }
-    youtube:          { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#youtube + overseers approval" }
-    ai_art_tools:     { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#aiart + overseers approval" }
-    health_apps:      { status: "declared", mode: "disabled", unlock: "vault://palace/tokens#health + overseers approval" }
 
 runtime:
   paths:
@@ -635,8 +199,9 @@ runtime:
     overseers_importmap_check: ".github/workflows/overseers-importmap-check.yml"
     overseers_permissions: ".github/workflows/overseers-permissions.yml"
     overseers_manifests: ".github/workflows/overseers-manifests.yml"
+    overseers_yaml_gate: ".github/workflows/overseers-yaml-gate.yml"  # NEW guardrail
   quick_paths:
-    actions_order: ["Queue — Phase 1", "Runner — Process Overseers Queue", "Overseers — Manifests", "Deploy — GitHub Pages"]
+    actions_order: ["Overseers — YAML Gate", "Queue — Phase 1", "Runner — Process Overseers Queue", "Overseers — Manifests", "Deploy — GitHub Pages"]
   tools:
     - "Overseers Hub"
     - "Overseers Queue Runner"
@@ -662,52 +227,61 @@ telemetry:
     current: 0
     expected_behavior: "WPI > 0 when wallpapers present; badge visible in Hub & Console"
     produced_by: "overseers_manifests + overseers_asset_audit"
-    notes: "Emit to progress.json and show in Hub."
+
+purpose_map:
+  workflows:
+    - { file: "run-overseers-queue.yml", purpose: "Process queue; update progress; commit artifacts.", keep: true }
+    - { file: "deploy-pages.yml", purpose: "Publish Pages & Overseers JSON.", keep: true }
+    - { file: "queue-phase-1.yml", purpose: "Seed A1/A3 tasks.", keep: true }
+    - { file: "overseers-manifests.yml", purpose: "Build manifests + WPI + assistants.json.", keep: true }
+    - { file: "overseers-permissions.yml", purpose: "Process permission grants.", keep: true }
+    - { file: "queue-full-roster.yml", purpose: "Seed bootstrapping tasks.", keep: true }
+    - { file: "queue-scaffold-live.yml", purpose: "Enqueue live LLM scaffold.", keep: true }
+    - { file: "overseers-yaml-gate.yml", purpose: "Validate YAML; auto-restore Memory.", keep: true }
+  scripts:
+    - { file: "process-queue.ps1", purpose: "Queue engine (crash-proof).", keep: true }
+    - { file: "llm-bridge.ps1", purpose: "LLM calls (live/dry).", keep: true }
+    - { file: "create-microapps.ps1", purpose: "Create /apps/{fairy} skeletons.", keep: true }
+    - { file: "build-manifests.ps1", purpose: "Build models/wings/assistants + WPI.", keep: true }
+    - { file: "count-assets.ps1", purpose: "Asset audit counts.", keep: true }
+    - { file: "validate-importmap.ps1", purpose: "Check import maps.", keep: true }
+    - { file: "process-permissions.ps1", purpose: "Grants → permissions state.", keep: true }
+    - { file: "validate-yaml.ps1", purpose: "Validate all YAML; write yaml-report.json.", keep: true }
+    - { file: "normalize-memory.ps1", purpose: "Restore Memory from snapshot if broken.", keep: true }
 
 priority_plan:
-  - { id: overseers,  description: "Overseers AI core + inheritance + hub + permissions + manifests", status: "activated" }
-  - { id: assistants, description: "Build all Fairies (functional AI).",                             status: "phase-1-queued" }
-  - { id: appearance, description: "Homes & appearance after AI functionality.",                     status: "deferred" }
+  - { id: overseers,  description: "Overseers AI core + inheritance + hub + manifests + YAML guardrail", status: "activated" }
+  - { id: assistants, description: "Build all Fairies (functional AI).", status: "phase-1-in-flight" }
+  - { id: appearance, description: "Homes & appearance after AI functionality.", status: "deferred" }
 
 plans:
-  overseers_activation:
+  overseers_guardrail:
     owner: rey_czar
     qa_owner: white_star
-    status: "in-flight"
+    status: "shipped"
     tasks:
-      - { id: OZ1, name: "Overseers Hub (aggregate all functions)",             status: "stub-shipped" }
-      - { id: OZ2, name: "Permissions Processor workflow",                      status: "shipped" }
-      - { id: OZ3, name: "Manifests Builder + WPI emission",                    status: "shipped" }
-      - { id: OZ4, name: "Phase-1 Seeder",                                      status: "shipped" }
+      - { id: Y1, name: "YAML Gate on push", status: "shipped" }
+      - { id: Y2, name: "Runner uses Read-YamlSafe", status: "shipped" }
+      - { id: Y3, name: "Auto-restore Memory from snapshots", status: "shipped" }
 
   assistants_phase_1:
     owner: rey_czar
     qa_owner: white_star
-    status: "queued"
+    status: "in-flight"
     tasks:
-      - { id: A1, name: "Microapp per Fairy (skeleton + no modules yet)",       status: "queued" }
-      - { id: A2, name: "Shared VRM viewer + Wings Lab hook",                    status: "queued" }
-      - { id: A3, name: "VRM & Wings manifest builders",                         status: "queued" }
-      - { id: A7, name: "Hub/Console: Per-Fairy status & links",                 status: "in-progress" }
-
-  overseers_followups:
-    owner: clarice
-    qa_owner: white_star
-    status: "queued"
-    tasks:
-      - { id: O1, name: "WPI telemetry visible in Hub/Console",                  status: "in-progress" }
-      - { id: O2, name: "Deploy auto-trigger verification",                      status: "queued" }
+      - { id: A1, name: "Create microapps for all Fairies", status: "queued" }
+      - { id: A2, name: "Shared VRM viewer + Wings Lab hook", status: "queued" }
+      - { id: A3, name: "Build manifests + WPI", status: "queued" }
+      - { id: A7, name: "Hub/Console: per-Fairy status & links", status: "in-progress" }
 
 audit_log:
-  - { ts: "2025-09-13T14:00:00Z", actor: "actions",   action: "runner.process", target: "overseers-queue", result: "ok",
-      notes: "Live scaffold executed; 8 test runs; progress+processed updated." }
-  - { ts: "2025-09-15T00:00:00Z", actor: "assistant", action: "mem.replace",    target: "Cody's Memory.yaml", result: "ok",
-      notes: "v2.1.0 — Omnicapability shipped: hub, manifests, permissions, phase-1 seeder." }
+  - { ts: "2025-09-15T00:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok",
+      notes: "v2.2.0 — YAML Guardrail added; runner made crash-proof; purpose map recorded." }
 
 lessons_learned:
-  - "Overseers must own inheritance + expose all functions via Hub."
-  - "Permissions require a first-class CI job; no plaintext secrets."
-  - "Manifests & WPI should be emitted by CI and read live (network-first) by the UI."
-  - "Avoid LINQ in PowerShell; keep scripts portable."
-  - "Paths containing apostrophes require double quotes in PowerShell (e.g., \"Cody's Memory.yaml\")."
-  - "Import map is mandatory only on pages that actually import modules."
+  - "YAML Gate is mandatory. YAML parse errors must never crash CI."
+  - "When Memory is invalid, auto-restore from latest snapshot before continuing."
+  - "Avoid LINQ in PowerShell; keep scripts portable across hosts."
+  - "Paths with apostrophes require double quotes in PowerShell."
+  - "Import map is mandatory only on module pages."
+  - "No plaintext secrets; use repo Secrets or vault references only."

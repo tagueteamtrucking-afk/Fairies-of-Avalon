@@ -1,140 +1,140 @@
 {
-  "processed": [
-    {
-      "ended": "2025-09-15T11:41:50.0752739Z",
-      "id": "R4",
-      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:75\nLine |\n  75 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
-      "dry_run": false,
-      "action": "asset_audit",
-      "actor": "rey_czar",
-      "status": "failed",
-      "file": "20250913T184848Z-asset_audit.request.yml",
-      "started": "2025-09-15T11:41:49.7448246Z",
-      "ts": "2025-09-13T18:48:48.9937869Z"
-    },
-    {
-      "ended": "2025-09-15T11:41:50.1636217Z",
-      "id": "R5",
-      "error": "Exception: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:80\nLine |\n  80 |  … EXITCODE -ne 0) { throw \"Import-map check exit code: $LASTEXITCODE\" }\n     |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Import-map check exit code: \n\n",
-      "dry_run": false,
-      "action": "importmap_check",
-      "actor": "rey_czar",
-      "status": "failed",
-      "file": "20250913T184848Z-importmap_check.request.yml",
-      "started": "2025-09-15T11:41:50.0819767Z",
-      "ts": "2025-09-13T18:48:48.9992936Z"
-    },
-    {
-      "written": 15,
-      "id": "R3",
-      "count": 15,
-      "ended": "2025-09-15T11:41:50.2759037Z",
-      "dry_run": true,
-      "action": "scaffold_fairies_bundle",
-      "actor": "rey_czar",
-      "status": "ok",
-      "file": "20250913T184848Z-scaffold-fairies.request.yml",
-      "started": "2025-09-15T11:41:50.1646971Z",
-      "ts": "2025-09-13T18:48:48.8782458Z"
-    },
-    {
-      "ended": "2025-09-15T11:41:50.3244929Z",
-      "id": "R6",
-      "dry_run": false,
-      "action": "memory_snapshot",
-      "actor": "rey_czar",
-      "status": "ok",
-      "file": "20250913T184849Z-memory_snapshot.request.yml",
-      "started": "2025-09-15T11:41:50.2786725Z",
-      "ts": "2025-09-13T18:48:49.0045446Z"
-    },
-    {
-      "ended": "2025-09-15T11:41:50.4382786Z",
-      "id": "R4",
-      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:75\nLine |\n  75 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
-      "dry_run": false,
-      "action": "asset_audit",
-      "actor": "rey_czar",
-      "status": "failed",
-      "file": "20250913T211502Z-asset_audit.request.yml",
-      "started": "2025-09-15T11:41:50.3258831Z",
-      "ts": "2025-09-13T21:15:02.5871963Z"
-    },
-    {
-      "ended": "2025-09-15T11:41:50.4557970Z",
-      "id": "R5",
-      "dry_run": false,
-      "action": "importmap_check",
-      "actor": "rey_czar",
-      "status": "ok",
-      "file": "20250913T211502Z-importmap_check.request.yml",
-      "started": "2025-09-15T11:41:50.4392955Z",
-      "ts": "2025-09-13T21:15:02.5935487Z"
-    },
-    {
-      "ended": "2025-09-15T11:41:50.4953837Z",
-      "id": "R6",
-      "dry_run": false,
-      "action": "memory_snapshot",
-      "actor": "rey_czar",
-      "status": "ok",
-      "file": "20250913T211502Z-memory_snapshot.request.yml",
-      "started": "2025-09-15T11:41:50.4566949Z",
-      "ts": "2025-09-13T21:15:02.5975135Z"
-    },
-    {
-      "written": 15,
-      "id": "R3",
-      "count": 15,
-      "ended": "2025-09-15T11:41:50.6074118Z",
-      "dry_run": true,
-      "action": "scaffold_fairies_bundle",
-      "actor": "rey_czar",
-      "status": "ok",
-      "file": "20250913T211502Z-scaffold-fairies.request.yml",
-      "started": "2025-09-15T11:41:50.4964388Z",
-      "ts": "2025-09-13T21:15:02.4659835Z"
-    },
-    {
-      "written": 15,
-      "id": "R3",
-      "count": 15,
-      "ended": "2025-09-15T11:41:53.9818209Z",
-      "dry_run": false,
-      "action": "scaffold_fairies_bundle",
-      "actor": "rey_czar",
-      "status": "ok",
-      "file": "20250913T215629Z-scaffold-live.request.yml",
-      "started": "2025-09-15T11:41:50.6085611Z",
-      "ts": null
-    },
-    {
-      "ended": "2025-09-15T11:41:54.2958171Z",
-      "id": "A3",
-      "error": "build-manifests.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:123\nLine |\n 123 |          & (Join-Path $PSScriptRoot \"build-manifests.ps1\") -RepoRoot $ …\n     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Exception setting \"telemetry\": \"The property 'telemetry' cannot be found\n     | on this object. Verify that the property exists and can be set.\"\n\n",
-      "action": "build_manifests",
-      "actor": "clarice",
-      "status": "failed",
-      "file": "20250915T063627Z-build-manifests.request.yml",
-      "started": "2025-09-15T11:41:53.9827384Z",
-      "ts": "2025-09-15T06:36:27.3663610Z"
-    },
-    {
-      "ended": "2025-09-15T11:41:54.3795006Z",
-      "id": "A1",
-      "action": "create_microapps",
-      "actor": "rey_czar",
-      "status": "ok",
-      "file": "20250915T063627Z-create-microapps.request.yml",
-      "started": "2025-09-15T11:41:54.2990024Z",
-      "ts": "2025-09-15T06:36:27.2461971Z"
-    }
-  ],
-  "last_run": "2025-09-15T11:41:49.7364823Z",
   "totals": {
     "skipped": 0,
     "success": 7,
     "failed": 4
   },
-  "pending": 0
+  "processed": [
+    {
+      "dry_run": false,
+      "ended": "2025-09-15T11:54:55.7619918Z",
+      "started": "2025-09-15T11:54:55.3405411Z",
+      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:75\nLine |\n  75 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
+      "id": "R4",
+      "status": "failed",
+      "actor": "rey_czar",
+      "file": "20250913T184848Z-asset_audit.request.yml",
+      "ts": "2025-09-13T18:48:48.9937869Z",
+      "action": "asset_audit"
+    },
+    {
+      "dry_run": false,
+      "ended": "2025-09-15T11:54:55.8432133Z",
+      "started": "2025-09-15T11:54:55.7695740Z",
+      "error": "Exception: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:80\nLine |\n  80 |  … EXITCODE -ne 0) { throw \"Import-map check exit code: $LASTEXITCODE\" }\n     |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Import-map check exit code: \n\n",
+      "id": "R5",
+      "status": "failed",
+      "actor": "rey_czar",
+      "file": "20250913T184848Z-importmap_check.request.yml",
+      "ts": "2025-09-13T18:48:48.9992936Z",
+      "action": "importmap_check"
+    },
+    {
+      "written": 15,
+      "dry_run": true,
+      "started": "2025-09-15T11:54:55.8445561Z",
+      "ended": "2025-09-15T11:54:55.9863090Z",
+      "id": "R3",
+      "status": "ok",
+      "actor": "rey_czar",
+      "file": "20250913T184848Z-scaffold-fairies.request.yml",
+      "ts": "2025-09-13T18:48:48.8782458Z",
+      "action": "scaffold_fairies_bundle",
+      "count": 15
+    },
+    {
+      "dry_run": false,
+      "started": "2025-09-15T11:54:55.9891774Z",
+      "ended": "2025-09-15T11:54:56.0508780Z",
+      "id": "R6",
+      "status": "ok",
+      "actor": "rey_czar",
+      "file": "20250913T184849Z-memory_snapshot.request.yml",
+      "ts": "2025-09-13T18:48:49.0045446Z",
+      "action": "memory_snapshot"
+    },
+    {
+      "dry_run": false,
+      "ended": "2025-09-15T11:54:56.1512959Z",
+      "started": "2025-09-15T11:54:56.0519346Z",
+      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:75\nLine |\n  75 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
+      "id": "R4",
+      "status": "failed",
+      "actor": "rey_czar",
+      "file": "20250913T211502Z-asset_audit.request.yml",
+      "ts": "2025-09-13T21:15:02.5871963Z",
+      "action": "asset_audit"
+    },
+    {
+      "dry_run": false,
+      "started": "2025-09-15T11:54:56.1523806Z",
+      "ended": "2025-09-15T11:54:56.1719528Z",
+      "id": "R5",
+      "status": "ok",
+      "actor": "rey_czar",
+      "file": "20250913T211502Z-importmap_check.request.yml",
+      "ts": "2025-09-13T21:15:02.5935487Z",
+      "action": "importmap_check"
+    },
+    {
+      "dry_run": false,
+      "started": "2025-09-15T11:54:56.1734828Z",
+      "ended": "2025-09-15T11:54:56.2351175Z",
+      "id": "R6",
+      "status": "ok",
+      "actor": "rey_czar",
+      "file": "20250913T211502Z-memory_snapshot.request.yml",
+      "ts": "2025-09-13T21:15:02.5975135Z",
+      "action": "memory_snapshot"
+    },
+    {
+      "written": 15,
+      "dry_run": true,
+      "started": "2025-09-15T11:54:56.2362215Z",
+      "ended": "2025-09-15T11:54:56.3138172Z",
+      "id": "R3",
+      "status": "ok",
+      "actor": "rey_czar",
+      "file": "20250913T211502Z-scaffold-fairies.request.yml",
+      "ts": "2025-09-13T21:15:02.4659835Z",
+      "action": "scaffold_fairies_bundle",
+      "count": 15
+    },
+    {
+      "written": 15,
+      "dry_run": false,
+      "started": "2025-09-15T11:54:56.3147108Z",
+      "ended": "2025-09-15T11:54:59.3235880Z",
+      "id": "R3",
+      "status": "ok",
+      "actor": "rey_czar",
+      "file": "20250913T215629Z-scaffold-live.request.yml",
+      "ts": null,
+      "action": "scaffold_fairies_bundle",
+      "count": 15
+    },
+    {
+      "ended": "2025-09-15T11:54:59.6826720Z",
+      "started": "2025-09-15T11:54:59.3247206Z",
+      "error": "build-manifests.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:123\nLine |\n 123 |          & (Join-Path $PSScriptRoot \"build-manifests.ps1\") -RepoRoot $ …\n     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Exception setting \"telemetry\": \"The property 'telemetry' cannot be found\n     | on this object. Verify that the property exists and can be set.\"\n\n",
+      "id": "A3",
+      "status": "failed",
+      "actor": "clarice",
+      "file": "20250915T063627Z-build-manifests.request.yml",
+      "ts": "2025-09-15T06:36:27.3663610Z",
+      "action": "build_manifests"
+    },
+    {
+      "started": "2025-09-15T11:54:59.6861023Z",
+      "ended": "2025-09-15T11:54:59.7980389Z",
+      "id": "A1",
+      "status": "ok",
+      "actor": "rey_czar",
+      "file": "20250915T063627Z-create-microapps.request.yml",
+      "ts": "2025-09-15T06:36:27.2461971Z",
+      "action": "create_microapps"
+    }
+  ],
+  "pending": 0,
+  "last_run": "2025-09-15T11:54:55.3317909Z"
 }

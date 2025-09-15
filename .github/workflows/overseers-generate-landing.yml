@@ -8,9 +8,7 @@ on:
         required: true
         default: "auto"
         type: choice
-        options:
-          - auto
-          - fallback-only
+        options: [auto, fallback-only]
 
 permissions:
   contents: write
@@ -49,10 +47,10 @@ jobs:
         run: |
           git add "pages/themes/landing.generated.html" || echo "no html changes"
           git add "pages/themes/landing.generated.css"  || echo "no css changes"
-          git add "pages/index.html"                    || echo "no home redirect changes"
+          git add "pages/index.html"                    || echo "no index redirect changes"
           git config user.email "actions@github.com"
           git config user.name  "GitHub Actions"
-          git fetch origin ${{ github.ref_name }} --depth=0
+          git fetch origin ${{ github.ref_name }} --prune
           git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
           git commit -m "Overseers: landing (mode=${{ github.event.inputs.mode }})" || echo "Nothing to commit"
 

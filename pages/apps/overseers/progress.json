@@ -1,52 +1,161 @@
 {
-  "ts": "2025-09-15T15:21:47Z",
-  "paths": {
-    "with_wings_alias": "asset/winged-models",
-    "wallpapers": "asset/textures/wallpapers",
-    "with_wings_vrms": "asset/models/with-wings",
-    "wingless_vrms": "asset/models/wingless",
-    "wings_models": "asset/wings",
-    "wings_textures": "asset/wings/textures",
-    "models_root_legacy": "asset/models"
-  },
-  "assets": {
-    "coverage": {
-      "groups_missing_textures": [],
-      "groups_missing_mesh": [
-        "1432"
-      ],
-      "groups_total": 27,
-      "groups_with_mesh_and_textures": 26
+  "processed": [
+    {
+      "file": "20250913T184848Z-asset_audit.request.yml",
+      "ended": "2025-09-15T15:35:23.1733866Z",
+      "action": "asset_audit",
+      "actor": "rey_czar",
+      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:75\nLine |\n  75 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
+      "dry_run": false,
+      "started": "2025-09-15T15:35:22.7375473Z",
+      "status": "failed",
+      "id": "R4",
+      "ts": "2025-09-13T18:48:48.9937869Z"
     },
-    "wallpapers": {
-      "size_mb": 0.03,
-      "count": 4
+    {
+      "file": "20250913T184848Z-importmap_check.request.yml",
+      "ended": "2025-09-15T15:35:23.2467409Z",
+      "action": "importmap_check",
+      "actor": "rey_czar",
+      "error": "Exception: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:80\nLine |\n  80 |  … EXITCODE -ne 0) { throw \"Import-map check exit code: $LASTEXITCODE\" }\n     |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Import-map check exit code: \n\n",
+      "dry_run": false,
+      "started": "2025-09-15T15:35:23.1805519Z",
+      "status": "failed",
+      "id": "R5",
+      "ts": "2025-09-13T18:48:48.9992936Z"
     },
-    "vrm_wingless": {
-      "size_mb": 174.31,
-      "count": 15
+    {
+      "file": "20250913T184848Z-scaffold-fairies.request.yml",
+      "count": 15,
+      "written": 15,
+      "action": "scaffold_fairies_bundle",
+      "actor": "rey_czar",
+      "ended": "2025-09-15T15:35:23.4769519Z",
+      "dry_run": true,
+      "started": "2025-09-15T15:35:23.2479717Z",
+      "status": "ok",
+      "id": "R3",
+      "ts": "2025-09-13T18:48:48.8782458Z"
     },
-    "vrm_with_wings": {
-      "size_mb": 56.27,
-      "count": 4
+    {
+      "file": "20250913T184849Z-memory_snapshot.request.yml",
+      "ended": "2025-09-15T15:35:23.6058625Z",
+      "action": "memory_snapshot",
+      "actor": "rey_czar",
+      "dry_run": false,
+      "started": "2025-09-15T15:35:23.4796779Z",
+      "status": "ok",
+      "id": "R6",
+      "ts": "2025-09-13T18:48:49.0045446Z"
     },
-    "wings_meshes": {
-      "size_mb": 35.78,
-      "count": 26
+    {
+      "file": "20250913T211502Z-asset_audit.request.yml",
+      "ended": "2025-09-15T15:35:23.7089329Z",
+      "action": "asset_audit",
+      "actor": "rey_czar",
+      "error": "count-assets.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:75\nLine |\n  75 |  …      & (Join-Path $PSScriptRoot \"count-assets.ps1\") -RepoRoot $RepoRo …\n     |                                                        ~~~~~~~~~\n     | A parameter cannot be found that matches parameter name 'RepoRoot'.\n\n",
+      "dry_run": false,
+      "started": "2025-09-15T15:35:23.6067947Z",
+      "status": "failed",
+      "id": "R4",
+      "ts": "2025-09-13T21:15:02.5871963Z"
     },
-    "wings_textures": {
-      "size_mb": 16.66,
-      "count": 81
+    {
+      "file": "20250913T211502Z-importmap_check.request.yml",
+      "ended": "2025-09-15T15:35:23.7274635Z",
+      "action": "importmap_check",
+      "actor": "rey_czar",
+      "dry_run": false,
+      "started": "2025-09-15T15:35:23.7099421Z",
+      "status": "ok",
+      "id": "R5",
+      "ts": "2025-09-13T21:15:02.5935487Z"
+    },
+    {
+      "file": "20250913T211502Z-memory_snapshot.request.yml",
+      "ended": "2025-09-15T15:35:23.8861393Z",
+      "action": "memory_snapshot",
+      "actor": "rey_czar",
+      "dry_run": false,
+      "started": "2025-09-15T15:35:23.7284283Z",
+      "status": "ok",
+      "id": "R6",
+      "ts": "2025-09-13T21:15:02.5975135Z"
+    },
+    {
+      "file": "20250913T211502Z-scaffold-fairies.request.yml",
+      "count": 15,
+      "written": 15,
+      "action": "scaffold_fairies_bundle",
+      "actor": "rey_czar",
+      "ended": "2025-09-15T15:35:24.0896493Z",
+      "dry_run": true,
+      "started": "2025-09-15T15:35:23.8885866Z",
+      "status": "ok",
+      "id": "R3",
+      "ts": "2025-09-13T21:15:02.4659835Z"
+    },
+    {
+      "file": "20250913T215629Z-scaffold-live.request.yml",
+      "count": 15,
+      "written": 15,
+      "action": "scaffold_fairies_bundle",
+      "actor": "rey_czar",
+      "ended": "2025-09-15T15:35:27.2813775Z",
+      "dry_run": false,
+      "started": "2025-09-15T15:35:24.0906845Z",
+      "status": "ok",
+      "id": "R3",
+      "ts": null
+    },
+    {
+      "file": "20250915T063627Z-build-manifests.request.yml",
+      "action": "build_manifests",
+      "actor": "clarice",
+      "error": "build-manifests.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:123\nLine |\n 123 |          & (Join-Path $PSScriptRoot \"build-manifests.ps1\") -RepoRoot $ …\n     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Exception setting \"telemetry\": \"The property 'telemetry' cannot be found\n     | on this object. Verify that the property exists and can be set.\"\n\n",
+      "ended": "2025-09-15T15:35:27.7643565Z",
+      "started": "2025-09-15T15:35:27.2823586Z",
+      "status": "failed",
+      "id": "A3",
+      "ts": "2025-09-15T06:36:27.3663610Z"
+    },
+    {
+      "file": "20250915T063627Z-create-microapps.request.yml",
+      "action": "create_microapps",
+      "actor": "rey_czar",
+      "ended": "2025-09-15T15:35:27.9238032Z",
+      "started": "2025-09-15T15:35:27.7655686Z",
+      "status": "ok",
+      "id": "A1",
+      "ts": "2025-09-15T06:36:27.2461971Z"
+    },
+    {
+      "file": "20250915T151633Z-build-manifests.request.yml",
+      "action": "build_manifests",
+      "actor": "clarice",
+      "error": "build-manifests.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:123\nLine |\n 123 |          & (Join-Path $PSScriptRoot \"build-manifests.ps1\") -RepoRoot $ …\n     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Exception setting \"telemetry\": \"The property 'telemetry' cannot be found\n     | on this object. Verify that the property exists and can be set.\"\n\n",
+      "ended": "2025-09-15T15:35:28.2973990Z",
+      "started": "2025-09-15T15:35:27.9248228Z",
+      "status": "failed",
+      "id": "A3",
+      "ts": "2025-09-15T15:16:33.3901158Z"
+    },
+    {
+      "file": "20250915T151633Z-create-microapps.request.yml",
+      "action": "create_microapps",
+      "actor": "rey_czar",
+      "ended": "2025-09-15T15:35:28.4388856Z",
+      "started": "2025-09-15T15:35:28.2984843Z",
+      "status": "ok",
+      "id": "A1",
+      "ts": "2025-09-15T15:16:33.2643663Z"
     }
-  },
-  "budgets": {
-    "wallpapers_total": 20,
-    "initial_shell_kb": 300,
-    "vrm_per_file_mb": 40,
-    "initial_requests": 15
-  },
-  "notes": [
-    "Counts include alias path asset/winged-models.",
-    "Budgets are soft; optimize shell weight and lazy-loading."
-  ]
+  ],
+  "pending": 0,
+  "last_run": "2025-09-15T15:35:22.7289200Z",
+  "totals": {
+    "success": 8,
+    "skipped": 0,
+    "failed": 5
+  }
 }

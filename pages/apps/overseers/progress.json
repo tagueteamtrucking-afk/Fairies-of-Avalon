@@ -117,7 +117,7 @@
       "started": "2025-09-15T15:35:27.2823586Z",
       "status": "failed",
       "id": "A3",
-      "ts": "2025-09-15T06:36:27.3663610Z"
+      "ts": "2025-09-15T06:36:27.366361Z"
     },
     {
       "file": "20250915T063627Z-create-microapps.request.yml",
@@ -134,7 +134,7 @@
       "action": "build_manifests",
       "actor": "clarice",
       "error": "build-manifests.ps1: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:123\nLine |\n 123 |          & (Join-Path $PSScriptRoot \"build-manifests.ps1\") -RepoRoot $ …\n     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Exception setting \"telemetry\": \"The property 'telemetry' cannot be found\n     | on this object. Verify that the property exists and can be set.\"\n\n",
-      "ended": "2025-09-15T15:35:28.2973990Z",
+      "ended": "2025-09-15T15:35:28.297399Z",
       "started": "2025-09-15T15:35:27.9248228Z",
       "status": "failed",
       "id": "A3",
@@ -152,10 +152,16 @@
     }
   ],
   "pending": 0,
-  "last_run": "2025-09-15T15:35:22.7289200Z",
+  "last_run": "2025-09-15T15:35:22.72892Z",
   "totals": {
     "success": 8,
     "skipped": 0,
     "failed": 5
+  },
+  "telemetry": {
+    "wallpaper_power_index": 20,
+    "wallpapers_count": 4,
+    "wallpapers_total": 20,
+    "updated": "2025-09-15T15:40:33.3023378Z"
   }
 }

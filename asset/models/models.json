@@ -1,18 +1,43 @@
 {
-  "wingless": {
-    "alexandria": "asset/models/alexandria.vrm",
-    "sorcha": "asset/models/sorcha.vrm",
-    "jem": "asset/models/jem.vrm",
-    "tracy": "asset/models/tracy.vrm",
-    "charlotte": "asset/models/charlotte.vrm",
-    "stella": "asset/models/stella.vrm",
-    "odessa": "asset/models/odessa.vrm",
-    "abbey": "asset/models/abbey.vrm",
-    "clarice": "asset/models/clarice.vrm",
-    "themis": "asset/models/themis.vrm",
-    "nina": "asset/models/nina.vrm",
-    "billie": "asset/models/billie.vrm",
-    "carol": "asset/models/carol.vrm"
+  "generated": "2025-09-15T15:40:33.1026371Z",
+  "wingless": [
+    "asset/models/abbey.vrm",
+    "asset/models/alexandria.vrm",
+    "asset/models/billie.vrm",
+    "asset/models/carol.vrm",
+    "asset/models/charlotte.vrm",
+    "asset/models/clarice.vrm",
+    "asset/models/jem.vrm",
+    "asset/models/nina.vrm",
+    "asset/models/odessa.vrm",
+    "asset/models/reyczar.vrm",
+    "asset/models/sorcha.vrm",
+    "asset/models/stella.vrm",
+    "asset/models/themis.vrm",
+    "asset/models/tracy.vrm",
+    "asset/models/whitestar.vrm"
+  ],
+  "byAvatar": {
+    "Sorcha": "a",
+    "Reyczar": "a",
+    "Tracy": "a",
+    "Clarice": "a",
+    "Billie": "a",
+    "Themis": "a",
+    "Odessa": "a",
+    "Carol": "a",
+    "Jem": "a",
+    "Nina": "a",
+    "WhiteStar": "a",
+    "Stella": "a",
+    "Charlotte": "a",
+    "Alexandria": "a",
+    "Abbey": "a"
   },
-  "with_wings": {}
+  "prewinged": [
+    "asset/winged-models/WingedAlexandria.vrm",
+    "asset/winged-models/WingedBillie.vrm",
+    "asset/winged-models/WingedReyCzar.vrm",
+    "asset/winged-models/WingedWhiteStar.vrm"
+  ]
 }

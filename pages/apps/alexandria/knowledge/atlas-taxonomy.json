@@ -1,0 +1,102 @@
+{
+  "dimension_types": [
+    "Prime",
+    "Fae",
+    "Shadow",
+    "Astral",
+    "Undersea",
+    "Clockwork",
+    "Dream",
+    "Infernal",
+    "Celestial",
+    "Void"
+  ],
+  "timeflow": [
+    "synchronous",
+    "slower",
+    "faster",
+    "erratic"
+  ],
+  "magic_intensity": [
+    "low",
+    "medium",
+    "high",
+    "wild",
+    "forbidden"
+  ],
+  "tech_levels": [
+    "stone",
+    "medieval",
+    "clockwork",
+    "industrial",
+    "diesel",
+    "digital",
+    "fusion",
+    "mythic"
+  ],
+  "gate_types": [
+    "natural portal",
+    "ritual gate",
+    "waystone",
+    "mirror",
+    "tree-hollow",
+    "mist-ferry",
+    "starlight bridge",
+    "machine arch"
+  ],
+  "biomes": [
+    "forest",
+    "jungle",
+    "desert",
+    "tundra",
+    "alpine",
+    "swamp",
+    "coast",
+    "islands",
+    "plains",
+    "savanna",
+    "steppe",
+    "badlands",
+    "underdark",
+    "floating isles",
+    "crystal fields",
+    "mushroom woods"
+  ],
+  "climates": [
+    "polar",
+    "cold",
+    "temperate",
+    "arid",
+    "tropical",
+    "monsoon",
+    "mediterranean",
+    "subtropical"
+  ],
+  "hazards": [
+    "bandits",
+    "curse",
+    "blight",
+    "storms",
+    "beasts",
+    "undead",
+    "toxins",
+    "fey tricks",
+    "machina failures",
+    "quakes",
+    "warzone"
+  ],
+  "resources": [
+    "iron",
+    "salt",
+    "spices",
+    "silk",
+    "amber",
+    "mana-springs",
+    "ether-crystals",
+    "ancient scripts",
+    "myth-wood",
+    "skywhale oil",
+    "star-metal",
+    "holy relics"
+  ]
+}

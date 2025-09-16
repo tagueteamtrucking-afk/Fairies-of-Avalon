@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Alexandria · NPC Codex</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/app.css" />
+  <style>
+    body{margin:0}
+    main{max-width:1100px;margin:28px auto;padding:0 12px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width: 1000px){ .grid{grid-template-columns:1fr} }
+    .card{border:1px solid #eee;border-radius:.6rem;padding:14px;background:rgba(255,255,255,.86);margin-bottom:12px}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+    .pill{display:inline-block;padding:.35rem .7rem;border:1px solid #999;border-radius:.6rem;font-size:.9rem;text-decoration:none;color:inherit;background:#fff}
+    input,select{margin-right:8px}
+    .npc{border:1px solid #ddd;border-radius:.6rem;padding:.6rem;background:#fff;margin:.4rem 0}
+    .muted{color:#666}
+    .fine{font-size:.9rem}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Alexandria · NPC Codex</h1>
+    <div class="toolbar">
+      <a class="pill" href="/apps/alexandria/">Worldbuilding Studio</a>
+      <a class="pill" href="/apps/alexandria/bible.html">Lore Bible Builder</a>
+      <a class="pill" href="/.github/workflows/alexandria-npc-codex.yml" target="_blank">Run: Build NPC Codex (Workflow)</a>
+    </div>
+    <section class="card">
+      <h2>Filter</h2>
+      <div class="toolbar">
+        <input id="q" placeholder="search name/role/faction/trait"/>
+        <select id="faction"></select>
+        <select id="role"></select>
+        <button id="apply" class="pill">Apply</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2>NPCs</h2>
+      <div id="list">Loading…</div>
+    </section>
+    <section class="card">
+      <h2>Existing Codices</h2>
+      <div id="codices">Loading…</div>
+    </section>
+  </main>
+
+<script type="module">
+async function j(p){ const r = await fetch(p+'?t='+Date.now(), { cache:'no-store' }); if(!r.ok) return null; return r.json(); }
+const elList = document.getElementById('list');
+const q = document.getElementById('q'), fsel = document.getElementById('faction'), rsel = document.getElementById('role');
+
+let data = await j('/apps/alexandria/worlds/npcs/latest.json');
+if (!data){ elList.innerHTML = '<p class="fine muted">No codex yet. Run the workflow.</p>'; }
+else { render(data); initFilters(data); }
+
+function initFilters(d){
+  const factions = Array.from(new Set(d.npcs.map(n=>n.faction||'—'))).sort();
+  const roles = Array.from(new Set(d.npcs.map(n=>n.role||'—'))).sort();
+  fsel.innerHTML = '<option value="">All factions</option>' + factions.map(x=>`<option>${x}</option>`).join('');
+  rsel.innerHTML = '<option value="">All roles</option>' + roles.map(x=>`<option>${x}</option>`).join('');
+}
+
+function matches(n){
+  const text = (q.value||'').toLowerCase();
+  const okText = !text || [n.name,n.role,n.faction,(n.traits||[]).join(' ')].join(' ').toLowerCase().includes(text);
+  const okF = !fsel.value || (n.faction||'') === fsel.value;
+  const okR = !rsel.value || (n.role||'') === rsel.value;
+  return okText && okF && okR;
+}
+
+function render(d){
+  const items = d.npcs.filter(matches).map(n => `
+    <div class="npc">
+      <b>${n.name}</b> — <i>${n.role}</i> <small>(${n.alignment||'—'})</small><br>
+      <small>${n.faction||'Independent'}</small><br>
+      <div>${n.tagline||''}</div>
+      <div><small>Motives:</small> ${Array.isArray(n.motives)?n.motives.join(', '):n.motives||''}</div>
+      <div><small>Secret:</small> ${n.secret||'—'}</div>
+      <div><small>Traits:</small> ${(n.traits||[]).join(', ')}</div>
+    </div>`).join('');
+  elList.innerHTML = items || '<p class="fine muted">No results.</p>';
+}
+document.getElementById('apply').onclick = ()=> render(data);
+
+// existing codices
+const cod = await j('/apps/alexandria/worlds/npcs/index.json');
+const elCod = document.getElementById('codices');
+if (!cod || !Array.isArray(cod) || !cod.length){ elCod.innerHTML = '<p class="fine muted">No index yet.</p>'; }
+else { elCod.innerHTML = cod.slice(-50).reverse().map(x=>`<div><a href="${x.path}">${x.title}</a> <small>${x.ts}</small></div>`).join(''); }
+</script>
+</body>
+</html>

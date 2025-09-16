@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Alexandria · Timeline Builder</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/app.css" />
+  <style>
+    body{margin:0}
+    main{max-width:1100px;margin:28px auto;padding:0 12px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width: 1000px){ .grid{grid-template-columns:1fr} }
+    .card{border:1px solid #eee;border-radius:.6rem;padding:14px;background:rgba(255,255,255,.86);margin-bottom:12px}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+    .pill{display:inline-block;padding:.35rem .7rem;border:1px solid #999;border-radius:.6rem;font-size:.9rem;text-decoration:none;color:inherit;background:#fff}
+    textarea,input{width:100%}
+    textarea{min-height:120px}
+    pre{white-space:pre-wrap}
+    .muted{color:#666}
+    .fine{font-size:.9rem}
+    .event{padding:8px;border-left:4px solid #ccc;margin:6px 0;background:#fff;border-radius:6px}
+    .event small{color:#666}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Alexandria · Timeline Builder</h1>
+    <div class="toolbar">
+      <a class="pill" href="/apps/alexandria/">Worldbuilding Studio</a>
+      <a class="pill" href="/apps/alexandria/bible.html">Lore Bible Builder</a>
+      <a class="pill" href="/.github/workflows/alexandria-timeline.yml" target="_blank">Run: Build Timeline (Workflow)</a>
+    </div>
+    <div class="grid">
+      <section class="card">
+        <h2>Preview from Seed</h2>
+        <p class="fine muted">Load a seed JSON by URL (e.g., <code>/apps/alexandria/worlds/seed-*.json</code>)</p>
+        <input id="seedUrl" placeholder="/apps/alexandria/worlds/seed-YYYYMMDDHHMMSS-slug.json"/>
+        <div class="toolbar">
+          <button id="loadUrl" class="pill">Preview</button>
+          <button id="download" class="pill">Download timeline.json</button>
+        </div>
+        <p class="fine muted">Or paste a seed JSON</p>
+        <textarea id="seedJson" placeholder='{"id":"seed-...","title":"..."}'></textarea>
+        <div class="toolbar">
+          <button id="previewJson" class="pill">Preview from JSON</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Timeline Preview</h2>
+        <div id="render" class="fine">Nothing loaded yet.</div>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Existing Timelines</h2>
+      <div id="list">Loading…</div>
+    </section>
+  </main>
+
+<script type="module">
+let current = null;
+function buildFromSeed(s){
+  const title = s.title || 'World';
+  const f1 = s?.factions?.[0]?.name || 'Faction A';
+  const f2 = s?.factions?.[1]?.name || 'Faction B';
+  const magic = s?.pillars?.magic_system || 'magic';
+  const travel = s?.pillars?.travel || 'travel';
+  const topo = s?.cosmology?.planar_topology || 'world';
+  const events = [
+    { id: 'E1', act: 'I', name: 'Arrival / Omen',      summary: 'A sign or translation event sets the tone.', tag:'hook' },
+    { id: 'E2', act: 'I', name: `First Contact (${f1})`, summary: 'Guide or gatekeeper outlines constraints.', tag:'contact' },
+    { id: 'E3', act: 'II', name: 'Crossing a Threshold', summary: `Using ${travel} exposes costs of ${magic}.`, tag:'threshold' },
+    { id: 'E4', act: 'II', name: `Rival Move (${f2})`,   summary: 'Escalation forces a risky bargain.', tag:'rival' },
+    { id: 'E5', act: 'II', name: `Revelation of ${topo}`, summary: 'Map or myth clarifies the true stakes.', tag:'revelation' },
+    { id: 'E6', act: 'III', name: 'Clash of Factions',   summary: 'Allies and debts are tested.', tag:'climax' },
+    { id: 'E7', act: 'III', name: 'Choice & Consequence', summary: 'Values win or cost everything.', tag:'resolution' }
+  ];
+  return { id: 'timeline-'+Date.now().toString(36), seed_id: s.id, title, events, format_version: '1.0.0' };
+}
+function render(tl){
+  if (!tl){ document.getElementById('render').textContent = 'Nothing loaded yet.'; return; }
+  document.getElementById('render').innerHTML = tl.events.map((e,i)=>`<div class="event"><b>${i+1}. [Act ${e.act}] ${e.name}</b><br><small>${e.tag||''}</small><div>${e.summary}</div></div>`).join('');
+}
+async function fetchJson(u){ const r = await fetch(u+'?t='+Date.now(), { cache:'no-store' }); if(!r.ok) throw new Error('fetch failed'); return r.json(); }
+document.getElementById('loadUrl').onclick = async ()=>{
+  try{ const s = await fetchJson(document.getElementById('seedUrl').value.trim()); current = buildFromSeed(s); render(current); }
+  catch(e){ alert('Could not load that seed URL.'); }
+};
+document.getElementById('previewJson').onclick = ()=>{ try{ const s = JSON.parse(document.getElementById('seedJson').value||'{}'); current = buildFromSeed(s); render(current); } catch { alert('Invalid JSON'); } };
+document.getElementById('download').onclick = ()=>{
+  if (!current){ alert('Nothing to download.'); return; }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(current,null,2)], {type:'application/json'}));
+  a.download = 'timeline.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
+};
+// Existing timelines
+(async()=>{
+  const el = document.getElementById('list');
+  try{
+    const idx = await fetchJson('/apps/alexandria/worlds/timelines/index.json');
+    if (!Array.isArray(idx) || !idx.length){ el.innerHTML = '<p class="fine muted">No timelines yet. Run the workflow.</p>'; return; }
+    el.innerHTML = idx.slice(-50).reverse().map(x=>`<div><a href="${x.path}">${x.title}</a> <small>${x.ts}</small></div>`).join('');
+  }catch{ el.innerHTML = '<p class="fine muted">No index yet. Run the workflow.</p>'; }
+})();
+</script>
+</body>
+</html>

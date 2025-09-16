@@ -7,7 +7,6 @@ param(
 )
 $ErrorActionPreference='Stop'
 
-# Helpers
 function Slug([string]$s){
   if([string]::IsNullOrWhiteSpace($s)){ return "world" }
   $t = ($s -replace '[^A-Za-z0-9]+','-').Trim('-').ToLower()
@@ -15,12 +14,11 @@ function Slug([string]$s){
   return $t
 }
 
-# Paths
 $root = (Resolve-Path $RepoRoot).Path
 $worldsDir = Join-Path $RepoRoot "pages/apps/alexandria/worlds"
 if (-not (Test-Path $worldsDir)) { New-Item -ItemType Directory -Force -Path $worldsDir | Out-Null }
 
-# Defaults (deterministic but varied)
+# Defaults (deterministic)
 $magicSystems = @('ritual-magic','runic-tech','spirit-currency','celestial-contracts','bioluminal-weaving')
 $techLevels   = @('medieval','clockwork','industrial','diesel','digital','fusion','mythic')
 $travels      = @('portals','skyships','dream-walking','river-gates','starlight-bridges')
@@ -32,7 +30,6 @@ $factions2 = @(
   @{ name='Umbral Courts'; motif='oaths'; goal='bind errant powers' }
 )
 
-# Seed base from prompt where possible
 function TitleFromPrompt([string]$p){
   if ([string]::IsNullOrWhiteSpace($p)) { return $null }
   $p = ($p -replace '\s+',' ').Trim()
@@ -72,7 +69,7 @@ $seed = [ordered]@{
   )
 }
 
-# Optional: use llm-bridge to refine seed if key present and not forced fallback
+# Optional LLM refinement via llm-bridge
 $bridge = Join-Path (Join-Path $RepoRoot "scripts/overseers") "llm-bridge.ps1"
 if (-not $ForceFallback -and $env:OPENAI_API_KEY -and (Test-Path $bridge)) {
   $req = @"
@@ -105,14 +102,14 @@ $Prompt
       if ($j.tags) { $seed.tags = @($j.tags | ForEach-Object { [string]$_ }) }
     }
   } catch {
-    # ignore, keep deterministic defaults
+    Write-Warning "OpenAI rate limit exceeded or bridge failed; using fallback output."
   }
 }
 
-# Write seed file
 $name = "seed-" + $ts + "-" + (Slug $seed.title) + ".json"
 $path = Join-Path $worldsDir $name
-($seed | ConvertTo-Json -Depth 200) | Set-Content -Path $path -Encoding utf8NoBOM
+# IMPORTANT: Depth must be <= 100 on PS 7.x
+($seed | ConvertTo-Json -Depth 100) | Set-Content -Path $path -Encoding utf8NoBOM
 
-Write-Host ("Seed written: " + ("/apps/alexandria/worlds/" + $name))
+Write-Host ("Seed written: /apps/alexandria/worlds/" + $name)
 exit 0

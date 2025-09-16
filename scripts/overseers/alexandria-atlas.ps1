@@ -28,9 +28,9 @@ if ($SeedPath) {
 }
 
 # Load seed
-try{ $seed = Get-Content -Raw -Path $seedFile.FullName | ConvertFrom-Json -Depth 200 }catch{ throw "Invalid seed JSON: $($seedFile.FullName)" }
+try{ $seed = Get-Content -Raw -Path $seedFile.FullName | ConvertFrom-Json -Depth 100 }catch{ throw "Invalid seed JSON: $($seedFile.FullName)" }
 
-# Load taxonomy if exists, else defaults
+# Load taxonomy
 $tax = $null
 $taxFull = Join-Path $RepoRoot $TaxonomyPath
 if (Test-Path $taxFull) {
@@ -52,7 +52,6 @@ if (-not $tax) {
 
 function Pick([object[]]$arr){ if(-not $arr -or $arr.Count -eq 0){ return $null } return $arr[(Get-Random -Minimum 0 -Maximum $arr.Count)] }
 
-# Build regions
 $cnt = [Math]::Max(1,[Math]::Min(32, $Regions))
 $f1 = if($seed.factions.Count -ge 1){ $seed.factions[0].name } else { 'Faction A' }
 $f2 = if($seed.factions.Count -ge 2){ $seed.factions[1].name } else { 'Faction B' }
@@ -74,7 +73,7 @@ for($i=0;$i -lt $cnt;$i++){
   $reg += $r
 }
 
-# Portals & ley lines (light random, ensure no self-links)
+# Portals & leys
 $portals = @()
 $ley = @()
 if ($reg.Count -ge 2){
@@ -93,7 +92,7 @@ if ($reg.Count -ge 2){
   }
 }
 
-# Optional LLM enrichment: short lore paragraph per region
+# Optional region lore via llm-bridge
 $bridge = Join-Path (Join-Path $RepoRoot "scripts/overseers") "llm-bridge.ps1"
 $regionLore = @()
 if (-not $ForceFallback -and $env:OPENAI_API_KEY -and (Test-Path $bridge)) {
@@ -110,13 +109,12 @@ $skeleton
   $tmp = Join-Path $env:RUNNER_TEMP "alexandria.atlas.lore.json"
   try{
     & $bridge -Prompt $prompt -OutFile $tmp -DryRun:$false
-    $regionLore = Get-Content -Raw -Path $tmp | ConvertFrom-Json -Depth 50
+    $regionLore = Get-Content -Raw -Path $tmp | ConvertFrom-Json -Depth 100
   }catch{ $regionLore = @() }
 }
 
-# Compose atlas
+# Dimensions
 $dimensions = @()
-$dimNames = @()
 foreach($d in ($reg | ForEach-Object { $_.dimension } | Select-Object -Unique)){
   if ($null -ne $d) {
     $dimensions += [pscustomobject]@{
@@ -126,11 +124,10 @@ foreach($d in ($reg | ForEach-Object { $_.dimension } | Select-Object -Unique)){
       magic = (Pick $tax.magic_intensity)
       tech = (Pick $tax.tech_levels)
     }
-    $dimNames += $d
   }
 }
 
-# Attach lore if present
+# Attach lore
 if ($regionLore -and $regionLore.Count -eq $reg.Count){
   for($i=0;$i -lt $reg.Count; $i++){ $reg[$i] | Add-Member -NotePropertyName "lore" -NotePropertyValue ([string]$regionLore[$i]) }
 }
@@ -154,16 +151,16 @@ $slug = Slug $seed.title
 $name = "$slug.atlas.json"
 $rel  = "/apps/alexandria/worlds/atlas/$name"
 
-($atlas | ConvertTo-Json -Depth 400) | Set-Content -Path (Join-Path $outDir $name) -Encoding utf8NoBOM
-($atlas | ConvertTo-Json -Depth 400) | Set-Content -Path (Join-Path $outDir "latest.json") -Encoding utf8NoBOM
+($atlas | ConvertTo-Json -Depth 100) | Set-Content -Path (Join-Path $outDir $name) -Encoding utf8NoBOM
+($atlas | ConvertTo-Json -Depth 100) | Set-Content -Path (Join-Path $outDir "latest.json") -Encoding utf8NoBOM
 
 # Update index
 $indexPath = Join-Path $outDir "index.json"
 $index = @()
-if (Test-Path $indexPath){ try { $index = Get-Content -Raw -Path $indexPath | ConvertFrom-Json -Depth 50 } catch { $index=@() } }
+if (Test-Path $indexPath){ try { $index = Get-Content -Raw -Path $indexPath | ConvertFrom-Json -Depth 100 } catch { $index=@() } }
 $index = @($index | Where-Object { $_.path -ne $rel })
 $index += [pscustomobject]@{ path=$rel; title=$seed.title; id=$atlas.id; regions=$reg.Count; dims=$dimensions.Count; ts=(Iso) }
-($index | ConvertTo-Json -Depth 50) | Set-Content -Path $indexPath -Encoding utf8NoBOM
+($index | ConvertTo-Json -Depth 100) | Set-Content -Path $indexPath -Encoding utf8NoBOM
 
 Write-Host "Atlas written: $rel"
 exit 0

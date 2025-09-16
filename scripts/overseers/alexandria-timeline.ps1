@@ -58,14 +58,14 @@ if (-not $ForceFallback -and $env:OPENAI_API_KEY -and (Test-Path $bridge)) {
 Improve each event summary to 1-2 vivid sentences tailored to this seed (keep same order).
 Return ONLY a JSON array of strings of equal length to the input.
 Seed:
-$($seed | ConvertTo-Json -Depth 30)
+$($seed | ConvertTo-Json -Depth 40)
 Events (names only):
 $([string]::Join("`n", ($events | ForEach-Object { $_.name })))
 "@
   $tmp = Join-Path $env:RUNNER_TEMP "alexandria.timeline.expanded.json"
   try{
     & $bridge -Prompt $prompt -OutFile $tmp -DryRun:$false
-    $arr = Get-Content -Raw -Path $tmp | ConvertFrom-Json -Depth 50
+    $arr = Get-Content -Raw -Path $tmp | ConvertFrom-Json -Depth 100
     if ($arr -and $arr.Count -eq $events.Count){
       for($i=0;$i -lt $events.Count;$i++){ $events[$i].summary = [string]$arr[$i] }
     }
@@ -85,15 +85,15 @@ $timeline = [pscustomobject]@{
   generated = Iso
   format_version = "1.0.0"
 }
-($timeline | ConvertTo-Json -Depth 200) | Set-Content -Path (Join-Path $outDir $name) -Encoding utf8NoBOM
+($timeline | ConvertTo-Json -Depth 100) | Set-Content -Path (Join-Path $outDir $name) -Encoding utf8NoBOM
 
 # Index update
 $indexPath = Join-Path $outDir "index.json"
 $index = @()
-if (Test-Path $indexPath){ try { $index = Get-Content -Raw -Path $indexPath | ConvertFrom-Json -Depth 50 } catch { $index=@() } }
+if (Test-Path $indexPath){ try { $index = Get-Content -Raw -Path $indexPath | ConvertFrom-Json -Depth 100 } catch { $index=@() } }
 $index = @($index | Where-Object { $_.path -ne $rel })
 $index += [pscustomobject]@{ path=$rel; title=$seed.title; id=$timeline.id; events=$events.Count; ts=(Iso) }
-($index | ConvertTo-Json -Depth 50) | Set-Content -Path $indexPath -Encoding utf8NoBOM
+($index | ConvertTo-Json -Depth 100) | Set-Content -Path $indexPath -Encoding utf8NoBOM
 
 Write-Host "Timeline written: $rel"
 exit 0

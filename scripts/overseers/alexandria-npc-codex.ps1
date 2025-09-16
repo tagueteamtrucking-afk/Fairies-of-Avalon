@@ -29,7 +29,7 @@ if ($SeedPath) {
 # Load seed
 try{ $seed = Get-Content -Raw -Path $seedFile.FullName | ConvertFrom-Json -Depth 100 }catch{ throw "Invalid seed JSON: $($seedFile.FullName)" }
 
-# Name generator (no parentheses invocation)
+# Deterministic name and attribute pools
 $syllA = @('ar','el','is','ka','ly','ma','na','or','ri','sa','ta','va','wyn','zen','dra','sol','mir','the','cor','ane')
 $syllB = @('a','e','i','o','u')
 function Make-Name{
@@ -71,14 +71,14 @@ if (-not $ForceFallback -and $env:OPENAI_API_KEY -and (Test-Path $bridge)) {
 You are Alexandria, building an NPC codex for a setting. For each NPC, write a one-line 'tagline' that hints at conflict, and short phrases for 2 motives and 1 secret.
 Return ONLY a JSON array the same length as input, with objects: { "tagline": "...", "motives": ["...","..."], "secret": "..." }.
 Seed:
-$($seed | ConvertTo-Json -Depth 30)
+$($seed | ConvertTo-Json -Depth 40)
 NPC skeletons:
 $([string]::Join("`n", ($npcs | ForEach-Object { "{name:'"+$_.name+"', role:'"+$_.role+"', faction:'"+$_.faction+"'}" } )))
 "@
   $tmp = Join-Path $env:RUNNER_TEMP "alexandria.npcs.enriched.json"
   try{
     & $bridge -Prompt $prompt -OutFile $tmp -DryRun:$false
-    $arr = Get-Content -Raw -Path $tmp | ConvertFrom-Json -Depth 50
+    $arr = Get-Content -Raw -Path $tmp | ConvertFrom-Json -Depth 100
     if ($arr -and $arr.Count -eq $npcs.Count){
       for($i=0;$i -lt $npcs.Count; $i++){
         if ($arr[$i].tagline) { $npcs[$i].tagline = [string]$arr[$i].tagline }
@@ -105,16 +105,16 @@ $codex = [pscustomobject]@{
   format_version = "1.0.0"
 }
 
-($codex | ConvertTo-Json -Depth 300) | Set-Content -Path (Join-Path $outDir $name) -Encoding utf8NoBOM
-($codex | ConvertTo-Json -Depth 300) | Set-Content -Path (Join-Path $outDir "latest.json") -Encoding utf8NoBOM
+($codex | ConvertTo-Json -Depth 100) | Set-Content -Path (Join-Path $outDir $name) -Encoding utf8NoBOM
+($codex | ConvertTo-Json -Depth 100) | Set-Content -Path (Join-Path $outDir "latest.json") -Encoding utf8NoBOM
 
-# Index maintenance
+# Update index
 $indexPath = Join-Path $outDir "index.json"
 $index = @()
-if (Test-Path $indexPath){ try { $index = Get-Content -Raw -Path $indexPath | ConvertFrom-Json -Depth 50 } catch { $index=@() } }
+if (Test-Path $indexPath){ try { $index = Get-Content -Raw -Path $indexPath | ConvertFrom-Json -Depth 100 } catch { $index=@() } }
 $index = @($index | Where-Object { $_.path -ne $rel })
 $index += [pscustomobject]@{ path=$rel; title=$seed.title; id=$codex.id; count=$codex.count; ts=(Iso) }
-($index | ConvertTo-Json -Depth 50) | Set-Content -Path $indexPath -Encoding utf8NoBOM
+($index | ConvertTo-Json -Depth 100) | Set-Content -Path $indexPath -Encoding utf8NoBOM
 
 Write-Host "NPC Codex written: $rel"
 exit 0

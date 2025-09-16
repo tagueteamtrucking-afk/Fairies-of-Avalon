@@ -1,0 +1,58 @@
+{
+  "id": "timeline-20250916035500",
+  "seed_id": "seed-20250916035103",
+  "title": "Avalon Seed",
+  "events": [
+    {
+      "id": "224d1c61",
+      "act": "I",
+      "name": "Arrival / Omen",
+      "summary": "A sign or translation event sets the tone.",
+      "tag": "hook"
+    },
+    {
+      "id": "fb1d672e",
+      "act": "I",
+      "name": "First Contact (Mirror Syndicate)",
+      "summary": "Guide or gatekeeper outlines constraints.",
+      "tag": "contact"
+    },
+    {
+      "id": "0d6e81d8",
+      "act": "II",
+      "name": "Crossing a Threshold",
+      "summary": "Using portals exposes costs of spirit-currency.",
+      "tag": "threshold"
+    },
+    {
+      "id": "3870deee",
+      "act": "II",
+      "name": "Rival Move (Skyrail Guild)",
+      "summary": "Escalation forces a risky bargain.",
+      "tag": "rival"
+    },
+    {
+      "id": "73d88dea",
+      "act": "II",
+      "name": "Revelation of shattered-archipelago",
+      "summary": "Map or myth clarifies the true stakes.",
+      "tag": "revelation"
+    },
+    {
+      "id": "0221eff1",
+      "act": "III",
+      "name": "Clash of Factions",
+      "summary": "Allies and debts are tested.",
+      "tag": "climax"
+    },
+    {
+      "id": "0d9358c1",
+      "act": "III",
+      "name": "Choice & Consequence",
+      "summary": "Values win or cost everything.",
+      "tag": "resolution"
+    }
+  ],
+  "generated": "2025-09-16T03:55:00Z",
+  "format_version": "1.0.0"
+}

@@ -1,0 +1,104 @@
+{
+  "cultures": [
+    "riverfolk",
+    "steppe riders",
+    "fae courts",
+    "clockwork guilds",
+    "skyrail crews",
+    "umbral clans",
+    "islanders",
+    "desert caravans"
+  ],
+  "governments": [
+    "monarchy",
+    "republic",
+    "council",
+    "theocracy",
+    "technocracy",
+    "magocracy",
+    "tribal confederacy",
+    "corporate cartel",
+    "stratocracy"
+  ],
+  "currencies": [
+    "cobalt crowns",
+    "river marks",
+    "lantern tokens",
+    "ether scrip",
+    "amber beads",
+    "skyshards",
+    "iron standards"
+  ],
+  "religions": [
+    "Lantern Way",
+    "Tide Mothers",
+    "Clock Saints",
+    "First Tree",
+    "Mirror Doctrine",
+    "Storm Choir",
+    "Ash Oath"
+  ],
+  "languages": [
+    "River Cant",
+    "Skytrade",
+    "Old Lantern",
+    "Umbral",
+    "Clocktongue",
+    "Verdant",
+    "Star‑script"
+  ],
+  "magic_schools": [
+    "ward",
+    "weave",
+    "bind",
+    "rend",
+    "alter",
+    "echo",
+    "summon",
+    "walk"
+  ],
+  "magic_costs": [
+    "blood tithe",
+    "memory erosion",
+    "oath-binding",
+    "years shaved",
+    "fever-dreams",
+    "echoing scars",
+    "soul-ink"
+  ],
+  "materials": [
+    "myth-wood",
+    "star‑metal",
+    "aether glass",
+    "riverstone",
+    "sky‑silk",
+    "ember‑brick",
+    "bone‑ceramic"
+  ],
+  "color_palettes": [
+    "Frost & Pine",
+    "Amber & Teal",
+    "Wine & Gold",
+    "Indigo & Silver",
+    "Umber & Sage"
+  ],
+  "creatures": [
+    "skywhale",
+    "will‑o‑wisp",
+    "clockwork hound",
+    "wyrm",
+    "leshy",
+    "mirror shade",
+    "storm gull"
+  ],
+  "vehicles": [
+    "skyship",
+    "maglev car",
+    "sand skiff",
+    "river barge",
+    "dragonfly rider",
+    "submersible",
+    "ley‑sledge"
+  ],
+  "updated": "2025-09-16T04:28:16Z"
+}

@@ -1,0 +1,122 @@
+{
+  "id": "atlas-20250916035808",
+  "seed_id": "seed-20250916035103",
+  "title": "Avalon Seed",
+  "generated": "2025-09-16T03:58:08Z",
+  "format_version": "1.0.0",
+  "dimensions": [
+    {
+      "id": 0,
+      "name": "Undersea",
+      "timeflow": "synchronous",
+      "magic": "high",
+      "tech": "digital"
+    },
+    {
+      "id": 1,
+      "name": "Fae",
+      "timeflow": "synchronous",
+      "magic": "forbidden",
+      "tech": "industrial"
+    },
+    {
+      "id": 2,
+      "name": "Astral",
+      "timeflow": "synchronous",
+      "magic": "forbidden",
+      "tech": "digital"
+    },
+    {
+      "id": 3,
+      "name": "Void",
+      "timeflow": "slower",
+      "magic": "wild",
+      "tech": "fusion"
+    }
+  ],
+  "regions": [
+    {
+      "id": 0,
+      "name": "Region 1",
+      "dimension": "Undersea",
+      "biome": "floating isles",
+      "climate": "polar",
+      "faction": "Independent",
+      "hazard": "toxins",
+      "resource": "myth-wood",
+      "wing_friendly": false,
+      "poi": []
+    },
+    {
+      "id": 1,
+      "name": "Region 2",
+      "dimension": "Fae",
+      "biome": "steppe",
+      "climate": "arid",
+      "faction": "Unclaimed",
+      "hazard": "beasts",
+      "resource": "amber",
+      "wing_friendly": false,
+      "poi": []
+    },
+    {
+      "id": 2,
+      "name": "Region 3",
+      "dimension": "Fae",
+      "biome": "badlands",
+      "climate": "tropical",
+      "faction": "Skyrail Guild",
+      "hazard": "bandits",
+      "resource": "holy relics",
+      "wing_friendly": true,
+      "poi": []
+    },
+    {
+      "id": 3,
+      "name": "Region 4",
+      "dimension": "Astral",
+      "biome": "alpine",
+      "climate": "cold",
+      "faction": "Unclaimed",
+      "hazard": "warzone",
+      "resource": "star-metal",
+      "wing_friendly": true,
+      "poi": []
+    },
+    {
+      "id": 4,
+      "name": "Region 5",
+      "dimension": "Void",
+      "biome": "alpine",
+      "climate": "cold",
+      "faction": "Unclaimed",
+      "hazard": "bandits",
+      "resource": "spices",
+      "wing_friendly": true,
+      "poi": []
+    }
+  ],
+  "portals": [],
+  "leylines": [
+    {
+      "from": 4,
+      "to": 0,
+      "affinity": "storm"
+    },
+    {
+      "from": 1,
+      "to": 4,
+      "affinity": "shadow"
+    },
+    {
+      "from": 2,
+      "to": 1,
+      "affinity": "storm"
+    }
+  ],
+  "wallpaper_tags": [
+    "spirit-currency",
+    "portals",
+    "shattered-archipelago"
+  ]
+}

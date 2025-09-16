@@ -1,6 +1,56 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-16T23:40:41.7147660Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Sorcha'**
+
+1. **Character Overview**
+   - Name: Sorcha
+   - Type: Fairy
+   - Realm: Avalon
+   - Role: Guardian of Nature
+
+2. **Physical Attributes**
+   - Height: 5 inches
+   - Wing Type: Iridescent, butterfly-like
+   - Hair: Long, flowing, silver with hints of green
+   - Eyes: Emerald green, sparkling
+
+3. **Personality Traits**
+   - Kind-hearted
+   - Playful
+   - Wise beyond her years
+   - Protective of her realm
+
+4. **Abilities**
+   - Nature Manipulation: Can control plants and animals
+   - Healing Touch: Can heal wounds and ailments
+   - Flight: Capable of swift, agile flight
+
+5. **Backstory**
+   - Origin: Born from the first bloom of spring in Avalon
+   - Purpose: To maintain balance in nature and protect the magical realm
+
+6. **Goals and Motivations**
+   - Preserve the beauty of Avalon
+   - Foster harmony between magical creatures and nature
+   - Defend against dark forces threatening her realm
+
+7. **Allies and Relationships**
+   - Close friends with woodland creatures
+   - Mentor to younger fairies
+   - Rivalry with dark fairies
+
+8. **Challenges**
+   - Confronting dark forces
+   - Balancing her duties with personal desires
+   - Navigating conflicts within the fairy community
+
+9. **Visual Design Elements**
+   - Color Palette: Greens, silvers, and soft pastels
+   - Clothing: Ethereal, leaf-inspired garments
+   - Accessories: Nature-themed jewelry (e.g., flower crowns, vine bracelets)
+
+10. **Narrative Arc**
+    - Introduction: Sorcha's daily life in Avalon
+    - Conflict: The emergence of a dark force threatening nature
+    - Climax: Sorcha's battle to protect her realm
+    - Resolution: Restoration of balance and her growth as a guardian
+
+This scaffold provides a foundational structure for the character Sorcha, allowing for further development and storytelling.

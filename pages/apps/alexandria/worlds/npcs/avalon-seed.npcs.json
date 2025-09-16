@@ -1,226 +1,226 @@
 {
-  "id": "codex-20250916035617",
+  "id": "codex-20250916041221",
   "seed_id": "seed-20250916035103",
   "title": "Avalon Seed",
   "count": 12,
   "npcs": [
     {
-      "id": "npc-1a5ba5a4",
-      "name": "Soleor",
-      "role": "Ranger‑Navigator",
-      "faction": "Independent",
-      "alignment": "LG",
-      "tagline": "Ranger‑Navigator caught between Mirror Syndicate and Skyrail Guild.",
-      "motives": [
-        "appease a patron",
-        "revenge"
-      ],
-      "secret": "false prophecy",
-      "traits": [
-        "stubborn",
-        "merciful",
-        "curious"
-      ]
-    },
-    {
-      "id": "npc-a13128e1",
-      "name": "Aroane",
-      "role": "Merchant",
-      "faction": "Skyrail Guild",
-      "alignment": "LN",
-      "tagline": "Merchant caught between Mirror Syndicate and Skyrail Guild.",
-      "motives": [
-        "revenge",
-        "unlock forbidden lore"
-      ],
-      "secret": "forbidden pact",
-      "traits": [
-        "merciful",
-        "stubborn",
-        "pious"
-      ]
-    },
-    {
-      "id": "npc-554afb84",
-      "name": "Coruor",
-      "role": "Ranger‑Navigator",
-      "faction": "Independent",
-      "alignment": "LG",
-      "tagline": "Ranger‑Navigator caught between Mirror Syndicate and Skyrail Guild.",
-      "motives": [
-        "appease a patron",
-        "profit"
-      ],
-      "secret": "cursed relic",
-      "traits": [
-        "mischievous",
-        "pious",
-        "idealistic"
-      ]
-    },
-    {
-      "id": "npc-b2b998d5",
-      "name": "Taumir",
-      "role": "Archivist",
-      "faction": "Skyrail Guild",
-      "alignment": "N",
-      "tagline": "Archivist caught between Mirror Syndicate and Skyrail Guild.",
-      "motives": [
-        "unlock forbidden lore",
-        "map the unknown"
-      ],
-      "secret": "memory gaps",
-      "traits": [
-        "warm",
-        "calculating",
-        "stubborn"
-      ]
-    },
-    {
-      "id": "npc-40f8ff52",
-      "name": "Isava",
-      "role": "Bard‑Spy",
-      "faction": "Independent",
-      "alignment": "CN",
-      "tagline": "Bard‑Spy caught between Mirror Syndicate and Skyrail Guild.",
-      "motives": [
-        "revenge",
-        "protect kin"
-      ],
-      "secret": "lost heir",
-      "traits": [
-        "wry",
-        "mischievous",
-        "idealistic"
-      ]
-    },
-    {
-      "id": "npc-ea8652be",
-      "name": "Vaemir",
+      "id": "npc-e2fc3420",
+      "name": "Aruor",
       "role": "Alchemist‑Medic",
-      "faction": "Independent",
-      "alignment": "NE",
-      "tagline": "Alchemist‑Medic caught between Mirror Syndicate and Skyrail Guild.",
-      "motives": [
-        "spark revolution",
-        "atonement"
-      ],
-      "secret": "cursed relic",
-      "traits": [
-        "pragmatic",
-        "merciful",
-        "mischievous"
-      ]
-    },
-    {
-      "id": "npc-a55d8735",
-      "name": "Draaor",
-      "role": "Alchemist‑Medic",
-      "faction": "Mirror Syndicate",
+      "faction": "Skyrail Guild",
       "alignment": "LN",
       "tagline": "Alchemist‑Medic caught between Mirror Syndicate and Skyrail Guild.",
       "motives": [
         "revenge",
-        "protect kin"
-      ],
-      "secret": "lost heir",
-      "traits": [
-        "merciful",
-        "stubborn",
-        "idealistic"
-      ]
-    },
-    {
-      "id": "npc-e3f93154",
-      "name": "Aneesa",
-      "role": "Archivist",
-      "faction": "Mirror Syndicate",
-      "alignment": "CN",
-      "tagline": "Archivist caught between Mirror Syndicate and Skyrail Guild.",
-      "motives": [
-        "appease a patron",
-        "map the unknown"
-      ],
-      "secret": "memory gaps",
-      "traits": [
-        "calculating",
-        "pragmatic",
-        "secretive"
-      ]
-    },
-    {
-      "id": "npc-a025ecd7",
-      "name": "Kauel",
-      "role": "Artificer",
-      "faction": "Independent",
-      "alignment": "N",
-      "tagline": "Artificer caught between Mirror Syndicate and Skyrail Guild.",
-      "motives": [
-        "unlock forbidden lore",
-        "atonement"
-      ],
-      "secret": "double agent",
-      "traits": [
-        "stubborn",
-        "warm",
-        "mischievous"
-      ]
-    },
-    {
-      "id": "npc-c6269301",
-      "name": "Draely",
-      "role": "Gatekeeper",
-      "faction": "Mirror Syndicate",
-      "alignment": "N",
-      "tagline": "Gatekeeper caught between Mirror Syndicate and Skyrail Guild.",
-      "motives": [
-        "unlock forbidden lore",
-        "atonement"
+        "spark revolution"
       ],
       "secret": "stolen sigil",
       "traits": [
-        "secretive",
-        "pragmatic",
+        "curious",
+        "pious",
         "wry"
       ]
     },
     {
-      "id": "npc-e9ffa16c",
-      "name": "Coradra",
-      "role": "Merchant",
-      "faction": "Skyrail Guild",
-      "alignment": "N",
-      "tagline": "Merchant caught between Mirror Syndicate and Skyrail Guild.",
+      "id": "npc-992a16a2",
+      "name": "Kaeane",
+      "role": "Gatekeeper",
+      "faction": "Mirror Syndicate",
+      "alignment": "CN",
+      "tagline": "Gatekeeper caught between Mirror Syndicate and Skyrail Guild.",
       "motives": [
-        "preserve balance",
+        "atonement",
+        "spark revolution"
+      ],
+      "secret": "owed blood-debt",
+      "traits": [
+        "warm",
+        "pious",
+        "secretive"
+      ]
+    },
+    {
+      "id": "npc-d747d810",
+      "name": "Zenuwyn",
+      "role": "Alchemist‑Medic",
+      "faction": "Skyrail Guild",
+      "alignment": "LG",
+      "tagline": "Alchemist‑Medic caught between Mirror Syndicate and Skyrail Guild.",
+      "motives": [
+        "spark revolution",
+        "unlock forbidden lore"
+      ],
+      "secret": "forbidden pact",
+      "traits": [
+        "warm",
+        "curious",
+        "secretive"
+      ]
+    },
+    {
+      "id": "npc-8e114b76",
+      "name": "Lyeor",
+      "role": "Cartographer",
+      "faction": "Mirror Syndicate",
+      "alignment": "CN",
+      "tagline": "Cartographer caught between Mirror Syndicate and Skyrail Guild.",
+      "motives": [
+        "profit",
+        "atonement"
+      ],
+      "secret": "stolen sigil",
+      "traits": [
+        "stubborn",
+        "secretive",
+        "pious"
+      ]
+    },
+    {
+      "id": "npc-56dec4ea",
+      "name": "Lyuly",
+      "role": "Zealot",
+      "faction": "Mirror Syndicate",
+      "alignment": "CE",
+      "tagline": "Zealot caught between Mirror Syndicate and Skyrail Guild.",
+      "motives": [
+        "revenge",
+        "map the unknown"
+      ],
+      "secret": "astral sickness",
+      "traits": [
+        "warm",
+        "curious",
+        "mischievous"
+      ]
+    },
+    {
+      "id": "npc-f612a96e",
+      "name": "Naoane",
+      "role": "Archivist",
+      "faction": "Independent",
+      "alignment": "LN",
+      "tagline": "Archivist caught between Mirror Syndicate and Skyrail Guild.",
+      "motives": [
+        "unlock forbidden lore",
         "prove worth"
       ],
       "secret": "astral sickness",
       "traits": [
-        "wry",
+        "secretive",
+        "merciful",
+        "warm"
+      ]
+    },
+    {
+      "id": "npc-6abd4538",
+      "name": "Miraly",
+      "role": "Artificer",
+      "faction": "Independent",
+      "alignment": "CG",
+      "tagline": "Artificer caught between Mirror Syndicate and Skyrail Guild.",
+      "motives": [
+        "spark revolution",
+        "map the unknown"
+      ],
+      "secret": "owed blood-debt",
+      "traits": [
+        "pious",
+        "idealistic",
+        "wry"
+      ]
+    },
+    {
+      "id": "npc-c2e339d9",
+      "name": "Maear",
+      "role": "Bard‑Spy",
+      "faction": "Independent",
+      "alignment": "CG",
+      "tagline": "Bard‑Spy caught between Mirror Syndicate and Skyrail Guild.",
+      "motives": [
+        "revenge",
+        "profit"
+      ],
+      "secret": "double agent",
+      "traits": [
+        "pious",
+        "stubborn",
+        "curious"
+      ]
+    },
+    {
+      "id": "npc-be8eec52",
+      "name": "Solely",
+      "role": "Cartographer",
+      "faction": "Skyrail Guild",
+      "alignment": "LE",
+      "tagline": "Cartographer caught between Mirror Syndicate and Skyrail Guild.",
+      "motives": [
+        "preserve balance",
+        "spark revolution"
+      ],
+      "secret": "memory gaps",
+      "traits": [
+        "warm",
         "pragmatic",
         "calculating"
       ]
     },
     {
-      "id": "npc-22a9f234",
-      "name": "Theeor",
-      "role": "Merchant",
-      "faction": "Skyrail Guild",
-      "alignment": "LG",
-      "tagline": "Merchant caught between Mirror Syndicate and Skyrail Guild.",
+      "id": "npc-67c70d84",
+      "name": "Riozen",
+      "role": "Guide",
+      "faction": "Independent",
+      "alignment": "CE",
+      "tagline": "Guide caught between Mirror Syndicate and Skyrail Guild.",
       "motives": [
-        "prove worth",
-        "preserve balance"
+        "spark revolution",
+        "revenge"
       ],
-      "secret": "stolen sigil",
+      "secret": "exiled noble",
       "traits": [
         "idealistic",
-        "secretive",
-        "pious"
+        "wry",
+        "curious"
+      ]
+    },
+    {
+      "id": "npc-85565551",
+      "name": "Wynamir",
+      "role": "Archivist",
+      "faction": "Skyrail Guild",
+      "alignment": "LE",
+      "tagline": "Archivist caught between Mirror Syndicate and Skyrail Guild.",
+      "motives": [
+        "unlock forbidden lore",
+        "appease a patron"
+      ],
+      "secret": "forbidden pact",
+      "traits": [
+        "pious",
+        "stubborn",
+        "pragmatic"
+      ]
+    },
+    {
+      "id": "npc-57b6bcc5",
+      "name": "Vaadra",
+      "role": "Archivist",
+      "faction": "Independent",
+      "alignment": "LN",
+      "tagline": "Archivist caught between Mirror Syndicate and Skyrail Guild.",
+      "motives": [
+        "spark revolution",
+        "unlock forbidden lore"
+      ],
+      "secret": "false prophecy",
+      "traits": [
+        "pragmatic",
+        "wry",
+        "secretive"
       ]
     }
   ],
-  "generated": "2025-09-16T03:56:17Z",
+  "generated": "2025-09-16T04:12:21Z",
   "format_version": "1.0.0"
 }

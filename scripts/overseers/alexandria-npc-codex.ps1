@@ -29,10 +29,10 @@ if ($SeedPath) {
 # Load seed
 try{ $seed = Get-Content -Raw -Path $seedFile.FullName | ConvertFrom-Json -Depth 100 }catch{ throw "Invalid seed JSON: $($seedFile.FullName)" }
 
-# Deterministic name and attribute pools
+# Name generator (no parentheses invocation)
 $syllA = @('ar','el','is','ka','ly','ma','na','or','ri','sa','ta','va','wyn','zen','dra','sol','mir','the','cor','ane')
 $syllB = @('a','e','i','o','u')
-function Make-Name(){
+function Make-Name{
   $s = ($syllA[(Get-Random -Minimum 0 -Maximum $syllA.Count)]) + ($syllB[(Get-Random -Minimum 0 -Maximum $syllB.Count)]) + ($syllA[(Get-Random -Minimum 0 -Maximum $syllA.Count)])
   return ($s.Substring(0,1).ToUpper()+$s.Substring(1))
 }
@@ -47,7 +47,7 @@ $align = @('LG','NG','CG','LN','N','CN','LE','NE','CE')
 # Build NPC list
 $npcs = @()
 for($i=0;$i -lt $Count; $i++){
-  $name = Make-Name()
+  $name = Make-Name
   $role = $roles[(Get-Random -Minimum 0 -Maximum $roles.Count)]
   $fac  = if((Get-Random) % 3 -eq 0) { 'Independent' } else { if((Get-Random) % 2 -eq 0){ $f1 } else { $f2 } }
   $npc = [pscustomobject]@{
@@ -105,11 +105,10 @@ $codex = [pscustomobject]@{
   format_version = "1.0.0"
 }
 
-# Write codex and convenience "latest.json"
 ($codex | ConvertTo-Json -Depth 300) | Set-Content -Path (Join-Path $outDir $name) -Encoding utf8NoBOM
 ($codex | ConvertTo-Json -Depth 300) | Set-Content -Path (Join-Path $outDir "latest.json") -Encoding utf8NoBOM
 
-# Update index
+# Index maintenance
 $indexPath = Join-Path $outDir "index.json"
 $index = @()
 if (Test-Path $indexPath){ try { $index = Get-Content -Raw -Path $indexPath | ConvertFrom-Json -Depth 50 } catch { $index=@() } }

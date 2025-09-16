@@ -103,7 +103,7 @@
     },
     {
       "ended": "2025-09-16T04:53:04.2982859Z",
-      "started": "2025-09-16T04:53:01.5885010Z",
+      "started": "2025-09-16T04:53:01.588501Z",
       "ts": null,
       "file": "20250913T215629Z-scaffold-live.request.yml",
       "count": 15,
@@ -115,9 +115,9 @@
       "status": "ok"
     },
     {
-      "ended": "2025-09-16T04:53:04.5145930Z",
+      "ended": "2025-09-16T04:53:04.514593Z",
       "started": "2025-09-16T04:53:04.2995002Z",
-      "ts": "2025-09-15T06:36:27.3663610Z",
+      "ts": "2025-09-15T06:36:27.366361Z",
       "file": "20250915T063627Z-build-manifests.request.yml",
       "action": "build_manifests",
       "id": "A3",
@@ -136,7 +136,7 @@
     },
     {
       "ended": "2025-09-16T04:53:04.7241772Z",
-      "started": "2025-09-16T04:53:04.5933490Z",
+      "started": "2025-09-16T04:53:04.593349Z",
       "ts": "2025-09-15T15:16:33.3901158Z",
       "file": "20250915T151633Z-build-manifests.request.yml",
       "action": "build_manifests",
@@ -146,7 +146,7 @@
     },
     {
       "ended": "2025-09-16T04:53:04.7812288Z",
-      "started": "2025-09-16T04:53:04.7253030Z",
+      "started": "2025-09-16T04:53:04.725303Z",
       "ts": "2025-09-15T15:16:33.2643663Z",
       "file": "20250915T151633Z-create-microapps.request.yml",
       "action": "create_microapps",
@@ -155,5 +155,11 @@
       "status": "ok"
     }
   ],
-  "last_run": "2025-09-16T04:53:00.6390930Z"
+  "last_run": "2025-09-16T04:53:00.639093Z",
+  "telemetry": {
+    "updated": "2025-09-16T05:17:51.4048439Z",
+    "wallpapers_total": 20,
+    "wallpapers_count": 4,
+    "wallpaper_power_index": 20
+  }
 }

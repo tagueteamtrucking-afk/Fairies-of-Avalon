@@ -3,26 +3,14 @@ name: "Alexandria — Generate World Seed"
 on:
   workflow_dispatch:
     inputs:
-      prompt:
-        description: "Creative prompt / premise"
+      title:
+        description: "Optional title for the world"
         required: false
         default: ""
-      isekai:
-        description: "Force isekai?"
-        required: true
-        default: "false"
-        type: choice
-        options: ["false","true"]
-      dnd:
-        description: "D&D SRD compatible?"
-        required: true
-        default: "false"
-        type: choice
-        options: ["false","true"]
-      count:
-        description: "How many seeds?"
-        required: true
-        default: "1"
+      prompt:
+        description: "Optional seed idea / hook (Alexandria may refine it if OPENAI_API_KEY exists)"
+        required: false
+        default: ""
       mode:
         description: "Generation mode"
         required: true
@@ -34,7 +22,7 @@ permissions:
   contents: write
 
 jobs:
-  seed:
+  worldseed:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -42,42 +30,32 @@ jobs:
           ref: ${{ github.ref }}
           fetch-depth: 0
 
-      - name: Setup PowerShell + YAML
-        shell: pwsh
-        run: |
-          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-          Install-Module powershell-yaml -Scope CurrentUser -Force -AllowClobber
-          Import-Module powershell-yaml
-
-      - name: Generate world seeds
+      - name: Build Seed
         shell: pwsh
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           $ErrorActionPreference='Stop'
-          $mode = "${{ github.event.inputs.mode }}"
-          $force = ($mode -eq "fallback-only")
+          $force = ("${{ github.event.inputs.mode }}" -eq "fallback-only")
           & "scripts/overseers/alexandria-worldseed.ps1" `
             -RepoRoot "${{ github.workspace }}" `
-            -Prompt   "${{ github.event.inputs.prompt }}" `
-            -Isekai:(${{ github.event.inputs.isekai }} -eq 'true') `
-            -DndCompat:(${{ github.event.inputs.dnd }} -eq 'true') `
-            -Count    [int]"${{ github.event.inputs.count }}" `
+            -Title "${{ github.event.inputs.title }}" `
+            -Prompt "${{ github.event.inputs.prompt }}" `
             -ForceFallback:$force
 
-      - name: Commit seeds (if changed)
+      - name: Commit (if changed)
         shell: pwsh
         run: |
           git add -A "pages/apps/alexandria/worlds"
           $changes = git status --porcelain -- "pages/apps/alexandria/worlds"
           if ([string]::IsNullOrWhiteSpace($changes)) {
-            Write-Host "Nothing to commit (no new seeds)."
+            Write-Host "Nothing to commit."
           } else {
             git config user.email "actions@github.com"
             git config user.name  "GitHub Actions"
             git fetch origin ${{ github.ref_name }} --prune
             git pull --rebase origin ${{ github.ref_name }} || echo "Nothing to rebase"
-            git commit -m "Alexandria: add world seed(s)"
+            git commit -m "Alexandria: world seed"
           }
 
       - name: Push

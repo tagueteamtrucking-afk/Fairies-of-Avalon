@@ -4,7 +4,7 @@
 **Tags:** isekai?, tone-balanced, genre-fantasy+sci-fi
 **Isekai:** No
 **D&D Compatible:** Yes
-**Generated:** 2025-09-16T03:53:28Z
+**Generated:** 2025-09-16T04:09:03Z
 
 ---
 

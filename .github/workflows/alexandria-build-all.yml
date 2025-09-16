@@ -1,0 +1,78 @@
+name: Alexandria — Build World (All-in-One)
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: "World Title"
+        required: false
+        type: string
+      prompt:
+        description: "Starter hook / prompt (plain text)"
+        required: false
+        type: string
+      events:
+        description: "Timeline events count"
+        required: false
+        default: 7
+        type: number
+      npcs:
+        description: "NPC count"
+        required: false
+        default: 12
+        type: number
+      regions:
+        description: "Region count"
+        required: false
+        default: 5
+        type: number
+      force_fallback:
+        description: "Force offline (skip LLM bridge)"
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install PowerShell YAML
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          Install-Module powershell-yaml -Force -Scope CurrentUser -AllowClobber
+
+      - name: Build All
+        shell: pwsh
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          $ErrorActionPreference='Stop'
+          & "scripts/overseers/alexandria-build-all.ps1" `
+             -RepoRoot "$PWD" `
+             -Title "${{ inputs.title }}" `
+             -Prompt "${{ inputs.prompt }}" `
+             -Events [int]${{ inputs.events }} `
+             -NPCs [int]${{ inputs.npcs }} `
+             -Regions [int]${{ inputs.regions }} `
+             -ForceFallback:${{ inputs.force_fallback }}
+
+      - name: Commit changes (if any)
+        shell: bash
+        run: |
+          set -e
+          git config user.name "actions-bot"
+          git config user.email "actions@github.com"
+          git add -A pages/apps/alexandria
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Alexandria build-all: seed/bible/timeline/npcs/atlas/export"
+            git pull --rebase origin main || true
+            git push origin HEAD:main
+          fi

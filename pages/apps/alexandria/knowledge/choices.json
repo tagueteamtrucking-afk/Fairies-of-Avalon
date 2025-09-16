@@ -14,6 +14,15 @@
     "Storm",
     "Ember"
   ],
+  "planar_topologies": [
+    "nested-rings",
+    "world-tree",
+    "shattered-archipelago",
+    "spiral-tower",
+    "clockwork-spheres",
+    "endless-stepwell",
+    "outer-reef"
+  ],
   "timeflow": [
     "synchronous",
     "slower",
@@ -169,6 +178,15 @@
     "umbral clans",
     "islanders",
     "desert caravans"
+  ],
+  "religions": [
+    "Lantern Way",
+    "Tide Mothers",
+    "Clock Saints",
+    "First Tree",
+    "Mirror Doctrine",
+    "Storm Choir",
+    "Ash Oath"
   ],
   "professions": [
     "Guide",
@@ -326,5 +344,47 @@
     "dragonfly rider",
     "submersible",
     "ley\u2011sledge"
+  ],
+  "event_tags": [
+    "hook",
+    "contact",
+    "threshold",
+    "travel",
+    "trade",
+    "festival",
+    "rival",
+    "revelation",
+    "heist",
+    "chase",
+    "trial",
+    "siege",
+    "disaster",
+    "betrayal",
+    "summoning",
+    "rescue",
+    "expedition",
+    "negotiation",
+    "climax",
+    "resolution"
+  ],
+  "holiday_types": [
+    "harvest",
+    "first thaw",
+    "moon crossing",
+    "lantern tides",
+    "founding day",
+    "remembrance",
+    "skywhale return",
+    "mask night"
+  ],
+  "conflict_types": [
+    "faction dispute",
+    "resource scarcity",
+    "forbidden magic",
+    "border skirmish",
+    "succession crisis",
+    "trade war",
+    "plague",
+    "storm season"
   ]
 }

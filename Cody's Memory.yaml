@@ -1,4 +1,23 @@
 meta:
+  version: "1.8.3"
+  last_updated: "2025-09-16"
+  notes: >
+    v1.8.3 — Alexandria Choices / Taxonomy Library:
+      - Centralized lists in pages/apps/alexandria/knowledge/choices.json.
+      - Workflow alexandria-choices.yml validates and derives atlas-taxonomy.json & npc-taxonomy.json.
+      - Atlas microapp prefers choices.json with fallback to derived taxonomy.
+      - NPC Codex updated to read npc-taxonomy.json + syllables from choices.json.
+
+runtime:
+  workflows:
+    alexandria_choices: ".github/workflows/alexandria-choices.yml"
+
+lessons_learned:
+  - "Centralized taxonomies reduce drift across Atlas/NPC/Bible/Timeline and simplify 'choose/roll/custom' UX."
+  - "Keep ConvertTo-Json Depth <= 100 across all PS scripts (GitHub Actions PS7 cap)."
+  - "When adding workflow inputs, ensure script parameters match exactly; avoid inline type casts in YAML."
+  - "Always provide folder scaffolds (.gitkeep) to prevent 'No seeds directory found' errors."
+meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
   version: "1.8.2"

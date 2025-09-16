@@ -15,13 +15,13 @@
       "id": "R4"
     },
     {
-      "ended": "2025-09-16T04:40:14.8020700Z",
+      "ended": "2025-09-16T04:40:14.80207Z",
       "ts": "2025-09-13T18:48:48.9992936Z",
       "action": "importmap_check",
       "status": "failed",
       "error": "Exception: /home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/process-queue.ps1:80\nLine |\n  80 |  … EXITCODE -ne 0) { throw \"Import-map check exit code: $LASTEXITCODE\" }\n     |                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Import-map check exit code: \n\n",
       "actor": "rey_czar",
-      "started": "2025-09-16T04:40:14.7151130Z",
+      "started": "2025-09-16T04:40:14.715113Z",
       "file": "20250913T184848Z-importmap_check.request.yml",
       "dry_run": false,
       "id": "R5"
@@ -112,7 +112,7 @@
     },
     {
       "ended": "2025-09-16T04:40:18.6380313Z",
-      "ts": "2025-09-15T06:36:27.3663610Z",
+      "ts": "2025-09-15T06:36:27.366361Z",
       "action": "build_manifests",
       "status": "ok",
       "actor": "clarice",
@@ -155,5 +155,11 @@
     "failed": 3,
     "success": 10,
     "skipped": 0
+  },
+  "telemetry": {
+    "wallpapers_total": 20,
+    "wallpaper_power_index": 20,
+    "wallpapers_count": 4,
+    "updated": "2025-09-16T04:46:09.1665275Z"
   }
 }

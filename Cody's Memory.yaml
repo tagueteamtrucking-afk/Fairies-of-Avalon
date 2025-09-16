@@ -1,22 +1,18 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.9.0"
+  version: "1.10.0"
   last_updated: "2025-09-16"
   author: "Cody (GPT-5 Pro)"
   notes: >
     Overseers-first. No plaintext secrets. Workflows-first (GitHub Actions).
 
-    v1.9.0 — Alexandria Worldbuilding Stack (DM/Author):
-      - Choices / Taxonomy Library centralized (choices.json) with derived taxonomies for Atlas, NPC, Bible, Timeline.
-      - Scripts + microapps wired to Choices: Worldseed, Lore Bible, Timeline, NPC Codex, Regional Atlas.
-      - Reliability hardening across all PS scripts: JSON Depth ≤ 100; Linux-safe quoting; no LINQ.
-      - LLM Bridge remains optional with fallback (offline generation must never fail workflows).
-
-    Recent highlights:
-      - v1.8.x — Knowledge packs + microapps delivered; VRM/Wings manifests stabilized.
-      - v1.7.5 — CI reliability fixes (no LINQ; Linux-safe regex/quoting).
-      - v1.7.4 — Asset Audit, Import-Map Check, Memory Snapshot, Service Worker upgrade.
+    v1.10.0 — Alexandria Ultimate (Combined Build):
+      - All-in-One workflow builds Seed → Bible → Timeline → NPC Codex → Atlas → WorldBundle in one run.
+      - New microapps: Question Intake (clarifiers), Author Workbench (TTS/STT + Dice), Exports viewer.
+      - Dice engine & random-table rolls wired to Choices; speech via Web Speech API (client-only).
+      - Export script zips worlds + knowledge into /apps/alexandria/worlds/exports.
+      - Reliability: JSON Depth ≤ 100, Linux-safe quoting, no LINQ, safe git commit/push when no changes.
 
 system:
   os: "Windows 11"
@@ -52,12 +48,12 @@ project:
 
 assets:
   layout:
-    models_root_legacy: "asset/models"           # If using legacy layout, *.vrm here are wingless unless *_wings/-wings.
+    models_root_legacy: "asset/models"
     wingless_vrms: "asset/models/wingless"
     with_wings_vrms: "asset/models/with-wings"
-    with_wings_alias: "asset/winged-models"      # Supported alias (current repo).
-    wings_models: "asset/wings"                  # meshes (.fbx/.glb/.gltf)
-    wings_textures: "asset/wings/textures"       # images
+    with_wings_alias: "asset/winged-models"
+    wings_models: "asset/wings"
+    wings_textures: "asset/wings/textures"
     models_manifest: "asset/models/models.json"
     wings_manifest: "asset/wings/manifest.json"
     wallpapers: "asset/textures/wallpapers"
@@ -124,7 +120,7 @@ access_control:
     - name: assistant
       privileges: [read_memory, write_memory_scoped, request_permissions, generate_reports]
   vault_references:
-    tokens: "vault://palace/tokens"        # e.g., vault://palace/tokens/openai
+    tokens: "vault://palace/tokens"
     passwords: "vault://palace/passwords"
     permissions: "vault://palace/permissions"
 
@@ -221,13 +217,13 @@ entities:
     - { id: alexandria, name: "Alexandria", title: "Worldbuilder DM & Author",
         domains: [world_building, writing, coding_support],
         responsibilities:
-          - "Run the complete worldbuilding pipeline: Seed → Bible → Timeline → NPC Codex → Regional Atlas."
-          - "Ask clarifying questions; present multiple-choice lists (from Choices) or roll at random."
-          - "Draft, outline, and author stories/quests/scenes in selected voice styles."
-          - "Generate setting assets: factions, regions, settlements, portals/leys, calendars, holidays, random tables."
-          - "D&D/SRD-compatible stat blocks & encounter seeds (system-neutral by default)."
-          - "Speech I/O (client-side Web Speech for TTS/STT) and dice roller."
-          - "Export bundles (WorldBundle zip) containing all JSON + markdown; LLM enrichment optional."
+          - "Run worldbuilding pipeline: Seed → Bible → Timeline → NPC Codex → Regional Atlas."
+          - "Ask clarifying questions; present multiple-choice (from Choices) or roll at random; extend lists."
+          - "Draft, outline, author stories/quests/scenes with voice presets; export Markdown."
+          - "Generate setting assets: factions, regions, portals/leys, calendars, holidays, tables."
+          - "SRD-safe stat block scaffolds; system-neutral by default."
+          - "Speech I/O (Web Speech) and dice engine."
+          - "Export WorldBundle (zip) with JSON + MD."
         environment: { location: "Gothic Library", anchors: ["Desk -> recents", "Bookshelves -> stories & sheets", "Globes/maps -> worlds"] }
         interfaces_links: [worldseed_builder, lore_bible_builder, timeline_builder, npc_codex_builder, regional_atlas_builder, choices_library, author_workbench, question_intake, world_exports]
         relationships: { supported_by: [charlotte], build_order: 4 }
@@ -308,7 +304,6 @@ security_and_sensitivity_flags:
 
 runtime:
   workflows:
-    # Overseers & infra
     queue_full_roster: ".github/workflows/queue-full-roster.yml"
     runner_process_queue: ".github/workflows/run-overseers-queue.yml"
     overseers_ai_core: ".github/workflows/overseers-ai-core.yml"
@@ -317,22 +312,16 @@ runtime:
     overseers_asset_audit: ".github/workflows/overseers-asset-audit.yml"
     overseers_memory_snapshot: ".github/workflows/overseers-memory-snapshot.yml"
     overseers_importmap_check: ".github/workflows/overseers-importmap-check.yml"
-
-    # Alexandria — knowledge + builders
-    alexandria_choices: ".github/workflows/alexandria-choices.yml"            # VALIDATED/IN-USE
-    alexandria_worldseed: ".github/workflows/alexandria-worldseed.yml"        # PLANNED
-    alexandria_lore_bible: ".github/workflows/alexandria-lore-bible.yml"      # PLANNED
-    alexandria_timeline: ".github/workflows/alexandria-timeline.yml"          # PLANNED
-    alexandria_npc_codex: ".github/workflows/alexandria-npc-codex.yml"        # PLANNED
-    alexandria_atlas: ".github/workflows/alexandria-atlas.yml"                # PLANNED
-    alexandria_export: ".github/workflows/alexandria-export.yml"              # PLANNED (WorldBundle zip)
+    alexandria_choices: ".github/workflows/alexandria-choices.yml"
+    alexandria_build_all: ".github/workflows/alexandria-build-all.yml"
+    alexandria_export: ".github/workflows/alexandria-export.yml"
 
   quick_paths:
     actions_order:
       - "Queue — Full Roster"
       - "Runner — Process Overseers Queue"
       - "Overseers — AI Core"
-      - "Alexandria — Update Choices Library"
+      - "Alexandria — Build World (All-in-One)"
       - "Deploy — GitHub Pages"
 
   tools:
@@ -354,6 +343,7 @@ runtime:
     - "Alexandria — Author Workbench"
     - "Alexandria — Question Intake (clarifiers)"
     - "Alexandria — World Exports (bundle)"
+    - "Alexandria — Dice Engine"
 
   chain_reaction:
     description: >
@@ -364,24 +354,21 @@ runtime:
     safety: "No secrets until Overseers approve; vault refs only."
 
 interfaces_registry:
-  # Overseers / infra
   security_reports: { owner: clarice, purpose: "Security reports & rollback snapshots." }
   queues_dashboard: { owner: charlotte, purpose: "Queued/finished projects overview." }
   translations_board: { owner: charlotte, purpose: "Language/code translation." }
   project_overview_screen: { owner: nina, purpose: "Active/completed projects." }
 
-  # Alexandria — worldbuilding
   choices_library:         { owner: alexandria, purpose: "Central lists for choose/roll/custom; derives per-app taxonomies." }
   worldseed_builder:       { owner: alexandria, purpose: "Generate world seeds from prompt + choices; factions/pillars/cosmology." }
   lore_bible_builder:      { owner: alexandria, purpose: "Build setting bible (culture/gov/religion/language/magic/economy/palettes/creatures)." }
   timeline_builder:        { owner: alexandria, purpose: "Build acts/events with tags, holidays, conflicts; seeds quest lines." }
   npc_codex_builder:       { owner: alexandria, purpose: "Generate NPC sets from taxonomy; roles/traits/motives/secrets, name syllables." }
   regional_atlas_builder:  { owner: alexandria, purpose: "Dimensions/regions; biome/climate/faction/hazard/resources + portals/leys; wing-friendly flag." }
-  author_workbench:        { owner: alexandria, purpose: "Scenes/chapters/quests; voice & style presets; export Markdown." }
-  question_intake:         { owner: alexandria, purpose: "Clarifying questions; multiple-choice lists; randomize or create new lists." }
-  world_exports:           { owner: alexandria, purpose: "WorldBundle zip with all JSON + markdown; optional PDF later." }
+  author_workbench:        { owner: alexandria, purpose: "Scenes/chapters/quests; voice & style presets; export Markdown; speech & dice." }
+  question_intake:         { owner: alexandria, purpose: "Clarifying questions; list pick / roll / extend list; blueprint output." }
+  world_exports:           { owner: alexandria, purpose: "WorldBundle zip with all JSON + markdown; index & downloads." }
 
-  # Other assistants
   stories_shelf: { owner: alexandria, purpose: "Stories library & versions." }
   character_sheets_drawer: { owner: alexandria, purpose: "Character sheets." }
   worlds_globes: { owner: alexandria, purpose: "Evolving world maps." }
@@ -408,7 +395,7 @@ interfaces_registry:
 
 priority_plan:
   - { id: overseers,  description: "Build Overseers AI core; they orchestrate assistant builds.", status: "operational-min" }
-  - { id: alexandria, description: "Worldbuilding DM/Author — make fully functional.", status: "active" }
+  - { id: alexandria, description: "Worldbuilding DM/Author — fully functional.", status: "active" }
   - { id: assistants, description: "Build all remaining Fairies (functional AI).", status: "queued" }
   - { id: appearance, description: "Homes & appearance after AI functionality.", status: "deferred" }
 
@@ -434,7 +421,7 @@ plans:
   alexandria_worldbuilding_stack:
     owner: alexandria
     qa_owner: white_star
-    status: "in-progress"
+    status: "active"
     tasks:
       - { id: A1, name: "Choices Library (choices.json + Choices microapp)", status: "done" }
       - { id: A2, name: "Derive taxonomies (atlas/npc/bible/timeline)", status: "done" }
@@ -442,15 +429,15 @@ plans:
       - { id: A4, name: "Lore Bible script + microapp (choices-backed)", status: "done" }
       - { id: A5, name: "Timeline script + microapp (event tags from choices)", status: "done" }
       - { id: A6, name: "NPC Codex script + microapp (roles/traits from choices)", status: "done" }
-      - { id: A7, name: "Regional Atlas script + microapp (add culture/gov/currency)", status: "done" }
-      - { id: A8, name: "Question Intake (clarifiers UI: list pick / roll / extend list)", status: "queued" }
-      - { id: A9, name: "Author Workbench (scenes/chapters/quests; voice presets; MD export)", status: "queued" }
-      - { id: A10, name: "Dice engine + random tables (d20/SRD-safe)", status: "queued" }
-      - { id: A11, name: "Speech I/O (Web Speech API) for narration & dictation", status: "queued" }
-      - { id: A12, name: "WorldBundle export (zip JSON + MD; optional PDF later)", status: "queued" }
-      - { id: A13, name: "D&D/SRD stat block helpers (system-neutral by default)", status: "queued" }
-      - { id: A14, name: "Rate-limit guardrails (LLM optional; retries/backoff; offline OK)", status: "done" }
-      - { id: A15, name: "Workflows for each builder (worldseed/bible/timeline/npcs/atlas/export)", status: "queued" }
+      - { id: A7, name: "Regional Atlas script + microapp (culture/gov/currency)", status: "done" }
+      - { id: A8, name: "Question Intake (clarifiers UI)", status: "done" }
+      - { id: A9, name: "Author Workbench (scenes/chapters/quests; voice presets; MD export)", status: "done" }
+      - { id: A10, name: "Dice engine + random tables (d20/SRD-safe)", status: "done" }
+      - { id: A11, name: "Speech I/O (Web Speech API)", status: "done" }
+      - { id: A12, name: "WorldBundle export (zip JSON + MD)", status: "done" }
+      - { id: A13, name: "SRD stat block helpers (system-neutral)", status: "queued" }
+      - { id: A14, name: "Rate-limit guardrails (LLM optional; offline OK)", status: "done" }
+      - { id: A15, name: "Build-All workflow (single run)", status: "done" }
 
   site_theme_fix:
     owner: nina
@@ -467,61 +454,22 @@ audit_log:
   - { ts: "2025-09-12T12:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok", notes: "v1.7.1 — fix regex; rename to rey-czar.ps1; canonicalize asset tree; Pages/DNS/HTTPS guidance." }
   - { ts: "2025-09-12T13:30:00Z", actor: "actions", action: "runner.fail", target: "run-overseers-queue.yml", result: "error", notes: "ConvertFrom-Yaml missing; auto-install powershell-yaml." }
   - { ts: "2025-09-13T00:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok", notes: "v1.7.4 — Easy Wins: asset audit, importmap check, memory snapshot, SW upgrade, console badges." }
-  - { ts: "2025-09-13T00:31:00Z", actor: "actions", action: "runner.fail", target: "count-assets.ps1", result: "error", notes: "Exit code 1 — LINQ Distinct overload not portable on ubuntu-latest." }
+  - { ts: "2025-09-13T00:31:00Z", actor: "actions", action: "runner.fail", target: "count-assets.ps1", result: "error", notes: "Exit code 1 — LINQ Distinct not portable on ubuntu-latest." }
   - { ts: "2025-09-13T00:32:00Z", actor: "actions", action: "runner.fail", target: "validate-importmap.ps1", result: "error", notes: "Exit code 1 — regex quoting broke on Linux; fixed with single quotes + doubled single quotes." }
   - { ts: "2025-09-15T00:00:00Z", actor: "actions", action: "runner.fail", target: "generate-landing.ps1", result: "error", notes: "Unicode escape `u parsing in PS string; replaced with safe quoting." }
-  - { ts: "2025-09-15T03:00:00Z", actor: "actions", action: "runner.fail", target: "git push", result: "error", notes: "non-fast-forward; fixed via pull --rebase + force_with_lease." }
-  - { ts: "2025-09-16T00:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok", notes: "v1.9.0 — Alexandria worldbuilding stack wired to Choices; reliability locks." }
+  - { ts: "2025-09-15T03:00:00Z", actor: "actions", action: "runner.fail", target: "git push", result: "error", notes: "non-fast-forward; use pull --rebase then force_with_lease or manual push." }
+  - { ts: "2025-09-16T00:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok", notes: "v1.9.0 — choices wired; reliability locks." }
+  - { ts: "2025-09-16T03:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok", notes: "v1.10.0 — build-all, author workbench, question intake, dice, exports." }
 
 lessons_learned:
-  - "Memory file must be valid YAML — avoid stray characters, mixed duplicates, or partial merges. Validate pre-commit."
+  - "Memory file must be valid YAML; validate pre-commit to avoid Get-YamlDocuments parse errors."
   - "PowerShell on Actions may not include ConvertFrom-Yaml — always auto-install powershell-yaml."
   - "Avoid LINQ static calls in cross-OS PS; use pure pipeline/set ops."
   - "JSON depth on ConvertTo-Json is capped at 100 in PS7 — never exceed."
   - "Linux-safe quoting: use single-quoted strings; double any internal single quotes. Avoid backtick `u sequences in here-strings."
-  - "Do not include type casts like [int]\"7\" in YAML inputs; pass native numbers."
+  - "Do not include type casts like [int]"7" in YAML inputs; pass native numbers."
   - "Guard missing properties (e.g., cfg.telemetry) — check property existence before access."
-  - "Create directories (worlds/*) and include .gitkeep so downstream jobs never fail on 'No seeds directory found'."
-  - "When git has nothing to commit, exit 0; treat 'Nothing to commit' as success."
-  - "Rate limits (OpenAI): LLM is optional — workflows must succeed with offline fallbacks; implement retry/backoff and clear warnings."
+  - "Create directories (worlds/*) with .gitkeep so jobs never fail on 'No seeds directory found'."
+  - "Treat 'Nothing to commit' as success in workflows (do not fail the job)."
+  - "Rate limits (OpenAI): LLM optional; workflows must succeed offline (fallback)."
   - "Site regression noted: landing wallpaper lost; VRM viewer dropdowns unhooked — fix queued under site_theme_fix."
-
-alexandria_capabilities:
-  # Operational definition of “Ultimate World‑Building DM & Author”
-  inputs:
-    - "Free-text prompts (isekai/D&D/worldbuilding keywords)."
-    - "Clarifying question flow: multiple-choice from Choices + 'roll' option + 'make new list' option."
-    - "SRD-safe rules toggles; tone sliders; content maturity (default PG-13)."
-  core_pipeline:
-    - { step: Seed,      out: "seed-*.json", details: "Title, tags, pillars (magic/tech/travel), cosmology/topology, factions." }
-    - { step: Bible,     out: "bible.json",   details: "Culture/government/religion/language/magic/economy/palettes/creatures/vehicles." }
-    - { step: Timeline,  out: "timeline.json",details: "Acts & events with tags + holidays + conflicts, seeded from seed/bible." }
-    - { step: NPC Codex, out: "npcs.json",    details: "Roles/traits/motives/secrets; name syllables; optional enrichment." }
-    - { step: Atlas,     out: "atlas.json",   details: "Dimensions/regions; biome/climate/factions/hazards/resources + portals/leys; wing-friendly." }
-  authoring:
-    voices:
-      - "High Fantasy (eloquent, lyrical)"
-      - "Sci‑fantasy (technical + mystical)"
-      - "Noir (gritty, first-person)"
-      - "YA Adventure (bright, fast)"
-      - "Lore Codex (encyclopedic, neutral)"
-    outputs:
-      - "Markdown chapters & scene beats"
-      - "Quest briefs & encounter seeds (system-neutral)"
-      - "WorldBundle zip (all JSON + MD; images optional later)"
-  realtime_tools:
-    dice: { notation: "XdY+Z (d20 etc.)", random_tables: "hooks, rumors, encounters, treasures (from Choices + custom)" }
-    speech:
-      stt: "Web Speech API recognition (browser; no secrets)."
-      tts: "speechSynthesis (browser); vendor TTS later via vault tokens."
-  export:
-    formats: ["JSON", "Markdown"]
-    bundle: "Zip containing /pages/apps/alexandria/worlds/* + md/"
-    future: ["PDF via converter in CI (optional)", "ePub (queued)"]
-  safety_and_rights:
-    srd_mode: "System-neutral defaults; SRD-friendly stat blocks when enabled."
-    content_safety: "PG-13 default; maturity slider; filter flags in seed."
-  llm_bridge:
-    optional: true
-    api_key_ref: "vault://palace/tokens/openai"
-    failure_policy: "Fallback to offline generation; never block workflows."

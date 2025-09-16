@@ -62,7 +62,7 @@ for($i=0;$i -lt $cnt;$i++){
   $reg += $r
 }
 
-# Portals & leys (same as before)
+# Portals & leys
 $portals = @()
 $ley = @()
 if ($reg.Count -ge 2){
@@ -81,9 +81,6 @@ if ($reg.Count -ge 2){
   }
 }
 
-# Optional region lore omitted (unchanged from previous pack to keep this minimal)
-
-# Dimensions summary
 $dimensions = @()
 foreach($d in ($reg | ForEach-Object { $_.dimension } | Select-Object -Unique)){
   if ($null -ne $d) {

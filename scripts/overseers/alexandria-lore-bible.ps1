@@ -73,7 +73,7 @@ Seed:
 $($seed | ConvertTo-Json -Depth 40)
 Current bible skeleton:
 $($bible | ConvertTo-Json -Depth 20)
-Return ONLY JSON with keys: { "overview": "...", "cultures": ["...","..."], "religions": ["...","..."], "magic": "...", "economy": "...", "travel": "..." }
+Return ONLY JSON with keys: { ""overview"": ""..."", ""cultures"": [""..."",""...""], ""religions"": [""..."",""...""], ""magic"": ""..."", ""economy"": ""..."", ""travel"": ""..."" }
 "@
   $tmp = Join-Path $env:RUNNER_TEMP "alexandria.bible.enriched.json"
   try {

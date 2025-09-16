@@ -6,14 +6,13 @@ param(
   [switch]$ForceFallback
 )
 $ErrorActionPreference='Stop'
-
 function Iso(){ (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ") }
+function Slug([string]$s){ if([string]::IsNullOrWhiteSpace($s)){return "world"}; return ($s -replace '[^A-Za-z0-9]+','-').Trim('-').ToLower().Substring(0,[Math]::Min(80,$s.Length)) }
 
-$root = (Resolve-Path $RepoRoot).Path
 $worldsDir = Join-Path $RepoRoot "pages/apps/alexandria/worlds"
 if (-not (Test-Path $worldsDir)) { throw "No seeds directory found: $worldsDir" }
 
-# Resolve seed file
+# Resolve seed
 $seedFile = $null
 if ($SeedPath) {
   $candidate = Join-Path $RepoRoot $SeedPath
@@ -24,111 +23,68 @@ if ($SeedPath) {
   if ($files.Count -eq 0) { throw "No seed files found under /pages/apps/alexandria/worlds. Generate one first." }
   $seedFile = $files | Select-Object -First 1
 }
-
-# Load seed
 try{ $seed = Get-Content -Raw -Path $seedFile.FullName | ConvertFrom-Json -Depth 100 }catch{ throw "Invalid seed JSON: $($seedFile.FullName)" }
 
-# Try npc-taxonomy
+# Load npc taxonomy and choices for name syllables
 $npcTax = $null
 $npcPath = Join-Path $RepoRoot "pages/apps/alexandria/knowledge/npc-taxonomy.json"
-if (Test-Path $npcPath) { try { $npcTax = Get-Content -Raw -Path $npcPath | ConvertFrom-Json -Depth 100 } catch { $npcTax = $null } }
-
-# Fallback pools
-$roles = if($npcTax -and $npcTax.roles) { @($npcTax.roles) } else { @('Guide','Archivist','Gatekeeper','Witch‑Engineer','Ranger‑Navigator','Bard‑Spy','Alchemist‑Medic','Cartographer','Merchant','Zealot','Smuggler','Artificer','Envoy') }
-$traits= if($npcTax -and $npcTax.traits){ @($npcTax.traits) } else { @('pragmatic','idealistic','secretive','stubborn','curious','wry','pious','merciful','calculating','warm','mischievous') }
-$motives = if($npcTax -and $npcTax.motives){ @($npcTax.motives) } else { @('protect kin','unlock forbidden lore','profit','revenge','atonement','prove worth','preserve balance','spark revolution','appease a patron','map the unknown') }
-$secrets = if($npcTax -and $npcTax.secrets){ @($npcTax.secrets) } else { @('owed blood-debt','stolen sigil','forbidden pact','exiled noble','double agent','astral sickness','false prophecy','lost heir','cursed relic','memory gaps') }
-$align = if($npcTax -and $npcTax.alignments){ @($npcTax.alignments) } else { @('LG','NG','CG','LN','N','CN','LE','NE','CE') }
-
-# Name generator from choices syllables if present
+if (Test-Path $npcPath){ try{ $npcTax = Get-Content -Raw -Path $npcPath | ConvertFrom-Json -Depth 100 }catch{ $npcTax=$null } }
+$choices = $null
 $choicesPath = Join-Path $RepoRoot "pages/apps/alexandria/knowledge/choices.json"
-$syllA = @('ar','el','is','ka','ly','ma','na','or','ri','sa','ta','va','wyn','zen','dra','sol','mir','the','cor','ane')
-$syllB = @('a','e','i','o','u')
-if (Test-Path $choicesPath) {
-  try{
-    $c = Get-Content -Raw -Path $choicesPath | ConvertFrom-Json -Depth 100
-    if ($c.name_syllables_a) { $syllA = @($c.name_syllables_a) }
-    if ($c.name_syllables_b) { $syllB = @($c.name_syllables_b) }
-  }catch{}
-}
-function Make-Name{
-  $s = ($syllA[(Get-Random -Minimum 0 -Maximum $syllA.Count)]) + ($syllB[(Get-Random -Minimum 0 -Maximum $syllB.Count)]) + ($syllA[(Get-Random -Minimum 0 -Maximum $syllA.Count)])
-  return ($s.Substring(0,1).ToUpper()+$s.Substring(1))
-}
+if (Test-Path $choicesPath) { try { $choices = Get-Content -Raw -Path $choicesPath | ConvertFrom-Json -Depth 100 } catch { $choices = $null } }
 
-$f1 = if($seed.factions.Count -ge 1){ $seed.factions[0].name } else { 'Faction A' }
-$f2 = if($seed.factions.Count -ge 2){ $seed.factions[1].name } else { 'Faction B' }
-
-# Build NPC list
-$npcs = @()
-for($i=0;$i -lt $Count; $i++){
-  $name = Make-Name
-  $role = $roles[(Get-Random -Minimum 0 -Maximum $roles.Count)]
-  $fac  = if((Get-Random) % 3 -eq 0) { 'Independent' } else { if((Get-Random) % 2 -eq 0){ $f1 } else { $f2 } }
-  $npc = [pscustomobject]@{
-    id = "npc-" + [guid]::NewGuid().ToString().Substring(0,8)
-    name = $name
-    role = $role
-    faction = $fac
-    alignment = $(if($seed.dnd_compatible){ $align[(Get-Random -Minimum 0 -Maximum $align.Count)] } else { $null })
-    tagline = "$role caught between $f1 and $f2."
-    motives = @($motives | Get-Random -Count 2)
-    secret = $secrets[(Get-Random -Minimum 0 -Maximum $secrets.Count)]
-    traits = @($traits | Get-Random -Count 3)
+function Pick([object[]]$arr){ if(-not $arr -or $arr.Count -eq 0){ return $null } return $arr[(Get-Random -Minimum 0 -Maximum $arr.Count)] }
+function Make-Name(){
+  if ($choices -and $choices.name_syllables_a -and $choices.name_syllables_b) {
+    $a = Pick $choices.name_syllables_a
+    $b = Pick $choices.name_syllables_b
+    $c = Pick $choices.name_syllables_a
+    $n = ($a + $b + $c)
+    return ($n.Substring(0,1).ToUpper()+$n.Substring(1))
   }
-  $npcs += $npc
+  $first = @('Aria','Mira','Kael','Ryn','Tessa','Varr','Sol','Nima','Orin','Lysa')
+  $last  = @('Lantern','Skystep','Rift','Hollow','Vale','Storm','Umber','Silver','Thorne','Drift')
+  return ((Pick $first) + " " + (Pick $last))
 }
 
-# Optional LLM enrichment (non-fatal)
-$bridge = Join-Path (Join-Path $RepoRoot "scripts/overseers") "llm-bridge.ps1"
-if (-not $ForceFallback -and $env:OPENAI_API_KEY -and (Test-Path $bridge)) {
-  $prompt = @"
-You are Alexandria, building an NPC codex for a setting. For each NPC, write a one-line 'tagline' that hints at conflict, and short phrases for 2 motives and 1 secret.
-Return ONLY a JSON array the same length as input, with objects: { "tagline": "...", "motives": ["...","..."], "secret": "..." }.
-Seed:
-$($seed | ConvertTo-Json -Depth 40)
-NPC skeletons:
-$([string]::Join("`n", ($npcs | ForEach-Object { "{name:'"+$_.name+"', role:'"+$_.role+"', faction:'"+$_.faction+"'}" } )))
-"@
-  $tmp = Join-Path $env:RUNNER_TEMP "alexandria.npcs.enriched.json"
-  try{
-    & $bridge -Prompt $prompt -OutFile $tmp -DryRun:$false
-    $arr = Get-Content -Raw -Path $tmp | ConvertFrom-Json -Depth 100
-    if ($arr -and $arr.Count -eq $npcs.Count){
-      for($i=0;$i -lt $npcs.Count; $i++){
-        if ($arr[$i].tagline) { $npcs[$i].tagline = [string]$arr[$i].tagline }
-        if ($arr[$i].motives) { $npcs[$i].motives = $arr[$i].motives }
-        if ($arr[$i].secret)  { $npcs[$i].secret  = [string]$arr[$i].secret }
-      }
-    }
-  }catch{}
+$count = [Math]::Max(1,[Math]::Min(60,$Count))
+$npcs = @()
+for($i=0;$i -lt $count;$i++){
+  $traits = @()
+  if($npcTax -and $npcTax.traits){ $traits = @(@($npcTax.traits) | Get-Random -Count ([Math]::Min(3, @($npcTax.traits).Count))) }
+  $npcs += [pscustomobject]@{
+    id = "npc-" + ([guid]::NewGuid().ToString().Substring(0,8))
+    name = (Make-Name)
+    role = if($npcTax){ Pick $npcTax.roles } else { 'Guide' }
+    faction = if($seed.factions.Count -ge 1){ Pick @($seed.factions | ForEach-Object { $_.name }) } else { $null }
+    traits = $traits
+    secret = if($npcTax){ Pick $npcTax.secrets } else { $null }
+    motive = if($npcTax){ Pick $npcTax.motives } else { $null }
+    alignment = if($npcTax){ Pick $npcTax.alignments } else { $null }
+  }
 }
 
-$outDir = Join-Path $RepoRoot "pages/apps/alexandria/worlds/npcs"
+$outDir = Join-Path $RepoRoot "pages/apps/alexandria/worlds/codex"
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
-$slug = ($seed.title -replace '[^A-Za-z0-9]+','-').Trim('-').ToLower()
+$slug = Slug $seed.title
 $name = "$slug.npcs.json"
-$rel  = "/apps/alexandria/worlds/npcs/$name"
-
+$rel  = "/apps/alexandria/worlds/codex/$name"
 $codex = [pscustomobject]@{
-  id = "codex-" + (Get-Date -Format 'yyyyMMddHHmmss')
+  id = "npcs-" + (Get-Date -Format 'yyyyMMddHHmmss')
   seed_id = $seed.id
   title = $seed.title
-  count = $npcs.Count
   npcs = $npcs
   generated = Iso
   format_version = "1.0.0"
 }
-
 ($codex | ConvertTo-Json -Depth 100) | Set-Content -Path (Join-Path $outDir $name) -Encoding utf8NoBOM
-($codex | ConvertTo-Json -Depth 100) | Set-Content -Path (Join-Path $outDir "latest.json") -Encoding utf8NoBOM
 
-# Update index
+# Index
 $indexPath = Join-Path $outDir "index.json"
 $index = @()
 if (Test-Path $indexPath){ try { $index = Get-Content -Raw -Path $indexPath | ConvertFrom-Json -Depth 100 } catch { $index=@() } }
 $index = @($index | Where-Object { $_.path -ne $rel })
-$index += [pscustomobject]@{ path=$rel; title=$seed.title; id=$codex.id; count=$codex.count; ts=(Iso) }
+$index += [pscustomobject]@{ path=$rel; title=$seed.title; id=$codex.id; npcs=$npcs.Count; ts=(Iso) }
 ($index | ConvertTo-Json -Depth 100) | Set-Content -Path $indexPath -Encoding utf8NoBOM
 
 Write-Host "NPC Codex written: $rel"

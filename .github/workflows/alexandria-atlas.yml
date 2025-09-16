@@ -40,7 +40,7 @@ jobs:
           & "scripts/overseers/alexandria-atlas.ps1" `
             -RepoRoot "${{ github.workspace }}" `
             -SeedPath "${{ github.event.inputs.seed_path }}" `
-            -Regions [int]"${{ github.event.inputs.regions }}" `
+            -Regions "${{ github.event.inputs.regions }}" `
             -ForceFallback:$force
 
       - name: Commit (if changed)

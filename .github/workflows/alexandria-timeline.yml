@@ -40,7 +40,7 @@ jobs:
           & "scripts/overseers/alexandria-timeline.ps1" `
             -RepoRoot "${{ github.workspace }}" `
             -SeedPath "${{ github.event.inputs.seed_path }}" `
-            -Count [int]"${{ github.event.inputs.count }}" `
+            -Count "${{ github.event.inputs.count }}" `
             -ForceFallback:$force
 
       - name: Commit (if changed)

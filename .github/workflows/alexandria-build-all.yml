@@ -57,9 +57,9 @@ jobs:
              -RepoRoot "$PWD" `
              -Title "${{ inputs.title }}" `
              -Prompt "${{ inputs.prompt }}" `
-             -Events [int]${{ inputs.events }} `
-             -NPCs [int]${{ inputs.npcs }} `
-             -Regions [int]${{ inputs.regions }} `
+             -Events ${{ inputs.events }} `
+             -NPCs ${{ inputs.npcs }} `
+             -Regions ${{ inputs.regions }} `
              -ForceFallback:${{ inputs.force_fallback }}
 
       - name: Commit changes (if any)

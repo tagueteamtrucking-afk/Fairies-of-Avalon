@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Alexandria · Live DM</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/app.css" />
+  <style>
+    :root{ --bg:#0b0e12; --card:#121821; --ink:#e6edf3; --muted:#9fb0c3; --accent:#7cc6ff; }
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    main{max-width:920px;margin:0 auto;padding:16px}
+    .bar{display:flex;gap:8px;align-items:center;justify-content:space-between;margin:8px 0 12px}
+    .pill{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .8rem;border-radius:999px;border:1px solid #2a3442;background:#18202b;color:#e6edf3;cursor:pointer;text-decoration:none}
+    .pill:hover{background:#1d2835}
+    .chat{background:var(--card);border:1px solid #2a3442;border-radius:.8rem;padding:8px;min-height:40vh}
+    .m{display:flex;gap:10px;padding:8px 10px}
+    .m .who{font-weight:600;color:var(--accent);min-width:78px}
+    .m .txt{white-space:pre-wrap}
+    .opt{display:flex;flex-wrap:wrap;gap:6px;margin:6px 10px 10px}
+    .opt .btn{border:1px solid #334155;border-radius:.5rem;padding:.35rem .6rem;background:#0f1720;color:#e6edf3;cursor:pointer}
+    .opt .btn:hover{background:#131c27}
+    .row{display:grid;grid-template-columns:1fr auto auto;gap:8px;margin-top:8px}
+    input,select,textarea{background:#0e141b;border:1px solid #2a3442;color:#e6edf3;border-radius:.5rem;padding:.6rem}
+    textarea{min-height:88px}
+    .fine{color:var(--muted);font-size:.9rem}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:960px){ .grid{grid-template-columns:1fr} .bar{flex-wrap:wrap} }
+  </style>
+</head>
+<body>
+<main>
+  <div class="bar">
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="pill" href="/apps/alexandria/question-intake.html">Clarifiers</a>
+      <a class="pill" href="/apps/alexandria/author.html">Author</a>
+      <a class="pill" href="/apps/alexandria/exports.html">Exports</a>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="pill" id="save">💾 Save</button>
+      <button class="pill" id="load">📂 Load</button>
+      <button class="pill" id="zip">📦 Export Bundle</button>
+    </div>
+  </div>
+  <div class="card chat" id="chat"></div>
+  <div class="card" style="margin-top:12px">
+    <div class="grid">
+      <section>
+        <h3>Session</h3>
+        <div class="fine">Single‑player (author mode) or pass‑and‑play for two devices. (Peer‑to‑peer sync is planned.)</div>
+        <div class="row">
+          <select id="mode">
+            <option>Single Player</option>
+            <option>Two Players (pass)</option>
+          </select>
+          <button class="pill" id="start">▶ Start</button>
+          <button class="pill" id="reset">⟲ Reset</button>
+        </div>
+      </section>
+      <section>
+        <h3>Dice</h3>
+        <div class="row">
+          <input id="notation" value="1d20+0" />
+          <button class="pill" id="roll">🎲</button>
+          <div id="diceOut" class="fine"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+// Minimal dice
+function roll(notation='1d20+0'){
+  const m = /^\s*(\d+)d(\d+)([+\-]\d+)?\s*$/i.exec(notation);
+  if(!m) return { total:0, rolls:[], mod:0 };
+  const n = parseInt(m[1],10), sides=parseInt(m[2],10), mod = m[3]?parseInt(m[3],10):0;
+  const rolls = Array.from({length:n},()=> 1+Math.floor(Math.random()*sides));
+  const total = rolls.reduce((a,b)=>a+b,0)+mod;
+  return { total, rolls, mod };
+}
+const $=s=>document.querySelector(s);
+const CHOICES_URL="/apps/alexandria/knowledge/choices.json";
+
+let CH = {}, WORLD={ title:'', regions:[], npcs:[], places:[], campaigns:[] };
+let CHAT=[];
+
+function say(who, txt, opts=[]){
+  CHAT.push({who, txt, ts:Date.now(), opts});
+  render();
+}
+function render(){
+  const c = document.getElementById('chat');
+  c.innerHTML = CHAT.map(m=>`<div class="m"><div class="who">${m.who}</div><div class="txt">${m.txt}</div></div>`).join('')
+    + (CHAT.at(-1)?.opts?.length ? `<div class="opt">${CHAT.at(-1).opts.map(o=>`<button class="btn" data-v="${o.v}" data-k="${o.k||''}">${o.t}</button>`).join('')}</div>` : '');
+  c.scrollTop = c.scrollHeight;
+  document.querySelectorAll('.opt .btn').forEach(b=> b.onclick = ()=> choose(b.dataset.k, b.dataset.v));
+}
+function choose(k, v){
+  if(k==='title'){ WORLD.title=v; say('You', v); stepRegions(); return; }
+  if(k==='regions'){ const n=parseInt(v,10)||5; WORLD.regions = Array.from({length:n},(_,i)=>({name:`Region ${i+1}`, settlements:[], culture:null, gov:null, currency:null})); say('You', `${n} regions`); stepRegionNames(0); return; }
+  if(k?.startsWith('regionName:')){ const idx=parseInt(k.split(':')[1],10); WORLD.regions[idx].name=v; say('You', v); if(idx+1<WORLD.regions.length) stepRegionNames(idx+1); else stepRegionDetails(0); return; }
+  if(k?.startsWith('regionCulture:')){ const idx=parseInt(k.split(':')[1],10); WORLD.regions[idx].culture=v; say('You', v); stepRegionGov(idx); return; }
+  if(k?.startsWith('regionGov:')){ const idx=parseInt(k.split(':')[1],10); WORLD.regions[idx].gov=v; say('You', v); stepRegionCurrency(idx); return; }
+  if(k?.startsWith('regionCurrency:')){ const idx=parseInt(k.split(':')[1],10); WORLD.regions[idx].currency=v; say('You', v); stepSettlements(idx); return; }
+  if(k?.startsWith('settCount:')){ const idx=parseInt(k.split(':')[1],10); const n=parseInt(v,10)||3; WORLD.regions[idx].settlements = Array.from({length:n},(_,i)=>({name:makeTown(), npcs:[], inns:[makeInn()]})); say('You', `${n} settlements`); stepRegionIdx(idx+1); return; }
+}
+function pick(arr){ return arr && arr.length ? arr[Math.floor(Math.random()*arr.length)] : ''; }
+function makeTown(){ const A=['A','E','I','O','U']; const B=['l','r','n','m','s','th','v','z','nd','st']; let name=''; for(let i=0;i<3;i++){ name += pick(['Ar','El','Is','Ka','Ly','Ma','Na','Or','Ri','Sa','Ta','Va','Wyn','Zen','Dra','Sol','Mir','The','Cor','Ane']); name += pick(A); name += pick(B); } return name.slice(0,1).toUpperCase()+name.slice(1,Math.min(10,name.length)); }
+function makeInn(){ const adj = CH.tavern_adjectives||['Golden','Silver','Rusty']; const n = CH.tavern_nouns||['Lantern','Stag','Cask']; const name = `${pick(adj)} ${pick(n)}`; const trait = pick(CH.inn_traits||['warm hearth']); return { name, trait }; }
+
+async function boot(){
+  try{ const r = await fetch(CHOICES_URL+'?t='+Date.now(),{cache:'no-store'}); if(r.ok) CH = await r.json(); }catch{}
+  say('Alexandria','Welcome. Let's craft your world step by step. What shall we call it?', [
+    {t:'Roll a title', v:'The Lantern Spiral', k:'title'},
+    {t:'Custom…', v:prompt('World title:' )||'My World', k:'title'}
+  ]);
+}
+function stepRegions(){
+  say('Alexandria','How many <b>regions</b> shall we begin with?', [
+    {t:'3', v:'3', k:'regions'}, {t:'5', v:'5', k:'regions'}, {t:'7', v:'7', k:'regions'},
+    {t:'Custom…', v:prompt('Regions count:')||'5', k:'regions'}
+  ]);
+}
+function stepRegionNames(idx){
+  const n = WORLD.regions[idx].name;
+  say('Alexandria', `Name Region ${idx+1}`, [
+    {t:n, v:n, k:`regionName:${idx}`},
+    {t:'Roll', v:makeTown(), k:`regionName:${idx}`},
+    {t:'Custom…', v:prompt('Region name:')||n, k:`regionName:${idx}`},
+  ]);
+}
+function stepRegionDetails(idx){
+  const cultureOpts = (CH.cultures||[]).slice(0,6).map(v=>({t:v,v,k:`regionCulture:${idx}`}));
+  say('Alexandria', `Pick a <b>culture</b> for ${WORLD.regions[idx].name}`, [
+    ...cultureOpts,
+    {t:'Custom…', v:prompt('Culture:')||'riverfolk', k:`regionCulture:${idx}`},
+    {t:'🎲 Roll', v:pick(CH.cultures||['riverfolk']), k:`regionCulture:${idx}`},
+  ]);
+}
+function stepRegionGov(idx){
+  const govOpts = (CH.governments||[]).slice(0,6).map(v=>({t:v,v,k:`regionGov:${idx}`}));
+  say('Alexandria', `Pick a <b>government</b>`, [
+    ...govOpts,
+    {t:'Custom…', v:prompt('Government:')||'council', k:`regionGov:${idx}`},
+    {t:'🎲 Roll', v:pick(CH.governments||['council']), k:`regionGov:${idx}`},
+  ]);
+}
+function stepRegionCurrency(idx){
+  const curOpts = (CH.currencies||[]).slice(0,6).map(v=>({t:v,v,k:`regionCurrency:${idx}`}));
+  say('Alexandria', `Pick a <b>currency</b>`, [
+    ...curOpts,
+    {t:'Custom…', v:prompt('Currency:')||'lantern tokens', k:`regionCurrency:${idx}`},
+    {t:'🎲 Roll', v:pick(CH.currencies||['lantern tokens']), k:`regionCurrency:${idx}`},
+  ]);
+}
+function stepSettlements(idx){
+  say('Alexandria', `How many <b>settlements</b> in ${WORLD.regions[idx].name}?`, [
+    {t:'1', v:'1', k:`settCount:${idx}`},
+    {t:'3', v:'3', k:`settCount:${idx}`},
+    {t:'5', v:'5', k:`settCount:${idx}`},
+    {t:'Custom…', v:prompt('Settlements count:')||'3', k:`settCount:${idx}`},
+  ]);
+}
+function stepRegionIdx(next){
+  if(next < WORLD.regions.length){ stepRegionDetails(next); }
+  else {
+    say('Alexandria','Great. We have regions, settlements, and inns with flavor. Next, we can flesh out notable figures in each town, link factions, and sketch campaigns. Use Save to keep progress, or export a bundle.');
+  }
+}
+
+// Dice UI
+document.getElementById('roll').onclick = ()=>{
+  const r = roll(document.getElementById('notation').value.trim());
+  document.getElementById('diceOut').textContent = `= ${r.total}  [${r.rolls.join(', ')}]  ${r.mod? (r.mod>0?'+':'')+r.mod : ''}`;
+};
+
+// Session controls
+document.getElementById('start').onclick = ()=> say('Alexandria', 'Session started. Use the chat buttons to advance. (Multiplayer sync is planned; for now, pass‑and‑play.)');
+document.getElementById('reset').onclick = ()=>{ WORLD={ title:'', regions:[], npcs:[], places:[], campaigns:[] }; CHAT=[]; boot(); };
+
+// Save/Load/Zip (zip uses export workflow; here we just download JSON)
+document.getElementById('save').onclick = ()=>{
+  localStorage.setItem('alex.world', JSON.stringify(WORLD));
+  say('Alexandria','Saved to this device.');
+};
+document.getElementById('load').onclick = ()=>{
+  const s = localStorage.getItem('alex.world');
+  if(s){ WORLD = JSON.parse(s); say('Alexandria','Loaded from this device.'); }
+  else say('Alexandria','Nothing saved yet.');
+};
+document.getElementById('zip').onclick = ()=>{
+  const a=document.createElement('a');
+  const blob = new Blob([JSON.stringify(WORLD,null,2)],{type:'application/json'});
+  a.href = URL.createObjectURL(blob);
+  a.download = (WORLD.title||'world') + '.json';
+  a.click(); URL.revokeObjectURL(a.href);
+};
+
+boot();
+</script>
+</body>
+</html>

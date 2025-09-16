@@ -1,36 +1,36 @@
 {
-  "id": "atlas-20250916035808",
+  "id": "atlas-20250916041331",
   "seed_id": "seed-20250916035103",
   "title": "Avalon Seed",
-  "generated": "2025-09-16T03:58:08Z",
+  "generated": "2025-09-16T04:13:31Z",
   "format_version": "1.0.0",
   "dimensions": [
     {
       "id": 0,
       "name": "Undersea",
-      "timeflow": "synchronous",
-      "magic": "high",
-      "tech": "digital"
+      "timeflow": "slower",
+      "magic": "wild",
+      "tech": "medieval"
     },
     {
       "id": 1,
-      "name": "Fae",
-      "timeflow": "synchronous",
+      "name": "Celestial",
+      "timeflow": "erratic",
       "magic": "forbidden",
-      "tech": "industrial"
+      "tech": "mythic"
     },
     {
       "id": 2,
-      "name": "Astral",
+      "name": "Clockwork",
       "timeflow": "synchronous",
       "magic": "forbidden",
-      "tech": "digital"
+      "tech": "medieval"
     },
     {
       "id": 3,
-      "name": "Void",
+      "name": "Dream",
       "timeflow": "slower",
-      "magic": "wild",
+      "magic": "medium",
       "tech": "fusion"
     }
   ],
@@ -39,79 +39,105 @@
       "id": 0,
       "name": "Region 1",
       "dimension": "Undersea",
-      "biome": "floating isles",
-      "climate": "polar",
-      "faction": "Independent",
-      "hazard": "toxins",
-      "resource": "myth-wood",
-      "wing_friendly": false,
+      "biome": "forest",
+      "climate": "subtropical",
+      "faction": "Mirror Syndicate",
+      "hazard": "storms",
+      "resource": "iron",
+      "wing_friendly": true,
       "poi": []
     },
     {
       "id": 1,
       "name": "Region 2",
-      "dimension": "Fae",
-      "biome": "steppe",
-      "climate": "arid",
-      "faction": "Unclaimed",
-      "hazard": "beasts",
-      "resource": "amber",
-      "wing_friendly": false,
+      "dimension": "Celestial",
+      "biome": "alpine",
+      "climate": "polar",
+      "faction": "Mirror Syndicate",
+      "hazard": "bandits",
+      "resource": "salt",
+      "wing_friendly": true,
       "poi": []
     },
     {
       "id": 2,
       "name": "Region 3",
-      "dimension": "Fae",
-      "biome": "badlands",
-      "climate": "tropical",
+      "dimension": "Clockwork",
+      "biome": "steppe",
+      "climate": "subtropical",
       "faction": "Skyrail Guild",
-      "hazard": "bandits",
-      "resource": "holy relics",
+      "hazard": "curse",
+      "resource": "star-metal",
       "wing_friendly": true,
       "poi": []
     },
     {
       "id": 3,
       "name": "Region 4",
-      "dimension": "Astral",
-      "biome": "alpine",
-      "climate": "cold",
-      "faction": "Unclaimed",
-      "hazard": "warzone",
-      "resource": "star-metal",
+      "dimension": "Dream",
+      "biome": "steppe",
+      "climate": "subtropical",
+      "faction": "Independent",
+      "hazard": "toxins",
+      "resource": "salt",
       "wing_friendly": true,
       "poi": []
     },
     {
       "id": 4,
       "name": "Region 5",
-      "dimension": "Void",
-      "biome": "alpine",
-      "climate": "cold",
-      "faction": "Unclaimed",
-      "hazard": "bandits",
-      "resource": "spices",
+      "dimension": "Dream",
+      "biome": "crystal fields",
+      "climate": "tropical",
+      "faction": "Skyrail Guild",
+      "hazard": "machina failures",
+      "resource": "silk",
       "wing_friendly": true,
       "poi": []
     }
   ],
-  "portals": [],
+  "portals": [
+    {
+      "from": 1,
+      "to": 3,
+      "type": "starlight bridge"
+    },
+    {
+      "from": 3,
+      "to": 2,
+      "type": "machine arch"
+    },
+    {
+      "from": 0,
+      "to": 4,
+      "type": "machine arch"
+    },
+    {
+      "from": 4,
+      "to": 3,
+      "type": "mist-ferry"
+    }
+  ],
   "leylines": [
     {
       "from": 4,
+      "to": 3,
+      "affinity": "storm"
+    },
+    {
+      "from": 3,
       "to": 0,
-      "affinity": "storm"
+      "affinity": "sun"
     },
     {
-      "from": 1,
-      "to": 4,
+      "from": 4,
+      "to": 2,
+      "affinity": "tide"
+    },
+    {
+      "from": 0,
+      "to": 2,
       "affinity": "shadow"
-    },
-    {
-      "from": 2,
-      "to": 1,
-      "affinity": "storm"
     }
   ],
   "wallpaper_tags": [

@@ -8,7 +8,6 @@ param(
 $ErrorActionPreference='Stop'
 
 function Iso(){ (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ") }
-function Slug([string]$s){ if([string]::IsNullOrWhiteSpace($s)){return "world"}; return ($s -replace '[^A-Za-z0-9]+','-').Trim('-').ToLower().Substring(0,[Math]::Min(80,$s.Length)) }
 
 $root = (Resolve-Path $RepoRoot).Path
 $worldsDir = Join-Path $RepoRoot "pages/apps/alexandria/worlds"
@@ -29,20 +28,36 @@ if ($SeedPath) {
 # Load seed
 try{ $seed = Get-Content -Raw -Path $seedFile.FullName | ConvertFrom-Json -Depth 100 }catch{ throw "Invalid seed JSON: $($seedFile.FullName)" }
 
-# Deterministic name and attribute pools
+# Try npc-taxonomy
+$npcTax = $null
+$npcPath = Join-Path $RepoRoot "pages/apps/alexandria/knowledge/npc-taxonomy.json"
+if (Test-Path $npcPath) { try { $npcTax = Get-Content -Raw -Path $npcPath | ConvertFrom-Json -Depth 100 } catch { $npcTax = $null } }
+
+# Fallback pools
+$roles = if($npcTax -and $npcTax.roles) { @($npcTax.roles) } else { @('Guide','Archivist','Gatekeeper','Witch‑Engineer','Ranger‑Navigator','Bard‑Spy','Alchemist‑Medic','Cartographer','Merchant','Zealot','Smuggler','Artificer','Envoy') }
+$traits= if($npcTax -and $npcTax.traits){ @($npcTax.traits) } else { @('pragmatic','idealistic','secretive','stubborn','curious','wry','pious','merciful','calculating','warm','mischievous') }
+$motives = if($npcTax -and $npcTax.motives){ @($npcTax.motives) } else { @('protect kin','unlock forbidden lore','profit','revenge','atonement','prove worth','preserve balance','spark revolution','appease a patron','map the unknown') }
+$secrets = if($npcTax -and $npcTax.secrets){ @($npcTax.secrets) } else { @('owed blood-debt','stolen sigil','forbidden pact','exiled noble','double agent','astral sickness','false prophecy','lost heir','cursed relic','memory gaps') }
+$align = if($npcTax -and $npcTax.alignments){ @($npcTax.alignments) } else { @('LG','NG','CG','LN','N','CN','LE','NE','CE') }
+
+# Name generator from choices syllables if present
+$choicesPath = Join-Path $RepoRoot "pages/apps/alexandria/knowledge/choices.json"
 $syllA = @('ar','el','is','ka','ly','ma','na','or','ri','sa','ta','va','wyn','zen','dra','sol','mir','the','cor','ane')
 $syllB = @('a','e','i','o','u')
+if (Test-Path $choicesPath) {
+  try{
+    $c = Get-Content -Raw -Path $choicesPath | ConvertFrom-Json -Depth 100
+    if ($c.name_syllables_a) { $syllA = @($c.name_syllables_a) }
+    if ($c.name_syllables_b) { $syllB = @($c.name_syllables_b) }
+  }catch{}
+}
 function Make-Name{
   $s = ($syllA[(Get-Random -Minimum 0 -Maximum $syllA.Count)]) + ($syllB[(Get-Random -Minimum 0 -Maximum $syllB.Count)]) + ($syllA[(Get-Random -Minimum 0 -Maximum $syllA.Count)])
   return ($s.Substring(0,1).ToUpper()+$s.Substring(1))
 }
-$roles = @('Guide','Archivist','Gatekeeper','Witch‑Engineer','Ranger‑Navigator','Bard‑Spy','Alchemist‑Medic','Cartographer','Merchant','Zealot','Smuggler','Artificer','Envoy')
-$traits= @('pragmatic','idealistic','secretive','stubborn','curious','wry','pious','merciful','calculating','warm','mischievous')
-$motives = @('protect kin','unlock forbidden lore','profit','revenge','atonement','prove worth','preserve balance','spark revolution','appease a patron','map the unknown')
-$secrets = @('owed blood-debt','stolen sigil','forbidden pact','exiled noble','double agent','astral sickness','false prophecy','lost heir','cursed relic','memory gaps')
+
 $f1 = if($seed.factions.Count -ge 1){ $seed.factions[0].name } else { 'Faction A' }
 $f2 = if($seed.factions.Count -ge 2){ $seed.factions[1].name } else { 'Faction B' }
-$align = @('LG','NG','CG','LN','N','CN','LE','NE','CE')
 
 # Build NPC list
 $npcs = @()
@@ -91,7 +106,7 @@ $([string]::Join("`n", ($npcs | ForEach-Object { "{name:'"+$_.name+"', role:'"+$
 
 $outDir = Join-Path $RepoRoot "pages/apps/alexandria/worlds/npcs"
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
-$slug = Slug $seed.title
+$slug = ($seed.title -replace '[^A-Za-z0-9]+','-').Trim('-').ToLower()
 $name = "$slug.npcs.json"
 $rel  = "/apps/alexandria/worlds/npcs/$name"
 

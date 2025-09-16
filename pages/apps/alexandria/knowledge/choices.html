@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Alexandria · Choices Library</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/app.css" />
+  <style>
+    body{margin:0}
+    main{max-width:1200px;margin:28px auto;padding:0 12px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width: 1100px){ .grid{grid-template-columns:1fr} }
+    .card{border:1px solid #eee;border-radius:.6rem;padding:14px;background:rgba(255,255,255,.9);margin-bottom:12px}
+    .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+    .pill{display:inline-block;padding:.35rem .7rem;border:1px solid #999;border-radius:.6rem;font-size:.9rem;text-decoration:none;color:inherit;background:#fff;cursor:pointer}
+    input,select,textarea{width:100%}
+    textarea{min-height:120px}
+    .muted{color:#666}
+    .fine{font-size:.9rem}
+    ul{margin:0;padding-left:1.2rem}
+    .row{display:flex;gap:8px;align-items:center}
+    .roll{padding:.25rem .5rem;border:1px solid #ccc;border-radius:.4rem;background:#fff;cursor:pointer}
+    .box{border:1px solid #eee;border-radius:.6rem;padding:10px;background:#fff}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:.92rem}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Alexandria · Choices Library</h1>
+  <div class="toolbar">
+    <a class="pill" href="/apps/alexandria/atlas.html">Regional Atlas</a>
+    <a class="pill" href="/apps/alexandria/timeline.html">Timeline</a>
+    <a class="pill" href="/apps/alexandria/codex.html">NPC Codex</a>
+    <a class="pill" href="/.github/workflows/alexandria-choices.yml" target="_blank">Run: Update Choices Library</a>
+  </div>
+
+  <section class="card">
+    <h2>Load / Edit</h2>
+    <div class="toolbar">
+      <button class="pill" id="reload">Reload from repo</button>
+      <button class="pill" id="download">Download choices.json</button>
+      <button class="pill" id="saveLocal">Save Draft (browser)</button>
+      <button class="pill" id="loadLocal">Load Draft</button>
+      <button class="pill" id="clearLocal">Clear Draft</button>
+    </div>
+    <textarea id="txt" class="mono"></textarea>
+    <p class="fine muted">To make changes permanent on the site, commit <code>/pages/apps/alexandria/knowledge/choices.json</code>
+       and run the workflow above. Drafts here are stored only in your browser.</p>
+  </section>
+
+  <div class="grid">
+    <section class="card">
+      <h2>Browse List</h2>
+      <div class="row">
+        <select id="key"></select>
+        <button id="roll1" class="roll">🎲 Roll 1</button>
+        <button id="roll5" class="roll">🎲 Roll 5</button>
+      </div>
+      <div id="out" class="box fine"></div>
+    </section>
+    <section class="card">
+      <h2>Quick Region Sketch</h2>
+      <p class="fine muted">Use the library to sketch a region idea (for Atlas or brainstorming).</p>
+      <div id="sketch" class="box fine"></div>
+      <div class="toolbar">
+        <button id="regen" class="pill">Regenerate</button>
+        <button id="copySketch" class="pill">Copy</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script type="module">
+const TXT = document.getElementById('txt');
+const KEY = document.getElementById('key');
+const OUT = document.getElementById('out');
+const SK = document.getElementById('sketch');
+const rnd = (arr)=> arr[Math.floor(Math.random()*arr.length)];
+const j = async u => { const r = await fetch(u+'?t='+Date.now(),{cache:'no-store'}); if(!r.ok) throw 0; return r.json(); };
+
+async function loadRepo(){
+  try{ const data = await j('/apps/alexandria/knowledge/choices.json'); TXT.value = JSON.stringify(data,null,2); populateKeys(data); renderOut(data); renderSketch(data); }
+  catch{ TXT.value = '{}'; KEY.innerHTML = ''; OUT.textContent = 'Could not load choices.json'; }
+}
+function populateKeys(data){
+  const keys = Object.keys(data||{}).sort();
+  KEY.innerHTML = keys.map(k=>`<option>${k}</option>`).join('');
+}
+function currentData(){ try{ return JSON.parse(TXT.value||'{}'); } catch { return {}; } }
+function renderOut(data){
+  const key = KEY.value; const list = Array.isArray(data?.[key]) ? data[key] : [];
+  OUT.innerHTML = list.length ? '<ul>'+list.map(x=>`<li>${x}</li>`).join('')+'</ul>' : '<p class="muted">Select a key to browse.</p>';
+}
+function renderSketch(data){
+  const dim = rnd(data.dimensions||['Prime']);
+  const bio = rnd(data.biomes||['plains']);
+  const cli = rnd(data.climates||['temperate']);
+  const haz = rnd(data.hazards||['storms']);
+  const res = rnd(data.resources||['iron']);
+  const gate= rnd(data.gate_types||['natural portal']);
+  const tech= rnd(data.tech_levels||['medieval']);
+  const mag = rnd(data.magic_intensity||['medium']);
+  const mode= rnd(data.travel_modes||['portals']);
+  const cult= rnd(data.cultures||['riverfolk']);
+  const gov = rnd(data.governments||['council']);
+  SK.textContent = `${dim} plane · ${bio}/${cli} · tech ${tech}, magic ${mag}.
+Hazard: ${haz}. Resource: ${res}. Gate: ${gate}. Travel: ${mode}.
+Culture: ${cult}, government: ${gov}.`;
+}
+
+document.getElementById('reload').onclick = loadRepo;
+document.getElementById('download').onclick = ()=>{
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([TXT.value||'{}'],{type:'application/json'})); a.download='choices.json';
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
+};
+document.getElementById('saveLocal').onclick = ()=>{ localStorage.setItem('choices_draft', TXT.value||'{}'); alert('Draft saved in browser.'); };
+document.getElementById('loadLocal').onclick = ()=>{ const v=localStorage.getItem('choices_draft'); if(v){ TXT.value=v; populateKeys(currentData()); renderOut(currentData()); renderSketch(currentData()); } };
+document.getElementById('clearLocal').onclick = ()=>{ localStorage.removeItem('choices_draft'); alert('Draft cleared.'); };
+KEY.onchange = ()=> renderOut(currentData());
+document.getElementById('roll1').onclick = ()=>{
+  const d = currentData(); const key = KEY.value; const list = Array.isArray(d?.[key])?d[key]:[];
+  OUT.innerHTML = list.length? `<div><b>${key}</b> → ${list[Math.floor(Math.random()*list.length)]}</div>` : '<p class="muted">Select a list.</p>';
+};
+document.getElementById('roll5').onclick = ()=>{
+  const d = currentData(); const key = KEY.value; const list = Array.isArray(d?.[key])?d[key]:[];
+  if(!list.length){ OUT.innerHTML = '<p class="muted">Select a list.</p>'; return; }
+  let picks=[]; for(let i=0;i<5;i++){ picks.push(list[Math.floor(Math.random()*list.length)]); }
+  OUT.innerHTML = '<div><b>'+key+'</b></div><ul>'+picks.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+};
+document.getElementById('regen').onclick = ()=> renderSketch(currentData());
+document.getElementById('copySketch').onclick = ()=>{ navigator.clipboard.writeText(SK.textContent||''); alert('Copied.'); };
+
+await loadRepo();
+</script>
+</body>
+</html>

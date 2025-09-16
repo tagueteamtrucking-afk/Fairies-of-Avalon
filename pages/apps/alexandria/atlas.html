@@ -37,6 +37,7 @@
       <a class="pill" href="/apps/alexandria/bible.html">Lore Bible Builder</a>
       <a class="pill" href="/apps/alexandria/timeline.html">Timeline Builder</a>
       <a class="pill" href="/apps/alexandria/codex.html">NPC Codex</a>
+      <a class="pill" href="/apps/alexandria/knowledge/choices.html">Choices Library</a>
       <a class="pill" href="/.github/workflows/alexandria-atlas.yml" target="_blank">Run: Build Atlas (Workflow)</a>
     </div>
 
@@ -60,8 +61,8 @@
         <h2>2) Taxonomies</h2>
         <p class="fine muted">Choose from lists, roll at random, or edit lists to create new options.</p>
         <div class="toolbar">
-          <button id="reloadTax" class="pill">Reload Default</button>
-          <button id="editTax" class="pill">Edit Lists</button>
+          <button id="reloadTax" class="pill">Reload</button>
+          <a class="pill" href="/apps/alexandria/knowledge/choices.html">Edit Lists</a>
           <button id="downloadTax" class="pill">Download taxonomy.json</button>
         </div>
         <div id="taxSummary" class="fine"></div>
@@ -128,15 +129,9 @@
     </section>
   </main>
 
-  <!-- Lightweight modal for editing taxonomy -->
   <dialog id="taxModal">
     <h3>Edit Taxonomy Lists</h3>
-    <p class="fine">Paste JSON with keys: <code>dimension_types, timeflow, magic_intensity, tech_levels, gate_types, biomes, climates, hazards, resources</code></p>
-    <textarea id="taxEdit"></textarea>
-    <div class="toolbar">
-      <button id="taxSave" class="pill">Save</button>
-      <button id="taxCancel" class="pill">Cancel</button>
-    </div>
+    <p class="fine">Edit in the Choices Library instead; this button now just exports the derived taxonomy.</p>
   </dialog>
 
 <script type="module">
@@ -151,7 +146,8 @@ let regions = [];
 let portals = [];
 let leys = [];
 
-const DEFAULT_TAX_URL = "/apps/alexandria/knowledge/atlas-taxonomy.json";
+const CHOICES_URL = "/apps/alexandria/knowledge/choices.json";
+const TAX_URL = "/apps/alexandria/knowledge/atlas-taxonomy.json";
 
 async function fetchJson(u){ const r = await fetch(u+'?t='+Date.now(), { cache:'no-store' }); if(!r.ok) throw new Error(); return r.json(); }
 function uiStatus(msg, good=false){ const s=$("#status"); s.textContent = msg; s.className = 'fine ' + (good?'ok':'muted'); }
@@ -160,28 +156,27 @@ function summarizeTax(){
   $("#taxSummary").textContent = keys || 'No taxonomy loaded.';
 }
 
-async function loadDefaultTax(){
-  try { tax = await fetchJson(DEFAULT_TAX_URL); localStorage.setItem('atlas_taxonomy', JSON.stringify(tax)); }
-  catch { tax = JSON.parse(localStorage.getItem('atlas_taxonomy')||'null') || {}; }
+async function loadTax(){
+  try{
+    const c = await fetchJson(CHOICES_URL);
+    tax = {
+      dimension_types: c.dimensions || [],
+      timeflow: c.timeflow || ['synchronous','slower','faster','erratic'],
+      magic_intensity: c.magic_intensity || c.magic_tiers || ['low','medium','high','wild','forbidden'],
+      tech_levels: c.tech_levels || ['medieval'],
+      gate_types: c.gate_types || ['natural portal'],
+      biomes: c.biomes || ['plains'],
+      climates: c.climates || ['temperate'],
+      hazards: c.hazards || ['storms'],
+      resources: c.resources || ['iron']
+    };
+  }catch{
+    try{ tax = await fetchJson(TAX_URL); }
+    catch{ tax = {}; }
+  }
   summarizeTax();
 }
-$("#reloadTax").onclick = loadDefaultTax;
-
-const taxModal = $("#taxModal"), taxEdit = $("#taxEdit");
-$("#editTax").onclick = ()=>{ taxEdit.value = JSON.stringify(tax||{}, null, 2); taxModal.showModal(); };
-$("#taxCancel").onclick = ()=> taxModal.close();
-$("#taxSave").onclick = ()=>{
-  try{
-    const obj = JSON.parse(taxEdit.value||'{}');
-    tax = obj; localStorage.setItem('atlas_taxonomy', JSON.stringify(tax));
-    summarizeTax(); taxModal.close();
-  }catch{ alert('Invalid JSON'); }
-};
-$("#downloadTax").onclick = ()=>{
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([JSON.stringify(tax||{},null,2)], {type:'application/json'}));
-  a.download = 'atlas-taxonomy.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
-};
+$("#reloadTax").onclick = loadTax;
 
 async function loadSeedFromUrl(){
   try{ seed = await fetchJson($("#seedUrl").value.trim()); $("#seedInfo").textContent = `Loaded: ${seed.title} (${seed.id})`; }
@@ -207,7 +202,6 @@ function ensureRows(n){
 function rowHtml(r,i){
   const f1 = seed?.factions?.[0]?.name || 'Faction A';
   const f2 = seed?.factions?.[1]?.name || 'Faction B';
-  const opts = (list)=> (list||[]).map(x=>`<option ${r[list?.name]===x?'selected':''}>${x}</option>`).join('');
   const mk = (arr,val,field)=> `<select data-i="${i}" data-field="${field}"><option value=""></option>${(arr||[]).map(x=>`<option ${r[field]===x?'selected':''}>${x}</option>`).join('')}</select> <button class="smallbtn roll" data-i="${i}" data-field="${field}">🎲</button>`;
   return `<tr>
   <td>${i+1}</td>
@@ -244,7 +238,7 @@ function wireRows(){
     btn.onclick = ()=>{
       const i = +btn.dataset.i; const f = btn.dataset.field;
       const lists = { dimension: tax?.dimension_types, biome: tax?.biomes, climate: tax?.climates, hazard: tax?.hazards, resource: tax?.resources, faction: [seed?.factions?.[0]?.name, seed?.factions?.[1]?.name, 'Independent','Unclaimed'].filter(Boolean) };
-      const pick = rnd(lists[f]||[]);
+      const pick = (lists[f]&&lists[f].length)? lists[f][Math.floor(Math.random()*lists[f].length)] : '';
       const sel = document.querySelector(`select[data-i="${i}"][data-field="${f}"]`);
       if (sel){ sel.value = pick||""; sel.dispatchEvent(new Event('change')); }
     };
@@ -259,27 +253,27 @@ $("#autoFill").onclick = ()=>{
   const f2 = seed?.factions?.[1]?.name || 'Faction B';
   regions.forEach(r=>{
     if(!r.name) r.name = (r.biome||'Region')+' '+Math.floor(10+Math.random()*90);
-    r.dimension ||= rnd(tax?.dimension_types||[]);
-    r.biome ||= rnd(tax?.biomes||[]);
-    r.climate ||= rnd(tax?.climates||[]);
-    r.faction ||= rnd([f1,f2,'Independent','Unclaimed'].filter(Boolean));
-    r.hazard ||= rnd(tax?.hazards||[]);
-    r.resource ||= rnd(tax?.resources||[]);
+    r.dimension ||= (tax?.dimension_types||[])[Math.floor(Math.random()*(tax?.dimension_types?.length||1))];
+    r.biome ||= (tax?.biomes||[])[Math.floor(Math.random()*(tax?.biomes?.length||1))];
+    r.climate ||= (tax?.climates||[])[Math.floor(Math.random()*(tax?.climates?.length||1))];
+    r.faction ||= [f1,f2,'Independent','Unclaimed'].filter(Boolean)[Math.floor(Math.random()*4)];
+    r.hazard ||= (tax?.hazards||[])[Math.floor(Math.random()*(tax?.hazards?.length||1))];
+    r.resource ||= (tax?.resources||[])[Math.floor(Math.random()*(tax?.resources?.length||1))];
     r.wing = (Math.random()>0.2);
   });
   ensureRows(regions.length);
 };
-$("#rollAll").onclick = ()=>{ regions.forEach(r=>{ for (const f of ['dimension','biome','climate','faction','hazard','resource']){ const lists = { dimension: tax?.dimension_types, biome: tax?.biomes, climate: tax?.climates, hazard: tax?.hazards, resource: tax?.resources, faction: [seed?.factions?.[0]?.name, seed?.factions?.[1]?.name, 'Independent','Unclaimed'].filter(Boolean) }; r[f] = rnd(lists[f]||[]); } r.wing = (Math.random()>0.2); }); ensureRows(regions.length); };
+$("#rollAll").onclick = ()=>{ regions.forEach(r=>{ for (const f of ['dimension','biome','climate','faction','hazard','resource']){ const lists = { dimension: tax?.dimension_types, biome: tax?.biomes, climate: tax?.climates, hazard: tax?.hazards, resource: tax?.resources, faction: [seed?.factions?.[0]?.name, seed?.factions?.[1]?.name, 'Independent','Unclaimed'].filter(Boolean) }; const arr = lists[f]||[]; r[f] = arr[Math.floor(Math.random()*(arr.length||1))]||''; } r.wing = (Math.random()>0.2); }); ensureRows(regions.length); };
 
 // Portals & Leys
 function portalHtml(p,i){ return `<div class="fine">#${i+1} from <input data-i="${i}" data-f="from" style="width:8ch" value="${p.from??0}"/> to <input data-i="${i}" data-f="to" style="width:8ch" value="${p.to??1}"/> via <input data-i="${i}" data-f="type" style="width:20ch" value="${p.type||''}"/> <button class="smallbtn pdel" data-i="${i}">Del</button></div>`; }
 function leyHtml(l,i){ return `<div class="fine">#${i+1} from <input data-i="${i}" data-f="from" style="width:8ch" value="${l.from??0}"/> to <input data-i="${i}" data-f="to" style="width:8ch" value="${l.to??1}"/> affinity <input data-i="${i}" data-f="affinity" style="width:14ch" value="${l.affinity||'mana'}"/> <button class="smallbtn ldel" data-i="${i}">Del</button></div>`; }
 function refreshPortals(){ const c=$("#portals"); c.innerHTML = portals.map((p,i)=>portalHtml(p,i)).join(''); $$("#portals input").forEach(inpt=>{ inpt.onchange = (e)=>{ const i=+e.target.dataset.i; const f=e.target.dataset.f; portals[i][f] = (f==='from'||f==='to')? parseInt(e.target.value||'0',10): e.target.value; }; }); $$("#portals .pdel").forEach(b=> b.onclick=()=>{ portals.splice(+b.dataset.i,1); refreshPortals(); }); }
 function refreshLeys(){ const c=$("#leys"); c.innerHTML = leys.map((l,i)=>leyHtml(l,i)).join(''); $$("#leys input").forEach(inpt=>{ inpt.onchange = (e)=>{ const i=+e.target.dataset.i; const f=e.target.dataset.f; leys[i][f] = (f==='from'||f==='to')? parseInt(e.target.value||'0',10): e.target.value; }; }); $$("#leys .ldel").forEach(b=> b.onclick=()=>{ leys.splice(+b.dataset.i,1); refreshLeys(); }); }
-$("#addPortal").onclick = ()=>{ portals.push({from:0,to:1,type:rnd(tax?.gate_types||['portal'])}); refreshPortals(); };
-$("#rollPortals").onclick = ()=>{ portals = []; if (regions.length>1){ const n = Math.min(regions.length-1, Math.ceil(Math.random()*Math.min(4, regions.length))); for (let i=0;i<n;i++){ portals.push({from: Math.floor(Math.random()*regions.length), to: Math.floor(Math.random()*regions.length), type: rnd(tax?.gate_types||['portal'])}); } } refreshPortals(); };
+$("#addPortal").onclick = ()=>{ portals.push({from:0,to:1,type:'portal'}); refreshPortals(); };
+$("#rollPortals").onclick = ()=>{ portals = []; if (regions.length>1){ const n = Math.min(regions.length-1, Math.ceil(Math.random()*Math.min(4, regions.length))); for (let i=0;i<n;i++){ portals.push({from: Math.floor(Math.random()*regions.length), to: Math.floor(Math.random()*regions.length), type: 'portal'}); } } refreshPortals(); };
 $("#addLey").onclick = ()=>{ leys.push({from:0,to:1,affinity:'mana'}); refreshLeys(); };
-$("#rollLeys").onclick = ()=>{ leys = []; if (regions.length>1){ const n = Math.min(regions.length-1, Math.ceil(Math.random()*Math.min(5, regions.length))); for (let i=0;i<n;i++){ leys.push({from: Math.floor(Math.random()*regions.length), to: Math.floor(Math.random()*regions.length), affinity: rnd(['mana','storm','shadow','sun','tide'])}); } } refreshLeys(); };
+$("#rollLeys").onclick = ()=>{ leys = []; if (regions.length>1){ const n = Math.min(regions.length-1, Math.ceil(Math.random()*Math.min(5, regions.length))); for (let i=0;i<n;i++){ leys.push({from: Math.floor(Math.random()*regions.length), to: Math.floor(Math.random()*regions.length), affinity: 'mana'}); } } refreshLeys(); };
 
 function buildAtlas(){
   const now = new Date().toISOString();
@@ -290,11 +284,10 @@ function buildAtlas(){
     title,
     generated: now,
     format_version: '1.0.0',
-    dimensions: Array.from(new Set(regions.map(r=>r.dimension).filter(Boolean))).map((name,i)=>({ id:i, name, timeflow: rnd(tax?.timeflow||['synchronous']), magic: rnd(tax?.magic_intensity||['medium']), tech: rnd(tax?.tech_levels||['medieval']) })),
+    dimensions: Array.from(new Set(regions.map(r=>r.dimension).filter(Boolean))).map((name,i)=>({ id:i, name, timeflow: (tax?.timeflow||['synchronous'])[0], magic: (tax?.magic_intensity||['medium'])[0], tech: (tax?.tech_levels||['medieval'])[0] })),
     regions: regions.map((r,i)=>({ id:i, name:r.name||('Region '+(i+1)), dimension:r.dimension||null, biome:r.biome||null, climate:r.climate||null, faction:r.faction||null, hazard:r.hazard||null, resource:r.resource||null, wing_friendly: !!r.wing, poi: String(r.poi||'').split(',').map(s=>s.trim()).filter(Boolean) })),
     portals: portals,
-    leylines: leys,
-    wallpaper_tags: [seed?.pillars?.magic_system, seed?.pillars?.travel, seed?.cosmology?.planar_topology].filter(Boolean)
+    leylines: leys
   };
   return atlas;
 }
@@ -304,21 +297,19 @@ $("#loadDraft").onclick = ()=>{ try{ const a = JSON.parse(localStorage.getItem('
 $("#reset").onclick = ()=>{ regions=[]; portals=[]; leys=[]; $("#count").value=5; ensureRows(5); refreshPortals(); refreshLeys(); uiStatus('Reset.'); };
 $("#downloadAtlas").onclick = ()=>{ const atlas = buildAtlas(); const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(atlas,null,2)], {type:'application/json'})); a.download = slug(atlas.title||'world')+'.atlas.json'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href); };
 
-// Initialize
-await loadDefaultTax();
+await loadTax();
 ensureRows(5);
 refreshPortals(); refreshLeys();
 
-// Existing committed atlases
+// Existing
 (async()=>{
-  const el = $("#existing");
+  const el = document.getElementById('existing');
+  async function fetchJson(u){ const r = await fetch(u+'?t='+Date.now(), { cache:'no-store' }); if(!r.ok) throw new Error(); return r.json(); }
   try{
     const idx = await fetchJson('/apps/alexandria/worlds/atlas/index.json');
-    if (!Array.isArray(idx) || !idx.length){ el.innerHTML = '<p class="fine muted">No index yet. Run the workflow.</p>'; return; }
-    el.innerHTML = idx.slice(-50).reverse().map(x=>`<div><a href="${x.path}">${x.title}</a> <small>${x.ts}</small></div>`).join('');
+    el.innerHTML = Array.isArray(idx)&&idx.length ? idx.slice(-50).reverse().map(x=>`<div><a href="${x.path}">${x.title}</a> <small>${x.ts}</small></div>`).join('') : '<p class="fine muted">No index yet.</p>';
   }catch{ el.innerHTML = '<p class="fine muted">No index yet.</p>'; }
 })();
-
 </script>
 </body>
 </html>

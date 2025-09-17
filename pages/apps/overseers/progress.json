@@ -16,7 +16,7 @@
       "id": "R4",
       "actor": "rey_czar",
       "ended": "2025-09-17T21:41:07.8762699Z",
-      "started": "2025-09-17T21:41:07.4591020Z",
+      "started": "2025-09-17T21:41:07.459102Z",
       "file": "20250913T184848Z-asset_audit.request.yml"
     },
     {
@@ -116,7 +116,7 @@
       "file": "20250913T215629Z-scaffold-live.request.yml"
     },
     {
-      "ts": "2025-09-15T06:36:27.3663610Z",
+      "ts": "2025-09-15T06:36:27.366361Z",
       "status": "ok",
       "action": "build_manifests",
       "id": "A3",
@@ -155,5 +155,11 @@
       "started": "2025-09-17T21:41:15.6892525Z",
       "file": "20250915T151633Z-create-microapps.request.yml"
     }
-  ]
+  ],
+  "telemetry": {
+    "updated": "2025-09-17T21:54:07.3022420Z",
+    "wallpapers_count": 4,
+    "wallpapers_total": 20,
+    "wallpaper_power_index": 20
+  }
 }

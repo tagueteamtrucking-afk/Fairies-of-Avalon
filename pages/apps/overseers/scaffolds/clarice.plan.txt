@@ -1,6 +1,47 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T19:41:21.9456064Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Clarice'**
+
+1. **Character Overview**
+   - Name: Clarice
+   - Species: Fairy
+   - Realm: Avalon
+   - Role: Guardian of Nature
+
+2. **Physical Appearance**
+   - Height: 5 inches
+   - Wings: Iridescent, butterfly-like
+   - Hair: Long, flowing, pastel colors
+   - Attire: Leaf and flower-inspired dress
+
+3. **Personality Traits**
+   - Kind-hearted
+   - Curious
+   - Playful
+   - Wise
+
+4. **Abilities**
+   - Nature manipulation (growth, healing)
+   - Flight
+   - Invisibility
+
+5. **Backstory**
+   - Origin: Born from the essence of a sacred tree in Avalon
+   - Mission: Protect the balance of nature and assist lost creatures
+
+6. **Allies and Relationships**
+   - Friends: Other fairies, woodland creatures
+   - Mentor: Elder fairy of Avalon
+
+7. **Goals and Motivations**
+   - Preserve the beauty of Avalon
+   - Educate others about nature's importance
+
+8. **Challenges**
+   - Threats from dark forces seeking to corrupt Avalon
+   - Balancing her playful nature with her responsibilities
+
+9. **Development Arc**
+   - Growth from a carefree fairy to a wise guardian
+   - Learning to harness her powers more effectively
+
+10. **Conclusion**
+    - Clarice's journey emphasizes the importance of harmony with nature and the power of friendship.

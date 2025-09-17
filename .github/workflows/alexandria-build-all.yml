@@ -53,6 +53,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           $ErrorActionPreference='Stop'
+          $ff = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
           & "scripts/overseers/alexandria-build-all.ps1" `
              -RepoRoot "$PWD" `
              -Title "${{ inputs.title }}" `
@@ -60,7 +61,7 @@ jobs:
              -Events ${{ inputs.events }} `
              -NPCs ${{ inputs.npcs }} `
              -Regions ${{ inputs.regions }} `
-             -ForceFallback:${{ inputs.force_fallback }}
+             -ForceFallback:$ff
 
       - name: Commit changes (if any)
         shell: bash

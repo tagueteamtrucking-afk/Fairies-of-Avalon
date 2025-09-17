@@ -1,6 +1,51 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T07:30:08.4581869Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Clarice'**
+
+1. **Character Overview**
+   - Name: Clarice
+   - Species: Fairy
+   - Realm: Avalon
+
+2. **Physical Attributes**
+   - Height: 5 inches
+   - Wing Type: Gossamer, iridescent
+   - Hair: Silvery-blue, long and flowing
+   - Eyes: Emerald green, sparkling
+
+3. **Personality Traits**
+   - Kind-hearted
+   - Curious
+   - Playful
+   - Wise beyond her years
+
+4. **Abilities**
+   - Nature Manipulation: Can encourage plant growth
+   - Healing Touch: Ability to heal minor wounds
+   - Flight: Agile and swift in the air
+
+5. **Backstory**
+   - Origin: Born in the enchanted forest of Avalon
+   - Role: Guardian of the forest and its creatures
+
+6. **Goals**
+   - Protect the natural balance of Avalon
+   - Foster harmony between fairies and other creatures
+
+7. **Challenges**
+   - Encroachment of dark forces threatening Avalon
+   - Balancing her playful nature with her responsibilities
+
+8. **Allies**
+   - Other fairies of Avalon
+   - Forest animals
+   - Elemental spirits
+
+9. **Visual Design Elements**
+   - Color Palette: Soft pastels with hints of gold
+   - Clothing: Ethereal dress made from flower petals and leaves
+
+10. **Key Story Arcs**
+    - Discovery of a dark force
+    - Journey to unite the fairies
+    - Overcoming personal doubts and fears
+
+This scaffold provides a foundational structure for developing the character of Clarice, the Avalon Fairy.

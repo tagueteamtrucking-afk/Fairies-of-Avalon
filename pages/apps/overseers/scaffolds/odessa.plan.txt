@@ -1,47 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Odessa'**
-
-1. **Objective**: Create a lightweight scaffold to support the design and construction of the Avalon Fairy 'Odessa'.
-
-2. **Materials**:
-   - Lightweight aluminum or steel tubes
-   - Connectors and joints
-   - Safety harnesses and guardrails
-   - Non-slip platforming
-
-3. **Dimensions**:
-   - Height: 10 feet
-   - Width: 6 feet
-   - Depth: 4 feet
-
-4. **Structure**:
-   - Base: Four corner posts with cross-bracing for stability.
-   - Platform: A single level platform at 8 feet height.
-   - Access: Ladder or stairway on one side for safe entry and exit.
-
-5. **Safety Features**:
-   - Guardrails around the platform.
-   - Non-slip surface on the platform.
-   - Regular inspections for structural integrity.
-
-6. **Assembly Instructions**:
-   - Assemble base frame first, ensuring all joints are secure.
-   - Attach vertical posts to each corner of the base.
-   - Install cross-bracing between posts for added stability.
-   - Secure platform to the top of the posts.
-   - Install access ladder/stairway.
-
-7. **Disassembly Instructions**:
-   - Remove the access ladder/stairway first.
-   - Detach the platform from the posts.
-   - Disassemble the vertical posts and cross-bracing.
-   - Take apart the base frame last.
-
-8. **Maintenance**:
-   - Inspect for rust or wear every month.
-   - Tighten any loose connections immediately.
-
-9. **Storage**:
-   - Store in a dry, secure location when not in use.
-
-10. **Compliance**:
-    - Ensure all materials and construction meet local safety regulations.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T13:55:00.2741163Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

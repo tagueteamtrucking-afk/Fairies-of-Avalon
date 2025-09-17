@@ -2,34 +2,32 @@
 
 1. **Foundation**
    - Level ground preparation
-   - Concrete footings
+   - Base supports (e.g., wooden beams or concrete blocks)
 
-2. **Structure**
-   - Vertical supports (4 corner posts)
-   - Horizontal beams (top and bottom)
+2. **Vertical Supports**
+   - Install corner posts (4)
+   - Intermediate vertical supports (as needed for stability)
 
-3. **Walls**
-   - Lightweight panels (wood or composite)
-   - Openings for windows and doors
+3. **Horizontal Beams**
+   - Top horizontal beams connecting vertical supports
+   - Additional beams for structural integrity (cross-bracing)
 
-4. **Roof**
-   - Sloped framework
-   - Waterproof covering (shingles or thatch)
+4. **Roof Structure**
+   - Framework for roof (rafters or trusses)
+   - Covering material (e.g., thatch, fabric, or lightweight panels)
 
-5. **Access**
-   - Stairs or ladder for entry
-   - Safety railings
+5. **Walls**
+   - Lightweight wall panels or mesh for visibility
+   - Entry points (doors or openings)
 
-6. **Utilities**
-   - Basic electrical wiring (if needed)
-   - Plumbing for water features (optional)
+6. **Finishing Touches**
+   - Decorative elements (e.g., fairy lights, natural materials)
+   - Safety checks for stability and durability
 
-7. **Finishing**
-   - Exterior paint or finish
-   - Landscaping around the structure
+7. **Access**
+   - Ladder or steps for access to elevated areas
 
-8. **Safety**
-   - Regular inspections
-   - Compliance with local building codes
+8. **Landscaping**
+   - Surrounding area enhancements (plants, pathways)
 
-**Note:** Adjust dimensions and materials based on specific design requirements and site conditions.
+**Note:** Ensure all materials are safe and suitable for the intended environment.

@@ -4,44 +4,45 @@
    - Level ground preparation
    - Concrete footings
 
-2. **Main Structure**
-   - Frame: Wooden beams (2x4 or 2x6)
-   - Walls: Plywood sheathing
-   - Roof: Truss system with plywood decking
+2. **Structure**
+   - Wooden frame (2x4s for walls)
+   - Roof trusses (gable design)
+   - Exterior sheathing (plywood)
 
-3. **Exterior**
-   - Siding: Wood or composite panels
-   - Windows: Energy-efficient glass
-   - Doors: Solid wood or fiberglass
+3. **Walls**
+   - Install wall frames
+   - Insulation (fiberglass or foam)
+   - Exterior siding (wood or composite)
 
-4. **Interior Layout**
-   - Rooms: Designate spaces for living, sleeping, and bathing
-   - Hallways: Ensure accessibility and flow
+4. **Roof**
+   - Install roofing material (shingles or metal)
+   - Ventilation (ridge vents)
 
-5. **Utilities**
-   - Electrical: Basic wiring plan
-   - Plumbing: Water supply and drainage layout
-   - HVAC: Heating and cooling system design
+5. **Windows and Doors**
+   - Frame openings for windows and doors
+   - Install energy-efficient windows
+   - Exterior door installation
 
-6. **Finishing Touches**
-   - Insulation: Walls and roof
-   - Drywall: Interior wall covering
-   - Flooring: Wood, tile, or carpet options
+6. **Interior**
+   - Drywall installation
+   - Electrical wiring and outlets
+   - Plumbing rough-in (if applicable)
 
-7. **Landscaping**
-   - Garden beds: Native plants and flowers
-   - Pathways: Stone or gravel paths
+7. **Finishing**
+   - Interior painting
+   - Flooring installation (wood, tile, or carpet)
+   - Trim and molding
 
-8. **Safety Features**
-   - Smoke detectors: Install in key areas
-   - Fire extinguishers: Accessible locations
+8. **Exterior**
+   - Landscaping (plants, pathways)
+   - Deck or patio installation (if applicable)
 
-9. **Sustainability**
-   - Rainwater collection: Gutters and storage
-   - Solar panels: Roof-mounted system
+9. **Utilities**
+   - Connect to water, electricity, and sewage
+   - Install heating/cooling systems
 
-10. **Regulatory Compliance**
-    - Building permits: Obtain necessary approvals
-    - Zoning laws: Adhere to local regulations
+10. **Final Inspection**
+    - Ensure compliance with local building codes
+    - Final walkthrough for quality assurance
 
-**Note:** This scaffold plan is a basic outline and should be tailored to specific design requirements and local building codes.
+**Note:** Adjust materials and dimensions based on specific design requirements and local regulations.

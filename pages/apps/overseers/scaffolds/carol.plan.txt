@@ -1,39 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Carol'**
-
-1. **Title**: Avalon Fairy 'Carol'
-
-2. **Objective**: Introduce the character of Carol, her role in Avalon, and her unique attributes.
-
-3. **Character Overview**:
-   - **Name**: Carol
-   - **Species**: Fairy
-   - **Appearance**: Description of physical traits (e.g., wings, hair color, attire)
-   - **Personality**: Key traits (e.g., cheerful, nurturing, mischievous)
-
-4. **Backstory**:
-   - **Origin**: Brief history of Carol's background in Avalon.
-   - **Motivation**: What drives her actions and decisions.
-
-5. **Abilities**:
-   - **Magical Powers**: Overview of her magical abilities (e.g., nature manipulation, healing).
-   - **Skills**: Any special skills or talents (e.g., singing, crafting).
-
-6. **Role in Avalon**:
-   - **Position**: Her role within the fairy community.
-   - **Relationships**: Key relationships with other characters (friends, mentors, rivals).
-
-7. **Conflict**:
-   - **Challenges**: Main obstacles Carol faces in the story.
-   - **Growth**: How these challenges contribute to her development.
-
-8. **Conclusion**:
-   - **Resolution**: Potential outcomes for Carol's journey.
-   - **Themes**: Key themes represented through her character (e.g., friendship, courage).
-
-9. **Visual Elements**:
-   - **Illustrations**: Concept art ideas for Carol and her environment.
-   - **Color Palette**: Suggested colors that represent her character.
-
-10. **Next Steps**:
-    - **Expand on each section**: Develop detailed descriptions and narratives.
-    - **Character interactions**: Outline interactions with other key characters in the story.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T11:54:42.5965341Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

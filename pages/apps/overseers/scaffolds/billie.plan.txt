@@ -1,51 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Billie'**
-
-1. **Character Overview**
-   - Name: Billie
-   - Type: Avalon Fairy
-   - Traits: Playful, curious, kind-hearted
-
-2. **Physical Description**
-   - Height: 12 inches
-   - Wings: Iridescent, butterfly-like
-   - Hair: Long, flowing, pastel colors
-   - Attire: Nature-inspired dress with floral patterns
-
-3. **Backstory**
-   - Origin: Born in the enchanted Avalon forest
-   - Role: Guardian of nature and harmony
-   - Motivation: To protect the balance of magic in Avalon
-
-4. **Abilities**
-   - Nature Manipulation: Can encourage plant growth and communicate with animals
-   - Flight: Agile and swift in the air
-   - Healing Touch: Can heal minor wounds of creatures
-
-5. **Goals**
-   - Protect Avalon from dark forces
-   - Foster friendships with other magical beings
-   - Explore the world beyond Avalon
-
-6. **Challenges**
-   - Encountering dark magic threatening Avalon
-   - Learning to trust others outside her realm
-   - Balancing her playful nature with her responsibilities
-
-7. **Supporting Characters**
-   - Mentor: Elder Fairy who guides Billie
-   - Friend: A mischievous sprite who often gets into trouble
-   - Antagonist: A dark sorcerer seeking to corrupt Avalon
-
-8. **Plot Points**
-   - Discovery of a dark force in Avalon
-   - Journey to gather allies
-   - Confrontation with the antagonist
-   - Resolution and restoration of harmony in Avalon
-
-9. **Themes**
-   - Friendship and trust
-   - The importance of nature
-   - Courage in the face of adversity
-
-10. **Conclusion**
-    - Billie learns valuable lessons about responsibility and teamwork, solidifying her role as a protector of Avalon.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T15:53:31.8671387Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

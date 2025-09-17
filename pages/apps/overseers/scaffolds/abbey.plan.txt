@@ -1,6 +1,48 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T15:53:31.4209891Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+### Minimal Scaffold Plan for Avalon Fairy 'Abbey'
+
+#### 1. **Foundation**
+   - **Materials**: Concrete footings, gravel base
+   - **Dimensions**: 20 ft x 30 ft
+
+#### 2. **Main Structure**
+   - **Walls**: Wooden frame (2x4 studs)
+   - **Height**: 12 ft at peak
+   - **Roof**: Gable style, asphalt shingles
+
+#### 3. **Flooring**
+   - **Material**: Plywood subfloor
+   - **Finish**: Hardwood or laminate
+
+#### 4. **Windows**
+   - **Type**: Double-hung, energy-efficient
+   - **Number**: 6 (2 on each side, 2 on front)
+
+#### 5. **Doors**
+   - **Main Entrance**: Single wooden door
+   - **Interior Doors**: Hollow core doors
+
+#### 6. **Utilities**
+   - **Electrical**: Basic wiring, outlets in each room
+   - **Plumbing**: Basic setup for kitchen and bathroom
+
+#### 7. **Interior Layout**
+   - **Rooms**: 
+     - Living Area: 15 ft x 20 ft
+     - Kitchen: 10 ft x 10 ft
+     - Bathroom: 5 ft x 8 ft
+     - Bedroom: 10 ft x 12 ft
+
+#### 8. **Exterior**
+   - **Siding**: Vinyl or wood
+   - **Landscaping**: Minimal, native plants
+
+#### 9. **Safety Features**
+   - **Smoke Detectors**: Installed in each room
+   - **Fire Extinguisher**: Located in the kitchen
+
+#### 10. **Finishing Touches**
+   - **Paint**: Neutral colors for walls
+   - **Trim**: Simple baseboards and crown molding
+
+### Note
+Adjust dimensions and materials based on specific site conditions and local building codes.

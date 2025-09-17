@@ -1,6 +1,30 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T15:53:32.0343474Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Carol'**
+
+1. **Introduction**
+   - Brief overview of Avalon Fairy 'Carol'
+   - Purpose and significance of the character
+
+2. **Character Background**
+   - Origin story
+   - Key traits and abilities
+   - Role within the Avalon universe
+
+3. **Appearance**
+   - Description of physical features
+   - Typical attire and accessories
+
+4. **Personality**
+   - Core personality traits
+   - Relationships with other characters
+
+5. **Powers and Abilities**
+   - List of magical abilities
+   - Limitations and weaknesses
+
+6. **Story Arc**
+   - Major plot points involving Carol
+   - Character development throughout the story
+
+7. **Conclusion**
+   - Summary of Carol's impact on the Avalon narrative
+   - Final thoughts on her significance in the fairy realm

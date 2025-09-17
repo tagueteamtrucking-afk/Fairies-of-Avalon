@@ -2,51 +2,44 @@
 
 1. **Foundation**
    - Level ground preparation
-   - Base layer of gravel for drainage
-   - Concrete footings for stability
+   - Base dimensions: 10m x 10m
+   - Material: Reinforced concrete
 
-2. **Main Structure**
-   - Wooden frame construction (2x4 or 2x6 lumber)
-   - Vertical posts at 4-foot intervals
-   - Horizontal beams for roof support
+2. **Vertical Structure**
+   - Columns: 4 main support columns (wood or metal)
+   - Height: 3m for main structure
 
-3. **Walls**
-   - Lightweight panels (plywood or composite)
-   - Insulation between panels (if required)
-   - Exterior cladding (wood, stone, or other materials)
+3. **Roof**
+   - Type: A-frame design
+   - Material: Lightweight timber or thatch
+   - Overhang: 1m on all sides
 
-4. **Roof**
-   - Sloped design for rain runoff
-   - Trusses for support
-   - Roofing material (shingles, metal, or thatch)
+4. **Walls**
+   - Material: Natural wood panels or woven branches
+   - Height: 2.5m
+   - Openings: 2 large windows (1m x 1.5m) for natural light
 
-5. **Windows and Doors**
-   - Pre-framed openings for windows
-   - Solid door frame with a weather seal
-   - Glass or acrylic panels for windows
+5. **Access**
+   - Entrance: Single door (1m x 2m)
+   - Steps: 3-step wooden staircase
 
 6. **Interior Layout**
-   - Designated areas (living space, sleeping area, storage)
-   - Basic furnishings (bed, table, chairs)
-   - Lighting fixtures (solar or battery-operated)
+   - Open floor plan
+   - Designated areas for seating and storage
 
-7. **Utilities (if applicable)**
-   - Basic plumbing (water source, drainage)
-   - Electrical wiring (solar panels, batteries)
+7. **Exterior Features**
+   - Garden space surrounding the structure
+   - Pathway: Gravel or stone leading to the entrance
 
-8. **Exterior Features**
-   - Deck or porch area
-   - Pathways (gravel or stone)
-   - Landscaping (native plants, fairy garden elements)
+8. **Safety Measures**
+   - Secure all structural joints
+   - Regular inspections for stability
 
-9. **Safety and Compliance**
-   - Ensure structural integrity
-   - Adhere to local building codes
-   - Fire safety measures (fire extinguisher, smoke detectors)
+9. **Sustainability Considerations**
+   - Use of eco-friendly materials
+   - Rainwater collection system for garden irrigation
 
-10. **Final Touches**
-    - Paint or finish exterior
-    - Decorate interior with fairy-themed elements
-    - Install any additional features (fencing, lighting) 
+10. **Timeline**
+    - Estimated construction duration: 4 weeks
 
-**Note:** Adjust dimensions and materials based on specific site conditions and design preferences.
+**End of Plan**

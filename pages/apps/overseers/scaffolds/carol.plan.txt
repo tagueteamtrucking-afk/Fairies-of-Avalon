@@ -4,35 +4,42 @@
    - Brief overview of Avalon Fairy 'Carol'
    - Purpose of the scaffold plan
 
-2. **Character Overview**
-   - Description of Carol's appearance
+2. **Character Description**
+   - Physical appearance
    - Personality traits
-   - Background story
+   - Background and origin
 
 3. **Setting**
    - Description of Avalon
    - Key locations relevant to Carol's story
 
 4. **Plot Outline**
-   - Main conflict
-   - Key events leading to the climax
-   - Resolution
+   - Beginning: Introduction of Carol and her environment
+   - Middle: Key events that challenge Carol
+   - Climax: Turning point in Carol's journey
+   - Conclusion: Resolution and character growth
 
 5. **Themes**
    - Friendship
    - Courage
    - Self-discovery
 
-6. **Character Development**
-   - Carol's growth throughout the story
-   - Relationships with other characters
+6. **Character Relationships**
+   - Key relationships (friends, allies, adversaries)
+   - Impact of relationships on Carol's development
 
-7. **Conclusion**
-   - Summary of Carol's journey
-   - Final thoughts on her impact in Avalon
+7. **Conflict**
+   - Main conflict faced by Carol
+   - Internal vs. external conflicts
 
-8. **Visual Elements**
+8. **Resolution**
+   - How conflicts are resolved
+   - Lessons learned by Carol
+
+9. **Visual Elements**
    - Suggested illustrations or imagery for key scenes
+   - Color palette for character and setting
 
-9. **Additional Notes**
-   - Any specific details or ideas for future development
+10. **Final Notes**
+    - Additional ideas for expanding the story
+    - Potential for sequels or spin-offs

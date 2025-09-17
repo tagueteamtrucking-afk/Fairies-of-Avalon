@@ -1,6 +1,43 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T10:39:30.1094528Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Carol'**
+
+1. **Character Overview**
+   - Name: Carol
+   - Role: Fairy of Winter
+   - Personality Traits: Cheerful, nurturing, playful
+
+2. **Physical Description**
+   - Appearance: Delicate features, shimmering ice-blue wings, silver hair
+   - Attire: Frost-themed gown, adorned with snowflake patterns
+
+3. **Backstory**
+   - Origin: Born in the Winter Realm of Avalon
+   - Journey: Discovered her powers while helping lost creatures in the snow
+
+4. **Abilities**
+   - Ice Manipulation: Can create snowflakes and frost patterns
+   - Healing Touch: Uses winter herbs to heal others
+   - Flight: Swift and graceful movement through the air
+
+5. **Goals and Motivations**
+   - Primary Goal: To spread joy during the winter season
+   - Motivation: Belief in the magic of kindness and community
+
+6. **Relationships**
+   - Allies: Other seasonal fairies, woodland creatures
+   - Conflicts: Rivalry with the Summer Fairy over seasonal dominance
+
+7. **Key Plot Points**
+   - Introduction: Carol’s arrival in Avalon during the first snowfall
+   - Conflict: A winter storm threatens the balance of the seasons
+   - Resolution: Carol unites the fairies to restore harmony
+
+8. **Themes**
+   - Friendship: The importance of collaboration among different beings
+   - Change: Embracing the beauty of seasonal transitions
+
+9. **Visual Elements**
+   - Color Palette: Ice blue, silver, white
+   - Symbolism: Snowflakes representing individuality and unity
+
+10. **Conclusion**
+    - Carol’s legacy: A reminder of the beauty in winter and the warmth of community.

@@ -2,34 +2,42 @@
 
 1. **Foundation**
    - Level ground preparation
-   - Concrete footings
+   - Base support structure
 
 2. **Main Structure**
-   - Frame: Wooden beams and columns
-   - Walls: Lightweight panels (plywood or similar)
+   - Vertical supports (4 corners)
+   - Horizontal beams (top and mid-level)
 
-3. **Roof**
-   - Trusses: Pre-fabricated wooden trusses
-   - Covering: Waterproof membrane
+3. **Walls**
+   - Lightweight panels (wood or fabric)
+   - Openings for windows and doors
 
-4. **Access**
-   - Staircase: Modular stairs for upper levels
-   - Ladders: Portable access ladders
+4. **Roof**
+   - Sloped design for rain runoff
+   - Lightweight covering (thatched or fabric)
 
-5. **Utilities**
-   - Electrical: Basic wiring for lighting
-   - Plumbing: Rough-in for water supply
+5. **Interior Layout**
+   - Designated areas (living, sleeping, storage)
+   - Minimal furnishings (bed, table, seating)
 
-6. **Safety Features**
-   - Guardrails: Installed around elevated areas
-   - Safety netting: Below work areas
+6. **Exterior Features**
+   - Garden space (flower beds, pathways)
+   - Decorative elements (fairy lights, sculptures)
 
-7. **Finishing Touches**
-   - Exterior: Natural wood finish or paint
-   - Landscaping: Minimal, with native plants
+7. **Access**
+   - Ladder or stairs for entry
+   - Pathway leading to the entrance
 
-8. **Inspection Points**
-   - Structural integrity checks
-   - Safety compliance verification
+8. **Utilities (if applicable)**
+   - Basic lighting (solar or battery)
+   - Water source (if needed)
 
-**Note:** Adjust dimensions and materials based on specific design requirements and local building codes.
+9. **Safety Measures**
+   - Stability checks on all structures
+   - Secure all elements against wind and weather
+
+10. **Final Touches**
+    - Paint or finish as desired
+    - Add personal fairy touches (artifacts, charms) 
+
+**Note:** Ensure all materials are eco-friendly and suitable for the environment.

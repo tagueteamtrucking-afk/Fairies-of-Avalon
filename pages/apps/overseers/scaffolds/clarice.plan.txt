@@ -1,62 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Clarice'**
-
-1. **Character Overview**
-   - Name: Clarice
-   - Species: Fairy
-   - Realm: Avalon
-   - Role: Guardian of Nature
-
-2. **Physical Appearance**
-   - Height: 5 inches
-   - Wings: Iridescent, butterfly-like
-   - Hair: Long, flowing, pastel colors
-   - Attire: Leaf and flower-inspired dress
-
-3. **Personality Traits**
-   - Kind-hearted
-   - Curious
-   - Playful
-   - Wise
-
-4. **Abilities**
-   - Nature manipulation (growth and healing)
-   - Flight
-   - Invisibility
-
-5. **Backstory**
-   - Origin: Born from the first bloom of spring in Avalon
-   - Purpose: To protect the balance of nature and assist lost creatures
-
-6. **Goals**
-   - Maintain harmony in Avalon
-   - Help others find their way home
-   - Discover the secrets of the ancient woods
-
-7. **Challenges**
-   - Dark forces threatening Avalon
-   - Misunderstandings with other magical beings
-   - Navigating her own fears of inadequacy
-
-8. **Allies**
-   - Other fairies of Avalon
-   - Forest creatures
-   - Ancient spirits of nature
-
-9. **Conflict**
-   - Confrontation with a dark sorceress
-   - Internal struggle with self-doubt
-
-10. **Resolution**
-    - Overcoming fears through teamwork
-    - Restoring balance to Avalon
-
-11. **Themes**
-    - Friendship
-    - Courage
-    - The importance of nature
-
-12. **Visual Style**
-    - Color Palette: Soft pastels with vibrant accents
-    - Art Style: Whimsical and ethereal
-
-This scaffold provides a foundational structure for developing the character of Avalon Fairy 'Clarice'.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T20:53:18.8413301Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

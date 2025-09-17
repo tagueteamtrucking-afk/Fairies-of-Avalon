@@ -1,6 +1,42 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T07:43:33.6349048Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Themis'**
+
+1. **Objective**
+   - Create a character design and backstory for Avalon Fairy 'Themis'.
+
+2. **Character Overview**
+   - Name: Themis
+   - Type: Avalon Fairy
+   - Role: Guardian of Justice and Balance
+
+3. **Physical Appearance**
+   - Wings: Iridescent, resembling stained glass
+   - Hair: Silver with hints of blue
+   - Attire: Flowing gown in shades of white and blue, adorned with symbols of scales
+
+4. **Personality Traits**
+   - Wise
+   - Fair-minded
+   - Compassionate
+
+5. **Abilities**
+   - Power to restore balance in nature
+   - Ability to influence decisions towards fairness
+   - Healing touch
+
+6. **Backstory**
+   - Origin: Born from the first light of dawn in Avalon
+   - Purpose: To maintain harmony among the fairy realms and protect the innocent
+
+7. **Allies and Enemies**
+   - Allies: Other Avalon Fairies, Nature Spirits
+   - Enemies: Dark entities that disrupt balance
+
+8. **Goals and Motivations**
+   - To uphold justice in the fairy realms
+   - To teach others the importance of balance and fairness
+
+9. **Conflict**
+   - Struggles against forces that seek to create chaos and injustice
+
+10. **Conclusion**
+   - Themis serves as a beacon of hope and fairness in the magical world of Avalon.

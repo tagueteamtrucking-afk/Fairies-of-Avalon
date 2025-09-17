@@ -1,33 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Reyczar'**
-
-1. **Objective**: Define the purpose and role of Reyczar within the Avalon Fairy realm.
-
-2. **Character Design**:
-   - **Appearance**: Outline key physical traits (e.g., wings, hair color, attire).
-   - **Personality**: Identify core personality traits (e.g., playful, wise, mischievous).
-
-3. **Backstory**:
-   - **Origin**: Briefly describe Reyczar's background and how they came to be in Avalon.
-   - **Motivation**: Establish Reyczar's goals and desires.
-
-4. **Abilities**:
-   - **Magical Powers**: List unique abilities (e.g., nature manipulation, illusion creation).
-   - **Skills**: Highlight any special skills (e.g., potion-making, flying).
-
-5. **Relationships**:
-   - **Allies**: Identify key allies and friends in the Avalon realm.
-   - **Rivals**: Note any antagonistic relationships or rivals.
-
-6. **Setting**:
-   - **Environment**: Describe the primary locations Reyczar inhabits (e.g., enchanted forest, crystal caves).
-   - **Cultural Aspects**: Mention any relevant cultural elements of the Avalon Fairy community.
-
-7. **Plot Involvement**:
-   - **Key Events**: Outline major events or quests Reyczar will be involved in.
-   - **Character Arc**: Define how Reyczar will evolve throughout the story.
-
-8. **Visual References**:
-   - **Mood Board**: Compile images or sketches that inspire Reyczar's design and environment.
-
-9. **Final Notes**:
-   - **Additional Ideas**: Include any other concepts or elements to explore further.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T03:47:29.0545689Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

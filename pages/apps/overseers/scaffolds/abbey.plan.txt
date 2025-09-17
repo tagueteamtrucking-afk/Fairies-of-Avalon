@@ -2,41 +2,37 @@
 
 1. **Foundation**
    - Level ground preparation
-   - Concrete footings for stability
+   - Concrete footings
 
 2. **Structure**
-   - Wooden frame (2x4s) for walls
-   - Roof trusses (pre-fabricated or built on-site)
+   - Main frame: Wooden beams (2x4)
+   - Vertical supports: Spaced every 4 feet
+   - Cross bracing for stability
 
 3. **Walls**
    - Exterior: Plywood sheathing
-   - Interior: Drywall or paneling
+   - Interior: Insulation and drywall
 
 4. **Roof**
-   - Asphalt shingles or metal roofing
-   - Insulation between rafters
+   - Trusses: Pre-fabricated or built on-site
+   - Roofing material: Shingles or thatch
 
-5. **Windows and Doors**
-   - Pre-hung windows (energy-efficient)
-   - Solid core door for main entrance
+5. **Access**
+   - Stairs: Wooden steps
+   - Railing: Safety railings around elevated areas
 
 6. **Utilities**
-   - Basic electrical wiring (outlets, switches)
-   - Plumbing rough-in for kitchen and bathroom
+   - Electrical: Basic wiring plan
+   - Plumbing: Simple water lines for sinks
 
-7. **Finishes**
-   - Interior paint or wallpaper
-   - Flooring (laminate or vinyl)
+7. **Finishing**
+   - Exterior paint or stain
+   - Interior fixtures: Lighting, cabinetry
 
-8. **Exterior**
-   - Siding (wood, vinyl, or composite)
-   - Landscaping (minimal, native plants)
+8. **Landscaping**
+   - Surrounding area: Grass, flower beds
+   - Pathways: Stone or gravel paths leading to the entrance
 
-9. **Safety Features**
-   - Smoke detectors
-   - Fire extinguisher
-
-10. **Inspection**
-    - Ensure compliance with local building codes
-
-**Note:** Adjust dimensions and materials based on specific site conditions and design preferences.
+**Notes:**
+- Ensure compliance with local building codes.
+- Consider environmental impact and sustainability.

@@ -1,6 +1,48 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T13:55:08.5790047Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Sorcha'**
+
+1. **Character Overview**
+   - Name: Sorcha
+   - Role: Avalon Fairy
+   - Traits: Kind, wise, playful
+   - Appearance: Ethereal, glowing aura, delicate wings, flowing hair
+
+2. **Backstory**
+   - Origin: Born in the enchanted forests of Avalon
+   - Purpose: Guardian of nature and protector of magical creatures
+   - Key Events: Discovery of her powers, encounters with humans, and pivotal moments in her journey
+
+3. **Abilities**
+   - Nature Manipulation: Control over plants and animals
+   - Healing Touch: Ability to heal wounds and ailments
+   - Illusion Creation: Crafting illusions to protect or mislead
+
+4. **Goals**
+   - Protect Avalon from dark forces
+   - Foster harmony between humans and magical beings
+   - Discover her true potential and heritage
+
+5. **Conflict**
+   - Internal: Struggles with self-doubt and the weight of her responsibilities
+   - External: Threats from dark creatures and human encroachment on Avalon
+
+6. **Allies**
+   - Other fairies: Friends and mentors
+   - Magical creatures: Allies in her quest
+   - Humans: A few who understand and respect the magic of Avalon
+
+7. **Development Arc**
+   - Growth: From a naive fairy to a wise protector
+   - Challenges: Overcoming fears and learning to trust others
+   - Resolution: Finding balance between her duties and personal desires
+
+8. **Setting**
+   - Avalon: Lush forests, sparkling rivers, hidden groves
+   - Key Locations: Fairy glade, ancient tree, human village
+
+9. **Themes**
+   - Nature vs. Technology: The balance of magic and modernity
+   - Friendship: The importance of connections and support
+   - Self-Discovery: The journey to understanding one's true self
+
+10. **Conclusion**
+    - Sorcha's journey culminates in a decisive battle to protect Avalon, leading to her ultimate acceptance of her role as a guardian.

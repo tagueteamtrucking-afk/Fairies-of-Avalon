@@ -1,55 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Reyczar'**
-
-1. **Character Overview**
-   - Name: Reyczar
-   - Species: Fairy
-   - Realm: Avalon
-   - Role: Guardian of Nature
-
-2. **Physical Attributes**
-   - Height: 5 inches
-   - Wing Type: Gossamer, iridescent
-   - Hair: Silver with hints of blue
-   - Eyes: Emerald green
-   - Attire: Leaf-patterned dress, adorned with dew drops
-
-3. **Personality Traits**
-   - Curious
-   - Playful
-   - Protective of the environment
-   - Wise beyond her years
-
-4. **Abilities**
-   - Nature Manipulation: Control over plants and animals
-   - Flight: Agile and swift in the air
-   - Healing: Can mend wounds of flora and fauna
-
-5. **Backstory**
-   - Origin: Born from the first bloom of spring in Avalon
-   - Mission: To maintain balance in nature and protect her realm from dark forces
-
-6. **Allies**
-   - Other fairies of Avalon
-   - Forest creatures (e.g., deer, birds)
-   - Elemental spirits
-
-7. **Antagonists**
-   - Dark sorcerers seeking to corrupt Avalon
-   - Pollution and environmental threats
-
-8. **Goals**
-   - Preserve the beauty of Avalon
-   - Educate others about the importance of nature
-   - Defend her realm from external threats
-
-9. **Key Locations**
-   - Enchanted Forest: Home and sanctuary
-   - Crystal Lake: Source of her healing powers
-   - Ancient Oak: Meeting place for fairy council
-
-10. **Plot Hooks**
-    - Discovery of a dark force threatening Avalon
-    - Quest to find a lost artifact that can restore balance
-    - Journey to unite different fairy clans against a common enemy
-
-This scaffold provides a foundational outline for the character Reyczar, allowing for further development and storytelling.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T14:39:16.9977461Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

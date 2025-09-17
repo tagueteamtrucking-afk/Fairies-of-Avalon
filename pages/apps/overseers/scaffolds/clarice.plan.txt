@@ -1,56 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Clarice'**
-
-1. **Character Overview**
-   - Name: Clarice
-   - Species: Fairy
-   - Realm: Avalon
-   - Role: Guardian of Nature
-
-2. **Physical Appearance**
-   - Height: 5 inches
-   - Wings: Iridescent, butterfly-like
-   - Hair: Long, flowing, pastel colors
-   - Attire: Leaf and flower-inspired dress
-
-3. **Personality Traits**
-   - Kind-hearted
-   - Playful
-   - Wise beyond her years
-   - Curious about the human world
-
-4. **Abilities**
-   - Nature manipulation (growth, healing)
-   - Flight
-   - Invisibility
-   - Communication with animals
-
-5. **Backstory**
-   - Origin: Born from the first bloom of spring in Avalon
-   - Purpose: To protect the balance of nature and guide lost creatures
-
-6. **Goals and Motivations**
-   - Preserve the beauty of Avalon
-   - Help lost souls find their way
-   - Foster harmony between fairies and nature
-
-7. **Allies and Relationships**
-   - Friends: Other fairies, woodland creatures
-   - Mentor: Elder fairy who taught her about nature's secrets
-   - Rival: A mischievous sprite who disrupts her work
-
-8. **Challenges and Conflicts**
-   - Threats to Avalon’s environment
-   - Misunderstandings with humans
-   - Balancing her duties with personal desires
-
-9. **Story Arc**
-   - Introduction: Clarice discovers a disturbance in Avalon
-   - Rising Action: Encounters challenges and meets new allies
-   - Climax: Confrontation with the source of the disturbance
-   - Resolution: Restores balance and learns valuable lessons
-
-10. **Visual and Thematic Elements**
-    - Color Palette: Soft pastels with vibrant greens
-    - Themes: Nature, friendship, balance, and growth
-
-This scaffold serves as a foundational outline for developing the character of Avalon Fairy 'Clarice'.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T14:39:16.4008898Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

@@ -5,6 +5,7 @@
     "asset/winged-models/WingedReyCzar.vrm",
     "asset/winged-models/WingedWhiteStar.vrm"
   ],
+  "generated": "2025-09-17T22:12:49.1118088Z",
   "wingless": [
     "asset/models/abbey.vrm",
     "asset/models/alexandria.vrm",
@@ -22,6 +23,5 @@
     "asset/models/tracy.vrm",
     "asset/models/whitestar.vrm"
   ],
-  "generated": "2025-09-17T21:59:51.5685233Z",
   "byAvatar": {}
 }

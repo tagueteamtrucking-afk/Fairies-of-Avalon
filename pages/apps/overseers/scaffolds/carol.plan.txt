@@ -1,6 +1,44 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T20:53:18.4996063Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Avalon Fairy 'Carol' Scaffold Plan**
+
+1. **Objective**: Create a minimal scaffold for the Avalon Fairy 'Carol' character, focusing on key traits and story elements.
+
+2. **Character Overview**:
+   - Name: Carol
+   - Type: Avalon Fairy
+   - Role: Guardian of the Winter Solstice
+
+3. **Physical Description**:
+   - Height: 5'2"
+   - Hair: Silver with hints of blue
+   - Eyes: Icy blue
+   - Wings: Delicate, translucent with frost patterns
+
+4. **Personality Traits**:
+   - Kind-hearted
+   - Mysterious
+   - Playful yet wise
+
+5. **Backstory**:
+   - Origin: Born from the first snowfall of winter
+   - Purpose: To bring joy and magic during the winter season
+
+6. **Powers and Abilities**:
+   - Control over snow and ice
+   - Ability to create winter-themed illusions
+   - Healing touch with winter magic
+
+7. **Key Relationships**:
+   - Allies: Other seasonal fairies, woodland creatures
+   - Enemies: Dark spirits that seek to disrupt the winter season
+
+8. **Goals**:
+   - Protect the spirit of winter
+   - Spread joy and wonder during the holiday season
+
+9. **Conflict**:
+   - Struggles against a dark force threatening to steal the magic of winter
+
+10. **Resolution**:
+    - Unites with allies to restore balance and celebrate the beauty of winter.
+
+This scaffold serves as a foundational guide for developing the character of Avalon Fairy 'Carol'.

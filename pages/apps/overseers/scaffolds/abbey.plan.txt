@@ -1,6 +1,47 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T20:53:17.9200349Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Abbey'**
+
+1. **Foundation**
+   - Clear and level ground
+   - Lay a base of compacted gravel or sand
+
+2. **Structure**
+   - **Walls**
+     - Use lightweight materials (e.g., wood or bamboo)
+     - Design with open spaces for airflow
+   - **Roof**
+     - A-frame or dome shape for rain runoff
+     - Use natural materials (e.g., thatch or leaves)
+
+3. **Access**
+   - Create a small entrance with a door or curtain
+   - Include a pathway leading to the entrance
+
+4. **Interior Layout**
+   - Designate areas for:
+     - Sleeping (small nook or hammock)
+     - Relaxation (seating with cushions)
+     - Storage (shelves or baskets)
+
+5. **Exterior Features**
+   - Incorporate natural elements (e.g., plants, stones)
+   - Add decorative elements (e.g., fairy lights, wind chimes)
+
+6. **Utilities**
+   - Plan for minimal lighting (solar or fairy lights)
+   - Water source (small bowl or natural spring)
+
+7. **Sustainability**
+   - Use eco-friendly materials
+   - Implement rainwater collection if possible
+
+8. **Landscaping**
+   - Surround with flowers and herbs
+   - Create a small garden area for herbs or vegetables
+
+9. **Safety**
+   - Ensure stability of structure
+   - Check for potential hazards (sharp objects, unstable ground) 
+
+10. **Maintenance**
+    - Schedule regular checks for wear and tear
+    - Plan for seasonal adjustments (e.g., insulation for winter)

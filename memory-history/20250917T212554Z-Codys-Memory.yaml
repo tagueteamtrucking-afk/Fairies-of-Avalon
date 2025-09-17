@@ -1,0 +1,19 @@
+meta:
+  version: "1.8.4"
+  last_updated: "2025-09-16"
+  notes: >
+    v1.8.4 — Choices wired across all Alexandria apps:
+      - Expanded choices.json (planar_topologies, event/holiday/conflict tags, religions).
+      - alexandria-choices-prepare.ps1 derives 4 taxonomies: atlas, npc, bible, timeline.
+      - Worldseed/Timeline/Lore Bible/NPC Codex/Atlas scripts consume derived taxonomies.
+      - Atlas & new microapps (timeline/bible/codex) load lists directly from choices for choose/roll/custom UX.
+
+runtime:
+  workflows:
+    alexandria_choices: ".github/workflows/alexandria-choices.yml"
+
+lessons_learned:
+  - "Single source of truth (choices.json) eliminates drift; derive domain taxonomies for each app."
+  - "PowerShell JSON writes capped at Depth 100 to avoid runner errors."
+  - "Avoid inline type casts and parentheses-style calls in PS params; keep Linux-safe quoting."
+  - "Provide folder scaffolds & graceful fallbacks to prevent 'No seed files found' blocking downstream jobs."

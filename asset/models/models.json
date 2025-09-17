@@ -1,11 +1,11 @@
 {
+  "generated": "2025-09-17T22:14:59.0734822Z",
   "prewinged": [
     "asset/winged-models/WingedAlexandria.vrm",
     "asset/winged-models/WingedBillie.vrm",
     "asset/winged-models/WingedReyCzar.vrm",
     "asset/winged-models/WingedWhiteStar.vrm"
   ],
-  "generated": "2025-09-17T22:12:49.1118088Z",
   "wingless": [
     "asset/models/abbey.vrm",
     "asset/models/alexandria.vrm",

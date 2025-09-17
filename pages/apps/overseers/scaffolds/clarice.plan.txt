@@ -1,6 +1,51 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T23:40:58.4200838Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Clarice'**
+
+1. **Character Overview**
+   - Name: Clarice
+   - Species: Fairy
+   - Realm: Avalon
+   - Role: Guardian of Nature
+
+2. **Physical Appearance**
+   - Height: 5 inches
+   - Wings: Iridescent, butterfly-like
+   - Hair: Long, flowing, pastel colors
+   - Attire: Leaf and flower-inspired dress
+
+3. **Personality Traits**
+   - Kind-hearted
+   - Playful
+   - Wise beyond her years
+   - Curious about the human world
+
+4. **Abilities**
+   - Nature Manipulation: Can accelerate plant growth and communicate with animals.
+   - Healing Touch: Ability to heal minor wounds and ailments.
+   - Flight: Capable of swift and agile movement through the air.
+
+5. **Backstory**
+   - Origin: Born from the first bloom of spring in Avalon.
+   - Purpose: Tasked with maintaining the balance of nature and protecting the realm from dark forces.
+
+6. **Goals and Motivations**
+   - Protect Avalon’s natural beauty.
+   - Foster harmony between magical creatures and humans.
+   - Discover the secrets of ancient magic.
+
+7. **Challenges**
+   - Encounters with dark creatures threatening Avalon.
+   - Struggles with self-doubt about her abilities.
+   - Navigating the complexities of human interactions.
+
+8. **Allies**
+   - Other fairies of Avalon.
+   - Forest animals.
+   - A wise old tree spirit.
+
+9. **Conflict**
+   - Main antagonist: A dark sorceress seeking to corrupt Avalon.
+   - Internal conflict: Balancing her duties with her desire for adventure.
+
+10. **Resolution**
+    - Overcoming challenges through teamwork and courage.
+    - Learning to embrace her unique gifts and strengths.

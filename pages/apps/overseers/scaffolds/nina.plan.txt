@@ -1,6 +1,48 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T08:47:26.5728485Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Nina'**
+
+1. **Character Overview**
+   - Name: Nina
+   - Type: Fairy
+   - Realm: Avalon
+
+2. **Physical Description**
+   - Height: 5 inches
+   - Wing Type: Gossamer, iridescent
+   - Hair: Long, flowing, pastel colors
+   - Attire: Ethereal dress made of flower petals and leaves
+
+3. **Personality Traits**
+   - Kind-hearted
+   - Playful
+   - Curious
+   - Protective of nature
+
+4. **Abilities**
+   - Nature Manipulation: Can encourage plant growth and communicate with animals
+   - Flight: Capable of swift, agile flight
+   - Healing: Possesses minor healing abilities for flora and fauna
+
+5. **Backstory**
+   - Origin: Born in the enchanted woods of Avalon
+   - Role: Guardian of the forest and its creatures
+   - Quest: To restore balance to a threatened part of her realm
+
+6. **Allies**
+   - Other fairies of Avalon
+   - Forest animals (e.g., rabbits, birds)
+
+7. **Conflict**
+   - Antagonist: A dark sorcerer threatening Avalon’s magic
+   - Challenge: Must gather allies and harness her powers to confront the sorcerer
+
+8. **Goals**
+   - Protect Avalon’s magic
+   - Restore harmony in her realm
+   - Discover her true potential as a fairy
+
+9. **Visual Style**
+   - Color Palette: Soft pastels with hints of sparkle
+   - Art Style: Whimsical and enchanting
+
+10. **Conclusion**
+    - Nina’s journey emphasizes themes of courage, friendship, and environmental stewardship.

@@ -1,6 +1,31 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T18:49:05.3528633Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Charlotte'**
+
+1. **Introduction**
+   - Brief overview of Avalon Fairy 'Charlotte'
+   - Purpose of the scaffold plan
+
+2. **Character Description**
+   - Physical appearance
+   - Personality traits
+   - Background story
+
+3. **Setting**
+   - Description of Avalon
+   - Key locations relevant to Charlotte
+
+4. **Plot Outline**
+   - Main conflict
+   - Key events involving Charlotte
+   - Resolution
+
+5. **Supporting Characters**
+   - List of key supporting characters
+   - Brief descriptions and their roles in Charlotte's story
+
+6. **Themes**
+   - Major themes explored in the story
+   - How they relate to Charlotte's journey
+
+7. **Conclusion**
+   - Summary of Charlotte's significance in the Avalon Fairy narrative
+   - Final thoughts on her character development

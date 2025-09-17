@@ -1,37 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Abbey'**
-
-1. **Foundation**
-   - Clear and level the site
-   - Lay a base of compacted gravel or concrete
-
-2. **Structure**
-   - Erect vertical supports (wooden or metal) for walls
-   - Install horizontal beams for ceiling support
-
-3. **Walls**
-   - Frame walls with lightweight materials (plywood or drywall)
-   - Include openings for windows and doors
-
-4. **Roof**
-   - Construct a simple gable or flat roof frame
-   - Cover with waterproof material (shingles or metal)
-
-5. **Access**
-   - Build a staircase or ladder for entry
-   - Ensure safety railings are installed
-
-6. **Utilities**
-   - Plan for electrical wiring and plumbing (if applicable)
-   - Install insulation for temperature control
-
-7. **Finishing Touches**
-   - Add exterior cladding (wood, stone, or paint)
-   - Landscape surrounding area for aesthetic appeal
-
-8. **Safety Measures**
-   - Ensure all materials are secured
-   - Conduct regular inspections during construction
-
-9. **Final Inspection**
-   - Verify structural integrity and compliance with local codes
-   - Obtain necessary permits and approvals before use
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T19:24:00.7553804Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

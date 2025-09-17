@@ -1,40 +1,35 @@
-**Avalon Fairy 'Abbey' Scaffold Plan**
+**Minimal Scaffold Plan for Avalon Fairy 'Abbey'**
 
 1. **Foundation**
-   - Size: 10m x 10m
-   - Material: Reinforced concrete
-   - Depth: 1m
+   - Level ground preparation
+   - Concrete footings for stability
 
-2. **Vertical Supports**
-   - Type: Steel columns
-   - Spacing: Every 2m
-   - Height: 4m
+2. **Structure**
+   - Wooden frame (2x4s) for walls
+   - Roof trusses for overhead support
 
-3. **Horizontal Beams**
-   - Type: Steel I-beams
-   - Placement: Top of vertical supports
-   - Size: 10m length
+3. **Walls**
+   - Exterior: Plywood sheathing
+   - Interior: Gypsum board for insulation
 
-4. **Decking**
-   - Material: Plywood sheets
-   - Thickness: 18mm
-   - Coverage: Entire scaffold area
+4. **Roof**
+   - Asphalt shingles or thatch for fairy aesthetic
+   - Gutter system for rainwater management
 
-5. **Safety Features**
-   - Guardrails: Installed at 1m height around the perimeter
-   - Toe boards: 150mm high at the base of guardrails
-   - Access ladder: 3m height, secured to the scaffold
+5. **Access**
+   - Sturdy ladder or staircase for entry
+   - Safety railings around elevated areas
 
-6. **Stabilization**
-   - Diagonal bracing: Installed between vertical supports
-   - Base plates: 300mm x 300mm under each vertical support
+6. **Utilities (if applicable)**
+   - Basic electrical wiring for lighting
+   - Plumbing for water features (optional)
 
-7. **Inspection**
-   - Frequency: Daily before use
-   - Checklist: Structural integrity, safety features, and stability
+7. **Finishing Touches**
+   - Paint or natural finishes for aesthetics
+   - Decorative elements (e.g., fairy lights, floral designs)
 
-8. **Dismantling Plan**
-   - Sequence: Remove guardrails, then decking, followed by vertical supports
-   - Safety: Ensure area is clear of personnel before dismantling
+8. **Safety Measures**
+   - Regular inspections of structural integrity
+   - Clear pathways and emergency exits
 
-**End of Scaffold Plan**
+**Note**: Adjust dimensions and materials based on specific design requirements and local building codes.

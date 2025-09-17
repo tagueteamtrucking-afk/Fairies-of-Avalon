@@ -5,8 +5,8 @@
    - Base support structure
 
 2. **Main Structure**
-   - Vertical supports (4 corners)
-   - Horizontal beams (top and mid-level)
+   - Vertical supports (4 main posts)
+   - Horizontal beams (top and bottom)
 
 3. **Walls**
    - Lightweight panels (wood or fabric)
@@ -14,30 +14,22 @@
 
 4. **Roof**
    - Sloped design for rain runoff
-   - Lightweight covering (thatched or fabric)
+   - Lightweight roofing material (thatch or fabric)
 
-5. **Interior Layout**
-   - Designated areas (living, sleeping, storage)
-   - Minimal furnishings (bed, table, seating)
-
-6. **Exterior Features**
-   - Garden space (flower beds, pathways)
-   - Decorative elements (fairy lights, sculptures)
-
-7. **Access**
+5. **Access**
    - Ladder or stairs for entry
-   - Pathway leading to the entrance
+   - Safety railings if necessary
 
-8. **Utilities (if applicable)**
-   - Basic lighting (solar or battery)
-   - Water source (if needed)
+6. **Finishing Touches**
+   - Decorative elements (fairy lights, flowers)
+   - Paint or stain for aesthetics
 
-9. **Safety Measures**
-   - Stability checks on all structures
-   - Secure all elements against wind and weather
+7. **Safety Checks**
+   - Stability assessment
+   - Weight distribution evaluation
 
-10. **Final Touches**
-    - Paint or finish as desired
-    - Add personal fairy touches (artifacts, charms) 
+8. **Maintenance Plan**
+   - Regular inspections
+   - Repairs as needed
 
-**Note:** Ensure all materials are eco-friendly and suitable for the environment.
+**Note:** Ensure all materials are eco-friendly and suitable for outdoor use.

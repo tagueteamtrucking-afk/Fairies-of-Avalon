@@ -1,6 +1,44 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T11:54:51.0608382Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Tracy'**
+
+1. **Character Overview**
+   - Name: Tracy
+   - Role: Avalon Fairy
+   - Traits: Kind, playful, wise
+
+2. **Backstory**
+   - Origin: Born in the enchanted Avalon forest
+   - Purpose: Guardian of nature and guide for lost souls
+
+3. **Appearance**
+   - Features: Ethereal glow, delicate wings, flowing hair
+   - Attire: Leafy dress adorned with flowers
+
+4. **Abilities**
+   - Nature Manipulation: Control over plants and animals
+   - Healing Touch: Ability to heal wounds and ailments
+   - Flight: Capable of flying gracefully
+
+5. **Goals**
+   - Protect Avalon: Maintain the balance of nature
+   - Assist Others: Help those in need, especially lost travelers
+
+6. **Challenges**
+   - Dark Forces: Confronting threats to Avalon’s peace
+   - Personal Growth: Learning to trust others and accept help
+
+7. **Relationships**
+   - Allies: Other fairies, woodland creatures
+   - Adversaries: Dark sorcerers, corrupted beings
+
+8. **Key Themes**
+   - Friendship: The importance of connections
+   - Courage: Facing fears to protect what is loved
+
+9. **Plot Points**
+   - Discovery of a dark force threatening Avalon
+   - Journey to unite allies and confront the threat
+   - Personal revelation and growth through challenges faced
+
+10. **Conclusion**
+    - Restoration of peace in Avalon
+    - Tracy’s evolution as a guardian and friend

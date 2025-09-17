@@ -1,6 +1,49 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T11:54:42.7707296Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Charlotte'**
+
+1. **Objective:**
+   - Create a scaffold for the character Charlotte, focusing on her traits, background, and role in the Avalon Fairy narrative.
+
+2. **Character Overview:**
+   - Name: Charlotte
+   - Species: Fairy
+   - Role: Guardian of Nature
+
+3. **Physical Description:**
+   - Height: 5 inches
+   - Wings: Iridescent, resembling butterfly wings
+   - Hair: Long, flowing, pastel colors
+   - Attire: Leafy dress adorned with flowers
+
+4. **Personality Traits:**
+   - Kind-hearted
+   - Curious
+   - Playful
+   - Protective of her realm
+
+5. **Background:**
+   - Origin: Born in the Enchanted Forest of Avalon
+   - Family: Comes from a lineage of nature guardians
+   - Special Abilities: Communicates with animals, controls plant growth
+
+6. **Goals and Motivations:**
+   - Protect the natural balance of Avalon
+   - Help lost creatures find their way home
+   - Discover the secrets of the ancient forest
+
+7. **Challenges:**
+   - Encounters with dark forces threatening Avalon
+   - Balancing her playful nature with her responsibilities
+   - Learning to harness her powers effectively
+
+8. **Relationships:**
+   - Allies: Other fairies, woodland creatures
+   - Mentor: An elder fairy who guides her
+   - Antagonist: A dark sorceress seeking to corrupt Avalon
+
+9. **Key Story Arcs:**
+   - Journey to restore a dying part of the forest
+   - Overcoming self-doubt and embracing her powers
+   - Forming alliances with other magical beings
+
+10. **Conclusion:**
+    - Charlotte's growth as a character and her impact on Avalon’s future.

@@ -1,6 +1,43 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T11:54:50.7674140Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Themis'**
+
+1. **Objective**: Create a scaffold for the Avalon Fairy 'Themis' character, focusing on key attributes and storyline integration.
+
+2. **Character Overview**:
+   - Name: Themis
+   - Role: Guardian of Justice and Balance
+   - Appearance: Ethereal, with shimmering wings and a gown that reflects the colors of the dawn.
+
+3. **Key Attributes**:
+   - Wisdom: Deep knowledge of laws and fairness.
+   - Empathy: Ability to understand and feel the emotions of others.
+   - Strength: Fierce protector of the innocent and the balance of nature.
+
+4. **Backstory**:
+   - Origin: Born from the first light of dawn, Themis embodies the principles of justice.
+   - Journey: Tasked with maintaining harmony in Avalon, she faces challenges from dark forces seeking chaos.
+
+5. **Powers and Abilities**:
+   - Light Manipulation: Can create barriers of light to protect or restrain.
+   - Healing Touch: Ability to heal wounds and soothe emotional pain.
+   - Judgment: Can reveal truths and expose lies, ensuring fairness.
+
+6. **Allies**:
+   - Avalon Council: A group of fairies who assist in maintaining order.
+   - Nature Spirits: Creatures of the forest that provide guidance and support.
+
+7. **Antagonists**:
+   - Dark Sorceress: Seeks to disrupt the balance and unleash chaos in Avalon.
+   - Corrupted Fairies: Once allies, now turned against Themis due to envy and greed.
+
+8. **Plot Points**:
+   - Discovery of a dark plot threatening Avalon.
+   - Themis’s internal struggle with doubt and fear.
+   - The final confrontation with the dark sorceress, leading to a resolution that restores balance.
+
+9. **Themes**:
+   - Justice vs. Injustice
+   - The importance of balance in nature and society.
+   - The power of empathy and understanding.
+
+10. **Conclusion**:
+   - Themis emerges victorious, reinforcing the values of justice and harmony in Avalon, setting the stage for future adventures.

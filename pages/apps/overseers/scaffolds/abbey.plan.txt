@@ -5,44 +5,31 @@
    - Concrete footings
 
 2. **Structure**
-   - Wooden frame (2x4s for walls)
-   - Roof trusses (gable design)
-   - Exterior sheathing (plywood)
+   - Vertical supports (4 corner posts)
+   - Horizontal beams (top and bottom)
 
 3. **Walls**
-   - Install wall frames
-   - Insulation (fiberglass or foam)
-   - Exterior siding (wood or composite)
+   - Lightweight panels (wood or composite)
+   - Openings for windows and doors
 
 4. **Roof**
-   - Install roofing material (shingles or metal)
-   - Ventilation (ridge vents)
+   - Sloped framework
+   - Waterproof covering (shingles or thatch)
 
-5. **Windows and Doors**
-   - Frame openings for windows and doors
-   - Install energy-efficient windows
-   - Exterior door installation
+5. **Access**
+   - Stairs or ladder for entry
+   - Safety railings
 
-6. **Interior**
-   - Drywall installation
-   - Electrical wiring and outlets
-   - Plumbing rough-in (if applicable)
+6. **Utilities**
+   - Basic electrical wiring (if needed)
+   - Plumbing for water features (optional)
 
 7. **Finishing**
-   - Interior painting
-   - Flooring installation (wood, tile, or carpet)
-   - Trim and molding
+   - Exterior paint or finish
+   - Landscaping around the structure
 
-8. **Exterior**
-   - Landscaping (plants, pathways)
-   - Deck or patio installation (if applicable)
+8. **Safety**
+   - Regular inspections
+   - Compliance with local building codes
 
-9. **Utilities**
-   - Connect to water, electricity, and sewage
-   - Install heating/cooling systems
-
-10. **Final Inspection**
-    - Ensure compliance with local building codes
-    - Final walkthrough for quality assurance
-
-**Note:** Adjust materials and dimensions based on specific design requirements and local regulations.
+**Note:** Adjust dimensions and materials based on specific design requirements and site conditions.

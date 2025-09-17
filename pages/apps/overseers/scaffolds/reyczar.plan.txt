@@ -1,6 +1,61 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T11:54:50.2050985Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Reyczar'**
+
+1. **Objective:**
+   - Define the purpose and goals of the character Reyczar.
+
+2. **Character Overview:**
+   - Name: Reyczar
+   - Species: Fairy
+   - Realm: Avalon
+   - Role: Guardian of Nature
+
+3. **Physical Description:**
+   - Height: 5 inches
+   - Wings: Iridescent, resembling butterfly wings
+   - Hair: Long, flowing, silver with hints of green
+   - Attire: Leaf-patterned dress, adorned with flowers
+
+4. **Personality Traits:**
+   - Kind-hearted
+   - Mischievous
+   - Wise beyond years
+
+5. **Abilities:**
+   - Nature manipulation (growth of plants, healing)
+   - Flight
+   - Illusion creation
+
+6. **Backstory:**
+   - Origin: Born from the first bloom of spring in Avalon
+   - Key events: 
+     - Protecting the forest from dark forces
+     - Forming alliances with other magical beings
+
+7. **Goals and Motivations:**
+   - Protect Avalon’s natural beauty
+   - Maintain harmony among magical creatures
+   - Discover her true potential
+
+8. **Challenges:**
+   - Confronting dark magic
+   - Balancing her playful nature with responsibilities
+
+9. **Supporting Characters:**
+   - Mentor: Elder Fairy
+   - Friend: A mischievous sprite
+   - Antagonist: A dark sorcerer threatening Avalon
+
+10. **Plot Points:**
+    - Initial conflict with dark forces
+    - Journey to discover ancient magic
+    - Climax: Battle to save Avalon
+
+11. **Conclusion:**
+    - Resolution of conflicts
+    - Reyczar’s growth and acceptance of her role as a guardian
+
+12. **Visual References:**
+    - Inspirational images of fairies and nature
+
+13. **Notes:**
+    - Consider incorporating themes of environmentalism and friendship.

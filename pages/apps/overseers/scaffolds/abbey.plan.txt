@@ -1,35 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Abbey'**
-
-1. **Foundation**
-   - Level ground preparation
-   - Base materials (wooden beams or concrete blocks)
-
-2. **Structural Framework**
-   - Vertical supports (4 corner posts)
-   - Horizontal beams (top and mid-level)
-
-3. **Walls**
-   - Lightweight panels (wood or fabric)
-   - Openings for windows and doors
-
-4. **Roof**
-   - A-frame or gabled structure
-   - Lightweight roofing material (thatch or shingles)
-
-5. **Access**
-   - Ladder or stairs for entry
-   - Safety railings (if applicable)
-
-6. **Finishing Touches**
-   - Decorative elements (fairy lights, flowers)
-   - Weatherproofing (sealants or coatings)
-
-7. **Safety Measures**
-   - Stability checks
-   - Weight distribution considerations
-
-8. **Inspection**
-   - Ensure structural integrity
-   - Compliance with safety standards
-
-This scaffold plan serves as a basic outline for constructing the Avalon Fairy 'Abbey'.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T22:54:37.9772051Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

@@ -1,39 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Alexandria'**
-
-1. **Objective**
-   - Define the purpose and goals of the Avalon Fairy 'Alexandria' project.
-
-2. **Target Audience**
-   - Identify the primary audience for the fairy character (e.g., children, fantasy enthusiasts).
-
-3. **Character Design**
-   - Outline key traits: 
-     - Appearance (wings, attire, colors)
-     - Personality (kind, adventurous, wise)
-     - Background story (origin, magical abilities)
-
-4. **Setting**
-   - Describe the environment where Alexandria resides (e.g., enchanted forest, magical kingdom).
-
-5. **Storyline**
-   - Develop a basic plot arc:
-     - Introduction (how Alexandria is introduced)
-     - Conflict (challenges she faces)
-     - Resolution (how she overcomes obstacles)
-
-6. **Key Themes**
-   - Identify central themes (e.g., friendship, courage, magic).
-
-7. **Visual Elements**
-   - Sketch ideas for illustrations or animations featuring Alexandria.
-
-8. **Marketing Strategy**
-   - Outline promotional methods (social media, merchandise, storytelling events).
-
-9. **Feedback Mechanism**
-   - Establish ways to gather audience feedback for future development.
-
-10. **Timeline**
-    - Create a timeline for project milestones and deadlines. 
-
-This scaffold serves as a foundational framework for developing the Avalon Fairy 'Alexandria' character and story.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T14:54:15.9381543Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

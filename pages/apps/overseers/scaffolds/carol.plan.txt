@@ -1,29 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Carol'**
-
-1. **Introduction**
-   - Brief overview of the character 'Carol'
-   - Importance of the character in the Avalon Fairy context
-
-2. **Character Background**
-   - Origin story
-   - Key traits and abilities
-   - Relationships with other characters
-
-3. **Appearance**
-   - Description of physical features
-   - Clothing and accessories
-   - Unique identifiers (wings, magical elements)
-
-4. **Personality**
-   - Core personality traits
-   - Strengths and weaknesses
-   - Motivations and goals
-
-5. **Role in the Story**
-   - Key events involving 'Carol'
-   - Impact on the plot
-   - Character development throughout the story
-
-6. **Conclusion**
-   - Summary of 'Carol's' significance
-   - Potential for future development or stories
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T14:54:23.8114234Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

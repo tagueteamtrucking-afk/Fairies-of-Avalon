@@ -1,6 +1,42 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T14:39:03.5240950Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Abbey'**
+
+1. **Foundation**
+   - Level ground preparation
+   - Concrete footings
+
+2. **Structure**
+   - Main frame: Timber beams (2x4)
+   - Vertical supports: Spaced 4 feet apart
+   - Roof trusses: Pre-fabricated or built on-site
+
+3. **Walls**
+   - Exterior: Plywood sheathing
+   - Insulation: Fiberglass batts
+   - Interior: Gypsum board (drywall)
+
+4. **Roof**
+   - Roofing material: Asphalt shingles or metal
+   - Overhang: 1-foot eaves
+
+5. **Windows and Doors**
+   - Standard size windows: Double-glazed
+   - Main entry door: Solid wood or fiberglass
+
+6. **Finishing**
+   - Exterior paint/stain
+   - Interior paint: Non-toxic, low-VOC
+
+7. **Utilities**
+   - Electrical: Basic wiring for lighting and outlets
+   - Plumbing: Simple fixtures (sink, toilet)
+
+8. **Landscaping**
+   - Minimal planting: Native plants around the perimeter
+   - Pathways: Gravel or stepping stones
+
+9. **Safety Features**
+   - Handrails on stairs
+   - Smoke detectors installed
+
+10. **Compliance**
+    - Ensure adherence to local building codes and regulations.

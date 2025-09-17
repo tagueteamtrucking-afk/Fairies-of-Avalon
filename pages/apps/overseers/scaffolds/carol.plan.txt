@@ -1,6 +1,34 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T14:54:23.8114234Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Carol'**
+
+1. **Introduction**
+   - Brief overview of Avalon Fairy 'Carol'
+   - Purpose of the scaffold plan
+
+2. **Character Description**
+   - Physical appearance
+   - Personality traits
+   - Background story
+
+3. **Setting**
+   - Description of Avalon
+   - Key locations relevant to 'Carol'
+
+4. **Plot Outline**
+   - Main conflict or goal
+   - Key events leading to resolution
+
+5. **Supporting Characters**
+   - Brief descriptions of allies and antagonists
+   - Their roles in 'Carol's journey
+
+6. **Themes**
+   - Major themes explored in the story
+   - How they relate to 'Carol'
+
+7. **Conclusion**
+   - Summary of 'Carol's journey
+   - Final thoughts on character development and impact
+
+8. **Additional Notes**
+   - Potential for sequels or further development
+   - Ideas for illustrations or visual elements

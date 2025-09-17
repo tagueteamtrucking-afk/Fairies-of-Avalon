@@ -1,6 +1,43 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T21:41:09.0566186Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Abbey'**
+
+1. **Foundation**
+   - Level ground preparation
+   - Concrete footings for stability
+
+2. **Main Structure**
+   - Frame: Wooden beams and columns
+   - Walls: Lightweight, weather-resistant panels
+
+3. **Roof**
+   - A-frame design for rain runoff
+   - Shingle or thatch roofing material
+
+4. **Windows & Doors**
+   - Arched windows for fairy aesthetic
+   - Wooden door with decorative carvings
+
+5. **Interior Layout**
+   - Open floor plan for communal space
+   - Designated areas for sleeping, crafting, and gathering
+
+6. **Exterior Features**
+   - Garden space for herbs and flowers
+   - Pathways made of natural stone
+
+7. **Utilities**
+   - Basic plumbing for water access
+   - Solar panels for sustainable energy
+
+8. **Finishing Touches**
+   - Fairy lights for ambiance
+   - Natural wood finishes for a whimsical look
+
+9. **Landscaping**
+   - Surrounding flora to blend with the environment
+   - Seating areas with natural materials
+
+10. **Safety Measures**
+    - Fire safety protocols
+    - Structural integrity checks
+
+This scaffold plan provides a foundational outline for constructing the Avalon Fairy 'Abbey' while maintaining a minimalistic approach.

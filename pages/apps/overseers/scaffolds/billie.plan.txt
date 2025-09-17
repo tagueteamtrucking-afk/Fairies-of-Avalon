@@ -1,46 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Billie'**
-
-1. **Character Overview**
-   - Name: Billie
-   - Type: Avalon Fairy
-   - Role: Guardian of the Avalon Grove
-
-2. **Physical Description**
-   - Height: 5 inches
-   - Wing Type: Iridescent, butterfly-like
-   - Color Palette: Pastel greens and blues
-   - Distinctive Features: Flower crown, shimmering skin
-
-3. **Personality Traits**
-   - Kind-hearted
-   - Playful
-   - Curious
-   - Protective of nature
-
-4. **Abilities**
-   - Nature Manipulation: Can encourage plant growth and heal flora
-   - Flight: Agile and swift in the air
-   - Illusion Creation: Can create visual illusions to protect the grove
-
-5. **Backstory**
-   - Origin: Born from the first bloom of spring in Avalon
-   - Mission: To maintain balance in the Avalon Grove and protect its secrets
-
-6. **Relationships**
-   - Allies: Other fairies of Avalon, woodland creatures
-   - Enemies: Dark spirits seeking to corrupt the grove
-
-7. **Goals**
-   - Short-term: Protect the grove from immediate threats
-   - Long-term: Ensure the survival and prosperity of Avalon’s magic
-
-8. **Conflict**
-   - Internal: Struggles with self-doubt about her abilities
-   - External: Faces challenges from dark forces aiming to invade Avalon
-
-9. **Development Arc**
-   - Growth: Learns to embrace her powers and trust her instincts
-   - Resolution: Unites the fairies and creatures of Avalon against a common foe
-
-10. **Conclusion**
-    - Legacy: Becomes a legendary figure in Avalon folklore, inspiring future generations of fairies.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T19:41:21.3321871Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

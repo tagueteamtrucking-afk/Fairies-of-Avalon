@@ -96,8 +96,8 @@
       "ts": "2025-09-13T21:15:02.4659835Z",
       "dry_run": true,
       "count": 15,
-      "started": "2025-09-17T23:40:52.8676490Z",
-      "ended": "2025-09-17T23:40:52.9214020Z",
+      "started": "2025-09-17T23:40:52.867649Z",
+      "ended": "2025-09-17T23:40:52.921402Z",
       "file": "20250913T211502Z-scaffold-fairies.request.yml",
       "status": "ok",
       "actor": "rey_czar"
@@ -118,8 +118,8 @@
     {
       "id": "A3",
       "action": "build_manifests",
-      "ts": "2025-09-15T06:36:27.3663610Z",
-      "ended": "2025-09-17T23:40:59.7571880Z",
+      "ts": "2025-09-15T06:36:27.366361Z",
+      "ended": "2025-09-17T23:40:59.757188Z",
       "started": "2025-09-17T23:40:59.5746518Z",
       "file": "20250915T063627Z-build-manifests.request.yml",
       "status": "ok",
@@ -155,5 +155,11 @@
       "status": "ok",
       "actor": "rey_czar"
     }
-  ]
+  ],
+  "telemetry": {
+    "wallpapers_total": 20,
+    "updated": "2025-09-17T23:46:57.8779993Z",
+    "wallpaper_power_index": 20,
+    "wallpapers_count": 4
+  }
 }

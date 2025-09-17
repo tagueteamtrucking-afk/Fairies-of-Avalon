@@ -1,13 +1,50 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.13.2"
+  version: "1.14.0"
   last_updated: "2025-09-17"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    v1.13.2 — Landing redirect fix:
-      - /pages/index.html now redirects to /index.html to avoid stale navigation.
-      - Root index shows wallpaper hero via manifest.json with fallbacks.
+    v1.14.0 — Alexandria Helpers Suite (no UI edits):
+      - Added workflows + scripts to generate Notable Figures, run Continuity Check,
+        produce Author Scenes, and export WorldBundle zips.
+      - WPI clarified: Work Progress Index, stored at pages/apps/overseers/progress.json
+        (computed by existing Asset Audit / Import-Map / Manifests jobs).
+      - Front-end frozen by request; focus on AI pipelines and artifacts only.
+
+engineering_rules:
+  - "Ask clarifying questions until ≥95% sure."
+  - "Plan before coding; reuse working scripts; no guessing."
+  - "Cross-OS safe PowerShell; avoid LINQ; ConvertTo-Json depth ≤ 100."
+  - "Switch parameters must be boolean (use -Flag:$true)."
+  - "Treat 'Nothing to commit' as success."
+  - "Preserve assets: asset/models/**, asset/wings/**, asset/textures/**, pages/apps/alexandria/worlds/**."
+
+hosting:
+  frontend_domain: "fairiesofavalon.com"
+  pages_root: "pages"
+  microapps_path: "pages/apps"
+  custom_domain_cname: true
 
 project:
+  assistants_label: "Fairies"
+  importmap_required: true
   preserve_paths: ["asset/models","asset/wings","asset/textures","pages/apps/alexandria/worlds"]
+
+runtime:
+  workflows:
+    alexandria_build_all: ".github/workflows/alexandria-build-all.yml"   # existing
+    alexandria_helpers:   ".github/workflows/alexandria-helpers.yml"     # new
+    manifests_wpi:        ".github/workflows/overseers-manifests-wpi.yml" # your existing "Overseers — Manifests & WPI"
+  artifacts:
+    - "pages/apps/alexandria/worlds/codex/figures-<world>.json"
+    - "pages/apps/alexandria/worlds/reports/continuity-<world>.json"
+    - "pages/apps/alexandria/worlds/exports/Scenes-<world>.md"
+    - "pages/apps/alexandria/worlds/exports/WorldBundle-<world>.zip"
+
+glossary:
+  WPI: "Work Progress Index — numeric badges derived from manifests/audit into pages/apps/overseers/progress.json"
+
+lessons_learned:
+  - "Keep front-end untouched unless explicitly requested."
+  - "Use workflows to generate data; UI can consume later."

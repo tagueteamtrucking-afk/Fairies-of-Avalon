@@ -1,45 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Odessa'**
-
-1. **Overview**
-   - Name: Odessa
-   - Type: Avalon Fairy
-   - Purpose: Enchantment and guidance
-
-2. **Physical Attributes**
-   - Height: 5 inches
-   - Wingspan: 10 inches
-   - Color Palette: Soft pastels (lavender, mint green, pale pink)
-
-3. **Core Features**
-   - **Wings**: Gossamer, iridescent with intricate patterns
-   - **Hair**: Long, flowing, shimmering silver
-   - **Attire**: Ethereal dress made of flower petals and leaves
-
-4. **Abilities**
-   - **Magic**: Nature manipulation, healing, and light projection
-   - **Communication**: Can speak with animals and plants
-
-5. **Personality Traits**
-   - Gentle, nurturing, wise, playful
-
-6. **Habitat**
-   - Enchanted forest with flowers, streams, and hidden glades
-
-7. **Role in Story**
-   - Guide for lost travelers, protector of nature, and mediator between humans and magical beings
-
-8. **Goals**
-   - To maintain harmony in the forest and assist those in need
-
-9. **Supporting Characters**
-   - Forest animals (friends and allies)
-   - Other fairies (community members)
-
-10. **Conflict**
-    - Threats to the forest (e.g., pollution, deforestation)
-
-11. **Resolution**
-    - Collaboration with humans to restore balance and protect the environment
-
-12. **Conclusion**
-    - Odessa's journey emphasizes the importance of nature and kindness.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T03:05:57.9280314Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

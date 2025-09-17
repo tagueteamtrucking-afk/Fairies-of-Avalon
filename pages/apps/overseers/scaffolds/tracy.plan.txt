@@ -1,46 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Tracy'**
-
-1. **Character Overview**
-   - Name: Tracy
-   - Role: Avalon Fairy
-   - Traits: Kind, playful, wise
-
-2. **Backstory**
-   - Origin: Born in the enchanted Avalon forest
-   - Purpose: Guardian of nature and guide for lost souls
-
-3. **Physical Appearance**
-   - Wings: Iridescent, resembling butterfly wings
-   - Attire: Flowing dress made of leaves and flowers
-   - Features: Bright green eyes, long flowing hair with floral accents
-
-4. **Abilities**
-   - Nature Manipulation: Control over plants and animals
-   - Healing: Ability to heal wounds and ailments
-   - Illusion: Create illusions to protect Avalon
-
-5. **Goals and Motivations**
-   - Protect Avalon: Ensure the safety of her home
-   - Help Others: Assist those in need, especially lost travelers
-   - Maintain Balance: Preserve harmony between nature and magic
-
-6. **Challenges**
-   - Dark Forces: Threats from malevolent beings seeking to disrupt Avalon
-   - Personal Doubts: Struggles with her own insecurities about her abilities
-
-7. **Relationships**
-   - Allies: Other fairies and forest creatures
-   - Mentor: An elder fairy who guides her
-   - Friends: A group of adventurous humans who visit Avalon
-
-8. **Key Plot Points**
-   - Discovery of a dark force threatening Avalon
-   - Journey to gather allies and strengthen her powers
-   - Confrontation with the antagonist and resolution of the conflict
-
-9. **Conclusion**
-   - Restoration of peace in Avalon
-   - Growth and acceptance of her role as a guardian
-
-10. **Future Development**
-    - Potential for new adventures and deeper exploration of her powers and relationships.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T03:06:07.8259519Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

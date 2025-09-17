@@ -1,6 +1,4 @@
-param(
-  [Parameter(Mandatory=$true)][string]$RepoRoot
-)
+param([Parameter(Mandatory=$true)][string]$RepoRoot)
 $ErrorActionPreference='Stop'
 $dir = Join-Path $RepoRoot 'asset/textures/wallpapers'
 if(!(Test-Path $dir)){ Write-Host "No wallpapers dir: $dir"; exit 0 }

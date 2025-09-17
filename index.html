@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Fairies of Avalon</title>
 <link rel="manifest" href="/pages/manifest.webmanifest">
-<link rel="stylesheet" href="/pages/app.css">
+<link rel="stylesheet" href="/pages/app.css?v=20250917a">
 <style>
 .hero{position:relative;min-height:68vh;display:grid;place-items:center;text-align:center;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 800px at 10% -10%,rgba(0,0,0,.35),transparent 60%),linear-gradient(180deg,rgba(5,8,12,.6),rgba(5,8,12,.9))}
@@ -14,6 +14,7 @@
 .btn{display:inline-flex;gap:.5rem;align-items:center;padding:.7rem 1rem;border-radius:999px;border:1px solid #314155;background:#18202b;color:#e6edf3;text-decoration:none}
 .btn:hover{background:#1c2734}
 .sub{color:#9fb0c3}
+.shell{max-width:960px;margin:24px auto;padding:0 16px}
 </style>
 </head>
 <body>
@@ -48,7 +49,7 @@
       if(!r.ok) return null;
       const list=await r.json();
       const imgs = Array.isArray(list)? list.filter(x=>typeof x==='string'): (list.files||[]);
-      if(imgs && imgs.length){ return imgs[Math.floor(Math.random()*imgs.length)]; }
+      if(imgs && imgs.length){ return '/'+imgs[Math.floor(Math.random()*imgs.length)].replace(/^\//,''); }
     }catch(e){}
     return null;
   }

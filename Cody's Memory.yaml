@@ -1,73 +1,13 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.13.1"
+  version: "1.13.2"
   last_updated: "2025-09-17"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    v1.13.1 — Preserve textures; wallpaper manifest workflow; hero uses wallpaper.
-    - Preserve paths now include asset/textures (wallpapers).
-    - New workflow & script build manifest.json under asset/textures/wallpapers/.
-    - Root index shows random wallpaper from manifest (fallback to known names).
-
-system:
-  os: "Windows 11"
-  device: "Gaming PC"
-  only_windows: true
-
-delivery_policy:
-  speed_first: true
-  two_person_authorization: false
-  whole_file_replacements_only: true
-  preferred_shell: "GitHub Actions workflows + PowerShell"
-  notes:
-    - "Provide full files ready to replace existing ones (no diffs/patches)."
-    - "Workflows-first. Scripts are helpers; no wrapper assumptions."
-    - "Deploy path must not require multi-review or environment approvals."
-
-hosting:
-  frontend_domain: "fairiesofavalon.com"
-  pwa_app_shell: true
-  pages_root: "pages"
-  microapps_path: "pages/apps"
-  custom_domain_cname: true
-  cdn_imports: ["three", "three/addons/", "@pixiv/three-vrm"]
+    v1.13.2 — Landing redirect fix:
+      - /pages/index.html now redirects to /index.html to avoid stale navigation.
+      - Root index shows wallpaper hero via manifest.json with fallbacks.
 
 project:
-  world: "Avalon"
-  assistants_label: "Fairies"
-  domain: "fairiesofavalon.com"
-  home_label: "home"
-  preserve_paths: ["asset/models", "asset/wings", "asset/textures", "pages/apps/alexandria/worlds"]
-  importmap_required: true
-  importmap_map: ["three", "three/addons/", "@pixiv/three-vrm"]
-
-engineering_rules:
-  - "Ask clarifying questions until ≥95% sure about requirements."
-  - "Plan each step before coding; anticipate prior obstacles and cross‑OS issues."
-  - "Use tools & scripts to verify; avoid guesses; no hallucinations."
-  - "Respect preserve_paths during cleanup."
-  - "Treat 'Nothing to commit' as success in CI."
-  - "Linux‑safe quoting; avoid LINQ; ConvertTo‑Json depth ≤100."
-
-runtime:
-  workflows:
-    alexandria_build_all: ".github/workflows/alexandria-build-all.yml"
-    wallpapers_manifest: ".github/workflows/overseers-wallpapers-manifest.yml"
-
-interfaces_registry:
-  studio_nav: { owner: alexandria, purpose: "One‑click Studio hub" }
-  library_viewer: { owner: alexandria, purpose: "Edit lists; download choices.json" }
-
-plans:
-  wallpapers_restore:
-    owner: nina
-    status: "done"
-    tasks:
-      - { id: WP1, name: "Manifest builder script", status: "done" }
-      - { id: WP2, name: "Workflow triggers on wallpaper changes", status: "done" }
-      - { id: WP3, name: "Index hero consumes manifest", status: "done" }
-
-lessons_learned:
-  - "Always preserve asset/textures to avoid UI regressions."
-  - "Generate manifests for static folders; pages cannot list directories."
+  preserve_paths: ["asset/models","asset/wings","asset/textures","pages/apps/alexandria/worlds"]

@@ -1,19 +1,115 @@
 meta:
-  version: "1.8.4"
-  last_updated: "2025-09-16"
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "1.13.0"
+  last_updated: "2025-09-17"
+  author: "Cody (GPT-5 Pro)"
   notes: >
-    v1.8.4 — Choices wired across all Alexandria apps:
-      - Expanded choices.json (planar_topologies, event/holiday/conflict tags, religions).
-      - alexandria-choices-prepare.ps1 derives 4 taxonomies: atlas, npc, bible, timeline.
-      - Worldseed/Timeline/Lore Bible/NPC Codex/Atlas scripts consume derived taxonomies.
-      - Atlas & new microapps (timeline/bible/codex) load lists directly from choices for choose/roll/custom UX.
+    v1.13.0 — Engineering rules codified; Studio hub and safe cleaner.
+    - Rules: ask clarifiers until ≥95% confident, plan before coding, use tools, avoid hallucinations.
+    - Added Studio hub, Library, and safe cleaner (dry-run) + allowlist manifest.
+
+system:
+  os: "Windows 11"
+  device: "Gaming PC"
+  only_windows: true
+
+delivery_policy:
+  speed_first: true
+  two_person_authorization: false
+  whole_file_replacements_only: true
+  preferred_shell: "GitHub Actions workflows + PowerShell"
+  notes:
+    - "Provide full files ready to replace existing ones (no diffs/patches)."
+    - "Workflows-first. Scripts are helpers; no wrapper assumptions."
+    - "Deploy path must not require multi-review or environment approvals."
+
+hosting:
+  frontend_domain: "fairiesofavalon.com"
+  pwa_app_shell: true
+  pages_root: "pages"
+  microapps_path: "pages/apps"
+  custom_domain_cname: true
+  cdn_imports: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+project:
+  world: "Avalon"
+  assistants_label: "Fairies"
+  domain: "fairiesofavalon.com"
+  home_label: "home"
+  preserve_paths: ["asset/models", "asset/wings", "pages/apps/alexandria/worlds"]
+  importmap_required: true
+  importmap_map: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+engineering_rules:
+  - "Ask clarifying questions until ≥95% sure about requirements."
+  - "Plan each step before writing code; anticipate prior obstacles and cross‑OS issues."
+  - "Use available tools to verify; avoid guessing or hallucinating outputs."
+  - "Respect preserve_paths during any cleanup or restructuring."
+  - "Treat 'Nothing to commit' as success in CI."
+  - "Prefer Linux‑safe quoting; avoid LINQ; limit ConvertTo‑Json depth to ≤100."
+
+assets:
+  layout:
+    models_root_legacy: "asset/models"
+    with_wings_alias: "asset/winged-models"
+    wings_models: "asset/wings"
+    wings_textures: "asset/wings/textures"
+    models_manifest: "asset/models/models.json"
+    wings_manifest: "asset/wings/manifest.json"
+    wallpapers: "asset/textures/wallpapers"
+
+wings_pack: "Fantasy Wings Collection Fbx.rar"
+
+avatars_present: ["Abbey","Alexandria","Billie","Carol","Charlotte","Clarice","Jem","Nina","Odessa","Reyczar","Sorcha","Themis","WhiteStar","Tracy","Stella"]
+
+access_control:
+  policy:
+    - "Overseers authorize assistants; no plaintext secrets in repo."
+  roles:
+    - name: overseer
+      privileges: [create_assistants, grant_permissions, revoke_permissions, approve_deployments, manage_secrets]
+    - name: assistant
+      privileges: [read_memory, write_memory_scoped, request_permissions, generate_reports]
+  vault_references:
+    tokens: "vault://palace/tokens"
+    passwords: "vault://palace/passwords"
+    permissions: "vault://palace/permissions"
 
 runtime:
   workflows:
-    alexandria_choices: ".github/workflows/alexandria-choices.yml"
+    deploy_pages: ".github/workflows/deploy-pages.yml"
+    llm_bridge: ".github/workflows/llm-bridge.yml"
+    overseers_ai_core: ".github/workflows/overseers-ai-core.yml"
+    overseers_asset_audit: ".github/workflows/overseers-asset-audit.yml"
+    overseers_memory_snapshot: ".github/workflows/overseers-memory-snapshot.yml"
+    overseers_importmap_check: ".github/workflows/overseers-importmap-check.yml"
+    alexandria_build_all: ".github/workflows/alexandria-build-all.yml"
+
+interfaces_registry:
+  studio_nav: { owner: alexandria, purpose: "One‑click Studio hub" }
+  library_viewer: { owner: alexandria, purpose: "Edit lists; download choices.json" }
+
+priority_plan:
+  - { id: overseers,  description: "Overseers AI core steady; CI green.", status: "operational-min" }
+  - { id: alexandria, description: "Studio, Library, Live DM, Campaigns, Author usable on phone.", status: "active" }
+  - { id: assistants, description: "Next: Clarice, Charlotte, Nina tooling tighten; then others.", status: "queued" }
+
+plans:
+  fast_track_ai:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "active"
+    steps:
+      - { id: FT1, name: "Notable Figures flow inside Live DM", out: "figure.json per town", status: "queued" }
+      - { id: FT2, name: "Continuity checker across JSON/MD", out: "report.json", status: "queued" }
+      - { id: FT3, name: "SRD‑safe stat scaffolds", out: "statblocks.json", status: "queued" }
+      - { id: FT4, name: "Author > Episodes handoff", out: "scenes.md", status: "queued" }
+      - { id: FT5, name: "Optional realtime sync (no secrets)", out: "sync plan", status: "queued" }
+
+audit_log:
+  - { ts: "2025-09-17T00:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok", notes: "v1.13.0 — rules + safe cleaner + Studio hub." }
 
 lessons_learned:
-  - "Single source of truth (choices.json) eliminates drift; derive domain taxonomies for each app."
-  - "PowerShell JSON writes capped at Depth 100 to avoid runner errors."
-  - "Avoid inline type casts and parentheses-style calls in PS params; keep Linux-safe quoting."
-  - "Provide folder scaffolds & graceful fallbacks to prevent 'No seed files found' blocking downstream jobs."
+  - "Cleanup must always preserve heavy assets and worlds outputs."
+  - "Switch parameters require boolean, not strings (coerce before pass)."

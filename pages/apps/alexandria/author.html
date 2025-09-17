@@ -1,108 +1,11 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Alexandria · Author Workbench</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="/app.css" />
-  <style>
-    body{margin:0} main{max-width:1100px;margin:28px auto;padding:0 12px}
-    .card{border:1px solid #eee;border-radius:.6rem;padding:14px;background:#fff;margin-bottom:12px}
-    .pill{display:inline-block;padding:.35rem .7rem;border:1px solid #999;border-radius:.6rem;background:#fff;cursor:pointer}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media (max-width: 1100px){ .grid{grid-template-columns:1fr} }
-    textarea{min-height:160px;width:100%}
-    select,input{width:100%}
-    .fine{font-size:.9rem;color:#666}
-  </style>
-</head>
-<body>
-<main>
-  <h1>Alexandria · Author Workbench</h1>
-  <div class="card grid">
-    <section>
-      <h3>Scene Sketch</h3>
-      <textarea id="scene" placeholder="Write scene beats here..."></textarea>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-        <button id="speak" class="pill">🔊 Read</button>
-        <button id="stop" class="pill">⏹ Stop</button>
-        <button id="listen" class="pill">🎙️ Dictate</button>
-        <button id="listenStop" class="pill">⏹ Stop Mic</button>
-        <button id="downloadMd" class="pill">Download scene.md</button>
-      </div>
-      <p class="fine">TTS/STT uses the browser's Web Speech APIs. Dictation is Chrome-friendly (webkitSpeechRecognition).</p>
-    </section>
-
-    <section>
-      <h3>Prompts & Tables</h3>
-      <div class="fine">Use choices as writing prompts or generate titles and hooks.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0">
-        <select id="list"></select>
-        <button id="roll" class="pill">🎲 Roll 3</button>
-      </div>
-      <textarea id="prompts" placeholder="Rolled prompts appear here..." style="min-height:120px"></textarea>
-      <h3>Dice</h3>
-      <div style="display:grid;grid-template-columns:1fr 120px;gap:8px">
-        <input id="notation" value="1d20+0"/>
-        <button id="rollDice" class="pill">Roll</button>
-      </div>
-      <pre id="diceOut" class="fine"></pre>
-    </section>
-  </div>
-</main>
-
-<script type="module">
-import { roll, pick, loadChoices } from './dice.js';
-const $=s=>document.querySelector(s);
-
-let voices=[];
-function speak(txt){
-  if(!txt) return;
-  const u = new SpeechSynthesisUtterance(txt);
-  if(voices.length){ u.voice = voices.find(v=>/en/i.test(v.lang)) || voices[0]; }
-  speechSynthesis.cancel();
-  speechSynthesis.speak(u);
-}
-function stopSpeak(){ speechSynthesis.cancel(); }
-
-let recog=null;
-function startDictation(){
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if(!SR){ alert('Speech Recognition not supported in this browser.'); return; }
-  recog = new SR();
-  recog.lang = 'en-US'; recog.interimResults = true; recog.continuous = true;
-  recog.onresult = e => {
-    let s=''; for(let i=e.resultIndex;i<e.results.length;i++){ s += e.results[i][0].transcript; }
-    const el = document.getElementById('scene'); el.value += (el.value.endsWith('\n')?'':' ') + s;
-  };
-  recog.start();
-}
-function stopDictation(){ if(recog){ try{recog.stop();}catch{} recog=null; } }
-
-document.getElementById('speak').onclick = ()=> speak(document.getElementById('scene').value);
-document.getElementById('stop').onclick = stopSpeak;
-document.getElementById('listen').onclick = startDictation;
-document.getElementById('listenStop').onclick = stopDictation;
-document.getElementById('downloadMd').onclick = ()=>{
-  const md = '# Scene\n\n' + (document.getElementById('scene').value||'').trim() + '\n';
-  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([md],{type:'text/markdown'})); a.download='scene.md'; a.click(); URL.revokeObjectURL(a.href);
-};
-
-let CH = await loadChoices();
-const LISTS = ['cultures','governments','religions','languages','magic_schools','magic_costs','currencies','materials','color_palettes','creatures','vehicles','event_tags','holiday_types','conflict_types','biomes','climates'];
-const sel = document.getElementById('list');
-sel.innerHTML = LISTS.map(k=> `<option value="${k}">${k}</option>`).join('');
-document.getElementById('roll').onclick = ()=>{
-  const k = sel.value; const arr = CH[k]||[]; const picks = pick(arr, 3);
-  document.getElementById('prompts').value = (document.getElementById('prompts').value + "\n" + picks.join(', ')).trim();
-};
-
-document.getElementById('rollDice').onclick = ()=>{
-  const r = roll(document.getElementById('notation').value.trim());
-  document.getElementById('diceOut').textContent = JSON.stringify(r, null, 2);
-};
-
-voices = speechSynthesis.getVoices(); if(!voices.length){ speechSynthesis.onvoiceschanged = ()=> { voices = speechSynthesis.getVoices(); }; }
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Author</title><link rel="stylesheet" href="/pages/app.css"/></head>
+<body><main class="shell"><h1>Author Workbench</h1>
+<textarea id="scene" placeholder="Draft your scene..."></textarea>
+<div><button id="speak">🔊 Speak</button> <button id="listen">🎤 Dictate</button></div>
+<script>
+const ut=new SpeechSynthesisUtterance(); document.getElementById('speak').onclick=()=>{ ut.text=document.getElementById('scene').value; speechSynthesis.speak(ut); };
+const rec = ('webkitSpeechRecognition' in window)? new webkitSpeechRecognition(): null;
+if(rec){ rec.continuous=true; rec.onresult=e=>{ for(const r of e.results){ if(r.isFinal) document.getElementById('scene').value += (document.getElementById('scene').value?'\n':'') + r[0].transcript; } }; document.getElementById('listen').onclick=()=>rec.start(); }
 </script>
-</body>
-</html>
+</main></body></html>

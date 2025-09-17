@@ -1,53 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Overseers Console · Avalon</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="stylesheet" href="/app.css">
-  <style>
-    .badge{display:inline-block;padding:.2rem .5rem;border-radius:.4rem;border:1px solid #999;font-size:.85rem;margin-right:.4rem}
-    .bar{height:10px;background:#ddd;border-radius:6px;overflow:hidden}
-    .bar>div{height:100%;width:0%;transition:width .4s ease}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-    table{width:100%;border-collapse:collapse;margin-top:10px}
-    th,td{padding:.4rem;border-bottom:1px solid #eee;text-align:left}
-    small{color:#666}
-  </style>
-</head>
-<body>
-  <main style="max-width:980px;margin:24px auto;padding:0 12px">
-    <h1>Overseers Console</h1>
-
-    <section class="grid">
-      <div>
-        <h3>AI Core</h3>
-        <div id="ai-status" class="badge">Loading…</div>
-        <div id="ai-mode" class="badge">—</div>
-        <div><small id="last-run">last run: —</small></div>
-      </div>
-      <div>
-        <h3>Queue</h3>
-        <div class="bar"><div id="bar-fill"></div></div>
-        <div style="display:flex;gap:12px;margin-top:6px">
-          <div>Done: <b id="done">0</b>/<span id="total">0</span></div>
-          <div>Success: <b id="success">0</b></div>
-          <div>Pending: <b id="pending">0</b></div>
-          <div>Failed: <b id="failed">0</b></div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h3>Recent activity</h3>
-      <table>
-        <thead><tr><th>Time (UTC)</th><th>Action</th><th>Status</th><th>Notes</th></tr></thead>
-        <tbody id="history"></tbody>
-      </table>
-    </section>
-  </main>
-
-  <script src="./console.js" defer></script>
-</body>
-</html>
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Overseers Console</title><link rel="stylesheet" href="/pages/app.css"></head>
+<body><main class="shell">
+<h1>Overseers Console</h1>
+<p>Diagnostics & budgets surface here. (Stub keeps links alive.)</p>
+</main></body></html>

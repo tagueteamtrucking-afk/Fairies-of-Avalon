@@ -1,43 +1,87 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Alexandria · Avalon</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="stylesheet" href="/app.css">
-  <script type="importmap" src="/importmap.json"></script>
+  <meta charset="utf-8" />
+  <title>Alexandria · Studio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/app.css" />
   <style>
-    main{max-width:1100px;margin:24px auto;padding:0 12px}
-    .pill{display:inline-block;padding:.25rem .6rem;border:1px solid #999;border-radius:.6rem;font-size:.85rem;margin-right:.4rem;text-decoration:none;color:inherit}
-    #viewer{width:100%;max-width:780px;height:460px;border-radius:.6rem;border:1px solid #e6e6e6;background:rgba(255,255,255,.05);margin-top:10px}
+    :root{ --bg:#0b0e12; --card:#121821; --ink:#e6edf3; --muted:#9fb0c3; --accent:#7cc6ff; --line:#253140; }
+    body{margin:0;background:radial-gradient(1000px 600px at 20% -10%,#182233 0%,transparent 70%),linear-gradient(180deg,#0b0e12 0%,#0b0e12 100%);color:var(--ink);font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    main{max-width:1100px;margin:0 auto;padding:20px}
+    h1{font-size:1.75rem;margin:0 0 8px}
+    .sub{color:var(--muted);margin:0 0 16px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    @media (max-width:1000px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+    @media (max-width:700px){ .grid{grid-template-columns:1fr} }
+    .tile{display:flex;flex-direction:column;gap:6px;border:1px solid var(--line);border-radius:.9rem;background:linear-gradient(180deg,#111723,#0d131b);padding:14px;text-decoration:none;color:var(--ink);box-shadow:0 0 0 1px #10161f inset}
+    .tile:hover{background:#0f1822;border-color:#314155}
+    .t-h{display:flex;align-items:center;gap:10px}
+    .ico{width:38px;height:38px;display:grid;place-items:center;border-radius:.6rem;background:#0d2134;border:1px solid #253140}
+    .pill{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .8rem;border-radius:999px;border:1px solid var(--line);background:#18202b;color:var(--ink);cursor:pointer;text-decoration:none}
+    .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0 16px}
+    footer{margin-top:18px;color:var(--muted);font-size:.9rem}
   </style>
 </head>
 <body>
-  <main>
-    <h1>Alexandria</h1>
-    <div>
-      <a class="pill" href="/apps/overseers/hub/">Overseers Hub</a>
-      <a class="pill" href="/apps/overseers/console.html">Console</a>
-      <a class="pill" href="/apps/overseers/hub/vrm-demo.html">VRM Demo</a>
-    </div>
-    <div id="viewer"></div>
-  </main>
+<main>
+  <h1>Alexandria · Studio</h1>
+  <p class="sub">One‑click access to everything: build your world by conversation, outline campaigns, author scenes, and export bundles.</p>
 
-  <script type="module">
-    import { createVRMViewer } from '/apps/shared/vrm-viewer.js';
-    import { applyWallpaperTheme } from '/apps/shared/theme.js';
-    await applyWallpaperTheme({ strategy: 'first', overlay: 'dark' }).catch(()=>{});
-    const NAME = ;
-    const models = await fetch('/asset/models/models.json?t=' + Date.now(), { cache: 'no-store' })
-      .then(r=>r.json()).catch(()=>({}));
-    const path = models?.byAvatar?.[NAME];
-    const target = '#viewer';
-    if (path) {
-      await createVRMViewer({ container: target, vrmPath: '/' + String(path).replace(/^\\//,''), wingId: null, enableOrbitControls: true });
-    } else {
-      document.querySelector(target).innerHTML = '<p><small>No VRM mapped for this assistant yet.</small></p>';
-    }
-  </script>
+  <div class="row">
+    <a class="pill" href="/apps/alexandria/live.html">▶ Live DM</a>
+    <a class="pill" href="/apps/alexandria/campaigns.html">🎭 Campaigns</a>
+    <a class="pill" href="/apps/alexandria/author.html">✍️ Author</a>
+    <a class="pill" href="/apps/alexandria/question-intake.html">❓ Clarifiers</a>
+    <a class="pill" href="/apps/alexandria/exports.html">📦 Exports</a>
+    <a class="pill" href="/apps/alexandria/library.html">📚 Library</a>
+  </div>
+
+  <section class="grid">
+    <a class="tile" href="/apps/alexandria/live.html">
+      <div class="t-h"><div class="ico">💬</div><strong>Live DM</strong></div>
+      <div>Phone‑friendly chat to choose / roll / type custom. Build regions → towns → inns, then layer notable figures.</div>
+    </a>
+    <a class="tile" href="/apps/alexandria/campaigns.html">
+      <div class="t-h"><div class="ico">🎭</div><strong>Campaigns</strong></div>
+      <div>Single‑player or two‑player pass‑and‑play. Add episodes & beats, export <code>.md</code> for editing.</div>
+    </a>
+    <a class="tile" href="/apps/alexandria/author.html">
+      <div class="t-h"><div class="ico">✍️</div><strong>Author Workbench</strong></div>
+      <div>Write scenes/quests with Dice + Speech I/O. Export Markdown chapters for your serial.</div>
+    </a>
+    <a class="tile" href="/apps/alexandria/question-intake.html">
+      <div class="t-h"><div class="ico">❓</div><strong>Clarifiers</strong></div>
+      <div>Blueprint starter: pick from lists, roll  🎲, or add new options. Feeds the pipeline.</div>
+    </a>
+    <a class="tile" href="/apps/alexandria/atlas.html">
+      <div class="t-h"><div class="ico">🗺️</div><strong>Regional Atlas</strong></div>
+      <div>See dimensions, regions, portals, and ley lines. Updated by builds.</div>
+    </a>
+    <a class="tile" href="/apps/alexandria/bible.html">
+      <div class="t-h"><div class="ico">📖</div><strong>Lore Bible</strong></div>
+      <div>Culture, government, languages, magic & economy. Reference during play and writing.</div>
+    </a>
+    <a class="tile" href="/apps/alexandria/timeline.html">
+      <div class="t-h"><div class="ico">⏳</div><strong>Timelines</strong></div>
+      <div>Acts and events with tags, holidays, and conflicts—your quest scaffolding.</div>
+    </a>
+    <a class="tile" href="/apps/alexandria/codex.html">
+      <div class="t-h"><div class="ico">🧑‍🤝‍🧑</div><strong>NPC Codex</strong></div>
+      <div>Roles, traits, motives, secrets, and alignments—generated in sets and easy to reuse.</div>
+    </a>
+    <a class="tile" href="/apps/alexandria/exports.html">
+      <div class="t-h"><div class="ico">📦</div><strong>Exports</strong></div>
+      <div>Download WorldBundle zips of all JSON + MD artifacts.</div>
+    </a>
+  </section>
+
+  <div class="row" style="margin-top:14px">
+    <a class="pill" href="/.github/workflows/alexandria-build-all.yml" target="_blank">🛠️ Run Build‑All</a>
+    <a class="pill" href="/apps/alexandria/library.html">📚 Extend Library</a>
+  </div>
+
+  <footer>Tip: Add this page to your phone’s home screen for a native‑app feel.</footer>
+</main>
 </body>
 </html>

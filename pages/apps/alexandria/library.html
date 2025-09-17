@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Alexandria · Library</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/app.css" />
+  <style>
+    body{margin:0} main{max-width:1100px;margin:24px auto;padding:0 12px}
+    .card{border:1px solid #eee;border-radius:.6rem;padding:14px;background:#fff;margin-bottom:12px}
+    .grid{display:grid;grid-template-columns:280px 1fr;gap:10px}
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    select, input, textarea{width:100%}
+    textarea{min-height:180px}
+    .pill{display:inline-block;padding:.35rem .7rem;border:1px solid #999;border-radius:.6rem;background:#fff;cursor:pointer}
+    .fine{font-size:.9rem;color:#666}
+    ul{margin:0;padding-left:18px}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Alexandria · Library</h1>
+  <p class="fine">View and edit the worldbuilding lists (choices). Add items, then <b>Download updated choices.json</b> and commit to the repo.</p>
+  <div class="grid card">
+    <aside>
+      <label>List</label>
+      <select id="lists"></select>
+      <div style="margin-top:10px">
+        <input id="newItem" placeholder="New item" />
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <button class="pill" id="add">+ Add</button>
+          <button class="pill" id="remove">− Remove</button>
+        </div>
+      </div>
+      <div style="margin-top:10px">
+        <button class="pill" id="download">Download choices.json</button>
+      </div>
+    </aside>
+    <section>
+      <label>Items</label>
+      <textarea id="items"></textarea>
+      <p class="fine">One per line. Your edits here are local to this browser until you download and commit the file.</p>
+    </section>
+  </div>
+</main>
+<script type="module">
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const URL="/apps/alexandria/knowledge/choices.json";
+let CH={};
+
+async function load(){
+  try{ const r=await fetch(URL+'?t='+Date.now(),{cache:'no-store'}); if(r.ok) CH=await r.json(); else CH={}; }catch{ CH={}; }
+  const sel=$('#lists');
+  const keys=Object.keys(CH).sort((a,b)=>a.localeCompare(b));
+  sel.innerHTML = keys.map(k=>`<option>${k}</option>`).join('');
+  sel.onchange=()=> show(sel.value);
+  if(keys.length){ sel.value=keys[0]; show(keys[0]); }
+}
+function show(k){
+  $('#items').value = (CH[k]||[]).map(v=>String(v)).join('\n');
+}
+$('#add').onclick=()=>{
+  const k=$('#lists').value; const v=$('#newItem').value.trim(); if(!k||!v) return;
+  CH[k] = [...new Set([...(CH[k]||[]), v])];
+  show(k); $('#newItem').value='';
+};
+$('#remove').onclick=()=>{
+  const k=$('#lists').value; const v=$('#newItem').value.trim(); if(!k||!v) return;
+  CH[k] = (CH[k]||[]).filter(x=>String(x)!==v);
+  show(k); $('#newItem').value='';
+};
+$('#download').onclick=()=>{
+  const k=$('#lists').value;
+  CH[k]= $('#items').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(CH,null,2)],{type:'application/json'}));
+  a.download='choices.json'; a.click(); URL.revokeObjectURL(a.href);
+};
+load();
+</script>
+</body>
+</html>

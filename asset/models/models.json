@@ -1,11 +1,4 @@
 {
-  "prewinged": [
-    "asset/winged-models/WingedAlexandria.vrm",
-    "asset/winged-models/WingedBillie.vrm",
-    "asset/winged-models/WingedReyCzar.vrm",
-    "asset/winged-models/WingedWhiteStar.vrm"
-  ],
-  "generated": "2025-09-17T21:54:07.1021674Z",
   "wingless": [
     "asset/models/abbey.vrm",
     "asset/models/alexandria.vrm",
@@ -23,5 +16,12 @@
     "asset/models/tracy.vrm",
     "asset/models/whitestar.vrm"
   ],
+  "prewinged": [
+    "asset/winged-models/WingedAlexandria.vrm",
+    "asset/winged-models/WingedBillie.vrm",
+    "asset/winged-models/WingedReyCzar.vrm",
+    "asset/winged-models/WingedWhiteStar.vrm"
+  ],
+  "generated": "2025-09-17T21:58:21.8389621Z",
   "byAvatar": {}
 }

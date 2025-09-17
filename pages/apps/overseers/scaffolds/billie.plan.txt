@@ -1,41 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Billie'**
-
-1. **Character Overview**
-   - Name: Billie
-   - Type: Avalon Fairy
-   - Traits: Playful, mischievous, kind-hearted
-
-2. **Physical Description**
-   - Height: 5 inches
-   - Wings: Iridescent, butterfly-like
-   - Hair: Long, flowing, pastel colors
-   - Outfit: Nature-inspired, flower motifs
-
-3. **Backstory**
-   - Origin: Born in the enchanted Avalon forest
-   - Role: Guardian of nature and harmony
-   - Motivation: Protect the balance of the magical realm
-
-4. **Abilities**
-   - Magic: Nature manipulation (growth, healing)
-   - Flight: Swift and agile in the air
-   - Communication: Can speak to animals and plants
-
-5. **Goals**
-   - Short-term: Help a lost creature find its way home
-   - Long-term: Preserve the Avalon forest from dark forces
-
-6. **Relationships**
-   - Allies: Other fairies, woodland creatures
-   - Rivals: Dark spirits threatening the forest
-
-7. **Challenges**
-   - Overcoming her mischievous nature to focus on responsibilities
-   - Battling dark forces that disrupt the harmony of Avalon
-
-8. **Development Arc**
-   - Growth from playful trickster to a responsible guardian
-   - Learning the importance of teamwork and trust
-
-9. **Conclusion**
-   - Resolution of personal conflicts and restoration of balance in Avalon.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T17:53:16.7572436Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

@@ -1,0 +1,13 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "1.13.2"
+  last_updated: "2025-09-17"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    v1.13.2 — Landing redirect fix:
+      - /pages/index.html now redirects to /index.html to avoid stale navigation.
+      - Root index shows wallpaper hero via manifest.json with fallbacks.
+
+project:
+  preserve_paths: ["asset/models","asset/wings","asset/textures","pages/apps/alexandria/worlds"]

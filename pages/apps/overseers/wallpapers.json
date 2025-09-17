@@ -1,22 +1,22 @@
 [
   {
     "path": "asset/textures/wallpapers/castle village 01.jpg",
-    "size": 10719,
-    "name": "castle village 01.jpg"
+    "name": "castle village 01.jpg",
+    "size": 10719
   },
   {
     "path": "asset/textures/wallpapers/castle village 02.jpg",
-    "size": 8347,
-    "name": "castle village 02.jpg"
+    "name": "castle village 02.jpg",
+    "size": 8347
   },
   {
     "path": "asset/textures/wallpapers/castle village 03.jpg",
-    "size": 8118,
-    "name": "castle village 03.jpg"
+    "name": "castle village 03.jpg",
+    "size": 8118
   },
   {
     "path": "asset/textures/wallpapers/castle village 04.jpg",
-    "size": 8665,
-    "name": "castle village 04.jpg"
+    "name": "castle village 04.jpg",
+    "size": 8665
   }
 ]

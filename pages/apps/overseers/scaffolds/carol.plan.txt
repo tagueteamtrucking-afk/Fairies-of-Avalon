@@ -1,27 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Carol'**
-
-1. **Introduction**
-   - Brief overview of Avalon Fairy 'Carol'
-   - Purpose and significance of the character
-
-2. **Character Background**
-   - Origin story
-   - Key traits and abilities
-   - Relationships with other characters
-
-3. **Setting**
-   - Description of Avalon
-   - Key locations relevant to Carol's story
-
-4. **Plot Outline**
-   - Main conflict or challenge faced by Carol
-   - Key events leading to the climax
-   - Resolution and character growth
-
-5. **Themes**
-   - Exploration of key themes (e.g., friendship, bravery, magic)
-   - How these themes are represented through Carol's journey
-
-6. **Conclusion**
-   - Summary of Carol's impact on the Avalon world
-   - Final thoughts on her character development and legacy
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T23:27:52.9455893Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

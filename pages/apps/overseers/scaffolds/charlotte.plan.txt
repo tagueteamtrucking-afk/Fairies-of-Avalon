@@ -1,6 +1,33 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T23:27:53.2749985Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Charlotte'**
+
+1. **Introduction**
+   - Brief overview of Avalon Fairy 'Charlotte'
+   - Purpose of the scaffold
+
+2. **Character Description**
+   - Physical appearance
+   - Personality traits
+   - Magical abilities
+
+3. **Backstory**
+   - Origin of Charlotte
+   - Key events in her life
+   - Relationships with other characters
+
+4. **Setting**
+   - Description of Avalon
+   - Key locations relevant to Charlotte
+
+5. **Plot Outline**
+   - Main conflict or quest
+   - Key events and turning points
+   - Resolution
+
+6. **Themes**
+   - Friendship
+   - Courage
+   - Self-discovery
+
+7. **Conclusion**
+   - Summary of Charlotte's journey
+   - Final thoughts on her character development

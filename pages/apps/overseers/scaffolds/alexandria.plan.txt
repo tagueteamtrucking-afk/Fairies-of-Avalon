@@ -1,39 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Alexandria'**
-
-1. **Introduction**
-   - Overview of Avalon Fairy 'Alexandria'
-   - Purpose of the scaffold plan
-
-2. **Character Design**
-   - Physical appearance
-   - Clothing and accessories
-   - Color palette
-
-3. **Backstory**
-   - Origin of Alexandria
-   - Key life events
-   - Motivation and goals
-
-4. **Abilities and Powers**
-   - Magical abilities
-   - Special skills
-   - Limitations
-
-5. **Personality Traits**
-   - Key characteristics
-   - Strengths and weaknesses
-   - Relationships with other characters
-
-6. **Setting**
-   - Description of Avalon
-   - Key locations relevant to Alexandria
-   - Environmental elements
-
-7. **Plot Involvement**
-   - Role in the main storyline
-   - Key conflicts and resolutions
-   - Character development arc
-
-8. **Conclusion**
-   - Summary of Alexandria's significance
-   - Future potential developments
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T23:40:54.0581955Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

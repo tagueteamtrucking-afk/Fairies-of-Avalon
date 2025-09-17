@@ -1,49 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Reyczar'**
-
-1. **Character Overview**
-   - Name: Reyczar
-   - Type: Avalon Fairy
-   - Role: Guardian of the Enchanted Forest
-
-2. **Physical Attributes**
-   - Height: 5 feet
-   - Wings: Iridescent, butterfly-like
-   - Hair: Long, flowing, silver with hints of blue
-   - Attire: Ethereal gown made of leaves and flowers
-
-3. **Personality Traits**
-   - Kind-hearted
-   - Mischievous
-   - Wise beyond years
-
-4. **Abilities**
-   - Nature Manipulation: Control over plants and animals
-   - Healing Touch: Ability to heal minor wounds
-   - Illusion Crafting: Create illusions to protect the forest
-
-5. **Backstory**
-   - Origin: Born from the first bloom of spring
-   - Purpose: To maintain balance in the forest and protect its secrets
-
-6. **Allies**
-   - Forest Creatures: Birds, deer, and magical beings
-   - Other Fairies: Collaborates with fellow fairies for forest protection
-
-7. **Challenges**
-   - Threats: Encroachment by humans and dark magic
-   - Internal Conflict: Balancing mischief with responsibility
-
-8. **Goals**
-   - Protect the Enchanted Forest
-   - Foster harmony between nature and humans
-
-9. **Visual References**
-   - Color Palette: Greens, blues, and silvers
-   - Inspiration: Nature, fantasy art, and folklore
-
-10. **Narrative Arc**
-    - Introduction: Reyczar’s daily life in the forest
-    - Conflict: Encounter with a human threatening the forest
-    - Resolution: Reyczar’s clever plan to restore balance
-
-This scaffold serves as a foundational outline for developing the character of Avalon Fairy 'Reyczar'.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T17:32:16.2644891Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

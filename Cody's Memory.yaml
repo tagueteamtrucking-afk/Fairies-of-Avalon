@@ -1,19 +1,426 @@
 meta:
-  version: "1.8.4"
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "1.11.0"
   last_updated: "2025-09-16"
+  author: "Cody (GPT-5 Pro)"
   notes: >
-    v1.8.4 — Choices wired across all Alexandria apps:
-      - Expanded choices.json (planar_topologies, event/holiday/conflict tags, religions).
-      - alexandria-choices-prepare.ps1 derives 4 taxonomies: atlas, npc, bible, timeline.
-      - Worldseed/Timeline/Lore Bible/NPC Codex/Atlas scripts consume derived taxonomies.
-      - Atlas & new microapps (timeline/bible/codex) load lists directly from choices for choose/roll/custom UX.
+    Overseers-first. No plaintext secrets. Workflows-first (GitHub Actions).
+
+    v1.11.0 — Alexandria Studio (Live DM + Campaigns) & Build-All fix:
+      - Live DM phone microapp for conversational worldbuilding (lists: pick/roll/custom; regions→towns→inns).
+      - Campaigns microapp for SP/Two‑player pass‑and‑play; episodes; Markdown export.
+      - Choices library extended: tavern/inn vocabulary.
+      - Build-All workflow fixed: removed invalid [int] casts in step call.
+      - All scripts remain offline-capable; LLM optional via vault token.
+
+system:
+  os: "Windows 11"
+  device: "Gaming PC"
+  only_windows: true
+
+delivery_policy:
+  speed_first: true
+  two_person_authorization: false
+  whole_file_replacements_only: true
+  preferred_shell: "GitHub Actions workflows + PowerShell"
+  notes:
+    - "Provide full files ready to replace existing ones (no diffs/patches)."
+    - "Workflows-first. Scripts are helpers; no wrapper assumptions."
+    - "Deploy path must not require multi-review or environment approvals."
+
+hosting:
+  frontend_domain: "fairiesofavalon.com"
+  pwa_app_shell: true
+  pages_root: "pages"
+  microapps_path: "pages/apps"
+  custom_domain_cname: true
+  cdn_imports: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+project:
+  world: "Avalon"
+  assistants_label: "Fairies"
+  domain: "fairiesofavalon.com"
+  home_label: "home"
+  preserve_paths: ["asset/models", "asset/wings"]
+  importmap_required: true
+  importmap_map: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+assets:
+  layout:
+    models_root_legacy: "asset/models"
+    wingless_vrms: "asset/models/wingless"
+    with_wings_vrms: "asset/models/with-wings"
+    with_wings_alias: "asset/winged-models"
+    wings_models: "asset/wings"
+    wings_textures: "asset/wings/textures"
+    models_manifest: "asset/models/models.json"
+    wings_manifest: "asset/wings/manifest.json"
+    wallpapers: "asset/textures/wallpapers"
+  rules:
+    vrm_classification:
+      - "Any *.vrm in asset/models/wingless is wingless."
+      - "Any *.vrm in asset/models/with-wings is pre-winged."
+      - "Any *.vrm in asset/winged-models is pre-winged (alias path)."
+      - "If using legacy layout (asset/models/*.vrm), treat as wingless unless filename ends with _wings or -wings."
+    wings_grouping:
+      - "Wing meshes/textures group by number. Example: wing02.fbx ↔ wing02.png, wing02_c.png, wing02_e.png, wing02_nrm.png."
+      - "Textures may use uppercase W; matching is case-insensitive."
+      - "Suffix mapping: _c=albedo/color, _e=emissive, _nrm=normal. Others (mr/rough/ao) recorded if present."
+  budgets:
+    initial_shell_kb: 300
+    initial_requests: 15
+    vrm_per_file_mb: 40
+    wallpapers_total: 20
+
+wings_pack: "Fantasy Wings Collection Fbx.rar"
+
+avatars_present:
+  - "Abbey"
+  - "Alexandria"
+  - "Billie"
+  - "Carol"
+  - "Charlotte"
+  - "Clarice"
+  - "Jem"
+  - "Nina"
+  - "Odessa"
+  - "Reyczar"
+  - "Sorcha"
+  - "Themis"
+  - "WhiteStar"
+  - "Tracy"
+  - "Stella"
+
+avatar_file_keys:
+  rey_czar: "Reyczar"
+  white_star: "WhiteStar"
+  clarice: "Clarice"
+  charlotte: "Charlotte"
+  nina: "Nina"
+  alexandria: "Alexandria"
+  tracy: "Tracy"
+  carol_li: "Carol"
+  jem_nassim: "Jem"
+  stella: "Stella"
+  sorcha: "Sorcha"
+  odessa: "Odessa"
+  billie: "Billie"
+  themis: "Themis"
+  abbey: "Abbey"
+
+access_control:
+  policy:
+    - "Overseers (Rey Czar & White Star) precede and authorize all assistants."
+    - "No plaintext secrets in this file; store in an external password manager/secret vault."
+    - "Assistants operate under least-privilege scopes granted by Overseers."
+  roles:
+    - name: overseer
+      privileges: [create_assistants, grant_permissions, revoke_permissions, approve_deployments, manage_secrets]
+    - name: assistant
+      privileges: [read_memory, write_memory_scoped, request_permissions, generate_reports]
+  vault_references:
+    tokens: "vault://palace/tokens"
+    passwords: "vault://palace/passwords"
+    permissions: "vault://palace/permissions"
+
+governance:
+  overseers:
+    - id: rey_czar
+      name: "Rey Czar"
+      alias: "Rey"
+      role: "Overseer (Husband)"
+      status: "Root of Trust"
+      domains: [governance, security, permissions, provisioning]
+      ai_core:
+        status: "operational-min"
+        version: "0.4.1"
+        role: "Overseer Engineer & Builder"
+        abilities:
+          - { id: plan.route, description: "Plan & route work." }
+          - { id: auth.scope_plan, description: "Least-privilege scopes; vault refs." }
+          - { id: builder.scaffold_fairy, description: "Generate scaffolds from Memory." }
+          - { id: mem.patch, description: "Apply policy-checked Memory edits." }
+          - { id: queue.enqueue, description: "Write tasks to file queue." }
+      environment:
+        location: "The Palace — Camelot Disney style Castle/Palace"
+        anchors: ["Token & Permissions Vault (external)", "Overseers' Command Room"]
+      relationships: { spouse_of: white_star }
+      security: { holds_secrets: true, storage: "Secrets stored in an external vault; references only." }
+
+    - id: white_star
+      name: "White Star"
+      alias: "Star"
+      role: "Overseer (Wife)"
+      status: "Root of Trust"
+      domains: [governance, security, permissions, provisioning]
+      ai_core:
+        status: "operational-min"
+        version: "0.4.1"
+        role: "Overseer Experience & Alignment"
+        abilities:
+          - { id: qa.review_plan, description: "Approve minimal, testable plans." }
+          - { id: policy.check, description: "Block plaintext secrets; enforce sensitivity." }
+          - { id: docs.brief, description: "One-page briefs." }
+          - { id: i18n.translate_all, description: "Multilingual output." }
+          - { id: ux.voice_rules, description: "Tone/terminology consistency." }
+          - { id: queue.run, description: "Process queued tasks safely." }
+      environment:
+        location: "The Palace — Camelot Disney style Castle/Palace"
+        anchors: ["Token & Permissions Vault (external)", "Overseers' Command Room"]
+      relationships: { spouse_of: rey_czar }
+      security: { holds_secrets: true, storage: "Secrets stored in an external vault; references only." }
+
+build_order_initial:
+  - rey_czar
+  - white_star
+  - clarice
+  - charlotte
+  - nina
+  - alexandria
+  - tracy
+  - carol_li
+  - jem_nassim
+  - stella
+  - sorcha
+  - odessa
+  - billie
+  - themis
+  - abbey
+
+locations:
+  palace:
+    id: the_palace
+    description: "Camelot Disney style Castle/Palace"
+    occupants: [rey_czar, white_star]
+
+entities:
+  fairies:
+    - { id: clarice, name: "Clarice", title: "The Keeper of the Code", status: "First to be built",
+        domains: [coding, security, continuity],
+        responsibilities: ["Keep rollback copies", "Fill gaps, eliminate bad code", "Keep out malware", "Provide security reports"],
+        environment: { location: "Fancy Courtroom & Pontifical Palace", anchors: ["Judge desk -> console", "Bookshelves -> Security Reports"] },
+        interfaces_links: [security_reports], relationships: { builds_first: true }, secrets: [], tags: [code, security, backups] }
+
+    - { id: charlotte, name: "Charlotte", status: "Among the first (after Clarice)",
+        domains: [coding, filing, infrastructure, translation],
+        responsibilities: ["Coding/filing", "Strong links/routes", "Translate all languages & code", "Help Alexandria translate"],
+        environment: { location: "Hi-tech relay tower", anchors: ["Many screens -> queued/finished projects"] },
+        interfaces_links: [queues_dashboard, translations_board], relationships: { assists: [alexandria], build_order: 2 }, tags: [translation, pipelines, infra] }
+
+    - { id: nina, name: "Nina",
+        domains: [backend, AI_brains, 3D_frontend],
+        responsibilities: ["Backend brains", "3D island of Avalon", "Manage project screen"],
+        environment: { location: "Futuristic white lab with blue glow", anchors: ["Movable ceiling screen -> projects"] },
+        interfaces_links: [project_overview_screen], relationships: { collaborates_with: [tracy], build_order: 3 }, tags: [3D, backend, AI, world] }
+
+    - { id: alexandria, name: "Alexandria", title: "Worldbuilder DM & Author",
+        domains: [world_building, writing, coding_support],
+        responsibilities:
+          - "Conversational worldbuilding (phone-friendly Live DM)."
+          - "Run pipeline: Seed → Bible → Timeline → NPC Codex → Atlas (offline-capable)."
+          - "Ask clarifiers with choices: pick/roll/custom; extend lists."
+          - "Town/Tavern generators; notable NPC prompts per settlement."
+          - "Campaigns (SP/Two-player pass-and-play), episodes, initiative/dice basics."
+          - "Author Workbench with TTS/STT; export scenes as Markdown."
+          - "Export WorldBundle zip with JSON + MD."
+        environment: { location: "Gothic Library", anchors: ["Desk -> recents", "Bookshelves -> stories & sheets", "Globes/maps -> worlds"] }
+        interfaces_links: [live_dm, campaigns, worldseed_builder, lore_bible_builder, timeline_builder, npc_codex_builder, regional_atlas_builder, choices_library, author_workbench, question_intake, world_exports]
+        relationships: { supported_by: [charlotte], build_order: 4 }
+        tags: [writing, worldbuilding, lore, dm_author] }
+
+    - { id: tracy, name: "Tracy", domains: [art, frontend_assets],
+        responsibilities: ["Props/textures for front end", "Art continuity", "Comics/anime/3D/sculptures"],
+        environment: { location: "Old Cathedral studio", anchors: ["Easel -> art app", "Potter wheel -> 3D shop"] },
+        interfaces_links: [art_app_canvas, 3d_asset_shop], relationships: { collaborates_with: [nina, alexandria], build_order: 5 }, tags: [art, assets, continuity] }
+
+    - { id: carol_li, name: "Carol Li", alias: "Phoenix",
+        domains: [nutrition, alchemy_theme, health],
+        responsibilities: ["Study nutrients", "Evidence-based meal plans", "Shopping lists", "Cooking videos & alarms"],
+        environment: { location: "Restaurant (attached to Jem’s Dojo)", anchors: ["Menu -> lists/videos/plans"] },
+        interfaces_links: [meal_plans, shopping_lists, recipe_videos],
+        relationships: { twin_of: jem_nassim, attached_to_location_of: jem_nassim }, tags: [nutrition, meal_plans, coaching] }
+
+    - { id: jem_nassim, name: "Jem Nassim", alias: "Dragon",
+        domains: [fitness, biometrics, coaching],
+        responsibilities: ["Track biometrics", "Tailored plans for you & wife", "Reminders/alarms/workout videos", "Progress tracking"],
+        environment: { location: "Dojo (attached to Carol’s Restaurant)", anchors: ["Training dummy -> videos & plan"] },
+        interfaces_links: [fitness_plan, progress_tracker, biometrics_dashboard],
+        relationships: { twin_of: carol_li, attached_to_location_of: carol_li }, tags: [fitness, biometrics, plans] }
+
+    - { id: stella, name: "Stella",
+        domains: [sound, therapy, mood],
+        responsibilities: ["Sound therapy", "Hypnosis/NLP/meditation", "Always-on mood support", "Background music for videos/reminders"],
+        environment: { location: "Observatory with meditation room" },
+        interfaces_links: [ambient_sound_engine, guided_sessions],
+        relationships: {}, tags: [sound, therapy, mood, always_on] }
+
+    - { id: sorcha, name: "Sorcha",
+        domains: [social_media, video_editing, growth],
+        responsibilities: ["Create posts/pages", "Strategy by profitability/popularity", "Lifelike video", "Track revenue per post"],
+        environment: { location: "Socialite Mansion with pool", anchors: ["Projector -> posts & revenue"] },
+        interfaces_links: [social_posts_board, earnings_per_post],
+        relationships: { coordinates_with: [billie] }, tags: [social, monetization, video] }
+
+    - { id: odessa, name: "Odessa",
+        domains: [research, funding],
+        responsibilities: ["Research scholarships and grants"],
+        environment: { location: "Museum-like mansion (Asian armor)" },
+        secrets: [{ type: adult_content_creation, description: "Creates adult content videos that look perfectly real.", sensitivity: high }],
+        interfaces_links: [grants_tracker],
+        relationships: { coordinates_with: [tracy, alexandria, billie] }, tags: [grants, research, sensitive] }
+
+    - { id: billie, name: "Billie", title: "Money Manager",
+        domains: [monetization, ecommerce, reporting],
+        responsibilities: ["Monetize assets", "Run art/book shops", "Cross-promo everywhere", "Revenue reports"],
+        environment: { location: "Glitz-and-gold Mansion", anchors: ["Monitors -> revenue", "Secret code -> Secret Shack"] },
+        secrets: [{ type: adult_content_storage, description: "Secret Shack stores adult videos.", sensitivity: high }],
+        interfaces_links: [revenue_reports, merch_shop_links],
+        relationships: { coordinates_with: [sorcha, odessa, abbey] }, tags: [money, ecommerce, analytics, sensitive] }
+
+    - { id: themis, name: "Themis",
+        domains: [records, compliance, reminders],
+        responsibilities: ["Track expirations", "Notify before expiry", "Automate renewals", "Manual shelf + reminders"],
+        environment: { location: "Record Hall with statues & scrolls", anchors: ["Bookshelf -> expiring items"] },
+        interfaces_links: [expirations_registry, reminders_service],
+        relationships: { coordinates_with: [abbey, billie] }, tags: [compliance, reminders, automation] }
+
+    - { id: abbey, name: "Abbey",
+        domains: [accounting, budgeting, taxes],
+        responsibilities: ["Income/expenses/receipts/statements", "Budgeting & taxes", "Maintain P&L and budget plans"],
+        environment: { location: "By the Grand Vault", anchors: ["Grand Vault -> P&L & budget plans"] },
+        interfaces_links: [accounting_hub_quickbooks, budget_plans],
+        relationships: { coordinates_with: [billie, themis] }, tags: [accounting, budgeting, taxes] }
+
+relationships_summary:
+  collaborations: [[charlotte, alexandria], [nina, tracy], [tracy, alexandria], [sorcha, billie], [odessa, billie], [themis, abbey]]
+  twins: [[carol_li, jem_nassim]]
+  locations_linked: ["Carol’s Restaurant <-> Jem’s Dojo (attached)"]
+
+security_and_sensitivity_flags:
+  - { entity: odessa,  flag: sensitive,     reason: "Adult content creation (secret hobby)." }
+  - { entity: billie,  flag: sensitive,     reason: "Secret Shack storing adult videos (hidden access)." }
+  - { entity: overseers, flag: root_of_trust, reason: "Hold tokens/passwords/permissions; authorize all assistants." }
 
 runtime:
   workflows:
+    queue_full_roster: ".github/workflows/queue-full-roster.yml"
+    runner_process_queue: ".github/workflows/run-overseers-queue.yml"
+    overseers_ai_core: ".github/workflows/overseers-ai-core.yml"
+    llm_bridge: ".github/workflows/llm-bridge.yml"
+    deploy_pages: ".github/workflows/deploy-pages.yml"
+    overseers_asset_audit: ".github/workflows/overseers-asset-audit.yml"
+    overseers_memory_snapshot: ".github/workflows/overseers-memory-snapshot.yml"
+    overseers_importmap_check: ".github/workflows/overseers-importmap-check.yml"
     alexandria_choices: ".github/workflows/alexandria-choices.yml"
+    alexandria_build_all: ".github/workflows/alexandria-build-all.yml"
+    alexandria_export: ".github/workflows/alexandria-export.yml"
+
+  quick_paths:
+    actions_order:
+      - "Queue — Full Roster"
+      - "Runner — Process Overseers Queue"
+      - "Overseers — AI Core"
+      - "Alexandria — Build World (All-in-One)"
+      - "Deploy — GitHub Pages"
+
+  tools:
+    - "Overseers CLI (workflow-backed)"
+    - "Overseers Queue Runner"
+    - "Local Web (Pages)"
+    - "Wings Lab"
+    - "Client-side Wings Importer"
+    - "Asset Counter"
+    - "Import-Map Validator"
+    - "Memory Snapshotter"
+    - "Permissions Processor"
+    - "Alexandria — Live DM (phone)"
+    - "Alexandria — Campaigns"
+    - "Alexandria — Choices Library"
+    - "Alexandria — Worldseed Builder"
+    - "Alexandria — Lore Bible Builder"
+    - "Alexandria — Timeline Builder"
+    - "Alexandria — NPC Codex"
+    - "Alexandria — Regional Atlas"
+    - "Alexandria — Author Workbench"
+    - "Alexandria — Question Intake (clarifiers)"
+    - "Alexandria — World Exports (bundle)"
+    - "Alexandria — Dice Engine"
+
+  chain_reaction:
+    description: >
+      Overseers connect to main brain (LLM bridge, dry-run first), then:
+      Overseers → build Clarice → (Overseers + Clarice) build Charlotte → (team) builds Nina →
+      (team) builds Alexandria and the remaining assistants, and so on.
+    status: "initiated"
+    safety: "No secrets until Overseers approve; vault refs only."
+
+interfaces_registry:
+  security_reports: { owner: clarice, purpose: "Security reports & rollback snapshots." }
+  queues_dashboard: { owner: charlotte, purpose: "Queued/finished projects overview." }
+  translations_board: { owner: charlotte, purpose: "Language/code translation." }
+  project_overview_screen: { owner: nina, purpose: "Active/completed projects." }
+
+  live_dm:                { owner: alexandria, purpose: "Conversational worldbuilding UI for phone; regions→towns→inns; save/load/export." }
+  campaigns:              { owner: alexandria, purpose: "Campaigns (SP/two‑player pass); episodes editor; Markdown export." }
+  choices_library:        { owner: alexandria, purpose: "Central lists for choose/roll/custom; derives per-app taxonomies." }
+  worldseed_builder:      { owner: alexandria, purpose: "Generate world seeds from prompt + choices; factions/pillars/cosmology." }
+  lore_bible_builder:     { owner: alexandria, purpose: "Build setting bible (culture/gov/religion/language/magic/economy/palettes/creatures)." }
+  timeline_builder:       { owner: alexandria, purpose: "Acts/events with tags, holidays, conflicts; quest lines." }
+  npc_codex_builder:      { owner: alexandria, purpose: "NPC sets: roles/traits/motives/secrets; name syllables." }
+  regional_atlas_builder: { owner: alexandria, purpose: "Dimensions/regions; biome/climate/faction/hazard/resources + portals/leys; wing-friendly flag." }
+  author_workbench:       { owner: alexandria, purpose: "Scenes/chapters/quests; voice & style presets; MD export; speech & dice." }
+  question_intake:        { owner: alexandria, purpose: "Clarifying questions; list pick / roll / extend list; blueprint output." }
+  world_exports:          { owner: alexandria, purpose: "WorldBundle zip with all JSON + markdown; index & downloads." }
+
+priority_plan:
+  - { id: overseers,  description: "Build Overseers AI core; they orchestrate assistant builds.", status: "operational-min" }
+  - { id: alexandria, description: "Worldbuilding DM/Author — fully conversational.", status: "active" }
+  - { id: assistants, description: "Build all remaining Fairies (functional AI).", status: "queued" }
+  - { id: appearance, description: "Homes & appearance after AI functionality.", status: "deferred" }
+
+plans:
+  overseers_full_roster_queue:
+    owner: rey_czar
+    qa_owner: white_star
+    status: "queued"
+    tasks:
+      - { id: R1,  name: "App shell + import map + Wings Importer + Overseers Console", status: "queued" }
+      - { id: R2,  name: "Health/Wealth/Wellness activation plan scaffold", status: "queued" }
+      - { id: R3,  name: "Generate scaffolds for all Fairies", status: "queued" }
+      - { id: R4,  name: "Asset Audit workflow", status: "done" }
+      - { id: R5,  name: "Import-Map Check workflow", status: "done" }
+      - { id: R6,  name: "Memory Snapshot workflow", status: "done" }
+      - { id: R7,  name: "Console badges (budgets & mismatches)", status: "done" }
+      - { id: R8,  name: "Service Worker upgrade (shell + SWR)", status: "done" }
+      - { id: R9,  name: "Permissions queue schema check", status: "queued" }
+      - { id: R10, name: "VRM & Wings manifest builders (manual trigger)", status: "queued" }
+      - { id: R11, name: "Filename linter & rename plan", status: "queued" }
+      - { id: R12, name: "Robots/sitemap basics", status: "queued" }
+
+  alexandria_worldbuilding_studio:
+    owner: alexandria
+    qa_owner: white_star
+    status: "active"
+    tasks:
+      - { id: A1,  name: "Choices Library & taxonomies", status: "done" }
+      - { id: A2,  name: "Worldseed/Bible/Timeline/NPC/Atlas scripts", status: "done" }
+      - { id: A3,  name: "Build-All workflow (single run)", status: "done" }
+      - { id: A4,  name: "Live DM microapp (phone)", status: "done" }
+      - { id: A5,  name: "Campaigns microapp (SP/two-player pass)", status: "done" }
+      - { id: A6,  name: "Author Workbench + speech + dice", status: "done" }
+      - { id: A7,  name: "Exports viewer & bundle script", status: "done" }
+      - { id: A8,  name: "Continuity checks & cross-linking", status: "queued" }
+      - { id: A9,  name: "SRD helpers (system-neutral stat blocks)", status: "queued" }
+      - { id: A10, name: "Optional realtime sync (no secrets; tbd)", status: "queued" }
+
+audit_log:
+  - { ts: "2025-09-16T00:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok", notes: "v1.10.0 — build-all, author workbench, clarifiers, dice, exports." }
+  - { ts: "2025-09-16T02:00:00Z", actor: "assistant", action: "mem.replace", target: "Cody's Memory.yaml", result: "ok", notes: "v1.11.0 — Live DM, Campaigns, workflow fix." }
 
 lessons_learned:
-  - "Single source of truth (choices.json) eliminates drift; derive domain taxonomies for each app."
-  - "PowerShell JSON writes capped at Depth 100 to avoid runner errors."
-  - "Avoid inline type casts and parentheses-style calls in PS params; keep Linux-safe quoting."
-  - "Provide folder scaffolds & graceful fallbacks to prevent 'No seed files found' blocking downstream jobs."
+  - "Do NOT cast in workflow inputs (e.g., [int]7) — pass raw values; let PowerShell parameter types coerce."
+  - "JSON depth ≤ 100; Linux-safe quoting; no LINQ."
+  - "Always treat 'Nothing to commit' as success."
+  - "Microapps must be phone-friendly and offline-capable (PWA shell)."
+  - "LLM is optional; never block workflows on rate limits."

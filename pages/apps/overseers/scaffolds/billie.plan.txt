@@ -1,6 +1,51 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T16:45:27.3029268Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Billie'**
+
+1. **Character Overview**
+   - Name: Billie
+   - Species: Fairy
+   - Role: Guardian of Avalon
+
+2. **Physical Description**
+   - Height: 5 inches
+   - Wing Type: Iridescent, butterfly-like
+   - Hair: Long, flowing, pastel colors
+   - Attire: Leaf and flower-inspired dress
+
+3. **Personality Traits**
+   - Kind-hearted
+   - Playful
+   - Wise beyond her years
+   - Curious about the human world
+
+4. **Abilities**
+   - Magic: Nature manipulation (growth, healing)
+   - Flight: Agile and swift
+   - Communication: Can speak to animals and plants
+
+5. **Backstory**
+   - Origin: Born in the heart of Avalon
+   - Purpose: Protect the balance of nature and guide lost souls
+
+6. **Goals and Motivations**
+   - Preserve the beauty of Avalon
+   - Help those in need
+   - Explore the human realm
+
+7. **Relationships**
+   - Allies: Other fairies, woodland creatures
+   - Mentor: Elder fairy who taught her magic
+   - Adversary: Dark spirit threatening Avalon
+
+8. **Key Story Arcs**
+   - Discovery of a hidden threat to Avalon
+   - Journey to the human world for assistance
+   - Learning to harness her full magical potential
+
+9. **Themes**
+   - Friendship and loyalty
+   - The importance of nature
+   - Courage in the face of adversity
+
+10. **Conclusion**
+    - Billie’s growth as a character through her adventures
+    - The impact of her actions on Avalon and beyond

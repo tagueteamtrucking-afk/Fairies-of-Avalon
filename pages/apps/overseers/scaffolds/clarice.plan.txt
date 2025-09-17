@@ -1,6 +1,52 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T16:45:30.6503668Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Clarice'**
+
+1. **Character Overview**
+   - Name: Clarice
+   - Species: Fairy
+   - Realm: Avalon
+   - Role: Guardian of Nature
+
+2. **Physical Appearance**
+   - Wings: Iridescent, butterfly-like
+   - Hair: Long, flowing, pastel colors (lavender and mint green)
+   - Attire: Ethereal dress made of flower petals and leaves
+   - Accessories: Nature-themed jewelry (e.g., flower crown, vine bracelet)
+
+3. **Personality Traits**
+   - Kind-hearted
+   - Playful
+   - Wise beyond her years
+   - Protective of her realm
+
+4. **Abilities**
+   - Nature Manipulation: Control over plants and animals
+   - Healing: Ability to heal wounds and ailments
+   - Flight: Capable of swift and agile movement through the air
+
+5. **Backstory**
+   - Origin: Born from the first bloom of spring in Avalon
+   - Journey: Tasked with maintaining balance in nature and protecting the realm from dark forces
+
+6. **Goals and Motivations**
+   - Preserve the beauty of Avalon
+   - Foster harmony between magical creatures and nature
+   - Mentor younger fairies in their magical abilities
+
+7. **Challenges**
+   - Threats from dark entities seeking to corrupt Avalon
+   - Balancing her duties with personal desires for adventure
+
+8. **Relationships**
+   - Allies: Other fairies, woodland creatures, and nature spirits
+   - Mentor: An elder fairy who guides her in her responsibilities
+   - Rival: A dark fairy who opposes her ideals
+
+9. **Setting**
+   - Avalon: A mystical land filled with lush forests, sparkling rivers, and enchanted flora and fauna
+
+10. **Story Arc**
+    - Introduction: Clarice discovers a disturbance in nature
+    - Conflict: Faces challenges from dark forces threatening Avalon
+    - Resolution: Unites allies to restore balance and protect her home
+
+This scaffold provides a foundational outline for the character of Clarice, the Avalon Fairy.

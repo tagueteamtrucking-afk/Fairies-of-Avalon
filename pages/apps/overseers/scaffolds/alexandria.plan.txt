@@ -1,37 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Alexandria'**
-
-1. **Objective**
-   - Define the purpose and goals of the Avalon Fairy 'Alexandria' project.
-
-2. **Target Audience**
-   - Identify the primary audience for the project (e.g., children, collectors, etc.).
-
-3. **Concept Development**
-   - Outline the core concept and theme of 'Alexandria'.
-   - Determine key characteristics and attributes of the fairy.
-
-4. **Design Elements**
-   - Visual Style: Color palette, clothing, and accessories.
-   - Features: Wings, hair, and facial expressions.
-
-5. **Materials and Resources**
-   - List materials needed for creation (e.g., fabric, paint, embellishments).
-   - Identify tools required for assembly.
-
-6. **Production Steps**
-   - Sketch initial designs.
-   - Create a prototype.
-   - Refine design based on feedback.
-
-7. **Marketing Strategy**
-   - Develop branding and promotional materials.
-   - Plan for social media presence and outreach.
-
-8. **Timeline**
-   - Establish a timeline for each phase of the project from conception to launch.
-
-9. **Budget**
-   - Create a budget outlining expected costs for materials, marketing, and production.
-
-10. **Evaluation**
-    - Set criteria for success and methods for assessing the project post-launch.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T16:57:50.6710286Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

@@ -1,51 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Jem'**
-
-1. **Character Overview**
-   - Name: Jem
-   - Species: Fairy
-   - Role: Guardian of Avalon
-   - Personality Traits: Playful, curious, kind-hearted
-
-2. **Physical Appearance**
-   - Size: Small, typical fairy stature
-   - Wings: Iridescent, butterfly-like
-   - Hair: Long, flowing, pastel colors
-   - Attire: Nature-inspired dress, adorned with flowers and leaves
-
-3. **Backstory**
-   - Origin: Born in the enchanted forest of Avalon
-   - Journey: Discovered her powers at a young age
-   - Purpose: To protect the magical realm and assist lost travelers
-
-4. **Powers and Abilities**
-   - Flight: Capable of swift and agile movement
-   - Nature Manipulation: Can communicate with plants and animals
-   - Healing: Ability to mend wounds and cure ailments
-
-5. **Goals and Motivations**
-   - Primary Goal: To maintain harmony in Avalon
-   - Personal Motivation: Desire to explore the world beyond Avalon
-
-6. **Relationships**
-   - Allies: Other fairies, woodland creatures
-   - Mentor: An elder fairy who guides her
-   - Conflict: Rivalry with a dark fairy seeking power
-
-7. **Challenges and Conflicts**
-   - Internal Conflict: Struggles with her curiosity leading her into danger
-   - External Conflict: Protecting Avalon from dark forces
-
-8. **Character Arc**
-   - Growth: Learns the importance of balance between curiosity and responsibility
-   - Resolution: Embraces her role as a guardian while exploring her dreams
-
-9. **Setting**
-   - Primary Location: Enchanted forest of Avalon
-   - Key Locations: Crystal clear pond, ancient oak tree, hidden glade
-
-10. **Themes**
-    - Friendship: The importance of bonds with others
-    - Adventure: The thrill of exploration and discovery
-    - Responsibility: Balancing personal desires with duties to others
-
-This scaffold serves as a foundational outline for developing the character of Jem within the Avalon Fairy narrative.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T16:58:07.1825685Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

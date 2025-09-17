@@ -1,52 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Sorcha'**
-
-1. **Character Overview**
-   - Name: Sorcha
-   - Type: Fairy
-   - Realm: Avalon
-   - Role: Guardian of Light
-
-2. **Physical Attributes**
-   - Height: 5 inches
-   - Wing Type: Gossamer, iridescent
-   - Hair: Silver with hints of lavender
-   - Eyes: Bright emerald green
-   - Attire: Flowing gown made of petals and leaves
-
-3. **Personality Traits**
-   - Kind-hearted
-   - Playful
-   - Wise beyond her years
-   - Protective of nature
-
-4. **Abilities**
-   - Light Manipulation: Can create and control light
-   - Healing Touch: Can heal plants and creatures
-   - Flight: Agile and swift in the air
-
-5. **Backstory**
-   - Origin: Born from the first light of dawn in Avalon
-   - Purpose: To maintain balance between light and dark in her realm
-
-6. **Allies**
-   - Other Fairies: Collaborates with fellow guardians
-   - Animals: Communicates with woodland creatures
-
-7. **Challenges**
-   - Dark Forces: Faces threats from shadow creatures
-   - Personal Growth: Struggles with self-doubt
-
-8. **Goals**
-   - Protect Avalon: Ensure the safety and harmony of her realm
-   - Discover True Potential: Learn to harness her powers fully
-
-9. **Visual References**
-   - Color Palette: Soft pastels with vibrant greens
-   - Inspiration: Nature, ethereal themes, and folklore
-
-10. **Narrative Arc**
-    - Introduction: Sorcha's daily life and duties in Avalon
-    - Conflict: Encounter with dark forces disrupting the balance
-    - Resolution: Overcoming challenges and embracing her powers
-
-This scaffold serves as a foundational outline for developing the character Sorcha in a narrative or artistic context.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T05:53:53.9001566Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

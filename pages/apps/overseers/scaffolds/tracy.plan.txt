@@ -1,42 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Tracy'**
-
-1. **Character Overview**
-   - Name: Tracy
-   - Type: Avalon Fairy
-   - Role: Guardian of Nature
-
-2. **Physical Appearance**
-   - Height: 5 inches
-   - Wing Type: Iridescent, butterfly-like
-   - Color Palette: Soft pastels (lavender, mint green, pale pink)
-   - Distinct Features: Flower crown, shimmering skin
-
-3. **Personality Traits**
-   - Kind-hearted
-   - Playful
-   - Curious
-   - Protective of her realm
-
-4. **Abilities**
-   - Nature Manipulation: Can encourage plant growth and communicate with animals
-   - Flight: Agile and swift in the air
-   - Illusion Creation: Can create visual illusions to protect her territory
-
-5. **Backstory**
-   - Origin: Born from the first bloom of spring in Avalon
-   - Mission: To maintain balance in nature and protect the magical realm
-
-6. **Allies and Enemies**
-   - Allies: Other fairies, woodland creatures
-   - Enemies: Dark spirits, pollution
-
-7. **Goals and Motivations**
-   - Primary Goal: Preserve the beauty of Avalon
-   - Motivation: Love for nature and its creatures
-
-8. **Challenges**
-   - Threats from industrialization
-   - Maintaining harmony among different fairy factions
-
-9. **Conclusion**
-   - Tracy embodies the spirit of nature and serves as a beacon of hope in Avalon.
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T05:53:54.2867108Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

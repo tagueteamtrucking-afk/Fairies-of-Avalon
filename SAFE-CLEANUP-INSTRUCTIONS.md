@@ -1,15 +1,16 @@
 # SAFE CLEANUP INSTRUCTIONS
 
-**Do NOT delete your assets.** Heavy binaries live under:
+**DO NOT DELETE your assets.** This snapshot **preserves**:
 - `asset/models/**`
 - `asset/wings/**`
+- `asset/textures/**`   ← wallpapers live here
 - `pages/apps/alexandria/worlds/**` (generated)
 
-This pack includes a safe cleaner that **defaults to dry‑run**:
-
+Run dry‑run first:
 ```pwsh
-pwsh scripts/overseers/clean-repo.ps1 -RepoRoot .   # dry‑run
-pwsh scripts/overseers/clean-repo.ps1 -RepoRoot . -Apply   # actually delete
+pwsh scripts/overseers/clean-repo.ps1 -RepoRoot .
 ```
-
-It preserves the `preserve_globs` from `repo-structure.json` and the explicit allowlist.
+Then apply:
+```pwsh
+pwsh scripts/overseers/clean-repo.ps1 -RepoRoot . -Apply
+```

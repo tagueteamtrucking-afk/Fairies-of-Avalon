@@ -9,8 +9,6 @@
     "pages/manifest.webmanifest",
     "pages/sw.js",
     "pages/apps/overseers/console.html",
-    "pages/apps/overseers/progress.json",
-    "pages/apps/overseers/capabilities.json",
     "pages/apps/overseers/permissions/state.json",
     "pages/apps/alexandria/index.html",
     "pages/apps/alexandria/live.html",
@@ -22,15 +20,10 @@
     "pages/apps/alexandria/bible.html",
     "pages/apps/alexandria/timeline.html",
     "pages/apps/alexandria/codex.html",
-    "pages/apps/alexandria/dice.js",
     "pages/apps/alexandria/knowledge/choices.json",
-    "pages/apps/alexandria/worlds/.gitkeep",
-    "pages/apps/alexandria/worlds/bible/.gitkeep",
-    "pages/apps/alexandria/worlds/timelines/.gitkeep",
-    "pages/apps/alexandria/worlds/codex/.gitkeep",
-    "pages/apps/alexandria/worlds/atlas/.gitkeep",
-    "pages/apps/alexandria/worlds/exports/.gitkeep",
     ".github/workflows/alexandria-build-all.yml",
+    ".github/workflows/overseers-wallpapers-manifest.yml",
+    "scripts/overseers/build-wallpapers-manifest.ps1",
     "scripts/overseers/clean-repo.ps1",
     "repo-structure.json",
     "SAFE-CLEANUP-INSTRUCTIONS.md"
@@ -38,6 +31,7 @@
   "preserve_globs": [
     "asset/models/**",
     "asset/wings/**",
+    "asset/textures/**",
     "pages/apps/alexandria/worlds/**"
   ]
 }

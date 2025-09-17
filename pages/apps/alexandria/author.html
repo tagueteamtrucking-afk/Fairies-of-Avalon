@@ -1,11 +1,1 @@
-<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Author</title><link rel="stylesheet" href="/pages/app.css"/></head>
-<body><main class="shell"><h1>Author Workbench</h1>
-<textarea id="scene" placeholder="Draft your scene..."></textarea>
-<div><button id="speak">🔊 Speak</button> <button id="listen">🎤 Dictate</button></div>
-<script>
-const ut=new SpeechSynthesisUtterance(); document.getElementById('speak').onclick=()=>{ ut.text=document.getElementById('scene').value; speechSynthesis.speak(ut); };
-const rec = ('webkitSpeechRecognition' in window)? new webkitSpeechRecognition(): null;
-if(rec){ rec.continuous=true; rec.onresult=e=>{ for(const r of e.results){ if(r.isFinal) document.getElementById('scene').value += (document.getElementById('scene').value?'\n':'') + r[0].transcript; } }; document.getElementById('listen').onclick=()=>rec.start(); }
-</script>
-</main></body></html>
+<!doctype html><html><head><meta charset='utf-8'/><meta name='viewport' content='width=device-width,initial-scale=1'/><title>Alexandria · Author</title><link rel='stylesheet' href='/pages/app.css'/></head><body><main class='shell'><h1>Alexandria · Author</h1><p>Stub page. Replace or keep.</p></main></body></html>

@@ -1,9 +1,66 @@
-<!doctype html><html><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Fairies of Avalon</title><link rel="stylesheet" href="/pages/app.css">
-</head><body>
-<main class="shell">
-  <h1>Fairies of Avalon</h1>
-  <p>Open <a href="/apps/alexandria/index.html">Alexandria · Studio</a> to worldbuild by conversation.</p>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Fairies of Avalon</title>
+<link rel="manifest" href="/pages/manifest.webmanifest">
+<link rel="stylesheet" href="/pages/app.css">
+<style>
+.hero{position:relative;min-height:68vh;display:grid;place-items:center;text-align:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 800px at 10% -10%,rgba(0,0,0,.35),transparent 60%),linear-gradient(180deg,rgba(5,8,12,.6),rgba(5,8,12,.9))}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(1.05)}
+.hero .cta{position:relative;z-index:2}
+.btn{display:inline-flex;gap:.5rem;align-items:center;padding:.7rem 1rem;border-radius:999px;border:1px solid #314155;background:#18202b;color:#e6edf3;text-decoration:none}
+.btn:hover{background:#1c2734}
+.sub{color:#9fb0c3}
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <img id="wall" alt="Avalon wallpaper"/>
+    <div class="cta">
+      <h1>Fairies of Avalon</h1>
+      <p class="sub">Futuristic fantasy + sci‑fi · Build worlds by conversation</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="/apps/alexandria/index.html">▶ Alexandria · Studio</a>
+        <a class="btn" href="/apps/overseers/console.html">🛠 Overseers Console</a>
+      </div>
+    </div>
+  </section>
+  <section class="shell">
+    <h2>Start Here</h2>
+    <ul>
+      <li><a href="/apps/alexandria/live.html">Live DM (phone)</a> — pick / roll / custom</li>
+      <li><a href="/apps/alexandria/campaigns.html">Campaigns</a> — SP/two‑player pass</li>
+      <li><a href="/apps/alexandria/author.html">Author</a> — scenes with speech & dice</li>
+      <li><a href="/apps/alexandria/library.html">Library</a> — edit lists (isekai, monsters, mythology)</li>
+    </ul>
+  </section>
 </main>
-</body></html>
+<script>
+(async()=>{
+  const el=document.getElementById('wall');
+  async function pickFromManifest(){
+    try{
+      const r=await fetch('/asset/textures/wallpapers/manifest.json?t='+Date.now(),{cache:'no-store'});
+      if(!r.ok) return null;
+      const list=await r.json();
+      const imgs = Array.isArray(list)? list.filter(x=>typeof x==='string'): (list.files||[]);
+      if(imgs && imgs.length){ return imgs[Math.floor(Math.random()*imgs.length)]; }
+    }catch(e){}
+    return null;
+  }
+  const fallback = [
+    '/asset/textures/wallpapers/castle village 01.jpg',
+    '/asset/textures/wallpapers/castle village 02.jpg',
+    '/asset/textures/wallpapers/castle village 03.jpg',
+    '/asset/textures/wallpapers/castle village 04.jpg'
+  ];
+  const src = (await pickFromManifest()) || fallback[Math.floor(Math.random()*fallback.length)];
+  el.src = src;
+})();
+</script>
+</body>
+</html>

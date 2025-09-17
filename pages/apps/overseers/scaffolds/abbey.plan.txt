@@ -1,38 +1,40 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Abbey'**
+**Avalon Fairy 'Abbey' Scaffold Plan**
 
 1. **Foundation**
-   - Level ground preparation
-   - Concrete footings
+   - Size: 10m x 10m
+   - Material: Reinforced concrete
+   - Depth: 1m
 
-2. **Structure**
-   - Main frame: Wooden beams (2x4)
-   - Vertical supports: Spaced every 4 feet
-   - Cross bracing for stability
+2. **Vertical Supports**
+   - Type: Steel columns
+   - Spacing: Every 2m
+   - Height: 4m
 
-3. **Walls**
-   - Exterior: Plywood sheathing
-   - Interior: Insulation and drywall
+3. **Horizontal Beams**
+   - Type: Steel I-beams
+   - Placement: Top of vertical supports
+   - Size: 10m length
 
-4. **Roof**
-   - Trusses: Pre-fabricated or built on-site
-   - Roofing material: Shingles or thatch
+4. **Decking**
+   - Material: Plywood sheets
+   - Thickness: 18mm
+   - Coverage: Entire scaffold area
 
-5. **Access**
-   - Stairs: Wooden steps
-   - Railing: Safety railings around elevated areas
+5. **Safety Features**
+   - Guardrails: Installed at 1m height around the perimeter
+   - Toe boards: 150mm high at the base of guardrails
+   - Access ladder: 3m height, secured to the scaffold
 
-6. **Utilities**
-   - Electrical: Basic wiring plan
-   - Plumbing: Simple water lines for sinks
+6. **Stabilization**
+   - Diagonal bracing: Installed between vertical supports
+   - Base plates: 300mm x 300mm under each vertical support
 
-7. **Finishing**
-   - Exterior paint or stain
-   - Interior fixtures: Lighting, cabinetry
+7. **Inspection**
+   - Frequency: Daily before use
+   - Checklist: Structural integrity, safety features, and stability
 
-8. **Landscaping**
-   - Surrounding area: Grass, flower beds
-   - Pathways: Stone or gravel paths leading to the entrance
+8. **Dismantling Plan**
+   - Sequence: Remove guardrails, then decking, followed by vertical supports
+   - Safety: Ensure area is clear of personnel before dismantling
 
-**Notes:**
-- Ensure compliance with local building codes.
-- Consider environmental impact and sustainability.
+**End of Scaffold Plan**

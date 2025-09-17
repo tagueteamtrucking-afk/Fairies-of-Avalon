@@ -1,6 +1,40 @@
-<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T03:47:28.4622741Z -->
-<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
-<section>
-  <h2>Generated Content (Fallback)</h2>
-  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
-</section>
+**Minimal Scaffold Plan for Avalon Fairy 'Clarice'**
+
+1. **Character Overview**
+   - Name: Clarice
+   - Species: Fairy
+   - Role: Guardian of the Enchanted Forest
+   - Personality Traits: Kind, Curious, Playful
+
+2. **Physical Appearance**
+   - Wings: Iridescent, resembling butterfly wings
+   - Hair: Long, flowing, pastel colors (lavender and pink)
+   - Attire: Floral dress made of leaves and petals
+
+3. **Abilities**
+   - Magic: Nature manipulation (growth, healing)
+   - Flight: Agile and swift in the air
+   - Communication: Can speak with animals and plants
+
+4. **Backstory**
+   - Origin: Born from a magical flower in the heart of the forest
+   - Journey: Learned to harness her powers to protect her home
+
+5. **Goals and Motivations**
+   - Protect the Enchanted Forest from dark forces
+   - Foster harmony between creatures and nature
+
+6. **Allies and Relationships**
+   - Friends: Other fairies, woodland creatures
+   - Mentor: Elder fairy who taught her magic
+
+7. **Challenges**
+   - Confronting dark spirits threatening the forest
+   - Balancing her playful nature with her responsibilities
+
+8. **Development Arc**
+   - Growth: From a carefree fairy to a wise protector
+   - Key Events: Encounters with dark forces, forming alliances
+
+9. **Conclusion**
+   - Legacy: Ensuring the forest remains a sanctuary for all magical beings.

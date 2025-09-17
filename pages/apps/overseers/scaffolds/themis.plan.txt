@@ -1,33 +1,6 @@
-**Minimal Scaffold Plan for Avalon Fairy 'Themis'**
-
-1. **Introduction**
-   - Overview of Avalon Fairy 'Themis'
-   - Purpose and significance
-
-2. **Character Design**
-   - Visual appearance
-   - Key features (wings, attire, accessories)
-
-3. **Backstory**
-   - Origin of Themis
-   - Role in Avalon lore
-
-4. **Powers and Abilities**
-   - Unique abilities (e.g., justice, balance)
-   - Limitations and weaknesses
-
-5. **Personality Traits**
-   - Core personality characteristics
-   - Interactions with other characters
-
-6. **Relationships**
-   - Allies and friends
-   - Enemies and rivals
-
-7. **Goals and Motivations**
-   - Primary objectives
-   - Personal motivations
-
-8. **Conclusion**
-   - Summary of Themis's impact on the Avalon universe
-   - Future potential story arcs
+<!-- LLM Bridge Fallback (rate limit or no key) @ 2025-09-17T04:40:13.6498123Z -->
+<!-- This content is deterministic and safe to publish. Adapt or regenerate later. -->
+<section>
+  <h2>Generated Content (Fallback)</h2>
+  <p>This was produced by the Overseers' fallback path because the live LLM was unavailable or rate-limited.</p>
+</section>

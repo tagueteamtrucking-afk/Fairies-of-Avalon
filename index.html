@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fairies of Avalon</title>
+  <meta name="description" content="Futuristic fantasy + sci‑fi. Build worlds with Alexandria; create art with Tracy; plan 3D with Nina; pipelines with Charlotte.">
+  <style>
+    :root { --bg: #070b0f; --fg: #e8eaed; --muted:#aab2bd; --accent:#6ee7ff; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--fg); background:var(--bg);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      display:flex; min-height:100vh; flex-direction:column;
+    }
+    header{
+      position:relative; min-height:70vh; display:flex; align-items:center; justify-content:center; text-align:center;
+      background:#0b0f14;
+      overflow:hidden; isolation:isolate;
+    }
+    .hero{
+      position:absolute; inset:0; background-position:center; background-size:cover; background-repeat:no-repeat;
+      filter:contrast(1.05) brightness(.9);
+      transform:scale(1.02);
+    }
+    .overlay{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,8,14,.65),rgba(7,11,15,.92)); }
+    .content{ position:relative; padding:3rem 1rem; max-width:1100px; z-index:1 }
+    h1{font-size:clamp(2rem,5vw,3.5rem); margin:0 0 .5rem 0}
+    p.lead{color:var(--muted); font-size:clamp(1rem,2.3vw,1.2rem); margin:0 auto 1.25rem; max-width:60ch}
+    .cta{ display:flex; gap:.75rem; flex-wrap:wrap; align-items:center; justify-content:center; margin-top:1rem }
+    .btn{
+      display:inline-block; padding:.8rem 1.1rem; border-radius:14px; border:1px solid rgba(255,255,255,.15);
+      color:#0b0f14; background:var(--accent); font-weight:600; text-decoration:none;
+    }
+    .btn.secondary{ background:transparent; color:var(--fg)}
+    main{padding:2rem 1rem; max-width:1100px; margin:0 auto}
+    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem}
+    .card{background:#0c1117; border:1px solid #1d232c; border-radius:16px; padding:1rem}
+    .card h3{margin:.2rem 0 .4rem 0}
+    footer{color:#8a97a6; text-align:center; padding:2rem 1rem}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero" id="hero"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Fairies of Avalon</h1>
+      <p class="lead">Futuristic fantasy + sci‑fi. Start worldbuilding with <strong>Alexandria</strong>, then let <strong>Tracy</strong>, <strong>Nina</strong>, and <strong>Charlotte</strong> help bring it to life.</p>
+      <div class="cta">
+        <a class="btn" href="/pages/apps/alexandria/">Open Alexandria</a>
+        <a class="btn secondary" href="/pages/apps/">Open Microapps</a>
+        <a class="btn secondary" href="https://github.com/tagueteamtrucking-afk/Fairies-of-Avalon/actions/workflows/avalon-run-all.yml">Run All (Actions)</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="grid">
+      <div class="card"><h3>Alexandria — World Builder</h3><p>Choose / Roll / Custom for magic, pantheon, regions, and monsters. Exports JSON for the repo.</p></div>
+      <div class="card"><h3>Tracy — Artboards</h3><p>Auto art briefs based on your world JSON; style: futuristic fantasy + sci‑fi.</p></div>
+      <div class="card"><h3>Nina — 3D Index</h3><p>Indexes VRM + Wings assets for future scene previews.</p></div>
+      <div class="card"><h3>Charlotte — Pipelines</h3><p>SSML + i18n plan. Optional Azure TTS workflow creates MP3s (server-side).</p></div>
+    </div>
+  </main>
+  <footer>© Avalon — built with Actions • offline-first • pages/apps data writers</footer>
+  <script>
+    const picks = [
+      "asset/textures/wallpapers/castle village 01.jpg",
+      "asset/textures/wallpapers/castle village 02.jpg",
+      "asset/textures/wallpapers/castle village 03.jpg",
+      "asset/textures/wallpapers/castle village 04.jpg"
+    ];
+    function setBg(u){
+      const el = document.getElementById('hero');
+      el.style.backgroundImage = u ? "url('"+u+"')" : "none";
+    }
+    (function(){
+      const u = picks[Math.floor(Math.random()*picks.length)];
+      const img = new Image();
+      img.onload = () => setBg(u);
+      img.onerror = () => setBg("");
+      img.src = u;
+    })();
+  </script>
+</body>
+</html>

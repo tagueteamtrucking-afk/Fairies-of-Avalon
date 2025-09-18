@@ -36,18 +36,12 @@ $endpoint = "https://$Region.tts.speech.microsoft.com/cognitiveservices/v1"
 
 foreach($t in $plan.tts_tasks){
   $ssml = $t.ssml
-  if($ssml -notmatch '<speak'){
-    $ssml = "<speak version='1.0' xml:lang='en-US'><voice name='"+$Voice+"'>"+$ssml+"</voice></speak>"
-  }elseif($ssml -notmatch 'voice name='){
-    $ssml = $ssml -replace '<speak([^>]*)>', "<speak$1><voice name='"+$Voice+"'>"
-    if($ssml -notmatch '</voice>'){ $ssml = $ssml -replace '</speak>', '</voice></speak>' }
-  }
   try{
-    $bytes = Invoke-WebRequest -Uri $endpoint -Method Post -Headers @{
+    Invoke-WebRequest -Uri $endpoint -Method Post -Headers @{
       "Ocp-Apim-Subscription-Key" = $env:AZURE_TTS_KEY
       "X-Microsoft-OutputFormat"  = $Format
       "User-Agent"                = "avalon-tts-cli"
-    } -ContentType "application/ssml+xml" -Body $ssml -OutFile (Join-Path $outDir ($t.id + '.mp3')) -PassThru
+    } -ContentType "application/ssml+xml" -Body $ssml -OutFile (Join-Path $outDir ($t.id + '.mp3')) -PassThru | Out-Null
   }catch{
     Write-Warning "TTS call failed: $($_.Exception.Message). Writing placeholder text."
     Set-Content -LiteralPath (Join-Path $outDir ($t.id + '.txt')) -Value $t.ssml -Encoding UTF8

@@ -79,7 +79,9 @@ function currentModel(){
 }
 
 function download(filename, dataStr){
-  const a = create("a",{href:URL.createObjectURL(new Blob([dataStr],{type:"application/json"})), download:filename});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([dataStr],{type:"application/json"}));
+  a.download = filename;
   document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove()}, 0);
 }
 
@@ -89,8 +91,8 @@ function init(){
   chipBox("#magic-rules", MAGIC_RULES);
   buildRegions($("#w-regions").value);
 
-  $("[data-roll='magic']").onclick = ()=> $("#magic-choose").value = rnd(MAGIC);
-  $("[data-roll='pantheon']").onclick = ()=> $("#pantheon-choose").value = rnd(PANTHEON);
+  document.querySelector("[data-roll='magic']").onclick = ()=> $("#magic-choose").value = rnd(MAGIC);
+  document.querySelector("[data-roll='pantheon']").onclick = ()=> $("#pantheon-choose").value = rnd(PANTHEON);
   $("#regen-regions").onclick = ()=> buildRegions($("#w-regions").value);
 
   $("#export-json").onclick = ()=> {
@@ -99,7 +101,7 @@ function init(){
     download(`world-draft-${name||"untitled"}.json`, JSON.stringify(model, null, 2));
   };
 
-  $("#reset").onclick = ()=> { localStorage.removeItem("alex-world-draft"); location.reload() };
+  $("#reset").onclick = ()=> { location.reload() };
 }
 
 document.addEventListener("DOMContentLoaded", init);

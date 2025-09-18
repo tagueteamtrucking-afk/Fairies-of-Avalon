@@ -22,7 +22,6 @@ function As-Int([object]$x, [int]$default){
 }
 
 [int]$MaxTok = As-Int $MaxTokens 1500
-# Temperature can be float; we leave as string to pass through JSON.
 
 $worldsRoot = Join-Path $RepoRoot 'pages/apps/alexandria/worlds'
 if([string]::IsNullOrWhiteSpace($World)){
@@ -33,7 +32,6 @@ if([string]::IsNullOrWhiteSpace($World)){
 $dir = Join-Path $worldsRoot $World
 if(!(Test-Path $dir)){ throw "World not found: $World" }
 
-# Read world context safely
 function Read-Json([string]$p){ if(Test-Path $p){ try { Get-Content -LiteralPath $p -Raw | ConvertFrom-Json } catch { $null } } else { $null } }
 $seed = Read-Json (Join-Path $dir "seed-$World.json")
 $atlas = Read-Json (Join-Path $dir "atlas.json")
@@ -41,7 +39,6 @@ $bible = Read-Json (Join-Path $dir "lore-bible.json")
 $timeline = Read-Json (Join-Path $dir "timeline.json")
 $npc = Read-Json (Join-Path $dir "npc-codex.json")
 
-# Fallback builder
 function Build-Fallback {
   $out = [ordered]@{
     world=$World; generated=(Get-Date).ToUniversalTime().ToString('o');

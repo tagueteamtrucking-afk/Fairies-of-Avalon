@@ -16,16 +16,26 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
-      - name: Build VRM Index + Scene Stubs (explicit params; parse ints)
+      - name: Build VRM Index + Scene Stubs (safe wrapper)
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-          [int]$combos = if("${{ inputs.combos }}"){ "${{ inputs.combos }}" } else { 12 }
-          if ("${{ inputs.world }}") {
-            & "scripts/overseers/nina-3d-index.ps1" -RepoRoot "$PWD" -MaxCombos $combos -World "${{ inputs.world }}"
+          $repo = (Get-Location).Path
+
+          $world = @"
+${{ inputs.world }}
+"@
+
+          $cStr = "${{ inputs.combos }}"
+          if ([string]::IsNullOrWhiteSpace($cStr)) { $cStr = '12' }
+          [int]$combos = $cStr
+
+          if ([string]::IsNullOrWhiteSpace($world)) {
+            ./scripts/overseers/nina-3d-index.ps1 -RepoRoot $repo -MaxCombos $combos
           } else {
-            & "scripts/overseers/nina-3d-index.ps1" -RepoRoot "$PWD" -MaxCombos $combos
+            ./scripts/overseers/nina-3d-index.ps1 -RepoRoot $repo -MaxCombos $combos -World $world
           }
+
 
       - name: Commit artifacts
         shell: bash
@@ -42,3 +52,4 @@ jobs:
             git pull --rebase origin "${GITHUB_REF_NAME}" || true
             git push origin HEAD:"${GITHUB_REF_NAME}"
           fi
+

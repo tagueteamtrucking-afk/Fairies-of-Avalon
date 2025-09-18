@@ -16,12 +16,25 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
-      - name: Build Artboards (explicit params; parse ints)
+      - name: Build Artboards (safe wrapper)
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-          [int]$boards = if("${{ inputs.boards }}"){ "${{ inputs.boards }}" } else { 8 }
-          & "scripts/overseers/tracy-artboard.ps1" -RepoRoot "$PWD" -World "${{ inputs.world }}" -Boards $boards
+          $repo = (Get-Location).Path
+
+          $world = @"
+${{ inputs.world }}
+"@
+
+          $bStr = "${{ inputs.boards }}"
+          if ([string]::IsNullOrWhiteSpace($bStr)) { $bStr = '8' }
+          [int]$boards = $bStr
+
+          ./scripts/overseers/tracy-artboard.ps1 `
+            -RepoRoot $repo `
+            -World $world `
+            -Boards $boards
+
 
       - name: Commit artifacts
         shell: bash
@@ -37,3 +50,4 @@ jobs:
             git pull --rebase origin "${GITHUB_REF_NAME}" || true
             git push origin HEAD:"${GITHUB_REF_NAME}"
           fi
+

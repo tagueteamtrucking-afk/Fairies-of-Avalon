@@ -18,15 +18,19 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
-      - name: Build Program (explicit params)
+      - name: Build Program (safe wrapper)
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
-          [int]$weeks = if("${{ inputs.weeks }}"){ "${{ inputs.weeks }}" } else { 8 }
-          [int]$dpw   = if("${{ inputs.days_per_week }}"){ "${{ inputs.days_per_week }}" } else { 4 }
+          $repo = (Get-Location).Path
+          $wStr = "${{ inputs.weeks }}"; if ([string]::IsNullOrWhiteSpace($wStr)) { $wStr='8' }
+          $dStr = "${{ inputs.days_per_week }}"; if ([string]::IsNullOrWhiteSpace($dStr)) { $dStr='4' }
+          [int]$weeks = $wStr
+          [int]$dpw   = $dStr
           $goal  = if("${{ inputs.goal }}"){ "${{ inputs.goal }}" } else { "recomp" }
           $equip = if("${{ inputs.equipment }}"){ "${{ inputs.equipment }}" } else { "minimal" }
-          & "scripts/overseers/jem-program-plan.ps1" -RepoRoot "$PWD" -Weeks $weeks -DaysPerWeek $dpw -Goal $goal -Equipment $equip
+          ./scripts/overseers/jem-program-plan.ps1 -RepoRoot $repo -Weeks $weeks -DaysPerWeek $dpw -Goal $goal -Equipment $equip
+
 
       - name: Commit program
         shell: bash
@@ -42,3 +46,4 @@ jobs:
             git pull --rebase origin "${GITHUB_REF_NAME}" || true
             git push origin HEAD:"${GITHUB_REF_NAME}"
           fi
+

@@ -1,0 +1,74 @@
+name: Alexandria — Build World (All-in-One)
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:          { description: "World Title", required: false, type: string }
+      prompt:         { description: "Starter hook / prompt", required: false, type: string }
+      events:         { description: "Timeline events count", required: false, default: 7,  type: number }
+      npcs:           { description: "NPC count",              required: false, default: 12, type: number }
+      regions:        { description: "Region count",           required: false, default: 5,  type: number }
+      force_fallback: { description: "Force offline",          required: false, default: true, type: boolean }
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Build All (safe wrapper; no &; no inline expr)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $repo = (Get-Location).Path
+
+          $title  = @"
+${{ inputs.title }}
+"@
+          $prompt = @"
+${{ inputs.prompt }}
+"@
+
+          $eventsStr  = "${{ inputs.events }}"
+          $npcsStr    = "${{ inputs.npcs }}"
+          $regionsStr = "${{ inputs.regions }}"
+          if ([string]::IsNullOrWhiteSpace($eventsStr))  { $eventsStr  = '7' }
+          if ([string]::IsNullOrWhiteSpace($npcsStr))    { $npcsStr    = '12' }
+          if ([string]::IsNullOrWhiteSpace($regionsStr)) { $regionsStr = '5' }
+          [int]$events  = $eventsStr
+          [int]$npcs    = $npcsStr
+          [int]$regions = $regionsStr
+
+          $fb = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
+          $switch = @()
+          if ($fb) { $switch += "-ForceFallback" }
+
+          ./scripts/overseers/alexandria-build-all.ps1 `
+            -RepoRoot $repo `
+            -Title $title `
+            -Prompt $prompt `
+            -Events $events `
+            -NPCs $npcs `
+            -Regions $regions `
+            @switch
+
+
+      - name: Commit artifacts
+        shell: bash
+        run: |
+          set -e
+          git config user.name  "actions-bot"
+          git config user.email "actions@github.com"
+          git add -A pages/apps/alexandria/worlds || true
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Alexandria build-all artifacts"
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+

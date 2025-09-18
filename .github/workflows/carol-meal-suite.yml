@@ -17,14 +17,18 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
-      - name: Build Meal Plan (explicit params)
+      - name: Build Meal Plan (safe wrapper)
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
-          [int]$days = if("${{ inputs.days }}"){ "${{ inputs.days }}" } else { 7 }
-          [int]$kcal = if("${{ inputs.kcal_target }}"){ "${{ inputs.kcal_target }}" } else { 2200 }
+          $repo = (Get-Location).Path
+          $dStr = "${{ inputs.days }}"; if ([string]::IsNullOrWhiteSpace($dStr)) { $dStr='7' }
+          $kStr = "${{ inputs.kcal_target }}"; if ([string]::IsNullOrWhiteSpace($kStr)) { $kStr='2200' }
+          [int]$days = $dStr
+          [int]$kcal = $kStr
           $style = if("${{ inputs.diet_style }}"){ "${{ inputs.diet_style }}" } else { "balanced" }
-          & "scripts/overseers/carol-meal-plan.ps1" -RepoRoot "$PWD" -Days $days -KcalTarget $kcal -DietStyle $style
+          ./scripts/overseers/carol-meal-plan.ps1 -RepoRoot $repo -Days $days -KcalTarget $kcal -DietStyle $style
+
 
       - name: Commit meal plan
         shell: bash
@@ -40,3 +44,4 @@ jobs:
             git pull --rebase origin "${GITHUB_REF_NAME}" || true
             git push origin HEAD:"${GITHUB_REF_NAME}"
           fi
+

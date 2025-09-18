@@ -46,60 +46,86 @@ jobs:
           [int]$events  = if("${{ inputs.events }}"){ "${{ inputs.events }}" } else { 7 }
           [int]$npcs    = if("${{ inputs.npcs }}"){ "${{ inputs.npcs }}" } else { 12 }
           [int]$regions = if("${{ inputs.regions }}"){ "${{ inputs.regions }}" } else { 5 }
-          $fallback = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
-          & "scripts/overseers/alexandria-build-all.ps1" -RepoRoot "$PWD" -Title "${{ inputs.title }}" -Prompt "${{ inputs.prompt }}" -Events $events -NPCs $npcs -Regions $regions -ForceFallback:$fallback
-          $worldsDir = Join-Path $PWD 'pages/apps/alexandria/worlds'
+          $fb = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
+          $switch = @(); if ($fb) { $switch += "-ForceFallback" }
+
+          $repo = (Get-Location).Path
+          $title  = @"
+${{ inputs.title }}
+"@
+          $prompt = @"
+${{ inputs.prompt }}
+"@
+          ./scripts/overseers/alexandria-build-all.ps1 -RepoRoot $repo -Title $title -Prompt $prompt -Events $events -NPCs $npcs -Regions $regions @switch
+
+      - name: Capture WORLD_ID
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $worldsDir = Join-Path (Get-Location).Path 'pages/apps/alexandria/worlds'
           $latest = Get-ChildItem -LiteralPath $worldsDir -Filter 'seed-*.json' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 1
           if(-not $latest){ throw "No seed generated." }
           $wid = $latest.BaseName.Substring(5)
           "WORLD_ID=$wid" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          Write-Host "WORLD_ID: $wid"
 
       - name: 2) Alexandria — Helpers
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
           [int]$perTown = if("${{ inputs.per_town }}"){ "${{ inputs.per_town }}" } else { 3 }
-          $fallback = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
-          & "scripts/overseers/alexandria-suite.ps1" -RepoRoot "$PWD" -World "${{ env.WORLD_ID }}" -PerTown $perTown -ForceFallback:$fallback
+          $fb = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
+          $switch = @(); if ($fb) { $switch += "-ForceFallback" }
+          $repo = (Get-Location).Path
+          ./scripts/overseers/alexandria-suite.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -PerTown $perTown @switch
 
       - name: 3) Tracy — Art Suite
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
           [int]$boards = if("${{ inputs.boards }}"){ "${{ inputs.boards }}" } else { 8 }
-          & "scripts/overseers/tracy-artboard.ps1" -RepoRoot "$PWD" -World "${{ env.WORLD_ID }}" -Boards $boards
+          $repo = (Get-Location).Path
+          ./scripts/overseers/tracy-artboard.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -Boards $boards
 
       - name: 4) Nina — 3D Suite
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
           [int]$combos = if("${{ inputs.combos }}"){ "${{ inputs.combos }}" } else { 12 }
-          & "scripts/overseers/nina-3d-index.ps1" -RepoRoot "$PWD" -MaxCombos $combos -World "${{ env.WORLD_ID }}"
+          $repo = (Get-Location).Path
+          ./scripts/overseers/nina-3d-index.ps1 -RepoRoot $repo -MaxCombos $combos -World "${{ env.WORLD_ID }}"
 
       - name: 5) Charlotte — Pipelines
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
-          & "scripts/overseers/charlotte-pipeline-plan.ps1" -RepoRoot "$PWD" -World "${{ env.WORLD_ID }}" -TargetLangs "${{ inputs.target_langs }}"
+          $repo = (Get-Location).Path
+          ./scripts/overseers/charlotte-pipeline-plan.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -TargetLangs "${{ inputs.target_langs }}"
 
       - name: 6) Carol — Meal Plan
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
-          [int]$days = if("${{ inputs.carol_days }}"){ "${{ inputs.carol_days }}" } else { 7 }
-          [int]$kcal = if("${{ inputs.carol_kcal }}"){ "${{ inputs.carol_kcal }}" } else { 2200 }
+          $repo = (Get-Location).Path
+          $dStr = "${{ inputs.carol_days }}"; if ([string]::IsNullOrWhiteSpace($dStr)) { $dStr='7' }
+          $kStr = "${{ inputs.carol_kcal }}"; if ([string]::IsNullOrWhiteSpace($kStr)) { $kStr='2200' }
+          [int]$days = $dStr
+          [int]$kcal = $kStr
           $style = if("${{ inputs.carol_style }}"){ "${{ inputs.carol_style }}" } else { "balanced" }
-          & "scripts/overseers/carol-meal-plan.ps1" -RepoRoot "$PWD" -Days $days -KcalTarget $kcal -DietStyle $style
+          ./scripts/overseers/carol-meal-plan.ps1 -RepoRoot $repo -Days $days -KcalTarget $kcal -DietStyle $style
 
       - name: 7) Jem — Program Plan
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
-          [int]$weeks = if("${{ inputs.jem_weeks }}"){ "${{ inputs.jem_weeks }}" } else { 8 }
-          [int]$dpw   = if("${{ inputs.jem_dpw }}"){ "${{ inputs.jem_dpw }}" } else { 4 }
+          $repo = (Get-Location).Path
+          $wStr = "${{ inputs.jem_weeks }}"; if ([string]::IsNullOrWhiteSpace($wStr)) { $wStr='8' }
+          $dStr = "${{ inputs.jem_dpw }}"; if ([string]::IsNullOrWhiteSpace($dStr)) { $dStr='4' }
+          [int]$weeks = $wStr
+          [int]$dpw   = $dStr
           $goal  = if("${{ inputs.jem_goal }}"){ "${{ inputs.jem_goal }}" } else { "recomp" }
           $equip = if("${{ inputs.jem_equipment }}"){ "${{ inputs.jem_equipment }}" } else { "minimal" }
-          & "scripts/overseers/jem-program-plan.ps1" -RepoRoot "$PWD" -Weeks $weeks -DaysPerWeek $dpw -Goal $goal -Equipment $equip
+          ./scripts/overseers/jem-program-plan.ps1 -RepoRoot $repo -Weeks $weeks -DaysPerWeek $dpw -Goal $goal -Equipment $equip
 
       - name: Commit everything
         shell: bash

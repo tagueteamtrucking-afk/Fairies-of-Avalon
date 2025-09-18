@@ -17,18 +17,14 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
-      - name: Build Meal Plan (parse ints safely)
+      - name: Build Meal Plan (explicit params)
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
-          $daysIn = "${{ inputs.days }}"; if([string]::IsNullOrWhiteSpace($daysIn)){ $daysIn='7' }
-          [int]$days = $daysIn
-          $kcalIn = "${{ inputs.kcal_target }}"; if([string]::IsNullOrWhiteSpace($kcalIn)){ $kcalIn='2200' }
-          [int]$kcal = $kcalIn
-          $style = "${{ inputs.diet_style }}"
-          if([string]::IsNullOrWhiteSpace($style)){ $style='balanced' }
-          $args = @{ RepoRoot="$PWD"; Days=$days; KcalTarget=$kcal; DietStyle=$style }
-          & "scripts/overseers/carol-meal-plan.ps1" @args
+          [int]$days = if("${{ inputs.days }}"){ "${{ inputs.days }}" } else { 7 }
+          [int]$kcal = if("${{ inputs.kcal_target }}"){ "${{ inputs.kcal_target }}" } else { 2200 }
+          $style = if("${{ inputs.diet_style }}"){ "${{ inputs.diet_style }}" } else { "balanced" }
+          & "scripts/overseers/carol-meal-plan.ps1" -RepoRoot "$PWD" -Days $days -KcalTarget $kcal -DietStyle $style
 
       - name: Commit meal plan
         shell: bash

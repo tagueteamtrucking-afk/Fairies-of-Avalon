@@ -18,18 +18,15 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
-      - name: Build Program (parse ints safely)
+      - name: Build Program (explicit params)
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
-          $wIn = "${{ inputs.weeks }}"; if([string]::IsNullOrWhiteSpace($wIn)){ $wIn='8' }
-          [int]$weeks = $wIn
-          $dIn = "${{ inputs.days_per_week }}"; if([string]::IsNullOrWhiteSpace($dIn)){ $dIn='4' }
-          [int]$dpw = $dIn
-          $goal = "${{ inputs.goal }}"; if([string]::IsNullOrWhiteSpace($goal)){ $goal='recomp' }
-          $equip = "${{ inputs.equipment }}"; if([string]::IsNullOrWhiteSpace($equip)){ $equip='minimal' }
-          $args = @{ RepoRoot="$PWD"; Weeks=$weeks; DaysPerWeek=$dpw; Goal=$goal; Equipment=$equip }
-          & "scripts/overseers/jem-program-plan.ps1" @args
+          [int]$weeks = if("${{ inputs.weeks }}"){ "${{ inputs.weeks }}" } else { 8 }
+          [int]$dpw   = if("${{ inputs.days_per_week }}"){ "${{ inputs.days_per_week }}" } else { 4 }
+          $goal  = if("${{ inputs.goal }}"){ "${{ inputs.goal }}" } else { "recomp" }
+          $equip = if("${{ inputs.equipment }}"){ "${{ inputs.equipment }}" } else { "minimal" }
+          & "scripts/overseers/jem-program-plan.ps1" -RepoRoot "$PWD" -Weeks $weeks -DaysPerWeek $dpw -Goal $goal -Equipment $equip
 
       - name: Commit program
         shell: bash

@@ -20,35 +20,15 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
-      - name: Build All (splat args; no backticks)
+      - name: Build All (explicit params; no backticks/splat)
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-
-          $eventsIn  = "${{ inputs.events }}"
-          $npcsIn    = "${{ inputs.npcs }}"
-          $regionsIn = "${{ inputs.regions }}"
-
-          if ([string]::IsNullOrWhiteSpace($eventsIn))  { $eventsIn  = '7'  }
-          if ([string]::IsNullOrWhiteSpace($npcsIn))    { $npcsIn    = '12' }
-          if ([string]::IsNullOrWhiteSpace($regionsIn)) { $regionsIn = '5'  }
-
-          [int]$events  = $eventsIn
-          [int]$npcs    = $npcsIn
-          [int]$regions = $regionsIn
+          [int]$events  = if("${{ inputs.events }}"){ "${{ inputs.events }}" } else { 7 }
+          [int]$npcs    = if("${{ inputs.npcs }}"){ "${{ inputs.npcs }}" } else { 12 }
+          [int]$regions = if("${{ inputs.regions }}"){ "${{ inputs.regions }}" } else { 5 }
           $fallback = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
-
-          $args = @{
-            RepoRoot      = "$PWD"
-            Title         = "${{ inputs.title }}"
-            Prompt        = "${{ inputs.prompt }}"
-            Events        = $events
-            NPCs          = $npcs
-            Regions       = $regions
-            ForceFallback = $fallback
-          }
-
-          & "scripts/overseers/alexandria-build-all.ps1" @args
+          & "scripts/overseers/alexandria-build-all.ps1" -RepoRoot "$PWD" -Title "${{ inputs.title }}" -Prompt "${{ inputs.prompt }}" -Events $events -NPCs $npcs -Regions $regions -ForceFallback:$fallback
 
       - name: Commit artifacts
         shell: bash

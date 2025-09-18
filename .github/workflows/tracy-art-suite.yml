@@ -16,22 +16,12 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
-      - name: Build Artboards (parse ints safely)
+      - name: Build Artboards (explicit params; parse ints)
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-
-          $boardsIn = "${{ inputs.boards }}"
-          if ([string]::IsNullOrWhiteSpace($boardsIn)) { $boardsIn = '8' }
-          [int]$boards = $boardsIn
-
-          $args = @{
-            RepoRoot = "$PWD"
-            World    = "${{ inputs.world }}"
-            Boards   = $boards
-          }
-
-          & "scripts/overseers/tracy-artboard.ps1" @args
+          [int]$boards = if("${{ inputs.boards }}"){ "${{ inputs.boards }}" } else { 8 }
+          & "scripts/overseers/tracy-artboard.ps1" -RepoRoot "$PWD" -World "${{ inputs.world }}" -Boards $boards
 
       - name: Commit artifacts
         shell: bash

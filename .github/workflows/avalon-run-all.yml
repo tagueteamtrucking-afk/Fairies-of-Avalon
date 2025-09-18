@@ -1,0 +1,120 @@
+name: Avalon — Run All (Mega)
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:          { description: "World Title", required: false, type: string }
+      prompt:         { description: "Starter hook / prompt", required: false, type: string }
+      events:         { description: "Timeline events", required: false, default: 7,  type: number }
+      npcs:           { description: "NPC count",     required: false, default: 12, type: number }
+      regions:        { description: "Region count",  required: false, default: 5,  type: number }
+      per_town:       { description: "Figures per settlement", required: false, default: 3, type: number }
+      boards:         { description: "Art briefs count", required: false, default: 8, type: number }
+      combos:         { description: "VRM×Wing combos", required: false, default: 12, type: number }
+      target_langs:   { description: "Translations (comma)", required: false, default: "es", type: string }
+      carol_days:     { description: "Carol days", required: false, default: 7, type: number }
+      carol_kcal:     { description: "Carol kcal/day", required: false, default: 2200, type: number }
+      carol_style:    { description: "balanced|mediterranean|keto|vegetarian", required: false, default: "balanced", type: string }
+      jem_weeks:      { description: "Jem weeks", required: false, default: 8, type: number }
+      jem_dpw:        { description: "Jem days/week", required: false, default: 4, type: number }
+      jem_goal:       { description: "recomp|hypertrophy|strength|fatloss", required: false, default: "recomp", type: string }
+      jem_equipment:  { description: "minimal|gym", required: false, default: "minimal", type: string }
+      force_fallback: { description: "Force offline (no LLM)", required: false, default: true, type: boolean }
+
+permissions:
+  contents: write
+
+jobs:
+  mega:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Setup PowerShell + YAML
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module powershell-yaml -Force -Scope CurrentUser -AllowClobber
+          Import-Module powershell-yaml
+
+      - name: 1) Alexandria — Build World
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          [int]$events  = if("${{ inputs.events }}"){ "${{ inputs.events }}" } else { 7 }
+          [int]$npcs    = if("${{ inputs.npcs }}"){ "${{ inputs.npcs }}" } else { 12 }
+          [int]$regions = if("${{ inputs.regions }}"){ "${{ inputs.regions }}" } else { 5 }
+          $fallback = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
+          & "scripts/overseers/alexandria-build-all.ps1" -RepoRoot "$PWD" -Title "${{ inputs.title }}" -Prompt "${{ inputs.prompt }}" -Events $events -NPCs $npcs -Regions $regions -ForceFallback:$fallback
+          $worldsDir = Join-Path $PWD 'pages/apps/alexandria/worlds'
+          $latest = Get-ChildItem -LiteralPath $worldsDir -Filter 'seed-*.json' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+          if(-not $latest){ throw "No seed generated." }
+          $wid = $latest.BaseName.Substring(5)
+          "WORLD_ID=$wid" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: 2) Alexandria — Helpers
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          [int]$perTown = if("${{ inputs.per_town }}"){ "${{ inputs.per_town }}" } else { 3 }
+          $fallback = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
+          & "scripts/overseers/alexandria-suite.ps1" -RepoRoot "$PWD" -World "${{ env.WORLD_ID }}" -PerTown $perTown -ForceFallback:$fallback
+
+      - name: 3) Tracy — Art Suite
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          [int]$boards = if("${{ inputs.boards }}"){ "${{ inputs.boards }}" } else { 8 }
+          & "scripts/overseers/tracy-artboard.ps1" -RepoRoot "$PWD" -World "${{ env.WORLD_ID }}" -Boards $boards
+
+      - name: 4) Nina — 3D Suite
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          [int]$combos = if("${{ inputs.combos }}"){ "${{ inputs.combos }}" } else { 12 }
+          & "scripts/overseers/nina-3d-index.ps1" -RepoRoot "$PWD" -MaxCombos $combos -World "${{ env.WORLD_ID }}"
+
+      - name: 5) Charlotte — Pipelines
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          & "scripts/overseers/charlotte-pipeline-plan.ps1" -RepoRoot "$PWD" -World "${{ env.WORLD_ID }}" -TargetLangs "${{ inputs.target_langs }}"
+
+      - name: 6) Carol — Meal Plan
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          [int]$days = if("${{ inputs.carol_days }}"){ "${{ inputs.carol_days }}" } else { 7 }
+          [int]$kcal = if("${{ inputs.carol_kcal }}"){ "${{ inputs.carol_kcal }}" } else { 2200 }
+          $style = if("${{ inputs.carol_style }}"){ "${{ inputs.carol_style }}" } else { "balanced" }
+          & "scripts/overseers/carol-meal-plan.ps1" -RepoRoot "$PWD" -Days $days -KcalTarget $kcal -DietStyle $style
+
+      - name: 7) Jem — Program Plan
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          [int]$weeks = if("${{ inputs.jem_weeks }}"){ "${{ inputs.jem_weeks }}" } else { 8 }
+          [int]$dpw   = if("${{ inputs.jem_dpw }}"){ "${{ inputs.jem_dpw }}" } else { 4 }
+          $goal  = if("${{ inputs.jem_goal }}"){ "${{ inputs.jem_goal }}" } else { "recomp" }
+          $equip = if("${{ inputs.jem_equipment }}"){ "${{ inputs.jem_equipment }}" } else { "minimal" }
+          & "scripts/overseers/jem-program-plan.ps1" -RepoRoot "$PWD" -Weeks $weeks -DaysPerWeek $dpw -Goal $goal -Equipment $equip
+
+      - name: Commit everything
+        shell: bash
+        run: |
+          set -e
+          git config user.name  "actions-bot"
+          git config user.email "actions@github.com"
+          git add -A pages/apps/alexandria/worlds || true
+          git add -A pages/apps/overseers/vrm-index.json || true
+          git add -A pages/apps/carol/plans || true
+          git add -A pages/apps/jem/programs || true
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Avalon Mega: world+helpers+art+3D+pipelines+health"
+            git pull --rebase origin "${GITHUB_REF_NAME:-main}" || true
+            git push origin HEAD:"${GITHUB_REF_NAME:-main}"
+          fi

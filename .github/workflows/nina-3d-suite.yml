@@ -16,26 +16,16 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
-      - name: Build VRM Index + Scene Stubs (parse ints safely)
+      - name: Build VRM Index + Scene Stubs (explicit params; parse ints)
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-
-          $combosIn = "${{ inputs.combos }}"
-          if ([string]::IsNullOrWhiteSpace($combosIn)) { $combosIn = '12' }
-          [int]$combos = $combosIn
-
-          $args = @{
-            RepoRoot  = "$PWD"
-            MaxCombos = $combos
+          [int]$combos = if("${{ inputs.combos }}"){ "${{ inputs.combos }}" } else { 12 }
+          if ("${{ inputs.world }}") {
+            & "scripts/overseers/nina-3d-index.ps1" -RepoRoot "$PWD" -MaxCombos $combos -World "${{ inputs.world }}"
+          } else {
+            & "scripts/overseers/nina-3d-index.ps1" -RepoRoot "$PWD" -MaxCombos $combos
           }
-
-          $world = "${{ inputs.world }}"
-          if (-not [string]::IsNullOrWhiteSpace($world)) {
-            $args['World'] = $world
-          }
-
-          & "scripts/overseers/nina-3d-index.ps1" @args
 
       - name: Commit artifacts
         shell: bash

@@ -1,0 +1,36 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "1.19.0"
+  last_updated: "2025-09-18"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    v1.19.0 — Fix Pack (No Splatting):
+      - Replaced all CI invocations with single-line explicit parameter calls (no @splat, no backticks).
+      - Sanitized numeric inputs and guarded git add paths.
+      - Added/retained Carol & Jem suites; orchestrator updated to explicit calls.
+      - Keep UI frozen; data-only artifacts.
+
+engineering_rules:
+  - "Never use $args or @splat in Actions. Use single-line explicit parameter calls."
+  - "Cast numbers with [int] at workflow boundary; pass booleans with -Flag:$true."
+  - "Guard git add on missing paths; treat 'Nothing to commit' as success."
+  - "JSON depth ≤ 100. Linux-safe PowerShell; avoid LINQ."
+  - "No UI edits without explicit approval."
+
+recent_incidents:
+  - { id: CI-PS-SPLAT, symptom: "An expression was expected after '('", cause: "Splatting / parsing quirk on runner", fix: "Use explicit param calls; no splatting" }
+  - { id: CI-INT-ARRAY, symptom: "System.Object[]→Int32", cause: "Odd input binding", fix: "Parse to [int] then pass" }
+  - { id: CI-PATHSPEC, symptom: "git add pathspec missing", fix: "Guard with || true" }
+
+runtime:
+  workflows:
+    avalon_run_all: ".github/workflows/avalon-run-all.yml"
+    alexandria_build_all: ".github/workflows/alexandria-build-all.yml"
+    alexandria_helpers: ".github/workflows/alexandria-helpers.yml"
+    tracy_art_suite: ".github/workflows/tracy-art-suite.yml"
+    nina_3d_suite: ".github/workflows/nina-3d-suite.yml"
+    carol_meal_suite: ".github/workflows/carol-meal-suite.yml"
+    jem_program_suite: ".github/workflows/jem-program-suite.yml"
+
+preserve_paths: ["asset/models", "asset/wings", "asset/textures", "pages/apps/alexandria/worlds", "pages/apps/carol/plans", "pages/apps/jem/programs"]

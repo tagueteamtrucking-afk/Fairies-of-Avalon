@@ -1,0 +1,86 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "1.17.0"
+  last_updated: "2025-09-18"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    v1.17.0 — Fixes + Health Suites:
+      - Replaced fragile backtick line-break invocations with PowerShell hashtable splatting in workflows.
+      - Sanitized numeric inputs (avoid Object[]→Int32 binding) and boolean coercion at workflow boundary.
+      - Commit steps tolerate missing folders and treat "Nothing to commit" as success.
+      - Added Carol (meal plans) and Jem (training programs) suites (data-only, offline-first).
+      - Memory records all recent incident patterns and rules to prevent regressions.
+
+delivery_policy:
+  speed_first: true
+  two_person_authorization: false
+  whole_file_replacements_only: true
+  preferred_shell: "GitHub Actions workflows + PowerShell"
+  notes:
+    - Provide full files ready to replace existing ones (no diffs).
+    - Workflows-first; scripts are helpers; no wrapper assumptions.
+    - No UI changes unless explicitly requested.
+
+project:
+  world: "Avalon"
+  assistants_label: "Fairies"
+  domain: "fairiesofavalon.com"
+  home_label: "home"
+  preserve_paths: ["asset/models", "asset/wings", "asset/textures", "pages/apps/alexandria/worlds", "pages/apps/carol/plans", "pages/apps/jem/programs"]
+  importmap_required: true
+  importmap_map: ["three", "three/addons/", "@pixiv/three-vrm"]
+
+runtime:
+  workflows:
+    alexandria_build_all: ".github/workflows/alexandria-build-all.yml"
+    alexandria_helpers: ".github/workflows/alexandria-helpers.yml"
+    tracy_art_suite: ".github/workflows/tracy-art-suite.yml"
+    nina_3d_suite: ".github/workflows/nina-3d-suite.yml"
+    charlotte_pipelines: ".github/workflows/charlotte-pipelines.yml"
+    carol_meal_suite: ".github/workflows/carol-meal-suite.yml"
+    jem_program_suite: ".github/workflows/jem-program-suite.yml"
+
+  artifacts:
+    - "pages/apps/alexandria/worlds/**"
+    - "pages/apps/overseers/vrm-index.json"
+    - "pages/apps/carol/plans/**"
+    - "pages/apps/jem/programs/**"
+
+engineering_rules:
+  - "Ask clarifying questions until ≥95% sure; plan steps before code; use tools; no guesses."
+  - "Linux-safe PowerShell; avoid LINQ; always set $ErrorActionPreference='Stop'."
+  - "Use hashtable splatting in CI scripts; DO NOT use backtick line continuations."
+  - "Sanitize workflow inputs: cast numbers to [int], booleans via [System.Convert]::ToBoolean."
+  - "Switch parameters must be passed as -Flag:$true (not strings)."
+  - "ConvertTo-Json Depth ≤ 100."
+  - "Treat 'Nothing to commit' as success; non-fast-forward: pull --rebase then push."
+  - "Guard git add on missing paths (|| true)."
+
+recent_incidents:
+  - { id: A1_A2, symptom: "An expression was expected after '('", cause: "PS backtick line continuations in Actions", fix: "Use hashtable splatting; remove backticks" }
+  - { id: A3, symptom: "Cannot convert System.Object[] to Int32", cause: "Number inputs binding oddly", fix: "Coerce to [int] in workflow before script" }
+  - { id: A4, symptom: "fatal: pathspec ... did not match any files", cause: "git add on non-existent folder", fix: "Guard with || true" }
+  - { id: R100, symptom: "Depth argument > 100", fix: "Clamp JSON depth ≤100" }
+  - { id: R101, symptom: "Rate limit / LLM unavailable", fix: "Offline-first; ForceFallback true" }
+  - { id: R102, symptom: "Unicode escape error in JS string with backticks", fix: "Avoid grave accents in inline JS or escape properly" }
+  - { id: R103, symptom: "Non-fast-forward push", fix: "git pull --rebase before push" }
+  - { id: R104, symptom: "Get-YamlDocuments parse error", fix: "Ensure valid YAML; avoid mixed meta blocks; install powershell-yaml" }
+  - { id: R105, symptom: "Property 'telemetry' not found", fix: "Only set known keys; defensive checks" }
+
+assistants:
+  - { id: alexandria, role: "Worldbuilding DM & Author", status: "operational" }
+  - { id: tracy,      role: "Art & Assets",             status: "operational" }
+  - { id: nina,       role: "3D/Backend",               status: "operational" }
+  - { id: charlotte,  role: "Pipelines/TTS/Files",      status: "operational" }
+  - { id: carol_li,   role: "Nutrition & Meal Plans",   status: "operational" }
+  - { id: jem_nassim, role: "Fitness Programs",         status: "operational" }
+
+plans:
+  now:
+    - "Use Alexandria Build + Helpers to establish a world."
+    - "Run Tracy, Nina, Charlotte on that world (artboards, 3D index, SSML/translation)."
+    - "Generate Carol plans and Jem programs as supporting content (data-only)."
+  next:
+    - "Add continuity HTML reporter (read-only UI) when you explicitly approve UI changes."
+    - "Then let AIs assemble the site from artifacts."

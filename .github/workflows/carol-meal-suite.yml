@@ -1,0 +1,46 @@
+name: Carol — Meal Plan Suite
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:        { description: "Days to plan", required: false, default: 7, type: number }
+      kcal_target: { description: "Daily calories (e.g., 2200)", required: false, default: 2200, type: number }
+      diet_style:  { description: "balanced|mediterranean|keto|vegetarian", required: false, default: "balanced", type: string }
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Build Meal Plan (parse ints safely)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $daysIn = "${{ inputs.days }}"; if([string]::IsNullOrWhiteSpace($daysIn)){ $daysIn='7' }
+          [int]$days = $daysIn
+          $kcalIn = "${{ inputs.kcal_target }}"; if([string]::IsNullOrWhiteSpace($kcalIn)){ $kcalIn='2200' }
+          [int]$kcal = $kcalIn
+          $style = "${{ inputs.diet_style }}"
+          if([string]::IsNullOrWhiteSpace($style)){ $style='balanced' }
+          $args = @{ RepoRoot="$PWD"; Days=$days; KcalTarget=$kcal; DietStyle=$style }
+          & "scripts/overseers/carol-meal-plan.ps1" @args
+
+      - name: Commit meal plan
+        shell: bash
+        run: |
+          set -e
+          git config user.name "actions-bot"
+          git config user.email "actions@github.com"
+          git add -A pages/apps/carol/plans || true
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Carol: meal plan"
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi

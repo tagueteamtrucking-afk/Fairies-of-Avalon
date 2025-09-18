@@ -1,49 +1,66 @@
 name: Alexandria — Build World (All-in-One)
+
 on:
   workflow_dispatch:
     inputs:
-      title: { description: "World Title", required: false, type: string }
-      prompt: { description: "Starter hook / prompt", required: false, type: string }
-      events: { description: "Timeline events count", required: false, default: 7, type: number }
-      npcs: { description: "NPC count", required: false, default: 12, type: number }
-      regions: { description: "Region count", required: false, default: 5, type: number }
-      force_fallback: { description: "Force offline", required: false, default: true, type: boolean }
+      title:          { description: "World Title", required: false, type: string }
+      prompt:         { description: "Starter hook / prompt", required: false, type: string }
+      events:         { description: "Timeline events count", required: false, default: 7,  type: number }
+      npcs:           { description: "NPC count",              required: false, default: 12, type: number }
+      regions:        { description: "Region count",           required: false, default: 5,  type: number }
+      force_fallback: { description: "Force offline",          required: false, default: true, type: boolean }
+
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: { contents: write }
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - name: Install PowerShell YAML
+
+      - name: Build All (splat args; no backticks)
         shell: pwsh
         run: |
-          $ErrorActionPreference='Stop'
-          Install-Module powershell-yaml -Force -Scope CurrentUser -AllowClobber
-      - name: Build All
-        shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          $ff = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
-          & "scripts/overseers/alexandria-build-all.ps1" `
-            -RepoRoot "$PWD" `
-            -Title "${{ inputs.title }}" `
-            -Prompt "${{ inputs.prompt }}" `
-            -Events ${{ inputs.events }} `
-            -NPCs ${{ inputs.npcs }} `
-            -Regions ${{ inputs.regions }} `
-            -ForceFallback:$ff
+          $ErrorActionPreference = 'Stop'
+
+          $eventsIn  = "${{ inputs.events }}"
+          $npcsIn    = "${{ inputs.npcs }}"
+          $regionsIn = "${{ inputs.regions }}"
+
+          if ([string]::IsNullOrWhiteSpace($eventsIn))  { $eventsIn  = '7'  }
+          if ([string]::IsNullOrWhiteSpace($npcsIn))    { $npcsIn    = '12' }
+          if ([string]::IsNullOrWhiteSpace($regionsIn)) { $regionsIn = '5'  }
+
+          [int]$events  = $eventsIn
+          [int]$npcs    = $npcsIn
+          [int]$regions = $regionsIn
+          $fallback = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
+
+          $args = @{
+            RepoRoot      = "$PWD"
+            Title         = "${{ inputs.title }}"
+            Prompt        = "${{ inputs.prompt }}"
+            Events        = $events
+            NPCs          = $npcs
+            Regions       = $regions
+            ForceFallback = $fallback
+          }
+
+          & "scripts/overseers/alexandria-build-all.ps1" @args
+
       - name: Commit artifacts
         shell: bash
         run: |
           set -e
-          git config user.name "actions-bot"
+          git config user.name  "actions-bot"
           git config user.email "actions@github.com"
-          git add -A pages/apps/alexandria/worlds
+          git add -A pages/apps/alexandria/worlds || true
           if git diff --staged --quiet; then
             echo "Nothing to commit"
           else
             git commit -m "Alexandria build-all artifacts"
-            git pull --rebase origin main || true
-            git push origin HEAD:main
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+            git push origin HEAD:"${GITHUB_REF_NAME}"
           fi

@@ -1,0 +1,47 @@
+name: Jem — Program Suite
+
+on:
+  workflow_dispatch:
+    inputs:
+      weeks:         { description: "Program length (weeks)", required: false, default: 8, type: number }
+      days_per_week: { description: "Training days/week",     required: false, default: 4, type: number }
+      goal:          { description: "recomp|hypertrophy|strength|fatloss", required: false, default: "recomp", type: string }
+      equipment:     { description: "minimal|gym", required: false, default: "minimal", type: string }
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Build Program (parse ints safely)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $wIn = "${{ inputs.weeks }}"; if([string]::IsNullOrWhiteSpace($wIn)){ $wIn='8' }
+          [int]$weeks = $wIn
+          $dIn = "${{ inputs.days_per_week }}"; if([string]::IsNullOrWhiteSpace($dIn)){ $dIn='4' }
+          [int]$dpw = $dIn
+          $goal = "${{ inputs.goal }}"; if([string]::IsNullOrWhiteSpace($goal)){ $goal='recomp' }
+          $equip = "${{ inputs.equipment }}"; if([string]::IsNullOrWhiteSpace($equip)){ $equip='minimal' }
+          $args = @{ RepoRoot="$PWD"; Weeks=$weeks; DaysPerWeek=$dpw; Goal=$goal; Equipment=$equip }
+          & "scripts/overseers/jem-program-plan.ps1" @args
+
+      - name: Commit program
+        shell: bash
+        run: |
+          set -e
+          git config user.name "actions-bot"
+          git config user.email "actions@github.com"
+          git add -A pages/apps/jem/programs || true
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Jem: program plan"
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi

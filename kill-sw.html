@@ -14,7 +14,6 @@
       await Promise.all(keys.map(k => caches.delete(k)));
     }
   }
-  // small delay then go home
   setTimeout(() => { location.href = "/"; }, 500);
 })();
 </script>

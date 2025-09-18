@@ -6,16 +6,13 @@ param(
 )
 $ErrorActionPreference='Stop'
 
-function As-Int([object]$x, [int]$default){
+function As-Int([object]$x,[int]$default){
   if ($null -eq $x) { return $default }
   if ($x -is [int]) { return [int]$x }
   if ($x -is [long]) { return [int]$x }
   if ($x -is [double]) { return [int][Math]::Round($x) }
   if ($x -is [string]) { $s=$x.Trim(); if ($s -eq "") { return $default }; return [int]$s }
-  if ($x -is [object[]]) {
-    foreach($e in $x){ if($null -ne $e -and "$e".Trim() -ne ""){ return [int]("$e") } }
-    return $default
-  }
+  if ($x -is [object[]]) { foreach($e in $x){ if($null -ne $e -and "$e".Trim() -ne ""){ return [int]("$e") } } return $default }
   return [int]("$x")
 }
 

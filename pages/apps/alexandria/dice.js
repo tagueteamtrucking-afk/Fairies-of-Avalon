@@ -1,1 +1,0 @@
-export function roll(n=1,s=20,m=0){const r=Array.from({length:n},()=>1+Math.floor(Math.random()*s));return {total:r.reduce((a,b)=>a+b,0)+m,rolls:r,mod:m};}

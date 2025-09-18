@@ -1,9 +1,0 @@
-{
-  "name": "Fairies of Avalon",
-  "short_name": "Avalon",
-  "start_url": "/index.html",
-  "display": "standalone",
-  "background_color": "#0b0e12",
-  "theme_color": "#0b0e12",
-  "icons": []
-}

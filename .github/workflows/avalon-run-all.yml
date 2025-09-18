@@ -3,22 +3,37 @@ name: Avalon Run All
 on:
   workflow_dispatch:
     inputs:
-      title:          { description: "World Title", required: false, type: string }
-      prompt:         { description: "Starter hook / prompt", required: false, type: string }
-      events:         { description: "Timeline events", required: false, default: 7,  type: number }
-      npcs:           { description: "NPC count",     required: false, default: 12, type: number }
-      regions:        { description: "Region count",  required: false, default: 5,  type: number }
-      per_town:       { description: "Figures per settlement", required: false, default: 3, type: number }
-      boards:         { description: "Art briefs", required: false, default: 8, type: number }
-      combos:         { description: "VRM×Wing combos", required: false, default: 12, type: number }
-      target_langs:   { description: "Translations (comma)", required: false, default: "es", type: string }
-      meal_days:      { description: "Carol: days", required: false, default: 7, type: number }
-      kcal:           { description: "Carol: kcal target", required: false, default: 2200, type: number }
-      diet_style:     { description: "Carol: style", required: false, default: "balanced", type: choice, options: ["balanced","mediterranean","keto","vegetarian"] }
-      weeks:          { description: "Jem: weeks", required: false, default: 8, type: number }
-      days_per_week:  { description: "Jem: days/week", required: false, default: 4, type: number }
-      goal:           { description: "Jem: goal", required: false, default: "recomp", type: choice, options: ["recomp","hypertrophy","strength","fatloss"] }
-      equipment:      { description: "Jem: equipment", required: false, default: "minimal", type: choice, options: ["minimal","gym"] }
+      title:          { description: "World Title", required: false }
+      prompt:         { description: "Starter hook / prompt", required: false }
+      events:         { description: "Timeline events (default 7)", required: false, default: "7" }
+      npcs:           { description: "NPC count (default 12)",     required: false, default: "12" }
+      regions:        { description: "Region count (default 5)",    required: false, default: "5" }
+      per_town:       { description: "Figures per settlement (default 3)", required: false, default: "3" }
+      boards:         { description: "Art briefs (default 8)", required: false, default: "8" }
+      combos:         { description: "VRM×Wing combos (default 12)", required: false, default: "12" }
+      target_langs:   { description: "Translations (comma)", required: false, default: "es" }
+      meal_days:      { description: "Carol: days (default 7)", required: false, default: "7" }
+      kcal:           { description: "Carol: kcal target (default 2200)", required: false, default: "2200" }
+      diet_style:
+        description: "Carol: style"
+        required: false
+        default: "balanced"
+        type: choice
+        options: ["balanced","mediterranean","keto","vegetarian"]
+      weeks:          { description: "Jem: weeks (default 8)", required: false, default: "8" }
+      days_per_week:  { description: "Jem: days/week (default 4)", required: false, default: "4" }
+      goal:
+        description: "Jem: goal"
+        required: false
+        default: "recomp"
+        type: choice
+        options: ["recomp","hypertrophy","strength","fatloss"]
+      equipment:
+        description: "Jem: equipment"
+        required: false
+        default: "minimal"
+        type: choice
+        options: ["minimal","gym"]
 
 permissions:
   contents: write

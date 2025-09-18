@@ -1,0 +1,11 @@
+name: Workflows — Sanity
+
+on:
+  workflow_dispatch:
+
+jobs:
+  show:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: echo "Actions visible and healthy."

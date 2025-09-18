@@ -1,0 +1,91 @@
+name: Avalon Run All
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:          { description: "World Title", required: false, type: string }
+      prompt:         { description: "Starter hook / prompt", required: false, type: string }
+      events:         { description: "Timeline events", required: false, default: 7,  type: number }
+      npcs:           { description: "NPC count",     required: false, default: 12, type: number }
+      regions:        { description: "Region count",  required: false, default: 5,  type: number }
+      per_town:       { description: "Figures per settlement", required: false, default: 3, type: number }
+      boards:         { description: "Art briefs", required: false, default: 8, type: number }
+      combos:         { description: "VRM×Wing combos", required: false, default: 12, type: number }
+      target_langs:   { description: "Translations (comma)", required: false, default: "es", type: string }
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Alexandria — Build World
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $repo = (Get-Location).Path
+          [int]$events  = if("${{ inputs.events }}"){ "${{ inputs.events }}" } else { 7 }
+          [int]$npcs    = if("${{ inputs.npcs }}"){ "${{ inputs.npcs }}" } else { 12 }
+          [int]$regions = if("${{ inputs.regions }}"){ "${{ inputs.regions }}" } else { 5 }
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/alexandria-build-all.ps1 -RepoRoot $repo -Title "${{ inputs.title }}" -Prompt "${{ inputs.prompt }}" -Events $events -NPCs $npcs -Regions $regions
+
+      - name: Capture WORLD_ID
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $root = Join-Path (Get-Location).Path 'data/alexandria/worlds'
+          $latestTxt = Join-Path $root 'latest.txt'
+          if(!(Test-Path $latestTxt)){ throw "No world latest.txt found. Build step failed?" }
+          $wid = Get-Content -LiteralPath $latestTxt -TotalCount 1
+          "WORLD_ID=$wid" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          Write-Host "WORLD_ID: $wid"
+
+      - name: Alexandria — Helpers
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $repo = (Get-Location).Path
+          [int]$perTown = if("${{ inputs.per_town }}"){ "${{ inputs.per_town }}" } else { 3 }
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/alexandria-suite.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -PerTown $perTown
+
+      - name: Tracy — Artboards
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $repo = (Get-Location).Path
+          [int]$boards = if("${{ inputs.boards }}"){ "${{ inputs.boards }}" } else { 8 }
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/tracy-artboard.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -Boards $boards
+
+      - name: Nina — 3D Index
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $repo = (Get-Location).Path
+          [int]$combos = if("${{ inputs.combos }}"){ "${{ inputs.combos }}" } else { 12 }
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/nina-3d-index.ps1 -RepoRoot $repo -MaxCombos $combos -World "${{ env.WORLD_ID }}"
+
+      - name: Charlotte — Pipelines (SSML + i18n plan)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $repo = (Get-Location).Path
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/charlotte-pipeline-plan.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -TargetLangs "${{ inputs.target_langs }}"
+
+      - name: Commit generated data
+        shell: bash
+        run: |
+          set -e
+          git config user.name  "actions-bot"
+          git config user.email "actions@github.com"
+          git add -A data || true
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Avalon Run All: world + helpers + art + 3D + pipelines (data-only)"
+            git pull --rebase origin "${GITHUB_REF_NAME:-main}" || true
+            git push origin HEAD:"${GITHUB_REF_NAME:-main}"
+          fi

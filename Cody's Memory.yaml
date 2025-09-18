@@ -1,33 +1,43 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "2.1.0"
+  version: "2.2.0"
   last_updated: "2025-09-18"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    Pages/Apps Bootstrap v2: writes all generated content under pages/apps/**,
-    fixes Object[]→Int32 by accepting [object] parameters in scripts and coercing with As-Int.
-    Adds Alexandria microapp (choose/roll/custom). No UI homepage edits; workflows are manual.
+    Pages/Apps ALL v3: Run-All now includes Carol & Jem. Adds optional LLM Bridge (OpenAI)
+    and Charlotte TTS (Azure). All scripts accept [object] for numbers and coerce with As-Int.
+    Outputs under pages/apps/**; UI unchanged except microapps index and Alexandria builder.
 
-principles:
-  - Rule #1: Learn from failures; do not repeat. Record fixes in Memory.
-  - Ask clarifying questions until ≥95% confident; plan before code.
-  - No call operator (&) or splatting in Actions; use `pwsh -File` and local coercion.
-  - Cast numbers inside scripts via As-Int; never rely on binder.
-  - Keep assets under asset/**; write generated content to pages/apps/**.
-  - Offline-first; LLM/TTS/STT optional via secrets, never embedded in client.
+rules:
+  - Never repeat Object[]→Int32: declare [object] params, coerce via As-Int.
+  - No call operator (&) or splatting in Actions; use `pwsh -File`.
+  - Record every pitfall in Memory and fix patterns here.
+  - Ask clarifying questions until ≥95% confident.
+  - Keep assets intact; write generated content to pages/apps/**.
+  - Secrets only in Actions env (server-side). No secrets in client JS.
+
+workflows:
+  - .github/workflows/00-sanity.yml
+  - .github/workflows/avalon-run-all.yml
+  - .github/workflows/overseers-llm-bridge.yml (optional; requires OPENAI_API_KEY)
+  - .github/workflows/charlotte-tts-azure.yml (optional; requires AZURE_TTS_KEY, AZURE_TTS_REGION)
+
+secrets_expected:
+  - OPENAI_API_KEY: for LLM Bridge (chat completions). Docs: platform.openai.com (Chat/Responses).
+  - AZURE_TTS_KEY, AZURE_TTS_REGION: Speech TTS REST API. Docs: learn.microsoft.com Speech TTS REST.
 
 generated_paths:
   - pages/apps/alexandria/worlds/**
   - pages/apps/tracy/artboards/**
   - pages/apps/overseers/vrm-index.json
   - pages/apps/charlotte/pipelines/**
+  - pages/apps/charlotte/voiceovers/** (when TTS run)
   - pages/apps/carol/plans/**
   - pages/apps/jem/programs/**
-workflows:
-  - .github/workflows/00-sanity.yml
-  - .github/workflows/avalon-run-all.yml
+
 microapps:
   - pages/apps/index.html
   - pages/apps/alexandria/index.html
-  - pages/apps/alexandria/app.{css,js}
+  - pages/apps/alexandria/app.css
+  - pages/apps/alexandria/app.js

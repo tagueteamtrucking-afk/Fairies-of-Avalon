@@ -49,7 +49,6 @@ function buildRegions(n){
     r.appendChild(row1);
     wrap.appendChild(r);
 
-    // store fields on node for export
     r._fields = { biomeSel, biomeCus, govSel, govCus, monSel, monCus };
   }
 }

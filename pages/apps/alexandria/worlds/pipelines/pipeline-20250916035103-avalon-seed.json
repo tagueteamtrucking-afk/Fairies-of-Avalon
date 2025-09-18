@@ -2,10 +2,10 @@
   "world": "20250916035103-avalon-seed",
   "tts": {
     "engine": "browser-ssml",
+    "voice": "default",
     "ssml_files": [
       "pages/apps/alexandria/worlds/pipelines/tts/scene-1.ssml"
-    ],
-    "voice": "default"
+    ]
   },
   "translations": [
     {

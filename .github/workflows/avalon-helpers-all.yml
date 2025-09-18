@@ -1,0 +1,43 @@
+name: Avalon — Run All Helpers
+
+on:
+  workflow_dispatch:
+    inputs:
+      world: { description: "World (blank = latest or auto-create)", required: false, type: string }
+
+jobs:
+  run_all:
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Alexandria — Helpers Suite
+        uses: peter-evans/workflow-dispatch@v1
+        with:
+          workflow: alexandria-helpers.yml
+          ref: ${{ github.ref }}
+          inputs: |
+            world: "${{ inputs.world }}"
+            per_town: "3"
+            force_fallback: "true"
+
+      - name: Tracy — Art Suite
+        uses: peter-evans/workflow-dispatch@v1
+        with:
+          workflow: tracy-art-suite.yml
+          ref: ${{ github.ref }}
+          inputs: |
+            world: "${{ inputs.world }}"
+            boards: "8"
+            # tracy has no fallback calls
+
+      - name: Nina — 3D Suite
+        uses: peter-evans/workflow-dispatch@v1
+        with:
+          workflow: nina-3d-suite.yml
+          ref: ${{ github.ref }}
+          inputs: |
+            world: "${{ inputs.world }}"
+            combos: "12"

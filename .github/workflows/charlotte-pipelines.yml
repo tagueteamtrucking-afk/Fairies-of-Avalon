@@ -1,0 +1,47 @@
+name: Charlotte — Pipelines Suite
+
+on:
+  workflow_dispatch:
+    inputs:
+      world: { description: "World (auto-pick latest if empty)", required: false, type: string }
+      target_langs: { description: "Comma-separated e.g. es,fr,de", required: false, default: "es", type: string }
+      force_fallback: { description: "Force offline (no LLM Bridge)", required: false, default: true, type: boolean }
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Install PowerShell YAML
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          Install-Module powershell-yaml -Force -Scope CurrentUser -AllowClobber
+      - name: Run Pipelines
+        shell: pwsh
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          $ErrorActionPreference='Stop'
+          $ff = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
+          & "scripts/overseers/charlotte-pipeline-plan.ps1" `
+            -RepoRoot "$PWD" `
+            -World "${{ inputs.world }}" `
+            -TargetLangs "${{ inputs.target_langs }}" `
+            -ForceFallback:$ff
+      - name: Commit artifacts
+        shell: bash
+        run: |
+          set -e
+          git config user.name "actions-bot"
+          git config user.email "actions@github.com"
+          git add -A pages/apps/alexandria/worlds/pipelines
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Charlotte Pipelines"
+            git pull --rebase origin main || true
+            git push origin HEAD:main
+          fi

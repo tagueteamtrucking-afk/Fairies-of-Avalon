@@ -6,14 +6,9 @@ $manifest = Get-Content $manifestPath -Raw | ConvertFrom-Json
 $allow = @($manifest.allowlist | ForEach-Object { (Join-Path $RepoRoot $_).Replace('\','/') })
 $preserveGlobs = @($manifest.preserve_globs)
 
-Write-Host "== DRY RUN ==" -ForegroundColor Yellow
-if($Apply){ Write-Host "APPLY MODE" -ForegroundColor Red }
-
-# Build preserve set
 $preserved = New-Object System.Collections.Generic.HashSet[string]
 foreach($a in $allow){ [void]$preserved.Add($a) }
 
-# Expand globs
 $all = Get-ChildItem -LiteralPath $RepoRoot -Recurse -Force -File | Where-Object { $_.FullName -notmatch '/\.git/' } | Select-Object -ExpandProperty FullName
 $all = $all | ForEach-Object { $_ -replace '\\','/' }
 

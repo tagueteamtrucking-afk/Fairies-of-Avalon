@@ -1,107 +1,35 @@
-[CmdletBinding()]
 param(
-  [string]$RepoRoot=".",
-  [string]$SeedPath="",
-  [int]$Count=7,
-  [switch]$ForceFallback
+  [Parameter(Mandatory=$true)][string]$RepoRoot,
+  [string]$World,
+  [int]$Count = 7
 )
 $ErrorActionPreference='Stop'
-function Iso(){ (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ") }
-function Slug([string]$s){ if([string]::IsNullOrWhiteSpace($s)){return "world"}; return ($s -replace '[^A-Za-z0-9]+','-').Trim('-').ToLower().Substring(0,[Math]::Min(80,$s.Length)) }
+$worldsDir = Join-Path $RepoRoot 'pages/apps/alexandria/worlds'
+if(!(Test-Path $worldsDir)){ throw "No worlds dir: $worldsDir" }
 
-$root = (Resolve-Path $RepoRoot).Path
-$worldsDir = Join-Path $RepoRoot "pages/apps/alexandria/worlds"
-if (-not (Test-Path $worldsDir)) { throw "No seeds directory found: $worldsDir" }
-# Seed
-$seedFile = $null
-if ($SeedPath) {
-  $candidate = Join-Path $RepoRoot $SeedPath
-  if (-not (Test-Path $candidate)) { throw "Seed file not found: $SeedPath" }
-  $seedFile = Get-Item $candidate
-} else {
-  $files = Get-ChildItem $worldsDir -Filter *.json | Sort-Object LastWriteTime -Descending
-  if ($files.Count -eq 0) { throw "No seed files found under /pages/apps/alexandria/worlds. Generate one first." }
-  $seedFile = $files | Select-Object -First 1
+function EnsureWorld([string]$Dir,[string]$W){
+  if([string]::IsNullOrWhiteSpace($W)){
+    $latest = Get-ChildItem -LiteralPath $Dir -Filter 'seed-*.json' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+    if(!$latest){ throw "No seeds directory found: $Dir" }
+    return ($latest.BaseName.Substring(5))
+  }
+  return $W
 }
-try{ $seed = Get-Content -Raw -Path $seedFile.FullName | ConvertFrom-Json -Depth 100 }catch{ throw "Invalid seed JSON: $($seedFile.FullName)" }
+$World = EnsureWorld $worldsDir $World
 
-# Load timeline taxonomy
-$timelineTax = $null
-$timelinePath = Join-Path $RepoRoot "pages/apps/alexandria/knowledge/timeline-taxonomy.json"
-if (Test-Path $timelinePath){ try{ $timelineTax = Get-Content -Raw -Path $timelinePath | ConvertFrom-Json -Depth 100 }catch{ $timelineTax=$null } }
-function Pick([object[]]$arr, [string]$fallback){ if($arr -and $arr.Count -gt 0){ return $arr[(Get-Random -Minimum 0 -Maximum $arr.Count)] } return $fallback }
-
-function New-Event([string]$act,[string]$name,[string]$summary,[string]$tag){
-  return [pscustomobject]@{ id=[guid]::NewGuid().ToString().Substring(0,8); act=$act; name=$name; summary=$summary; tag=$tag }
+$acts = @("Act I","Act II","Act III")
+$events = @()
+for($i=1;$i -le [Math]::Max(1,$Count);$i++){
+  $events += [ordered]@{
+    idx = $i
+    title = "Event $i"
+    when  = ("Year " + (100+$i))
+    location = if($i%2 -eq 0) { "Capital" } else { "Frontier" }
+    tags = @("main","arc"+$i)
+    summary = "Pivotal moment $i sets the stage."
+  }
 }
-
-$f1 = if($seed.factions.Count -ge 1){ $seed.factions[0].name } else { 'Faction A' }
-$f2 = if($seed.factions.Count -ge 2){ $seed.factions[1].name } else { 'Faction B' }
-$magic = $seed.pillars.magic_system
-$travel= $seed.pillars.travel
-$topo  = $seed.cosmology.planar_topology
-
-$tagHook = if($timelineTax){ Pick $timelineTax.event_tags 'hook' } else { 'hook' }
-$tagRival= if($timelineTax){ Pick $timelineTax.event_tags 'rival' } else { 'rival' }
-$tagRev  = if($timelineTax){ Pick $timelineTax.event_tags 'revelation' } else { 'revelation' }
-$tagClimax=if($timelineTax){ Pick $timelineTax.event_tags 'climax' } else { 'climax' }
-$tagRes  = if($timelineTax){ Pick $timelineTax.event_tags 'resolution' } else { 'resolution' }
-
-$base = @(
-  (New-Event 'I'  'Arrival / Omen'             'A sign or translation event sets the tone.' $tagHook),
-  (New-Event 'I'  "First Contact ($f1)"        'Guide or gatekeeper outlines constraints.'   (if($timelineTax){Pick $timelineTax.event_tags 'contact'}else{'contact'})),
-  (New-Event 'II' 'Crossing a Threshold'       "Using $travel exposes costs of $magic."       'threshold'),
-  (New-Event 'II' "Rival Move ($f2)"           'Escalation forces a risky bargain.'          $tagRival),
-  (New-Event 'II' "Revelation of $topo"        'Map or myth clarifies the true stakes.'      $tagRev),
-  (New-Event 'III' 'Clash of Factions'         'Allies and debts are tested.'                $tagClimax),
-  (New-Event 'III' 'Choice & Consequence'      'Values win or cost everything.'              $tagRes)
-)
-$events = $base[0..([Math]::Min($Count-1, $base.Count-1))]
-
-# Optional LLM expansion (non-fatal)
-$bridge = Join-Path (Join-Path $RepoRoot "scripts/overseers") "llm-bridge.ps1"
-if (-not $ForceFallback -and $env:OPENAI_API_KEY -and (Test-Path $bridge)) {
-  $prompt = @"
-Improve each event summary to 1-2 vivid sentences tailored to this seed. Keep same order and tags.
-Return ONLY a JSON array of strings of equal length to the input.
-Seed:
-$($seed | ConvertTo-Json -Depth 40)
-Events (names only):
-$([string]::Join("`n", ($events | ForEach-Object { $_.name })))
-"@
-  $tmp = Join-Path $env:RUNNER_TEMP "alexandria.timeline.expanded.json"
-  try{
-    & $bridge -Prompt $prompt -OutFile $tmp -DryRun:$false
-    $arr = Get-Content -Raw -Path $tmp | ConvertFrom-Json -Depth 100
-    if ($arr -and $arr.Count -eq $events.Count){
-      for($i=0;$i -lt $events.Count;$i++){ $events[$i].summary = [string]$arr[$i] }
-    }
-  }catch{}
-}
-
-$outDir = Join-Path $RepoRoot "pages/apps/alexandria/worlds/timelines"
-New-Item -ItemType Directory -Force -Path $outDir | Out-Null
-$slug = Slug $seed.title
-$name = "$slug.timeline.json"
-$rel  = "/apps/alexandria/worlds/timelines/$name"
-$timeline = [pscustomobject]@{
-  id = "timeline-" + (Get-Date -Format 'yyyyMMddHHmmss')
-  seed_id = $seed.id
-  title = $seed.title
-  events = $events
-  holidays = if($timelineTax){ @(@($timelineTax.holiday_types) | Get-Random -Count ([Math]::Min(3, @($timelineTax.holiday_types).Count))) } else { @('lantern tides','founding day') }
-  conflicts = if($timelineTax){ @(@($timelineTax.conflict_types) | Get-Random -Count ([Math]::Min(2, @($timelineTax.conflict_types).Count))) } else { @('faction dispute') }
-  generated = Iso
-  format_version = "1.0.0"
-}
-($timeline | ConvertTo-Json -Depth 100) | Set-Content -Path (Join-Path $outDir $name) -Encoding utf8NoBOM
-
-# Index
-$indexPath = Join-Path $outDir "index.json"
-$index = @()
-if (Test-Path $indexPath){ try { $index = Get-Content -Raw -Path $indexPath | ConvertFrom-Json -Depth 100 } catch { $index=@() } }
-$index = @($index | Where-Object { $_.path -ne $rel })
-$index += [pscustomobject]@{ path=$rel; title=$seed.title; id=$timeline.id; events=$events.Count; ts=(Iso) }
-($index | ConvertTo-Json -Depth 100) | Set-Content -Path $indexPath -Encoding utf8NoBOM
-Write-Host "Timeline written: $rel"
-exit 0
+$out = [ordered]@{ world=$World; structure=$acts; events=$events }
+$outPath = Join-Path $worldsDir ("timeline-" + $World + ".json")
+$out | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $outPath -Encoding UTF8
+Write-Host "Wrote $outPath"

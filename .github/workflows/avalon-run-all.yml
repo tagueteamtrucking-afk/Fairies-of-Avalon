@@ -5,35 +5,25 @@ on:
     inputs:
       title:          { description: "World Title", required: false }
       prompt:         { description: "Starter hook / prompt", required: false }
-      events:         { description: "Timeline events (default 7)", required: false, default: "7" }
-      npcs:           { description: "NPC count (default 12)",     required: false, default: "12" }
-      regions:        { description: "Region count (default 5)",    required: false, default: "5" }
-      per_town:       { description: "Figures per settlement (default 3)", required: false, default: "3" }
-      boards:         { description: "Art briefs (default 8)", required: false, default: "8" }
-      combos:         { description: "VRM×Wing combos (default 12)", required: false, default: "12" }
+      preset:
+        description: "Preset size"
+        required: false
+        default: "balanced"
+        type: choice
+        options: ["balanced","bigworld","lite"]
       target_langs:   { description: "Translations (comma)", required: false, default: "es" }
-      meal_days:      { description: "Carol: days (default 7)", required: false, default: "7" }
-      kcal:           { description: "Carol: kcal target (default 2200)", required: false, default: "2200" }
       diet_style:
-        description: "Carol: style"
+        description: "Carol: meal style"
         required: false
         default: "balanced"
         type: choice
         options: ["balanced","mediterranean","keto","vegetarian"]
-      weeks:          { description: "Jem: weeks (default 8)", required: false, default: "8" }
-      days_per_week:  { description: "Jem: days/week (default 4)", required: false, default: "4" }
       goal:
-        description: "Jem: goal"
+        description: "Jem: training goal"
         required: false
         default: "recomp"
         type: choice
         options: ["recomp","hypertrophy","strength","fatloss"]
-      equipment:
-        description: "Jem: equipment"
-        required: false
-        default: "minimal"
-        type: choice
-        options: ["minimal","gym"]
 
 permissions:
   contents: write
@@ -45,15 +35,36 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
+      - name: Compute numbers from preset
+        id: cfg
+        shell: pwsh
+        run: |
+          $preset = "${{ inputs.preset }}"
+          switch($preset){
+            "bigworld" { $e=12; $n=30; $r=8; $pt=5; $b=12; $c=16; $md=7; $k=2400; $w=12; $dpw=5; $eq="gym" }
+            "lite"     { $e=5;  $n=6;  $r=3; $pt=2; $b=4;  $c=8;  $md=5; $k=2000; $w=4;  $dpw=3; $eq="minimal" }
+            default    { $e=7;  $n=12; $r=5; $pt=3; $b=8;  $c=12; $md=7; $k=2200; $w=8;  $dpw=4; $eq="minimal" }
+          }
+          echo "events=$e"           | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "npcs=$n"             | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "regions=$r"          | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "per_town=$pt"        | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "boards=$b"           | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "combos=$c"           | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "meal_days=$md"       | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "kcal=$k"             | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "weeks=$w"            | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "days_per_week=$dpw"  | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          echo "equipment=$eq"       | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+
       - name: Alexandria — Build World
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
           $repo = (Get-Location).Path
-          $events  = "${{ inputs.events }}";  if([string]::IsNullOrWhiteSpace($events))  { $events='7' }
-          $npcs    = "${{ inputs.npcs }}";    if([string]::IsNullOrWhiteSpace($npcs))    { $npcs='12' }
-          $regions = "${{ inputs.regions }}"; if([string]::IsNullOrWhiteSpace($regions)) { $regions='5' }
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/alexandria-build-all.ps1 -RepoRoot $repo -Title "${{ inputs.title }}" -Prompt "${{ inputs.prompt }}" -Events $events -NPCs $npcs -Regions $regions
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/alexandria-build-all.ps1 `
+            -RepoRoot $repo -Title "${{ inputs.title }}" -Prompt "${{ inputs.prompt }}" `
+            -Events "${{ steps.cfg.outputs.events }}" -NPCs "${{ steps.cfg.outputs.npcs }}" -Regions "${{ steps.cfg.outputs.regions }}"
 
       - name: Capture WORLD_ID
         shell: pwsh
@@ -71,24 +82,21 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           $repo = (Get-Location).Path
-          $perTown = "${{ inputs.per_town }}"; if([string]::IsNullOrWhiteSpace($perTown)) { $perTown='3' }
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/alexandria-suite.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -PerTown $perTown
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/alexandria-suite.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -PerTown "${{ steps.cfg.outputs.per_town }}"
 
       - name: Tracy — Artboards
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
           $repo = (Get-Location).Path
-          $boards = "${{ inputs.boards }}"; if([string]::IsNullOrWhiteSpace($boards)) { $boards='8' }
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/tracy-artboard.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -Boards $boards
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/tracy-artboard.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -Boards "${{ steps.cfg.outputs.boards }}"
 
       - name: Nina — 3D Index
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
           $repo = (Get-Location).Path
-          $combos = "${{ inputs.combos }}"; if([string]::IsNullOrWhiteSpace($combos)) { $combos='12' }
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/nina-3d-index.ps1 -RepoRoot $repo -MaxCombos $combos -World "${{ env.WORLD_ID }}"
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/nina-3d-index.ps1 -RepoRoot $repo -MaxCombos "${{ steps.cfg.outputs.combos }}" -World "${{ env.WORLD_ID }}"
 
       - name: Charlotte — Pipelines (SSML + i18n plan)
         shell: pwsh
@@ -102,19 +110,15 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           $repo = (Get-Location).Path
-          $days="${{ inputs.meal_days }}"; if([string]::IsNullOrWhiteSpace($days)){ $days='7' }
-          $kcal="${{ inputs.kcal }}"; if([string]::IsNullOrWhiteSpace($kcal)){ $kcal='2200' }
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/carol-meal-plan.ps1 -RepoRoot $repo -Days $days -KcalTarget $kcal -DietStyle "${{ inputs.diet_style }}"
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/carol-meal-plan.ps1 -RepoRoot $repo -Days "${{ steps.cfg.outputs.meal_days }}" -KcalTarget "${{ steps.cfg.outputs.kcal }}" -DietStyle "${{ inputs.diet_style }}"
 
       - name: Jem — Program Plan
         shell: pwsh
         run: |
           $ErrorActionPreference='Stop'
           $repo = (Get-Location).Path
-          $weeks="${{ inputs.weeks }}"; if([string]::IsNullOrWhiteSpace($weeks)){ $weeks='8' }
-          $dpw="${{ inputs.days_per_week }}"; if([string]::IsNullOrWhiteSpace($dpw)){ $dpw='4' }
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/jem-program-plan.ps1 -RepoRoot $repo -Weeks $weeks -DaysPerWeek $dpw -Goal "${{ inputs.goal }}" -Equipment "${{ inputs.equipment }}"
-
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/jem-program-plan.ps1 -RepoRoot $repo -Weeks "${{ steps.cfg.outputs.weeks }}" -DaysPerWeek "${{ steps.cfg.outputs.days_per_week }}" -Goal "${{ inputs.goal }}" -Equipment "${{ steps.cfg.outputs.equipment }}"
+      
       - name: Commit generated content
         shell: bash
         run: |

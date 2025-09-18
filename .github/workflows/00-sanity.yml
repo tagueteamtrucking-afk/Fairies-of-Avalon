@@ -1,7 +1,8 @@
 name: Workflows — Sanity
-on: { workflow_dispatch: {} }
+on:
+  workflow_dispatch:
 jobs:
   show:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Actions visible and healthy."
+      - run: echo "Actions are enabled and workflows are visible."

@@ -1,0 +1,22 @@
+{
+  "world": "20250916035103-avalon-seed",
+  "tts": {
+    "engine": "browser-ssml",
+    "ssml_files": [
+      "pages/apps/alexandria/worlds/pipelines/tts/scene-1.ssml"
+    ],
+    "voice": "default"
+  },
+  "translations": [
+    {
+      "lang": "es",
+      "file": "pages/apps/alexandria/worlds/pipelines/translations/Scenes-20250916035103-avalon-seed.es.md"
+    }
+  ],
+  "package": {
+    "outputs": [
+      "pages/apps/alexandria/worlds/pipelines/tts/scene-1.ssml",
+      "pages/apps/alexandria/worlds/pipelines/translations/Scenes-20250916035103-avalon-seed.es.md"
+    ]
+  }
+}

@@ -12,6 +12,13 @@ on:
       boards:         { description: "Art briefs", required: false, default: 8, type: number }
       combos:         { description: "VRM×Wing combos", required: false, default: 12, type: number }
       target_langs:   { description: "Translations (comma)", required: false, default: "es", type: string }
+      meal_days:      { description: "Carol: days", required: false, default: 7, type: number }
+      kcal:           { description: "Carol: kcal target", required: false, default: 2200, type: number }
+      diet_style:     { description: "Carol: style", required: false, default: "balanced", type: choice, options: ["balanced","mediterranean","keto","vegetarian"] }
+      weeks:          { description: "Jem: weeks", required: false, default: 8, type: number }
+      days_per_week:  { description: "Jem: days/week", required: false, default: 4, type: number }
+      goal:           { description: "Jem: goal", required: false, default: "recomp", type: choice, options: ["recomp","hypertrophy","strength","fatloss"] }
+      equipment:      { description: "Jem: equipment", required: false, default: "minimal", type: choice, options: ["minimal","gym"] }
 
 permissions:
   contents: write
@@ -75,6 +82,24 @@ jobs:
           $repo = (Get-Location).Path
           pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/charlotte-pipeline-plan.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -TargetLangs "${{ inputs.target_langs }}"
 
+      - name: Carol — Meal Plan
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $repo = (Get-Location).Path
+          $days="${{ inputs.meal_days }}"; if([string]::IsNullOrWhiteSpace($days)){ $days='7' }
+          $kcal="${{ inputs.kcal }}"; if([string]::IsNullOrWhiteSpace($kcal)){ $kcal='2200' }
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/carol-meal-plan.ps1 -RepoRoot $repo -Days $days -KcalTarget $kcal -DietStyle "${{ inputs.diet_style }}"
+
+      - name: Jem — Program Plan
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          $repo = (Get-Location).Path
+          $weeks="${{ inputs.weeks }}"; if([string]::IsNullOrWhiteSpace($weeks)){ $weeks='8' }
+          $dpw="${{ inputs.days_per_week }}"; if([string]::IsNullOrWhiteSpace($dpw)){ $dpw='4' }
+          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/jem-program-plan.ps1 -RepoRoot $repo -Weeks $weeks -DaysPerWeek $dpw -Goal "${{ inputs.goal }}" -Equipment "${{ inputs.equipment }}"
+
       - name: Commit generated content
         shell: bash
         run: |
@@ -85,7 +110,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "Nothing to commit"
           else
-            git commit -m "Avalon Run All: world + helpers + art + 3D + pipelines (pages/apps)"
+            git commit -m "Avalon Run All: world + helpers + art + 3D + pipelines + meal + program (pages/apps)"
             git pull --rebase origin "${GITHUB_REF_NAME:-main}" || true
             git push origin HEAD:"${GITHUB_REF_NAME:-main}"
           fi

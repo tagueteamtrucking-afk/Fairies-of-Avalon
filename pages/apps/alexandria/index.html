@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Alexandria — World Builder</title>
+  <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+  <header>
+    <h1>Alexandria — World Builder</h1>
+    <p>Create a multiverse with choose / roll / custom for every field. Exports JSON you can commit.</p>
+  </header>
+  <main id="app">
+    <section class="card">
+      <h2>World Basics</h2>
+      <label>Title <input id="w-title" placeholder="e.g., Shards of Avalon"></label>
+      <label>Hook <textarea id="w-hook" rows="3" placeholder="Inciting idea, tone, promise of adventure..."></textarea></label>
+      <div class="row">
+        <label>Timeline events <input id="w-events" type="number" value="7" min="1" step="1"></label>
+        <label>NPC target <input id="w-npcs" type="number" value="12" min="1" step="1"></label>
+        <label>Regions <input id="w-regions" type="number" value="5" min="1" step="1"></label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Magic System</h2>
+      <div class="tri">
+        <select id="magic-choose"></select>
+        <button data-roll="magic">Roll</button>
+        <input id="magic-custom" placeholder="Custom (e.g., Dream‑weaving)">
+      </div>
+      <small>Rules</small>
+      <div class="chips" id="magic-rules"></div>
+    </section>
+
+    <section class="card">
+      <h2>Pantheon / Cosmology</h2>
+      <div class="tri">
+        <select id="pantheon-choose"></select>
+        <button data-roll="pantheon">Roll</button>
+        <input id="pantheon-custom" placeholder="Custom (e.g., Twin Suns & the Abyss)">
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Regions (auto‑build)</h2>
+      <p>Choose / roll / custom for biomes, governments, and signature monsters.</p>
+      <div id="regions"></div>
+      <button id="regen-regions">Regenerate Regions</button>
+    </section>
+
+    <section class="card">
+      <h2>Export</h2>
+      <button id="export-json">Download JSON</button>
+      <button id="reset">Reset</button>
+      <div class="hint">Files are local only. After download, upload JSONs into <code>pages/apps/alexandria/worlds/</code> via GitHub and commit to main.</div>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>

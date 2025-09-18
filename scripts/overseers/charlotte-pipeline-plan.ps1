@@ -4,7 +4,7 @@ param(
   [string]$TargetLangs = "es"
 )
 $ErrorActionPreference='Stop'
-$root = Join-Path $RepoRoot 'data/charlotte/pipelines'
+$root = Join-Path $RepoRoot 'pages/apps/charlotte/pipelines'
 if(!(Test-Path $root)){ New-Item -ItemType Directory -Force -Path $root | Out-Null }
 if([string]::IsNullOrWhiteSpace($World)){ $World="generic" }
 $dir = Join-Path $root $World

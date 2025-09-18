@@ -1,61 +1,33 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "2.0.0"
+  version: "2.1.0"
   last_updated: "2025-09-18"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    Clean bootstrap after repo reset. Offline-first scripts + minimal workflows.
-    Rules baked-in from failures: no call operator in CI; no splatting; cast ints; guard commits.
-    Keep assets intact: asset/models, asset/winged-models, asset/wings, asset/textures.
+    Pages/Apps Bootstrap v2: writes all generated content under pages/apps/**,
+    fixes Object[]→Int32 by accepting [object] parameters in scripts and coercing with As-Int.
+    Adds Alexandria microapp (choose/roll/custom). No UI homepage edits; workflows are manual.
 
 principles:
-  - Overseers-first; least-privilege; no plaintext secrets.
-  - Ask clarifying questions until ≥95% confident.
-  - Workflows-first. Scripts are helpers; UI changes only by request.
-  - Offline-first: if no API keys, generate deterministic placeholders.
-  - Linux-safe PowerShell; avoid LINQ; JSON depth ≤ 100.
+  - Rule #1: Learn from failures; do not repeat. Record fixes in Memory.
+  - Ask clarifying questions until ≥95% confident; plan before code.
+  - No call operator (&) or splatting in Actions; use `pwsh -File` and local coercion.
+  - Cast numbers inside scripts via As-Int; never rely on binder.
+  - Keep assets under asset/**; write generated content to pages/apps/**.
+  - Offline-first; LLM/TTS/STT optional via secrets, never embedded in client.
 
-assistants:
-  overseers: [Rey Czar, White Star]
-  core: [Clarice, Charlotte, Nina, Alexandria, Tracy, Carol, Jem, Sorcha, Odessa, Billie, Themis, Abbey]
-  roles:
-    Clarice: { domain: security+continuity }
-    Charlotte: { domain: pipelines+files+i18n+tts-plan }
-    Nina: { domain: backend+3D indices }
-    Alexandria: { domain: worldbuilding+story }
-    Tracy: { domain: art briefs/assets }
-    Carol: { domain: nutrition/meal plans }
-    Jem: { domain: fitness/programs }
-    Sorcha: { domain: social/video (deferred) }
-    Odessa: { domain: grants (sensitive flags respected) }
-    Billie: { domain: monetization (deferred) }
-    Themis: { domain: records+reminders (deferred) }
-    Abbey: { domain: accounting (deferred) }
-
-repo_structure:
-  keep:
-    - asset/models/**
-    - asset/winged-models/**
-    - asset/wings/**
-    - asset/textures/**
-    - memory-history/**
-    - CNAME
-    - .nojekyll
-  generated_data:
-    - data/alexandria/worlds/**
-    - data/tracy/artboards/**
-    - data/overseers/vrm-index.json
-    - data/charlotte/pipelines/**
-    - data/carol/plans/**
-    - data/jem/programs/**
-  workflows:
-    - .github/workflows/00-sanity.yml
-    - .github/workflows/avalon-run-all.yml
-
-engineering_rules:
-  - "In Actions: use `pwsh -File` only; never use `&`."
-  - "Cast numbers to [int] locally; pass text via simple strings."
-  - "Guard git add; treat 'Nothing to commit' as success."
-  - "No cross-workflow dispatch; single-job sequences preferred."
-  - "No UI edits without explicit approval."
+generated_paths:
+  - pages/apps/alexandria/worlds/**
+  - pages/apps/tracy/artboards/**
+  - pages/apps/overseers/vrm-index.json
+  - pages/apps/charlotte/pipelines/**
+  - pages/apps/carol/plans/**
+  - pages/apps/jem/programs/**
+workflows:
+  - .github/workflows/00-sanity.yml
+  - .github/workflows/avalon-run-all.yml
+microapps:
+  - pages/apps/index.html
+  - pages/apps/alexandria/index.html
+  - pages/apps/alexandria/app.{css,js}

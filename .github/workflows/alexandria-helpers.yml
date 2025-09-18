@@ -1,12 +1,10 @@
 name: Alexandria — Helpers Suite
-
 on:
   workflow_dispatch:
     inputs:
-      world:        { description: "World (auto-pick latest if empty)", required: false, type: string }
-      per_town:     { description: "Notable figures per settlement", required: false, default: 3, type: number }
+      world: { description: "World (auto-pick latest if empty)", required: false, type: string }
+      per_town: { description: "Notable figures per settlement", required: false, default: 3, type: number }
       force_fallback: { description: "Force offline (no LLM Bridge)", required: false, default: true, type: boolean }
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,13 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-
-      - name: Install PowerShell YAML
-        shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          Install-Module powershell-yaml -Force -Scope CurrentUser -AllowClobber
-
       - name: Run Helpers Suite
         shell: pwsh
         run: |
@@ -31,7 +22,6 @@ jobs:
             -World "${{ inputs.world }}" `
             -PerTown ${{ inputs.per_town }} `
             -ForceFallback:$ff
-
       - name: Commit artifacts
         shell: bash
         run: |

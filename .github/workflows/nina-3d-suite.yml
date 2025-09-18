@@ -1,11 +1,9 @@
 name: Nina — 3D Suite
-
 on:
   workflow_dispatch:
     inputs:
       world: { description: "World (optional; only used for scene stubs)", required: false, type: string }
       combos: { description: "Max VRM×Wing combos to plan", required: false, default: 12, type: number }
-
 jobs:
   build:
     runs-on: ubuntu-latest

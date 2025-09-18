@@ -11,6 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: { contents: write }
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
@@ -21,8 +22,6 @@ jobs:
           Install-Module powershell-yaml -Force -Scope CurrentUser -AllowClobber
       - name: Build All
         shell: pwsh
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           $ErrorActionPreference='Stop'
           $ff = [System.Convert]::ToBoolean("${{ inputs.force_fallback }}")
@@ -34,13 +33,13 @@ jobs:
             -NPCs ${{ inputs.npcs }} `
             -Regions ${{ inputs.regions }} `
             -ForceFallback:$ff
-      - name: Commit changes (if any)
+      - name: Commit artifacts
         shell: bash
         run: |
           set -e
           git config user.name "actions-bot"
           git config user.email "actions@github.com"
-          git add -A pages/apps/alexandria
+          git add -A pages/apps/alexandria/worlds
           if git diff --staged --quiet; then
             echo "Nothing to commit"
           else

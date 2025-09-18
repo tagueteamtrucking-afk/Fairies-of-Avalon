@@ -49,7 +49,7 @@
       "dry_run": false,
       "action": "memory_snapshot",
       "status": "ok",
-      "ended": "2025-09-17T23:53:50.3266110Z",
+      "ended": "2025-09-17T23:53:50.326611Z",
       "file": "20250913T184849Z-memory_snapshot.request.yml",
       "ts": "2025-09-13T18:48:49.0045446Z",
       "actor": "rey_czar",
@@ -121,7 +121,7 @@
       "action": "build_manifests",
       "status": "ok",
       "file": "20250915T063627Z-build-manifests.request.yml",
-      "ts": "2025-09-15T06:36:27.3663610Z",
+      "ts": "2025-09-15T06:36:27.366361Z",
       "actor": "clarice",
       "id": "A3"
     },
@@ -155,5 +155,11 @@
       "actor": "rey_czar",
       "id": "A1"
     }
-  ]
+  ],
+  "telemetry": {
+    "updated": "2025-09-18T00:01:46.6818295Z",
+    "wallpapers_count": 4,
+    "wallpaper_power_index": 20,
+    "wallpapers_total": 20
+  }
 }

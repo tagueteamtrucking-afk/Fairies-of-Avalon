@@ -1,9 +1,9 @@
 {
-  "scanned": 303,
-  "errors": 74,
+  "scanned": 313,
+  "errors": 75,
   "memory_broken": true,
   "memory_status": "restored",
-  "when": "2025-09-17T20:57:48.8506541Z",
+  "when": "2025-09-18T00:13:02.7934441Z",
   "items": [
     {
       "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/20250913T083955Z-Codys-Memory.yaml",
@@ -1126,6 +1126,56 @@
       "message": "Exception calling \"Load\" with \"1\" argument(s): \"While parsing a node, did not find expected node content.\""
     },
     {
+      "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/20250917T205748Z-BROKEN-Codys-Memory.yaml",
+      "ok": false,
+      "message": "Exception calling \"Load\" with \"1\" argument(s): \"While parsing a node, did not find expected node content.\""
+    },
+    {
+      "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/20250917T212554Z-Codys-Memory.yaml",
+      "ok": true,
+      "message": null
+    },
+    {
+      "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/20250917T214108Z-Codys-Memory.yaml",
+      "ok": true,
+      "message": null
+    },
+    {
+      "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/20250917T223023Z-Codys-Memory.yaml",
+      "ok": true,
+      "message": null
+    },
+    {
+      "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/20250917T224146Z-Codys-Memory.yaml",
+      "ok": true,
+      "message": null
+    },
+    {
+      "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/20250917T224147Z-Codys-Memory.yaml",
+      "ok": true,
+      "message": null
+    },
+    {
+      "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/20250917T225437Z-Codys-Memory.yaml",
+      "ok": true,
+      "message": null
+    },
+    {
+      "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/20250917T232747Z-Codys-Memory.yaml",
+      "ok": true,
+      "message": null
+    },
+    {
+      "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/20250917T234052Z-Codys-Memory.yaml",
+      "ok": true,
+      "message": null
+    },
+    {
+      "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/20250917T235350Z-Codys-Memory.yaml",
+      "ok": true,
+      "message": null
+    },
+    {
       "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/permissions/processed/20250913T044053Z-exampl.request.yml",
       "ok": true,
       "message": null
@@ -1518,7 +1568,7 @@
     {
       "path": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/Cody's Memory.yaml",
       "ok": false,
-      "message": "Exception calling \"Load\" with \"1\" argument(s): \"While parsing a node, did not find expected node content.\""
+      "message": "Exception calling \"Load\" with \"1\" argument(s): \"While parsing a block collection, did not find expected '-' indicator.\""
     }
   ]
 }

@@ -1,0 +1,416 @@
+{
+  "generated": "2025-09-18T01:09:12.6543897Z",
+  "models": [
+    {
+      "file": "asset/winged-models/WingedAlexandria.vrm",
+      "name": "WingedAlexandria",
+      "preWinged": true
+    },
+    {
+      "file": "asset/winged-models/WingedBillie.vrm",
+      "name": "WingedBillie",
+      "preWinged": true
+    },
+    {
+      "file": "asset/winged-models/WingedReyCzar.vrm",
+      "name": "WingedReyCzar",
+      "preWinged": true
+    },
+    {
+      "file": "asset/winged-models/WingedWhiteStar.vrm",
+      "name": "WingedWhiteStar",
+      "preWinged": true
+    },
+    {
+      "file": "asset/models/abbey.vrm",
+      "name": "abbey",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/alexandria.vrm",
+      "name": "alexandria",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/billie.vrm",
+      "name": "billie",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/carol.vrm",
+      "name": "carol",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/charlotte.vrm",
+      "name": "charlotte",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/clarice.vrm",
+      "name": "clarice",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/jem.vrm",
+      "name": "jem",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/nina.vrm",
+      "name": "nina",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/odessa.vrm",
+      "name": "odessa",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/reyczar.vrm",
+      "name": "reyczar",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/sorcha.vrm",
+      "name": "sorcha",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/stella.vrm",
+      "name": "stella",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/themis.vrm",
+      "name": "themis",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/tracy.vrm",
+      "name": "tracy",
+      "preWinged": false
+    },
+    {
+      "file": "asset/models/whitestar.vrm",
+      "name": "whitestar",
+      "preWinged": false
+    }
+  ],
+  "wings": {
+    "generated": "2025-09-18T00:01:46.654522Z",
+    "wings": {
+      "1430": {
+        "mesh": "asset/wings/wing1430.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1430_c.png",
+          "normal": "asset/wings/textures/wing1430_nrm.png",
+          "base": "asset/wings/textures/wing1430.png"
+        }
+      },
+      "162": {
+        "mesh": "asset/wings/wing162.fbx",
+        "textures": {
+          "base": "asset/wings/textures/wing162.png"
+        }
+      },
+      "1423": {
+        "mesh": "asset/wings/Wing1423.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1423_c.png",
+          "normal": "asset/wings/textures/wing1423_nrm.png",
+          "base": "asset/wings/textures/wing1423.png"
+        }
+      },
+      "1426": {
+        "mesh": "asset/wings/wing1426.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1426_c.png",
+          "normal": "asset/wings/textures/wing1426_nrm.png",
+          "base": "asset/wings/textures/wing1426.png"
+        }
+      },
+      "03": {
+        "mesh": "asset/wings/wing03.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing03_c.png",
+          "normal": "asset/wings/textures/wing03_nrm.png",
+          "base": "asset/wings/textures/wing03.png"
+        }
+      },
+      "1432": {
+        "mesh": null,
+        "textures": {
+          "color": "asset/wings/textures/wing1432_c.png",
+          "normal": "asset/wings/textures/wing1432_nrm.png",
+          "base": "asset/wings/textures/wing1432.png"
+        }
+      },
+      "1437": {
+        "mesh": "asset/wings/Wing1437.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1437_c.png",
+          "normal": "asset/wings/textures/wing1437_nrm.png",
+          "base": "asset/wings/textures/wing1437.png"
+        }
+      },
+      "1431": {
+        "mesh": "asset/wings/wing1431.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1431_c.png",
+          "normal": "asset/wings/textures/wing1431_nrm.png",
+          "base": "asset/wings/textures/wing1431.png"
+        }
+      },
+      "05": {
+        "mesh": "asset/wings/wing05.fbx",
+        "textures": {
+          "base": "asset/wings/textures/wing05.png"
+        }
+      },
+      "1425": {
+        "mesh": "asset/wings/wing1425.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1425_c.png",
+          "normal": "asset/wings/textures/wing1425_nrm.png",
+          "base": "asset/wings/textures/wing1425.png"
+        }
+      },
+      "1429": {
+        "mesh": "asset/wings/wing1429.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1429_c.png",
+          "normal": "asset/wings/textures/wing1429_nrm.png",
+          "base": "asset/wings/textures/wing1429.png"
+        }
+      },
+      "1421": {
+        "mesh": "asset/wings/Wing1421.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1421_c.png",
+          "normal": "asset/wings/textures/wing1421_nrm.png",
+          "base": "asset/wings/textures/wing1421.png"
+        }
+      },
+      "1438": {
+        "mesh": "asset/wings/Wing1438.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1438_c.png",
+          "normal": "asset/wings/textures/wing1438_nrm.png",
+          "base": "asset/wings/textures/wing1438.png"
+        }
+      },
+      "1427": {
+        "mesh": "asset/wings/wing1427.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1427_c.png",
+          "normal": "asset/wings/textures/wing1427_nrm.png",
+          "base": "asset/wings/textures/wing1427.png"
+        }
+      },
+      "1417": {
+        "mesh": "asset/wings/wing1417.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1417_c.png",
+          "normal": "asset/wings/textures/wing1417_nrm.png",
+          "base": "asset/wings/textures/wing1417.png"
+        }
+      },
+      "1415": {
+        "mesh": "asset/wings/Wing1415.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1415_c.png",
+          "normal": "asset/wings/textures/wing1415_nrm.png",
+          "base": "asset/wings/textures/wing1415.png"
+        }
+      },
+      "1433": {
+        "mesh": "asset/wings/Wing1433.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1433_c.png",
+          "normal": "asset/wings/textures/wing1433_nrm.png",
+          "base": "asset/wings/textures/wing1433.png"
+        }
+      },
+      "1435": {
+        "mesh": "asset/wings/wing1435.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1435_c.png",
+          "normal": "asset/wings/textures/wing1435_nrm.png",
+          "base": "asset/wings/textures/wing1435.png"
+        }
+      },
+      "1436": {
+        "mesh": "asset/wings/Wing1436.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1436_c.png",
+          "normal": "asset/wings/textures/wing1436_nrm.png",
+          "base": "asset/wings/textures/wing1436.png"
+        }
+      },
+      "1422": {
+        "mesh": "asset/wings/wing1422.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1422_c(1).png",
+          "normal": "asset/wings/textures/wing1422_nrm(1).png",
+          "emissive": "asset/wings/textures/wing1422_e(1).png",
+          "base": "asset/wings/textures/wing1422(1).png"
+        }
+      },
+      "1424": {
+        "mesh": "asset/wings/wing1424.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1424_c.png",
+          "normal": "asset/wings/textures/wing1424_nrm.png",
+          "base": "asset/wings/textures/wing1424.png"
+        }
+      },
+      "02": {
+        "mesh": "asset/wings/wing02.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing02_c.png",
+          "normal": "asset/wings/textures/wing02_nrm.png",
+          "emissive": "asset/wings/textures/wing02_e.png",
+          "base": "asset/wings/textures/wing02.png"
+        }
+      },
+      "1434": {
+        "mesh": "asset/wings/wing1434.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1434_c.png",
+          "normal": "asset/wings/textures/wing1434_nrm.png",
+          "base": "asset/wings/textures/wing1434.png"
+        }
+      },
+      "1419": {
+        "mesh": "asset/wings/wing1419.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1419_c.png",
+          "normal": "asset/wings/textures/wing1419_nrm.png",
+          "base": "asset/wings/textures/wing1419.png"
+        }
+      },
+      "1428": {
+        "mesh": "asset/wings/wing1428.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1428_c.png",
+          "normal": "asset/wings/textures/wing1428_nrm.png",
+          "base": "asset/wings/textures/wing1428.png"
+        }
+      },
+      "1439": {
+        "mesh": "asset/wings/Wing1439.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1439_c.png",
+          "normal": "asset/wings/textures/wing1439_nrm.png",
+          "base": "asset/wings/textures/wing1439.png"
+        }
+      },
+      "1420": {
+        "mesh": "asset/wings/wing1420.fbx",
+        "textures": {
+          "color": "asset/wings/textures/wing1420_c.png",
+          "normal": "asset/wings/textures/wing1420_nrm.png",
+          "base": "asset/wings/textures/wing1420.png"
+        }
+      }
+    }
+  },
+  "combos": [
+    {
+      "model": "asset/winged-models/WingedAlexandria.vrm",
+      "wing": null,
+      "combo": "pre-winged"
+    },
+    {
+      "model": "asset/winged-models/WingedBillie.vrm",
+      "wing": null,
+      "combo": "pre-winged"
+    },
+    {
+      "model": "asset/winged-models/WingedReyCzar.vrm",
+      "wing": null,
+      "combo": "pre-winged"
+    },
+    {
+      "model": "asset/winged-models/WingedWhiteStar.vrm",
+      "wing": null,
+      "combo": "pre-winged"
+    },
+    {
+      "model": "asset/models/abbey.vrm",
+      "wing": null,
+      "combo": "abbey+"
+    },
+    {
+      "model": "asset/models/alexandria.vrm",
+      "wing": null,
+      "combo": "alexandria+"
+    },
+    {
+      "model": "asset/models/billie.vrm",
+      "wing": null,
+      "combo": "billie+"
+    },
+    {
+      "model": "asset/models/carol.vrm",
+      "wing": null,
+      "combo": "carol+"
+    },
+    {
+      "model": "asset/models/charlotte.vrm",
+      "wing": null,
+      "combo": "charlotte+"
+    },
+    {
+      "model": "asset/models/clarice.vrm",
+      "wing": null,
+      "combo": "clarice+"
+    },
+    {
+      "model": "asset/models/jem.vrm",
+      "wing": null,
+      "combo": "jem+"
+    },
+    {
+      "model": "asset/models/nina.vrm",
+      "wing": null,
+      "combo": "nina+"
+    },
+    {
+      "model": "asset/models/odessa.vrm",
+      "wing": null,
+      "combo": "odessa+"
+    },
+    {
+      "model": "asset/models/reyczar.vrm",
+      "wing": null,
+      "combo": "reyczar+"
+    },
+    {
+      "model": "asset/models/sorcha.vrm",
+      "wing": null,
+      "combo": "sorcha+"
+    },
+    {
+      "model": "asset/models/stella.vrm",
+      "wing": null,
+      "combo": "stella+"
+    },
+    {
+      "model": "asset/models/themis.vrm",
+      "wing": null,
+      "combo": "themis+"
+    },
+    {
+      "model": "asset/models/tracy.vrm",
+      "wing": null,
+      "combo": "tracy+"
+    },
+    {
+      "model": "asset/models/whitestar.vrm",
+      "wing": null,
+      "combo": "whitestar+"
+    }
+  ]
+}

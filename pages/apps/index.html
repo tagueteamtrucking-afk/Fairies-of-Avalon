@@ -25,45 +25,49 @@
     <p class="lead">Outputs under <code>pages/apps/**</code> will appear here.</p>
   </header>
   <main class="grid">
-    <a class="card" id="genLink" href="#gen-worlds">
+    <a class="card" id="genRunAll" href="#run-all">
       <h3>Generate Worlds 🗺️</h3>
       <p>Opens “Avalon: Run-All” (LLM Bridge default ON).</p>
+    </a>
+    <a class="card" id="genCarol" href="#carol">
+      <h3>Generate Plans 🧭</h3>
+      <p>Opens “Carol: LLM Plans”.</p>
+    </a>
+    <a class="card" id="genJem" href="#jem">
+      <h3>Generate Programs ⚙️</h3>
+      <p>Opens “Jem: LLM Programs”.</p>
+    </a>
+    <a class="card" id="genStella" href="#stella">
+      <h3>Generate Components 🧩</h3>
+      <p>Opens “Stella: LLM Components”.</p>
     </a>
     <a class="card" href="alexandria/index.html">
       <h3>Alexandria</h3>
       <p>World library. Reads <code>alexandria/worlds/index.json</code>.</p>
     </a>
-    <a class="card" href="alexandria/worlds/index.json" target="_blank" rel="noopener">
-      <h3>Raw Worlds JSON</h3>
-      <p>Inspect the generated index file directly.</p>
-    </a>
-    <a class="card" href="charlotte/voiceovers/index.json" target="_blank" rel="noopener">
-      <h3>Charlotte Voiceovers (JSON)</h3>
-      <p>Populated when Azure TTS runs.</p>
-    </a>
-    <a class="card" href="tracy/artboards/index.json" target="_blank" rel="noopener">
-      <h3>Tracy Artboards (JSON)</h3>
-      <p>LLM or generator can populate this list.</p>
+    <a class="card" href="stella/index.html">
+      <h3>Stella</h3>
+      <p>Component blueprints. Reads <code>stella/components/index.json</code>.</p>
     </a>
     <a class="card" href="carol/plans/index.json" target="_blank" rel="noopener">
       <h3>Carol Plans (JSON)</h3>
-      <p>Task plans &amp; roadmaps.</p>
+      <p>Task plans & roadmaps.</p>
     </a>
     <a class="card" href="jem/programs/index.json" target="_blank" rel="noopener">
       <h3>Jem Programs (JSON)</h3>
       <p>Executable mini-program definitions.</p>
     </a>
   </main>
-  <footer>Tip: Use the “Avalon: Run-All” workflow to (re)generate starter JSON.</footer>
+  <footer>Tip: Set <code>data-repo-url</code> on &lt;body&gt; so the generate cards open your workflows.</footer>
   <script>
     (function(){
       var repo = document.body.getAttribute('data-repo-url') || "";
-      var gen = document.getElementById('genLink');
-      if (repo && /^https?:\/\//.test(repo)) {
-        var wf = repo.replace(/\/?$/, '') + "/actions/workflows/avalon-run-all.yml";
-        if (gen) gen.href = wf;
-      } else if (gen) {
-        gen.title = "Set data-repo-url on <body> to enable this link";
+      function wf(p){ return repo.replace(/\/?$/, '') + p }
+      if (/^https?:\/\//.test(repo)) {
+        document.getElementById('genRunAll').href = wf("/actions/workflows/avalon-run-all.yml");
+        document.getElementById('genCarol').href = wf("/actions/workflows/carol-llm.yml");
+        document.getElementById('genJem').href   = wf("/actions/workflows/jem-llm.yml");
+        document.getElementById('genStella').href= wf("/actions/workflows/stella-llm.yml");
       }
     }());
   </script>

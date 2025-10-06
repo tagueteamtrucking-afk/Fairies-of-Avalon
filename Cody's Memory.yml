@@ -5,9 +5,8 @@ meta:
   last_updated: "2025-09-18"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    Complete pack v4. Adds ROOT homepage index.html with wallpaper hero + CTAs.
-    Run-All includes Alexandria + Tracy + Nina + Charlotte + Carol + Jem.
-    Optional LLM Bridge (OpenAI) and TTS (Azure). Robust numeric handling via As-Int.
+    v4+. LLM Bridge default ON. Adds Stella components agent + LLM scripts for Carol and Jem.
+    Safe Actions (no & / no splatting). As-Int numeric coercion. All writes under pages/apps/**.
 
 rules:
   - Never repeat Object[]→Int32: declare [object] params, coerce via As-Int.
@@ -19,27 +18,22 @@ rules:
 workflows:
   - .github/workflows/00-sanity.yml
   - .github/workflows/avalon-run-all.yml
-  - .github/workflows/overseers-llm-bridge.yml (optional; requires OPENAI_API_KEY)
-  - .github/workflows/charlotte-tts-azure.yml (optional; requires AZURE_TTS_KEY, AZURE_TTS_REGION)
+  - .github/workflows/overseers-llm-bridge.yml
+  - .github/workflows/charlotte-tts-azure.yml
+  - .github/workflows/carol-llm.yml
+  - .github/workflows/jem-llm.yml
+  - .github/workflows/stella-llm.yml
 
 secrets_expected:
-  - OPENAI_API_KEY: for LLM Bridge (Chat Completions family).
-  - AZURE_TTS_KEY, AZURE_TTS_REGION: Speech TTS REST (cognitiveservices/v1).
+  - OPENAI_API_KEY: for all LLM bridges (Chat Completions).
+  - AZURE_TTS_KEY, AZURE_TTS_REGION: Speech TTS REST for Charlotte (optional).
 
 generated_paths:
   - pages/apps/alexandria/worlds/**
   - pages/apps/tracy/artboards/**
   - pages/apps/overseers/vrm-index.json
   - pages/apps/charlotte/pipelines/**
-  - pages/apps/charlotte/voiceovers/** (when TTS run)
+  - pages/apps/charlotte/voiceovers/**
   - pages/apps/carol/plans/**
   - pages/apps/jem/programs/**
-
-microapps:
-  - pages/apps/index.html
-  - pages/apps/alexandria/index.html
-  - pages/apps/alexandria/app.css
-  - pages/apps/alexandria/app.js
-
-homepage:
-  index.html: "Wallpaper hero from asset/textures/wallpapers/*.jpg; CTAs to microapps and Actions"
+  - pages/apps/stella/components/**

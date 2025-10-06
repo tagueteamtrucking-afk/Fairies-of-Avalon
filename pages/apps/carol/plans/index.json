@@ -1,13 +1,13 @@
 {
-  "updated": "2025-10-06T01:40:43Z",
+  "updated": "2025-10-06T01:59:04Z",
   "plans": [
     {
       "id": "site-v1",
       "title": "Site v1",
       "tasks": [
-        "Wire homepage hero",
-        "Hook up Actions CTAs",
-        "Publish via GitHub Pages"
+        "Wire homepage",
+        "Run LLM Bridges",
+        "Publish Pages"
       ]
     }
   ]

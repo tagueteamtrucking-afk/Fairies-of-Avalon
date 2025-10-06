@@ -21,18 +21,10 @@
           const worldFile = w.file || (w.slug ? `world-${w.slug}.json` : null);
           if (worldFile) {
             const wr = await fetch(`worlds/${worldFile}`, { cache: 'no-store' });
-            if (wr.ok) {
-              const j = await wr.json();
-              details.textContent = JSON.stringify(j, null, 2);
-            } else {
-              details.textContent = JSON.stringify(w, null, 2);
-            }
-          } else {
-            details.textContent = JSON.stringify(w, null, 2);
-          }
-        } catch (err) {
-          details.textContent = JSON.stringify(w, null, 2);
-        }
+            if (wr.ok) { const j = await wr.json(); details.textContent = JSON.stringify(j, null, 2); }
+            else { details.textContent = JSON.stringify(w, null, 2); }
+          } else { details.textContent = JSON.stringify(w, null, 2); }
+        } catch (err) { details.textContent = JSON.stringify(w, null, 2); }
         frag.appendChild(node);
       }
       grid.replaceChildren(frag);

@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alexandria — Worlds</title>
+  <title>Stella — Components</title>
   <link rel="stylesheet" href="app.css" />
 </head>
 <body data-repo-url="">
   <header class="topbar">
     <a class="back" href="../index.html" aria-label="Back to microapps">←</a>
-    <h1>Alexandria</h1>
+    <h1>Stella</h1>
     <div class="spacer"></div>
-    <a id="genWf" class="btn-map" href="#gen-worlds" title="Run Run-All (LLM Bridge default ON)"><span aria-hidden="true">🗺️</span><span class="label">Generate Worlds</span></a>
-    <a class="muted" href="worlds/index.json" target="_blank" rel="noopener">JSON</a>
+    <a id="genWf" class="btn-map" href="#gen-components" title="Run Stella LLM Components"><span aria-hidden="true">🗺️</span><span class="label">Generate Components</span></a>
+    <a class="muted" href="components/index.json" target="_blank" rel="noopener">JSON</a>
   </header>
   <main id="grid" class="grid" aria-live="polite"></main>
-  <template id="world-card">
+  <template id="component-card">
     <article class="card">
       <h3 class="title"></h3>
       <p class="summary"></p>
       <details class="details">
-        <summary>Details</summary>
+        <summary>Blueprint</summary>
         <pre class="code"></pre>
       </details>
     </article>
@@ -31,7 +31,7 @@
       var repo = document.body.getAttribute('data-repo-url') || "";
       var gen = document.getElementById('genWf');
       if (repo && /^https?:\/\//.test(repo)) {
-        var wf = repo.replace(/\/?$/, '') + "/actions/workflows/avalon-run-all.yml";
+        var wf = repo.replace(/\/?$/, '') + "/actions/workflows/stella-llm.yml";
         if (gen) gen.href = wf;
       } else { if (gen) gen.setAttribute('title','Set data-repo-url on <body> to enable this link'); }
     }());

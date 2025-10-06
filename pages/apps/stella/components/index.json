@@ -1,0 +1,12 @@
+{
+  "updated": "2025-10-06T01:59:04Z",
+  "items": [
+    {
+      "id": "component-map-button",
+      "slug": "map-button",
+      "title": "Treasure-Map Button",
+      "summary": "Globe/treasure-map styled CTA for world generation.",
+      "file": "component-map-button.json"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+name: Pages: Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      worlds:
+        description: 'Worlds to (re)generate before deploy (Run-All)'
+        required: false
+        default: 3
+        type: number
+      with_llm:
+        description: 'Run Alexandria LLM Bridge before publish'
+        required: false
+        default: true
+        type: boolean
+      with_carol:
+        description: 'Run Carol LLM before publish'
+        required: false
+        default: true
+        type: boolean
+      with_jem:
+        description: 'Run Jem LLM before publish'
+        required: false
+        default: true
+        type: boolean
+      with_stella:
+        description: 'Run Stella LLM before publish'
+        required: false
+        default: true
+        type: boolean
+      with_tts:
+        description: 'Run Charlotte TTS (requires AZURE_TTS_*)'
+        required: false
+        default: false
+        type: boolean
+  push:
+    branches: [ main ]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate (Run-All)
+        shell: pwsh
+        run: pwsh -File scripts/Run-All.ps1 -WorldCount ${{ inputs.worlds }} -NonInteractive true
+
+      - name: Alexandria LLM Bridge
+        if: ${{ inputs.with_llm == true }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        shell: pwsh
+        run: pwsh -File scripts/LLM-Bridge.ps1 -WorldsToGenerate ${{ inputs.worlds }}
+
+      - name: Carol LLM Plans
+        if: ${{ inputs.with_carol == true }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        shell: pwsh
+        run: pwsh -File scripts/Carol-LLM-Plans.ps1 -PlansToGenerate 3 -ProjectTitle "Avalon Site v1"
+
+      - name: Jem LLM Programs
+        if: ${{ inputs.with_jem == true }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        shell: pwsh
+        run: pwsh -File scripts/Jem-LLM-Programs.ps1 -ProgramsToGenerate 2 -Target "site-automation"
+
+      - name: Stella LLM Components
+        if: ${{ inputs.with_stella == true }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        shell: pwsh
+        run: pwsh -File scripts/Stella-LLM-Components.ps1 -ComponentsToGenerate 5 -Theme "treasure-map"
+
+      - name: Charlotte TTS (optional)
+        if: ${{ inputs.with_tts == true }}
+        env:
+          AZURE_TTS_KEY: ${{ secrets.AZURE_TTS_KEY }}
+          AZURE_TTS_REGION: ${{ secrets:AZURE_TTS_REGION }}
+        shell: pwsh
+        run: pwsh -File scripts/Charlotte-TTS.ps1
+
+      - name: Prepare Pages artifact
+        shell: bash
+        run: |
+          set -e
+          mkdir -p dist
+          if [ -f index.html ]; then cp index.html dist/index.html; fi
+          if [ -d pages ]; then cp -R pages dist/pages; fi
+          if [ -d asset ]; then cp -R asset dist/asset; fi
+          if [ -f CNAME ]; then cp CNAME dist/CNAME; fi
+          if [ -f .nojekyll ]; then cp .nojekyll dist/.nojekyll; fi
+          if [ ! -f dist/index.html ] && [ ! -d dist/pages ] && [ ! -d dist/asset ]; then
+            echo "Nothing to publish"; exit 1
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -4,13 +4,16 @@ $count = As-Int -Value $PlansToGenerate
 if ([string]::IsNullOrWhiteSpace($Model)) { $Model = "gpt-4o-mini" }
 $apiKey = $env:OPENAI_API_KEY
 if ([string]::IsNullOrWhiteSpace($apiKey)) { Write-Host "OPENAI_API_KEY not set. Skipping Carol LLM."; exit 0 }
+
 $Root = Split-Path -Parent $PSScriptRoot
 $plansPath = Join-Path (Join-Path $Root 'pages/apps/carol') 'plans'
 $null = New-Item -ItemType Directory -Path $plansPath -Force
+
 $prompt = "You are Carol, a planning agent. Output STRICT JSON only, no markdown. Schema: { plans: [{ id, title, tasks[] }] }. Generate "+$count+" concise execution plans to build and ship '"+$ProjectTitle+"'. Keep each plan under ~7 tasks."
 $body = @{ model=$Model; messages=@(@{role="user";content=$prompt}); temperature=0.4 } | ConvertTo-Json -Depth 6
 $headers = @{ "Authorization"="Bearer "+$apiKey; "Content-Type"="application/json" }
 try { $resp = Invoke-RestMethod -Method Post -Uri "https://api.openai.com/v1/chat/completions" -Headers $headers -Body $body; $text=$resp.choices[0].message.content; if($text -match '```'){ $text=($text -replace '```json','' -replace '```','').Trim() }; $obj=$text|ConvertFrom-Json } catch { Write-Error "Carol LLM failed: $_"; exit 1 }
+
 $now = (Get-Date).ToUniversalTime().ToString("s") + "Z"
 $plansOut=@()
 foreach($p in $obj.plans){

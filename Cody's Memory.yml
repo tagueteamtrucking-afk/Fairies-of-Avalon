@@ -1,0 +1,55 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "2.3.1"
+  last_updated: "2025-10-06"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    LLM Bridge default ON. Adds Carol/Jem/Stella LLM flows. Treasure‑map
+    “World Creation” visual applied to buttons. Pages deploy workflow added.
+    Buttons compute links from <body data-repo-url="https://github.com/<user>/<repo>">.
+
+rules:
+  - Never repeat Object[]→Int32: declare [object] params, coerce via As-Int.
+  - No call operator (&) or splatting in Actions; use `pwsh -File`.
+  - Ask clarifying questions until ≥95% confident; record obstacles + fixes here.
+  - Keep assets intact; write generated content to pages/apps/** only.
+  - Put all secrets in Actions (server-side). No secrets in client JS.
+  - World Creation UI should look like a treasure map (🗺️ parchment + path).
+
+workflows:
+  - .github/workflows/00-sanity.yml
+  - .github/workflows/avalon-run-all.yml            # LLM default ON
+  - .github/workflows/overseers-llm-bridge.yml      # Alexandria worlds
+  - .github/workflows/carol-llm.yml                 # Plans
+  - .github/workflows/jem-llm.yml                   # Programs
+  - .github/workflows/stella-llm.yml                # Components
+  - .github/workflows/charlotte-tts-azure.yml       # Optional TTS (Azure)
+  - .github/workflows/pages-deploy.yml              # Deploy to GitHub Pages
+
+secrets_expected:
+  - OPENAI_API_KEY: for all LLM Bridges (Chat Completions).
+  - AZURE_TTS_KEY, AZURE_TTS_REGION: Speech TTS REST (optional, Charlotte).
+
+generated_paths:
+  - pages/apps/alexandria/worlds/**
+  - pages/apps/tracy/artboards/**
+  - pages/apps/overseers/vrm-index.json
+  - pages/apps/charlotte/pipelines/**
+  - pages/apps/charlotte/voiceovers/**
+  - pages/apps/carol/plans/**
+  - pages/apps/jem/programs/**
+  - pages/apps/stella/components/**
+
+microapps:
+  - pages/apps/index.html               # microapps hub
+  - pages/apps/alexandria/index.html    # worlds (🗺️ Generate Worlds button)
+  - pages/apps/stella/index.html        # components (🗺️ Generate Components)
+  - pages/apps/alexandria/app.css
+  - pages/apps/alexandria/app.js
+
+homepage:
+  index.html: >
+    Wallpaper hero from asset/textures/wallpapers/*.jpg;
+    CTAs to microapps + “Generate Worlds” (treasure‑map style).
+    Buttons compute links from <body data-repo-url="https://github.com/<user>/<repo>">.

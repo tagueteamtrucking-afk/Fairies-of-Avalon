@@ -1,0 +1,19 @@
+{
+  "world": "20251006T032652Z-avalon",
+  "created": "2025-10-06T03:26:59.0923688Z",
+  "tts_tasks": [
+    {
+      "ssml": "<speak><voice name='en-US-JennyNeural'>Welcome to 20251006T032652Z-avalon</voice></speak>",
+      "id": "opening"
+    }
+  ],
+  "translations": [
+    {
+      "lang": "es",
+      "files": [
+        "lore-bible.json",
+        "timeline.json"
+      ]
+    }
+  ]
+}

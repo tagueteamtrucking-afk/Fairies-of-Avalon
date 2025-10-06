@@ -1,0 +1,60 @@
+{
+  "world": "20251006T032652Z-avalon",
+  "regions": [
+    {
+      "biomes": [
+        "plains"
+      ],
+      "settlements": [
+        "Town A",
+        "Village B"
+      ],
+      "name": "Region 1",
+      "id": "region-1"
+    },
+    {
+      "biomes": [
+        "plains"
+      ],
+      "settlements": [
+        "Town A",
+        "Village B"
+      ],
+      "name": "Region 2",
+      "id": "region-2"
+    },
+    {
+      "biomes": [
+        "plains"
+      ],
+      "settlements": [
+        "Town A",
+        "Village B"
+      ],
+      "name": "Region 3",
+      "id": "region-3"
+    },
+    {
+      "biomes": [
+        "plains"
+      ],
+      "settlements": [
+        "Town A",
+        "Village B"
+      ],
+      "name": "Region 4",
+      "id": "region-4"
+    },
+    {
+      "biomes": [
+        "plains"
+      ],
+      "settlements": [
+        "Town A",
+        "Village B"
+      ],
+      "name": "Region 5",
+      "id": "region-5"
+    }
+  ]
+}

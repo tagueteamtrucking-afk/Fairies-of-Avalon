@@ -1,0 +1,175 @@
+{
+  "created": "2025-10-06T03:27:01.8222196Z",
+  "goal": "recomp",
+  "equipment": "minimal",
+  "weeks": [
+    {
+      "days": [
+        {
+          "focus": "full",
+          "day": 1
+        },
+        {
+          "focus": "full",
+          "day": 2
+        },
+        {
+          "focus": "full",
+          "day": 3
+        },
+        {
+          "focus": "full",
+          "day": 4
+        }
+      ],
+      "week": 1
+    },
+    {
+      "days": [
+        {
+          "focus": "full",
+          "day": 1
+        },
+        {
+          "focus": "full",
+          "day": 2
+        },
+        {
+          "focus": "full",
+          "day": 3
+        },
+        {
+          "focus": "full",
+          "day": 4
+        }
+      ],
+      "week": 2
+    },
+    {
+      "days": [
+        {
+          "focus": "full",
+          "day": 1
+        },
+        {
+          "focus": "full",
+          "day": 2
+        },
+        {
+          "focus": "full",
+          "day": 3
+        },
+        {
+          "focus": "full",
+          "day": 4
+        }
+      ],
+      "week": 3
+    },
+    {
+      "days": [
+        {
+          "focus": "full",
+          "day": 1
+        },
+        {
+          "focus": "full",
+          "day": 2
+        },
+        {
+          "focus": "full",
+          "day": 3
+        },
+        {
+          "focus": "full",
+          "day": 4
+        }
+      ],
+      "week": 4
+    },
+    {
+      "days": [
+        {
+          "focus": "full",
+          "day": 1
+        },
+        {
+          "focus": "full",
+          "day": 2
+        },
+        {
+          "focus": "full",
+          "day": 3
+        },
+        {
+          "focus": "full",
+          "day": 4
+        }
+      ],
+      "week": 5
+    },
+    {
+      "days": [
+        {
+          "focus": "full",
+          "day": 1
+        },
+        {
+          "focus": "full",
+          "day": 2
+        },
+        {
+          "focus": "full",
+          "day": 3
+        },
+        {
+          "focus": "full",
+          "day": 4
+        }
+      ],
+      "week": 6
+    },
+    {
+      "days": [
+        {
+          "focus": "full",
+          "day": 1
+        },
+        {
+          "focus": "full",
+          "day": 2
+        },
+        {
+          "focus": "full",
+          "day": 3
+        },
+        {
+          "focus": "full",
+          "day": 4
+        }
+      ],
+      "week": 7
+    },
+    {
+      "days": [
+        {
+          "focus": "full",
+          "day": 1
+        },
+        {
+          "focus": "full",
+          "day": 2
+        },
+        {
+          "focus": "full",
+          "day": 3
+        },
+        {
+          "focus": "full",
+          "day": 4
+        }
+      ],
+      "week": 8
+    }
+  ]
+}

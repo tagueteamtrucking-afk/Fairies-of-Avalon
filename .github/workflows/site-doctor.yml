@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       domain:
-        description: 'Custom domain to test (example.com). If empty, uses CNAME or repo default.'
+        description: 'Custom domain to test (example.com). Leave blank to use CNAME or repo default.'
         required: false
-        default: ''
+        default: 'www.fairiesofavalon.com'
         type: string
       apply_fixes:
         description: 'Apply safe fixes (.nojekyll, CNAME, kill-sw.html) and commit'
@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run Site Doctor
+      - name: Run Site Doctor (robust)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: pwsh

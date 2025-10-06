@@ -1,0 +1,21 @@
+name: Jem — Training (LLM)
+on: { workflow_dispatch: {} }
+jobs:
+  jem:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate Jem program (truck-driver constraints)
+        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
+        shell: pwsh
+        run: pwsh -File scripts/Jem-Training-LLM.ps1 -Goal hypertrophy -Experience novice -WeeklySessions 5 -Context truck_driver -MaxSessionMin 20
+      - name: Validate Jem program
+        shell: pwsh
+        run: pwsh -File scripts/Jem-Validate.ps1
+      - name: Commit programs
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/jem/programs/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(jem): truck-driver program" && git push; fi

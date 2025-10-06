@@ -1,0 +1,18 @@
+name: White Star — LLM
+on: { workflow_dispatch: {} }
+jobs:
+  agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run White Star
+        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
+        shell: pwsh
+        run: pwsh -File scripts/Agents-LLM.ps1 -Agent "White Star" -Count 3 -Task "define operating cadences and checklists"
+      - name: Commit output
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/white-star/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(white-star): updates" && git push; fi

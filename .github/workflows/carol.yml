@@ -1,0 +1,18 @@
+name: Carol — LLM
+on: { workflow_dispatch: {} }
+jobs:
+  agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Carol
+        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
+        shell: pwsh
+        run: pwsh -File scripts/Agents-LLM.ps1 -Agent "Carol" -Count 3 -Task "list weekly meal-plan themes and shopping list categories for truck drivers"
+      - name: Commit output
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/carol/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(carol): updates" && git push; fi

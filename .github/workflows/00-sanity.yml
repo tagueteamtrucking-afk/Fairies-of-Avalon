@@ -1,9 +1,13 @@
-
-name: Workflows — Sanity
-on:
-  workflow_dispatch:
+name: 00-sanity
+on: { workflow_dispatch: {} }
 jobs:
-  show:
+  sanity:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Actions are enabled and workflows are visible."
+      - uses: actions/checkout@v4
+      - name: Generate starter content (Run-All)
+        shell: pwsh
+        run: pwsh -File scripts/Run-All.ps1 -WorldCount 3 -NonInteractive true
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with: { name: site, path: "pages/" }

@@ -6,11 +6,12 @@
   <title>Alexandria — Worlds</title>
   <link rel="stylesheet" href="app.css" />
 </head>
-<body>
+<body data-repo-url="">
   <header class="topbar">
     <a class="back" href="../index.html" aria-label="Back to microapps">←</a>
     <h1>Alexandria</h1>
     <div class="spacer"></div>
+    <a id="genWf" class="btn-map" href="#gen-worlds" title="Run Run-All (LLM Bridge default ON)"><span aria-hidden="true">🗺️</span><span class="label">Generate Worlds</span></a>
     <a class="muted" href="worlds/index.json" target="_blank" rel="noopener">JSON</a>
   </header>
   <main id="grid" class="grid" aria-live="polite"></main>
@@ -25,5 +26,17 @@
     </article>
   </template>
   <script src="app.js"></script>
+  <script>
+    (function(){
+      var repo = document.body.getAttribute('data-repo-url') || "";
+      var gen = document.getElementById('genWf');
+      if (repo && /^https?:\/\//.test(repo)) {
+        var wf = repo.replace(/\/?$/, '') + "/actions/workflows/avalon-run-all.yml";
+        if (gen) gen.href = wf;
+      } else {
+        if (gen) gen.setAttribute('title', 'Set data-repo-url on <body> to enable this link');
+      }
+    }());
+  </script>
 </body>
 </html>

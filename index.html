@@ -11,7 +11,7 @@
       --fg: #edf2f7;
       --muted: #9aa4b2;
       --accent: #7aa2ff;
-      --hero-image: url('asset/textures/wallpapers/hero.jpg'); /* change this to any image in asset/textures/wallpapers/*.jpg */
+      --hero-image: url('asset/textures/wallpapers/hero.jpg');
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
@@ -51,55 +51,36 @@
       margin: 0 0 8px 0;
       letter-spacing: -0.02em;
     }
-    p.lead {
-      margin: 0 0 16px 0;
-      color: var(--muted);
-      font-size: clamp(1rem, 2.2vw, 1.25rem);
-    }
-    .cta {
-      display: inline-flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
+    p.lead { margin: 0 0 16px 0; color: var(--muted); font-size: clamp(1rem, 2.2vw, 1.25rem); }
+    .cta { display: inline-flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
     .btn {
-      appearance: none;
-      border: 1px solid rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.08);
-      color: var(--fg);
-      text-decoration: none;
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: transform .06s ease, background .2s ease, border-color .2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 180px;
+      appearance: none; border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08); color: var(--fg);
+      text-decoration: none; padding: 12px 16px; border-radius: 10px;
+      font-weight: 600; transition: transform .06s ease, background .2s ease, border-color .2s ease;
+      display: inline-flex; align-items: center; justify-content: center; min-width: 180px;
     }
     .btn:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
     .btn.secondary { background: transparent; border-color: rgba(255,255,255,0.18); }
+    .btn.map {
+      background: #f1e2c2; color: #1f2937; border-color: rgba(0,0,0,0.28);
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06); position: relative; overflow: hidden;
+    }
+    .btn.map:hover { background: #ead9b5; }
+    .btn .icon { margin-right: 8px; font-size: 1.1em; }
+    .btn.map::after {
+      content: ""; position: absolute; left: -10%; top: 50%; width: 120%; height: 2px;
+      background-image: linear-gradient(to right, rgba(0,0,0,.35) 50%, rgba(0,0,0,0) 0%);
+      background-size: 10px 2px; background-repeat: repeat-x; opacity: .25;
+      transform: rotate(-6deg); pointer-events: none;
+    }
     .kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--muted);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 12px;
-      margin-bottom: 8px;
-      opacity: .9;
+      display: inline-flex; align-items: center; gap: 8px; color: var(--muted);
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; margin-bottom: 8px; opacity: .9;
     }
-    .help {
-      margin-top: 28px; color: var(--muted);
-      font-size: 14px;
-    }
+    .help { margin-top: 28px; color: var(--muted); font-size: 14px; }
     .help code { background: rgba(0,0,0,0.35); padding: 2px 6px; border-radius: 6px; }
-    footer {
-      position: absolute; inset-inline: 0; bottom: 0; z-index: 1; color: #94a3b8;
-      font-size: 12px; padding: 16px; text-align: center; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.28));
-    }
+    footer { position: absolute; inset-inline: 0; bottom: 0; z-index: 1; color: #94a3b8; font-size: 12px; padding: 16px; text-align: center; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.28)); }
   </style>
 </head>
 <body data-repo-url="">
@@ -111,9 +92,10 @@
       <div class="cta">
         <a class="btn" href="pages/apps/index.html">Open Microapps</a>
         <a id="actionsLink" class="btn secondary" href="#setup-actions">Run Actions</a>
+        <a id="generateWorldsLink" class="btn map" href="#gen-worlds"><span class="icon" aria-hidden="true">🗺️</span>Generate Worlds</a>
       </div>
       <div class="help" id="setup" hidden>
-        <p>Set your repo URL by editing <code>data-repo-url</code> on &lt;body&gt; — e.g. <code>https://github.com/yourname/yourrepo</code>. Then the <em>Run Actions</em> button will point to your workflows.</p>
+        <p>Set your repo URL by editing <code>data-repo-url</code> on &lt;body&gt; — e.g. <code>https://github.com/yourname/yourrepo</code>. Then the <em>Run Actions</em> and <em>Generate Worlds</em> buttons will point to your workflows.</p>
       </div>
     </div>
     <footer>Wallpaper path: <code>asset/textures/wallpapers/hero.jpg</code> (change in <code>:root --hero-image</code>).</footer>
@@ -122,9 +104,12 @@
     (function(){
       var repo = document.body.getAttribute('data-repo-url') || "";
       var actions = document.getElementById('actionsLink');
+      var gen = document.getElementById('generateWorldsLink');
       var setup = document.getElementById('setup');
       if (repo && /^https?:\/\//.test(repo)) {
+        var wf = repo.replace(/\/?$/, '') + "/actions/workflows/avalon-run-all.yml";
         actions.href = repo.replace(/\/?$/, '') + "/actions";
+        if (gen) gen.href = wf;
       } else {
         setup.hidden = false;
       }

@@ -19,12 +19,16 @@
     footer{color:#94a3b8; font-size:12px; text-align:center; padding:18px}
   </style>
 </head>
-<body>
+<body data-repo-url="">
   <header>
     <h1>Microapps</h1>
     <p class="lead">Outputs under <code>pages/apps/**</code> will appear here.</p>
   </header>
   <main class="grid">
+    <a class="card" id="genLink" href="#gen-worlds">
+      <h3>Generate Worlds 🗺️</h3>
+      <p>Opens “Avalon: Run-All” (LLM Bridge default ON).</p>
+    </a>
     <a class="card" href="alexandria/index.html">
       <h3>Alexandria</h3>
       <p>World library. Reads <code>alexandria/worlds/index.json</code>.</p>
@@ -51,5 +55,17 @@
     </a>
   </main>
   <footer>Tip: Use the “Avalon: Run-All” workflow to (re)generate starter JSON.</footer>
+  <script>
+    (function(){
+      var repo = document.body.getAttribute('data-repo-url') || "";
+      var gen = document.getElementById('genLink');
+      if (repo && /^https?:\/\//.test(repo)) {
+        var wf = repo.replace(/\/?$/, '') + "/actions/workflows/avalon-run-all.yml";
+        if (gen) gen.href = wf;
+      } else if (gen) {
+        gen.title = "Set data-repo-url on <body> to enable this link";
+      }
+    }());
+  </script>
 </body>
 </html>

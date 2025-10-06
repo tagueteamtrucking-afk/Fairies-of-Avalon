@@ -1,0 +1,24 @@
+name: Stella: LLM Components
+on:
+  workflow_dispatch:
+    inputs:
+      components: { description: 'Components', default: 5, type: number }
+      theme: { description: 'Theme', default: 'treasure-map', type: string }
+jobs:
+  stella-llm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate components (Stella)
+        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
+        shell: pwsh
+        run: pwsh -File scripts/Stella-LLM-Components.ps1 -ComponentsToGenerate ${{ inputs.components }} -Theme '${{ inputs.theme }}'
+      - name: Commit components
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/stella/components/
+          if git diff --cached --quiet; then echo "No changes";
+          else git commit -m "feat(stella): update components"; git push; fi

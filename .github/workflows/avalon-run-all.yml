@@ -1,135 +1,52 @@
-name: Avalon Run All
-
+name: Avalon: Run-All
 on:
   workflow_dispatch:
     inputs:
-      title:          { description: "World Title", required: false }
-      prompt:         { description: "Starter hook / prompt", required: false }
-      preset:
-        description: "Preset size"
-        required: false
-        default: "balanced"
-        type: choice
-        options: ["balanced","bigworld","lite"]
-      target_langs:   { description: "Translations (comma)", required: false, default: "es" }
-      diet_style:
-        description: "Carol: meal style"
-        required: false
-        default: "balanced"
-        type: choice
-        options: ["balanced","mediterranean","keto","vegetarian"]
-      goal:
-        description: "Jem: training goal"
-        required: false
-        default: "recomp"
-        type: choice
-        options: ["recomp","hypertrophy","strength","fatloss"]
-
-permissions:
-  contents: write
-
+      worlds: { description: 'Worlds', default: 3, type: number }
+      run_llm_bridge: { description: 'Alexandria LLM', default: true, type: boolean }
+      run_carol_llm: { description: 'Carol', default: true, type: boolean }
+      run_jem_llm: { description: 'Jem', default: true, type: boolean }
+      run_stella_llm: { description: 'Stella', default: true, type: boolean }
+      run_tts: { description: 'Charlotte TTS', default: false, type: boolean }
 jobs:
-  run:
+  run-all:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
-
-      - name: Compute numbers from preset
-        id: cfg
+      - name: Run-All (local scaffolds)
         shell: pwsh
-        run: |
-          $preset = "${{ inputs.preset }}"
-          switch($preset){
-            "bigworld" { $e=12; $n=30; $r=8; $pt=5; $b=12; $c=16; $md=7; $k=2400; $w=12; $dpw=5; $eq="gym" }
-            "lite"     { $e=5;  $n=6;  $r=3; $pt=2; $b=4;  $c=8;  $md=5; $k=2000; $w=4;  $dpw=3; $eq="minimal" }
-            default    { $e=7;  $n=12; $r=5; $pt=3; $b=8;  $c=12; $md=7; $k=2200; $w=8;  $dpw=4; $eq="minimal" }
-          }
-          echo "events=$e"           | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "npcs=$n"             | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "regions=$r"          | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "per_town=$pt"        | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "boards=$b"           | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "combos=$c"           | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "meal_days=$md"       | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "kcal=$k"             | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "weeks=$w"            | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "days_per_week=$dpw"  | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          echo "equipment=$eq"       | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-
-      - name: Alexandria — Build World
+        run: pwsh -File scripts/Run-All.ps1 -WorldCount ${{ inputs.worlds }} -NonInteractive true
+      - name: Alexandria LLM Bridge
+        if: ${{ inputs.run_llm_bridge == true }}
+        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
         shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          $repo = (Get-Location).Path
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/alexandria-build-all.ps1 `
-            -RepoRoot $repo -Title "${{ inputs.title }}" -Prompt "${{ inputs.prompt }}" `
-            -Events "${{ steps.cfg.outputs.events }}" -NPCs "${{ steps.cfg.outputs.npcs }}" -Regions "${{ steps.cfg.outputs.regions }}"
-
-      - name: Capture WORLD_ID
+        run: pwsh -File scripts/LLM-Bridge.ps1 -WorldsToGenerate ${{ inputs.worlds }}
+      - name: Carol LLM Plans
+        if: ${{ inputs.run_carol_llm == true }}
+        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
         shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          $root = Join-Path (Get-Location).Path 'pages/apps/alexandria/worlds'
-          $latestTxt = Join-Path $root 'latest.txt'
-          if(!(Test-Path $latestTxt)){ throw "No world latest.txt found. Build step failed?" }
-          $wid = Get-Content -LiteralPath $latestTxt -TotalCount 1
-          "WORLD_ID=$wid" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
-          Write-Host "WORLD_ID: $wid"
-
-      - name: Alexandria — Helpers
+        run: pwsh -File scripts/Carol-LLM-Plans.ps1 -PlansToGenerate 3 -ProjectTitle "Avalon Site v1"
+      - name: Jem LLM Programs
+        if: ${{ inputs.run_jem_llm == true }}
+        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
         shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          $repo = (Get-Location).Path
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/alexandria-suite.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -PerTown "${{ steps.cfg.outputs.per_town }}"
-
-      - name: Tracy — Artboards
+        run: pwsh -File scripts/Jem-LLM-Programs.ps1 -ProgramsToGenerate 2 -Target "site-automation"
+      - name: Stella LLM Components
+        if: ${{ inputs.run_stella_llm == true }}
+        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
         shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          $repo = (Get-Location).Path
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/tracy-artboard.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -Boards "${{ steps.cfg.outputs.boards }}"
-
-      - name: Nina — 3D Index
+        run: pwsh -File scripts/Stella-LLM-Components.ps1 -ComponentsToGenerate 5 -Theme "treasure-map"
+      - name: Charlotte TTS (optional)
+        if: ${{ inputs.run_tts == true }}
+        env: { AZURE_TTS_KEY: ${{ secrets.AZURE_TTS_KEY }}, AZURE_TTS_REGION: ${{ secrets.AZURE_TTS_REGION }} }
         shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          $repo = (Get-Location).Path
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/nina-3d-index.ps1 -RepoRoot $repo -MaxCombos "${{ steps.cfg.outputs.combos }}" -World "${{ env.WORLD_ID }}"
-
-      - name: Charlotte — Pipelines (SSML + i18n plan)
-        shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          $repo = (Get-Location).Path
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/charlotte-pipeline-plan.ps1 -RepoRoot $repo -World "${{ env.WORLD_ID }}" -TargetLangs "${{ inputs.target_langs }}"
-
-      - name: Carol — Meal Plan
-        shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          $repo = (Get-Location).Path
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/carol-meal-plan.ps1 -RepoRoot $repo -Days "${{ steps.cfg.outputs.meal_days }}" -KcalTarget "${{ steps.cfg.outputs.kcal }}" -DietStyle "${{ inputs.diet_style }}"
-
-      - name: Jem — Program Plan
-        shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          $repo = (Get-Location).Path
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/jem-program-plan.ps1 -RepoRoot $repo -Weeks "${{ steps.cfg.outputs.weeks }}" -DaysPerWeek "${{ steps.cfg.outputs.days_per_week }}" -Goal "${{ inputs.goal }}" -Equipment "${{ steps.cfg.outputs.equipment }}"
-      
+        run: pwsh -File scripts/Charlotte-TTS.ps1
       - name: Commit generated content
         shell: bash
         run: |
           set -e
-          git config user.name  "actions-bot"
-          git config user.email "actions@github.com"
-          git add -A pages/apps || true
-          if git diff --staged --quiet; then
-            echo "Nothing to commit"
-          else
-            git commit -m "Avalon Run All: world + helpers + art + 3D + pipelines + meal + program (pages/apps)"
-            git pull --rebase origin "${GITHUB_REF_NAME:-main}" || true
-            git push origin HEAD:"${GITHUB_REF_NAME:-main}"
-          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/
+          if git diff --cached --quiet; then echo "No changes";
+          else git commit -m "chore(run-all): update generated content (all AI)"; git push; fi

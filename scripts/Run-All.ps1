@@ -11,7 +11,7 @@ $now = (Get-Date).ToUniversalTime().ToString("s") + "Z"
 
 function Write-JsonFile { param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][object]$Object) [IO.File]::WriteAllText($Path, ($Object|ConvertTo-Json -Depth 12), [Text.Encoding]::UTF8) }
 
-# Alexandria worlds (local scaffold, LLM bridge is a separate step)
+# Alexandria worlds (local scaffold)
 $worlds = Join-Path $Apps 'alexandria/worlds'
 $items=@()
 for($i=1;$i -le $wc;$i++){

@@ -1,13 +1,12 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "2.3.1"
+  version: "2.3.2"
   last_updated: "2025-10-06"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    LLM Bridge default ON. Adds Carol/Jem/Stella LLM flows. Treasure‑map
-    “World Creation” visual applied to buttons. Pages deploy workflow added.
-    Buttons compute links from <body data-repo-url="https://github.com/<user>/<repo>">.
+    LLM Bridge default ON. Adds Carol/Jem/Stella LLM flows and Pages Deploy.
+    Treasure‑map “World Creation” visual. Adds Site Doctor to diagnose+fix Pages.
 
 rules:
   - Never repeat Object[]→Int32: declare [object] params, coerce via As-Int.
@@ -26,6 +25,7 @@ workflows:
   - .github/workflows/stella-llm.yml                # Components
   - .github/workflows/charlotte-tts-azure.yml       # Optional TTS (Azure)
   - .github/workflows/pages-deploy.yml              # Deploy to GitHub Pages
+  - .github/workflows/site-doctor.yml               # Diagnose & auto-fix site
 
 secrets_expected:
   - OPENAI_API_KEY: for all LLM Bridges (Chat Completions).
@@ -40,6 +40,7 @@ generated_paths:
   - pages/apps/carol/plans/**
   - pages/apps/jem/programs/**
   - pages/apps/stella/components/**
+  - pages/diagnostics/site-report.*
 
 microapps:
   - pages/apps/index.html               # microapps hub

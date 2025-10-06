@@ -1,0 +1,16 @@
+{
+  "style": "futuristic fantasy + sci-fi",
+  "world": "20251006T034428Z-avalon",
+  "constraints": [
+    "mobile-first",
+    "high contrast",
+    "no text"
+  ],
+  "references": [
+    "vrm-index.json",
+    "lore-bible.json",
+    "atlas.json"
+  ],
+  "id": "board-5",
+  "subject": "Key visual 5"
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "npc-1",
+    "name": "NPC 1",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  },
+  {
+    "id": "npc-2",
+    "name": "NPC 2",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  },
+  {
+    "id": "npc-3",
+    "name": "NPC 3",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  },
+  {
+    "id": "npc-4",
+    "name": "NPC 4",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  },
+  {
+    "id": "npc-5",
+    "name": "NPC 5",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  },
+  {
+    "id": "npc-6",
+    "name": "NPC 6",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  },
+  {
+    "id": "npc-7",
+    "name": "NPC 7",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  },
+  {
+    "id": "npc-8",
+    "name": "NPC 8",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  },
+  {
+    "id": "npc-9",
+    "name": "NPC 9",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  },
+  {
+    "id": "npc-10",
+    "name": "NPC 10",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  },
+  {
+    "id": "npc-11",
+    "name": "NPC 11",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  },
+  {
+    "id": "npc-12",
+    "name": "NPC 12",
+    "role": "support",
+    "origin": "kingdom",
+    "notes": "Placeholder"
+  }
+]

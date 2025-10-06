@@ -1,45 +1,23 @@
-name: Overseers — LLM Bridge (Optional)
-
+name: Overseers: LLM Bridge (OpenAI)
 on:
   workflow_dispatch:
     inputs:
-      world_id:     { description: "World id (default: latest)", required: false, type: string }
-      model:        { description: "OpenAI model", required: false, default: "gpt-4o-mini", type: string }
-      temperature:  { description: "Temperature", required: false, default: "0.7", type: string }
-      max_tokens:   { description: "Max tokens", required: false, default: "1500", type: string }
-      force_offline:{ description: "Force offline fallback", required: false, default: "false", type: choice, options: ["false","true"] }
-
-permissions:
-  contents: write
-
+      worlds: { description: 'Worlds', default: 3, type: number }
 jobs:
-  run:
+  llm-bridge:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
-      - name: Run LLM Bridge
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - name: LLM Bridge
+        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
         shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          $repo = (Get-Location).Path
-          $offline = "${{ inputs.force_offline }}"
-          $offlineFlag = if($offline -eq "true"){ "-ForceOffline" } else { "" }
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/overseers-llm-bridge.ps1 -RepoRoot $repo -World "${{ inputs.world_id }}" -Model "${{ inputs.model }}" -Temperature "${{ inputs.temperature }}" -MaxTokens "${{ inputs.max_tokens }}" $offlineFlag
-
-      - name: Commit enriched content
+        run: pwsh -File scripts/LLM-Bridge.ps1 -WorldsToGenerate ${{ inputs.worlds }}
+      - name: Commit generated worlds
         shell: bash
         run: |
           set -e
-          git config user.name  "actions-bot"
-          git config user.email "actions@github.com"
-          git add -A pages/apps/alexandria/worlds || true
-          if git diff --staged --quiet; then
-            echo "Nothing to commit"
-          else
-            git commit -m "LLM Bridge: enriched world content"
-            git pull --rebase origin "${GITHUB_REF_NAME:-main}" || true
-            git push origin HEAD:"${GITHUB_REF_NAME:-main}"
-          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/alexandria/worlds/
+          if git diff --cached --quiet; then echo "No changes";
+          else git commit -m "feat(llm): regenerate worlds via LLM Bridge"; git push; fi

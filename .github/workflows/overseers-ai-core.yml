@@ -1,0 +1,25 @@
+name: Overseers — AI Core
+on: { workflow_dispatch: {} }
+jobs:
+  ai-core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Call Overseers LLM Bridge (if present) else Alexandria
+        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
+        shell: pwsh
+        run: |
+          if (Test-Path 'scripts/overseers/overseers-llm-bridge.ps1') {
+            pwsh -File scripts/overseers/overseers-llm-bridge.ps1
+          } else {
+            pwsh -File scripts/LLM-Bridge.ps1 -WorldsToGenerate 3
+          }
+      - name: Commit AI Core outputs
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/overseers/ pages/apps/alexandria/worlds/
+          if git diff --cached --quiet; then echo "No changes";
+          else git commit -m "feat(overseers): ai-core"; git push; fi

@@ -1,0 +1,38 @@
+name: Deploy — GitHub Pages
+on:
+  workflow_dispatch:
+    inputs:
+      worlds: { description: 'Worlds before deploy', default: 3, type: number }
+  push: { branches: [ main ] }
+permissions: { contents: read, pages: write, id-token: write }
+concurrency: { group: "pages", cancel-in-progress: true }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate (Run-All scaffolds)
+        shell: pwsh
+        run: pwsh -File scripts/Run-All.ps1 -WorldCount ${{ inputs.worlds }} -NonInteractive true
+      - name: Prepare Pages artifact
+        shell: bash
+        run: |
+          set -e
+          mkdir -p dist
+          [ -f index.html ] && cp index.html dist/index.html
+          [ -d pages ] && cp -R pages dist/pages
+          [ -d asset ] && cp -R asset dist/asset
+          [ -f CNAME ] && cp CNAME dist/CNAME
+          [ -f .nojekyll ] && cp .nojekyll dist/.nojekyll
+          if [ ! -f dist/index.html ] && [ ! -d dist/pages ] && [ ! -d dist/asset ]; then
+            echo "Nothing to publish"; exit 1; fi
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with: { path: dist }
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: ${{ steps.deployment.outputs.page_url }} }
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

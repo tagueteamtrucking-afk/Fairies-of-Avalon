@@ -1,44 +1,20 @@
-name: Charlotte — TTS (Azure) (Optional)
-
-on:
-  workflow_dispatch:
-    inputs:
-      world_id:     { description: "World id (default: latest)", required: false, type: string }
-      voice:        { description: "Azure voice name", required: false, default: "en-US-JennyNeural", type: string }
-      format:       { description: "Output format", required: false, default: "audio-24khz-48kbitrate-mono-mp3", type: string }
-      region:       { description: "Override region (blank uses secret)", required: false, type: string }
-
-permissions:
-  contents: write
-
+name: Charlotte: TTS (Azure)
+on: { workflow_dispatch: {} }
 jobs:
-  run:
+  tts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
       - name: Synthesize voiceovers
-        env:
-          AZURE_TTS_KEY:    ${{ secrets.AZURE_TTS_KEY }}
-          AZURE_TTS_REGION: ${{ secrets.AZURE_TTS_REGION }}
+        env: { AZURE_TTS_KEY: ${{ secrets.AZURE_TTS_KEY }}, AZURE_TTS_REGION: ${{ secrets.AZURE_TTS_REGION }} }
         shell: pwsh
-        run: |
-          $ErrorActionPreference='Stop'
-          $repo = (Get-Location).Path
-          $region = if([string]::IsNullOrWhiteSpace("${{ inputs.region }}")){ $env:AZURE_TTS_REGION } else { "${{ inputs.region }}" }
-          pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File ./scripts/overseers/charlotte-tts-azure.ps1 -RepoRoot $repo -World "${{ inputs.world_id }}" -Voice "${{ inputs.voice }}" -Format "${{ inputs.format }}" -Region "$region"
-
+        run: pwsh -File scripts/Charlotte-TTS.ps1
       - name: Commit voiceovers
         shell: bash
         run: |
           set -e
-          git config user.name  "actions-bot"
-          git config user.email "actions@github.com"
-          git add -A pages/apps/charlotte/voiceovers || true
-          if git diff --staged --quiet; then
-            echo "Nothing to commit"
-          else
-            git commit -m "Charlotte TTS: voiceovers"
-            git pull --rebase origin "${GITHUB_REF_NAME:-main}" || true
-            git push origin HEAD:"${GITHUB_REF_NAME:-main}"
-          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/charlotte/voiceovers/
+          if git diff --cached --quiet; then echo "No changes";
+          else git commit -m "feat(tts): update voiceovers"; git push; fi

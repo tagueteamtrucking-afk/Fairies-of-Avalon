@@ -1,0 +1,12 @@
+{
+  "updated": "2025-10-06T01:00:18Z",
+  "items": [
+    {
+      "id": "world-avalon-prime",
+      "slug": "avalon-prime",
+      "title": "Avalon Prime",
+      "summary": "The default starter world scaffolded by Run-All.",
+      "file": "world-avalon-prime.json"
+    }
+  ]
+}

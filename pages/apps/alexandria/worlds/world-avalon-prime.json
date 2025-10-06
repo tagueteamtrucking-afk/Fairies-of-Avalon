@@ -1,0 +1,11 @@
+{
+  "id": "world-avalon-prime",
+  "title": "Avalon Prime",
+  "lore": "A serene archipelago of ideas where agents collaborate to build living interfaces.",
+  "seedPrompts": [
+    "Describe three districts in Avalon Prime and their specialties.",
+    "Propose a festival schedule that attracts creators and explorers."
+  ],
+  "created": "2025-10-06T01:00:18Z",
+  "version": "1.0.0"
+}

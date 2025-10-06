@@ -1,18 +1,13 @@
 *{box-sizing:border-box}
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#0a0c10;color:#e8eaed}
-header{padding:2rem 1rem;background:linear-gradient(180deg,#0f141b,#0a0c10)}
-h1{margin:0 0 .5rem 0}
-#app{max-width:960px;margin:0 auto;padding:1rem}
-.card{background:#11151a;border:1px solid #1d232c;border-radius:16px;padding:1rem;margin:1rem 0;box-shadow:0 1px 0 #000}
-label{display:block;margin:.5rem 0;font-size:.95rem}
-input,textarea,select,button{width:100%;padding:.6rem;border-radius:10px;border:1px solid #2a3340;background:#0a0f15;color:#e8eaed}
-.row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.tri{display:grid;grid-template-columns:2fr auto 2fr;gap:.5rem;align-items:center}
-.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
-.chips button{width:auto}
-#regions{display:grid;gap:1rem}
-.region{background:#0c1117;border:1px dashed #243042;padding:1rem;border-radius:12px}
-.region .row{grid-template-columns:repeat(3,1fr)}
-button{cursor:pointer}
-.hint{font-size:.85rem;color:#aab2bd;margin-top:.5rem}
-@media (max-width:720px){.row{grid-template-columns:1fr}.tri{grid-template-columns:1fr}}
+:root{--bg:#0b0f17;--fg:#e5e7eb;--muted:#9aa4b2;--card:#121826}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+.topbar{position:sticky;top:0;background:#0d1321;display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08);z-index:10}
+.topbar .back{color:#cbd5e1;text-decoration:none;font-weight:700}
+.topbar .spacer{flex:1}
+.topbar .muted{color:#9aa4b2;text-decoration:none}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));padding:16px;max-width:1200px;margin:0 auto}
+.card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px}
+.card h3{margin:6px 0 8px 0;letter-spacing:-.02em}
+.card p{margin:0 0 8px 0;color:var(--muted)}
+.card details{background:#0e1a2b;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:8px}
+.card pre{white-space:pre-wrap;word-break:break-word;margin:0;color:#cbd5e1;font-size:13px}

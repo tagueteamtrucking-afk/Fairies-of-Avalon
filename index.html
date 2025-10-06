@@ -1,1 +1,134 @@
-<!doctype html><title>Avalon</title><h1>Fairies of Avalon</h1><p>Upload the full pack if this shows.</p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Avalon — Build the AI. Let them build the site.</title>
+  <meta name="description" content="Avalon starter: AI agents generate content server-side into pages/apps/**; lightweight front-end presents it." />
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --fg: #edf2f7;
+      --muted: #9aa4b2;
+      --accent: #7aa2ff;
+      --hero-image: url('asset/textures/wallpapers/hero.jpg'); /* change this to any image in asset/textures/wallpapers/*.jpg */
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      color: var(--fg);
+      background: var(--bg);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background-image: var(--hero-image);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      isolation: isolate;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.50), rgba(0,0,0,0.65));
+      z-index: 0;
+    }
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      padding: 24px;
+      text-align: center;
+    }
+    h1 {
+      font-size: clamp(2rem, 4.5vw, 3.75rem);
+      line-height: 1.1;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+    p.lead {
+      margin: 0 0 16px 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+    }
+    .cta {
+      display: inline-flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .btn {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      color: var(--fg);
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+    }
+    .btn:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
+    .btn.secondary { background: transparent; border-color: rgba(255,255,255,0.18); }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 12px;
+      margin-bottom: 8px;
+      opacity: .9;
+    }
+    .help {
+      margin-top: 28px; color: var(--muted);
+      font-size: 14px;
+    }
+    .help code { background: rgba(0,0,0,0.35); padding: 2px 6px; border-radius: 6px; }
+    footer {
+      position: absolute; inset-inline: 0; bottom: 0; z-index: 1; color: #94a3b8;
+      font-size: 12px; padding: 16px; text-align: center; background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.28));
+    }
+  </style>
+</head>
+<body data-repo-url="">
+  <header class="hero" role="img" aria-label="Abstract wallpaper hero">
+    <div class="wrap">
+      <div class="kicker">Avalon</div>
+      <h1>Build the AI. Let them build the site.</h1>
+      <p class="lead">Server-side agents (via GitHub Actions) write to <strong>pages/apps/**</strong>. You keep your assets safe under <strong>asset/**</strong>.</p>
+      <div class="cta">
+        <a class="btn" href="pages/apps/index.html">Open Microapps</a>
+        <a id="actionsLink" class="btn secondary" href="#setup-actions">Run Actions</a>
+      </div>
+      <div class="help" id="setup" hidden>
+        <p>Set your repo URL by editing <code>data-repo-url</code> on &lt;body&gt; — e.g. <code>https://github.com/yourname/yourrepo</code>. Then the <em>Run Actions</em> button will point to your workflows.</p>
+      </div>
+    </div>
+    <footer>Wallpaper path: <code>asset/textures/wallpapers/hero.jpg</code> (change in <code>:root --hero-image</code>).</footer>
+  </header>
+  <script>
+    (function(){
+      var repo = document.body.getAttribute('data-repo-url') || "";
+      var actions = document.getElementById('actionsLink');
+      var setup = document.getElementById('setup');
+      if (repo && /^https?:\/\//.test(repo)) {
+        actions.href = repo.replace(/\/?$/, '') + "/actions";
+      } else {
+        setup.hidden = false;
+      }
+    }());
+  </script>
+</body>
+</html>

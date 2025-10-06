@@ -1,0 +1,11 @@
+{
+  "updated": "2025-10-06T01:00:18Z",
+  "programs": [
+    {
+      "id": "healthcheck",
+      "title": "Health Check",
+      "type": "script",
+      "entry": "scripts/Run-All.ps1"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "updated": "2025-10-06T01:00:18Z",
+  "pipelines": [
+    {
+      "id": "welcome",
+      "text": "Welcome to Avalon. Build the AI and let them build the site.",
+      "voice": "en-US-AriaNeural",
+      "format": "riff-16khz-16bit-mono-pcm"
+    }
+  ]
+}

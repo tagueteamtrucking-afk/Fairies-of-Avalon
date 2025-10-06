@@ -1,1 +1,55 @@
-<!doctype html><title>Microapps</title><h1>Apps</h1><ul><li><a href='./alexandria/'>Alexandria</a></li></ul>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Avalon — Microapps</title>
+  <style>
+    :root { --bg:#0b0f17; --card:#121826; --fg:#e5e7eb; --muted:#9aa4b2; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    header{padding:24px 20px; text-align:center;}
+    h1{margin:0 0 6px 0; letter-spacing:-.02em}
+    p.lead{margin:0;color:var(--muted)}
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));padding:20px;max-width:1100px;margin:0 auto 28px auto}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:16px; text-decoration:none; color:inherit; transition:transform .06s ease, background .2s ease; display:block}
+    .card:hover{transform:translateY(-1px); background:#162035}
+    .card h3{margin:4px 0 6px 0}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    footer{color:#94a3b8; font-size:12px; text-align:center; padding:18px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Microapps</h1>
+    <p class="lead">Outputs under <code>pages/apps/**</code> will appear here.</p>
+  </header>
+  <main class="grid">
+    <a class="card" href="alexandria/index.html">
+      <h3>Alexandria</h3>
+      <p>World library. Reads <code>alexandria/worlds/index.json</code>.</p>
+    </a>
+    <a class="card" href="alexandria/worlds/index.json" target="_blank" rel="noopener">
+      <h3>Raw Worlds JSON</h3>
+      <p>Inspect the generated index file directly.</p>
+    </a>
+    <a class="card" href="charlotte/voiceovers/index.json" target="_blank" rel="noopener">
+      <h3>Charlotte Voiceovers (JSON)</h3>
+      <p>Populated when Azure TTS runs.</p>
+    </a>
+    <a class="card" href="tracy/artboards/index.json" target="_blank" rel="noopener">
+      <h3>Tracy Artboards (JSON)</h3>
+      <p>LLM or generator can populate this list.</p>
+    </a>
+    <a class="card" href="carol/plans/index.json" target="_blank" rel="noopener">
+      <h3>Carol Plans (JSON)</h3>
+      <p>Task plans &amp; roadmaps.</p>
+    </a>
+    <a class="card" href="jem/programs/index.json" target="_blank" rel="noopener">
+      <h3>Jem Programs (JSON)</h3>
+      <p>Executable mini-program definitions.</p>
+    </a>
+  </main>
+  <footer>Tip: Use the “Avalon: Run-All” workflow to (re)generate starter JSON.</footer>
+</body>
+</html>

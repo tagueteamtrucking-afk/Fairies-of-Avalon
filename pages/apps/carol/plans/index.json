@@ -1,0 +1,14 @@
+{
+  "updated": "2025-10-06T01:00:18Z",
+  "plans": [
+    {
+      "id": "site-v1",
+      "title": "Site v1",
+      "tasks": [
+        "Wire homepage hero",
+        "Hook up Actions CTAs",
+        "Publish via GitHub Pages"
+      ]
+    }
+  ]
+}

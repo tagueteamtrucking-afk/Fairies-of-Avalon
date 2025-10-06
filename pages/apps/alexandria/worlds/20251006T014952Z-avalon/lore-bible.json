@@ -1,0 +1,30 @@
+{
+  "world": "20251006T014952Z-avalon",
+  "themes": [
+    "hope",
+    "sacrifice"
+  ],
+  "magic_system": {
+    "source": "mana",
+    "rules": [
+      "conservation",
+      "cost"
+    ]
+  },
+  "pantheon": [
+    "trickster",
+    "war",
+    "nature",
+    "sea"
+  ],
+  "factions": [
+    {
+      "id": "crown",
+      "ethos": "order"
+    },
+    {
+      "id": "veil",
+      "ethos": "secrets"
+    }
+  ]
+}

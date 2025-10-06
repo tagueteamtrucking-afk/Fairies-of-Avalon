@@ -1,12 +1,13 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "2.3.2"
+  version: "2.3.3"
   last_updated: "2025-10-06"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    LLM Bridge default ON. Adds Carol/Jem/Stella LLM flows and Pages Deploy.
-    Treasure‑map “World Creation” visual. Adds Site Doctor to diagnose+fix Pages.
+    LLM Bridge default ON. Contains Carol/Jem/Stella LLM flows, Pages Deploy,
+    and Site Doctor. Treasure‑map "World Creation" visual. Buttons compute
+    links from <body data-repo-url="https://github.com/<user>/<repo>">.
 
 rules:
   - Never repeat Object[]→Int32: declare [object] params, coerce via As-Int.
@@ -41,16 +42,3 @@ generated_paths:
   - pages/apps/jem/programs/**
   - pages/apps/stella/components/**
   - pages/diagnostics/site-report.*
-
-microapps:
-  - pages/apps/index.html               # microapps hub
-  - pages/apps/alexandria/index.html    # worlds (🗺️ Generate Worlds button)
-  - pages/apps/stella/index.html        # components (🗺️ Generate Components)
-  - pages/apps/alexandria/app.css
-  - pages/apps/alexandria/app.js
-
-homepage:
-  index.html: >
-    Wallpaper hero from asset/textures/wallpapers/*.jpg;
-    CTAs to microapps + “Generate Worlds” (treasure‑map style).
-    Buttons compute links from <body data-repo-url="https://github.com/<user>/<repo>">.

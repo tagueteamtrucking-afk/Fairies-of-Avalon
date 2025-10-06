@@ -3,7 +3,6 @@ param(
   [Parameter()][object]$ApplyFixes = $false
 )
 Import-Module -Name (Join-Path $PSScriptRoot 'AsInt.psm1') | Out-Null
-
 $apply = $false
 try { $apply = [bool]$ApplyFixes } catch { $apply = $false }
 
@@ -41,7 +40,7 @@ $report = [ordered]@{
   applied_changes = @()
 }
 
-# Query GitHub Pages API (if available)
+# GitHub Pages API (optional)
 $tok = $env:GITHUB_TOKEN
 if (-not [string]::IsNullOrWhiteSpace($tok)) {
   try {
@@ -66,7 +65,6 @@ if (-not [string]::IsNullOrWhiteSpace($tok)) {
   }
 }
 
-# Helper to hit a URL
 function Test-Http {
   param([string]$Url)
   try {
@@ -78,7 +76,6 @@ function Test-Http {
   }
 }
 
-# Target URLs
 $urls = @()
 if (-not [string]::IsNullOrWhiteSpace($Domain)) {
   $urls += "https://$Domain/"
@@ -92,7 +89,6 @@ foreach ($u in $urls) {
   $report.http += (Test-Http -Url $u)
 }
 
-# Probe service worker paths if a domain is set
 if (-not [string]::IsNullOrWhiteSpace($Domain)) {
   foreach ($p in @("service-worker.js","sw.js")) {
     $u = "https://$Domain/$p"
@@ -104,14 +100,12 @@ if (-not [string]::IsNullOrWhiteSpace($Domain)) {
   }
 }
 
-# Plan safe fixes
 if (-not $report.files.nojekyll) { $report.planned_changes += "add .nojekyll" }
 if (-not [string]::IsNullOrWhiteSpace($Domain)) {
   if (-not $report.files.cname -or ($report.files.cname_value -ne $Domain)) { $report.planned_changes += "set CNAME -> $Domain" }
 }
 if (-not $report.files.kill_sw) { $report.planned_changes += "add kill-sw.html" }
 
-# Apply if requested
 if ($apply) {
   if (-not $report.files.nojekyll) {
     New-Item -ItemType File -Path (Join-Path $root '.nojekyll') -Force | Out-Null
@@ -132,7 +126,9 @@ if ($apply) {
 <pre id="log"></pre>
 <script>
 (async()=>{const out=document.getElementById('log');function log(s){out.textContent+=s+"\\n";}
-if('serviceWorker' in navigator){const regs=await navigator.serviceWorker.getRegistrations();log("Found "+regs.length+" registrations");for(const r of regs){try{await r.unregister();log("Unregistered: "+(r.active&&r.active.scriptURL||'(unknown)'));}catch(e){log("Unregister failed: "+e);}}}if(window.caches){const names=await caches.keys();for(const n of names){await caches.delete(n);log("Deleted cache: "+n);} }log("Done. Close this tab and reload the site.");})();
+if('serviceWorker' in navigator){const regs=await navigator.serviceWorker.getRegistrations();log("Found "+regs.length+" registrations");for(const r of regs){try{await r.unregister();log("Unregistered: "+(r.active&&r.active.scriptURL||'(unknown)'));}catch(e){log("Unregister failed: "+e);}}}
+if(window.caches){const names=await caches.keys();for(const n of names){await caches.delete(n);log("Deleted cache: "+n);}}
+log("Done. Close this tab and reload the site.");})();
 </script></body></html>
 "@
     [IO.File]::WriteAllText((Join-Path $root 'kill-sw.html'), $kill, [Text.Encoding]::UTF8)
@@ -140,7 +136,6 @@ if('serviceWorker' in navigator){const regs=await navigator.serviceWorker.getReg
   }
 }
 
-# Save report
 $diagDir = Join-Path (Join-Path $root 'pages') 'diagnostics'
 $null = New-Item -ItemType Directory -Path $diagDir -Force
 $reportJson = ($report | ConvertTo-Json -Depth 12)

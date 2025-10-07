@@ -1,3 +1,4 @@
+
 param([Parameter()][object]$WorldsToGenerate=3,[Parameter()][string]$Model=$env:OPENAI_MODEL)
 Import-Module -Name (Join-Path $PSScriptRoot 'AsInt.psm1')
 $count = As-Int -Value $WorldsToGenerate
@@ -8,8 +9,8 @@ $Root = Split-Path -Parent $PSScriptRoot
 $worldsPath = Join-Path (Join-Path $Root 'pages/apps/alexandria') 'worlds'
 $null = New-Item -ItemType Directory -Path $worldsPath -Force
 $messages = @(
-  @{ role="system"; content="You are Alexandria, a worldbuilding agent. Output STRICT JSON only, no markdown. Schema: { items: [{ id, slug, title, summary, lore, seedPrompts[] }] }" },
-  @{ role="user"; content=("Create {0} imaginative, compact worlds for a creative index." -f $count) }
+  @{ role="system"; content="You are Alexandria, a worldbuilding agent. Output STRICT JSON only. Schema: { items: [{ id, slug, title, summary, lore, seedPrompts[] }] }" },
+  @{ role="user"; content=("Create {0} imaginative worlds for a creative index." -f $count) }
 )
 $body = @{ model=$Model; messages=$messages; temperature=0.3 } | ConvertTo-Json -Depth 6
 $headers = @{ "Authorization"="Bearer " + $apiKey; "Content-Type"="application/json" }

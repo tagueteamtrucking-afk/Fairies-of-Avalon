@@ -1,3 +1,4 @@
+
 param([Parameter(Mandatory)][string]$Agent,[Parameter()][string]$Model = $env:OPENAI_MODEL,[Parameter()][int]$Count = 3,[Parameter()][string]$Task = "produce structured JSON artifacts for this project")
 if ([string]::IsNullOrWhiteSpace($Model)) { $Model = "gpt-4.1" }
 $apiKey = $env:OPENAI_API_KEY; if ([string]::IsNullOrWhiteSpace($apiKey)) { Write-Error "OPENAI_API_KEY missing"; exit 1 }

@@ -1,47 +1,46 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.7.5"
-  last_updated: "2025-10-06T23:56:33Z"
+  version: "1.7.6"
+  last_updated: "2025-10-07T00:34:19Z"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    Patch v1.7.5 — Twins truck-driver constraints; OpenAI TTS default;
-    Overseers have every permission/ability of all assistants; workflows-all shipped (flat & nested).
+    Patch v1.7.6 — Alexandria DM pack + sweeper for ?v= redirects;
+    workflows-all shipped (flat); Overseers inherit all assistants' abilities/permissions.
 
 governance:
   overseers:
     - id: rey_czar
       name: "Rey Czar"
       all_permissions: true
+      inherits_all_assistants: true
     - id: white_star
       name: "White Star"
       all_permissions: true
+      inherits_all_assistants: true
 
-assistants:
-  twins:
-    - id: jem_nassim
-      name: "Jem Nassim"
-      constraints:
-        environment: "truck_driver"
-        space_m2_max: 2.5
-        equipment: ["bodyweight","resistance_bands","door_anchor","truck_step","(optional) kettlebell <=16kg"]
-        session_max_min: 20
-        micro_blocks: true
-        evidence_required: true
-        pain_gate_max: 3
-      handoff_to: "carol_li"
-    - id: carol_li
-      name: "Carol Li"
-      rules:
-        eu_first: true
-        sodium_mg: 2000
-        sodium_dash_low_mg: 1500
-        added_sugars_pct_kcal: 10
-        fiber_g_min: 25
-        sat_fat_pct_kcal_max: 10
-        evidence_required: true
+alexandria:
+  dm_features:
+    - "World pack: magic sources/costs/limits, pantheon, cultures, factions, laws"
+    - "Random tables: hooks, NPCs, local events"
+    - "Session seeds + house rules"
+    - "Novelization outline from sessions"
+  files:
+    root: "pages/apps/alexandria/dm"
+    index: "pages/apps/alexandria/dm/index.json"
+    pattern: "pages/apps/alexandria/dm/<id>.json"
+  workflows:
+    - ".github/workflows/alexandria-dm.yml"
+  scripts:
+    - "scripts/Alexandria-DM-LLM.ps1"
+    - "scripts/Alexandria-Validate.ps1"
 
-runtime:
-  defaults:
-    openai_tts: true
-    openai_model: "gpt-4.1"
+site_hygiene:
+  sweeper:
+    script: "scripts/VersionParam-Sweeper.ps1"
+    workflow: ".github/workflows/repo-sweeper.yml"
+    purpose: "Detect and neutralize '?v=' redirect logic to stop loop"
+
+defaults:
+  openai_tts: true
+  openai_model: "gpt-4.1"

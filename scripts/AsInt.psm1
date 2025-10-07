@@ -1,4 +1,4 @@
-# Requires -Version 5.1
+
 function As-Int {
   [CmdletBinding()]
   param([Parameter(Mandatory=$true)][object]$Value,[switch]$AllowNull)

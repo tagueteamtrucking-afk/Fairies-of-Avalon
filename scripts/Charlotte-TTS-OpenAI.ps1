@@ -1,3 +1,4 @@
+
 param([Parameter()][string]$Model = $env:OPENAI_MODEL,[Parameter()][string]$Voice = "alloy",[Parameter()][string]$Format = "mp3")
 if ([string]::IsNullOrWhiteSpace($Model)) { $Model = "gpt-4o-mini-tts" }
 $apiKey = $env:OPENAI_API_KEY

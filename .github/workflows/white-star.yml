@@ -8,7 +8,7 @@ jobs:
       - name: Run White Star
         env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
         shell: pwsh
-        run: pwsh -File scripts/Agents-LLM.ps1 -Agent "White Star" -Count 3 -Task "define operating cadences and checklists"
+        run: pwsh -File scripts/Agents-LLM.ps1 -Agent "White Star" -Count 3 -Task "produce structured JSON artifacts for this project"
       - name: Commit output
         shell: bash
         run: |

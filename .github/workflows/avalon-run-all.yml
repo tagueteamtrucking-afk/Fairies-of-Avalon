@@ -2,7 +2,7 @@ name: Avalon: Run-All
 on:
   workflow_dispatch:
     inputs:
-      worlds: { description: 'Worlds', default: 3, type: number }
+      worlds: { description: 'Worlds', default: 1, type: number }
       run_llm_bridge: { description: 'Alexandria LLM', default: true, type: boolean }
       run_carol_llm: { description: 'Carol', default: true, type: boolean }
       run_jem_llm: { description: 'Jem', default: true, type: boolean }

@@ -8,7 +8,7 @@ jobs:
       - name: Run Themis
         env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
         shell: pwsh
-        run: pwsh -File scripts/Agents-LLM.ps1 -Agent "Themis" -Count 3 -Task "list assets with expiry and draft renewal reminders"
+        run: pwsh -File scripts/Agents-LLM.ps1 -Agent "Themis" -Count 3 -Task "produce structured JSON artifacts for this project"
       - name: Commit output
         shell: bash
         run: |

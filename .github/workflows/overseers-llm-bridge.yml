@@ -1,7 +1,7 @@
 name: Overseers: LLM Bridge (OpenAI)
 on:
   workflow_dispatch:
-    inputs: { worlds: { description: 'Worlds', default: 3, type: number } }
+    inputs: { worlds: { description: 'Worlds', default: 1, type: number } }
 jobs:
   llm-bridge:
     runs-on: ubuntu-latest

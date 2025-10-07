@@ -8,7 +8,7 @@ jobs:
       - name: Run Sorcha
         env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
         shell: pwsh
-        run: pwsh -File scripts/Agents-LLM.ps1 -Agent "Sorcha" -Count 3 -Task "draft social editorial calendar with safe growth experiments"
+        run: pwsh -File scripts/Agents-LLM.ps1 -Agent "Sorcha" -Count 3 -Task "produce structured JSON artifacts for this project"
       - name: Commit output
         shell: bash
         run: |

@@ -7,7 +7,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Generate starter content (Run-All)
         shell: pwsh
-        run: pwsh -File scripts/Run-All.ps1 -WorldCount 3 -NonInteractive true
+        run: pwsh -File scripts/Run-All.ps1 -WorldCount 1 -NonInteractive true
+      - name: List workflows present
+        shell: bash
+        run: ls -la .github/workflows || true
       - name: Upload site artifact
         uses: actions/upload-artifact@v4
         with: { name: site, path: "pages/" }

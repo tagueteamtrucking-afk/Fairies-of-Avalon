@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run sweeper
         shell: pwsh
-        run: pwsh -File scripts/VersionParam-Sweeper.ps1 -ApplyFixes ${{ inputs.apply_fixes }} -IndexFile "${{ inputs.index_file }}"
+        run: pwsh -File scripts/VersionParam-Sweeper.ps1 -ApplyFixes "${{ inputs.apply_fixes }}" -IndexFile "${{ inputs.index_file }}"
       - name: Commit changes (if any)
         if: ${{ inputs.apply_fixes == true }}
         shell: bash

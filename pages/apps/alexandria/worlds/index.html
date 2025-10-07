@@ -1,0 +1,12 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alexandria — Worlds</title><style>body{font-family:system-ui;background:#0b0f17;color:#e5e7eb;margin:0}header{padding:12px 16px;border-bottom:1px solid #172033}main{padding:16px}.grid{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.card{border:1px solid #172033;border-radius:8px;padding:10px;background:#0b1220}</style>
+<header><h1>Alexandria — Worlds</h1></header>
+<main><div id="list" class="grid"></div></main>
+<script>
+async function crawl(dir){ try{ const r=await fetch(dir); if(!r.ok) return []; const t=await r.text(); return [...t.matchAll(/href="([^"/]+)\//g)].map(m=>m[1]); }catch(e){ return []; } }
+(async()=>{
+ const el=document.getElementById('list');
+ const worlds = await crawl('./');
+ worlds.forEach(slug=>{ const a=document.createElement('a'); a.href='./'+slug+'/world.json'; a.textContent=slug; const d=document.createElement('div'); d.className='card'; d.appendChild(a); el.appendChild(d); });
+})();
+</script>

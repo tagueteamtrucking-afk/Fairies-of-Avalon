@@ -1,32 +1,20 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.8.2"
-  last_updated: "2025-10-07T08:20:04Z"
-
+  version: "1.9.0"
+  last_updated: "2025-10-07T09:24:25Z"
 policy:
-  delivery: "ZIP_ONLY"
-  reminder: "Always send two zips: workflows (flat) + outside (everything else)."
-
+  delivery: ZIP_ONLY  # always ship zips: workflows (flat) + outside
 secrets_expected:
-  - name: "OPENAI_API_KEY"
-    used_by: ["Cloudflare Worker (Alexandria DM + TTS)", "GitHub Actions (Jem/Carol)"]
-    storage: "Cloudflare Worker Secret (exact name OPENAI_API_KEY) and GitHub Actions Secret"
-
+  - name: OPENAI_API_KEY
+    storage: "Cloudflare Worker Secret (exact name), and GitHub Actions Secret if workflows call OpenAI"
 runtime:
   dm_worker:
     service_name: "alexandria-dm"
-    url_howto:
-      - "Workers & Pages → click the worker → Overview shows Service URL"
-      - "If Overview missing, construct: https://<service-name>.<account-subdomain>.workers.dev"
-      - "Find account-subdomain on Workers & Pages list panel (e.g., tagueteamtrucking.workers.dev)"
-    variables_recommended:
-      - "OPENAI_MODEL=gpt-4.1-mini"
-      - "OPENAI_TTS_MODEL=gpt-4o-mini-tts"
-  dm_ui_config: "No code edits needed: DM page has Connect button to save Worker URL in localStorage."
-
+    url_construction: "https://<service-name>.<account-subdomain>.workers.dev (e.g., https://alexandria-dm.tagueteamtrucking.workers.dev)"
+    variables: ["OPENAI_MODEL=gpt-4.1-mini", "OPENAI_TTS_MODEL=gpt-4o-mini-tts"]
 assistants:
-  stella: "on-demand; ui at /pages/apps/stella/play.html"
-  jem: "no door-anchors; small space; micro-sessions"
-  carol: "EU-first safety; US fallback"
-  overseers: "inherit abilities of all assistants"
+  jem: "no door-anchors; Samsung Health import via workflow; programs under pages/apps/jem/programs"
+  carol: "2-week plans for two; EU-first safety"
+  stella: "on-demand player + guided meditation generator"
+  alexandria: "DM via Worker + world bible generator"

@@ -24,6 +24,7 @@ jobs:
           [ -d asset ] && cp -R asset dist/asset
           [ -f CNAME ] && cp CNAME dist/CNAME
           [ -f .nojekyll ] && cp .nojekyll dist/.nojekyll
+          [ -f kill-sw.html ] && cp kill-sw.html dist/kill-sw.html
           if [ ! -f dist/index.html ] && [ ! -d dist/pages ] && [ ! -d dist/asset ]; then
             echo "Nothing to publish"; exit 1; fi
       - name: Upload artifact

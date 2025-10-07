@@ -1,10 +1,19 @@
-name: Repo Sweeper — Find version param redirects
+name: Repo Sweeper — Version param
 on:
   workflow_dispatch:
     inputs:
-      apply_fixes: { description: 'Comment out forced ?v= redirects in index.html', default: true, type: boolean }
-      index_file:  { description: 'Index file to scan', default: 'index.html', type: string }
-permissions: { contents: write }
+      apply_fixes:
+        description: "Apply neutralization changes"
+        required: false
+        default: true
+        type: boolean
+      index_file:
+        description: "Index file path"
+        required: false
+        default: "index.html"
+        type: string
+permissions:
+  contents: write
 jobs:
   sweep:
     runs-on: ubuntu-latest
@@ -12,17 +21,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run sweeper
         shell: pwsh
-        run: pwsh -File scripts/VersionParam-Sweeper.ps1 -ApplyFixes "${{ inputs.apply_fixes }}" -IndexFile "${{ inputs.index_file }}"
+        run: pwsh -File scripts/VersionParam-Sweeper.ps1 -ApplyFixes ${{ inputs.apply_fixes }} -IndexFile "${{ inputs.index_file }}"
       - name: Commit changes (if any)
-        if: ${{ inputs.apply_fixes == true }}
         shell: bash
         run: |
-          set -e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html pages/diagnostics/version-scan.json || true
+          git add -A
           if git diff --cached --quiet; then echo "No changes";
-          else git commit -m "fix: neutralize forced ?v= redirects; add scan report" && git push; fi
-      - name: Upload scan report
-        uses: actions/upload-artifact@v4
-        with: { name: version-scan, path: pages/diagnostics/version-scan.json }
+          else git commit -m "fix: neutralize ?v= redirects" && git push; fi

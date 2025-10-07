@@ -1,9 +1,13 @@
-name: Hotfix — Strip ?v= and unregister SW
+name: Hotfix — Strip ?v and unregister SW
 on:
   workflow_dispatch:
     inputs:
-      index_file:  { description: 'Index file to patch', default: 'index.html', type: string }
-permissions: { contents: write }
+      index_file:
+        description: "Index to patch"
+        default: "index.html"
+        type: string
+permissions:
+  contents: write
 jobs:
   patch:
     runs-on: ubuntu-latest
@@ -12,11 +16,10 @@ jobs:
       - name: Inject hotfix
         shell: pwsh
         run: pwsh -File scripts/Hotfix-StripV-And-UnregisterSW.ps1 -IndexFile "${{ inputs.index_file }}"
-      - name: Commit changes
+      - name: Commit
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "${{ inputs.index_file }}"
-          if git diff --cached --quiet; then echo "No changes";
-          else git commit -m "hotfix: strip ?v= and unregister SW in ${{ inputs.index_file }}" && git push; fi
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "hotfix: strip ?v and unregister SW" && git push; fi

@@ -2,34 +2,23 @@ name: Carol — Nutrition Plan
 on:
   workflow_dispatch:
     inputs:
-      kcal:
-        description: "Target kcal/day"
-        required: false
-        default: 2200
-        type: number
-      pattern:
-        description: "DASH/Low-Sodium/Low-Sugar"
-        required: false
-        default: "DASH"
-        type: string
-      region:
-        description: "EU or US"
-        required: false
-        default: "EU"
-        type: string
+      kcal: { description: "Target kcal/day", default: 2200, type: number }
+      pattern: { description: "DASH/Low-Sodium/Low-Sugar", default: "DASH", type: string }
+      region: { description: "EU or US", default: "EU", type: string }
+permissions:
+  contents: write
 jobs:
   carol:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - name: Build plan
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
         shell: pwsh
         run: pwsh -File scripts/Carol-Diet-LLM.ps1 -Kcal ${{ inputs.kcal }} -Pattern "${{ inputs.pattern }}" -Region "${{ inputs.region }}"
-      - name: Commit plan
+      - name: Commit
         shell: bash
         run: |
           git config user.name "github-actions[bot]"

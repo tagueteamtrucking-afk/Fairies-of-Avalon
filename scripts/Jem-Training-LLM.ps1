@@ -1,24 +1,25 @@
 
-param([string]$Model = $env:OPENAI_MODEL,[string]$Goal = "hypertrophy",[string]$Experience="novice",[int]$WeeklySessions=5,[string]$Context="truck_driver",[int]$MaxSessionMin=20)
-if ([string]::IsNullOrWhiteSpace($Model)) { $Model = "gpt-4.1" }
+param([string]$Model = $env:OPENAI_MODEL,[string]$Goal = "hypertrophy",[string]$Experience="novice",[int]$WeeklySessions=5,[int]$MaxSessionMin=20)
+if ([string]::IsNullOrWhiteSpace($Model)) { $Model = "gpt-4.1-mini" }
 $apiKey = $env:OPENAI_API_KEY; if (-not $apiKey) { Write-Error "OPENAI_API_KEY missing"; exit 1 }
 $Root = Split-Path -Parent $PSScriptRoot
 $outDir = Join-Path $Root 'pages/apps/jem/programs'
 $null = New-Item -ItemType Directory -Path $outDir -Force
 $outFile = Join-Path $outDir ("program-" + (Get-Date -Format "yyyyMMddTHHmmssZ") + ".json")
 
-$evidencePath = Join-Path $Root 'pages/apps/jem/library/evidence.json'
-$ev = @(); if (Test-Path $evidencePath){ try { $ev = (Get-Content -Raw -Path $evidencePath | ConvertFrom-Json).sources } catch {} }
+$evPath = Join-Path $Root 'pages/apps/jem/library/evidence.json'
+$ev=@(); if(Test-Path $evPath){ try { $ev=(Get-Content -Raw -Path $evPath|ConvertFrom-Json).sources } catch{} }
 
 $sys = @"
-You are JEM, a fitness coach for truck drivers with limited space/equipment.
-Constraints: 2.5 m^2 space, bodyweight/bands/door-anchor/truck-step, optional KB<=16kg; sessions <= $MaxSessionMin min.
-Use RPE and RIR; scale to $Experience; goal=$Goal; $WeeklySessions sessions/week.
-ALWAYS cite sources from the provided list when making claims; if uncertain, say so.
-Output STRICT JSON: { updated, profile, week, sessions: [{id, day, duration_min, blocks: [{type, minutes, details}]}], safety_notes, sources }
+You are JEM, a fitness coach for long-haul truck drivers. NO door anchors. Allowed tools: bodyweight, loop bands self-anchored around hands/feet/torso, an optional kettlebell <=16kg, truck step (only for step-ups), and common objects (water jugs) for loaded carries.
+Space: ~2.5 m^2. Session cap: $MaxSessionMin min. Weekly sessions: $WeeklySessions. Goal=$Goal. Experience=$Experience.
+Use RPE and RIR for progression. Include warm-up and at least one mobility block.
+If pain is reported, substitute a pain-free pattern and reduce volume.
+ALWAYS provide references from WHO/ACSM if giving general guidance.
+Output STRICT JSON: { updated, profile:{goal,experience,tools,space}, week, sessions:[{id, day, duration_min, blocks:[{type, minutes, details, regressions, progressions}]}], safety_notes, sources }
 "@
 
-$user = "Generate a one-week plan with micro-sessions, context="+$Context
+$user = "Generate one-week micro-sessions under constraints; avoid door-anchored rows/presses; propose self-anchored band options and bodyweight variations only."
 
 $headers=@{"Authorization"="Bearer $apiKey";"Content-Type"="application/json"}
 $body=@{model=$Model;temperature=0.25;messages=@(@{role="system";content=$sys},@{role="user";content=$user})}|ConvertTo-Json -Depth 6

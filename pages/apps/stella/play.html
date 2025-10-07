@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stella — On‑Demand Sound</title>
+<link rel="stylesheet" href="stella.css">
+</head><body>
+<header><h1>Stella — On‑Demand Sound</h1><p class="sub">Tap a mood. Tap again to stop. Headphones recommended for binaural‑style modes.<br><small>Supportive & non‑clinical. Not medical advice.</small></p></header>
+<main>
+  <section class="grid">
+    <button class="tile" data-mode="focus">🎯 Focus</button>
+    <button class="tile" data-mode="calm">🌿 Calm</button>
+    <button class="tile" data-mode="relax">🫶 Relax</button>
+    <button class="tile" data-mode="energize">⚡ Energize</button>
+    <button class="tile" data-mode="winddown">🌙 Wind‑down</button>
+    <button class="tile" data-mode="silence">🤫 Silence</button>
+  </section>
+  <section class="ctrls">
+    <label>Master volume <input id="vol" type="range" min="0" max="1" step="0.01" value="0.35"></label>
+    <label>Duration (min) <input id="mins" type="number" min="1" max="120" value="20"></label>
+    <button id="stop">Stop</button>
+  </section>
+  <section class="log" id="log"></section>
+</main>
+<footer><small>v1.8.1 — WebAudio only; no network required.</small></footer>
+<script src="stella.js"></script>
+</body></html>

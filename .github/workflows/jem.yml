@@ -1,18 +1,43 @@
-name: Jem — LLM
-on: { workflow_dispatch: {} }
+name: Jem — Training Plan
+on:
+  workflow_dispatch:
+    inputs:
+      goal:
+        description: "Goal (e.g., hypertrophy, strength, mobility)"
+        required: false
+        default: "hypertrophy"
+        type: string
+      experience:
+        description: "novice/intermediate/advanced"
+        required: false
+        default: "novice"
+        type: string
+      sessions:
+        description: "Weekly sessions"
+        required: false
+        default: 5
+        type: number
+      max_session_min:
+        description: "Max minutes per micro-session"
+        required: false
+        default: 20
+        type: number
 jobs:
-  agent:
+  jem:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Run Jem
-        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build plan
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
         shell: pwsh
-        run: pwsh -File scripts/Agents-LLM.ps1 -Agent "Jem" -Count 3 -Task "produce structured JSON artifacts for this project"
-      - name: Commit output
+        run: pwsh -File scripts/Jem-Training-LLM.ps1 -Goal "${{ inputs.goal }}" -Experience "${{ inputs.experience }}" -WeeklySessions ${{ inputs.sessions }} -MaxSessionMin ${{ inputs.max_session_min }}
+      - name: Commit plan
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/jem/
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(jem): updates" && git push; fi
+          git add pages/apps/jem/programs/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(jem): new plan" && git push; fi

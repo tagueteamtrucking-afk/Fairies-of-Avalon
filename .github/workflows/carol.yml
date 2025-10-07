@@ -1,18 +1,38 @@
-name: Carol — LLM
-on: { workflow_dispatch: {} }
+name: Carol — Nutrition Plan
+on:
+  workflow_dispatch:
+    inputs:
+      kcal:
+        description: "Target kcal/day"
+        required: false
+        default: 2200
+        type: number
+      pattern:
+        description: "DASH/Low-Sodium/Low-Sugar"
+        required: false
+        default: "DASH"
+        type: string
+      region:
+        description: "EU or US"
+        required: false
+        default: "EU"
+        type: string
 jobs:
-  agent:
+  carol:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Run Carol
-        env: { OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}, OPENAI_MODEL: ${{ vars.OPENAI_MODEL }} }
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build plan
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
         shell: pwsh
-        run: pwsh -File scripts/Agents-LLM.ps1 -Agent "Carol" -Count 3 -Task "produce structured JSON artifacts for this project"
-      - name: Commit output
+        run: pwsh -File scripts/Carol-Diet-LLM.ps1 -Kcal ${{ inputs.kcal }} -Pattern "${{ inputs.pattern }}" -Region "${{ inputs.region }}"
+      - name: Commit plan
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/carol/
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(carol): updates" && git push; fi
+          git add pages/apps/carol/plans/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(carol): new plan" && git push; fi

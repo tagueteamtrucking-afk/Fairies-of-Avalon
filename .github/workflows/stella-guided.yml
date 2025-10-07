@@ -1,0 +1,27 @@
+name: Stella — Guided Meditation (script + audio)
+on:
+  workflow_dispatch:
+    inputs:
+      persona: { description: "Name (Ray/Blanca/etc.)", default: "Ray", type: string }
+      theme: { description: "e.g., focus, calm, sleep", default: "calm", type: string }
+      duration_min: { description: "Minutes", default: 10, type: number }
+permissions:
+  contents: write
+jobs:
+  stella:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        shell: pwsh
+        run: pwsh -File scripts/Stella-Guided-LLM.ps1 -Persona "${{ inputs.persona }}" -Theme "${{ inputs.theme }}" -DurationMin ${{ inputs.duration_min }}
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/stella/guided/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(stella): guided meditation" && git push; fi

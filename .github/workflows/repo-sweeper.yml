@@ -4,12 +4,10 @@ on:
     inputs:
       apply_fixes:
         description: "Apply neutralization changes"
-        required: false
         default: true
         type: boolean
       index_file:
         description: "Index file path"
-        required: false
         default: "index.html"
         type: string
 permissions:

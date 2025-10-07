@@ -1,0 +1,28 @@
+name: Carol — 2‑Week Meal Plan for Two
+on:
+  workflow_dispatch:
+    inputs:
+      kcal_person_a: { description: "Daily kcal for Person A", default: 2200, type: number }
+      kcal_person_b: { description: "Daily kcal for Person B", default: 2000, type: number }
+      pattern: { description: "DASH / Low-Sodium / Low-Sugar", default: "DASH", type: string }
+      region: { description: "EU or US", default: "EU", type: string }
+permissions:
+  contents: write
+jobs:
+  carol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build plan
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        shell: pwsh
+        run: pwsh -File scripts/Carol-Meal-Plan-2wk.ps1 -KcalA ${{ inputs.kcal_person_a }} -KcalB ${{ inputs.kcal_person_b }} -Pattern "${{ inputs.pattern }}" -Region "${{ inputs.region }}"
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/carol/plans/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(carol): 2-week plan for two" && git push; fi

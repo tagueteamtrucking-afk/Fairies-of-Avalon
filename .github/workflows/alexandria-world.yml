@@ -1,0 +1,27 @@
+name: Alexandria — Generate World Bible
+on:
+  workflow_dispatch:
+    inputs:
+      world_name: { description: "World name", default: "Avalon", type: string }
+      tone: { description: "e.g., high fantasy, dieselpunk, grimbright", default: "high fantasy", type: string }
+      magic_style: { description: "hard/soft, source rules, costs", default: "semi-hard, cost-based", type: string }
+permissions:
+  contents: write
+jobs:
+  world:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        shell: pwsh
+        run: pwsh -File scripts/Alexandria-World-LLM.ps1 -WorldName "${{ inputs.world_name }}" -Tone "${{ inputs.tone }}" -MagicStyle "${{ inputs.magic_style }}"
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/alexandria/worlds/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(alexandria): world bible" && git push; fi

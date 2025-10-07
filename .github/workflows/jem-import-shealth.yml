@@ -1,0 +1,25 @@
+name: Jem — Import Samsung Health Export
+on:
+  workflow_dispatch:
+    inputs:
+      import_zip:
+        description: "Path to Samsung Health export zip under pages/apps/jem/imports/"
+        default: "pages/apps/jem/imports/SamsungHealthExport.zip"
+        type: string
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse export
+        shell: pwsh
+        run: pwsh -File scripts/Jem-Import-SamsungHealth.ps1 -ZipPath "${{ inputs.import_zip }}"
+      - name: Commit parsed data
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/jem/biometrics/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(jem): import Samsung Health" && git push; fi

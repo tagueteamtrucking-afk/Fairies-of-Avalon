@@ -1,7 +1,11 @@
-(function(){
-  // Offline-first DM with local tables and a dice roller.
-  // Optional: set window.ALEXANDRIA_API_URL to enable LLM replies via a Cloudflare Worker proxy.
+(async function(){
+  const cfg = await fetch('config.json').then(r=>r.json()).catch(()=>({}));
+  if (cfg.api_url) window.ALEXANDRIA_API_URL = cfg.api_url;
+  if (cfg.tts && cfg.tts.enabled) window.ALEXANDRIA_TTS = cfg.tts;
+
   const API = typeof window.ALEXANDRIA_API_URL === 'string' ? window.ALEXANDRIA_API_URL : null;
+  const TTS = window.ALEXANDRIA_TTS || null;
+
   const logEl = document.getElementById('log');
   const outEl = document.getElementById('roll-out');
   const input = document.getElementById('msg');
@@ -17,6 +21,12 @@
     logEl.appendChild(el);
     logEl.scrollTop = logEl.scrollHeight;
   }
+  function playAudio(dataUrl){
+    try{
+      const a = new Audio(dataUrl);
+      a.play().catch(()=>{});
+    }catch(e){}
+  }
   function roll(n){ return Math.floor(Math.random()*n)+1 }
   function hook(){
     const hooks = [
@@ -27,7 +37,6 @@
     return hooks[Math.floor(Math.random()*hooks.length)];
   }
 
-  // Dice
   [['roll-d20',20],['roll-d12',12],['roll-d10',10],['roll-d8',8],['roll-d6',6],['roll-d4',4]].forEach(([id,n])=>{
     const btn=document.getElementById(id);
     btn.addEventListener('click', ()=>{
@@ -37,7 +46,6 @@
     });
   });
 
-  // Chat
   async function send(){
     const text = input.value.trim();
     if(!text) return;
@@ -47,11 +55,13 @@
 
     if(API){
       try{
-        const res = await fetch(API, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({ text, sessionId: session.id }) });
+        const body = { text, sessionId: session.id, tts: !!TTS, voice: TTS && TTS.voice };
+        const res = await fetch(API, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body) });
         const j = await res.json();
         const reply = j.reply || '(no reply)';
         line(reply,'dm');
         session.turns.push({ t: Date.now(), who:'dm', text: reply });
+        if (j.audio && typeof j.audio === 'string') playAudio(j.audio);
       }catch(e){
         line('LLM link failed. Using offline tables...', 'dm');
         const r = `Hook: ${hook()} (try rolling a d20 for outcome)`;
@@ -64,10 +74,9 @@
       session.turns.push({ t: Date.now(), who:'dm', text: r });
     }
   }
-  sendBtn.addEventListener('click', send);
-  input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') send(); });
+  document.getElementById('send').addEventListener('click', send);
+  document.getElementById('msg').addEventListener('keydown', (e)=>{ if(e.key==='Enter') send(); });
 
-  // Export
   exportBtn.addEventListener('click', ()=>{
     const blob = new Blob([JSON.stringify(session, null, 2)], {type:'application/json'});
     const a = document.createElement('a');
@@ -80,6 +89,5 @@
     session.turns.push({ t: Date.now(), type:'clear' });
   });
 
-  // Greeting
   line("Welcome to Alexandria's table. Say 'start quest' or roll a die.", 'dm');
 })();

@@ -1,106 +1,47 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "2.4.0"
-  last_updated: "2025-10-06"
+  version: "1.7.5"
+  last_updated: "2025-10-06T23:56:33Z"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    Complete AI set (15 agents) wired for GitHub Actions. LLM Bridge default ON.
-    Uses OpenAI for LLM and TTS (audio/speech). Pages deployment via Actions.
-    Site Doctor writes diagnostics and never fails the job. World Creation UI
-    should resemble a treasure map; World button uses a globe/map icon.
+    Patch v1.7.5 — Twins truck-driver constraints; OpenAI TTS default;
+    Overseers have every permission/ability of all assistants; workflows-all shipped (flat & nested).
 
-rules:
-  - Use AsInt.psm1 for all numeric coercion; never rely on implicit casts.
-  - No call operator (&) or splatting in Actions; always invoke `pwsh -File`.
-  - Ask clarifying questions until ≥95% confident; record obstacles + fixes here.
-  - Keep assets intact; write generated content to pages/apps/** only.
-  - Secrets live in GitHub Actions (server-side); never expose in client JS.
-  - LLM outputs: STRICT JSON only; for facts require sources or say 'unknown'.
-  - Default Models: OPENAI_MODEL=gpt-4.1 (text); TTS uses gpt-4o-mini-tts.
-  - Domain: canonical host is www.fairiesofavalon.com; apex redirects to www.
+governance:
+  overseers:
+    - id: rey_czar
+      name: "Rey Czar"
+      all_permissions: true
+    - id: white_star
+      name: "White Star"
+      all_permissions: true
 
-workflows:
-  - .github/workflows/pages-deploy.yml
-  - .github/workflows/site-doctor.yml
-  - .github/workflows/avalon-run-all.yml
-  - .github/workflows/overseers-llm-bridge.yml
-  - .github/workflows/carol-llm.yml
-  - .github/workflows/jem-llm.yml
-  - .github/workflows/stella-llm.yml
-  - .github/workflows/tracy-artboard.yml
-  - .github/workflows/nina-3d.yml
-  - .github/workflows/charlotte-tts-openai.yml
-  - .github/workflows/avalon-factcheck.yml
-  - .github/workflows/rey-czar.yml
-  - .github/workflows/white-star.yml
-  - .github/workflows/abbey.yml
-  - .github/workflows/billie.yml
-  - .github/workflows/odessa.yml
-  - .github/workflows/themis.yml
-  - .github/workflows/clarice.yml
-  - .github/workflows/sorcha.yml
-  - .github/workflows/00-sanity.yml
+assistants:
+  twins:
+    - id: jem_nassim
+      name: "Jem Nassim"
+      constraints:
+        environment: "truck_driver"
+        space_m2_max: 2.5
+        equipment: ["bodyweight","resistance_bands","door_anchor","truck_step","(optional) kettlebell <=16kg"]
+        session_max_min: 20
+        micro_blocks: true
+        evidence_required: true
+        pain_gate_max: 3
+      handoff_to: "carol_li"
+    - id: carol_li
+      name: "Carol Li"
+      rules:
+        eu_first: true
+        sodium_mg: 2000
+        sodium_dash_low_mg: 1500
+        added_sugars_pct_kcal: 10
+        fiber_g_min: 25
+        sat_fat_pct_kcal_max: 10
+        evidence_required: true
 
-agents:
-  - id: rey-czar
-    role: "Strategist"
-    brief: "Sets direction, priorities, and high-level risk/impact trade-offs."
-  - id: white-star
-    role: "Operations lead"
-    brief: "Turns plans into repeatable cadences and checklists."
-  - id: abbey
-    role: "Knowledge weaver"
-    brief: "Summarizes and cross-links outputs into an index."
-  - id: billie
-    role: "Marketing copy"
-    brief: "Short copy blocks and headlines with conservative claims."
-  - id: odessa
-    role: "Ops playbooks"
-    brief: "Stepwise procedures for routine operations."
-  - id: charlotte
-    role: "Voice/TTS"
-    brief: "Voiceover scripts; TTS via OpenAI audio/speech."
-  - id: nina
-    role: "3D index"
-    brief: "VRM/3D scene notes and indices."
-  - id: themis
-    role: "Policy/compliance"
-    brief: "Flags risk areas and required mitigations."
-  - id: clarice
-    role: "Research digest"
-    brief: "Evidence-linked digests; refuse to guess."
-  - id: alexandria
-    role: "Worldbuilding"
-    brief: "World seeds, lore hooks, NPCs, and maps."
-  - id: tracy
-    role: "Artboards"
-    brief: "Creative briefs for UI and hero sections."
-  - id: stella
-    role: "UI components"
-    brief: "Minimal HTML/CSS blueprints (treasure-map theme)."
-  - id: jem
-    role: "Program-smith"
-    brief: "Automation program specs and step flows."
-  - id: carol
-    role: "Planner"
-    brief: "Concise execution plans and dependencies."
-  - id: sorcha
-    role: "Data sanity"
-    brief: "Scans JSON artifacts for structural issues and fix suggestions."
-
-secrets_expected:
-  - OPENAI_API_KEY: required for all LLM/TTS steps
-  - AZURE_TTS_KEY, AZURE_TTS_REGION: optional (legacy Azure TTS)
-  - (optional) TAVILY_API_KEY: retrieval for evidence/citations (future)
-
-generated_paths:
-  - pages/apps/<agent>/index.json for each agent
-  - pages/apps/alexandria/worlds/**
-  - pages/apps/stella/components/**
-  - pages/apps/tracy/artboards/**
-  - pages/apps/carol/plans/**
-  - pages/apps/jem/programs/**
-  - pages/apps/charlotte/voiceovers/**
-  - pages/diagnostics/site-report.*
-  - pages/diagnostics/factcheck/index.json
+runtime:
+  defaults:
+    openai_tts: true
+    openai_model: "gpt-4.1"

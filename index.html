@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- AVALON-HOTFIX-STRIP-V -->
+<script>(function(){try{
+  var u=new URL(location.href);
+  if(u.searchParams.has("v")){ u.searchParams.delete("v"); history.replaceState(null,"",u.toString()); }
+  if("serviceWorker" in navigator){
+    navigator.serviceWorker.getRegistrations()
+      .then(rs=>Promise.all(rs.map(r=>r.unregister())))
+      .catch(()=>{});
+    if(navigator.serviceWorker.controller){ navigator.serviceWorker.controller.postMessage({type:"AVALON_UNREGISTER"}); }
+  }
+}catch(e){}})();</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Avalon — Build the AI. Let them build the site.</title>
@@ -30,6 +41,17 @@
 </head>
 <body data-repo-url="">
   <header class="hero">
+<!-- AVALON-HOTFIX-STRIP-V -->
+<script>(function(){try{
+  var u=new URL(location.href);
+  if(u.searchParams.has("v")){ u.searchParams.delete("v"); history.replaceState(null,"",u.toString()); }
+  if("serviceWorker" in navigator){
+    navigator.serviceWorker.getRegistrations()
+      .then(rs=>Promise.all(rs.map(r=>r.unregister())))
+      .catch(()=>{});
+    if(navigator.serviceWorker.controller){ navigator.serviceWorker.controller.postMessage({type:"AVALON_UNREGISTER"}); }
+  }
+}catch(e){}})();</script>
     <div class="wrap">
       <div class="kicker">Avalon</div>
       <h1>Build the AI. Let them build the site.</h1>

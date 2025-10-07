@@ -1,22 +1,19 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.7.7"
-  last_updated: "2025-10-07T01:08:09Z"
+  version: "1.7.8"
+  last_updated: "2025-10-07T01:31:31Z"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    Hotfix v1.7.7 — Fixed VersionParam-Sweeper quoting; added robust Repo Sweeper workflow;
-    minimal Site Doctor for UI visibility; keep Overseers with all abilities.
-governance:
-  overseers:
-    - id: rey_czar
-      name: "Rey Czar"
-      all_permissions: true
-      inherits_all_assistants: true
-    - id: white_star
-      name: "White Star"
-      all_permissions: true
-      inherits_all_assistants: true
+    Hotfix v1.7.8 — Robust boolean handling in Sweeper and Site-Doctor;
+    Added Alexandria DM PWA (offline-first) and Cloudflare Worker proxy template;
+    Overseers retain all assistants' abilities/permissions.
+
+alexandria:
+  dm_ui:
+    entry: "pages/apps/alexandria/dm/play.html"
+    storage: "localStorage session log + export JSON"
+    llm_mode: "via Cloudflare Worker with OPENAI_API_KEY secret"
 site_hygiene:
   sweeper:
     script: "scripts/VersionParam-Sweeper.ps1"

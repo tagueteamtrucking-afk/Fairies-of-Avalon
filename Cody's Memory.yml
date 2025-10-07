@@ -1,22 +1,32 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.7.8"
-  last_updated: "2025-10-07T01:31:31Z"
-  author: "Cody (GPT-5 Pro)"
-  notes: >
-    Hotfix v1.7.8 — Robust boolean handling in Sweeper and Site-Doctor;
-    Added Alexandria DM PWA (offline-first) and Cloudflare Worker proxy template;
-    Overseers retain all assistants' abilities/permissions.
+  version: "1.8.2"
+  last_updated: "2025-10-07T08:20:04Z"
 
-alexandria:
-  dm_ui:
-    entry: "pages/apps/alexandria/dm/play.html"
-    storage: "localStorage session log + export JSON"
-    llm_mode: "via Cloudflare Worker with OPENAI_API_KEY secret"
-site_hygiene:
-  sweeper:
-    script: "scripts/VersionParam-Sweeper.ps1"
-    workflow: ".github/workflows/repo-sweeper.yml"
-defaults:
-  openai_model: "gpt-4.1"
+policy:
+  delivery: "ZIP_ONLY"
+  reminder: "Always send two zips: workflows (flat) + outside (everything else)."
+
+secrets_expected:
+  - name: "OPENAI_API_KEY"
+    used_by: ["Cloudflare Worker (Alexandria DM + TTS)", "GitHub Actions (Jem/Carol)"]
+    storage: "Cloudflare Worker Secret (exact name OPENAI_API_KEY) and GitHub Actions Secret"
+
+runtime:
+  dm_worker:
+    service_name: "alexandria-dm"
+    url_howto:
+      - "Workers & Pages → click the worker → Overview shows Service URL"
+      - "If Overview missing, construct: https://<service-name>.<account-subdomain>.workers.dev"
+      - "Find account-subdomain on Workers & Pages list panel (e.g., tagueteamtrucking.workers.dev)"
+    variables_recommended:
+      - "OPENAI_MODEL=gpt-4.1-mini"
+      - "OPENAI_TTS_MODEL=gpt-4o-mini-tts"
+  dm_ui_config: "No code edits needed: DM page has Connect button to save Worker URL in localStorage."
+
+assistants:
+  stella: "on-demand; ui at /pages/apps/stella/play.html"
+  jem: "no door-anchors; small space; micro-sessions"
+  carol: "EU-first safety; US fallback"
+  overseers: "inherit abilities of all assistants"

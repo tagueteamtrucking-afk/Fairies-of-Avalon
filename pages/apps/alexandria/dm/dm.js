@@ -1,93 +1,29 @@
 (async function(){
-  const cfg = await fetch('config.json').then(r=>r.json()).catch(()=>({}));
-  if (cfg.api_url) window.ALEXANDRIA_API_URL = cfg.api_url;
-  if (cfg.tts && cfg.tts.enabled) window.ALEXANDRIA_TTS = cfg.tts;
+  const qs = new URLSearchParams(location.search);
+  let api = qs.get('api') || localStorage.getItem('ALEXANDRIA_API_URL') || '';
+  const tts = { enabled: true, voice: 'alloy' };
 
-  const API = typeof window.ALEXANDRIA_API_URL === 'string' ? window.ALEXANDRIA_API_URL : null;
-  const TTS = window.ALEXANDRIA_TTS || null;
-
-  const logEl = document.getElementById('log');
-  const outEl = document.getElementById('roll-out');
-  const input = document.getElementById('msg');
-  const sendBtn = document.getElementById('send');
-  const exportBtn = document.getElementById('export');
-  const clearBtn = document.getElementById('clear');
-  const session = { id: Date.now().toString(36), started: new Date().toISOString(), turns: [] };
-
-  function line(text, who){
-    const el = document.createElement('div');
-    el.className = 'msg ' + (who||'dm');
-    el.textContent = text;
-    logEl.appendChild(el);
-    logEl.scrollTop = logEl.scrollHeight;
-  }
-  function playAudio(dataUrl){
-    try{
-      const a = new Audio(dataUrl);
-      a.play().catch(()=>{});
-    }catch(e){}
-  }
+  const logEl = document.getElementById('log'), outEl=document.getElementById('roll-out'), input=document.getElementById('msg');
+  function line(t,who){ const d=document.createElement('div'); d.className='msg '+(who||'dm'); d.textContent=t; logEl.appendChild(d); logEl.scrollTop=logEl.scrollHeight; }
+  function playAudio(s){ try{ new Audio(s).play().catch(()=>{});}catch(e){} }
   function roll(n){ return Math.floor(Math.random()*n)+1 }
-  function hook(){
-    const hooks = [
-      "A caravan seeks guards, but its leader hides a cursed artifact.",
-      "A storm reveals ruins in the riverbed; the town wants explorers.",
-      "A noble hires you to retrieve a family heirloom from a rival."
-    ];
-    return hooks[Math.floor(Math.random()*hooks.length)];
-  }
-
   [['roll-d20',20],['roll-d12',12],['roll-d10',10],['roll-d8',8],['roll-d6',6],['roll-d4',4]].forEach(([id,n])=>{
-    const btn=document.getElementById(id);
-    btn.addEventListener('click', ()=>{
-      const v=roll(n);
-      outEl.textContent = `d${n}: ${v}`;
-      session.turns.push({ t: Date.now(), type: 'roll', die: n, value: v });
-    });
+    document.getElementById(id).addEventListener('click', ()=>{ const v=roll(n); outEl.textContent=`d${n}: ${v}`; });
   });
 
   async function send(){
-    const text = input.value.trim();
-    if(!text) return;
-    input.value='';
-    line(text,'you');
-    session.turns.push({ t: Date.now(), who:'you', text });
-
-    if(API){
-      try{
-        const body = { text, sessionId: session.id, tts: !!TTS, voice: TTS && TTS.voice };
-        const res = await fetch(API, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body) });
-        const j = await res.json();
-        const reply = j.reply || '(no reply)';
-        line(reply,'dm');
-        session.turns.push({ t: Date.now(), who:'dm', text: reply });
-        if (j.audio && typeof j.audio === 'string') playAudio(j.audio);
-      }catch(e){
-        line('LLM link failed. Using offline tables...', 'dm');
-        const r = `Hook: ${hook()} (try rolling a d20 for outcome)`;
-        line(r,'dm');
-        session.turns.push({ t: Date.now(), who:'dm', text: r });
-      }
-    } else {
-      const r = `Hook: ${hook()} (roll a d20 and tell me the result)`;
-      line(r,'dm');
-      session.turns.push({ t: Date.now(), who:'dm', text: r });
-    }
+    const text=input.value.trim(); if(!text) return; input.value=''; line(text,'you');
+    if(!api){ line('Offline: tap “Connect Worker”.', 'dm'); return; }
+    try{
+      const r=await fetch(api,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text,sessionId:Date.now().toString(36),tts:true,voice:tts.voice})});
+      const j=await r.json(); const reply=j.reply||'(no reply)'; line(reply,'dm'); if(j.audio) playAudio(j.audio);
+    }catch(e){ line('LLM link failed. Tap “Check Worker”.','dm'); }
   }
   document.getElementById('send').addEventListener('click', send);
-  document.getElementById('msg').addEventListener('keydown', (e)=>{ if(e.key==='Enter') send(); });
-
-  exportBtn.addEventListener('click', ()=>{
-    const blob = new Blob([JSON.stringify(session, null, 2)], {type:'application/json'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `session-${session.id}.json`;
-    a.click();
-  });
-  clearBtn.addEventListener('click', ()=>{
-    logEl.innerHTML='';
-    session.turns.push({ t: Date.now(), type:'clear' });
-  });
-
-  line("Welcome to Alexandria's table. Say 'start quest' or roll a die.", 'dm');
+  document.getElementById('msg').addEventListener('keydown', e=>{ if(e.key==='Enter') send(); });
+  document.getElementById('export').addEventListener('click', ()=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([logEl.innerText],{type:'text/plain'})); a.download='session.txt'; a.click(); });
+  document.getElementById('clear').addEventListener('click', ()=>{ logEl.innerHTML=''; });
+  document.getElementById('connect').addEventListener('click', ()=>{ const u=prompt('Paste your Worker URL (e.g., https://alexandria-dm.tagueteamtrucking.workers.dev):', api||''); if(!u) return; api=u.trim(); localStorage.setItem('ALEXANDRIA_API_URL', api); line('Saved Worker URL.','dm'); });
+  document.getElementById('check').addEventListener('click', async ()=>{ if(!api){ line('No Worker URL set.','dm'); return; } try{ const r=await fetch(api); line(r.ok?'Worker reachable ✔︎':'Worker error ❌','dm'); }catch(e){ line('Worker not reachable ❌','dm'); }});
+  line('Welcome. Paste your Worker URL via “Connect Worker”.','dm');
 })();

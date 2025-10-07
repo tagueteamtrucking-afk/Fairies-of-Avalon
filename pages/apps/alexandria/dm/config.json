@@ -1,7 +1,1 @@
-{
-  "api_url": "",
-  "tts": {
-    "enabled": true,
-    "voice": "alloy"
-  }
-}
+{ "api_url": "", "tts": { "enabled": true, "voice": "alloy" } }

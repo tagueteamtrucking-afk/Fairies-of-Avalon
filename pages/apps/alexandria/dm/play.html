@@ -1,33 +1,18 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alexandria DM — Table</title>
+<title>Alexandria — DM</title>
 <link rel="stylesheet" href="dm.css">
 </head><body>
-<header><h1>Alexandria — DM Table</h1></header>
+<header><h1>Alexandria DM</h1><p>Use <b>Connect Worker</b> to paste your Worker URL.</p></header>
 <main>
   <section class="controls">
-    <button id="roll-d20">Roll d20</button>
-    <button id="roll-d12">d12</button>
-    <button id="roll-d10">d10</button>
-    <button id="roll-d8">d8</button>
-    <button id="roll-d6">d6</button>
-    <button id="roll-d4">d4</button>
+    <button id="roll-d20">d20</button><button id="roll-d12">d12</button><button id="roll-d10">d10</button><button id="roll-d8">d8</button><button id="roll-d6">d6</button><button id="roll-d4">d4</button>
     <span id="roll-out"></span>
   </section>
   <section class="chat">
     <div id="log"></div>
-    <div class="composer">
-      <input id="msg" placeholder="Say something to the DM...">
-      <button id="send">Send</button>
-    </div>
-    <div class="actions">
-      <button id="export">Export Session JSON</button>
-      <button id="clear">Clear</button>
-    </div>
+    <div class="composer"><input id="msg" placeholder="Say something..."><button id="send">Send</button></div>
+    <div class="actions"><button id="connect">Connect Worker</button><button id="check">Check Worker</button><button id="export">Export</button><button id="clear">Clear</button></div>
   </section>
 </main>
-<footer>
-  <small>Offline DM mode. Use config.json to enable LLM/TTS via Cloudflare Worker.</small>
-</footer>
-<script src="dm.js"></script>
-</body></html>
+<script src="dm.js"></script></body></html>

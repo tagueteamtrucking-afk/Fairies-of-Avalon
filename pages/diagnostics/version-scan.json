@@ -1,7 +1,19 @@
 ﻿{
-  "updated": "2025-10-07T01:56:43Z",
-  "applied": [],
-  "hits": [],
+  "apply": true,
+  "updated": "2025-10-07T04:44:04Z",
+  "applied": [
+    {
+      "change": "neutralized forced ?v= redirects / gates",
+      "file": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/index.html"
+    }
+  ],
   "index": "index.html",
-  "apply": true
+  "hits": [
+    {
+      "matches": [
+        "searchParams-v-check"
+      ],
+      "file": "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/index.html"
+    }
+  ]
 }

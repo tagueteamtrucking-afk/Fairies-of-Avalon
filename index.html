@@ -4,7 +4,7 @@
 <!-- AVALON-HOTFIX-STRIP-V -->
 <script>(function(){try{
   var u=new URL(location.href);
-  if(u.searchParams.has("v")){ u.searchParams.delete("v"); history.replaceState(null,"",u.toString()); }
+  if(u./* removed v-param gate */ false){ u.searchParams.delete("v"); history.replaceState(null,"",u.toString()); }
   if("serviceWorker" in navigator){
     navigator.serviceWorker.getRegistrations()
       .then(rs=>Promise.all(rs.map(r=>r.unregister())))
@@ -44,7 +44,7 @@
 <!-- AVALON-HOTFIX-STRIP-V -->
 <script>(function(){try{
   var u=new URL(location.href);
-  if(u.searchParams.has("v")){ u.searchParams.delete("v"); history.replaceState(null,"",u.toString()); }
+  if(u./* removed v-param gate */ false){ u.searchParams.delete("v"); history.replaceState(null,"",u.toString()); }
   if("serviceWorker" in navigator){
     navigator.serviceWorker.getRegistrations()
       .then(rs=>Promise.all(rs.map(r=>r.unregister())))

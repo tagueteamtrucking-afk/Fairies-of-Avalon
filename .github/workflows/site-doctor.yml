@@ -4,9 +4,7 @@ on:
     inputs:
       domain: { description: 'Custom domain', default: 'www.fairiesofavalon.com', type: string }
       apply_fixes: { description: 'Apply .nojekyll/CNAME/kill-sw', default: true, type: boolean }
-permissions:
-  contents: write
-  pages: write
+permissions: { contents: write, pages: write }
 jobs:
   doctor:
     runs-on: ubuntu-latest

@@ -1,7 +1,7 @@
 {
   "api_url": "",
   "tts": {
-    "enabled": false,
+    "enabled": true,
     "voice": "alloy"
   }
 }

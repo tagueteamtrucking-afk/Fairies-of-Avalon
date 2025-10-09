@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
     inputs:
       weeks:            { description: "2 or 6", default: 2, type: number }
-      kcal_person_a:    { description: "Daily kcal for Person A", default: 2200, type: number }
-      kcal_person_b:    { description: "Daily kcal for Person B", default: 2000, type: number }
+      kcal_person_a:    { description: "Daily kcal (Ray)", default: 1800, type: number }
+      kcal_person_b:    { description: "Daily kcal (Blanca)", default: 1600, type: number }
       pattern:          { description: "DASH / Low-Sodium / Low-Sugar", default: "DASH", type: string }
       region:           { description: "EU or US", default: "EU", type: string }
 permissions:

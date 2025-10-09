@@ -1,0 +1,27 @@
+{
+  "names": { "A": "Ray", "B": "Blanca" },
+  "shopping_interval_days": 14,
+  "plan_weeks_default": 2,
+  "texture_limits": {
+    "avoid_very_crunchy": true,
+    "allowed_light_panko": true,
+    "peanuts_policy": "powder_or_peanut_butter_only"
+  },
+  "prep_style": { "bulk_prep": false, "partial_prep_ok": true },
+  "appliances": [
+    "single_burner",
+    "galanz_microwave_airfryer_convection",
+    "small_food_processor",
+    "immersion_blender",
+    "stand_mixer",
+    "crock_pot"
+  ],
+  "storage": {
+    "fridge": "smaller_than_standard",
+    "freezer": "slightly_bigger_than_standard"
+  },
+  "notes": [
+    "Prefer softer textures; use moist-heat (braise, stew, slow-cook), tenderize or mince/chop nuts as powder/butter.",
+    "Truck-driver context: minimal dishes, limited counter space."
+  ]
+}

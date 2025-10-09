@@ -10,13 +10,11 @@ export default {
     const model=env.OPENAI_MODEL||'gpt-4.1-mini';
     const ttsModel=env.OPENAI_TTS_MODEL||'gpt-4o-mini-tts';
 
-    // If voice payload provided: transcribe first
     if(b.audio_b64){
-      const { text, transcript, reply, audio } = await handleVoicePipeline(b, key, model, ttsModel);
+      const { transcript, reply, audio } = await handleVoicePipeline(b, key, model, ttsModel);
       return new Response(JSON.stringify({ transcript, reply, audio }),{headers:{'content-type':'application/json',...cors}});
     }
 
-    // Otherwise normal text chat
     const text = b.text;
     const tts = !!b.tts; const voice=b.voice||'alloy';
     if(!text) return new Response(JSON.stringify({error:'missing text'}),{status:400,headers:{'content-type':'application/json',...cors}});
@@ -38,7 +36,6 @@ export default {
     async function handleVoicePipeline(b, key, model, ttsModel){
       const { audio_b64, mime, do_chat, tts, voice } = b;
       const { data, type } = parseDataUrl(audio_b64, mime);
-      // Build multipart for Whisper
       const fd = new FormData();
       const file = new File([data], 'input'+extFromMime(type), { type });
       fd.append('file', file);
@@ -46,10 +43,10 @@ export default {
       const tr = await fetch('https://api.openai.com/v1/audio/transcriptions',{ method:'POST', headers:{'authorization':`Bearer ${key}`}, body: fd });
       if(!tr.ok) throw new Error('stt '+await tr.text());
       const tj = await tr.json(); const transcript = tj.text || '';
-      if(!do_chat) return { text: null, transcript, reply: null, audio: null };
+      if(!do_chat) return { transcript, reply: null, audio: null };
       const reply = await chat(transcript, key, model);
       let audio = null; if(tts){ audio = await speak(reply, key, ttsModel, voice||'alloy'); }
-      return { text: null, transcript, reply, audio };
+      return { transcript, reply, audio };
     }
     function parseDataUrl(dataUrl, fallbackMime){
       try{

@@ -26,8 +26,25 @@
     "fridge": "smaller_than_standard",
     "freezer": "slightly_bigger_than_standard"
   },
+  "eating_pattern": {
+    "grazing": true,
+    "events_per_day_target": "6-8",
+    "opposite_schedules": true
+  },
+  "allergies": {
+    "shellfish": true
+  },
+  "avoid": {
+    "cilantro": true,
+    "cumin": true
+  },
+  "easy_on": {
+    "onions": true,
+    "bell_peppers": true
+  },
   "notes": [
-    "Prefer softer textures; use moist-heat (braise/stew/slow-cook).",
-    "Truck-driver context: minimal dishes, limited water."
+    "Prefer softer textures; moist-heat cooking (braise/stew/slow-cook).",
+    "Truck-driver context: minimal dishes, limited counter space and water.",
+    "Grazers: 6\u20138 snack-size eating events; opposite schedules OK."
   ]
 }

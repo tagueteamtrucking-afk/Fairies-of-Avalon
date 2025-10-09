@@ -1,40 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alexandria — Worlds</title>
-  <link rel="stylesheet" href="app.css" />
-</head>
-<body data-repo-url="">
-  <header class="topbar">
-    <a class="back" href="../index.html" aria-label="Back to microapps">←</a>
-    <h1>Alexandria</h1>
-    <div class="spacer"></div>
-    <a id="genWf" class="btn-map" href="#gen-worlds" title="Run Run-All (LLM Bridge default ON)"><span aria-hidden="true">🗺️</span><span class="label">Generate Worlds</span></a>
-    <a class="muted" href="worlds/index.json" target="_blank" rel="noopener">JSON</a>
-  </header>
-  <main id="grid" class="grid" aria-live="polite"></main>
-  <template id="world-card">
-    <article class="card">
-      <h3 class="title"></h3>
-      <p class="summary"></p>
-      <details class="details">
-        <summary>Details</summary>
-        <pre class="code"></pre>
-      </details>
-    </article>
-  </template>
-  <script src="app.js"></script>
-  <script>
-    (function(){
-      var repo = document.body.getAttribute('data-repo-url') || "";
-      var gen = document.getElementById('genWf');
-      if (repo && /^https?:\/\//.test(repo)) {
-        var wf = repo.replace(/\/?$/, '') + "/actions/workflows/avalon-run-all.yml";
-        if (gen) gen.href = wf;
-      } else { if (gen) gen.setAttribute('title','Set data-repo-url on <body> to enable this link'); }
-    }());
-  </script>
-</body>
-</html>
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gothic Library — Alexandria</title>
+<link rel="stylesheet" href="/pages/apps/buildings.css">
+<header><h1>Gothic Library — Alexandria</h1><small>Choose an action</small></header>
+<main><div class="grid"><div class="card"><a href="/pages/apps/alexandria/dm/play.html">Desk — DM & Recents</a><br><small>Talk to Alexandria (voice/text)</small></div>
+<div class="card"><a href="/pages/apps/alexandria/stories/">Bookshelves — Stories & Sheets</a><br><small>Drafts and character sheets</small></div>
+<div class="card"><a href="/pages/apps/alexandria/worlds/">Globes & Maps — Worlds</a><br><small>World bibles</small></div></div></main>

@@ -5,5 +5,3 @@ main{padding:16px;display:grid;gap:12px}.controls button{margin-right:6px}
 #log{height:48vh;overflow:auto;padding:8px;background:#0b1220;border:1px solid #172033;margin-bottom:8px}
 .msg{padding:6px 8px;margin:6px 0;border-radius:6px;max-width:82%}.msg.you{background:#1f2a44;margin-left:auto}.msg.dm{background:#192235}
 .composer{display:flex;gap:8px}.composer input{flex:1;padding:8px;border:1px solid #334155;border-radius:6px;background:#0b1220;color:#e5e7eb}
-.actions{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}.actions button{background:#111827;border:1px solid #334155;border-radius:8px;color:#e5e7eb;padding:8px 12px;cursor:pointer}
-.actions button:hover{background:#0b1220}

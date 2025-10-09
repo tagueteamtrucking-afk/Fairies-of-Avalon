@@ -10,7 +10,7 @@
   function playAudio(dataUrl){ try{ const a=new Audio(dataUrl); a.play().catch(()=>{});}catch(e){} }
   function roll(n){ return Math.floor(Math.random()*n)+1 }
   [['roll-d20',20],['roll-d12',12],['roll-d10',10],['roll-d8',8],['roll-d6',6],['roll-d4',4]].forEach(([id,n])=>{
-    document.getElementById(id).addEventListener('click', ()=>{ const v=roll(n); document.getElementById('roll-out').textContent = `d${n}: ${v}`; });
+    const b=document.getElementById(id); if(b) b.addEventListener('click', ()=>{ const v=roll(n); const o=document.getElementById('roll-out'); if(o) o.textContent = `d${n}: ${v}`; });
   });
 
   async function sendText(text){
@@ -29,17 +29,17 @@
   });
   document.getElementById('msg').addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ const t=input.value.trim(); if(!t) return; input.value=''; line(t,'you'); sendText(t);} });
 
-  document.getElementById('connect').addEventListener('click', ()=>{
-    const u = prompt('Paste Worker URL (e.g., https://alexandria-dm.tagueteamtrucking.workers.dev):', api||''); if(!u) return;
+  const connectBtn=document.getElementById('connect'); if(connectBtn) connectBtn.addEventListener('click', ()=>{
+    const u = prompt('Paste Worker URL (e.g., https://alexandria-dm.example.workers.dev):', api||''); if(!u) return;
     api = u.trim(); localStorage.setItem('ALEXANDRIA_API_URL', api); line('Saved Worker URL.','dm');
   });
-  document.getElementById('check').addEventListener('click', async ()=>{
+  const checkBtn=document.getElementById('check'); if(checkBtn) checkBtn.addEventListener('click', async ()=>{
     if (!api) { line('No Worker URL set.','dm'); return; }
     try{ const r = await fetch(api); line(r.ok?'Worker reachable ✔︎':'Worker error ❌','dm'); }catch(e){ line('Worker not reachable ❌','dm'); }
   });
-  document.getElementById('enable-audio').addEventListener('click', ()=>{ playAudio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA='); line('Audio enabled.','dm'); });
+  const enableBtn=document.getElementById('enable-audio'); if(enableBtn) enableBtn.addEventListener('click', ()=>{ playAudio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA='); line('Audio enabled.','dm'); });
 
-  document.getElementById('grant-mic').addEventListener('click', async ()=>{
+  const grantBtn=document.getElementById('grant-mic'); if(grantBtn) grantBtn.addEventListener('click', async ()=>{
     try{
       mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const types = ['audio/webm;codecs=opus','audio/webm','audio/mp4'];
@@ -63,12 +63,13 @@
   });
 
   const ptt = document.getElementById('ptt');
-  const startRec = ()=>{ if(!recorder){ line('Grant Mic first.','dm'); return; } if(recorder.state==='recording') return; chunks=[]; recorder.start(); ptt.textContent='🔴 Recording…'; };
-  const stopRec  = ()=>{ if(recorder && recorder.state==='recording'){ recorder.stop(); ptt.textContent='🎙 Hold to Talk'; } };
-  ptt.addEventListener('mousedown', startRec); ptt.addEventListener('touchstart', startRec);
-  ptt.addEventListener('mouseup', stopRec);   ptt.addEventListener('mouseleave', stopRec); ptt.addEventListener('touchend', stopRec);
+  if(ptt){
+    const startRec = ()=>{ if(!recorder){ line('Grant Mic first.','dm'); return; } if(recorder.state==='recording') return; chunks=[]; recorder.start(); ptt.textContent='🔴 Recording…'; };
+    const stopRec  = ()=>{ if(recorder && recorder.state==='recording'){ recorder.stop(); ptt.textContent='🎙 Hold to Talk'; } };
+    ptt.addEventListener('mousedown', startRec); ptt.addEventListener('touchstart', startRec);
+    ptt.addEventListener('mouseup', stopRec);   ptt.addEventListener('mouseleave', stopRec); ptt.addEventListener('touchend', stopRec);
+  }
 
   function blobToBase64(blob){ return new Promise(res=>{ const fr=new FileReader(); fr.onloadend=()=>res((fr.result||'').toString()); fr.readAsDataURL(blob); }); }
-
-  line("Welcome to Alexandria's table. Connect Worker, Enable Audio, then Grant Mic. Hold-to-talk when ready.", 'dm');
+  line("Welcome to the Library. Connect your Worker, Enable Audio, then Grant Mic. Hold-to-talk when ready.", 'dm');
 })();

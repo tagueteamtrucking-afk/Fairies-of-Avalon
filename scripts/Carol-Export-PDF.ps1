@@ -27,7 +27,7 @@ small{color:#555}
 .card{border:1px solid #ccc;padding:8px;border-radius:6px}
 </style>
 "@
-$head = "<h1>Carol — Plan Export</h1><small>Generated: $($j.updated) • Region: $($j.region) • Pattern: $($j.pattern) • Weeks: $($j.weeks)</small>"
+$head = "<h1>Carol — Grazing Plan Export</h1><small>Generated: $($j.updated) • Region: $($j.region) • Pattern: $($j.pattern) • Weeks: $($j.weeks)</small>"
 
 $lists = ""
 foreach($blk in $j.shopping_lists_2wk){
@@ -42,13 +42,13 @@ $listsHtml = "<div class='section'><h2>Shopping Lists (2‑week blocks)</h2><div
 $rows = @()
 foreach($d in $j.days){
   $ml = @()
-  foreach($m in $d.meals){
+  foreach($m in $d.events){
     $items = ($m.items | ForEach-Object { "$($_.quantity) $($_.unit) $($_.ingredient) $($_.notes)" }) -join "<br>"
-    $ml += "<div><b>$($m.name)</b> — for $($m.for)<br><small>$($m.kcal) kcal, Na $($m.sodium_mg) mg, sugar $($m.added_sugars_g) g, fiber $($m.fiber_g) g</small><br>$items</div>"
+    $ml += "<div><b>$($m.name)</b> — <i>$($m.type)</i> for $($m.for) @ $($m.time_hint)<br><small>$($m.kcal) kcal, Na $($m.sodium_mg) mg, sugar $($m.added_sugars_g) g, fiber $($m.fiber_g) g</small><br>$items</div>"
   }
   $rows += "<tr><td>Day $($d.index) — $($d.day_label)</td><td>$($ml -join '<hr>')</td></tr>"
 }
-$daysHtml = "<div class='section'><h2>Daily Plan</h2><table><tr><th>Day</th><th>Meals</th></tr>$($rows -join "")</table></div>"
+$daysHtml = "<div class='section'><h2>Daily Grazing Events</h2><table><tr><th>Day</th><th>Events</th></tr>$($rows -join "")</table></div>"
 
 $body = "$head$listsHtml$daysHtml"
 Set-Content -Path $html -Value "<!doctype html><meta charset='utf-8'><title>Carol Plan</title>$style<body>$body</body>" -Encoding UTF8

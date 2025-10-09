@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alexandria — DM</title>
 <link rel="stylesheet" href="dm.css"></head><body>
-<header><h1>Alexandria — DM</h1><small>Connect Worker. Enable Audio. TTS on by default. Grant Mic for voice.</small></header>
+<header><h1>Alexandria — DM</h1><small>Connect Worker or run “Alexandria — Write Worker Config”. Enable Audio, then Grant Mic.</small></header>
 <main>
   <section class="controls">
     <button id="roll-d20">d20</button><button id="roll-d12">d12</button><button id="roll-d10">d10</button><button id="roll-d8">d8</button><button id="roll-d6">d6</button><button id="roll-d4">d4</button>
@@ -23,5 +23,98 @@
     </div>
   </section>
 </main>
-<script src="dm.js"></script>
-</body></html>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;background:#0b0f17;color:#e5e7eb}
+header{padding:12px 16px;border-bottom:1px solid #172033}h1{margin:0 0 4px 0}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+main{padding:16px;display:grid;gap:12px}.controls button{margin-right:6px}
+.chat{border:1px solid #172033;border-radius:8px;padding:12px;background:#0f172a}
+#log{height:48vh;overflow:auto;padding:8px;background:#0b1220;border:1px solid #172033;margin-bottom:8px}
+.msg{padding:6px 8px;margin:6px 0;border-radius:6px;max-width:82%}.msg.you{background:#1f2a44;margin-left:auto}.msg.dm{background:#192235}
+.composer{display:flex;gap:8px}.composer input{flex:1;padding:8px;border:1px solid #334155;border-radius:6px;background:#0b1220;color:#e5e7eb}
+</style>
+<script>(function(){
+  const qs = new URLSearchParams(location.search);
+  const cfgUrl = '../config.json';
+  let api = null, cfgLoaded = false;
+  const ttsEl = document.getElementById('tts');
+  const logEl = document.getElementById('log');
+  const input = document.getElementById('msg');
+  let mediaStream = null, recorder = null, chunks = [], mime = '';
+
+  function line(text, who){ const el = document.createElement('div'); el.className='msg ' + (who||'dm'); el.textContent = text; logEl.appendChild(el); logEl.scrollTop = logEl.scrollHeight; }
+  function playAudio(dataUrl){ try{ const a=new Audio(dataUrl); a.play().catch(()=>{});}catch(e){} }
+  function roll(n){ return Math.floor(Math.random()*n)+1 }
+  [['roll-d20',20],['roll-d12',12],['roll-d10',10],['roll-d8',8],['roll-d6',6],['roll-d4',4]].forEach(([id,n])=>{
+    const b=document.getElementById(id); if(b) b.addEventListener('click', ()=>{ const v=roll(n); const o=document.getElementById('roll-out'); if(o) o.textContent = `d${n}: ${v}`; });
+  });
+
+  async function loadConfig(){
+    try{
+      const j = await fetch(cfgUrl).then(r=>r.ok?r.json():null);
+      if(j && j.worker_url){ api = j.worker_url; localStorage.setItem('ALEXANDRIA_API_URL', api); }
+      if(j && typeof j.tts_default==='boolean'){ document.getElementById('tts').checked = j.tts_default; }
+    }catch(e){}
+    const ls = localStorage.getItem('ALEXANDRIA_API_URL');
+    if(ls) api = ls;
+    cfgLoaded = true;
+  }
+
+  async function sendText(text){
+    if (!api) { line('No Worker set. Tap Connect or run "Alexandria — Write Worker Config".', 'dm'); return; }
+    try{
+      const res = await fetch(api, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({ text, sessionId: Date.now().toString(36), tts: !!ttsEl.checked, voice: 'alloy' }) });
+      const j = await res.json();
+      const reply = j.reply || '(no reply)';
+      line(reply,'dm');
+      if (ttsEl.checked && j.audio) playAudio(j.audio);
+    }catch(e){ line('LLM link failed. Tap Check Worker.', 'dm'); }
+  }
+
+  document.getElementById('send').addEventListener('click', async ()=>{
+    const text = input.value.trim(); if(!text) return; input.value=''; line(text,'you'); sendText(text);
+  });
+  document.getElementById('msg').addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ const t=input.value.trim(); if(!t) return; input.value=''; line(t,'you'); sendText(t);} });
+
+  document.getElementById('connect').addEventListener('click', ()=>{
+    const u = prompt('Paste Worker URL (or leave blank to keep current):', api||''); if(!u) return;
+    api = u.trim(); localStorage.setItem('ALEXANDRIA_API_URL', api); line('Saved Worker URL.','dm');
+  });
+  document.getElementById('check').addEventListener('click', async ()=>{
+    if (!api) { line('No Worker URL set.','dm'); return; }
+    try{ const r = await fetch(api); line(r.ok?'Worker reachable ✔︎':'Worker error ❌','dm'); }catch(e){ line('Worker not reachable ❌','dm'); }
+  });
+  document.getElementById('enable-audio').addEventListener('click', ()=>{ playAudio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA='); line('Audio enabled.','dm'); });
+
+  document.getElementById('grant-mic').addEventListener('click', async ()=>{
+    try{
+      mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const types = ['audio/webm;codecs=opus','audio/webm','audio/mp4'];
+      mime = types.find(t=>MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) || '';
+      recorder = new MediaRecorder(mediaStream, mime?{mimeType:mime}:{ });
+      recorder.ondataavailable = e=>{ if(e.data && e.data.size>0) chunks.push(e.data); };
+      recorder.onstop = async ()=>{
+        const blob = new Blob(chunks, { type: mime || 'audio/webm' }); chunks=[];
+        const b64 = await blobToBase64(blob);
+        if (!api) { line('No Worker set. Tap Connect.', 'dm'); return; }
+        line('Transcribing…','dm');
+        try{
+          const res = await fetch(api, { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({ audio_b64: b64, mime: blob.type || 'audio/webm', do_chat: true, tts: !!ttsEl.checked, voice: 'alloy' }) });
+          const j = await res.json();
+          if (j.transcript){ line('You (voice): '+j.transcript, 'you'); }
+          if (j.reply){ line(j.reply,'dm'); if (ttsEl.checked && j.audio) playAudio(j.audio); }
+        }catch(e){ line('Voice pipeline failed.','dm'); }
+      };
+      line('Mic ready. Hold-to-talk is active.','dm');
+    }catch(e){ line('Mic permission denied.','dm'); }
+  });
+
+  const ptt = document.getElementById('ptt');
+  const startRec = ()=>{ if(!recorder){ line('Grant Mic first.','dm'); return; } if(recorder.state==='recording') return; chunks=[]; recorder.start(); ptt.textContent='🔴 Recording…'; };
+  const stopRec  = ()=>{ if(recorder && recorder.state==='recording'){ recorder.stop(); ptt.textContent='🎙 Hold to Talk'; } };
+  ptt.addEventListener('mousedown', startRec); ptt.addEventListener('touchstart', startRec);
+  ptt.addEventListener('mouseup', stopRec);   ptt.addEventListener('mouseleave', stopRec); ptt.addEventListener('touchend', stopRec);
+
+  function blobToBase64(blob){ return new Promise(res=>{ const fr=new FileReader(); fr.onloadend=()=>res((fr.result||'').toString()); fr.readAsDataURL(blob); }); }
+
+  loadConfig().then(()=> line("Welcome to the Library. Worker URL "+(api? "loaded." : "not set — run config workflow or Connect."), 'dm'));
+})();</script></body></html>

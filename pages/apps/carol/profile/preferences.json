@@ -42,6 +42,10 @@
     "onions": true,
     "bell_peppers": true
   },
+  "dairy": {
+    "restriction": "light",
+    "notes": "Likely lactose intolerance \u2014 prefer lactose-free milk/yogurt, low-lactose aged cheeses, and plant-based alternatives; note LF subs."
+  },
   "notes": [
     "Prefer softer textures; moist-heat cooking (braise/stew/slow-cook).",
     "Truck-driver context: minimal dishes, limited counter space and water.",

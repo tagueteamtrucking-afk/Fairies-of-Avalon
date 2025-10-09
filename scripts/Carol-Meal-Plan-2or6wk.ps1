@@ -12,6 +12,7 @@ $root=Split-Path -Parent $PSScriptRoot
 $outDir = Join-Path $root 'pages/apps/carol/plans'; $null = New-Item -ItemType Directory -Path $outDir -Force
 $ts=(Get-Date -Format "yyyyMMddTHHmmssZ")
 $outFile = Join-Path $outDir ("twoperson-"+$Weeks+"wk-"+$ts+".json")
+$expectedDays = [int]$Weeks * 7
 
 $prefsPath = Join-Path $root 'pages/apps/carol/profile/preferences.json'
 $feedbackPath = Join-Path $root 'pages/apps/carol/profile/feedback.json'
@@ -27,6 +28,7 @@ $storage  = "fridge is smaller-than-standard; freezer slightly larger; shopping 
 $prep     = "bulk prep not required; partial prep/components OK"
 $grazing  = "Grazers: plan 6–8 snack-size eating events per person per day (not 3 meals); allow asynchronous schedules."
 $avoid    = "Exclusions: no shellfish; no cilantro; no cumin; easy on onions and bell peppers (use milder forms/amounts)."
+$dairy    = "Light dairy restriction: likely lactose intolerance — prefer lactose-free milk/yogurt, low-lactose aged cheeses (cheddar/parmesan), and plant-based alternatives; annotate substitutions in item notes."
 
 $learn = ""
 if ($feedback) {
@@ -48,14 +50,17 @@ Context:
 - Truck-driver constraints: minimal dishes, limited space, limited water.
 - $grazing
 - $avoid
+- $dairy
 $learn
-Weight status: both are 40+ lbs overweight. Favor moderate energy deficit, high-satiety meals (protein + fiber), lower energy density, and freezer-friendly components.
+Weight status: both are 40+ lbs overweight. Favor moderate energy deficit, high-satiety meals (protein + fiber), lower energy density, freezer-friendly components.
 Safety & guidance: follow EFSA first (EU), then NHLBI DASH / DGA (US) as fallback. Sodium <= 2000 mg/day (prefer 1500), added sugars <= 10% kcal, fiber >= 25 g/day, sat fat <= 10% kcal.
-Deliver:
-- A $Weeks-week plan for TWO with **6–8 snack-size eating events per day** per person (type: "snack" or "mini-meal"), with per-event kcal/sodium/added_sugars/fiber and specific quantities.
-- Mark each event with { for: "A"|"B"|"Both", type: "snack"|"mini-meal", time_hint: "morning|midday|evening|night-shift" } for **opposite schedules**.
-- A **two-week shopping list** grouped by aisle (produce, protein, dairy, pantry, frozen, spices). If Weeks=6, provide three 2‑week lists (wk1–2, 3–4, 5–6).
-- A **component prep** plan (slow-cooker/casserole/sauce/freezer‑ready; mark freezer vs fridge). Avoid shellfish; exclude cilantro and cumin; use onions/bell peppers sparingly, with substitutions.
+
+FORMAT & QUANTITY RULES (STRICT):
+- Produce EXACTLY $expectedDays day objects in `days` with indices 1..$expectedDays. If uncertain, extend by cycling variations to fill all days.
+- Each day must contain a total of 6–8 events across Both/A/B combined. Use `for:"A"|"B"|"Both"`.
+- Use STANDARD COOKING UNITS in items: unit ∈ {"cup","tbsp","tsp","g","kg","oz","piece","slice","can"}; prefer cup/tbsp/tsp for volumes.
+- Include per-event nutrition: kcal, sodium_mg, added_sugars_g, fiber_g.
+- Include clear ingredients with quantities and units, and concise notes; if dairy present, note the lactose-free or plant-based substitution in `notes`.
 Return STRICT JSON:
 {
   updated, region, pattern, weeks,
@@ -71,7 +76,7 @@ Return STRICT JSON:
 }
 "@
 
-$user = "Names: A=Ray, B=Blanca. Keep prep short. Use slow-cooker & convection oven. Provide swaps to avoid cilantro/cumin and to ease onions/peppers."
+$user = "Names: A=Ray, B=Blanca. Keep prep short. Use slow-cooker & convection oven. Provide swaps for cilantro/cumin and lactose-light alternatives."
 
 $hdr = @{ "Authorization"="Bearer $api"; "Content-Type"="application/json" }
 $body = @{ model=$Model; temperature=0.2; messages=@(@{role="system";content=$sys}, @{role="user";content=$user}) } | ConvertTo-Json -Depth 8
@@ -86,14 +91,44 @@ try {
   exit 1
 }
 
-$NameA = "Ray";     if ($prefs -and $prefs.names -and $prefs.names.A) { $NameA = [string]$prefs.names.A }
-$NameB = "Blanca";  if ($prefs -and $prefs.names -and $prefs.names.B) { $NameB = [string]$prefs.names.B }
-
+# Fill metadata
+$NameA = if ($prefs -and $prefs.names -and $prefs.names.A) { [string]$prefs.names.A } else { "Ray" }
+$NameB = if ($prefs -and $prefs.names -and $prefs.names.B) { [string]$prefs.names.B } else { "Blanca" }
 $j.updated = (Get-Date).ToUniversalTime().ToString('s')+'Z'
 $j.region = $Region
 $j.pattern = $Pattern
 $j.weeks = $Weeks
 $j.persons = @(@{id="A"; name=$NameA; kcal=$KcalA; events_per_day_target="6-8"}, @{id="B"; name=$NameB; kcal=$KcalB; events_per_day_target="6-8"})
+
+# Fallback if fewer than expected days: cycle to fill
+try {
+  $have = if ($j.days) { [int]$j.days.Count } else { 0 }
+  if ($have -lt $expectedDays) {
+    Write-Warning "Plan returned $have days; expanding to $expectedDays by cycling."
+    $base = @()
+    if ($j.days) { $base = $j.days }
+    if ($base.Count -eq 0) { throw "No days returned by LLM" }
+    while ($base.Count -lt 7) { $base += $base } # ensure enough variety to cycle
+    $days = @()
+    for ($i=0; $i -lt $expectedDays; $i++) {
+      $clone = ($base[$i % $base.Count] | ConvertTo-Json -Depth 32 | ConvertFrom-Json)
+      $clone.index = $i + 1
+      $clone.day_label = "Day " + ($i + 1)
+      $days += $clone
+    }
+    $j.days = $days
+  } else {
+    # ensure indices 1..expectedDays
+    for ($i=0; $i -lt $expectedDays; $i++) {
+      if ($i -lt $j.days.Count) {
+        $j.days[$i].index = $i + 1
+        if (-not $j.days[$i].day_label) { $j.days[$i].day_label = "Day " + ($i + 1) }
+      }
+    }
+  }
+} catch {
+  Write-Warning "Could not normalize days: $_"
+}
 
 [IO.File]::WriteAllText($outFile, ($j | ConvertTo-Json -Depth 32), [Text.Encoding]::UTF8)
 Write-Host "Carol plan -> $outFile"

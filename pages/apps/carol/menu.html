@@ -1,5 +1,5 @@
 <!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carol — Menu Picker (Guardrails)</title>
+<title>Carol — Menu Picker (Soft Guardrails)</title>
 <style>
 :root{--bg:#0b0f17;--ink:#e5e7eb;--line:#172033;--ok:#16a34a;--warn:#f59e0b;--bad:#ef4444;--accent:#60a5fa}
 *{box-sizing:border-box}body{font-family:system-ui;background:var(--bg);color:var(--ink);margin:0}
@@ -21,9 +21,10 @@ table{width:100%;border-collapse:collapse}th,td{border:1px solid #172033;padding
 .note{font-size:12px;color:#9ca3af}
 .switch{display:inline-flex;gap:6px;align-items:center;border:1px solid #334155;border-radius:999px;padding:2px 8px}
 .switch input{accent-color:var(--accent)}
+.hard{color:#ef4444}
 </style>
 <header>
-  <h1>Carol — Menu Picker (Grazers + Guardrails)</h1>
+  <h1>Carol — Menu Picker (Grazers + Soft Guardrails)</h1>
   <div class="row">
     <label>Plan: <select id="plan"></select></label>
     <label>Day: <select id="day"></select></label>
@@ -36,7 +37,7 @@ table{width:100%;border-collapse:collapse}th,td{border:1px solid #172033;padding
     <label>Person:
       <select id="person"><option value="both">Both</option><option value="A">Ray (A)</option><option value="B">Blanca (B)</option></select>
     </label>
-    <label class="switch"><input type="checkbox" id="strict" checked> Strict (don’t exceed budgets)</label>
+    <label class="switch"><input type="checkbox" id="strict"> Strict block</label>
     <button id="load">Load</button>
     <button id="clear">Clear Picks</button>
     <button id="export">Export Picks</button>
@@ -47,7 +48,7 @@ table{width:100%;border-collapse:collapse}th,td{border:1px solid #172033;padding
     <h2>Budgets & Totals</h2>
     <div id="budgets" class="row"></div>
     <div id="totals" class="row" style="margin-top:6px"></div>
-    <div class="note">Targets per person: kcal = plan target ±10%; sodium &le; 2000 mg (prefer 1500 mg), added sugar &le; 10% kcal, fiber ≥ 25 g.</div>
+    <div class="note">Soft target guidance (not hard caps). Calories ≈ target ±10%; sodium ≤ 2000 mg; sugar ≤ 10% kcal; fiber ≥ 25 g. Units normalized to cups, tablespoons, teaspoons when possible.</div>
   </section>
   <section>
     <div id="days" class="grid"></div>
@@ -61,7 +62,7 @@ table{width:100%;border-collapse:collapse}th,td{border:1px solid #172033;padding
     </div>
   </section>
 </main>
-<footer><small>Tip: Tap an event to select/deselect. If Strict mode is on and a pick would break a budget, it’s blocked and marked red.</small></footer>
+<footer><small>If a plan shows fewer than 14 days for a 2‑week plan, please re‑run “Carol — 2 or 6 Week Plan for Two”. I also auto‑fill missing days by cycling.</small></footer>
 <script>
 const planSel = document.getElementById('plan'), daySel=document.getElementById('day'), scopeSel=document.getElementById('scope'), personSel=document.getElementById('person');
 const strictEl=document.getElementById('strict');
@@ -74,11 +75,7 @@ function pid(di,ei){ return `d${di}_e${ei}`; }
 
 async function fetchJSON(p){ const r=await fetch(p); if(!r.ok) throw new Error('fetch '+p); return r.json(); }
 async function loadPlansIndex(){
-  try{
-    const j=await fetchJSON('./plans/index.json'); return j.files||[];
-  }catch(e){
-    return [];
-  }
+  try{ const j=await fetchJSON('./plans/index.json'); return j.files||[]; } catch(e){ return []; }
 }
 
 function sugarBudget(kcal){ return (kcal * 0.10) / 4.0; } // grams
@@ -152,15 +149,13 @@ function renderTotals(){
 
 function canAdd(ev){
   if(!strictEl.checked) return true;
-  // simulate add then evaluate KPIs for selected 'person' (or both)
+  // simulate add then evaluate KPIs
   const A=structuredClone(calcTotals().A), B=structuredClone(calcTotals().B);
   const add=(who)=>{ who.kcal+=(+ev.kcal||0); who.na+=(+ev.sodium_mg||0); who.sugar+=(+ev.added_sugars_g||0); who.fiber+=(+ev.fiber_g||0); };
   if(ev.for==='A') add(A); else if(ev.for==='B') add(B); else { add(A); add(B); }
   const Ap=planData.persons?.find(p=>p.id==='A')||{kcal:0}, Bp=planData.persons?.find(p=>p.id==='B')||{kcal:0};
-  const aOK = (A.kcal <= Ap.kcal*1.1) && (A.na <= 2000) && (A.sugar <= sugarBudget(Ap.kcal)) && (A.fiber >= 25);
-  const bOK = (B.kcal <= Bp.kcal*1.1) && (B.na <= 2000) && (B.sugar <= sugarBudget(Bp.kcal)) && (B.fiber >= 25);
-  if(personSel.value==='A') return aOK;
-  if(personSel.value==='B') return bOK;
+  const aOK = (A.kcal <= Ap.kcal*1.1) && (A.na <= 2000) && (A.sugar <= (Ap.kcal*0.10/4)) && (A.fiber >= 25);
+  const bOK = (B.kcal <= Bp.kcal*1.1) && (B.na <= 2000) && (B.sugar <= (Bp.kcal*0.10/4)) && (B.fiber >= 25);
   return aOK && bOK;
 }
 
@@ -182,11 +177,15 @@ function renderDays(){
       const setSel=(s)=>{ picks[id]=s; row.classList.toggle('sel',!!s); };
       if(picks[id]) setSel(true);
       row.addEventListener('click', ()=>{
-        if(!picks[id]){
-          if(!canAdd(ev)){ row.style.border='1px solid var(--bad)'; row.style.background='#170a0a'; return; }
-          setSel(true);
-        } else { setSel(false); }
-        savePicks(); renderTotals(); renderList();
+        if(strictEl.checked && !picks[id]){
+          // soft by default; only block if Strict toggle ON
+          if(!canAdd(ev)){
+            row.style.border='1px solid var(--bad)'; row.style.background='#170a0a';
+            row.title = 'Would exceed targets with Strict ON';
+            return;
+          }
+        }
+        setSel(!picks[id]); savePicks(); renderTotals(); renderList();
       });
       card.appendChild(row);
     });
@@ -194,9 +193,20 @@ function renderDays(){
   });
 }
 
+const UNIT_MAP = {
+  'tsp':['tsp','teaspoon','teaspoons'],
+  'tbsp':['tbsp','tablespoon','tablespoons'],
+  'cup':['cup','cups']
+};
+function normUnit(u){
+  const s=(u||'').toString().trim().toLowerCase();
+  for(const k in UNIT_MAP){ if(UNIT_MAP[k].includes(s)) return k; }
+  return s;
+}
+
 function aggregate(scope='day'){
-  const acc = {};
-  const prefix = scope==='day' ? dayKey()+':' : ''; // day scope only
+  const acc = {}; // ingredient -> { tsp,tbsp,cup, others: {unit:qty} }
+  const prefix = scope==='day' ? dayKey()+':' : '';
   Object.entries(picks).forEach(([k,v])=>{
     if(!v) return;
     if(scope==='day' && !k.startsWith(prefix)) return;
@@ -205,20 +215,46 @@ function aggregate(scope='day'){
     const di=parseInt(m[1],10), ei=parseInt(m[2],10);
     const ev = planData?.days?.[di]?.events?.[ei]; if(!ev) return;
     (ev.items||[]).forEach(it=>{
-      const key = (it.ingredient||'').trim().toLowerCase() + '|' + (it.unit||'').trim().toLowerCase();
+      const ing=(it.ingredient||'').trim(); if(!ing) return;
+      const key = ing.toLowerCase();
+      const unit = normUnit(it.unit);
       const q = parseFloat(it.quantity); const v2 = isNaN(q)?0:q;
-      acc[key] = (acc[key]||0) + v2;
+      if(!acc[key]) acc[key]={ name: ing, tsp:0, tbsp:0, cup:0, others:{} };
+      if(unit==='tsp'){ acc[key].tsp += v2; }
+      else if(unit==='tbsp'){ acc[key].tbsp += v2; }
+      else if(unit==='cup'){ acc[key].cup += v2; }
+      else {
+        acc[key].others[unit]=(acc[key].others[unit]||0)+v2;
+      }
     });
   });
   return acc;
 }
 
+function fmtVol(cups, tbsp, tsp){
+  // normalize tsp -> tbsp -> cup
+  let totalTbsp = (cups*16) + tbsp + (tsp/3);
+  let outC = Math.floor(totalTbsp/16);
+  let remTbsp = totalTbsp - outC*16;
+  let outTb = Math.floor(remTbsp);
+  let outTsp = Math.round((remTbsp - outTb)*3);
+  const parts=[];
+  if(outC>0) parts.push(outC+' cup'+(outC>1?'s':''));
+  if(outTb>0) parts.push(outTb+' tbsp');
+  if(outTsp>0) parts.push(outTsp+' tsp');
+  if(parts.length===0) parts.push('as needed');
+  return parts.join(' + ');
+}
+
 function renderList(){
   const scope = scopeSel.value;
   const acc = aggregate(scope);
-  const lines = Object.entries(acc).map(([k,v])=>{
-    const [ing, unit] = k.split('|'); const qty = (Math.round(v*100)/100).toString();
-    return `- ${ing}${unit?' ('+unit+')':''}: ${qty}`;
+  const lines = Object.values(acc).map(v=>{
+    const vol = (v.cup||0)+(v.tbsp||0)+(v.tsp||0);
+    const volLine = (v.cup||v.tbsp||v.tsp) ? fmtVol(v.cup||0, v.tbsp||0, v.tsp||0) : null;
+    const others = Object.entries(v.others).map(([u,q])=>`${Math.round(q*100)/100} ${u}`).join(', ');
+    const tail = [volLine, others].filter(Boolean).join('; ');
+    return `- ${v.name}: ${tail||'qty per labels'}`;
   }).sort();
   listEl.innerHTML = `<pre>${lines.join('\n')||'(no picks yet)'}</pre>`;
 }
@@ -239,9 +275,16 @@ document.getElementById('load').addEventListener('click', async ()=>{
   planName = planSel.value;
   planData = await fetchJSON('./plans/'+planName).catch(()=>null);
   if(!planData){ alert('Plan file not found. Run the Carol plan workflow first.'); return; }
-  // Populate days
+  const days = planData.days||[];
+  const weeks = planData.weeks||Math.ceil(days.length/7);
+  if(days.length < weeks*7){
+    const warn = document.createElement('div');
+    warn.className='note hard'; warn.textContent='Plan contains only '+days.length+' day(s). I will show all I have. Re-run generator to fill '+(weeks*7)+' days.';
+    daysEl.before(warn);
+  }
+  // Populate days selector
   const dayOpts = ['<option value="all">All days</option>'].concat(
-    (planData.days||[]).map((d,di)=>`<option value="${di}">Day ${d.index}: ${d.day_label}</option>`)
+    days.map((d,di)=>`<option value="${di}">Day ${d.index||di+1}: ${d.day_label||('Day '+(di+1))}</option>`)
   );
   daySel.innerHTML = dayOpts.join('');
   loadPicks();
@@ -249,11 +292,11 @@ document.getElementById('load').addEventListener('click', async ()=>{
 });
 
 (async()=>{
-  const files = await loadPlansIndex();
-  if(files.length===0){
-    planSel.innerHTML = '<option value="">(No plans found — run "Carol — 2 or 6 Week Plan for Two" in Actions)</option>';
-  }else{
-    planSel.innerHTML = files.map(f=>`<option value="${f}">${f}</option>`).join('');
+  try{
+    const files = await loadPlansIndex();
+    planSel.innerHTML = files.length===0 ? '<option value="">(No plans found — run the Carol plan workflow)</option>' : files.map(f=>`<option value="${f}">${f}</option>`).join('');
+  }catch(e){
+    planSel.innerHTML = '<option value="">(Could not read plans index)</option>';
   }
 })();
 </script>

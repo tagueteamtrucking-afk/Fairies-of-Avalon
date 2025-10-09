@@ -1,18 +1,18 @@
-name: Nina — VRM Index
+name: Charlotte — Build Design Tokens
 on: { workflow_dispatch: {} }
 permissions: { contents: write }
 jobs:
-  vrm_index:
+  tokens:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build VRM index
+      - name: Build tokens
         shell: pwsh
-        run: pwsh -File scripts/Nina-VRM-Index.ps1
+        run: pwsh -File scripts/Charlotte-Design-Tokens.ps1
       - name: Commit
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/nina/vrm-index.json
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(nina): vrm index" && git push; fi
+          git add pages/apps/theme/tokens.*
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(charlotte): design tokens" && git push; fi

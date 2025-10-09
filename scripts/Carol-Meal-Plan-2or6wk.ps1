@@ -1,7 +1,7 @@
 param(
   [string]$Model=$env:OPENAI_MODEL,
   [int]$Weeks=2,                    # 2 or 6
-  [int]$KcalA=1800,                 # Defaults reflect weight-loss for 40+ lb over
+  [int]$KcalA=1800,                 # weight-loss defaults
   [int]$KcalB=1600,
   [string]$Pattern="DASH",
   [string]$Region="EU"
@@ -17,7 +17,6 @@ $prefsPath = Join-Path $root 'pages/apps/carol/profile/preferences.json'
 $prefs = $null
 if (Test-Path $prefsPath) { try { $prefs = Get-Content -Raw -Path $prefsPath | ConvertFrom-Json } catch {} }
 
-# Summaries from preferences (safe fallbacks)
 $peanut = "no whole peanuts; powder or peanut butter only"
 $texture = "avoid very crunchy foods; light panko coating OK; favor tender textures"
 $appliances = if ($prefs -and $prefs.appliances) { ($prefs.appliances -join ", ") } else { "single burner, convection/microwave/airfryer, small processor, immersion blender, stand mixer, crock-pot" }
@@ -34,7 +33,7 @@ Context:
 - Storage: $storage.
 - $prep.
 - Truck-driver constraints: minimal dishes, limited space, limited water.
-Weight status: both are 40+ lbs overweight. Favor moderate energy deficit, high-satiety meals (protein + fiber), lower energy density, and freezer-friendly batch components.
+Weight status: both are 40+ lbs overweight. Favor moderate energy deficit, high-satiety meals (protein + fiber), lower energy density, freezer-friendly batch components.
 Safety & guidance: follow EFSA first (EU), then NHLBI DASH / DGA (US) as fallback. Sodium <= 2000 mg/day (prefer 1500), added sugars <= 10% kcal, fiber >= 25 g/day, sat fat <= 10% kcal.
 Deliver:
 - A $Weeks-week menu for two people with per-meal kcal/sodium/added_sugars/fiber and specific quantities.
@@ -44,8 +43,7 @@ Deliver:
 Return STRICT JSON:
 {
   updated, region, pattern, weeks, persons:[{id,name,kcal}],
-  days:[{index, day_label, meals:[{name, for:"A|B|Both", kcal, sodium_mg, added_sugars_g, fiber_g,
-         items:[{ingredient, quantity, unit, notes}]}]}],
+  days:[{index, day_label, meals:[{name, for:"A|B|Both", kcal, sodium_mg, added_sugars_g, fiber_g, items:[{ingredient, quantity, unit, notes}]}]}],
   shopping_lists_2wk:[{range:"wk1-2|wk3-4|wk5-6", produce:[string], protein:[string], dairy:[string], pantry:[string], frozen:[string], spices:[string]}],
   component_prep:[{when:"Day 1|Day 8|Each Week", tasks:[string]}],
   storage_notes:[string],
@@ -68,7 +66,6 @@ try {
   exit 1
 }
 
-# Names with safe fallbacks (PowerShell-friendly)
 $NameA = "Ray";     if ($prefs -and $prefs.names -and $prefs.names.A) { $NameA = [string]$prefs.names.A }
 $NameB = "Blanca";  if ($prefs -and $prefs.names -and $prefs.names.B) { $NameB = [string]$prefs.names.B }
 

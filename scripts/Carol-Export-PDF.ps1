@@ -15,7 +15,6 @@ $ts = Get-Date -Format "yyyyMMddTHHmmssZ"
 $html = Join-Path $exportDir ("carol-plan-"+$ts+".html")
 $pdf  = Join-Path $exportDir ("carol-plan-"+$ts+".pdf")
 
-# Build a simple HTML report
 $style = @"
 <style>
 body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;line-height:1.35}
@@ -30,7 +29,6 @@ small{color:#555}
 "@
 $head = "<h1>Carol — Plan Export</h1><small>Generated: $($j.updated) • Region: $($j.region) • Pattern: $($j.pattern) • Weeks: $($j.weeks)</small>"
 
-# Shopping lists (per 2 weeks)
 $lists = ""
 foreach($blk in $j.shopping_lists_2wk){
   $lists += "<div class='card'><h3>Shopping ($($blk.range))</h3>"
@@ -41,7 +39,6 @@ foreach($blk in $j.shopping_lists_2wk){
 }
 $listsHtml = "<div class='section'><h2>Shopping Lists (2‑week blocks)</h2><div class='grid'>$lists</div></div>"
 
-# Days → compact table
 $rows = @()
 foreach($d in $j.days){
   $ml = @()
@@ -56,11 +53,6 @@ $daysHtml = "<div class='section'><h2>Daily Plan</h2><table><tr><th>Day</th><th>
 $body = "$head$listsHtml$daysHtml"
 Set-Content -Path $html -Value "<!doctype html><meta charset='utf-8'><title>Carol Plan</title>$style<body>$body</body>" -Encoding UTF8
 
-# Try to render PDF if wkhtmltopdf exists
 $wk = (Get-Command wkhtmltopdf -ErrorAction SilentlyContinue)
-if ($wk) {
-  & $wk.Path "--enable-local-file-access" $html $pdf | Out-Null
-} else {
-  Write-Warning "wkhtmltopdf not found; committed HTML only."
-}
+if ($wk) { & $wk.Path "--enable-local-file-access" $html $pdf | Out-Null } else { Write-Warning "wkhtmltopdf not found; committed HTML only." }
 Write-Host "Exported -> $html" ; if (Test-Path $pdf) { Write-Host "PDF -> $pdf" }

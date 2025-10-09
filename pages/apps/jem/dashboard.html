@@ -8,9 +8,7 @@
 <script>
 async function list(dir){ try{ const r = await fetch(dir); if(!r.ok) return []; const t = await r.text(); return [...t.matchAll(/href="([^"]+\.json)"/g)].map(m=>m[1]); }catch(e){ return []; } }
 (async()=>{
- const pg = document.getElementById('programs'); const pr = await list('./programs/');
- pr.forEach(p=>{ const a=document.createElement('a'); a.href='./programs/'+p; a.textContent=p; const d=document.createElement('div'); d.className='card'; d.appendChild(a); pg.appendChild(d);} );
- const bio = document.getElementById('bio'); const bi = await list('./biometrics/');
- bi.forEach(p=>{ const a=document.createElement('a'); a.href='./biometrics/'+p; a.textContent=p; const d=document.createElement('div'); d.className='card'; d.appendChild(a); bio.appendChild(d);} );
+ const pg = document.getElementById('programs'); for(const p of await list('./programs/')){ const a=document.createElement('a'); a.href='./programs/'+p; a.textContent=p; const d=document.createElement('div'); d.className='card'; d.appendChild(a); pg.appendChild(d);} 
+ const bio = document.getElementById('bio'); for(const p of await list('./biometrics/')){ const a=document.createElement('a'); a.href='./biometrics/'+p; a.textContent=p; const d=document.createElement('div'); d.className='card'; d.appendChild(a); bio.appendChild(d);} 
 })();
 </script>

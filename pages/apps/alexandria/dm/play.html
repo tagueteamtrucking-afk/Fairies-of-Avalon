@@ -1,42 +1,32 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alexandria — DM</title>
-<style>
-body{margin:0;font-family:system-ui;background:#0b0f17;color:#e5e7eb}
-header{padding:12px 16px;border-bottom:1px solid #172033}
-main{padding:16px}.chat{border:1px solid #172033;border-radius:8px;padding:12px;background:#0f172a}
-#log{height:48vh;overflow:auto;padding:8px;background:#0b1220;border:1px solid #172033;margin-bottom:8px}
-.msg{padding:6px 8px;margin:6px 0;border-radius:6px;max-width:82%}.you{background:#1f2a44;margin-left:auto}.dm{background:#192235}
-.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-input{flex:1;padding:8px;border:1px solid #334155;border-radius:6px;background:#0b1220;color:#e5e7eb}
-button{background:#111827;border:1px solid #334155;border-radius:8px;color:#e5e7eb;padding:8px 12px;cursor:pointer}
-</style></head><body>
-<header><h1>Alexandria — DM</h1><small>Use <b>Connect Worker</b>. Toggle <b>TTS</b> if audio fails.</small></header>
-<main><section class="chat">
-  <div class="row" style="margin-bottom:6px">
-    <button id="connect">Connect Worker</button>
-    <button id="check">Check Worker</button>
-    <label><input type="checkbox" id="tts" checked> TTS</label>
-  </div>
-  <div id="log"></div>
-  <div class="row"><input id="msg" placeholder="Say something..."><button id="send">Send</button></div>
-</section></main>
-<script>
-(async function(){
-  let api = localStorage.getItem('ALEXANDRIA_API_URL') || '';
-  const logEl=document.getElementById('log'), input=document.getElementById('msg'), ttsEl=document.getElementById('tts');
-  const line=(t,who='dm')=>{const d=document.createElement('div');d.className='msg '+who;d.textContent=t;logEl.appendChild(d);logEl.scrollTop=logEl.scrollHeight;}
-  const play=a=>{try{new Audio(a).play().catch(()=>{});}catch(e){}};
-  async function send(){ const text=input.value.trim(); if(!text) return; input.value=''; line(text,'you');
-    if(!api){ line('No Worker set. Tap Connect.'); return; }
-    try{
-      const r=await fetch(api,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text,sessionId:Date.now().toString(36),tts:ttsEl.checked,voice:'alloy'})});
-      const j=await r.json(); line(j.reply||'(no reply)','dm'); if(ttsEl.checked && j.audio) play(j.audio);
-    }catch(e){ line('LLM link failed. Tap Check.'); }
-  }
-  document.getElementById('send').addEventListener('click',send);
-  document.getElementById('msg').addEventListener('keydown',e=>{if(e.key==='Enter')send();});
-  document.getElementById('connect').addEventListener('click',()=>{const u=prompt('Worker URL (e.g., https://alexandria-dm.tagueteamtrucking.workers.dev):',api||''); if(!u)return; api=u.trim(); localStorage.setItem('ALEXANDRIA_API_URL',api); line('Saved Worker URL.');});
-  document.getElementById('check').addEventListener('click',async()=>{ if(!api){ line('No Worker URL set.'); return;} try{ const r=await fetch(api); line(r.ok?'Worker reachable ✔︎':'Worker error ❌'); }catch(e){ line('Worker not reachable ❌'); }});
-  line('Welcome! Paste Worker via Connect. Toggle TTS if audio misbehaves.');
-})();
-</script></body></html>
+<link rel="stylesheet" href="dm.css"></head><body>
+<header><h1>Alexandria — DM</h1><small>Connect Worker. Enable Mic & Audio. TTS on by default.</small></header>
+<main>
+  <section class="controls">
+    <button id="roll-d20">d20</button><button id="roll-d12">d12</button><button id="roll-d10">d10</button><button id="roll-d8">d8</button><button id="roll-d6">d6</button><button id="roll-d4">d4</button>
+    <span id="roll-out"></span>
+  </section>
+  <section class="chat">
+    <div class="row">
+      <button id="connect">Connect Worker</button>
+      <button id="check">Check Worker</button>
+      <label><input type="checkbox" id="tts" checked> TTS</label>
+      <button id="enable-audio">Enable Audio</button>
+      <button id="grant-mic">Grant Mic</button>
+      <button id="ptt">🎙 Hold to Talk</button>
+    </div>
+    <div id="log"></div>
+    <div class="composer">
+      <input id="msg" placeholder="Say something to the DM...">
+      <button id="send">Send</button>
+    </div>
+    <div class="actions">
+      <button id="export">Export Session JSON</button>
+      <button id="clear">Clear</button>
+    </div>
+  </section>
+</main>
+<footer><small>v2.0.0 — Voice & text via Cloudflare Worker (STT+TTS).</small></footer>
+<script src="dm.js"></script>
+</body></html>

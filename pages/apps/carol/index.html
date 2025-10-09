@@ -1,11 +1,10 @@
 <!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Carol — Meal Plans</title><style>body{font-family:system-ui;background:#0b0f17;color:#e5e7eb;margin:0}header{padding:12px 16px;border-bottom:1px solid #172033}main{padding:16px}.grid{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.card{border:1px solid #172033;border-radius:8px;padding:10px;background:#0b1220}</style>
-<header><h1>Carol — Meal Plans</h1></header>
-<main><div id="plans" class="grid"></div></main>
+<header><h1>Carol — Meal Plans</h1><small>Generate in Actions → Carol — 2 or 6 Week Plan for Two, then export to PDF.</small></header>
+<main><div id="plans" class="grid"></div><h2>Exports</h2><div id="exports" class="grid"></div></main>
 <script>
-async function list(dir){ try{ const r = await fetch(dir); if(!r.ok) return []; const t = await r.text(); return [...t.matchAll(/href="([^"]+\.json)"/g)].map(m=>m[1]); }catch(e){ return []; } }
+async function list(dir, ext){ try{ const r=await fetch(dir); if(!r.ok) return []; const t=await r.text(); return [...t.matchAll(new RegExp('href="([^"]+'+ext+')"','g'))].map(m=>m[1]); }catch(e){ return []; } }
 (async()=>{
- const el=document.getElementById('plans'); const arr = await list('./plans/');
- arr.forEach(p=>{ const a=document.createElement('a'); a.href='./plans/'+p; a.textContent=p; const d=document.createElement('div'); d.className='card'; d.appendChild(a); el.appendChild(d);});
-})();
-</script>
+ const el=document.getElementById('plans'); for(const p of await list('./plans/','.json')){ const a=document.createElement('a'); a.href='./plans/'+p; a.textContent=p; const d=document.createElement('div'); d.className='card'; d.appendChild(a); el.appendChild(d); }
+ const ex=document.getElementById('exports'); for(const f of await list('./exports/','.pdf')){ const a=document.createElement('a'); a.href='./exports/'+f; a.textContent=f; const d=document.createElement('div'); d.className='card'; d.appendChild(a); ex.appendChild(d); }
+})();</script>

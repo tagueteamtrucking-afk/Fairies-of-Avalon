@@ -6,13 +6,18 @@ param(
   [string]$Pattern="DASH",
   [string]$Region="EU"
 )
+# TLS
+try { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 } catch {}
 if ([string]::IsNullOrWhiteSpace($Model)) { $Model = "gpt-4.1-mini" }
-$api=$env:OPENAI_API_KEY; if(-not $api){ Write-Error "OPENAI_API_KEY missing"; exit 1 }
+$apiKey=$env:OPENAI_API_KEY; if(-not $apiKey){ Write-Error "OPENAI_API_KEY missing"; exit 1 }
+$base = $env:OPENAI_PROXY_URL; if ([string]::IsNullOrWhiteSpace($base)) { $base = "https://api.openai.com" }
+$chatUri = ($base.TrimEnd('/') + "/v1/chat/completions")
+$expectedDays = [int]$Weeks * 7
+
 $root=Split-Path -Parent $PSScriptRoot
 $outDir = Join-Path $root 'pages/apps/carol/plans'; $null = New-Item -ItemType Directory -Path $outDir -Force
 $ts=(Get-Date -Format "yyyyMMddTHHmmssZ")
 $outFile = Join-Path $outDir ("twoperson-"+$Weeks+"wk-"+$ts+".json")
-$expectedDays = [int]$Weeks * 7
 
 $prefsPath = Join-Path $root 'pages/apps/carol/profile/preferences.json'
 $feedbackPath = Join-Path $root 'pages/apps/carol/profile/feedback.json'
@@ -28,7 +33,7 @@ $storage  = "fridge is smaller-than-standard; freezer slightly larger; shopping 
 $prep     = "bulk prep not required; partial prep/components OK"
 $grazing  = "Grazers: plan 6–8 snack-size eating events per person per day (not 3 meals); allow asynchronous schedules."
 $avoid    = "Exclusions: no shellfish; no cilantro; no cumin; easy on onions and bell peppers (use milder forms/amounts)."
-$dairy    = "Light dairy restriction: likely lactose intolerance — prefer lactose-free milk/yogurt, low-lactose aged cheeses (cheddar/parmesan), and plant-based alternatives; annotate substitutions in item notes."
+$dairy    = "Light dairy restriction: likely lactose intolerance — prefer lactose-free milk/yogurt, low-lactose aged cheeses, and plant-based alternatives; annotate substitutions in item notes."
 
 $learn = ""
 if ($feedback) {
@@ -78,29 +83,49 @@ Return STRICT JSON:
 
 $user = "Names: A=Ray, B=Blanca. Keep prep short. Use slow-cooker & convection oven. Provide swaps for cilantro/cumin and lactose-light alternatives."
 
-$hdr = @{ "Authorization"="Bearer $api"; "Content-Type"="application/json" }
+$hdr = @{ "Authorization"="Bearer $apiKey"; "Content-Type"="application/json" }
 $body = @{ model=$Model; temperature=0.2; messages=@(@{role="system";content=$sys}, @{role="user";content=$user}) } | ConvertTo-Json -Depth 8
 
+function Invoke-WithRetry {
+  param([scriptblock]$Action, [int]$Max=6)
+  $delay=2
+  for($i=1;$i -le $Max;$i++){
+    try{
+      return & $Action
+    } catch {
+      $msg = $_.Exception.Message
+      if($i -eq $Max){ throw $_ }
+      Write-Warning "Attempt $i failed: $msg — retrying in ${delay}s"
+      Start-Sleep -Seconds $delay
+      $delay = [Math]::Min(60, [int]([math]::Pow(2,$i)) )
+    }
+  }
+}
+
+# Call chat with retries
 try {
-  $r = Invoke-RestMethod -Method Post -Uri "https://api.openai.com/v1/chat/completions" -Headers $hdr -Body $body
+  $r = Invoke-WithRetry -Max 6 -Action { Invoke-RestMethod -Method Post -Uri $chatUri -Headers $hdr -Body $body -TimeoutSec 120 }
   $txt = $r.choices[0].message.content
   if ($txt -match '```') { $txt = ($txt -replace '```json','' -replace '```','').Trim() }
   $j = $txt | ConvertFrom-Json
 } catch {
-  Write-Error "LLM/JSON error: $_"
+  Write-Error "LLM/JSON error: $($_.Exception.Message)"
   exit 1
 }
 
 # Fill metadata
-$NameA = if ($prefs -and $prefs.names -and $prefs.names.A) { [string]$prefs.names.A } else { "Ray" }
-$NameB = if ($prefs -and $prefs.names -and $prefs.names.B) { [string]$prefs.names.B } else { "Blanca" }
+$NameA = "Ray"; $NameB = "Blanca"
+try {
+  if ($prefs -and $prefs.names) { if($prefs.names.A){ $NameA = [string]$prefs.names.A }; if($prefs.names.B){ $NameB = [string]$prefs.names.B } }
+} catch {}
+
 $j.updated = (Get-Date).ToUniversalTime().ToString('s')+'Z'
 $j.region = $Region
 $j.pattern = $Pattern
 $j.weeks = $Weeks
 $j.persons = @(@{id="A"; name=$NameA; kcal=$KcalA; events_per_day_target="6-8"}, @{id="B"; name=$NameB; kcal=$KcalB; events_per_day_target="6-8"})
 
-# Fallback if fewer than expected days: cycle to fill
+# Normalize days to expected length
 try {
   $have = if ($j.days) { [int]$j.days.Count } else { 0 }
   if ($have -lt $expectedDays) {
@@ -118,7 +143,6 @@ try {
     }
     $j.days = $days
   } else {
-    # ensure indices 1..expectedDays
     for ($i=0; $i -lt $expectedDays; $i++) {
       if ($i -lt $j.days.Count) {
         $j.days[$i].index = $i + 1

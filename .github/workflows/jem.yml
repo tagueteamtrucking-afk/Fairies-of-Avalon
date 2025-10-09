@@ -2,9 +2,9 @@ name: Jem — Training Plan
 on:
   workflow_dispatch:
     inputs:
-      goal: { description: "hypertrophy/strength/mobility", default: "hypertrophy", type: string }
-      experience: { description: "novice/intermediate/advanced", default: "novice", type: string }
-      sessions: { description: "Weekly sessions", default: 5, type: number }
+      goal:            { description: "hypertrophy/strength/mobility", default: "mobility", type: string }
+      experience:      { description: "novice/intermediate/advanced", default: "novice", type: string }
+      sessions:        { description: "Weekly sessions", default: 5, type: number }
       max_session_min: { description: "Max minutes per micro-session", default: 20, type: number }
 permissions:
   contents: write

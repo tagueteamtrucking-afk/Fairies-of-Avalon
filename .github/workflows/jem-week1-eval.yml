@@ -1,0 +1,21 @@
+name: Jem — Week 1 Evaluation
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate evaluation week
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+        shell: pwsh
+        run: pwsh -File scripts/Jem-Week1-Evaluation.ps1
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/jem/programs/
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(jem): week-1 evaluation" && git push; fi

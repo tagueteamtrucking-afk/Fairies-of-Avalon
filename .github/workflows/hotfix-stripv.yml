@@ -2,10 +2,7 @@ name: Hotfix — Strip ?v and unregister SW
 on:
   workflow_dispatch:
     inputs:
-      index_file:
-        description: "Index to patch"
-        default: "index.html"
-        type: string
+      index_file: { description: "Index to patch", default: "index.html", type: string }
 permissions:
   contents: write
 jobs:

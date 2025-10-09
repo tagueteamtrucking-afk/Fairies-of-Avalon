@@ -2,14 +2,8 @@ name: Repo Sweeper — Version param
 on:
   workflow_dispatch:
     inputs:
-      apply_fixes:
-        description: "Apply neutralization changes"
-        default: true
-        type: boolean
-      index_file:
-        description: "Index file path"
-        default: "index.html"
-        type: string
+      apply_fixes: { description: "Apply neutralization changes", default: true, type: boolean }
+      index_file:  { description: "Index file path", default: "index.html", type: string }
 permissions:
   contents: write
 jobs:

@@ -1,0 +1,26 @@
+name: Alexandria — Write Worker Config
+on:
+  workflow_dispatch: {}
+permissions: { contents: write }
+jobs:
+  cfg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write config from repo vars
+        shell: pwsh
+        run: |
+          $dir = "pages/apps/alexandria"
+          New-Item -ItemType Directory -Force -Path $dir | Out-Null
+          $cfg = @{
+            worker_url = "${{ vars.ALEXANDRIA_WORKER_URL }}"
+            tts_default = $true
+          }
+          $cfg | ConvertTo-Json -Depth 4 | Set-Content -Path (Join-Path $dir 'config.json') -Encoding UTF8
+      - name: Commit config
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/alexandria/config.json
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(alexandria): update worker config" && git push; fi

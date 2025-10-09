@@ -1,0 +1,18 @@
+name: Tracy — Skin from Wallpapers
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  skin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate CSS skin
+        shell: pwsh
+        run: pwsh -File scripts/Tracy-Skin-From-Wallpapers.ps1
+      - name: Commit skin
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/tracy/skins/avalon-skin.css
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(tracy): avalon skin from wallpapers" && git push; fi

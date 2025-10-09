@@ -1,1 +1,4 @@
-{"worker_url": "", "tts_default": true}
+{
+  "worker_url": "",
+  "tts_default": true
+}

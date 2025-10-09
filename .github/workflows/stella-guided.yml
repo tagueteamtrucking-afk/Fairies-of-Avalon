@@ -2,8 +2,8 @@ name: Stella — Guided Meditation (script + audio)
 on:
   workflow_dispatch:
     inputs:
-      persona: { description: "Name (Ray/Blanca/etc.)", default: "Ray", type: string }
-      theme: { description: "e.g., focus, calm, sleep", default: "calm", type: string }
+      persona:      { description: "Ray/Blanca/etc.", default: "Ray", type: string }
+      theme:        { description: "calm/focus/sleep", default: "calm", type: string }
       duration_min: { description: "Minutes", default: 10, type: number }
 permissions:
   contents: write

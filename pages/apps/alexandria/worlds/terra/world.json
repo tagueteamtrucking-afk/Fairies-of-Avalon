@@ -1,0 +1,155 @@
+﻿{
+  "world": {
+    "name": "Terra",
+    "tone": "high fantasy",
+    "premise": "In Terra, ancient powers stir beneath a fractured realm where kingdoms vie for control, forgotten magic resurfaces, and heroes must navigate shifting alliances to shape the fate of the world.",
+    "themes": [
+      "Power and responsibility",
+      "Ancient mysteries",
+      "Political intrigue",
+      "Heroism and sacrifice",
+      "Magic’s cost"
+    ],
+    "geography": {
+      "regions": [
+        {
+          "name": "The Verdant Expanse",
+          "notes": "A vast, lush forest region home to reclusive elves and ancient ruins."
+        },
+        {
+          "name": "The Shattered Peaks",
+          "notes": "Jagged mountain range rich in minerals and dwarven strongholds."
+        },
+        {
+          "name": "The Sunken Marshes",
+          "notes": "Misty wetlands inhabited by mysterious tribes and dangerous creatures."
+        },
+        {
+          "name": "The Crimson Plains",
+          "notes": "Open grasslands where nomadic clans roam and frequent skirmishes occur."
+        }
+      ],
+      "landmarks": [
+        {
+          "name": "The Obsidian Spire",
+          "notes": "A towering black crystal tower said to be a source of ancient magic."
+        },
+        {
+          "name": "The Eternal Flame",
+          "notes": "A sacred fire that never extinguishes, located in the heart of the Verdant Expanse."
+        },
+        {
+          "name": "The Lost City of Vhal’Dun",
+          "notes": "Ruins submerged beneath the Sunken Marshes, rumored to hold forgotten knowledge."
+        }
+      ]
+    },
+    "cultures": [
+      {
+        "name": "Elari",
+        "traits": "Elven society valuing harmony with nature, skilled in magic and archery, secretive."
+      },
+      {
+        "name": "Durnak",
+        "traits": "Dwarven clans focused on craftsmanship, mining, and strong martial traditions."
+      },
+      {
+        "name": "Marashi",
+        "traits": "Marsh-dwelling tribes adept in guerrilla tactics and shamanistic magic."
+      },
+      {
+        "name": "Khalari",
+        "traits": "Nomadic horse clans emphasizing honor, swift raids, and oral storytelling."
+      }
+    ],
+    "magic": {
+      "sources": "Magic in Terra is drawn from ancient ley lines and the Obsidian Spire’s power.",
+      "costs": "Casting spells drains the caster’s vitality or requires rare components; overuse risks permanent harm.",
+      "limits": "Magic cannot create matter from nothing and is less effective in areas where ley lines are weak."
+    },
+    "technology": {
+      "level": "Medieval",
+      "notes": "Swords, bows, basic siege engines, limited alchemy; no gunpowder or advanced machinery."
+    },
+    "factions": [
+      {
+        "name": "The Silver Council",
+        "agenda": "Elven-led group seeking to preserve natural balance and control ancient magic.",
+        "assets": "Influence over Verdant Expanse, magical knowledge, elite rangers."
+      },
+      {
+        "name": "The Iron Brotherhood",
+        "agenda": "Dwarven guild focused on mining wealth and expanding strongholds in the Shattered Peaks.",
+        "assets": "Fortified mountain cities, skilled smiths, mercenary forces."
+      },
+      {
+        "name": "The Marshborn",
+        "agenda": "Coalition of Marashi tribes defending their homeland and reclaiming lost artifacts.",
+        "assets": "Swamp knowledge, shamanic magic, guerrilla fighters."
+      },
+      {
+        "name": "The Crimson Riders",
+        "agenda": "Khalari clans united to raid and control trade routes across the plains.",
+        "assets": "Fast cavalry, intimate knowledge of terrain, tribal alliances."
+      }
+    ],
+    "economy": {
+      "currencies": "Gold coins minted by kingdoms; trade also uses silver and barter.",
+      "trade": "Minerals from mountains, magical components from forests, livestock and horses from plains, herbs and rare goods from marshes."
+    },
+    "pantheon": [
+      {
+        "name": "Aeloria",
+        "domain": "Goddess of nature, growth, and renewal."
+      },
+      {
+        "name": "Vorrak",
+        "domain": "God of war, strength, and honor."
+      },
+      {
+        "name": "Selithar",
+        "domain": "God of knowledge, magic, and secrets."
+      },
+      {
+        "name": "Nyxara",
+        "domain": "Goddess of death, fate, and the afterlife."
+      }
+    ],
+    "bestiary": [
+      {
+        "name": "Shadowfang",
+        "role": "Predatory wolf-like beasts that hunt in packs across the Crimson Plains."
+      },
+      {
+        "name": "Marsh Wraith",
+        "role": "Ethereal spirits haunting the Sunken Marshes, draining life energy."
+      },
+      {
+        "name": "Stonehide Golem",
+        "role": "Constructs guarding dwarven strongholds, animated by ancient runes."
+      },
+      {
+        "name": "Sylvan Treant",
+        "role": "Ancient tree guardians protecting the Verdant Expanse."
+      }
+    ],
+    "hooks": [
+      "A mysterious surge in magical energy emanates from the Obsidian Spire.",
+      "A lost artifact from Vhal’Dun resurfaces, sparking conflict among factions.",
+      "A plague spreads through the Crimson Plains, threatening nomadic clans.",
+      "An alliance between the Marshborn and the Silver Council is rumored but unconfirmed."
+    ],
+    "safety_tools": [
+      "Establish session zero to discuss boundaries and player comfort.",
+      "Use the X-Card for on-the-fly content moderation.",
+      "Implement Lines and Veils to define sensitive topics.",
+      "Encourage open communication and check-ins after sessions."
+    ],
+    "dice_prompts": [
+      "On a natural 1, the magic backfires with unexpected consequences.",
+      "On a natural 20, the caster gains a temporary boon from the ley lines.",
+      "A roll of even numbers grants additional insight or clues.",
+      "Odd numbers introduce complications or reveal hidden dangers."
+    ]
+  }
+}

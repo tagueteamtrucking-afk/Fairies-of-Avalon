@@ -1,0 +1,1046 @@
+﻿{
+  "updated": "2025-10-09T18:34:27Z",
+  "region": "EU",
+  "pattern": "DASH",
+  "persons": [
+    {
+      "id": "A",
+      "kcal": 2200,
+      "name": "Ray"
+    },
+    {
+      "id": "B",
+      "kcal": 2000,
+      "name": "Blanca"
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "meals": [
+        {
+          "name": "Oatmeal with Berries and Walnuts",
+          "for": "Both",
+          "kcal": 450,
+          "sodium_mg": 150,
+          "added_sugars_g": 5,
+          "fiber_g": 8,
+          "items": [
+            "50g rolled oats",
+            "150ml semi-skimmed milk",
+            "100g mixed berries (fresh or frozen)",
+            "15g walnuts",
+            "1 tsp honey"
+          ],
+          "prep": [
+            "Cook oats with milk for 5 minutes",
+            "Top with berries, walnuts, and honey"
+          ]
+        },
+        {
+          "name": "Grilled Chicken Salad with Quinoa",
+          "for": "Both",
+          "kcal": 650,
+          "sodium_mg": 600,
+          "added_sugars_g": 3,
+          "fiber_g": 7,
+          "items": [
+            "150g grilled chicken breast",
+            "50g cooked quinoa",
+            "100g mixed salad greens",
+            "50g cherry tomatoes",
+            "30g cucumber",
+            "1 tbsp olive oil",
+            "1 tbsp lemon juice"
+          ],
+          "prep": [
+            "Grill chicken with minimal salt",
+            "Cook quinoa as per package",
+            "Mix salad greens, tomatoes, cucumber",
+            "Dress with olive oil and lemon juice"
+          ]
+        },
+        {
+          "name": "Baked Salmon with Steamed Broccoli and Sweet Potato",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 550,
+          "added_sugars_g": 0,
+          "fiber_g": 10,
+          "items": [
+            "180g salmon fillet",
+            "150g sweet potato",
+            "150g broccoli",
+            "1 tsp olive oil",
+            "Herbs (dill, parsley)"
+          ],
+          "prep": [
+            "Bake salmon at 180°C for 15 minutes with herbs",
+            "Steam broccoli",
+            "Boil or bake sweet potato"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "meals": [
+        {
+          "name": "Greek Yogurt with Flaxseed and Apple",
+          "for": "Both",
+          "kcal": 400,
+          "sodium_mg": 100,
+          "added_sugars_g": 6,
+          "fiber_g": 6,
+          "items": [
+            "150g plain Greek yogurt",
+            "1 medium apple (150g)",
+            "1 tbsp ground flaxseed",
+            "1 tsp honey"
+          ],
+          "prep": [
+            "Chop apple",
+            "Mix yogurt with flaxseed and honey",
+            "Top with apple pieces"
+          ]
+        },
+        {
+          "name": "Wholegrain Pasta with Tomato and Lentil Sauce",
+          "for": "Both",
+          "kcal": 700,
+          "sodium_mg": 700,
+          "added_sugars_g": 5,
+          "fiber_g": 12,
+          "items": [
+            "75g wholegrain pasta",
+            "100g cooked lentils",
+            "150g canned chopped tomatoes (no salt added)",
+            "1 small onion",
+            "1 clove garlic",
+            "1 tbsp olive oil",
+            "Basil"
+          ],
+          "prep": [
+            "Cook pasta as per package",
+            "Sauté onion and garlic in olive oil",
+            "Add tomatoes and lentils, simmer 10 minutes",
+            "Mix sauce with pasta"
+          ]
+        },
+        {
+          "name": "Turkey Stir-fry with Mixed Vegetables and Brown Rice",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 600,
+          "added_sugars_g": 2,
+          "fiber_g": 8,
+          "items": [
+            "150g turkey breast strips",
+            "100g brown rice",
+            "100g bell peppers",
+            "50g snap peas",
+            "1 tbsp soy sauce (low sodium)",
+            "1 tsp olive oil"
+          ],
+          "prep": [
+            "Cook brown rice",
+            "Stir-fry turkey and vegetables in olive oil",
+            "Add soy sauce at end"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "meals": [
+        {
+          "name": "Wholegrain Toast with Avocado and Boiled Eggs",
+          "for": "Both",
+          "kcal": 450,
+          "sodium_mg": 250,
+          "added_sugars_g": 1,
+          "fiber_g": 7,
+          "items": [
+            "2 slices wholegrain bread",
+            "1/2 avocado (70g)",
+            "2 boiled eggs",
+            "Black pepper"
+          ],
+          "prep": [
+            "Toast bread",
+            "Mash avocado and spread on toast",
+            "Serve with sliced boiled eggs"
+          ]
+        },
+        {
+          "name": "Chickpea and Vegetable Soup",
+          "for": "Both",
+          "kcal": 600,
+          "sodium_mg": 550,
+          "added_sugars_g": 3,
+          "fiber_g": 10,
+          "items": [
+            "150g canned chickpeas (rinsed)",
+            "100g carrots",
+            "100g celery",
+            "1 small onion",
+            "1 clove garlic",
+            "1 tbsp olive oil",
+            "Vegetable stock (low sodium)"
+          ],
+          "prep": [
+            "Sauté onion, garlic, carrots, celery in olive oil",
+            "Add chickpeas and stock",
+            "Simmer 20 minutes"
+          ]
+        },
+        {
+          "name": "Grilled Lean Beef with Roasted Vegetables",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 600,
+          "added_sugars_g": 0,
+          "fiber_g": 8,
+          "items": [
+            "180g lean beef steak",
+            "100g zucchini",
+            "100g bell peppers",
+            "1 tsp olive oil",
+            "Rosemary"
+          ],
+          "prep": [
+            "Grill beef with rosemary",
+            "Roast vegetables with olive oil at 200°C for 20 minutes"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "meals": [
+        {
+          "name": "Smoothie with Spinach, Banana, and Almond Milk",
+          "for": "Both",
+          "kcal": 400,
+          "sodium_mg": 150,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            "1 banana (100g)",
+            "30g spinach",
+            "200ml unsweetened almond milk",
+            "1 tbsp chia seeds"
+          ],
+          "prep": [
+            "Blend all ingredients until smooth"
+          ]
+        },
+        {
+          "name": "Baked Cod with Lentil Salad",
+          "for": "Both",
+          "kcal": 700,
+          "sodium_mg": 600,
+          "added_sugars_g": 2,
+          "fiber_g": 9,
+          "items": [
+            "180g cod fillet",
+            "100g cooked lentils",
+            "50g cherry tomatoes",
+            "30g cucumber",
+            "1 tbsp olive oil",
+            "Lemon juice"
+          ],
+          "prep": [
+            "Bake cod at 180°C for 15 minutes",
+            "Mix lentils with tomatoes, cucumber, olive oil, lemon juice"
+          ]
+        },
+        {
+          "name": "Vegetable Stir-fry with Tofu and Brown Rice",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 600,
+          "added_sugars_g": 3,
+          "fiber_g": 10,
+          "items": [
+            "150g firm tofu",
+            "100g brown rice",
+            "100g broccoli",
+            "100g carrots",
+            "1 tbsp low sodium soy sauce",
+            "1 tsp olive oil"
+          ],
+          "prep": [
+            "Cook brown rice",
+            "Stir-fry tofu and vegetables in olive oil",
+            "Add soy sauce at end"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "meals": [
+        {
+          "name": "Muesli with Milk and Fresh Pear",
+          "for": "Both",
+          "kcal": 450,
+          "sodium_mg": 150,
+          "added_sugars_g": 5,
+          "fiber_g": 7,
+          "items": [
+            "50g muesli (no added sugar)",
+            "150ml semi-skimmed milk",
+            "1 medium pear (150g)"
+          ],
+          "prep": [
+            "Combine muesli and milk",
+            "Serve with sliced pear"
+          ]
+        },
+        {
+          "name": "Chicken and Vegetable Wraps",
+          "for": "Both",
+          "kcal": 650,
+          "sodium_mg": 600,
+          "added_sugars_g": 4,
+          "fiber_g": 8,
+          "items": [
+            "150g grilled chicken breast",
+            "2 whole wheat wraps",
+            "50g mixed salad greens",
+            "50g bell peppers",
+            "1 tbsp hummus"
+          ],
+          "prep": [
+            "Grill chicken",
+            "Fill wraps with chicken, vegetables, and hummus"
+          ]
+        },
+        {
+          "name": "Baked Potato with Cottage Cheese and Steamed Green Beans",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 550,
+          "added_sugars_g": 1,
+          "fiber_g": 10,
+          "items": [
+            "200g baked potato",
+            "150g low-fat cottage cheese",
+            "150g green beans",
+            "Black pepper"
+          ],
+          "prep": [
+            "Bake potato",
+            "Steam green beans",
+            "Serve potato topped with cottage cheese"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "meals": [
+        {
+          "name": "Scrambled Eggs with Spinach and Wholegrain Toast",
+          "for": "Both",
+          "kcal": 450,
+          "sodium_mg": 300,
+          "added_sugars_g": 1,
+          "fiber_g": 6,
+          "items": [
+            "2 eggs",
+            "30g spinach",
+            "2 slices wholegrain bread",
+            "1 tsp olive oil"
+          ],
+          "prep": [
+            "Scramble eggs with spinach in olive oil",
+            "Toast bread"
+          ]
+        },
+        {
+          "name": "Quinoa Salad with Chickpeas and Vegetables",
+          "for": "Both",
+          "kcal": 700,
+          "sodium_mg": 600,
+          "added_sugars_g": 3,
+          "fiber_g": 12,
+          "items": [
+            "75g cooked quinoa",
+            "150g canned chickpeas (rinsed)",
+            "50g cucumber",
+            "50g cherry tomatoes",
+            "1 tbsp olive oil",
+            "Lemon juice"
+          ],
+          "prep": [
+            "Mix quinoa, chickpeas, and vegetables",
+            "Dress with olive oil and lemon juice"
+          ]
+        },
+        {
+          "name": "Grilled Pork Tenderloin with Roasted Brussels Sprouts and Carrots",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 600,
+          "added_sugars_g": 0,
+          "fiber_g": 9,
+          "items": [
+            "180g pork tenderloin",
+            "150g Brussels sprouts",
+            "100g carrots",
+            "1 tsp olive oil",
+            "Thyme"
+          ],
+          "prep": [
+            "Grill pork with thyme",
+            "Roast vegetables at 200°C for 20 minutes with olive oil"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "meals": [
+        {
+          "name": "Chia Pudding with Mixed Berries",
+          "for": "Both",
+          "kcal": 400,
+          "sodium_mg": 100,
+          "added_sugars_g": 6,
+          "fiber_g": 9,
+          "items": [
+            "30g chia seeds",
+            "200ml unsweetened almond milk",
+            "100g mixed berries",
+            "1 tsp honey"
+          ],
+          "prep": [
+            "Soak chia seeds in almond milk overnight",
+            "Top with berries and honey"
+          ]
+        },
+        {
+          "name": "Vegetable and Bean Chili with Brown Rice",
+          "for": "Both",
+          "kcal": 700,
+          "sodium_mg": 650,
+          "added_sugars_g": 5,
+          "fiber_g": 14,
+          "items": [
+            "100g canned kidney beans (rinsed)",
+            "100g canned black beans (rinsed)",
+            "150g canned chopped tomatoes (no salt added)",
+            "1 small onion",
+            "1 clove garlic",
+            "1 tsp chili powder",
+            "100g brown rice"
+          ],
+          "prep": [
+            "Sauté onion and garlic",
+            "Add beans, tomatoes, chili powder, simmer 20 minutes",
+            "Cook brown rice"
+          ]
+        },
+        {
+          "name": "Baked Chicken Thighs with Sweet Potato and Green Beans",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 600,
+          "added_sugars_g": 1,
+          "fiber_g": 9,
+          "items": [
+            "180g chicken thighs (skinless)",
+            "150g sweet potato",
+            "150g green beans",
+            "1 tsp olive oil",
+            "Paprika"
+          ],
+          "prep": [
+            "Bake chicken with paprika at 180°C for 25 minutes",
+            "Bake sweet potato",
+            "Steam green beans"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 8,
+      "meals": [
+        {
+          "name": "Wholegrain Cereal with Milk and Banana",
+          "for": "Both",
+          "kcal": 450,
+          "sodium_mg": 150,
+          "added_sugars_g": 6,
+          "fiber_g": 6,
+          "items": [
+            "50g wholegrain cereal (no added sugar)",
+            "150ml semi-skimmed milk",
+            "1 banana (100g)"
+          ],
+          "prep": [
+            "Serve cereal with milk and sliced banana"
+          ]
+        },
+        {
+          "name": "Tuna Salad with Mixed Greens and Wholegrain Bread",
+          "for": "Both",
+          "kcal": 650,
+          "sodium_mg": 600,
+          "added_sugars_g": 2,
+          "fiber_g": 7,
+          "items": [
+            "150g canned tuna in water (drained)",
+            "100g mixed salad greens",
+            "50g cherry tomatoes",
+            "2 slices wholegrain bread",
+            "1 tbsp olive oil",
+            "Lemon juice"
+          ],
+          "prep": [
+            "Mix tuna with salad greens and tomatoes",
+            "Dress with olive oil and lemon juice",
+            "Serve with bread"
+          ]
+        },
+        {
+          "name": "Beef and Vegetable Stew with Barley",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 600,
+          "added_sugars_g": 3,
+          "fiber_g": 10,
+          "items": [
+            "180g lean beef cubes",
+            "100g carrots",
+            "100g celery",
+            "1 small onion",
+            "50g pearl barley",
+            "Low sodium beef stock",
+            "1 tsp olive oil"
+          ],
+          "prep": [
+            "Brown beef in olive oil",
+            "Add vegetables, barley, and stock",
+            "Simmer 1 hour"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 9,
+      "meals": [
+        {
+          "name": "Porridge with Pear and Walnuts",
+          "for": "Both",
+          "kcal": 450,
+          "sodium_mg": 150,
+          "added_sugars_g": 5,
+          "fiber_g": 8,
+          "items": [
+            "50g rolled oats",
+            "150ml semi-skimmed milk",
+            "1 medium pear (150g)",
+            "15g walnuts",
+            "1 tsp honey"
+          ],
+          "prep": [
+            "Cook oats with milk",
+            "Top with chopped pear, walnuts, and honey"
+          ]
+        },
+        {
+          "name": "Grilled Chicken with Couscous and Roasted Vegetables",
+          "for": "Both",
+          "kcal": 700,
+          "sodium_mg": 600,
+          "added_sugars_g": 3,
+          "fiber_g": 8,
+          "items": [
+            "150g grilled chicken breast",
+            "75g wholegrain couscous",
+            "100g zucchini",
+            "100g bell peppers",
+            "1 tsp olive oil"
+          ],
+          "prep": [
+            "Grill chicken",
+            "Prepare couscous as per package",
+            "Roast vegetables with olive oil"
+          ]
+        },
+        {
+          "name": "Baked Trout with Steamed Asparagus and Quinoa",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 550,
+          "added_sugars_g": 0,
+          "fiber_g": 10,
+          "items": [
+            "180g trout fillet",
+            "150g asparagus",
+            "75g cooked quinoa",
+            "1 tsp olive oil",
+            "Lemon zest"
+          ],
+          "prep": [
+            "Bake trout at 180°C for 15 minutes",
+            "Steam asparagus",
+            "Serve with quinoa and drizzle olive oil"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 10,
+      "meals": [
+        {
+          "name": "Greek Yogurt with Mixed Nuts and Blueberries",
+          "for": "Both",
+          "kcal": 400,
+          "sodium_mg": 100,
+          "added_sugars_g": 5,
+          "fiber_g": 6,
+          "items": [
+            "150g plain Greek yogurt",
+            "20g mixed nuts (unsalted)",
+            "100g blueberries",
+            "1 tsp honey"
+          ],
+          "prep": [
+            "Mix yogurt with nuts and honey",
+            "Top with blueberries"
+          ]
+        },
+        {
+          "name": "Wholegrain Spaghetti with Tomato and Turkey Meatballs",
+          "for": "Both",
+          "kcal": 700,
+          "sodium_mg": 650,
+          "added_sugars_g": 4,
+          "fiber_g": 9,
+          "items": [
+            "75g wholegrain spaghetti",
+            "150g lean turkey mince",
+            "150g canned chopped tomatoes (no salt added)",
+            "1 small onion",
+            "1 clove garlic",
+            "1 tbsp olive oil",
+            "Basil"
+          ],
+          "prep": [
+            "Form meatballs with turkey mince, bake 15 minutes",
+            "Cook spaghetti",
+            "Prepare tomato sauce with onion, garlic, and tomatoes",
+            "Combine meatballs and sauce with spaghetti"
+          ]
+        },
+        {
+          "name": "Roasted Vegetable and Chickpea Buddha Bowl",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 600,
+          "added_sugars_g": 3,
+          "fiber_g": 12,
+          "items": [
+            "150g canned chickpeas (rinsed)",
+            "100g roasted sweet potato",
+            "100g roasted broccoli",
+            "50g cooked brown rice",
+            "1 tbsp tahini dressing"
+          ],
+          "prep": [
+            "Roast sweet potato and broccoli",
+            "Assemble bowl with chickpeas, vegetables, rice, and dressing"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 11,
+      "meals": [
+        {
+          "name": "Wholegrain Toast with Peanut Butter and Banana",
+          "for": "Both",
+          "kcal": 450,
+          "sodium_mg": 200,
+          "added_sugars_g": 5,
+          "fiber_g": 7,
+          "items": [
+            "2 slices wholegrain bread",
+            "2 tbsp natural peanut butter",
+            "1 banana (100g)"
+          ],
+          "prep": [
+            "Toast bread",
+            "Spread peanut butter",
+            "Top with banana slices"
+          ]
+        },
+        {
+          "name": "Vegetable Omelette with Mixed Salad",
+          "for": "Both",
+          "kcal": 650,
+          "sodium_mg": 550,
+          "added_sugars_g": 2,
+          "fiber_g": 7,
+          "items": [
+            "3 eggs",
+            "50g bell peppers",
+            "30g spinach",
+            "50g mixed salad greens",
+            "1 tsp olive oil"
+          ],
+          "prep": [
+            "Make omelette with eggs and vegetables",
+            "Serve with mixed salad"
+          ]
+        },
+        {
+          "name": "Grilled Sea Bream with Roasted Vegetables and Bulgur",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 600,
+          "added_sugars_g": 1,
+          "fiber_g": 9,
+          "items": [
+            "180g sea bream fillet",
+            "100g roasted zucchini",
+            "100g roasted eggplant",
+            "75g cooked bulgur",
+            "1 tsp olive oil",
+            "Thyme"
+          ],
+          "prep": [
+            "Grill sea bream with thyme",
+            "Roast vegetables with olive oil",
+            "Cook bulgur"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 12,
+      "meals": [
+        {
+          "name": "Smoothie Bowl with Spinach, Kiwi, and Chia Seeds",
+          "for": "Both",
+          "kcal": 400,
+          "sodium_mg": 150,
+          "added_sugars_g": 5,
+          "fiber_g": 8,
+          "items": [
+            "30g spinach",
+            "1 kiwi (75g)",
+            "100ml unsweetened almond milk",
+            "1 tbsp chia seeds",
+            "1 tsp honey"
+          ],
+          "prep": [
+            "Blend spinach, kiwi, almond milk, and honey",
+            "Top with chia seeds"
+          ]
+        },
+        {
+          "name": "Lentil and Vegetable Curry with Brown Rice",
+          "for": "Both",
+          "kcal": 700,
+          "sodium_mg": 600,
+          "added_sugars_g": 4,
+          "fiber_g": 13,
+          "items": [
+            "150g cooked lentils",
+            "100g cauliflower",
+            "100g spinach",
+            "1 small onion",
+            "1 clove garlic",
+            "1 tbsp curry powder",
+            "100g brown rice",
+            "1 tsp olive oil"
+          ],
+          "prep": [
+            "Sauté onion and garlic in olive oil",
+            "Add vegetables, lentils, curry powder, simmer 20 minutes",
+            "Cook brown rice"
+          ]
+        },
+        {
+          "name": "Roasted Chicken with Sweet Potato and Steamed Broccoli",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 600,
+          "added_sugars_g": 1,
+          "fiber_g": 9,
+          "items": [
+            "180g roasted chicken breast",
+            "150g sweet potato",
+            "150g broccoli",
+            "1 tsp olive oil",
+            "Rosemary"
+          ],
+          "prep": [
+            "Roast chicken with rosemary",
+            "Bake sweet potato",
+            "Steam broccoli"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 13,
+      "meals": [
+        {
+          "name": "Muesli with Yogurt and Fresh Strawberries",
+          "for": "Both",
+          "kcal": 450,
+          "sodium_mg": 150,
+          "added_sugars_g": 5,
+          "fiber_g": 7,
+          "items": [
+            "50g muesli (no added sugar)",
+            "150g plain Greek yogurt",
+            "100g strawberries"
+          ],
+          "prep": [
+            "Mix muesli with yogurt",
+            "Top with sliced strawberries"
+          ]
+        },
+        {
+          "name": "Wholegrain Wrap with Hummus, Turkey, and Salad",
+          "for": "Both",
+          "kcal": 650,
+          "sodium_mg": 600,
+          "added_sugars_g": 3,
+          "fiber_g": 8,
+          "items": [
+            "2 wholegrain wraps",
+            "150g sliced turkey breast",
+            "50g mixed salad greens",
+            "2 tbsp hummus"
+          ],
+          "prep": [
+            "Spread hummus on wraps",
+            "Add turkey and salad greens",
+            "Roll wraps"
+          ]
+        },
+        {
+          "name": "Baked Cod with Quinoa and Steamed Green Beans",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 550,
+          "added_sugars_g": 0,
+          "fiber_g": 10,
+          "items": [
+            "180g cod fillet",
+            "75g cooked quinoa",
+            "150g green beans",
+            "1 tsp olive oil",
+            "Lemon juice"
+          ],
+          "prep": [
+            "Bake cod at 180°C for 15 minutes",
+            "Cook quinoa",
+            "Steam green beans",
+            "Drizzle olive oil and lemon juice"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 14,
+      "meals": [
+        {
+          "name": "Porridge with Blueberries and Almonds",
+          "for": "Both",
+          "kcal": 450,
+          "sodium_mg": 150,
+          "added_sugars_g": 5,
+          "fiber_g": 8,
+          "items": [
+            "50g rolled oats",
+            "150ml semi-skimmed milk",
+            "100g blueberries",
+            "15g almonds",
+            "1 tsp honey"
+          ],
+          "prep": [
+            "Cook oats with milk",
+            "Top with blueberries, almonds, and honey"
+          ]
+        },
+        {
+          "name": "Chicken and Vegetable Stir-fry with Brown Rice",
+          "for": "Both",
+          "kcal": 700,
+          "sodium_mg": 600,
+          "added_sugars_g": 3,
+          "fiber_g": 9,
+          "items": [
+            "150g chicken breast strips",
+            "100g brown rice",
+            "100g mixed vegetables (carrots, broccoli, snap peas)",
+            "1 tbsp low sodium soy sauce",
+            "1 tsp olive oil"
+          ],
+          "prep": [
+            "Cook brown rice",
+            "Stir-fry chicken and vegetables in olive oil",
+            "Add soy sauce at end"
+          ]
+        },
+        {
+          "name": "Baked Sweet Potato with Cottage Cheese and Steamed Spinach",
+          "for": "Both",
+          "kcal": 900,
+          "sodium_mg": 550,
+          "added_sugars_g": 1,
+          "fiber_g": 10,
+          "items": [
+            "200g baked sweet potato",
+            "150g low-fat cottage cheese",
+            "150g steamed spinach",
+            "Black pepper"
+          ],
+          "prep": [
+            "Bake sweet potato",
+            "Steam spinach",
+            "Serve sweet potato topped with cottage cheese"
+          ]
+        }
+      ]
+    }
+  ],
+  "shopping_list": {
+    "produce": [
+      "Mixed berries (1400g total)",
+      "Cherry tomatoes (400g)",
+      "Cucumber (160g)",
+      "Broccoli (900g)",
+      "Sweet potato (1300g)",
+      "Spinach (160g)",
+      "Banana (500g approx 5 bananas)",
+      "Apple (150g)",
+      "Pear (300g approx 2 pears)",
+      "Carrots (600g)",
+      "Celery (100g)",
+      "Bell peppers (400g)",
+      "Mixed salad greens (300g)",
+      "Zucchini (300g)",
+      "Snap peas (50g)",
+      "Onion (8 small)",
+      "Garlic (8 cloves)",
+      "Asparagus (150g)",
+      "Brussels sprouts (150g)",
+      "Kiwi (75g)",
+      "Strawberries (100g)",
+      "Eggplant (100g)"
+    ],
+    "protein": [
+      "Chicken breast (1350g)",
+      "Salmon fillet (180g)",
+      "Turkey breast strips (150g)",
+      "Lean beef steak (180g)",
+      "Firm tofu (150g)",
+      "Chicken thighs skinless (180g)",
+      "Canned tuna in water (150g)",
+      "Lean beef cubes (180g)",
+      "Turkey mince (150g)",
+      "Sea bream fillet (180g)",
+      "Pork tenderloin (180g)",
+      "Cod fillet (360g)",
+      "Canned chickpeas (600g drained)",
+      "Canned kidney beans (100g drained)",
+      "Canned black beans (100g drained)",
+      "Eggs (17 eggs approx)"
+    ],
+    "dairy": [
+      "Semi-skimmed milk (2100ml)",
+      "Plain Greek yogurt (600g)",
+      "Low-fat cottage cheese (450g)"
+    ],
+    "pantry": [
+      "Rolled oats (350g)",
+      "Wholegrain pasta (150g)",
+      "Wholegrain bread (14 slices)",
+      "Whole wheat wraps (6 wraps)",
+      "Quinoa (375g dry)",
+      "Brown rice (700g dry)",
+      "Pearl barley (50g)",
+      "Wholegrain couscous (75g)",
+      "Muesli no added sugar (150g)",
+      "Natural peanut butter (4 tbsp approx 60g)",
+      "Honey (14 tsp approx 70g)",
+      "Olive oil (approx 150ml)",
+      "Low sodium soy sauce (4 tbsp approx 60ml)",
+      "Tahini dressing (1 tbsp)",
+      "Curry powder (1 tbsp)",
+      "Chili powder (1 tsp)",
+      "Basil (fresh or dried)",
+      "Rosemary (fresh or dried)",
+      "Thyme (fresh or dried)",
+      "Paprika (1 tsp)",
+      "Black pepper",
+      "Ground flaxseed (1 tbsp)",
+      "Chia seeds (4 tbsp approx 60g)",
+      "Almonds (15g)",
+      "Mixed nuts unsalted (20g)"
+    ],
+    "frozen": [
+      "Mixed berries (if preferred frozen, included in produce weight)"
+    ],
+    "spices": [
+      "Basil",
+      "Rosemary",
+      "Thyme",
+      "Paprika",
+      "Black pepper",
+      "Curry powder",
+      "Chili powder"
+    ]
+  },
+  "batch_cook": [
+    {
+      "day": 1,
+      "tasks": [
+        "Cook quinoa (approx 375g dry) for use in multiple meals",
+        "Cook brown rice (approx 700g dry) for multiple meals",
+        "Cook lentils (approx 250g dry or equivalent canned) for use in meals",
+        "Roast sweet potatoes (for 3-4 meals)",
+        "Chop and roast assorted vegetables (zucchini, bell peppers, broccoli) for use in meals",
+        "Prepare and grill chicken breasts (for multiple meals)",
+        "Prepare and grill lean beef steak and pork tenderloin, store separately",
+        "Prepare vegetable stock or low sodium broth for soups and stews"
+      ]
+    },
+    {
+      "day": 8,
+      "tasks": [
+        "Prepare turkey meatballs and bake, store refrigerated or freeze",
+        "Prepare beef stew base and simmer, portion and refrigerate or freeze",
+        "Prepare chickpea and vegetable chili, portion and refrigerate or freeze",
+        "Prepare roasted vegetables for Buddha bowls and wraps",
+        "Prepare and bake cod and trout fillets for meals, store refrigerated or freeze",
+        "Prepare and cook bulgur and couscous for meals",
+        "Prepare and store hummus if homemade"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "NHLBI — DASH Eating Plan",
+      "url": "https://www.nhlbi.nih.gov/education/dash-eating-plan"
+    },
+    {
+      "label": "USDA/HHS — Dietary Guidelines for Americans (current)",
+      "url": "https://www.dietaryguidelines.gov/"
+    },
+    {
+      "label": "EFSA — Dietary reference values overview",
+      "url": "https://www.efsa.europa.eu/en/topics/topic/dietary-reference-values"
+    }
+  ]
+}

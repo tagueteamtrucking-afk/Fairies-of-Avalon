@@ -2,9 +2,9 @@ name: Alexandria — Generate World Bible
 on:
   workflow_dispatch:
     inputs:
-      world_name: { description: "World name", default: "Avalon", type: string }
-      tone: { description: "e.g., high fantasy, dieselpunk, grimbright", default: "high fantasy", type: string }
-      magic_style: { description: "hard/soft, source rules, costs", default: "semi-hard, cost-based", type: string }
+      world_name:  { description: "World name", default: "Avalon", type: string }
+      tone:        { description: "e.g., high fantasy, dieselpunk", default: "high fantasy", type: string }
+      magic_style: { description: "hard/soft cost rules", default: "semi-hard, cost-based", type: string }
 permissions:
   contents: write
 jobs:

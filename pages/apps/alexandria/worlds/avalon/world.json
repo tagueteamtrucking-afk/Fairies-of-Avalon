@@ -2,157 +2,157 @@
   "world": {
     "name": "Avalon",
     "tone": "high fantasy",
-    "premise": "In the mystical land of Avalon, ancient magic stirs beneath a fragile peace as rival factions vie for control over legendary relics that could reshape the fate of the realm.",
+    "premise": "In the mystical land of Avalon, ancient magic stirs beneath a fragile peace among diverse kingdoms. Heroes must navigate political intrigue, uncover lost arcane secrets, and confront rising dark forces threatening to shatter the realm.",
     "themes": [
-      "Power and responsibility",
-      "Ancient secrets and rediscovery",
-      "Conflict between tradition and change",
-      "The cost of magic"
+      "Balance of power",
+      "Ancient magic and forgotten lore",
+      "Political intrigue and alliances",
+      "Heroism and sacrifice"
     ],
     "geography": {
       "regions": [
         {
-          "name": "The Verdant Expanse",
-          "notes": "Lush forests and rolling hills, home to druidic enclaves and hidden groves."
+          "name": "Eldermyst Forest",
+          "notes": "A vast enchanted woodland rumored to be the origin of Avalon's magic."
         },
         {
-          "name": "The Shattered Coast",
-          "notes": "Jagged cliffs and stormy seas, dotted with pirate coves and ancient shipwrecks."
+          "name": "The Silver Coast",
+          "notes": "A prosperous coastal region known for trade and naval power."
         },
         {
-          "name": "The Ember Wastes",
-          "notes": "A scorched desert with ruins of a lost civilization and volatile magical storms."
+          "name": "The Ironspine Mountains",
+          "notes": "A rugged mountain range rich in minerals and home to hardy clans."
         },
         {
-          "name": "The Silver Peaks",
-          "notes": "Snow-capped mountains inhabited by reclusive clans and mystical creatures."
+          "name": "The Shattered Plains",
+          "notes": "A barren wasteland scarred by ancient magical battles."
         }
       ],
       "landmarks": [
         {
           "name": "The Crystal Spire",
-          "notes": "A towering magical obelisk said to be a conduit to the realm of the gods."
+          "notes": "A towering magical obelisk said to amplify spellcasting."
         },
         {
-          "name": "The Whispering Glade",
-          "notes": "An enchanted forest where the trees are rumored to speak secrets."
+          "name": "The Eternal Glade",
+          "notes": "A sacred grove where time flows differently, guarded by druids."
         },
         {
-          "name": "The Sunken Citadel",
-          "notes": "Ruins beneath the Shattered Coast, rumored to hold powerful relics."
+          "name": "Fort Ironhold",
+          "notes": "A strategic fortress controlling the mountain passes."
         }
       ]
     },
     "cultures": [
       {
-        "name": "The Sylvani",
-        "traits": "Forest dwellers with deep ties to nature magic, valuing harmony and secrecy."
+        "name": "Sylvani",
+        "traits": "Forest dwellers skilled in nature magic and archery, valuing harmony with the land."
       },
       {
-        "name": "The Ironborn",
-        "traits": "Coastal warriors and traders, known for their shipbuilding and fierce independence."
+        "name": "Durnak",
+        "traits": "Mountain clans known for craftsmanship, warrior traditions, and strong clan loyalty."
       },
       {
-        "name": "The Ashen Nomads",
-        "traits": "Desert wanderers skilled in survival and elemental magic, valuing freedom and resilience."
+        "name": "Velari",
+        "traits": "Coastal merchants and sailors, adept in diplomacy and trade."
       },
       {
-        "name": "The Highland Clans",
-        "traits": "Mountain tribes with a strong warrior tradition and ancestral reverence."
+        "name": "Arcanists of the Crystal Spire",
+        "traits": "Scholars and mages dedicated to studying and preserving ancient magic."
       }
     ],
     "magic": {
-      "sources": "Magic in Avalon is drawn from ley lines, ancient relics, and personal willpower.",
-      "costs": "Casting spells consumes stamina and mental focus; overuse risks magical burnout or physical harm.",
-      "limits": "Magic cannot create life or alter fundamental laws of nature; powerful spells require rare components or rituals."
+      "sources": "Magic in Avalon flows from ley lines and ancient artifacts tied to the land's history.",
+      "costs": "Spellcasting consumes personal vitality or rare reagents; overuse risks physical and mental exhaustion.",
+      "limits": "Magic is semi-hard: clear rules govern spell effects and costs, but creative use is encouraged within those bounds."
     },
     "technology": {
       "level": "Medieval",
-      "notes": "Predominantly sword and sorcery era with limited mechanical devices; some alchemical innovations exist."
+      "notes": "Predominantly sword and sorcery era with limited mechanical devices; some magical enhancements exist."
     },
     "factions": [
       {
-        "name": "The Arcane Conclave",
-        "agenda": "Preserve and control magical knowledge to maintain balance and prevent misuse.",
-        "assets": "Libraries, magical artifacts, and influential scholars."
+        "name": "The Silver Council",
+        "agenda": "Governance and maintaining balance between kingdoms.",
+        "assets": "Political influence, spies, and access to arcane knowledge."
       },
       {
-        "name": "The Black Tide",
-        "agenda": "Expand their pirate dominion along the Shattered Coast and control sea trade.",
-        "assets": "Fleet of ships, hidden coves, and mercenaries."
+        "name": "The Ironclad Brotherhood",
+        "agenda": "Protect mountain clans' interests and control mineral resources.",
+        "assets": "Skilled warriors, fortresses, and mining operations."
       },
       {
-        "name": "The Ember Circle",
-        "agenda": "Harness the power of the Ember Wastes to unlock forgotten elemental magic.",
-        "assets": "Desert strongholds, elemental mages, and ancient relics."
+        "name": "The Veilwind Syndicate",
+        "agenda": "Control trade routes and gather intelligence through covert means.",
+        "assets": "Merchant fleets, informants, and smuggling networks."
       },
       {
-        "name": "The Silver Guard",
-        "agenda": "Protect the Highland Clans and uphold ancient oaths against external threats.",
-        "assets": "Elite warriors, mountain fortresses, and ancestral weapons."
+        "name": "Order of the Crystal Spire",
+        "agenda": "Preserve and expand magical knowledge; prevent misuse of magic.",
+        "assets": "Arcane libraries, powerful mages, and enchanted artifacts."
       }
     ],
     "economy": {
       "currencies": [
         "Gold Crowns",
-        "Silver Marks",
+        "Silver Shards",
         "Copper Pennies"
       ],
-      "trade": "Trade routes connect regions exchanging rare herbs, metals, magical components, and crafted goods."
+      "trade": "Trade centers flourish along the Silver Coast; mountain minerals and enchanted goods are key exports."
     },
     "pantheon": [
       {
         "name": "Aurelia",
-        "domain": "Sun, Justice, and Renewal"
+        "domain": "Sun, Justice, and Honor"
       },
       {
-        "name": "Nerath",
-        "domain": "Sea, Storms, and Fate"
+        "name": "Morvath",
+        "domain": "Shadow, Secrets, and Change"
       },
       {
-        "name": "Sylvara",
-        "domain": "Nature, Growth, and Secrets"
+        "name": "Sylthara",
+        "domain": "Nature, Growth, and Healing"
       },
       {
-        "name": "Vorrak",
-        "domain": "War, Strength, and Honor"
+        "name": "Vorgath",
+        "domain": "War, Strength, and Protection"
       }
     ],
     "bestiary": [
       {
-        "name": "Glimmerfox",
-        "role": "Elusive forest creature that can bend light to become nearly invisible."
+        "name": "Feywild Stalker",
+        "role": "Elusive predator of the Eldermyst Forest, blending magic and stealth."
       },
       {
-        "name": "Storm Drake",
-        "role": "Small dragon-like beings that control localized weather patterns."
+        "name": "Ironspine Drake",
+        "role": "Mountain-dwelling dragon known for its metallic scales and fiery breath."
       },
       {
-        "name": "Ash Wraith",
-        "role": "Spirit of the Ember Wastes that drains life energy from travelers."
+        "name": "Shade Wraith",
+        "role": "Spirit of the Shattered Plains, feeding on life energy and fear."
       },
       {
-        "name": "Silverstag",
-        "role": "Majestic mountain deer believed to be omens of great change."
+        "name": "Crystal Sentinel",
+        "role": "Magical construct guarding the Crystal Spire."
       }
     ],
     "hooks": [
-      "A legendary relic has been stolen from the Crystal Spire, threatening the balance of magic.",
-      "Strange storms are ravaging the Shattered Coast, disrupting trade and awakening ancient sea creatures.",
-      "A mysterious plague spreads through the Ember Wastes, linked to forbidden elemental magic.",
-      "The Highland Clans seek aid against an encroaching enemy from beyond the Silver Peaks."
+      "A powerful artifact has been stolen from the Crystal Spire, threatening to destabilize Avalon's magic.",
+      "Rising tensions between the Silver Council and Ironclad Brotherhood risk igniting war.",
+      "Strange creatures emerge from the Shattered Plains, attacking nearby settlements.",
+      "A mysterious plague spreads through the Silver Coast, defying known healing magic."
     ],
     "safety_tools": [
-      "Establish lines and veils to define content boundaries",
-      "Use the X-card for on-the-fly discomfort signaling",
-      "Session zero discussion to set player expectations and consent",
-      "Regular check-ins during sessions to ensure comfort"
+      "Establish lines and veils to manage sensitive content.",
+      "Use the X-card for immediate pause or stop.",
+      "Session zero to discuss player boundaries and expectations.",
+      "Regular check-ins during sessions."
     ],
     "dice_prompts": [
-      "Roll to determine a character's secret motivation (1-6: personal gain, 7-12: loyalty, 13-18: revenge, 19-20: prophecy)",
-      "Roll to generate a random magical side effect when casting a spell",
-      "Roll to decide the weather conditions during travel",
-      "Roll to determine the disposition of a newly encountered faction or NPC"
+      "Roll d20 to determine success of a risky diplomatic negotiation.",
+      "Roll d6 to gauge magical backlash severity.",
+      "Roll d12 to identify random encounter type in Eldermyst Forest.",
+      "Roll percentile dice to uncover hidden faction influence."
     ]
   }
 }

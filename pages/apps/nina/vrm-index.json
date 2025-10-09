@@ -1,0 +1,100 @@
+﻿{
+  "items": [
+    {
+      "path": "asset/winged-models/WingedAlexandria.vrm",
+      "size_bytes": 14303112,
+      "updated": "2025-10-09T23:59:06Z"
+    },
+    {
+      "path": "asset/winged-models/WingedBillie.vrm",
+      "size_bytes": 16451236,
+      "updated": "2025-10-09T23:59:06Z"
+    },
+    {
+      "path": "asset/winged-models/WingedReyCzar.vrm",
+      "size_bytes": 14324996,
+      "updated": "2025-10-09T23:59:06Z"
+    },
+    {
+      "path": "asset/winged-models/WingedWhiteStar.vrm",
+      "size_bytes": 13925688,
+      "updated": "2025-10-09T23:59:06Z"
+    },
+    {
+      "path": "asset/models/abbey.vrm",
+      "size_bytes": 12018708,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/alexandria.vrm",
+      "size_bytes": 12269756,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/billie.vrm",
+      "size_bytes": 13301520,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/carol.vrm",
+      "size_bytes": 11898172,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/charlotte.vrm",
+      "size_bytes": 11740028,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/clarice.vrm",
+      "size_bytes": 12848640,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/jem.vrm",
+      "size_bytes": 12475488,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/nina.vrm",
+      "size_bytes": 11272372,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/odessa.vrm",
+      "size_bytes": 12378488,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/reyczar.vrm",
+      "size_bytes": 11931700,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/sorcha.vrm",
+      "size_bytes": 12620220,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/stella.vrm",
+      "size_bytes": 12012132,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/themis.vrm",
+      "size_bytes": 11647684,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/tracy.vrm",
+      "size_bytes": 12321368,
+      "updated": "2025-10-09T23:59:05Z"
+    },
+    {
+      "path": "asset/models/whitestar.vrm",
+      "size_bytes": 12038836,
+      "updated": "2025-10-09T23:59:06Z"
+    }
+  ],
+  "updated": "2025-10-09T23:59:12Z"
+}

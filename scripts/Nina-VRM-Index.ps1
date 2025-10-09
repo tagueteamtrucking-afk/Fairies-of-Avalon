@@ -1,13 +1,15 @@
 $root=Split-Path -Parent $PSScriptRoot
-$paths=@(
-  Join-Path $root 'asset/models',
-  Join-Path $root 'asset/models/wingless',
-  Join-Path $root 'asset/models/with-wings',
-  Join-Path $root 'asset/winged-models'
-) | Where-Object { Test-Path $_ }
-$vrms=@()
-foreach($p in $paths){ $vrms += Get-ChildItem -Recurse -File -Path $p -Filter *.vrm -ErrorAction SilentlyContinue }
-$outDir=Join-Path $root 'pages/apps/nina'; New-Item -ItemType Directory -Force -Path $outDir|Out-Null
-$list=$vrms | ForEach-Object { @{ name=$_.Name; rel=($_.FullName.Replace($root,"").Replace("\","/").TrimStart("/")) } }
-[IO.File]::WriteAllText((Join-Path $outDir 'vrm-index.json'), ($list|ConvertTo-Json -Depth 4), [Text.Encoding]::UTF8)
-Write-Host "VRM index written."
+$vrmDirs = @('asset/winged-models','asset/models/with-wings','asset/models/wingless','asset/models')
+$items=@()
+foreach($d in $vrmDirs){
+  $p = Join-Path $root $d
+  if(Test-Path $p){
+    Get-ChildItem -Path $p -Filter *.vrm -File -ErrorAction SilentlyContinue | ForEach-Object {
+      $items += @{ path = $_.FullName.Replace($root,"").Replace("\","/").TrimStart("/"); size_bytes = $_.Length; updated = $_.LastWriteTimeUtc.ToString("s") + "Z" }
+    }
+  }
+}
+$out = Join-Path $root 'pages/apps/nina/vrm-index.json'
+New-Item -ItemType Directory -Force -Path (Split-Path -Parent $out) | Out-Null
+[IO.File]::WriteAllText($out, (@{ updated=(Get-Date).ToUniversalTime().ToString('s')+'Z'; items=$items } | ConvertTo-Json -Depth 8), [Text.Encoding]::UTF8)
+Write-Host "VRM index -> $out"

@@ -1,6 +1,17 @@
 <!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cathedral Studio — Tracy</title>
+<title>Tracy — Artboards</title>
 <link rel="stylesheet" href="/pages/apps/buildings.css">
-<header><h1>Cathedral Studio — Tracy</h1><small>Choose an action</small></header>
-<main><div class="grid"><div class="card"><a href="/pages/apps/tracy/artboards/">Easel — Art App</a><br><small>Artboards & textures</small></div>
-<div class="card"><a href="/pages/apps/tracy/3d-shop.html">Potter Wheel — 3D Shop</a><br><small>3D models (coming soon)</small></div></div></main>
+<style>.grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.thumb{border:1px solid #172033;border-radius:10px;overflow:hidden}img{display:block;width:100%;height:auto}</style>
+<header><h1>Tracy — Wallpapers</h1><small>Generated index shows what’s available. Use actions to optimize or reskin.</small></header>
+<main>
+  <div class="grid" id="grid"></div>
+</main>
+<script>
+(async()=>{
+  async function j(p){ const r=await fetch(p); if(!r.ok) throw 0; return r.json(); }
+  const data = await j('/pages/apps/tracy/wallpaper-index.json').catch(()=>({items:[]}));
+  const g = document.getElementById('grid');
+  if(!data.items || !data.items.length){ g.innerHTML='<div class="card">No wallpapers indexed. Run the workflow "Tracy — Wallpaper Index".</div>'; return; }
+  g.innerHTML = data.items.map(it=>`<div class="thumb"><img src='/${it.path}' alt='${it.path}'></div>`).join('');
+})();
+</script>

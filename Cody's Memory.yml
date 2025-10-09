@@ -1,20 +1,19 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "1.9.0"
-  last_updated: "2025-10-07T09:24:25Z"
-policy:
-  delivery: ZIP_ONLY  # always ship zips: workflows (flat) + outside
-secrets_expected:
-  - name: OPENAI_API_KEY
-    storage: "Cloudflare Worker Secret (exact name), and GitHub Actions Secret if workflows call OpenAI"
-runtime:
-  dm_worker:
-    service_name: "alexandria-dm"
-    url_construction: "https://<service-name>.<account-subdomain>.workers.dev (e.g., https://alexandria-dm.tagueteamtrucking.workers.dev)"
-    variables: ["OPENAI_MODEL=gpt-4.1-mini", "OPENAI_TTS_MODEL=gpt-4o-mini-tts"]
-assistants:
-  jem: "no door-anchors; Samsung Health import via workflow; programs under pages/apps/jem/programs"
-  carol: "2-week plans for two; EU-first safety"
-  stella: "on-demand player + guided meditation generator"
-  alexandria: "DM via Worker + world bible generator"
+  version: "1.7.5"
+  last_updated: "2025-10-09"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    v1.7.5 — Graphics pipeline pack + Alexandria audio fix + "zip-first" reminder.
+    - Tracy/Charlotte/Nina/Clarice workflows & scripts for graphics build.
+    - Alexandria DM: browser TTS fallback, better iOS audio unlock, config persistence.
+    - Cloudflare Worker updated: CORS, OPTIONS, returns data:audio/* base64 for iOS.
+    - "Overseers are avatars (Ray & Blanca), not AI" — recorded.
+    - Always ship zips (flat workflows + outside); copy-paste only as backup.
+overseers:
+  avatars: ["Ray","Blanca"]
+policies:
+  delivery: ["Zip-first", "Workflows-first", "No plaintext secrets in client JS"]
+alexandria:
+  audio_status: "worker audio was not heard on iOS; added browser SpeechSynthesis fallback and improved Worker CORS/audio format"

@@ -1,0 +1,19 @@
+name: Diagnostics — OpenAI Connectivity
+on: { workflow_dispatch: {} }
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check env
+        run: |
+          if [ -z "${{ secrets.OPENAI_API_KEY }}" ]; then
+            echo "OPENAI_API_KEY secret is missing"; exit 1; fi
+      - name: Curl models
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          code=$(curl -s -o /tmp/o.txt -w "%{http_code}" https://api.openai.com/v1/models             -H "Authorization: Bearer $OPENAI_API_KEY")
+          echo "HTTP $code"
+          test "$code" -ge 200 -a "$code" -lt 500
+      - name: Show sample response head
+        run: head -n 20 /tmp/o.txt || true

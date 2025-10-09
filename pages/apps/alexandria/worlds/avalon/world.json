@@ -1,0 +1,158 @@
+﻿{
+  "world": {
+    "name": "Avalon",
+    "tone": "high fantasy",
+    "premise": "In the mystical land of Avalon, ancient magic stirs beneath a fragile peace as rival factions vie for control over legendary relics that could reshape the fate of the realm.",
+    "themes": [
+      "Power and responsibility",
+      "Ancient secrets and rediscovery",
+      "Conflict between tradition and change",
+      "The cost of magic"
+    ],
+    "geography": {
+      "regions": [
+        {
+          "name": "The Verdant Expanse",
+          "notes": "Lush forests and rolling hills, home to druidic enclaves and hidden groves."
+        },
+        {
+          "name": "The Shattered Coast",
+          "notes": "Jagged cliffs and stormy seas, dotted with pirate coves and ancient shipwrecks."
+        },
+        {
+          "name": "The Ember Wastes",
+          "notes": "A scorched desert with ruins of a lost civilization and volatile magical storms."
+        },
+        {
+          "name": "The Silver Peaks",
+          "notes": "Snow-capped mountains inhabited by reclusive clans and mystical creatures."
+        }
+      ],
+      "landmarks": [
+        {
+          "name": "The Crystal Spire",
+          "notes": "A towering magical obelisk said to be a conduit to the realm of the gods."
+        },
+        {
+          "name": "The Whispering Glade",
+          "notes": "An enchanted forest where the trees are rumored to speak secrets."
+        },
+        {
+          "name": "The Sunken Citadel",
+          "notes": "Ruins beneath the Shattered Coast, rumored to hold powerful relics."
+        }
+      ]
+    },
+    "cultures": [
+      {
+        "name": "The Sylvani",
+        "traits": "Forest dwellers with deep ties to nature magic, valuing harmony and secrecy."
+      },
+      {
+        "name": "The Ironborn",
+        "traits": "Coastal warriors and traders, known for their shipbuilding and fierce independence."
+      },
+      {
+        "name": "The Ashen Nomads",
+        "traits": "Desert wanderers skilled in survival and elemental magic, valuing freedom and resilience."
+      },
+      {
+        "name": "The Highland Clans",
+        "traits": "Mountain tribes with a strong warrior tradition and ancestral reverence."
+      }
+    ],
+    "magic": {
+      "sources": "Magic in Avalon is drawn from ley lines, ancient relics, and personal willpower.",
+      "costs": "Casting spells consumes stamina and mental focus; overuse risks magical burnout or physical harm.",
+      "limits": "Magic cannot create life or alter fundamental laws of nature; powerful spells require rare components or rituals."
+    },
+    "technology": {
+      "level": "Medieval",
+      "notes": "Predominantly sword and sorcery era with limited mechanical devices; some alchemical innovations exist."
+    },
+    "factions": [
+      {
+        "name": "The Arcane Conclave",
+        "agenda": "Preserve and control magical knowledge to maintain balance and prevent misuse.",
+        "assets": "Libraries, magical artifacts, and influential scholars."
+      },
+      {
+        "name": "The Black Tide",
+        "agenda": "Expand their pirate dominion along the Shattered Coast and control sea trade.",
+        "assets": "Fleet of ships, hidden coves, and mercenaries."
+      },
+      {
+        "name": "The Ember Circle",
+        "agenda": "Harness the power of the Ember Wastes to unlock forgotten elemental magic.",
+        "assets": "Desert strongholds, elemental mages, and ancient relics."
+      },
+      {
+        "name": "The Silver Guard",
+        "agenda": "Protect the Highland Clans and uphold ancient oaths against external threats.",
+        "assets": "Elite warriors, mountain fortresses, and ancestral weapons."
+      }
+    ],
+    "economy": {
+      "currencies": [
+        "Gold Crowns",
+        "Silver Marks",
+        "Copper Pennies"
+      ],
+      "trade": "Trade routes connect regions exchanging rare herbs, metals, magical components, and crafted goods."
+    },
+    "pantheon": [
+      {
+        "name": "Aurelia",
+        "domain": "Sun, Justice, and Renewal"
+      },
+      {
+        "name": "Nerath",
+        "domain": "Sea, Storms, and Fate"
+      },
+      {
+        "name": "Sylvara",
+        "domain": "Nature, Growth, and Secrets"
+      },
+      {
+        "name": "Vorrak",
+        "domain": "War, Strength, and Honor"
+      }
+    ],
+    "bestiary": [
+      {
+        "name": "Glimmerfox",
+        "role": "Elusive forest creature that can bend light to become nearly invisible."
+      },
+      {
+        "name": "Storm Drake",
+        "role": "Small dragon-like beings that control localized weather patterns."
+      },
+      {
+        "name": "Ash Wraith",
+        "role": "Spirit of the Ember Wastes that drains life energy from travelers."
+      },
+      {
+        "name": "Silverstag",
+        "role": "Majestic mountain deer believed to be omens of great change."
+      }
+    ],
+    "hooks": [
+      "A legendary relic has been stolen from the Crystal Spire, threatening the balance of magic.",
+      "Strange storms are ravaging the Shattered Coast, disrupting trade and awakening ancient sea creatures.",
+      "A mysterious plague spreads through the Ember Wastes, linked to forbidden elemental magic.",
+      "The Highland Clans seek aid against an encroaching enemy from beyond the Silver Peaks."
+    ],
+    "safety_tools": [
+      "Establish lines and veils to define content boundaries",
+      "Use the X-card for on-the-fly discomfort signaling",
+      "Session zero discussion to set player expectations and consent",
+      "Regular check-ins during sessions to ensure comfort"
+    ],
+    "dice_prompts": [
+      "Roll to determine a character's secret motivation (1-6: personal gain, 7-12: loyalty, 13-18: revenge, 19-20: prophecy)",
+      "Roll to generate a random magical side effect when casting a spell",
+      "Roll to decide the weather conditions during travel",
+      "Roll to determine the disposition of a newly encountered faction or NPC"
+    ]
+  }
+}

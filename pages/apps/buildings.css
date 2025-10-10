@@ -1,23 +1,13 @@
-:root{--bg:#0b0f17;--card:#0f172a;--ink:#e5e7eb;--line:#172033}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial}
-header{padding:12px 16px;border-bottom:1px solid var(--line)}
+:root{--bg:#0b0f17;--ink:#e5e7eb;--line:#172033;--card:#0f172a;--accent:#60a5fa}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui;background:var(--bg);color:var(--ink)}
+header,footer{padding:12px 16px;border-bottom:1px solid var(--line)}
 main{padding:16px}
-.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.card{position:relative;border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--card);min-height:140px;overflow:hidden}
-h3{margin:0 0 6px 0}
-.card .emoji{font-size:42px;position:absolute;right:10px;top:10px;opacity:.75}
-.card a{color:var(--ink);text-decoration:none;font-weight:600}
-small{color:#9ca3af}
-.card.library{background:linear-gradient(180deg,#141b2b,#0d1424)}
-.card.tower{background:linear-gradient(180deg,#121929,#0b1220)}
-.card.lab{background:linear-gradient(180deg,#0f1b1f,#0a1216)}
-.card.studio{background:linear-gradient(180deg,#181524,#120f1b)}
-.card.restaurant{background:linear-gradient(180deg,#1a1412,#120d0b)}
-.card.dojo{background:linear-gradient(180deg,#17130f,#0f0c09)}
-.card.observatory{background:linear-gradient(180deg,#0c1321,#0a0f1a)}
-.card.mansion{background:linear-gradient(180deg,#1b1712,#120e0b)}
-.card.museum{background:linear-gradient(180deg,#1a1a12,#11110b)}
-.card.vault{background:linear-gradient(180deg,#121a12,#0b110b)}
-.card.hall{background:linear-gradient(180deg,#141414,#0d0d0d)}
-.card.palace{background:linear-gradient(180deg,#1a1924,#0e0d16)}
-.wallpaper-hero{min-height:32vh;background:#0f172a;border:1px solid var(--line);border-radius:12px;margin-bottom:12px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px}
+.hero h1{margin:0;padding:10px 14px;background:#0b1220A0;display:inline-block;border-radius:10px;border:1px solid #172033}
+.kv{display:flex;flex-direction:column;gap:6px}.kv b{display:block;color:#93c5fd}
+.btn{display:inline-block;padding:8px 10px;border:1px solid #334155;border-radius:10px;color:var(--ink);text-decoration:none;background:#0b1220}
+.btn:hover{border-color:#3b82f6;color:white}
+iframe.viewer{width:100%;height:60vh;border:1px solid #172033;border-radius:12px;background:#0b1220}
+.small{font-size:12px;color:#9ca3af}
+.room{min-height:28vh}

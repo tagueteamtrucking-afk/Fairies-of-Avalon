@@ -1,0 +1,75 @@
+{
+  "updated": "2025-10-10T00:02:04Z",
+  "rooms": [
+    {
+      "id": "alexandria",
+      "name": "Alexandria \u2014 Gothic Library",
+      "vrm": "/asset/winged-models/Alexandria.vrm"
+    },
+    {
+      "id": "charlotte",
+      "name": "Charlotte \u2014 Relay Tower",
+      "vrm": "/asset/winged-models/Charlotte.vrm"
+    },
+    {
+      "id": "nina",
+      "name": "Nina \u2014 Futuristic Lab",
+      "vrm": "/asset/winged-models/Nina.vrm"
+    },
+    {
+      "id": "tracy",
+      "name": "Tracy \u2014 Cathedral Studio",
+      "vrm": "/asset/winged-models/Tracy.vrm"
+    },
+    {
+      "id": "carol",
+      "name": "Carol \u2014 Restaurant",
+      "vrm": "/asset/winged-models/Carol.vrm"
+    },
+    {
+      "id": "jem",
+      "name": "Jem \u2014 Dojo",
+      "vrm": "/asset/winged-models/Jem.vrm"
+    },
+    {
+      "id": "stella",
+      "name": "Stella \u2014 Observatory",
+      "vrm": "/asset/winged-models/Stella.vrm"
+    },
+    {
+      "id": "clarice",
+      "name": "Clarice \u2014 Courtroom & Palace",
+      "vrm": "/asset/winged-models/Clarice.vrm"
+    },
+    {
+      "id": "sorcha",
+      "name": "Sorcha \u2014 Mansion & Pool",
+      "vrm": "/asset/winged-models/Sorcha.vrm"
+    },
+    {
+      "id": "odessa",
+      "name": "Odessa \u2014 Museum",
+      "vrm": "/asset/winged-models/Odessa.vrm"
+    },
+    {
+      "id": "billie",
+      "name": "Billie \u2014 Glitz & Gold Mansion",
+      "vrm": "/asset/winged-models/Billie.vrm"
+    },
+    {
+      "id": "themis",
+      "name": "Themis \u2014 Record Hall",
+      "vrm": "/asset/winged-models/Themis.vrm"
+    },
+    {
+      "id": "abbey",
+      "name": "Abbey \u2014 Grand Vault",
+      "vrm": "/asset/winged-models/Abbey.vrm"
+    },
+    {
+      "id": "overseers",
+      "name": "The Palace \u2014 Ray & Blanca",
+      "vrm": "/asset/winged-models/WhiteStar.vrm"
+    }
+  ]
+}

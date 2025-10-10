@@ -36,10 +36,7 @@ light.position.set(1,1,1);
 scene.add(light); scene.add(new THREE.AmbientLight(0xffffff, 0.35));
 
 let currentVRM = null;
-function disposeVRM(){
-  if(currentVRM){ scene.remove(currentVRM.scene); VRMUtils.deepDispose(currentVRM.scene); currentVRM=null; }
-}
-
+function disposeVRM(){ if(currentVRM){ scene.remove(currentVRM.scene); VRMUtils.deepDispose(currentVRM.scene); currentVRM=null; } }
 async function loadVRM(url){
   try{
     disposeVRM();
@@ -50,16 +47,10 @@ async function loadVRM(url){
     VRMUtils.rotateVRM0(vrm);
     scene.add(vrm.scene);
     currentVRM = vrm;
-  }catch(e){
-    console.error(e);
-    alert('Failed to load VRM: '+e.message);
-  }
+  }catch(e){ console.error(e); alert('Failed to load VRM: '+e.message); }
 }
-
-function animate(){ requestAnimationFrame(animate); renderer.render(scene,camera); }
-animate();
+function animate(){ requestAnimationFrame(animate); renderer.render(scene,camera); } animate();
 window.addEventListener('resize', ()=>{ renderer.setSize(innerWidth,innerHeight); camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); });
-
 const q = new URLSearchParams(location.search);
 const initial = q.get('src') || '/asset/winged-models/Reyczar.vrm';
 document.getElementById('src').value = initial;

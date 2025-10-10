@@ -1,0 +1,129 @@
+﻿{
+  "updated": "2025-10-10T01:31:55Z",
+  "title": "Week-1 Evaluation Plan for Knee-Friendly Mobility and Joint Strengthening",
+  "tests": [
+    {
+      "name": "30-Second Sit-to-Stand Test",
+      "how": "Sit on a standard chair and stand up fully then sit down as many times as possible in 30 seconds.",
+      "targets": "Assess lower limb strength and endurance.",
+      "notes": "Use a chair without armrests; keep arms crossed over chest."
+    },
+    {
+      "name": "2-Minute Step Test",
+      "how": "March in place lifting knees to midway between knee and hip height for 2 minutes.",
+      "targets": "Evaluate aerobic endurance and lower limb mobility.",
+      "notes": "Count the number of times the right knee reaches the target height."
+    },
+    {
+      "name": "Comfortable Walk Duration",
+      "how": "Walk at a comfortable pace on flat ground for as long as possible up to 10 minutes.",
+      "targets": "Assess walking endurance and joint comfort.",
+      "notes": "Record total duration and any knee discomfort."
+    },
+    {
+      "name": "Rate of Perceived Exertion (RPE) Explanation",
+      "how": "Explain the Borg Scale from 6 (no exertion) to 20 (maximal exertion).",
+      "targets": "Help drivers self-monitor exercise intensity.",
+      "notes": "Aim for RPE between 11 (light) and 13 (somewhat hard) during sessions."
+    }
+  ],
+  "daily": [
+    {
+      "day": "Day 1",
+      "focus": "Knee-Friendly Mobility & Strengthening",
+      "session": [
+        "Warm-up: 5 minutes gentle marching in place.",
+        "Mobility: 2 sets of 10 knee circles each leg, slow controlled.",
+        "Strength: 2 sets of 12 seated banded leg extensions (self-anchored band).",
+        "Strength: 2 sets of 12 seated banded hamstring curls (self-anchored band).",
+        "Cool-down: 5 minutes seated knee flexion/extension stretches."
+      ]
+    },
+    {
+      "day": "Day 2",
+      "focus": "Low-Impact Aerobic Conditioning",
+      "session": [
+        "Warm-up: 5 minutes gentle marching in place.",
+        "Aerobic: 10 minutes stepping in place at a comfortable pace.",
+        "Mobility: 2 sets of 10 ankle circles each side.",
+        "Cool-down: 5 minutes seated calf and quadriceps stretches."
+      ]
+    },
+    {
+      "day": "Day 3",
+      "focus": "Knee Joint Strength & Stability",
+      "session": [
+        "Warm-up: 5 minutes gentle marching in place.",
+        "Strength: 2 sets of 12 seated banded hip abductions (self-anchored band).",
+        "Strength: 2 sets of 12 seated banded hip adductions (self-anchored band).",
+        "Mobility: 2 sets of 10 slow heel slides lying or seated.",
+        "Cool-down: 5 minutes seated hamstring and calf stretches."
+      ]
+    },
+    {
+      "day": "Day 4",
+      "focus": "Active Recovery & Walking Goal",
+      "session": [
+        "Goal: Walk at least 20 minutes at a comfortable pace outdoors or indoors.",
+        "Focus on maintaining an RPE of 11-13.",
+        "Include gentle knee mobility exercises before and after walking."
+      ]
+    },
+    {
+      "day": "Day 5",
+      "focus": "Combined Mobility and Strength",
+      "session": [
+        "Warm-up: 5 minutes gentle marching in place.",
+        "Mobility: 2 sets of 10 knee circles each leg.",
+        "Strength: 2 sets of 12 seated banded leg extensions.",
+        "Strength: 2 sets of 12 seated banded hamstring curls.",
+        "Cool-down: 5 minutes seated knee and calf stretches."
+      ]
+    },
+    {
+      "day": "Day 6",
+      "focus": "Low-Impact Aerobic & Mobility",
+      "session": [
+        "Warm-up: 5 minutes gentle marching in place.",
+        "Aerobic: 10 minutes stepping in place or slow marching.",
+        "Mobility: 2 sets of 10 ankle circles each side.",
+        "Cool-down: 5 minutes seated quadriceps and hamstring stretches."
+      ]
+    },
+    {
+      "day": "Day 7",
+      "focus": "Rest and Walking Goal",
+      "session": [
+        "Goal: Walk at least 20 minutes at a comfortable pace.",
+        "Perform gentle knee mobility exercises before and after walking."
+      ]
+    }
+  ],
+  "log_template": [
+    {
+      "field": "Date",
+      "example": "2024-06-15"
+    },
+    {
+      "field": "Day Number",
+      "example": "Day 1"
+    },
+    {
+      "field": "Session Completed (Yes/No)",
+      "example": "Yes"
+    },
+    {
+      "field": "RPE (Rate of Perceived Exertion)",
+      "example": "12"
+    },
+    {
+      "field": "Knee Discomfort Level (0-10)",
+      "example": "2"
+    },
+    {
+      "field": "Comments",
+      "example": "Felt stable during leg extensions; slight stiffness after walking."
+    }
+  ],
+  "safety_notes": "All exercises should be performed within pain-free range. Stop immediately if sharp knee pain occurs. Use self-anchored resistance bands only; avoid door anchors. Warm-up and cool-down are essential to prevent injury. Maintain RPE between 11 and 13 to avoid overexertion. On walking days, choose flat, safe surfaces. Consult a healthcare provider if knee pain persists or worsens."
+}

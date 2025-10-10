@@ -1,302 +1,120 @@
-<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carol — Menu Picker (Soft Guardrails)</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carol — Two‑Week Plan</title>
 <style>
-:root{--bg:#0b0f17;--ink:#e5e7eb;--line:#172033;--ok:#16a34a;--warn:#f59e0b;--bad:#ef4444;--accent:#60a5fa}
-*{box-sizing:border-box}body{font-family:system-ui;background:var(--bg);color:var(--ink);margin:0}
-header,footer{padding:12px 16px;border-bottom:1px solid var(--line)}
-main{padding:16px}
-select,input,button{background:#111827;border:1px solid #334155;border-radius:8px;color:var(--ink);padding:8px}
-.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.card{border:1px solid var(--line);border-radius:10px;padding:10px;background:#0f172a}
-h2{margin:6px 0 8px 0}
-.badge{display:inline-block;padding:2px 6px;border:1px solid #334155;border-radius:6px;font-size:12px;margin-right:4px}
-hr{border:0;border-top:1px solid #172033;margin:10px 0}
-table{width:100%;border-collapse:collapse}th,td{border:1px solid #172033;padding:6px;text-align:left}
-.kpi{padding:6px 8px;border-radius:8px;border:1px solid #172033;margin-right:6px}
-.kpi.ok{border-color:#1b3f2b;background:#0c1510} .kpi.warn{border-color:#5a470b;background:#151107} .kpi.bad{border-color:#5a1111;background:#170a0a}
-.ev{margin:10px 0;padding:8px;border-radius:8px;border:1px solid transparent;cursor:pointer}
-.ev.sel{border:1px solid var(--accent);background:#0b1220}
-.dim{opacity:.7}
-.note{font-size:12px;color:#9ca3af}
-.switch{display:inline-flex;gap:6px;align-items:center;border:1px solid #334155;border-radius:999px;padding:2px 8px}
-.switch input{accent-color:var(--accent)}
-.hard{color:#ef4444}
-</style>
+:root{--bg:#0b0f17;--ink:#e5e7eb;--line:#172033;--card:#0f172a;--accent:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui}
+header,main{padding:14px}h1{margin:0 0 6px 0}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px}
+.small{font-size:12px;color:#94a3b8}
+.badge{border:1px solid #334155;border-radius:10px;padding:2px 6px;font-size:12px;margin-right:6px}
+.table{width:100%;border-collapse:collapse} .table td,.table th{border-bottom:1px solid #172033;padding:6px}
+.btn{display:inline-block;padding:8px 10px;border:1px solid #334155;border-radius:10px;text-decoration:none;color:var(--ink);background:#0b1220;margin-right:6px}
+.btn:hover{border-color:#3b82f6;color:white}
+pre.wrap{white-space:pre-wrap}
+</style></head><body>
 <header>
-  <h1>Carol — Menu Picker (Grazers + Soft Guardrails)</h1>
-  <div class="row">
-    <label>Plan: <select id="plan"></select></label>
-    <label>Day: <select id="day"></select></label>
-    <label>Scope:
-      <select id="scope">
-        <option value="day">This day</option>
-        <option value="plan">Whole plan</option>
-      </select>
-    </label>
-    <label>Person:
-      <select id="person"><option value="both">Both</option><option value="A">Ray (A)</option><option value="B">Blanca (B)</option></select>
-    </label>
-    <label class="switch"><input type="checkbox" id="strict"> Strict block</label>
-    <button id="load">Load</button>
-    <button id="clear">Clear Picks</button>
-    <button id="export">Export Picks</button>
+  <h1>Carol — Two‑Week Plan</h1>
+  <div class="small">This view shows the latest generated plan. No selections, just read‑only + export shopping list. Use Actions → Carol to regenerate.</div>
+  <div id="meta" class="small"></div>
+  <div style="margin-top:8px">
+    <a class="btn" id="open-json" target="_blank">Open Plan JSON</a>
+    <button class="btn" id="download-list">Download Shopping List (.txt)</button>
+    <button class="btn" onclick="window.print()">Print / Save PDF</button>
   </div>
 </header>
 <main>
-  <section class="card">
-    <h2>Budgets & Totals</h2>
-    <div id="budgets" class="row"></div>
-    <div id="totals" class="row" style="margin-top:6px"></div>
-    <div class="note">Soft target guidance (not hard caps). Calories ≈ target ±10%; sodium ≤ 2000 mg; sugar ≤ 10% kcal; fiber ≥ 25 g. Units normalized to cups, tablespoons, teaspoons when possible.</div>
-  </section>
-  <section>
-    <div id="days" class="grid"></div>
-  </section>
-  <section class="card">
-    <h2>Shopping List (from your picks)</h2>
-    <div id="list"></div>
-    <div class="row" style="margin-top:8px">
-      <button id="copy">Copy</button>
-      <button id="download">Download .txt</button>
-    </div>
-  </section>
+  <div class="grid" id="days"></div>
+  <div class="card">
+    <h3>Shopping List (2 weeks)</h3>
+    <pre id="shop" class="wrap"></pre>
+  </div>
 </main>
-<footer><small>If a plan shows fewer than 14 days for a 2‑week plan, please re‑run “Carol — 2 or 6 Week Plan for Two”. I also auto‑fill missing days by cycling.</small></footer>
 <script>
-const planSel = document.getElementById('plan'), daySel=document.getElementById('day'), scopeSel=document.getElementById('scope'), personSel=document.getElementById('person');
-const strictEl=document.getElementById('strict');
-const daysEl=document.getElementById('days'), listEl=document.getElementById('list'), budEl=document.getElementById('budgets'), totEl=document.getElementById('totals');
-let planData=null, picks={}, planName=null;
-
-function storeKey(){ return 'carol_picks_'+(planName||'unknown'); }
-function dayKey(){ return 'day_'+(daySel.value||'all')+'_scope_'+scopeSel.value+'_person_'+personSel.value; }
-function pid(di,ei){ return `d${di}_e${ei}`; }
-
-async function fetchJSON(p){ const r=await fetch(p); if(!r.ok) throw new Error('fetch '+p); return r.json(); }
-async function loadPlansIndex(){
-  try{ const j=await fetchJSON('./plans/index.json'); return j.files||[]; } catch(e){ return []; }
-}
-
-function sugarBudget(kcal){ return (kcal * 0.10) / 4.0; } // grams
-function within(v, min, max){ if(min!=null && v<min) return false; if(max!=null && v>max) return false; return true; }
-
-function calcTotals(){
-  const selIds = Object.entries(picks).filter(([k,v])=>v && k.startsWith(dayKey()+':')).map(([k])=>k.split(':')[1]);
-  let A={kcal:0,na:0,sugar:0,fiber:0}, B={kcal:0,na:0,sugar:0,fiber:0};
-  planData.days?.forEach((d,di)=>{
-    d.events?.forEach((ev,ei)=>{
-      const id=pid(di,ei); if(!selIds.includes(id)) return;
-      const add=(who)=>{
-        who.kcal  += +ev.kcal||0;
-        who.na    += +ev.sodium_mg||0;
-        who.sugar += +ev.added_sugars_g||0;
-        who.fiber += +ev.fiber_g||0;
-      };
-      if(ev.for==='A') add(A);
-      else if(ev.for==='B') add(B);
-      else { add(A); add(B); }
-    });
-  });
-  return {A,B};
-}
-
-function renderBudgets(){
-  const A=planData.persons?.find(p=>p.id==='A')||{kcal:0}, B=planData.persons?.find(p=>p.id==='B')||{kcal:0};
-  const aSug = Math.round(sugarBudget(A.kcal));
-  const bSug = Math.round(sugarBudget(B.kcal));
-  budEl.innerHTML = `
-    <div class="kpi">Ray kcal: ${A.kcal} (±10%)</div>
-    <div class="kpi">Ray sodium: ≤ 2000 mg</div>
-    <div class="kpi">Ray sugar: ≤ ${aSug} g</div>
-    <div class="kpi">Ray fiber: ≥ 25 g</div>
-    <div class="kpi">Blanca kcal: ${B.kcal} (±10%)</div>
-    <div class="kpi">Blanca sodium: ≤ 2000 mg</div>
-    <div class="kpi">Blanca sugar: ≤ ${bSug} g</div>
-    <div class="kpi">Blanca fiber: ≥ 25 g</div>`;
-}
-
-function scoreKpi(val, min, max, goodWhen='within'){
-  let ok=false, warn=false;
-  if(goodWhen==='atMost'){ ok = val<=max; warn = val<=max*1.1; }
-  else if(goodWhen==='atLeast'){ ok = val>=min; warn = val>=min*0.9; }
-  else { ok = within(val,min,max); warn = within(val,min*0.9,max*1.1); }
-  return ok ? 'ok' : (warn ? 'warn' : 'bad');
-}
-
-function renderTotals(){
-  const A=planData.persons?.find(p=>p.id==='A')||{kcal:0}, B=planData.persons?.find(p=>p.id==='B')||{kcal:0};
-  const t = calcTotals();
-  const aSug = sugarBudget(A.kcal), bSug = sugarBudget(B.kcal);
-  const aK = scoreKpi(t.A.kcal, A.kcal*0.9, A.kcal*1.1);
-  const aN = scoreKpi(t.A.na, null, 2000, 'atMost');
-  const aS = scoreKpi(t.A.sugar, null, aSug, 'atMost');
-  const aF = scoreKpi(t.A.fiber, 25, null, 'atLeast');
-  const bK = scoreKpi(t.B.kcal, B.kcal*0.9, B.kcal*1.1);
-  const bN = scoreKpi(t.B.na, null, 2000, 'atMost');
-  const bS = scoreKpi(t.B.sugar, null, bSug, 'atMost');
-  const bF = scoreKpi(t.B.fiber, 25, null, 'atLeast');
-  totEl.innerHTML = `
-    <div class="kpi ${aK}">Ray kcal: ${Math.round(t.A.kcal)}</div>
-    <div class="kpi ${aN}">Ray sodium: ${Math.round(t.A.na)} mg</div>
-    <div class="kpi ${aS}">Ray sugar: ${Math.round(t.A.sugar)} g</div>
-    <div class="kpi ${aF}">Ray fiber: ${Math.round(t.A.fiber)} g</div>
-    <div class="kpi ${bK}">Blanca kcal: ${Math.round(t.B.kcal)}</div>
-    <div class="kpi ${bN}">Blanca sodium: ${Math.round(t.B.na)} mg</div>
-    <div class="kpi ${bS}">Blanca sugar: ${Math.round(t.B.sugar)} g</div>
-    <div class="kpi ${bF}">Blanca fiber: ${Math.round(t.B.fiber)} g</div>`;
-}
-
-function canAdd(ev){
-  if(!strictEl.checked) return true;
-  // simulate add then evaluate KPIs
-  const A=structuredClone(calcTotals().A), B=structuredClone(calcTotals().B);
-  const add=(who)=>{ who.kcal+=(+ev.kcal||0); who.na+=(+ev.sodium_mg||0); who.sugar+=(+ev.added_sugars_g||0); who.fiber+=(+ev.fiber_g||0); };
-  if(ev.for==='A') add(A); else if(ev.for==='B') add(B); else { add(A); add(B); }
-  const Ap=planData.persons?.find(p=>p.id==='A')||{kcal:0}, Bp=planData.persons?.find(p=>p.id==='B')||{kcal:0};
-  const aOK = (A.kcal <= Ap.kcal*1.1) && (A.na <= 2000) && (A.sugar <= (Ap.kcal*0.10/4)) && (A.fiber >= 25);
-  const bOK = (B.kcal <= Bp.kcal*1.1) && (B.na <= 2000) && (B.sugar <= (Bp.kcal*0.10/4)) && (B.fiber >= 25);
-  return aOK && bOK;
-}
-
-function renderDays(){
-  daysEl.innerHTML='';
-  if(!planData){ return; }
-  const showDay = daySel.value==='all' ? null : parseInt(daySel.value,10);
-  planData.days?.forEach((d,di)=>{
-    if(showDay!==null && di!==showDay) return;
-    const card = document.createElement('div'); card.className='card';
-    const h = document.createElement('h2'); h.textContent = `Day ${d.index} — ${d.day_label}`; card.appendChild(h);
-    (d.events||[]).forEach((ev,ei)=>{
-      if(personSel.value!=='both' && ev.for!=='Both' && ev.for!==personSel.value) return;
-      const id = dayKey()+':'+pid(di,ei);
-      const row = document.createElement('div'); row.className='ev'; row.innerHTML = `
-        <div><b>${ev.name}</b> <span class="note">(${ev.type} • for ${ev.for} • ${ev.time_hint})</span></div>
-        <div class="note">kcal ${ev.kcal} • Na ${ev.sodium_mg} mg • sugar ${ev.added_sugars_g} g • fiber ${ev.fiber_g} g</div>
-        <div class="note dim">${(ev.items||[]).map(it=>`${it.quantity||''} ${it.unit||''} ${it.ingredient}${it.notes?(' — '+it.notes):''}`).join('<br>')}</div>`;
-      const setSel=(s)=>{ picks[id]=s; row.classList.toggle('sel',!!s); };
-      if(picks[id]) setSel(true);
-      row.addEventListener('click', ()=>{
-        if(strictEl.checked && !picks[id]){
-          // soft by default; only block if Strict toggle ON
-          if(!canAdd(ev)){
-            row.style.border='1px solid var(--bad)'; row.style.background='#170a0a';
-            row.title = 'Would exceed targets with Strict ON';
-            return;
-          }
-        }
-        setSel(!picks[id]); savePicks(); renderTotals(); renderList();
-      });
-      card.appendChild(row);
-    });
-    daysEl.appendChild(card);
-  });
-}
-
-const UNIT_MAP = {
-  'tsp':['tsp','teaspoon','teaspoons'],
-  'tbsp':['tbsp','tablespoon','tablespoons'],
-  'cup':['cup','cups']
-};
-function normUnit(u){
-  const s=(u||'').toString().trim().toLowerCase();
-  for(const k in UNIT_MAP){ if(UNIT_MAP[k].includes(s)) return k; }
-  return s;
-}
-
-function aggregate(scope='day'){
-  const acc = {}; // ingredient -> { tsp,tbsp,cup, others: {unit:qty} }
-  const prefix = scope==='day' ? dayKey()+':' : '';
-  Object.entries(picks).forEach(([k,v])=>{
-    if(!v) return;
-    if(scope==='day' && !k.startsWith(prefix)) return;
-    const [,id] = k.split(':');
-    const m = /^d(\d+)_e(\d+)$/.exec(id); if(!m) return;
-    const di=parseInt(m[1],10), ei=parseInt(m[2],10);
-    const ev = planData?.days?.[di]?.events?.[ei]; if(!ev) return;
-    (ev.items||[]).forEach(it=>{
-      const ing=(it.ingredient||'').trim(); if(!ing) return;
-      const key = ing.toLowerCase();
-      const unit = normUnit(it.unit);
-      const q = parseFloat(it.quantity); const v2 = isNaN(q)?0:q;
-      if(!acc[key]) acc[key]={ name: ing, tsp:0, tbsp:0, cup:0, others:{} };
-      if(unit==='tsp'){ acc[key].tsp += v2; }
-      else if(unit==='tbsp'){ acc[key].tbsp += v2; }
-      else if(unit==='cup'){ acc[key].cup += v2; }
-      else {
-        acc[key].others[unit]=(acc[key].others[unit]||0)+v2;
-      }
-    });
-  });
-  return acc;
-}
-
-function fmtVol(cups, tbsp, tsp){
-  // normalize tsp -> tbsp -> cup
-  let totalTbsp = (cups*16) + tbsp + (tsp/3);
-  let outC = Math.floor(totalTbsp/16);
-  let remTbsp = totalTbsp - outC*16;
-  let outTb = Math.floor(remTbsp);
-  let outTsp = Math.round((remTbsp - outTb)*3);
-  const parts=[];
-  if(outC>0) parts.push(outC+' cup'+(outC>1?'s':''));
-  if(outTb>0) parts.push(outTb+' tbsp');
-  if(outTsp>0) parts.push(outTsp+' tsp');
-  if(parts.length===0) parts.push('as needed');
-  return parts.join(' + ');
-}
-
-function renderList(){
-  const scope = scopeSel.value;
-  const acc = aggregate(scope);
-  const lines = Object.values(acc).map(v=>{
-    const vol = (v.cup||0)+(v.tbsp||0)+(v.tsp||0);
-    const volLine = (v.cup||v.tbsp||v.tsp) ? fmtVol(v.cup||0, v.tbsp||0, v.tsp||0) : null;
-    const others = Object.entries(v.others).map(([u,q])=>`${Math.round(q*100)/100} ${u}`).join(', ');
-    const tail = [volLine, others].filter(Boolean).join('; ');
-    return `- ${v.name}: ${tail||'qty per labels'}`;
-  }).sort();
-  listEl.innerHTML = `<pre>${lines.join('\n')||'(no picks yet)'}</pre>`;
-}
-
-function savePicks(){ if(!planName) return; localStorage.setItem(storeKey(), JSON.stringify(picks)); }
-function loadPicks(){ const raw=localStorage.getItem(storeKey()); picks = raw? JSON.parse(raw):{}; }
-
-document.getElementById('clear').addEventListener('click', ()=>{picks={}; savePicks(); renderTotals(); renderDays(); renderList();});
-document.getElementById('export').addEventListener('click', ()=>{
-  const blob = new Blob([JSON.stringify({plan: planName, picks}, null, 2)], {type:'application/json'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download='carol-picks.json'; a.click();
-});
-document.getElementById('copy').addEventListener('click', ()=>{ const txt = listEl.innerText; navigator.clipboard.writeText(txt).then(()=>alert('Copied')); });
-document.getElementById('download').addEventListener('click', ()=>{ const a=document.createElement('a'); a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(listEl.innerText); a.download='shopping-list.txt'; a.click(); });
-
-document.getElementById('load').addEventListener('click', async ()=>{
-  if(!planSel.value) return;
-  planName = planSel.value;
-  planData = await fetchJSON('./plans/'+planName).catch(()=>null);
-  if(!planData){ alert('Plan file not found. Run the Carol plan workflow first.'); return; }
-  const days = planData.days||[];
-  const weeks = planData.weeks||Math.ceil(days.length/7);
-  if(days.length < weeks*7){
-    const warn = document.createElement('div');
-    warn.className='note hard'; warn.textContent='Plan contains only '+days.length+' day(s). I will show all I have. Re-run generator to fill '+(weeks*7)+' days.';
-    daysEl.before(warn);
-  }
-  // Populate days selector
-  const dayOpts = ['<option value="all">All days</option>'].concat(
-    days.map((d,di)=>`<option value="${di}">Day ${d.index||di+1}: ${d.day_label||('Day '+(di+1))}</option>`)
-  );
-  daySel.innerHTML = dayOpts.join('');
-  loadPicks();
-  renderBudgets(); renderTotals(); renderDays(); renderList();
-});
-
 (async()=>{
-  try{
-    const files = await loadPlansIndex();
-    planSel.innerHTML = files.length===0 ? '<option value="">(No plans found — run the Carol plan workflow)</option>' : files.map(f=>`<option value="${f}">${f}</option>`).join('');
-  }catch(e){
-    planSel.innerHTML = '<option value="">(Could not read plans index)</option>';
+  async function j(p){ const r=await fetch(p); if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }
+  function fmt(x){ return (Math.round(x*10)/10)||0 }
+  function aggList(plan){
+    // prefer provided lists; else aggregate from items
+    if (Array.isArray(plan.shopping_lists_2wk) && plan.shopping_lists_2wk.length){
+      const lines=[];
+      for(const blk of plan.shopping_lists_2wk){
+        lines.push('['+(blk.range||'two weeks')+']');
+        for(const k of ['produce','protein','dairy','pantry','frozen','spices']){
+          if(Array.isArray(blk[k]) && blk[k].length){ lines.push('  '+k+': '+blk[k].join(', ')); }
+        }
+        lines.push('');
+      }
+      return lines.join('\n').trim();
+    }
+    // fallback aggregation: group by ingredient+unit, convert tsp/tbsp/cup
+    const conv = { tsp:1, tbsp:3, cup:48 };
+    const m = new Map();
+    for(const d of plan.days||[]){
+      for(const ev of d.events||[]){
+        for(const it of ev.items||[]){
+          const name=(it.ingredient||'').trim(); if(!name) continue;
+          const q=Number(it.quantity||0); const u=(it.unit||'').toLowerCase();
+          if(!q) continue;
+          let key = name+'|'+u;
+          let val = q;
+          if(u in conv){ key = name+'|tsp'; val = q*conv[u]; }
+          m.set(key, (m.get(key)||0)+val);
+        }
+      }
+    }
+    // collapse tsp->tbsp/cup where possible
+    const out = [];
+    const buckets = {};
+    for(const [key,val] of m){
+      let [ing,u] = key.split('|');
+      let qty = val;
+      if(u==='tsp'){
+        let cups = Math.floor(qty/48); qty -= cups*48;
+        let tbsp = Math.floor(qty/3); qty -= tbsp*3;
+        const parts=[]; if(cups) parts.push(cups+' cup'); if(tbsp) parts.push(tbsp+' tbsp'); if(qty) parts.push(qty+' tsp');
+        (buckets['pantry'] ||= []).push(ing+': '+parts.join(' + '));
+      }else{
+        (buckets['pantry'] ||= []).push(ing+': '+fmt(qty)+' '+u);
+      }
+    }
+    const lines=['[two weeks]'];
+    for(const k of Object.keys(buckets)){ lines.push('  '+k+':'); for(const s of buckets[k]) lines.push('    - '+s); }
+    return lines.join('\n');
   }
+  const idx = await j('/pages/apps/carol/plans/index.json').catch(()=>null);
+  let planPath = null;
+  if(idx && Array.isArray(idx.files) && idx.files.length){
+    planPath = '/pages/apps/carol/plans/'+idx.files[0];
+  }else{
+    // guess most recent JSON
+    const tryPaths=['/pages/apps/carol/plans/'];
+    let listing = []; try { listing = await j('/pages/apps/carol/plans/index.json'); } catch(e){}
+    if(listing && listing.files && listing.files.length){ planPath='/pages/apps/carol/plans/'+listing.files[0]; }
+  }
+  if(!planPath){ document.getElementById('days').innerHTML='<div class="card">No plan found. Run Actions → Carol.</div>'; return; }
+  document.getElementById('open-json').href = planPath;
+
+  const plan = await j(planPath);
+  const meta = document.getElementById('meta');
+  meta.textContent = `Updated: ${plan.updated||''} • Pattern: ${plan.pattern||''} (${plan.region||''}) • Weeks: ${plan.weeks||''}`;
+  const daysEl = document.getElementById('days');
+  daysEl.innerHTML = (plan.days||[]).map(d=>{
+    const rows = (d.events||[]).map(ev=>{
+      const items = (ev.items||[]).map(i=>`${i.ingredient} — ${i.quantity} ${i.unit}${i.notes?` (${i.notes})`:''}`).join('<br>');
+      return `<tr><td><b>${ev.name}</b><div class="small">${ev.for||'Both'} · ${ev.type||''} · ${ev.time_hint||''}</div></td>
+                  <td class="small">${ev.kcal||0} kcal<br>${ev.sodium_mg||0} mg Na<br>${ev.added_sugars_g||0} g sugar<br>${ev.fiber_g||0} g fiber</td>
+                  <td>${items}</td></tr>`;
+    }).join('');
+    return `<div class="card"><h3>${d.day_label||('Day '+d.index)}</h3>
+              <table class="table"><tbody>${rows}</tbody></table></div>`;
+  }).join('');
+  const listText = aggList(plan);
+  document.getElementById('shop').textContent = listText;
+  document.getElementById('download-list').addEventListener('click', ()=>{
+    const a=document.createElement('a'); a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(listText); a.download='carol-shopping-list.txt'; a.click();
+  });
 })();
 </script>
+</body></html>

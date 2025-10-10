@@ -1,0 +1,17 @@
+﻿{
+  "updated": "2025-10-10T00:02:05Z",
+  "total_files": 8,
+  "total_megabytes": 56.31,
+  "by_extension": [
+    {
+      "count": 4,
+      "ext": ".jpg",
+      "mb": 0.03
+    },
+    {
+      "count": 4,
+      "ext": ".vrm",
+      "mb": 56.27
+    }
+  ]
+}

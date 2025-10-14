@@ -1,0 +1,3138 @@
+{
+  "updated": "2025-10-14T23:40:49Z",
+  "region": "EU",
+  "pattern": "DASH",
+  "weeks": 2,
+  "persons": [
+    {
+      "id": "A",
+      "name": "Ray",
+      "kcal": 1800,
+      "events_per_day_target": "6-8"
+    },
+    {
+      "id": "B",
+      "name": "Blanca",
+      "kcal": 1600,
+      "events_per_day_target": "6-8"
+    }
+  ],
+  "days": [
+    {
+      "index": 1,
+      "day_label": "Day 1",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or soy/almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ]
+        },
+        {
+          "name": "Chicken & avocado lettuce cups",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 380,
+          "sodium_mg": 420,
+          "added_sugars_g": 3,
+          "fiber_g": 8,
+          "items": [
+            {
+              "ingredient": "cooked chicken breast",
+              "quantity": 4,
+              "unit": "oz",
+              "notes": "diced"
+            },
+            {
+              "ingredient": "avocado",
+              "quantity": 0.5,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "butter lettuce",
+              "quantity": 6,
+              "unit": "leaf",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lemon juice",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Hummus (no cumin) with soft veg",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 180,
+          "sodium_mg": 220,
+          "added_sugars_g": 1,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "hummus (no cumin)",
+              "quantity": 3,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "cucumber",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": "peeled"
+            },
+            {
+              "ingredient": "steamed carrots",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "LF Greek yogurt + pineapple",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 210,
+          "sodium_mg": 80,
+          "added_sugars_g": 8,
+          "fiber_g": 0,
+          "items": [
+            {
+              "ingredient": "lactose-free greek yogurt",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "pineapple (canned in juice, drained)",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Air-fryer salmon + veg tray",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 520,
+          "sodium_mg": 360,
+          "added_sugars_g": 4,
+          "fiber_g": 6,
+          "items": [
+            {
+              "ingredient": "salmon fillet",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 2,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "mixed vegetables (frozen)",
+              "quantity": 2,
+              "unit": "cup",
+              "notes": "broccoli/cauliflower/carrots"
+            },
+            {
+              "ingredient": "lemon",
+              "quantity": 0.25,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "garlic powder",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Banana-spinach smoothie (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 180,
+          "sodium_mg": 80,
+          "added_sugars_g": 10,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "banana",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "small"
+            },
+            {
+              "ingredient": "spinach",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": "packed"
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "ground flaxseed",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "day_label": "Day 2",
+      "events": [
+        {
+          "name": "Cottage bowl (LF) with peach & oats",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 260,
+          "sodium_mg": 320,
+          "added_sugars_g": 7,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "lactose-free cottage cheese",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "peach (canned in juice, drained)",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "rolled oats",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Rice cake + PB + sliced banana",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 210,
+          "sodium_mg": 110,
+          "added_sugars_g": 7,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "rice cakes",
+              "quantity": 2,
+              "unit": "piece",
+              "notes": "plain"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 1.5,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "banana",
+              "quantity": 0.5,
+              "unit": "piece",
+              "notes": "sliced"
+            }
+          ]
+        },
+        {
+          "name": "Turkey & spinach wrap (soft tortilla)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 360,
+          "sodium_mg": 520,
+          "added_sugars_g": 3,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "soft whole-wheat tortilla",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "turkey breast (low-sodium)",
+              "quantity": 3,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "spinach",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "LF cream cheese",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Soft pear + almonds (slivered)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 190,
+          "sodium_mg": 0,
+          "added_sugars_g": 10,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "ripe pear",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "almonds (slivered)",
+              "quantity": 1,
+              "unit": "oz",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Tomato-basil soup (boxed, low-Na)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 220,
+          "sodium_mg": 380,
+          "added_sugars_g": 8,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "low-sodium tomato soup",
+              "quantity": 1.25,
+              "unit": "cup",
+              "notes": "microwave or stovetop"
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Air-fryer chicken bites (light panko)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 480,
+          "sodium_mg": 420,
+          "added_sugars_g": 3,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "chicken breast",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": "cubed"
+            },
+            {
+              "ingredient": "panko (light)",
+              "quantity": 0.25,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil spray",
+              "quantity": 6,
+              "unit": "spray",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Berry-cocoa shake (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 180,
+          "sodium_mg": 100,
+          "added_sugars_g": 10,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "frozen berries",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "unsweetened cocoa",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "day_label": "Day 3",
+      "events": [
+        {
+          "name": "Egg scramble (1 egg + whites) & toast",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 320,
+          "added_sugars_g": 3,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "egg",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "egg whites",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "whole-grain bread",
+              "quantity": 1,
+              "unit": "slice",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "spinach",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": "chopped"
+            }
+          ]
+        },
+        {
+          "name": "Yogurt (LF) + granola (low-sugar)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 230,
+          "sodium_mg": 120,
+          "added_sugars_g": 6,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "lactose-free greek yogurt",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "low-sugar granola",
+              "quantity": 0.33,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Tuna salad (no celery) on soft bread",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 380,
+          "sodium_mg": 520,
+          "added_sugars_g": 3,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "canned tuna (in water)",
+              "quantity": 1,
+              "unit": "can",
+              "notes": "drained"
+            },
+            {
+              "ingredient": "LF mayo",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": "olive or canola"
+            },
+            {
+              "ingredient": "relish (low-sugar)",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "soft whole-grain bread",
+              "quantity": 2,
+              "unit": "slice",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Soft banana + walnuts (chopped)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 190,
+          "sodium_mg": 1,
+          "added_sugars_g": 9,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "banana",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "walnuts (chopped)",
+              "quantity": 1,
+              "unit": "oz",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Carrot\u2011ginger puree (microwave)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 140,
+          "sodium_mg": 140,
+          "added_sugars_g": 6,
+          "fiber_g": 5,
+          "items": [
+            {
+              "ingredient": "steamed carrots",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "ginger powder",
+              "quantity": 0.25,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Turkey chili (low sodium, crock\u2011pot)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 520,
+          "sodium_mg": 520,
+          "added_sugars_g": 6,
+          "fiber_g": 9,
+          "items": [
+            {
+              "ingredient": "lean ground turkey",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "low-sodium beans (canned)",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": "rinsed"
+            },
+            {
+              "ingredient": "diced tomatoes (no salt added)",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "onion (easy)",
+              "quantity": 0.25,
+              "unit": "cup",
+              "notes": "finely diced"
+            },
+            {
+              "ingredient": "garlic powder",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Warm cinnamon oats (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 200,
+          "sodium_mg": 70,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "cinnamon",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "day_label": "Day 4",
+      "events": [
+        {
+          "name": "Protein overnight chia (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 300,
+          "sodium_mg": 90,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "chia seeds",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "vanilla extract",
+              "quantity": 0.25,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Soft peach + PB",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 190,
+          "sodium_mg": 2,
+          "added_sugars_g": 9,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "peach (canned in juice, drained)",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 1.5,
+              "unit": "tbsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Lentil soup (boxed, low-Na)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 380,
+          "sodium_mg": 420,
+          "added_sugars_g": 2,
+          "fiber_g": 8,
+          "items": [
+            {
+              "ingredient": "low-sodium lentil soup",
+              "quantity": 1.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Avocado toast (soft bread)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 250,
+          "sodium_mg": 200,
+          "added_sugars_g": 2,
+          "fiber_g": 6,
+          "items": [
+            {
+              "ingredient": "avocado",
+              "quantity": 0.5,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "soft whole-grain bread",
+              "quantity": 1,
+              "unit": "slice",
+              "notes": ""
+            },
+            {
+              "ingredient": "lemon juice",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "LF cheese stick + grapes",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 180,
+          "sodium_mg": 220,
+          "added_sugars_g": 8,
+          "fiber_g": 1,
+          "items": [
+            {
+              "ingredient": "lactose-free cheese stick",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "grapes",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Air-fryer turkey meatballs + veg",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 500,
+          "sodium_mg": 480,
+          "added_sugars_g": 4,
+          "fiber_g": 5,
+          "items": [
+            {
+              "ingredient": "lean turkey",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "panko (light)",
+              "quantity": 0.25,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "egg",
+              "quantity": 0.5,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "frozen mixed vegetables",
+              "quantity": 2,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Pineapple\u2011mint smoothie (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 170,
+          "sodium_mg": 70,
+          "added_sugars_g": 10,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "pineapple (frozen)",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "mint (dried)",
+              "quantity": 0.25,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "day_label": "Day 5",
+      "events": [
+        {
+          "name": "Oatmeal (LF) + blueberries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 260,
+          "sodium_mg": 70,
+          "added_sugars_g": 7,
+          "fiber_g": 5,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "blueberries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Soft-boiled egg + toast",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 210,
+          "sodium_mg": 200,
+          "added_sugars_g": 2,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "egg",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "soft whole-grain bread",
+              "quantity": 1,
+              "unit": "slice",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Canned chicken salad wraps",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 360,
+          "sodium_mg": 460,
+          "added_sugars_g": 2,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "canned chicken",
+              "quantity": 1,
+              "unit": "can",
+              "notes": "drained"
+            },
+            {
+              "ingredient": "LF mayo",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "butter lettuce",
+              "quantity": 6,
+              "unit": "leaf",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Yogurt (LF) + kiwi",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 210,
+          "sodium_mg": 80,
+          "added_sugars_g": 8,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "lactose-free greek yogurt",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "kiwi",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "peeled & sliced"
+            }
+          ]
+        },
+        {
+          "name": "Tomato & mozzarella (LF) plate",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 220,
+          "sodium_mg": 260,
+          "added_sugars_g": 4,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "tomato",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "ripe"
+            },
+            {
+              "ingredient": "lactose-free mozzarella",
+              "quantity": 2,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Air-fryer cod + potatoes (soft)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 490,
+          "sodium_mg": 420,
+          "added_sugars_g": 3,
+          "fiber_g": 5,
+          "items": [
+            {
+              "ingredient": "cod fillet",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "baby potatoes",
+              "quantity": 6,
+              "unit": "piece",
+              "notes": "microwave then crisp lightly"
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 2,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "garlic powder",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Cinnamon rice pudding (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 190,
+          "sodium_mg": 90,
+          "added_sugars_g": 9,
+          "fiber_g": 1,
+          "items": [
+            {
+              "ingredient": "cooked white rice",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "cinnamon",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "day_label": "Day 6",
+      "events": [
+        {
+          "name": "Chia-yogurt parfait (LF) + mango",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 90,
+          "added_sugars_g": 9,
+          "fiber_g": 6,
+          "items": [
+            {
+              "ingredient": "lactose-free greek yogurt",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "mango (frozen)",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Soft banana + PB wrap",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 240,
+          "sodium_mg": 260,
+          "added_sugars_g": 10,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "soft whole-wheat tortilla",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "banana",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Microwave sweet potato + cottage (LF)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 380,
+          "sodium_mg": 320,
+          "added_sugars_g": 8,
+          "fiber_g": 6,
+          "items": [
+            {
+              "ingredient": "sweet potato",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "lactose-free cottage cheese",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Crackers (low-Na) + LF cheese",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 210,
+          "sodium_mg": 180,
+          "added_sugars_g": 2,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "low-sodium crackers",
+              "quantity": 6,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free cheese",
+              "quantity": 1.5,
+              "unit": "oz",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Tomato-cucumber salad (peeled, easy)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 170,
+          "sodium_mg": 150,
+          "added_sugars_g": 4,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "tomato",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "cucumber",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": "peeled"
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lemon juice",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Turkey skillet (single burner)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 520,
+          "sodium_mg": 460,
+          "added_sugars_g": 4,
+          "fiber_g": 6,
+          "items": [
+            {
+              "ingredient": "lean ground turkey",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "frozen veg medley",
+              "quantity": 2,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 2,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "garlic powder",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Chocolate PB smoothie (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 210,
+          "sodium_mg": 110,
+          "added_sugars_g": 9,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "unsweetened cocoa",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "day_label": "Day 7",
+      "events": [
+        {
+          "name": "LF yogurt + apple-cinnamon",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 250,
+          "sodium_mg": 90,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "lactose-free greek yogurt",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "diced soft"
+            },
+            {
+              "ingredient": "cinnamon",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Grapes + almonds (slivered)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 180,
+          "sodium_mg": 1,
+          "added_sugars_g": 9,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "grapes",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "almonds (slivered)",
+              "quantity": 1,
+              "unit": "oz",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Bean & rice bowl (microwave)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 420,
+          "sodium_mg": 480,
+          "added_sugars_g": 3,
+          "fiber_g": 9,
+          "items": [
+            {
+              "ingredient": "brown rice (microwave pouch)",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "low-sodium black beans (rinsed)",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lime juice",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Hummus + soft pita (no cumin)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 210,
+          "sodium_mg": 260,
+          "added_sugars_g": 2,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "hummus (no cumin)",
+              "quantity": 3,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "soft pita",
+              "quantity": 0.5,
+              "unit": "piece",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "LF cheese + pear",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 190,
+          "sodium_mg": 220,
+          "added_sugars_g": 7,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "lactose-free cheese",
+              "quantity": 1.5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "pear",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Air-fryer chicken & veg tray",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 480,
+          "sodium_mg": 420,
+          "added_sugars_g": 3,
+          "fiber_g": 5,
+          "items": [
+            {
+              "ingredient": "chicken breast",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "frozen mixed vegetables",
+              "quantity": 2,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 2,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Vanilla oats shake (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 200,
+          "sodium_mg": 90,
+          "added_sugars_g": 9,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "rolled oats",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "vanilla extract",
+              "quantity": 0.25,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "day_label": "Day 8",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or soy/almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ]
+        },
+        {
+          "name": "Chicken & avocado lettuce cups",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 380,
+          "sodium_mg": 420,
+          "added_sugars_g": 3,
+          "fiber_g": 8,
+          "items": [
+            {
+              "ingredient": "cooked chicken breast",
+              "quantity": 4,
+              "unit": "oz",
+              "notes": "diced"
+            },
+            {
+              "ingredient": "avocado",
+              "quantity": 0.5,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "butter lettuce",
+              "quantity": 6,
+              "unit": "leaf",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lemon juice",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Hummus (no cumin) with soft veg",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 180,
+          "sodium_mg": 220,
+          "added_sugars_g": 1,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "hummus (no cumin)",
+              "quantity": 3,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "cucumber",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": "peeled"
+            },
+            {
+              "ingredient": "steamed carrots",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "LF Greek yogurt + pineapple",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 210,
+          "sodium_mg": 80,
+          "added_sugars_g": 8,
+          "fiber_g": 0,
+          "items": [
+            {
+              "ingredient": "lactose-free greek yogurt",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "pineapple (canned in juice, drained)",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Air-fryer salmon + veg tray",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 520,
+          "sodium_mg": 360,
+          "added_sugars_g": 4,
+          "fiber_g": 6,
+          "items": [
+            {
+              "ingredient": "salmon fillet",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 2,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "mixed vegetables (frozen)",
+              "quantity": 2,
+              "unit": "cup",
+              "notes": "broccoli/cauliflower/carrots"
+            },
+            {
+              "ingredient": "lemon",
+              "quantity": 0.25,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "garlic powder",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Banana-spinach smoothie (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 180,
+          "sodium_mg": 80,
+          "added_sugars_g": 10,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "banana",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "small"
+            },
+            {
+              "ingredient": "spinach",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": "packed"
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "ground flaxseed",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "day_label": "Day 9",
+      "events": [
+        {
+          "name": "Cottage bowl (LF) with peach & oats",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 260,
+          "sodium_mg": 320,
+          "added_sugars_g": 7,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "lactose-free cottage cheese",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "peach (canned in juice, drained)",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "rolled oats",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Rice cake + PB + sliced banana",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 210,
+          "sodium_mg": 110,
+          "added_sugars_g": 7,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "rice cakes",
+              "quantity": 2,
+              "unit": "piece",
+              "notes": "plain"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 1.5,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "banana",
+              "quantity": 0.5,
+              "unit": "piece",
+              "notes": "sliced"
+            }
+          ]
+        },
+        {
+          "name": "Turkey & spinach wrap (soft tortilla)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 360,
+          "sodium_mg": 520,
+          "added_sugars_g": 3,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "soft whole-wheat tortilla",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "turkey breast (low-sodium)",
+              "quantity": 3,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "spinach",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "LF cream cheese",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Soft pear + almonds (slivered)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 190,
+          "sodium_mg": 0,
+          "added_sugars_g": 10,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "ripe pear",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "almonds (slivered)",
+              "quantity": 1,
+              "unit": "oz",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Tomato-basil soup (boxed, low-Na)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 220,
+          "sodium_mg": 380,
+          "added_sugars_g": 8,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "low-sodium tomato soup",
+              "quantity": 1.25,
+              "unit": "cup",
+              "notes": "microwave or stovetop"
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Air-fryer chicken bites (light panko)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 480,
+          "sodium_mg": 420,
+          "added_sugars_g": 3,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "chicken breast",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": "cubed"
+            },
+            {
+              "ingredient": "panko (light)",
+              "quantity": 0.25,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil spray",
+              "quantity": 6,
+              "unit": "spray",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Berry-cocoa shake (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 180,
+          "sodium_mg": 100,
+          "added_sugars_g": 10,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "frozen berries",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "unsweetened cocoa",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "day_label": "Day 10",
+      "events": [
+        {
+          "name": "Egg scramble (1 egg + whites) & toast",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 320,
+          "added_sugars_g": 3,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "egg",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "egg whites",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "whole-grain bread",
+              "quantity": 1,
+              "unit": "slice",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "spinach",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": "chopped"
+            }
+          ]
+        },
+        {
+          "name": "Yogurt (LF) + granola (low-sugar)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 230,
+          "sodium_mg": 120,
+          "added_sugars_g": 6,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "lactose-free greek yogurt",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "low-sugar granola",
+              "quantity": 0.33,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Tuna salad (no celery) on soft bread",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 380,
+          "sodium_mg": 520,
+          "added_sugars_g": 3,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "canned tuna (in water)",
+              "quantity": 1,
+              "unit": "can",
+              "notes": "drained"
+            },
+            {
+              "ingredient": "LF mayo",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": "olive or canola"
+            },
+            {
+              "ingredient": "relish (low-sugar)",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "soft whole-grain bread",
+              "quantity": 2,
+              "unit": "slice",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Soft banana + walnuts (chopped)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 190,
+          "sodium_mg": 1,
+          "added_sugars_g": 9,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "banana",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "walnuts (chopped)",
+              "quantity": 1,
+              "unit": "oz",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Carrot\u2011ginger puree (microwave)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 140,
+          "sodium_mg": 140,
+          "added_sugars_g": 6,
+          "fiber_g": 5,
+          "items": [
+            {
+              "ingredient": "steamed carrots",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "ginger powder",
+              "quantity": 0.25,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Turkey chili (low sodium, crock\u2011pot)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 520,
+          "sodium_mg": 520,
+          "added_sugars_g": 6,
+          "fiber_g": 9,
+          "items": [
+            {
+              "ingredient": "lean ground turkey",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "low-sodium beans (canned)",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": "rinsed"
+            },
+            {
+              "ingredient": "diced tomatoes (no salt added)",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "onion (easy)",
+              "quantity": 0.25,
+              "unit": "cup",
+              "notes": "finely diced"
+            },
+            {
+              "ingredient": "garlic powder",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Warm cinnamon oats (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 200,
+          "sodium_mg": 70,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "cinnamon",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "day_label": "Day 11",
+      "events": [
+        {
+          "name": "Protein overnight chia (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 300,
+          "sodium_mg": 90,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "chia seeds",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "vanilla extract",
+              "quantity": 0.25,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Soft peach + PB",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 190,
+          "sodium_mg": 2,
+          "added_sugars_g": 9,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "peach (canned in juice, drained)",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 1.5,
+              "unit": "tbsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Lentil soup (boxed, low-Na)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 380,
+          "sodium_mg": 420,
+          "added_sugars_g": 2,
+          "fiber_g": 8,
+          "items": [
+            {
+              "ingredient": "low-sodium lentil soup",
+              "quantity": 1.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Avocado toast (soft bread)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 250,
+          "sodium_mg": 200,
+          "added_sugars_g": 2,
+          "fiber_g": 6,
+          "items": [
+            {
+              "ingredient": "avocado",
+              "quantity": 0.5,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "soft whole-grain bread",
+              "quantity": 1,
+              "unit": "slice",
+              "notes": ""
+            },
+            {
+              "ingredient": "lemon juice",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "LF cheese stick + grapes",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 180,
+          "sodium_mg": 220,
+          "added_sugars_g": 8,
+          "fiber_g": 1,
+          "items": [
+            {
+              "ingredient": "lactose-free cheese stick",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "grapes",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Air-fryer turkey meatballs + veg",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 500,
+          "sodium_mg": 480,
+          "added_sugars_g": 4,
+          "fiber_g": 5,
+          "items": [
+            {
+              "ingredient": "lean turkey",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "panko (light)",
+              "quantity": 0.25,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "egg",
+              "quantity": 0.5,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "frozen mixed vegetables",
+              "quantity": 2,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Pineapple\u2011mint smoothie (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 170,
+          "sodium_mg": 70,
+          "added_sugars_g": 10,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "pineapple (frozen)",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "mint (dried)",
+              "quantity": 0.25,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "day_label": "Day 12",
+      "events": [
+        {
+          "name": "Oatmeal (LF) + blueberries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 260,
+          "sodium_mg": 70,
+          "added_sugars_g": 7,
+          "fiber_g": 5,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "blueberries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Soft-boiled egg + toast",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 210,
+          "sodium_mg": 200,
+          "added_sugars_g": 2,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "egg",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "soft whole-grain bread",
+              "quantity": 1,
+              "unit": "slice",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Canned chicken salad wraps",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 360,
+          "sodium_mg": 460,
+          "added_sugars_g": 2,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "canned chicken",
+              "quantity": 1,
+              "unit": "can",
+              "notes": "drained"
+            },
+            {
+              "ingredient": "LF mayo",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "butter lettuce",
+              "quantity": 6,
+              "unit": "leaf",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Yogurt (LF) + kiwi",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 210,
+          "sodium_mg": 80,
+          "added_sugars_g": 8,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "lactose-free greek yogurt",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "kiwi",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "peeled & sliced"
+            }
+          ]
+        },
+        {
+          "name": "Tomato & mozzarella (LF) plate",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 220,
+          "sodium_mg": 260,
+          "added_sugars_g": 4,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "tomato",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "ripe"
+            },
+            {
+              "ingredient": "lactose-free mozzarella",
+              "quantity": 2,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Air-fryer cod + potatoes (soft)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 490,
+          "sodium_mg": 420,
+          "added_sugars_g": 3,
+          "fiber_g": 5,
+          "items": [
+            {
+              "ingredient": "cod fillet",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "baby potatoes",
+              "quantity": 6,
+              "unit": "piece",
+              "notes": "microwave then crisp lightly"
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 2,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "garlic powder",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Cinnamon rice pudding (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 190,
+          "sodium_mg": 90,
+          "added_sugars_g": 9,
+          "fiber_g": 1,
+          "items": [
+            {
+              "ingredient": "cooked white rice",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "cinnamon",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "day_label": "Day 13",
+      "events": [
+        {
+          "name": "Chia-yogurt parfait (LF) + mango",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 90,
+          "added_sugars_g": 9,
+          "fiber_g": 6,
+          "items": [
+            {
+              "ingredient": "lactose-free greek yogurt",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "mango (frozen)",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Soft banana + PB wrap",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 240,
+          "sodium_mg": 260,
+          "added_sugars_g": 10,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "soft whole-wheat tortilla",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "banana",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Microwave sweet potato + cottage (LF)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 380,
+          "sodium_mg": 320,
+          "added_sugars_g": 8,
+          "fiber_g": 6,
+          "items": [
+            {
+              "ingredient": "sweet potato",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "lactose-free cottage cheese",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Crackers (low-Na) + LF cheese",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 210,
+          "sodium_mg": 180,
+          "added_sugars_g": 2,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "low-sodium crackers",
+              "quantity": 6,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free cheese",
+              "quantity": 1.5,
+              "unit": "oz",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Tomato-cucumber salad (peeled, easy)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 170,
+          "sodium_mg": 150,
+          "added_sugars_g": 4,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "tomato",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            },
+            {
+              "ingredient": "cucumber",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": "peeled"
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lemon juice",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Turkey skillet (single burner)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 520,
+          "sodium_mg": 460,
+          "added_sugars_g": 4,
+          "fiber_g": 6,
+          "items": [
+            {
+              "ingredient": "lean ground turkey",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "frozen veg medley",
+              "quantity": 2,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 2,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "garlic powder",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Chocolate PB smoothie (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 210,
+          "sodium_mg": 110,
+          "added_sugars_g": 9,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "unsweetened cocoa",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "day_label": "Day 14",
+      "events": [
+        {
+          "name": "LF yogurt + apple-cinnamon",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 250,
+          "sodium_mg": 90,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "lactose-free greek yogurt",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "diced soft"
+            },
+            {
+              "ingredient": "cinnamon",
+              "quantity": 0.5,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Grapes + almonds (slivered)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 180,
+          "sodium_mg": 1,
+          "added_sugars_g": 9,
+          "fiber_g": 2,
+          "items": [
+            {
+              "ingredient": "grapes",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "almonds (slivered)",
+              "quantity": 1,
+              "unit": "oz",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Bean & rice bowl (microwave)",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "midday",
+          "kcal": 420,
+          "sodium_mg": 480,
+          "added_sugars_g": 3,
+          "fiber_g": 9,
+          "items": [
+            {
+              "ingredient": "brown rice (microwave pouch)",
+              "quantity": 1,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "low-sodium black beans (rinsed)",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lime juice",
+              "quantity": 1,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Hummus + soft pita (no cumin)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "afternoon",
+          "kcal": 210,
+          "sodium_mg": 260,
+          "added_sugars_g": 2,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "hummus (no cumin)",
+              "quantity": 3,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "soft pita",
+              "quantity": 0.5,
+              "unit": "piece",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "LF cheese + pear",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "late afternoon",
+          "kcal": 190,
+          "sodium_mg": 220,
+          "added_sugars_g": 7,
+          "fiber_g": 3,
+          "items": [
+            {
+              "ingredient": "lactose-free cheese",
+              "quantity": 1.5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "pear",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Air-fryer chicken & veg tray",
+          "for": "Both",
+          "type": "mini-meal",
+          "time_hint": "evening",
+          "kcal": 480,
+          "sodium_mg": 420,
+          "added_sugars_g": 3,
+          "fiber_g": 5,
+          "items": [
+            {
+              "ingredient": "chicken breast",
+              "quantity": 5,
+              "unit": "oz",
+              "notes": ""
+            },
+            {
+              "ingredient": "frozen mixed vegetables",
+              "quantity": 2,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "olive oil",
+              "quantity": 2,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "name": "Vanilla oats shake (LF)",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "night",
+          "kcal": 200,
+          "sodium_mg": 90,
+          "added_sugars_g": 9,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "rolled oats",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "vanilla extract",
+              "quantity": 0.25,
+              "unit": "tsp",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "shopping_lists_2wk": [
+    {
+      "range": "wk1-2",
+      "produce": [
+        "bananas",
+        "apples",
+        "pears",
+        "grapes",
+        "kiwi",
+        "lemons/limes",
+        "avocados",
+        "spinach",
+        "tomatoes",
+        "cucumbers (peeled)",
+        "carrots",
+        "mixed frozen vegetables",
+        "baby potatoes",
+        "frozen berries",
+        "frozen mango",
+        "pineapple (canned in juice)"
+      ],
+      "protein": [
+        "chicken breast",
+        "salmon fillets",
+        "cod fillets",
+        "lean ground turkey",
+        "canned tuna (water)",
+        "canned chicken"
+      ],
+      "dairy": [
+        "lactose-free milk",
+        "lactose-free greek yogurt",
+        "lactose-free cottage cheese",
+        "lactose-free mozzarella",
+        "LF cheese sticks"
+      ],
+      "pantry": [
+        "rolled oats",
+        "chia seeds",
+        "ground flaxseed",
+        "olive oil",
+        "garlic powder",
+        "ginger powder",
+        "cinnamon",
+        "low-sodium crackers",
+        "soft whole-wheat tortillas",
+        "soft whole-grain bread",
+        "brown rice (microwave pouches)",
+        "low-sodium black beans",
+        "low-sodium lentil soup",
+        "low-sodium tomato soup",
+        "panko (light)",
+        "peanut butter",
+        "low-sugar granola",
+        "relish (low-sugar)",
+        "LF mayo"
+      ],
+      "frozen": [
+        "mixed vegetables (2\u20133 bags)"
+      ],
+      "spices": [
+        "black pepper",
+        "paprika (no cumin)",
+        "dried basil",
+        "dried mint"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+name: Carol — Reindex Plans (only)
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  reindex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Index plans
+        shell: pwsh
+        run: |
+          $dir = "pages/apps/carol/plans"
+          New-Item -ItemType Directory -Force -Path $dir | Out-Null
+          $files = @()
+          if (Test-Path $dir) {
+            $files = Get-ChildItem -Path $dir -Filter *.json | Sort-Object LastWriteTime -Descending | ForEach-Object { $_.Name }
+          }
+          $obj = @{ updated=(Get-Date).ToUniversalTime().ToString('s')+'Z'; files=$files }
+          $json = $obj | ConvertTo-Json -Depth 4
+          Set-Content -Path (Join-Path $dir 'index.json') -Value $json -Encoding UTF8
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/carol/plans/index.json
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(carol): reindex plans only" && git push; fi

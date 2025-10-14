@@ -8,23 +8,25 @@ header,main{padding:14px}h1{margin:0 0 6px 0}
 .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .card{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px}
 .small{font-size:12px;color:#94a3b8}
-.badge{border:1px solid #334155;border-radius:10px;padding:2px 6px;font-size:12px;margin-right:6px}
-.table{width:100%;border-collapse:collapse} .table td,.table th{border-bottom:1px solid #172033;padding:6px}
+.table{width:100%;border-collapse:collapse} .table td,.table th{border-bottom:1px solid #172033;padding:6px;vertical-align:top}
 .btn{display:inline-block;padding:8px 10px;border:1px solid #334155;border-radius:10px;text-decoration:none;color:var(--ink);background:#0b1220;margin-right:6px}
 .btn:hover{border-color:#3b82f6;color:white}
 pre.wrap{white-space:pre-wrap}
+.warn{background:#33281a;color:#fcd34d;border:1px solid #6b4a2f;padding:8px;border-radius:8px;margin:8px 0}
 </style></head><body>
 <header>
   <h1>Carol — Two‑Week Plan</h1>
-  <div class="small">This view shows the latest generated plan. No selections, just read‑only + export shopping list. Use Actions → Carol to regenerate.</div>
+  <div class="small">Read‑only plan. Export TXT or Print/PDF. To regenerate, run the Carol workflow in Actions.</div>
   <div id="meta" class="small"></div>
   <div style="margin-top:8px">
     <a class="btn" id="open-json" target="_blank">Open Plan JSON</a>
+    <a class="btn" href="/pages/apps/carol/videos.html" target="_blank">Videos</a>
     <button class="btn" id="download-list">Download Shopping List (.txt)</button>
     <button class="btn" onclick="window.print()">Print / Save PDF</button>
   </div>
 </header>
 <main>
+  <div id="troubles" class="warn" style="display:none"></div>
   <div class="grid" id="days"></div>
   <div class="card">
     <h3>Shopping List (2 weeks)</h3>
@@ -33,72 +35,39 @@ pre.wrap{white-space:pre-wrap}
 </main>
 <script>
 (async()=>{
-  async function j(p){ const r=await fetch(p); if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }
+  const troubles=document.getElementById('troubles');
+  function showTrouble(msg){ troubles.textContent=msg; troubles.style.display='block'; }
+  async function j(p){ const r=await fetch(p); if(!r.ok) throw new Error('HTTP '+r.status+' @ '+p); return r.json(); }
   function fmt(x){ return (Math.round(x*10)/10)||0 }
   function aggList(plan){
-    // prefer provided lists; else aggregate from items
     if (Array.isArray(plan.shopping_lists_2wk) && plan.shopping_lists_2wk.length){
-      const lines=[];
-      for(const blk of plan.shopping_lists_2wk){
+      const lines=[]; for(const blk of plan.shopping_lists_2wk){
         lines.push('['+(blk.range||'two weeks')+']');
-        for(const k of ['produce','protein','dairy','pantry','frozen','spices']){
-          if(Array.isArray(blk[k]) && blk[k].length){ lines.push('  '+k+': '+blk[k].join(', ')); }
-        }
+        for(const k of ['produce','protein','dairy','pantry','frozen','spices']){ if(Array.isArray(blk[k]) && blk[k].length){ lines.push('  '+k+': '+blk[k].join(', ')); } }
         lines.push('');
-      }
-      return lines.join('\n').trim();
+      } return lines.join('\n').trim();
     }
-    // fallback aggregation: group by ingredient+unit, convert tsp/tbsp/cup
-    const conv = { tsp:1, tbsp:3, cup:48 };
-    const m = new Map();
-    for(const d of plan.days||[]){
-      for(const ev of d.events||[]){
-        for(const it of ev.items||[]){
-          const name=(it.ingredient||'').trim(); if(!name) continue;
-          const q=Number(it.quantity||0); const u=(it.unit||'').toLowerCase();
-          if(!q) continue;
-          let key = name+'|'+u;
-          let val = q;
-          if(u in conv){ key = name+'|tsp'; val = q*conv[u]; }
-          m.set(key, (m.get(key)||0)+val);
-        }
-      }
-    }
-    // collapse tsp->tbsp/cup where possible
-    const out = [];
-    const buckets = {};
-    for(const [key,val] of m){
-      let [ing,u] = key.split('|');
-      let qty = val;
-      if(u==='tsp'){
-        let cups = Math.floor(qty/48); qty -= cups*48;
-        let tbsp = Math.floor(qty/3); qty -= tbsp*3;
-        const parts=[]; if(cups) parts.push(cups+' cup'); if(tbsp) parts.push(tbsp+' tbsp'); if(qty) parts.push(qty+' tsp');
-        (buckets['pantry'] ||= []).push(ing+': '+parts.join(' + '));
-      }else{
-        (buckets['pantry'] ||= []).push(ing+': '+fmt(qty)+' '+u);
-      }
-    }
-    const lines=['[two weeks]'];
-    for(const k of Object.keys(buckets)){ lines.push('  '+k+':'); for(const s of buckets[k]) lines.push('    - '+s); }
-    return lines.join('\n');
+    const conv={tsp:1,tbsp:3,cup:48}; const m=new Map();
+    for(const d of plan.days||[]){ for(const ev of d.events||[]){ for(const it of ev.items||[]){
+      const name=(it.ingredient||'').trim(); if(!name) continue; const q=Number(it.quantity||0); const u=(it.unit||'').toLowerCase(); if(!q) continue;
+      let key=name+'|'+u; let val=q; if(u in conv){ key=name+'|tsp'; val=q*conv[u]; } m.set(key,(m.get(key)||0)+val);
+    }}} const out=[]; const buckets={};
+    for(const [key,val] of m){ let [ing,u]=key.split('|'); let qty=val; if(u==='tsp'){ let cups=Math.floor(qty/48); qty-=cups*48; let tbsp=Math.floor(qty/3); qty-=tbsp*3; const parts=[]; if(cups) parts.push(cups+' cup'); if(tbsp) parts.push(tbsp+' tbsp'); if(qty) parts.push(qty+' tsp'); (buckets['pantry'] ||= []).push(ing+': '+parts.join(' + ')); } else { (buckets['pantry'] ||= []).push(ing+': '+fmt(qty)+' '+u); } }
+    const lines=['[two weeks]']; for(const k of Object.keys(buckets)){ lines.push('  '+k+':'); for(const s of buckets[k]) lines.push('    - '+s); } return lines.join('\n');
   }
-  const idx = await j('/pages/apps/carol/plans/index.json').catch(()=>null);
-  let planPath = null;
-  if(idx && Array.isArray(idx.files) && idx.files.length){
-    planPath = '/pages/apps/carol/plans/'+idx.files[0];
-  }else{
-    // guess most recent JSON
-    const tryPaths=['/pages/apps/carol/plans/'];
-    let listing = []; try { listing = await j('/pages/apps/carol/plans/index.json'); } catch(e){}
-    if(listing && listing.files && listing.files.length){ planPath='/pages/apps/carol/plans/'+listing.files[0]; }
+  let planPath = null, plan=null;
+  // Try index.json first
+  try{
+    const idx = await j('/pages/apps/carol/plans/index.json');
+    if(idx && Array.isArray(idx.files) && idx.files.length){ planPath='/pages/apps/carol/plans/'+idx.files[0]; }
+    else { showTrouble('index.json exists but has no files — run Actions → Carol or reindex plans.'); }
+  }catch(e){
+    showTrouble('Could not fetch /pages/apps/carol/plans/index.json (maybe not published yet). Run Actions → Carol, then Deploy GitHub Pages.');
   }
-  if(!planPath){ document.getElementById('days').innerHTML='<div class="card">No plan found. Run Actions → Carol.</div>'; return; }
+  if(!planPath){ document.getElementById('days').innerHTML='<div class="card">No plan found.</div>'; return; }
   document.getElementById('open-json').href = planPath;
-
-  const plan = await j(planPath);
-  const meta = document.getElementById('meta');
-  meta.textContent = `Updated: ${plan.updated||''} • Pattern: ${plan.pattern||''} (${plan.region||''}) • Weeks: ${plan.weeks||''}`;
+  try{ plan = await j(planPath); }catch(e){ showTrouble('Could not fetch the plan JSON: '+e.message); return; }
+  document.getElementById('meta').textContent = `Updated: ${plan.updated||''} • Pattern: ${plan.pattern||''} (${plan.region||''}) • Weeks: ${plan.weeks||''}`;
   const daysEl = document.getElementById('days');
   daysEl.innerHTML = (plan.days||[]).map(d=>{
     const rows = (d.events||[]).map(ev=>{
@@ -107,8 +76,7 @@ pre.wrap{white-space:pre-wrap}
                   <td class="small">${ev.kcal||0} kcal<br>${ev.sodium_mg||0} mg Na<br>${ev.added_sugars_g||0} g sugar<br>${ev.fiber_g||0} g fiber</td>
                   <td>${items}</td></tr>`;
     }).join('');
-    return `<div class="card"><h3>${d.day_label||('Day '+d.index)}</h3>
-              <table class="table"><tbody>${rows}</tbody></table></div>`;
+    return `<div class="card"><h3>${d.day_label||('Day '+d.index)}</h3><table class="table"><tbody>${rows}</tbody></table></div>`;
   }).join('');
   const listText = aggList(plan);
   document.getElementById('shop').textContent = listText;
@@ -116,5 +84,4 @@ pre.wrap{white-space:pre-wrap}
     const a=document.createElement('a'); a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(listText); a.download='carol-shopping-list.txt'; a.click();
   });
 })();
-</script>
-</body></html>
+</script></body></html>

@@ -1,0 +1,18 @@
+name: Jem — Import Samsung Health (optional)
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import Samsung exports
+        shell: pwsh
+        run: pwsh -File scripts/Jem-Import-SamsungHealth.ps1 -ImportsDir "pages/apps/jem/imports" -Output "pages/apps/jem/programs/biometrics.json"
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/jem/programs/biometrics.json
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(jem): biometrics import" && git push; fi

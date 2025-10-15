@@ -1,0 +1,18 @@
+name: Carol — Aggregate & Quantize Shopping List
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  quantize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aggregate
+        shell: pwsh
+        run: pwsh -File scripts/Carol-Aggregate-Packages.ps1 -Region "US"
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/carol/plans/shopping-quantized.json
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(carol): quantized shopping list" && git push; fi

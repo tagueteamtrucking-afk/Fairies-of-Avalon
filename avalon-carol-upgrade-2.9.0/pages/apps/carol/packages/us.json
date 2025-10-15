@@ -1,0 +1,218 @@
+{
+  "updated": "2025-10-15T00:56:00Z",
+  "packages": {
+    "lactose-free milk": {
+      "unit": "fl_oz",
+      "packs": [
+        32,
+        64,
+        96
+      ],
+      "note": "Lactaid lists 32/64/96 fl oz sizes"
+    },
+    "greek yogurt": {
+      "unit": "oz",
+      "packs": [
+        32
+      ],
+      "alt": [
+        24
+      ],
+      "note": "Greek yogurt tubs often 32 oz; lactose-free tubs often 24 oz"
+    },
+    "lactose-free greek yogurt": {
+      "unit": "oz",
+      "packs": [
+        24,
+        32
+      ]
+    },
+    "lactose-free cottage cheese": {
+      "unit": "oz",
+      "packs": [
+        16
+      ]
+    },
+    "lactose-free mozzarella": {
+      "unit": "oz",
+      "packs": [
+        8
+      ]
+    },
+    "lactose-free cheese stick": {
+      "unit": "count",
+      "packs": [
+        12
+      ]
+    },
+    "rolled oats": {
+      "unit": "oz",
+      "packs": [
+        42
+      ],
+      "note": "Standard canister 42 oz"
+    },
+    "low-sugar granola": {
+      "unit": "oz",
+      "packs": [
+        11,
+        12
+      ]
+    },
+    "chia seeds": {
+      "unit": "oz",
+      "packs": [
+        12
+      ]
+    },
+    "ground flaxseed": {
+      "unit": "oz",
+      "packs": [
+        12
+      ]
+    },
+    "peanut butter": {
+      "unit": "oz",
+      "packs": [
+        16
+      ]
+    },
+    "soft whole-wheat tortilla": {
+      "unit": "count",
+      "packs": [
+        8,
+        10
+      ]
+    },
+    "soft whole-grain bread": {
+      "unit": "oz",
+      "packs": [
+        22,
+        24
+      ]
+    },
+    "eggs": {
+      "unit": "count",
+      "packs": [
+        12,
+        18
+      ]
+    },
+    "canned tuna (in water)": {
+      "unit": "oz",
+      "packs": [
+        5
+      ]
+    },
+    "canned chicken": {
+      "unit": "oz",
+      "packs": [
+        12.5
+      ]
+    },
+    "low-sodium black beans (rinsed)": {
+      "unit": "oz",
+      "packs": [
+        15.5
+      ]
+    },
+    "low-sodium beans (canned)": {
+      "unit": "oz",
+      "packs": [
+        15.5
+      ]
+    },
+    "diced tomatoes (no salt added)": {
+      "unit": "oz",
+      "packs": [
+        14.5,
+        28
+      ]
+    },
+    "low-sodium lentil soup": {
+      "unit": "oz",
+      "packs": [
+        16.9
+      ]
+    },
+    "low-sodium tomato soup": {
+      "unit": "oz",
+      "packs": [
+        10.75,
+        17
+      ]
+    },
+    "brown rice (microwave pouch)": {
+      "unit": "oz",
+      "packs": [
+        8.8
+      ]
+    },
+    "frozen mixed vegetables": {
+      "unit": "oz",
+      "packs": [
+        12,
+        16
+      ]
+    },
+    "frozen berries": {
+      "unit": "oz",
+      "packs": [
+        16
+      ]
+    },
+    "salmon fillet": {
+      "unit": "oz",
+      "packs": [
+        16,
+        32
+      ]
+    },
+    "cod fillet": {
+      "unit": "oz",
+      "packs": [
+        16,
+        32
+      ]
+    },
+    "lean ground turkey": {
+      "unit": "oz",
+      "packs": [
+        16,
+        20
+      ]
+    },
+    "rice cakes": {
+      "unit": "count",
+      "packs": [
+        14
+      ]
+    },
+    "low-sodium crackers": {
+      "unit": "oz",
+      "packs": [
+        8,
+        10
+      ]
+    },
+    "soft pita": {
+      "unit": "count",
+      "packs": [
+        6
+      ]
+    },
+    "baby potatoes": {
+      "unit": "oz",
+      "packs": [
+        24
+      ]
+    },
+    "soft whole-wheat tortillas": {
+      "unit": "count",
+      "packs": [
+        8,
+        10
+      ]
+    }
+  }
+}

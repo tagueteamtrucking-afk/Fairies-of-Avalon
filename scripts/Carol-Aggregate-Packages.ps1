@@ -1,4 +1,7 @@
-param([string]$Region="US")
+param(
+  [string]$Region="US",
+  [int]$Persons=2
+)
 $root=Split-Path -Parent $PSScriptRoot
 $plansDir = Join-Path $root 'pages/apps/carol/plans'
 $idxPath  = Join-Path $plansDir 'index.json'
@@ -14,23 +17,28 @@ if ($Region -eq "EU") { $pkgPath = Join-Path $root "pages/apps/carol/packages/eu
 if (-not (Test-Path $pkgPath)) { Write-Warning "Package map $pkgPath not found; using US defaults"; $pkgPath = Join-Path $root "pages/apps/carol/packages/us.json" }
 $pkg = Get-Content -Raw -Path $pkgPath | ConvertFrom-Json
 
-# unit conversions
 $toFlOz = @{ tsp=0.1666667; tbsp=0.5; cup=8; "fl oz"=1; floz=1 }
-$toTsp  = @{ tsp=1; tbsp=3; cup=48 }
-$toOzWeight = @{ tbsp_pb=0.56; tbsp_chia=0.42; tbsp_flax=0.25; cup_oats=2.82; "oz"=1; g=0.035274 } # approximate
+$toOzWeight = @{ tbsp_pb=0.56; tbsp_hummus=0.5; tbsp_chia=0.42; tbsp_flax=0.25; cup_oats=2.82; "oz"=1; g=0.035274 }
 
-function Add-Qty([hashtable]$m, [string]$key, [double]$val) { if(-not $m.ContainsKey($key)){ $m[$key]=0.0 } $m[$key]+=[double]$val }
+function Person-Factor([object]$evFor){
+  $f = ($evFor | Out-String).Trim().ToLower()
+  if([string]::IsNullOrWhiteSpace($f) -or $f -eq "both"){ return $Persons }
+  if($f -match "ray|blanca|^a$|^b$"){ return 1 }
+  return $Persons
+}
 
-# 1) Aggregate by ingredient
+# 1) Aggregate
 $agg = @{}
 foreach($d in $plan.days){
   foreach($ev in $d.events){
+    $mult = Person-Factor $ev.for
     foreach($it in $ev.items){
       $name = ($it.ingredient | Out-String).Trim()
-      $qty = [double]$it.quantity
+      if(-not $name){ continue }
+      $qty = [double]$it.quantity * $mult
       $unit = ($it.unit | Out-String).Trim().ToLower()
       if(-not $qty){ continue }
-      # Normalize similar items (simple heuristics)
+      # normalize
       $norm = $name.ToLower()
       if($norm -like "*greek yogurt*"){ $norm = "lactose-free greek yogurt" }
       if($norm -like "*yogurt*" -and $norm -notlike "*greek*"){ $norm = "lactose-free greek yogurt" }
@@ -43,7 +51,7 @@ foreach($d in $plan.days){
       if($norm -like "*lentil soup*"){ $norm = "low-sodium lentil soup" }
       if($norm -like "*brown rice*" -and $norm -like "*pouch*"){ $norm = "brown rice (microwave pouch)" }
       if($norm -like "*mixed vegetables*"){ $norm = "frozen mixed vegetables" }
-      if($norm -like "*frozen berries*" -or $norm -like "*berries*"){ $norm = "frozen berries" }
+      if($norm -like "*frozen mixed berries*" -or $norm -like "*mixed berries*"){ $norm = "frozen mixed berries" }
       if($norm -like "*chia*"){ $norm = "chia seeds" }
       if($norm -like "*flax*"){ $norm = "ground flaxseed" }
       if($norm -like "*tortilla*"){ $norm = "soft whole-wheat tortilla" }
@@ -54,35 +62,31 @@ foreach($d in $plan.days){
       if($norm -like "*crackers*"){ $norm = "low-sodium crackers" }
       if($norm -like "*pita*"){ $norm = "soft pita" }
       if($norm -like "*potato*"){ $norm = "baby potatoes" }
+      if($norm -like "*hummus*"){ $norm = "hummus (no cumin)" }
 
       $key = $norm
       if(-not $agg.ContainsKey($key)){ $agg[$key] = @{ qty=0.0; unit=$unit } }
 
-      # Convert to canonical where possible
       switch -regex ($key){
         "lactose-free milk|soup|tomatoes" {
-          # convert to fl_oz
           $fl = 0.0
           if($toFlOz.ContainsKey($unit)) { $fl = $qty * $toFlOz[$unit] }
-          elseif($unit -eq "cup(s)") { $fl = $qty * 8 }
+          elseif($unit -eq "cup(s)" -or $unit -eq "cup") { $fl = $qty * 8 }
           elseif($unit -eq "oz" -or $unit -eq "fl oz") { $fl = $qty }
-          else { $fl = $qty } # fallback
+          else { $fl = $qty }
           $agg[$key].qty += $fl; $agg[$key].unit = "fl_oz"
         }
-        "greek yogurt|cottage|mozzarella|chia seeds|ground flaxseed|peanut butter|rolled oats|granola|frozen|beans|chicken|tuna|rice pouch|crackers|bread|tortilla|pita|eggs|potatoes|turkey|salmon|cod" {
-          # approximate conversions to oz weight for some units
+        "peanut butter|hummus|greek yogurt|cottage|mozzarella|chia seeds|ground flaxseed|rolled oats|granola|frozen|beans|chicken|tuna|rice pouch|crackers|bread|tortilla|pita|eggs|potatoes|turkey|salmon|cod" {
           $oz = 0.0
           if($unit -eq "oz"){ $oz = $qty }
           elseif($unit -eq "tbsp"){
             if($key -like "*peanut butter*"){ $oz = $qty * $toOzWeight["tbsp_pb"] }
+            elseif($key -like "*hummus*"){ $oz = $qty * $toOzWeight["tbsp_hummus"] }
             elseif($key -like "*chia*"){ $oz = $qty * $toOzWeight["tbsp_chia"] }
             elseif($key -like "*flax*"){ $oz = $qty * $toOzWeight["tbsp_flax"] }
-            else { $oz = $qty * 0.5 } # generic tbsp->fl oz approx
+            else { $oz = $qty * 0.5 }
           }
-          elseif($unit -eq "cup"){
-            if($key -like "*rolled oats*"){ $oz = $qty * $toOzWeight["cup_oats"] }
-            else { $oz = $qty * 8 } # crude volume approx
-          }
+          elseif($unit -eq "cup"){ $oz = $qty * 8 }
           elseif($unit -eq "piece" -or $unit -eq "slice" -or $unit -eq "count"){ $agg[$key].qty += $qty; $agg[$key].unit = "count"; continue }
           else { $oz = $qty }
           $agg[$key].qty += $oz; $agg[$key].unit = ($agg[$key].unit -eq "count") ? "count" : "oz"
@@ -95,20 +99,25 @@ foreach($d in $plan.days){
   }
 }
 
-# 2) Quantize by package sizes
+# 2) Quantize
 $buy = @()
 foreach($name in $agg.Keys){
   $qty = [double]$agg[$name].qty
   $unit = $agg[$name].unit
   $pack = $pkg.packages | Select-Object -ExpandProperty $name -ErrorAction SilentlyContinue
+  $hint = $null
+  if($name -like "*peanut butter*" -and $unit -ne "oz"){ $hint = "PB ~0.56 oz per tbsp" }
+  if($name -like "*hummus*" -and $unit -ne "oz"){ $hint = "Hummus ~0.5 oz per tbsp" }
   if(-not $pack){
-    $buy += @{ ingredient=$name; needed=[math]::Round($qty,2); unit=$unit; suggestion="(no package map — buy to cover need)" }
+    $buy += @{ ingredient=$name; needed=[math]::Round($qty,2); unit=$unit; suggestion="(no package map — buy to cover need)"; hint=$hint }
     continue
   }
   $punit = $pack.unit
   $packs = @($pack.packs)
   if($unit -ne $punit -and $unit -ne "count"){
-    if($unit -eq "fl_oz" -and $punit -eq "oz"){ $qty = $qty } elseif($unit -eq "oz" -and $punit -eq "fl_oz"){ $qty = $qty } else { }
+    if(($unit -eq "fl_oz" -and $punit -eq "oz") -or ($unit -eq "oz" -and $punit -eq "fl_oz")){
+      $qty = $qty
+    }
   }
   $remain = $qty; $chosen = @()
   $packsSorted = $packs | Sort-Object -Descending
@@ -120,14 +129,14 @@ foreach($name in $agg.Keys){
     $remain -= $n * [double]$sz
   }
   if($remain -gt 0){ $chosen += @{ size=($packsSorted | Select-Object -Last 1); count=1 } }
-  $buy += @{ ingredient=$name; needed=[math]::Round($qty,2); unit=$punit; packages=$chosen }
+  $buy += @{ ingredient=$name; needed=[math]::Round($qty,2); unit=$punit; packages=$chosen; hint=$hint }
 }
-
 $out = @{
   updated=(Get-Date).ToUniversalTime().ToString('s')+'Z';
   region=$Region;
+  persons=$Persons;
   items=$buy | Sort-Object ingredient
 }
 $outPath = Join-Path $plansDir 'shopping-quantized.json'
 [IO.File]::WriteAllText($outPath, ($out | ConvertTo-Json -Depth 10), [Text.Encoding]::UTF8)
-Write-Host "Quantized shopping -> $outPath"
+Write-Host "Quantized shopping -> $outPath (Persons=$Persons)"

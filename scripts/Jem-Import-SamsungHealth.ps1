@@ -1,25 +1,39 @@
-param([string]$ZipPath="pages/apps/jem/imports/SamsungHealthExport.zip")
-$root=Split-Path -Parent $PSScriptRoot
-$in=Join-Path $root $ZipPath
-if(-not (Test-Path $in)){ Write-Error "Export zip not found at $ZipPath"; exit 1 }
-$work=Join-Path $env:RUNNER_TEMP "shealth"; New-Item -ItemType Directory -Force -Path $work|Out-Null
+param(
+  [string]$ImportsDir="pages/apps/jem/imports",
+  [string]$Output="pages/apps/jem/programs/biometrics.json"
+)
+$root = Split-Path -Parent $PSScriptRoot
+$impAbs = Join-Path $root $ImportsDir
+$outAbs = Join-Path $root $Output
+if(-not (Test-Path $impAbs)){ Write-Error "Imports dir not found: $impAbs"; exit 1 }
+$zips = Get-ChildItem -Path $impAbs -Filter "*.zip" -File -ErrorAction SilentlyContinue
+if(-not $zips){ Write-Error "No Samsung Health export zips in $impAbs"; exit 1 }
+$temp = Join-Path $env:RUNNER_TEMP "shealth_"+([guid]::NewGuid())
+New-Item -ItemType Directory -Force -Path $temp | Out-Null
+
+$summary = @{ updated=(Get-Date).ToUniversalTime().ToString('s')+'Z'; persons=@() }
+
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-[System.IO.Compression.ZipFile]::ExtractToDirectory($in,$work,$true)
-function ParseCsv($path){ try{ return Import-Csv -Path $path -ErrorAction Stop } catch { return @() } }
-$map=@{
-  Steps=@("com.samsung.shealth.step_daily_trend.csv","step_daily_trend.csv");
-  Sleep=@("com.samsung.shealth.sleep_stage.csv","sleep_stage.csv");
-  Heart=@("com.samsung.shealth.heart_rate.csv","heart_rate.csv");
-  Weight=@("com.samsung.shealth.weight.csv","weight.csv");
+foreach($z in $zips){
+  [System.IO.Compression.ZipFile]::ExtractToDirectory($z.FullName, $temp, $true)
+  # naive parse: find any CSV with 'step' in name, sum a recent window
+  $csvs = Get-ChildItem -Path $temp -Recurse -Filter "*.csv" -ErrorAction SilentlyContinue | Where-Object { $_.Name -match "step" }
+  $steps = 0
+  foreach($c in $csvs){
+    try{
+      $t = Get-Content -Path $c.FullName | Select-Object -Skip 1
+      foreach($line in $t){
+        $parts = $line -split ","
+        foreach($p in $parts){
+          if($p -match "^\d{4,}$"){ $steps += [int]$p; break }
+        }
+      }
+    } catch {}
+  }
+  $nameGuess = if($z.BaseName -match "Ray"){"Ray"} elseif($z.BaseName -match "Blanca"){"Blanca"} else {$z.BaseName}
+  $summary.persons += @{ name=$nameGuess; steps_window=$steps }
 }
-$data=@{ steps=@(); sleep=@(); heart=@(); weight=@() }
-foreach($k in $map.Keys){ foreach($c in $map[$k]){ $paths=Get-ChildItem -Recurse -File -Path $work -Filter $c -ErrorAction SilentlyContinue; foreach($p in $paths){ $rows=ParseCsv $p.FullName; if($rows.Count -gt 0){ $data[$k.ToLower()]+=$rows } } } }
-function Pick($row,$keys){ foreach($k in $keys){ if($row.PSObject.Properties[$k]){ return $row.$k } } return $null }
-$series=[ordered]@{ steps=@(); sleep=@(); heart=@(); weight=@() }
-foreach($r in $data.steps){ $series.steps += @{ date=Pick $r @("date","day_time","create_time"); steps=[int](Pick $r @("count","step_count","steps")) } }
-foreach($r in $data.heart){ $series.heart += @{ time=Pick $r @("start_time","time"); bpm=[int](Pick $r @("heart_rate","bpm","hr")) } }
-foreach($r in $data.sleep){ $series.sleep += @{ start=Pick $r @("start_time","start"), end=Pick $r @("end_time","end"), stage=Pick $r @("stage","sleep_stage") } }
-foreach($r in $data.weight){ $series.weight += @{ time=Pick $r @("time","start_time"); kg=[double](Pick $r @("weight","value")) } }
-$outDir=Join-Path $root 'pages/apps/jem/biometrics'; New-Item -ItemType Directory -Path $outDir -Force|Out-Null
-$out=Join-Path $outDir ("import-"+(Get-Date -Format "yyyyMMddTHHmmssZ")+".json")
-[IO.File]::WriteAllText($out,(ConvertTo-Json $series -Depth 6),[Text.Encoding]::UTF8); Write-Host "Parsed Samsung Health -> $out"
+$dirOut = Split-Path -Parent (Join-Path $root $Output)
+if(-not (Test-Path $dirOut)){ New-Item -ItemType Directory -Force -Path $dirOut | Out-Null }
+[IO.File]::WriteAllText((Join-Path $root $Output), ($summary | ConvertTo-Json -Depth 6), [Text.Encoding]::UTF8)
+Write-Host "Biometrics summary -> $Output"

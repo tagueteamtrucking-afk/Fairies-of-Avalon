@@ -1,6 +1,97 @@
-<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Dojo — Jem</title>
-<link rel="stylesheet" href="/pages/apps/buildings.css">
-<header><h1>Dojo — Jem</h1><small>Choose an action</small></header>
-<main><div class="grid"><div class="card"><a href="/pages/apps/jem/dashboard.html">Week‑1 Evaluation</a><br><small>Generate evaluation plan</small></div>
-<div class="card"><a href="/pages/apps/jem/dashboard.html">Training Programs</a><br><small>View or generate plans</small></div></div></main>
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jem — Week 1 Intake</title>
+<style>
+:root{--bg:#0b0f17;--ink:#e5e7eb;--line:#172033;--card:#0f172a;--accent:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system}
+header,main{padding:14px}
+h1{margin:0 0 8px 0}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px}
+label{display:block;font-size:13px;margin:6px 0 2px}
+input,select,textarea{width:100%;padding:8px;background:#0b1220;border:1px solid #334155;border-radius:8px;color:var(--ink)}
+small{color:#94a3b8}
+.btn{display:inline-block;padding:8px 10px;border:1px solid #334155;border-radius:10px;text-decoration:none;color:var(--ink);background:#0b1220;margin-right:6px;cursor:pointer}
+.btn:hover{border-color:#3b82f6;color:white}
+hr{border:0;border-top:1px solid var(--line);margin:10px 0}
+.notice{background:#23201a;color:#fde68a;border:1px solid #6b4a2f;padding:8px;border-radius:8px}
+</style></head><body>
+<header>
+  <h1>Jem — Week 1 Intake (Ray & Blanca)</h1>
+  <div class="notice">Week 1 is about baselines: goals, limitations, pain areas, and a few safe tests. Export each profile JSON and upload to your repo at <code>/pages/apps/jem/intake/</code>, then run the Action “Jem — Generate Week 1 Plans”.</div>
+</header>
+<main class="grid">
+  <div class="card">
+    <h3>Ray — Profile</h3>
+    <label>Name</label><input id="ray_name" value="Ray">
+    <label>Age</label><input id="ray_age" type="number" min="18" max="100" placeholder="45">
+    <label>Height (inches)</label><input id="ray_h" type="number" placeholder="70">
+    <label>Weight (lb)</label><input id="ray_w" type="number" placeholder="240">
+    <label>Primary goals</label><textarea id="ray_goals" rows="3">Lose weight ~40 lb; strengthen knees, back, core; reduce pain; improve endurance.</textarea>
+    <label>Known issues / pain</label><textarea id="ray_issues" rows="3">Truck-driver constraints; limited space; sensitive knees; tight lower back.</textarea>
+    <label>Contraindications</label><textarea id="ray_ci" rows="2">No deep knee flexion under load; avoid impact jumps.</textarea>
+    <label>Available equipment</label><textarea id="ray_eq" rows="2">Single burner (for heat-based therapy), resistance bands (if any), bodyweight only, truck cab space.</textarea>
+    <label>Schedule preference</label><input id="ray_sched" placeholder="short 15–20 min blocks, 5 days/wk">
+    <label>Samsung Health export zip filename (optional)</label><input id="ray_zip" placeholder="SamsungHealthExport_Ray.zip">
+    <div style="margin-top:8px"><button class="btn" onclick="downloadOne('ray')">Download Ray Intake JSON</button></div>
+  </div>
+  <div class="card">
+    <h3>Blanca — Profile</h3>
+    <label>Name</label><input id="bla_name" value="Blanca">
+    <label>Age</label><input id="bla_age" type="number" min="18" max="100" placeholder="43">
+    <label>Height (inches)</label><input id="bla_h" type="number" placeholder="65">
+    <label>Weight (lb)</label><input id="bla_w" type="number" placeholder="210">
+    <label>Primary goals</label><textarea id="bla_goals" rows="3">Lose weight ~40 lb; strengthen knees, back, core; reduce pain; improve endurance.</textarea>
+    <label>Known issues / pain</label><textarea id="bla_issues" rows="3">Truck-driver constraints; limited space; sensitive knees; possible lactose sensitivity.</textarea>
+    <label>Contraindications</label><textarea id="bla_ci" rows="2">Avoid high-impact; careful with knee rotations.</textarea>
+    <label>Available equipment</label><textarea id="bla_eq" rows="2">Bodyweight only; truck cab space; short sessions.</textarea>
+    <label>Schedule preference</label><input id="bla_sched" placeholder="short 15–20 min blocks, 5 days/wk">
+    <label>Samsung Health export zip filename (optional)</label><input id="bla_zip" placeholder="SamsungHealthExport_Blanca.zip">
+    <div style="margin-top:8px"><button class="btn" onclick="downloadOne('bla')">Download Blanca Intake JSON</button></div>
+  </div>
+  <div class="card">
+    <h3>Export combined</h3>
+    <p>After you upload both files to <code>/pages/apps/jem/intake/</code>, run the Action “<b>Jem — Generate Week 1 Plans</b>”. The plans will be written to <code>/pages/apps/jem/programs/</code> and a nutrition handoff <code>/pages/apps/jem/programs/nutrition-adjustments.json</code> for Carol.</p>
+    <button class="btn" onclick="downloadAll()">Download Combined Intake JSON</button>
+    <hr>
+    <details><summary>How to export Samsung Health data (optional)</summary>
+      <ol>
+        <li>Open Samsung Health app → <b>Menu</b> → <b>Settings</b> → <b>Download personal data</b> (or <b>Data</b> → <b>Download</b>).</li>
+        <li>Select at least Steps, Sleep, Heart rate; export as ZIP.</li>
+        <li>Upload the ZIP(s) to your repo: <code>/pages/apps/jem/imports/</code> (e.g., <code>SamsungHealthExport_Ray.zip</code>).</li>
+        <li>Run Actions → <b>Jem — Import Samsung Health (optional)</b>.</li>
+      </ol>
+    </details>
+  </div>
+</main>
+<script>
+function makeProfile(prefix){
+  function v(id){return (document.getElementById(prefix+'_'+id)||{}).value||''}
+  return {
+    name: v('name'),
+    age: Number(v('age')||0),
+    height_in: Number(v('h')||0),
+    weight_lb: Number(v('w')||0),
+    goals: v('goals'),
+    issues: v('issues'),
+    contraindications: v('ci'),
+    equipment: v('eq'),
+    schedule: v('sched'),
+    samsung_zip: v('zip')
+  }
+}
+function downloadBlob(obj, filename){
+  const data = 'data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(obj,null,2));
+  const a=document.createElement('a'); a.href=data; a.download=filename; a.click();
+}
+function downloadOne(which){
+  const pf = makeProfile(which==='ray'?'ray':'bla');
+  const fn = (which==='ray'?'Ray':'Blanca')+'-intake.json';
+  downloadBlob(pf, fn);
+}
+function downloadAll(){
+  const out={ updated: new Date().toISOString(), persons: [ makeProfile('ray'), makeProfile('bla') ] };
+  downloadBlob(out, 'intake-both.json');
+}
+</script>
+</body></html>

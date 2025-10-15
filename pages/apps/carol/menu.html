@@ -21,6 +21,7 @@ kbd{background:#0b1220;border:1px solid #334155;border-radius:6px;padding:2px 6p
 .badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #334155;background:#0b1220;border-radius:999px;padding:4px 10px;margin-left:8px}
 .badge.good{border-color:#1f4e2e;color:#bbf7d0}
 .badge.bad{border-color:#5a1f26;color:#fecaca}
+.hint{color:#cbd5e1;margin-top:4px}
 </style></head><body>
 <header>
   <h1>Carol — Two‑Week Plan
@@ -47,6 +48,7 @@ kbd{background:#0b1220;border:1px solid #334155;border-radius:6px;padding:2px 6p
     <h3>Buy by Packages (US)</h3>
     <div class="small">Based on common retail sizes; approximate for dry goods.</div>
     <pre id="shopPkg" class="wrap"></pre>
+    <div id="pkgHints"></div>
   </div>
 </main>
 <script>
@@ -54,20 +56,19 @@ kbd{background:#0b1220;border:1px solid #334155;border-radius:6px;padding:2px 6p
   const troubles=document.getElementById('troubles');
   const planBadge=document.getElementById('planStatus');
   const quantBadge=document.getElementById('quantStatus');
+  const pkgHints=document.getElementById('pkgHints');
   function setBadge(el,ok,msg){ el.textContent = (el.id==='planStatus'?'Plan: ':'Quantized: ')+msg; el.classList.remove('good','bad'); el.classList.add(ok?'good':'bad','badge'); }
   function showTrouble(msg){ troubles.textContent=msg; troubles.style.display='block'; }
-  // cache-busting fetch wrapper
   async function j(p){
     const url = p + (p.includes('?') ? '&' : '?') + 'cb=' + Date.now();
     const r=await fetch(url, {cache:'no-store'});
     if(!r.ok) throw new Error('HTTP '+r.status+' @ '+p);
     return r.json();
   }
-  // fractions + fl-oz
   function gcd(a,b){ return b?gcd(b,a%b):a }
   function fracStr(n){ const m = Math.round(n*24); const whole = Math.floor(m/24); const rem = m - whole*24; let s=''; if(whole>0) s+=whole; if(rem>0){ const g=gcd(rem,24); s+=(s? ' ':'')+(rem/g)+'/'+(24/g); } return s||'0'; }
   function asKitchen(q,u){
-    const map={tsp:1, tbsp:3, cup:48}; // tsp base
+    const map={tsp:1, tbsp:3, cup:48};
     if(u==='tsp'||u==='tbsp'||u==='cup'){ const tsp=q*(u==='tsp'?1:u==='tbsp'?3:48);
       const cups=tsp/48; const fl= (Math.round((cups*8)*10)/10);
       if(tsp%48===0) return (tsp/48)+' cup' + ` (${fl} fl oz)`;
@@ -128,9 +129,12 @@ kbd{background:#0b1220;border:1px solid #334155;border-radius:6px;padding:2px 6p
       return `${x.ingredient}: need ~${x.needed} ${x.unit}` + (pkg?` → buy ${pkg}`:' → buy to cover need');
     }).join('\n');
     document.getElementById('shopPkg').textContent = lines;
+    const hints = qj.items.filter(x=>x.hint).map(x=>`<div class="hint">• ${x.ingredient}: ${x.hint}</div>`).join('');
+    pkgHints.innerHTML = hints || '';
   }catch(e){
     setBadge(quantBadge,false,'missing');
     document.getElementById('shopPkg').textContent = 'Run the Action “Carol — Aggregate & Quantize Shopping List” to see package suggestions.';
+    pkgHints.innerHTML = '';
   }
   document.getElementById('download-list').addEventListener('click', ()=>{
     const a=document.createElement('a'); a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(listText); a.download='carol-shopping-list.txt'; a.click();

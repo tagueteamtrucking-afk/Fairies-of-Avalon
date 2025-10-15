@@ -1,0 +1,438 @@
+﻿{
+  "region": "US",
+  "items": [
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 4.0,
+      "ingredient": "almonds (slivered)",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 4.0,
+      "ingredient": "apple",
+      "unit": "piece"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "avocado",
+      "unit": "piece"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 14.0,
+      "ingredient": "baby potatoes",
+      "unit": "count"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 7.0,
+      "ingredient": "banana",
+      "unit": "piece"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "brown rice (microwave pouch)",
+      "unit": "cup"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 24.0,
+      "ingredient": "butter lettuce",
+      "unit": "leaf"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "canned chicken",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "canned tuna (in water)",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 3.36,
+      "ingredient": "chia seeds",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 20.0,
+      "ingredient": "chicken breast",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 3.0,
+      "ingredient": "cinnamon",
+      "unit": "tsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 10.0,
+      "ingredient": "cod fillet",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 8.0,
+      "ingredient": "cooked chicken breast",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 1.5,
+      "ingredient": "cooked white rice",
+      "unit": "cup"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "cucumber",
+      "unit": "cup"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 16.0,
+      "ingredient": "diced tomatoes (no salt added)",
+      "unit": "fl_oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 13.0,
+      "ingredient": "eggs",
+      "unit": "count"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 28.0,
+      "ingredient": "frozen berries",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 96.0,
+      "ingredient": "frozen mixed vegetables",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 32.0,
+      "ingredient": "frozen veg medley",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 4.0,
+      "ingredient": "garlic powder",
+      "unit": "tsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 0.5,
+      "ingredient": "ginger powder",
+      "unit": "tsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 4.0,
+      "ingredient": "grapes",
+      "unit": "cup"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 0.5,
+      "ingredient": "ground flaxseed",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 12.0,
+      "ingredient": "hummus (no cumin)",
+      "unit": "tbsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "kiwi",
+      "unit": "piece"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 6.0,
+      "ingredient": "lactose-free cheese",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "lactose-free cheese stick",
+      "unit": "piece"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 20.0,
+      "ingredient": "lactose-free cottage cheese",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 60.0,
+      "ingredient": "lactose-free greek yogurt",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 124.0,
+      "ingredient": "lactose-free milk",
+      "unit": "fl_oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 4.0,
+      "ingredient": "lactose-free mozzarella",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 20.0,
+      "ingredient": "lean ground turkey",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 10.0,
+      "ingredient": "lean turkey",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 0.5,
+      "ingredient": "lemon",
+      "unit": "piece"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 6.0,
+      "ingredient": "lemon juice",
+      "unit": "tsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "lf cream cheese",
+      "unit": "tbsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 4.0,
+      "ingredient": "lf mayo",
+      "unit": "tbsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "lime juice",
+      "unit": "tsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 16.0,
+      "ingredient": "low-sodium beans (canned)",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 12.0,
+      "ingredient": "low-sodium black beans (rinsed)",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 12.0,
+      "ingredient": "low-sodium crackers",
+      "unit": "count"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 24.0,
+      "ingredient": "low-sodium lentil soup",
+      "unit": "fl_oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 20.0,
+      "ingredient": "low-sodium tomato soup",
+      "unit": "fl_oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 5.28,
+      "ingredient": "low-sugar granola",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 8.0,
+      "ingredient": "mango (frozen)",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 0.5,
+      "ingredient": "mint (dried)",
+      "unit": "tsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 34.0,
+      "ingredient": "olive oil",
+      "unit": "tsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 12.0,
+      "ingredient": "olive oil spray",
+      "unit": "spray"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 0.5,
+      "ingredient": "onion (easy)",
+      "unit": "cup"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 1.0,
+      "ingredient": "panko (light)",
+      "unit": "cup"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 3.0,
+      "ingredient": "peach (canned in juice, drained)",
+      "unit": "cup"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 7.84,
+      "ingredient": "peanut butter",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "pear",
+      "unit": "piece"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 1.0,
+      "ingredient": "pineapple (canned in juice, drained)",
+      "unit": "cup"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 16.0,
+      "ingredient": "pineapple (frozen)",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "relish (low-sugar)",
+      "unit": "tsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 4.0,
+      "ingredient": "rice cakes",
+      "unit": "piece"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "ripe pear",
+      "unit": "piece"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 12.46,
+      "ingredient": "rolled oats",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 10.0,
+      "ingredient": "salmon fillet",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 1.0,
+      "ingredient": "soft pita",
+      "unit": "count"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 10.0,
+      "ingredient": "soft whole-grain bread",
+      "unit": "count"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 4.0,
+      "ingredient": "soft whole-wheat tortilla",
+      "unit": "count"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 5.0,
+      "ingredient": "spinach",
+      "unit": "cup"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 3.0,
+      "ingredient": "steamed carrots",
+      "unit": "cup"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 4.0,
+      "ingredient": "tomato",
+      "unit": "piece"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 6.0,
+      "ingredient": "turkey breast (low-sodium)",
+      "unit": "oz"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 4.0,
+      "ingredient": "unsweetened cocoa",
+      "unit": "tsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 1.0,
+      "ingredient": "vanilla extract",
+      "unit": "tsp"
+    },
+    {
+      "suggestion": "(no package map — buy to cover need)",
+      "needed": 2.0,
+      "ingredient": "walnuts (chopped)",
+      "unit": "oz"
+    }
+  ],
+  "updated": "2025-10-15T01:27:58Z"
+}

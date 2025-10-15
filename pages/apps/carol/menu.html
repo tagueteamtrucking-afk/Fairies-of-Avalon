@@ -1,10 +1,13 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Carol — Two‑Week Plan</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <style>
-:root{--bg:#0b0f17;--ink:#e5e7eb;--line:#172033;--card:#0f172a;--accent:#60a5fa}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui}
-header,main{padding:14px}h1{margin:0 0 6px 0}
+:root{--bg:#0b0f17;--ink:#e5e7eb;--line:#172033;--card:#0f172a;--accent:#60a5fa;--good:#16a34a;--bad:#ef4444}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto}
+header,main{padding:14px}h1{margin:0 0 8px 0}
 .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .card{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px}
 .small{font-size:12px;color:#94a3b8}
@@ -13,14 +16,22 @@ header,main{padding:14px}h1{margin:0 0 6px 0}
 .btn:hover{border-color:#3b82f6;color:white}
 pre.wrap{white-space:pre-wrap}
 .warn{background:#33281a;color:#fcd34d;border:1px solid #6b4a2f;padding:8px;border-radius:8px;margin:8px 0}
+summary{cursor:pointer}
+kbd{background:#0b1220;border:1px solid #334155;border-radius:6px;padding:2px 6px}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #334155;background:#0b1220;border-radius:999px;padding:4px 10px;margin-left:8px}
+.badge.good{border-color:#1f4e2e;color:#bbf7d0}
+.badge.bad{border-color:#5a1f26;color:#fecaca}
 </style></head><body>
 <header>
-  <h1>Carol — Two‑Week Plan</h1>
-  <div class="small">Read‑only plan. Export TXT or Print/PDF. To regenerate, run the Carol workflow in Actions.</div>
+  <h1>Carol — Two‑Week Plan
+    <span id="planStatus" class="badge">Plan: …</span>
+    <span id="quantStatus" class="badge">Quantized: …</span>
+  </h1>
+  <div class="small">Read‑only plan. Export TXT or Print/PDF. To regenerate, run Carol Action(s) in GitHub.</div>
   <div id="meta" class="small"></div>
   <div style="margin-top:8px">
     <a class="btn" id="open-json" target="_blank">Open Plan JSON</a>
-    <a class="btn" href="/pages/apps/carol/videos.html" target="_blank">Videos</a>
+    <a class="btn" id="open-quant" target="_blank">Open Quantized Shopping</a>
     <button class="btn" id="download-list">Download Shopping List (.txt)</button>
     <button class="btn" onclick="window.print()">Print / Save PDF</button>
   </div>
@@ -32,37 +43,60 @@ pre.wrap{white-space:pre-wrap}
     <h3>Shopping List (2 weeks)</h3>
     <pre id="shop" class="wrap"></pre>
   </div>
+  <div class="card">
+    <h3>Buy by Packages (US)</h3>
+    <div class="small">Based on common retail sizes; approximate for dry goods.</div>
+    <pre id="shopPkg" class="wrap"></pre>
+  </div>
 </main>
 <script>
 (async()=>{
   const troubles=document.getElementById('troubles');
+  const planBadge=document.getElementById('planStatus');
+  const quantBadge=document.getElementById('quantStatus');
+  function setBadge(el,ok,msg){ el.textContent = (el.id==='planStatus'?'Plan: ':'Quantized: ')+msg; el.classList.remove('good','bad'); el.classList.add(ok?'good':'bad','badge'); }
   function showTrouble(msg){ troubles.textContent=msg; troubles.style.display='block'; }
-  async function j(p){ const r=await fetch(p); if(!r.ok) throw new Error('HTTP '+r.status+' @ '+p); return r.json(); }
-  function fmt(x){ return (Math.round(x*10)/10)||0 }
-  function aggList(plan){
-    if (Array.isArray(plan.shopping_lists_2wk) && plan.shopping_lists_2wk.length){
-      const lines=[]; for(const blk of plan.shopping_lists_2wk){
-        lines.push('['+(blk.range||'two weeks')+']');
-        for(const k of ['produce','protein','dairy','pantry','frozen','spices']){ if(Array.isArray(blk[k]) && blk[k].length){ lines.push('  '+k+': '+blk[k].join(', ')); } }
-        lines.push('');
-      } return lines.join('\n').trim();
+  // cache-busting fetch wrapper
+  async function j(p){
+    const url = p + (p.includes('?') ? '&' : '?') + 'cb=' + Date.now();
+    const r=await fetch(url, {cache:'no-store'});
+    if(!r.ok) throw new Error('HTTP '+r.status+' @ '+p);
+    return r.json();
+  }
+  // fractions + fl-oz
+  function gcd(a,b){ return b?gcd(b,a%b):a }
+  function fracStr(n){ const m = Math.round(n*24); const whole = Math.floor(m/24); const rem = m - whole*24; let s=''; if(whole>0) s+=whole; if(rem>0){ const g=gcd(rem,24); s+=(s? ' ':'')+(rem/g)+'/'+(24/g); } return s||'0'; }
+  function asKitchen(q,u){
+    const map={tsp:1, tbsp:3, cup:48}; // tsp base
+    if(u==='tsp'||u==='tbsp'||u==='cup'){ const tsp=q*(u==='tsp'?1:u==='tbsp'?3:48);
+      const cups=tsp/48; const fl= (Math.round((cups*8)*10)/10);
+      if(tsp%48===0) return (tsp/48)+' cup' + ` (${fl} fl oz)`;
+      if(tsp%3===0 && tsp<48) return (tsp/3)+' tbsp';
+      return fracStr(cups)+' cup' + ` (${fl} fl oz)`;
     }
+    if(u==='oz'){ return q+' oz'; }
+    if(u==='fl_oz'){ return q+' fl oz'; }
+    if(u==='piece'||u==='slice'||u==='count'){ return q+' ct'; }
+    return q+' '+u;
+  }
+  function fmt1(x){ return (Math.round(x*10)/10)||0 }
+  function aggList(plan){
     const conv={tsp:1,tbsp:3,cup:48}; const m=new Map();
     for(const d of plan.days||[]){ for(const ev of d.events||[]){ for(const it of ev.items||[]){
       const name=(it.ingredient||'').trim(); if(!name) continue; const q=Number(it.quantity||0); const u=(it.unit||'').toLowerCase(); if(!q) continue;
       let key=name+'|'+u; let val=q; if(u in conv){ key=name+'|tsp'; val=q*conv[u]; } m.set(key,(m.get(key)||0)+val);
     }}} const out=[]; const buckets={};
-    for(const [key,val] of m){ let [ing,u]=key.split('|'); let qty=val; if(u==='tsp'){ let cups=Math.floor(qty/48); qty-=cups*48; let tbsp=Math.floor(qty/3); qty-=tbsp*3; const parts=[]; if(cups) parts.push(cups+' cup'); if(tbsp) parts.push(tbsp+' tbsp'); if(qty) parts.push(qty+' tsp'); (buckets['pantry'] ||= []).push(ing+': '+parts.join(' + ')); } else { (buckets['pantry'] ||= []).push(ing+': '+fmt(qty)+' '+u); } }
+    for(const [key,val] of m){ let [ing,u]=key.split('|'); let qty=val; if(u==='tsp'){ let cups=(qty/48); const s=asKitchen(cups,'cup'); (buckets['pantry'] ||= []).push(ing+': '+s); } else { (buckets['pantry'] ||= []).push(ing+': '+fmt1(qty)+' '+u); } }
     const lines=['[two weeks]']; for(const k of Object.keys(buckets)){ lines.push('  '+k+':'); for(const s of buckets[k]) lines.push('    - '+s); } return lines.join('\n');
   }
-  let planPath = null, plan=null;
-  // Try index.json first
+  function renderInstr(arr){ if(!arr||!arr.length) return ''; return '<details><summary>Instructions</summary><ol>'+arr.map(x=>'<li>'+x+'</li>').join('')+'</ol></details>'; }
+  let planPath=null, plan=null;
   try{
     const idx = await j('/pages/apps/carol/plans/index.json');
-    if(idx && Array.isArray(idx.files) && idx.files.length){ planPath='/pages/apps/carol/plans/'+idx.files[0]; }
-    else { showTrouble('index.json exists but has no files — run Actions → Carol or reindex plans.'); }
+    if(idx && Array.isArray(idx.files) && idx.files.length){ planPath='/pages/apps/carol/plans/'+idx.files[0]; setBadge(planBadge,true,'found'); }
+    else { setBadge(planBadge,false,'missing'); showTrouble('index.json exists but has no files — run Actions → Carol or reindex plans.'); }
   }catch(e){
-    showTrouble('Could not fetch /pages/apps/carol/plans/index.json (maybe not published yet). Run Actions → Carol, then Deploy GitHub Pages.');
+    setBadge(planBadge,false,'missing'); showTrouble('Could not fetch /pages/apps/carol/plans/index.json (maybe not published yet). Run Actions → Carol, then Deploy GitHub Pages.');
   }
   if(!planPath){ document.getElementById('days').innerHTML='<div class="card">No plan found.</div>'; return; }
   document.getElementById('open-json').href = planPath;
@@ -71,8 +105,12 @@ pre.wrap{white-space:pre-wrap}
   const daysEl = document.getElementById('days');
   daysEl.innerHTML = (plan.days||[]).map(d=>{
     const rows = (d.events||[]).map(ev=>{
-      const items = (ev.items||[]).map(i=>`${i.ingredient} — ${i.quantity} ${i.unit}${i.notes?` (${i.notes})`:''}`).join('<br>');
-      return `<tr><td><b>${ev.name}</b><div class="small">${ev.for||'Both'} · ${ev.type||''} · ${ev.time_hint||''}</div></td>
+      const items = (ev.items||[]).map(i=>{
+        const q = Number(i.quantity||0); const u=(i.unit||'').toLowerCase();
+        const kitchen = asKitchen(q,u);
+        return `${i.ingredient} — ${kitchen}${i.notes?` (${i.notes})`:''}`;
+      }).join('<br>');
+      return `<tr><td><b>${ev.name}</b><div class="small">${ev.for||'Both'} · ${ev.type||''} · ${ev.time_hint||''}</div>${renderInstr(ev.instructions)}</td>
                   <td class="small">${ev.kcal||0} kcal<br>${ev.sodium_mg||0} mg Na<br>${ev.added_sugars_g||0} g sugar<br>${ev.fiber_g||0} g fiber</td>
                   <td>${items}</td></tr>`;
     }).join('');
@@ -80,6 +118,20 @@ pre.wrap{white-space:pre-wrap}
   }).join('');
   const listText = aggList(plan);
   document.getElementById('shop').textContent = listText;
+  const quantUrl = '/pages/apps/carol/plans/shopping-quantized.json';
+  document.getElementById('open-quant').href = quantUrl;
+  try{
+    const qj = await j(quantUrl);
+    setBadge(quantBadge,true,'found');
+    const lines = qj.items.map(x=>{
+      const pkg = (x.packages||[]).map(p=>`${p.count} × ${p.size} ${x.unit}`).join(' + ');
+      return `${x.ingredient}: need ~${x.needed} ${x.unit}` + (pkg?` → buy ${pkg}`:' → buy to cover need');
+    }).join('\n');
+    document.getElementById('shopPkg').textContent = lines;
+  }catch(e){
+    setBadge(quantBadge,false,'missing');
+    document.getElementById('shopPkg').textContent = 'Run the Action “Carol — Aggregate & Quantize Shopping List” to see package suggestions.';
+  }
   document.getElementById('download-list').addEventListener('click', ()=>{
     const a=document.createElement('a'); a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(listText); a.download='carol-shopping-list.txt'; a.click();
   });

@@ -1,0 +1,4 @@
+﻿com.samsung.shealth.permission,6305105,1
+client_id,allowed,update_time,create_time,item,requester,deviceuuid,pkg_name,operation,permitted_on,datauuid,optionals
+com.sec.android.app.shealth,0,2021-12-08 17:15:14.964,2020-03-25 20:24:28.001,data,,jBfEgmLJSx,com.sec.android.app.shealth,sync,1,275dac5f-5467-6195-36ca-9d01b71749d2,275dac5f-5467-6195-36ca-9d01b71749d2.optionals.json,
+com.sec.android.app.shealth,1,2019-10-10 02:46:20.750,2019-10-10 02:46:20.750,data,,rkSVQ0chfP,com.sec.android.app.shealth,sync,1,749e81b4-fb52-0780-f1d8-aa7d07b84c66,749e81b4-fb52-0780-f1d8-aa7d07b84c66.optionals.json,

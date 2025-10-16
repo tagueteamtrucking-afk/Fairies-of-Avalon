@@ -1,0 +1,4 @@
+﻿com.samsung.shealth.alerted_heart_rate,6305105,2
+create_sh_ver,start_time,threshold,custom,binning_data,source,tag_id,modify_sh_ver,update_time,create_time,max,min,time_offset,deviceuuid,comment,pkg_name,end_time,datauuid,heart_rate
+,2024-08-16 21:50:38.094,120.0,,bfe2c106-6832-4355-ac6d-c501de8d33ab.binning_data.json,,21314,,2024-08-16 22:00:37.187,2024-08-16 22:00:37.187,198.0,196.0,UTC-0500,UfcgbyWV9E,,com.sec.android.app.shealth,2024-08-16 22:00:37.094,bfe2c106-6832-4355-ac6d-c501de8d33ab,197.0,
+,2024-08-16 22:00:45.019,120.0,,4d098200-3f89-45ec-8d73-97e46610b500.binning_data.json,,21314,,2024-08-16 22:10:44.099,2024-08-16 22:10:44.099,198.0,197.0,UTC-0500,UfcgbyWV9E,,com.sec.android.app.shealth,2024-08-16 22:10:44.019,4d098200-3f89-45ec-8d73-97e46610b500,197.0,

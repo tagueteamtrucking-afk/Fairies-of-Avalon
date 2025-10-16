@@ -1,0 +1,9 @@
+﻿com.samsung.health.device_profile,6305105,9
+manufacturer,providing_step_goal,create_sh_ver,step_source_group,device_type,backsync_step_goal,capability,modify_sh_ver,device_group,update_time,create_time,name,model,legacy_deviceuuid,connectivity_type,deviceuuid,pkg_name,accessory_type,fixed_name,datauuid
+Samsung,,,,,,,,360001,2023-08-21 04:36:18.436,2023-08-21 04:36:18.436,My Device,SM-F946U,,,6+THe69Q8P,com.sec.android.app.shealth,,Raymond's Z Fold5,75a89133-b7a1-d2bf-ef3f-214493b1b35f,
+Samsung Electronics,1,,18,10045,1,a038b269-49c5-7a91-c158-a14ad65aae40.capability.json,,360003,2022-12-08 06:47:12.910,2020-03-25 20:24:28.110,Galaxy Watch,,,,BfdGMJKwGJ,com.sec.android.app.shealth,,Galaxy Note9,a038b269-49c5-7a91-c158-a14ad65aae40,
+Samsung,,,,,,,,360001,2020-03-25 20:24:28.117,2020-03-25 20:24:28.117,My Device,SM-N960U,,,jBfEgmLJSx,com.sec.android.app.shealth,,Raymond's Galaxy Note9,275dac5f-5467-6195-36ca-9d01b71749d2,
+Combined,,,,,,,,0,2020-03-25 20:24:28.258,2020-03-25 20:24:28.258,Combined,Combined,,,VfS0qUERdZ,com.sec.android.app.shealth,,Galaxy Note9,7af9722c-cd99-07b7-853a-43ce58e819c5,
+all_target,,,,,,,,0,2020-03-25 20:24:31.787,2020-03-25 20:24:31.787,all_target,all_target,,,Mk66SbFqK1,com.sec.android.app.shealth,,Galaxy Note9,471ca32b-a665-1e9e-7c27-7ac69485dc05,
+Samsung,,,,,,,,360001,2019-10-10 02:46:21.327,2019-10-10 02:46:21.327,My Device,SM-A102U,,,rkSVQ0chfP,com.sec.android.app.shealth,,Galaxy A10e,749e81b4-fb52-0780-f1d8-aa7d07b84c66,
+Samsung Electronics,1,,107,10059,1,aad1525c-e3dc-4d01-b237-2484a697b2f4.capability.json,62701610,360003,2024-08-16 21:57:12.878,2023-07-03 09:20:55.876,Galaxy Watch6 Classic,SM-R955U,,,UfcgbyWV9E,com.sec.android.app.shealth,,,aad1525c-e3dc-4d01-b237-2484a697b2f4,

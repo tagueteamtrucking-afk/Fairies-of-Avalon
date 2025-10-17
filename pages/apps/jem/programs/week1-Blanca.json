@@ -1,0 +1,131 @@
+﻿{
+  "updated": "2025-10-17T01:39:05Z",
+  "title": "Week-1 Evaluation Plan for Knee-Friendly Mobility and Joint Strengthening",
+  "tests": [
+    {
+      "name": "30-Second Sit-to-Stand Test",
+      "how": "Sit on a standard chair and stand up fully then sit down as many times as possible in 30 seconds.",
+      "targets": "Assess lower body strength and knee function.",
+      "notes": "Use a chair without armrests; keep arms crossed over chest."
+    },
+    {
+      "name": "2-Minute Step Test",
+      "how": "March in place lifting knees to midway between knee and hip height for 2 minutes.",
+      "targets": "Evaluate cardiovascular endurance and lower limb mobility.",
+      "notes": "Count the number of times the right knee reaches the target height."
+    },
+    {
+      "name": "Comfortable Walk Duration",
+      "how": "Walk at a comfortable pace on a flat surface for as long as possible up to 10 minutes.",
+      "targets": "Measure baseline walking endurance without pain.",
+      "notes": "Record total duration and any knee discomfort."
+    },
+    {
+      "name": "Rate of Perceived Exertion (RPE) Explanation",
+      "how": "Explain the Borg RPE scale from 6 (no exertion) to 20 (maximal exertion).",
+      "targets": "Help participants self-monitor exercise intensity.",
+      "notes": "Aim for RPE 11-13 (light to somewhat hard) during sessions."
+    }
+  ],
+  "daily": [
+    {
+      "day": "Day 1",
+      "focus": "Mobility and gentle strengthening",
+      "session": [
+        "Warm-up: 3 minutes gentle marching in place",
+        "Mobility: Knee circles (10 each direction, seated or standing)",
+        "Strength: Seated leg extensions with self-anchored resistance band (2 sets of 10 reps per leg)",
+        "Strength: Standing hamstring curls with resistance band (2 sets of 10 reps per leg)",
+        "Cool-down: 3 minutes slow walking and gentle knee bends"
+      ]
+    },
+    {
+      "day": "Day 2",
+      "focus": "Low-impact cardiovascular and mobility",
+      "session": [
+        "Warm-up: 3 minutes slow walking",
+        "Cardio: 10 minutes low-impact stepping in place (knee height comfortable)",
+        "Mobility: Ankle pumps and circles (2 sets of 15 each)",
+        "Cool-down: 3 minutes slow walking and deep breathing"
+      ]
+    },
+    {
+      "day": "Day 3",
+      "focus": "Strengthening and joint stability",
+      "session": [
+        "Warm-up: 3 minutes gentle marching",
+        "Strength: Side leg lifts with resistance band (2 sets of 10 reps per leg)",
+        "Strength: Seated calf raises (2 sets of 15 reps)",
+        "Mobility: Seated knee flexion and extension stretches (hold 20 seconds, 2 reps)",
+        "Cool-down: 3 minutes slow walking"
+      ]
+    },
+    {
+      "day": "Day 4",
+      "focus": "Active recovery and walking goal",
+      "session": [
+        "Goal: Walk at a comfortable pace for 20 minutes outdoors or indoors",
+        "Focus on maintaining good posture and comfortable knee movement"
+      ]
+    },
+    {
+      "day": "Day 5",
+      "focus": "Mobility and strengthening",
+      "session": [
+        "Warm-up: 3 minutes gentle marching",
+        "Mobility: Hip openers seated (10 reps each side)",
+        "Strength: Standing hip abduction with resistance band (2 sets of 10 reps per leg)",
+        "Strength: Seated leg presses against resistance band (2 sets of 10 reps)",
+        "Cool-down: 3 minutes slow walking and knee stretches"
+      ]
+    },
+    {
+      "day": "Day 6",
+      "focus": "Low-impact cardio and mobility",
+      "session": [
+        "Warm-up: 3 minutes slow walking",
+        "Cardio: 12 minutes stepping in place at comfortable pace",
+        "Mobility: Ankle and knee circles (2 sets of 15 each)",
+        "Cool-down: 3 minutes slow walking and deep breathing"
+      ]
+    },
+    {
+      "day": "Day 7",
+      "focus": "Rest and walking goal",
+      "session": [
+        "Goal: Walk at a comfortable pace for 20-30 minutes",
+        "Focus on knee comfort and posture"
+      ]
+    }
+  ],
+  "log_template": [
+    {
+      "field": "Date",
+      "example": "2024-06-01"
+    },
+    {
+      "field": "Session Completed (Yes/No)",
+      "example": "Yes"
+    },
+    {
+      "field": "Duration (minutes)",
+      "example": "18"
+    },
+    {
+      "field": "RPE (6-20)",
+      "example": "12"
+    },
+    {
+      "field": "Knee Discomfort Level (0-10)",
+      "example": "2"
+    },
+    {
+      "field": "Notes",
+      "example": "Felt good, slight stiffness after session"
+    }
+  ],
+  "safety_notes": "Avoid any sharp or intense knee pain during exercises. Use self-anchored resistance bands only; do not attach bands to doors or external anchors. Warm-up and cool-down are essential to reduce injury risk. If knee discomfort exceeds 4/10 or worsens, stop exercise and consult a healthcare professional. Maintain good posture during all movements.",
+  "person": {
+    "name": "Blanca"
+  }
+}

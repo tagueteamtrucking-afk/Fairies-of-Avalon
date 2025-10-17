@@ -1,0 +1,18 @@
+name: Jem — Pack Samsung Health Imports (zip)
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create export ZIP from loose files
+        shell: pwsh
+        run: pwsh -File scripts/Jem-Pack-Imports.ps1 -ImportsDir "pages/apps/jem/imports" -ZipName "SamsungHealthExport_Ray.zip"
+      - name: Commit ZIP
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/jem/imports/SamsungHealthExport_Ray.zip
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(jem): pack Samsung Health export to ZIP" && git push; fi

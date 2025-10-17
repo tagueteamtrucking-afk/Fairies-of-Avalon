@@ -12,7 +12,7 @@ $outAbs = Join-Path $root $OutFile
 if(-not (Test-Path $mapAbs)){ Write-Error "Package map not found at $mapAbs"; exit 1 }
 $map = Get-Content -Raw -Path $mapAbs | ConvertFrom-Json
 
-# heuristics to find a shopping source
+# find a shopping source
 $files = Get-ChildItem -Path $plansAbs -File -Filter "*.json" | Sort-Object LastWriteTime -Descending
 if(-not $files){ Write-Error "No plan JSON files in $plansAbs"; exit 1 }
 
@@ -32,7 +32,6 @@ function Find-Sku([string]$name){
   if([string]::IsNullOrWhiteSpace($name)){ return $null }
   $k = $name.ToLowerInvariant()
   if($map.ingredient_map.PSObject.Properties.Name -contains $k){ return [string]$map.ingredient_map.$k }
-  # fuzzy contains
   foreach($kk in $map.ingredient_map.PSObject.Properties.Name){
     if($k -like "*$kk*"){ return [string]$map.ingredient_map.$kk }
   }
@@ -42,8 +41,12 @@ function Find-Sku([string]$name){
 $missing = @()
 foreach($it in $shopping){
   $n = [string]$it.name
+  if([string]::IsNullOrWhiteSpace($n)){ continue }
   $sku = Find-Sku $n
-  if(-not $sku){ $missing += @{ name=$n; suggestion="Add to ingredient_map"; example="\"{0}\": \"<sku_key>\"" -f ($n.ToLower()) } }
+  if(-not $sku){
+    $example = ('"{0}": "<sku_key>"' -f $n.ToLowerInvariant())
+    $missing += @{ name=$n; suggestion="Add to ingredient_map"; example=$example }
+  }
 }
 
 $report = @{ updated=(Get-Date).ToUniversalTime().ToString('s')+'Z'; missing=$missing }

@@ -1,0 +1,102 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stella — Voice</title>
+<style>
+body{background:#0b0f17;color:#e5e7eb;font-family:system-ui,-apple-system,Segoe UI,Roboto;margin:0}
+main{max-width:840px;margin:0 auto;padding:14px}
+h1{margin:8px 0 14px}
+.card{background:#0f172a;border:1px solid #172033;border-radius:12px;padding:12px;margin-bottom:12px}
+.btn{padding:8px 10px;border:1px solid #334155;border-radius:10px;background:#0b1220;color:#e5e7eb;cursor:pointer}
+.btn:hover{border-color:#3b82f6;color:#fff}
+input,textarea{width:100%;padding:8px;background:#0b1220;border:1px solid #334155;border-radius:8px;color:#e5e7eb}
+small{color:#93a3b8}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1 1 180px}
+audio{width:100%}
+.badge{display:inline-block;border:1px solid #334155;border-radius:999px;padding:2px 10px;margin-left:8px}
+</style></head><body>
+<main>
+  <h1>Stella — Voice I/O <span class="badge" id="health">checking…</span></h1>
+
+  <div class="card">
+    <h3>TTS (type → speak)</h3>
+    <div class="row">
+      <input id="ttsText" placeholder="Type something for Stella to say">
+      <button class="btn" id="ttsBtn">Speak</button>
+    </div>
+    <audio id="ttsAudio" controls></audio>
+  </div>
+
+  <div class="card">
+    <h3>STT (hold to record → transcribe)</h3>
+    <div class="row">
+      <button class="btn" id="recBtn">Hold to record</button>
+      <input id="sttOut" placeholder="Transcript will appear here">
+    </div>
+    <small>Safari/iPad mic capture uses MediaRecorder (WebM/Opus). Worker sends it to Whisper for transcription.</small>
+  </div>
+
+  <div class="card">
+    <h3>Chat (send transcript to assistant)</h3>
+    <div class="row">
+      <textarea id="chatInput" rows="3" placeholder="Say or type… e.g., “Guided meditation for focus”"></textarea>
+      <button class="btn" id="chatBtn">Send</button>
+    </div>
+    <div id="chatOut"></div>
+  </div>
+</main>
+<script>
+const WORKER_BASE = localStorage.getItem('stella:worker') || 'https://YOUR-WORKER.SUBDOMAIN.workers.dev';
+document.getElementById('health').textContent = 'Worker: '+WORKER_BASE;
+
+async function ttsSpeak(text){
+  const r = await fetch(WORKER_BASE+'/tts',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text,voice:'alloy',model:'tts-1'})});
+  if(!r.ok) throw new Error('TTS failed');
+  const blob = await r.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.getElementById('ttsAudio');
+  a.src = url; a.play();
+}
+
+document.getElementById('ttsBtn').onclick = ()=>{
+  const t = document.getElementById('ttsText').value.trim();
+  if(t) ttsSpeak(t);
+};
+
+// Recorder (hold to record)
+let mediaStream, mediaRecorder, chunks=[];
+const recBtn = document.getElementById('recBtn');
+recBtn.onmousedown = recBtn.ontouchstart = async () => {
+  try{
+    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    chunks = [];
+    mediaRecorder = new MediaRecorder(mediaStream, { mimeType: 'audio/webm' });
+    mediaRecorder.ondataavailable = e => { if(e.data.size>0) chunks.push(e.data); };
+    mediaRecorder.onstop = async () => {
+      const blob = new Blob(chunks, { type: 'audio/webm' });
+      const fd = new FormData();
+      fd.append('file', blob, 'audio.webm');
+      const r = await fetch(WORKER_BASE+'/stt', { method:'POST', body: fd });
+      const j = await r.json();
+      const text = j.text || j.results?.[0]?.alternatives?.[0]?.transcript || '';
+      document.getElementById('sttOut').value = text;
+      document.getElementById('chatInput').value = text;
+      mediaStream.getTracks().forEach(tr=>tr.stop());
+    };
+    mediaRecorder.start();
+    recBtn.textContent = 'Recording… release to stop';
+  }catch(e){ alert('Mic error: '+e.message); }
+};
+recBtn.onmouseup = recBtn.ontouchend = () => { if(mediaRecorder && mediaRecorder.state==='recording'){ mediaRecorder.stop(); recBtn.textContent='Hold to record'; } };
+
+document.getElementById('chatBtn').onclick = async () => {
+  const txt = document.getElementById('chatInput').value.trim();
+  if(!txt) return;
+  const r = await fetch(WORKER_BASE+'/chat',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:txt}]})});
+  const j = await r.json();
+  const content = j.choices?.[0]?.message?.content || JSON.stringify(j);
+  document.getElementById('chatOut').textContent = content;
+  ttsSpeak(content);
+};
+</script>
+</body></html>

@@ -1,0 +1,18 @@
+name: Carol — Package Map Coverage Report
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build package-map coverage report
+        shell: pwsh
+        run: pwsh -File scripts/Carol-Package-Map-Report.ps1 -PlansDir "pages/apps/carol/plans" -PackageMap "pages/apps/carol/packages/us.json" -OutFile "pages/apps/carol/plans/packages-missing.json"
+      - name: Commit report
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/carol/plans/packages-missing.json pages/apps/carol/packages/us.json
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(carol): package-map coverage report" && git push; fi

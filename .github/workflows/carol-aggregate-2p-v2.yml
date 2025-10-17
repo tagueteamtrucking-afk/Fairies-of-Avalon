@@ -1,0 +1,18 @@
+name: Carol — Aggregate & Quantize Shopping (2‑person, v2)
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  agg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aggregate to packages (US, persons=2)
+        shell: pwsh
+        run: pwsh -File scripts/Carol-Aggregate-Packages-v2.ps1 -PlansDir "pages/apps/carol/plans" -PackageMap "pages/apps/carol/packages/us.json" -OutFile "pages/apps/carol/plans/shopping-quantized.json" -Persons 2
+      - name: Commit quantized shopping
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/carol/plans/shopping-quantized.json pages/apps/carol/packages/us.json
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(carol): quantized 2-person shopping (US map)" && git push; fi

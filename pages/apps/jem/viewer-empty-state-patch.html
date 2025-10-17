@@ -1,0 +1,20 @@
+<script>
+(async function(){
+  const holder=document.querySelector('main');
+  try{
+    const r=await fetch('/pages/apps/jem/programs/index.json?cb='+Date.now(),{cache:'no-store'});
+    if(!r.ok){ throw 0; }
+    const j=await r.json();
+    const hasW1=(j.files||[]).some(f=>/week1-.*\.json$/i.test(f));
+    if(!hasW1){
+      const box=document.createElement('div'); box.className='warn';
+      box.innerHTML=`No Week‑1 plans found. Do this:<ol>
+<li>Open <a href="/pages/apps/jem/index.html" class="btn">Jem Intake</a> and export the intake JSON(s).</li>
+<li>Upload to <code>pages/apps/jem/intake/</code> (main branch).</li>
+<li>Run Actions → <b>Jem — Generate Week 1 Plans</b>, then <b>Deploy GitHub Pages</b>.</li>
+</ol>`;
+      holder.prepend(box);
+    }
+  }catch(e){}
+})();
+</script>

@@ -1,28 +1,23 @@
 <!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Avalon — Build the AI</title>
 <style>
-:root{--bg:#0b0f17;--ink:#e5e7eb;--line:#172033;--card:#0f172a;--accent:#60a5fa}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui;background:var(--bg);color:var(--ink)}
-header,main{padding:16px}h1{margin:0 0 10px 0}
-.hero{min-height:32vh;border:1px solid var(--line);border-radius:12px;display:flex;align-items:end;
-background:linear-gradient(180deg,rgba(11,15,23,.2),rgba(11,15,23,.8)),url('/asset/textures/wallpapers/hero.jpg');
-background-size:cover;background-position:center;padding:14px}
-.badge{font-size:12px;border:1px solid #334155;border-radius:10px;padding:2px 6px;margin-left:6px}
-.btn{display:inline-block;margin:8px 10px 0 0;padding:10px 12px;border:1px solid #334155;border-radius:10px;text-decoration:none;color:var(--ink);background:#0b1220}
-.btn:hover{border-color:#3b82f6;color:white}
-.small{font-size:12px;color:#9ca3af}
-</style>
-</head>
-<body data-repo-url="https://github.com/tagueteamtrucking-afk/Fairies-of-Avalon">
-<header class="hero"><div>
-  <h1>Build the AI. Let them build the site.</h1>
-  <div class="small">Server-side agents (Actions) write to <code>pages/apps/**</code>. Your assets stay safe under <code>asset/**</code>.</div>
-</div></header>
+:root{--bg:#0b0f17;--ink:#e5e7eb;--mut:#94a3b8;--btn:#0b1220;--line:#172033}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system}
+main{max-width:1100px;margin:0 auto;padding:24px}
+h1{font-size:40px;margin:10px 0 8px}.row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.btn{display:inline-block;padding:10px 12px;border:1px solid #334155;border-radius:10px;text-decoration:none;color:var(--ink);background:#0b1220}
+.btn:hover{border-color:#3b82f6}
+</style></head><body>
 <main>
-  <a class="btn" href="/pages/plaza.html">Open Plaza</a>
-  <a class="btn" href="/pages/apps/carol/menu.html">Open Carol — Menu</a>
-  <a class="btn" href="/pages/apps/alexandria/dm/play.html">Open Alexandria — DM</a>
-  <div class="small" style="margin-top:10px">Repo wired: <code>tagueteamtrucking-afk/Fairies-of-Avalon</code>. Buttons will work without extra setup.</div>
+  <h1>Build the AI. Let them build the site.</h1>
+  <div class="row">
+    <a class="btn" href="/pages/apps/index.html">Open Microapps</a>
+    <a class="btn" href="https://github.com/{{REPO}}/actions">Run Actions</a>
+    <a class="btn" href="/pages/apps/alexandria/index.html">Generate Worlds</a>
+    <a class="btn" href="/pages/apps/jem/index.html">Jem Intake</a>
+    <a class="btn" href="/pages/apps/jem/viewer.html">Jem Viewer</a>
+  </div>
 </main>
+<script>document.body.innerHTML = document.body.innerHTML.replace('{{REPO}}', location.host.split('.')[0] + '/' + 'Fairies-of-Avalon');</script>
 </body></html>

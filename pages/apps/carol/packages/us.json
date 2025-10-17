@@ -1,210 +1,204 @@
 {
-  "updated": "2025-10-15T02:23:00Z",
-  "packages": {
-    "lactose-free milk": {
-      "unit": "fl_oz",
-      "packs": [
-        32,
-        64,
-        96
+  "meta": {
+    "region": "US",
+    "version": "0.5.0",
+    "updated": "2025-10-17T22:46:58Z",
+    "notes": "Seed package map; sizes from brand/manufacturer or large grocers; tweak as needed per your store."
+  },
+  "units": {
+    "tbsp_to_g": {
+      "peanut_butter": 16,
+      "hummus": 15
+    },
+    "cup_to_g": {
+      "rolled_oats": 80
+    },
+    "fluid_oz_per_cup": 8
+  },
+  "skus": {
+    "peanut_butter": {
+      "label": "Peanut Butter (jar)",
+      "packages_oz": [
+        16.0,
+        28.0,
+        40.0
+      ],
+      "source": [
+        "target",
+        "amazon"
+      ],
+      "examples": [
+        "16 oz",
+        "28 oz",
+        "40 oz"
       ]
     },
-    "lactose-free greek yogurt": {
-      "unit": "oz",
-      "packs": [
-        24,
-        32
+    "hummus": {
+      "label": "Hummus (tub)",
+      "packages_oz": [
+        10.0,
+        12.0,
+        16.0
+      ],
+      "source": [
+        "walmart"
+      ],
+      "examples": [
+        "10 oz",
+        "12 oz",
+        "16 oz"
       ]
     },
-    "lactose-free cottage cheese": {
-      "unit": "oz",
-      "packs": [
-        16
+    "ready_rice_pouch": {
+      "label": "Microwaveable Ready Rice (pouch)",
+      "packages_oz": [
+        8.5
+      ],
+      "source": [
+        "bensoriginal"
+      ],
+      "examples": [
+        "8.5 oz pouch"
       ]
     },
-    "lactose-free mozzarella": {
-      "unit": "oz",
-      "packs": [
-        8
+    "rolled_oats_canister": {
+      "label": "Rolled Oats Canister",
+      "packages_oz": [
+        42.0
+      ],
+      "source": [
+        "walmart",
+        "kroger"
+      ],
+      "examples": [
+        "42 oz canister"
       ]
     },
-    "lactose-free cheese stick": {
-      "unit": "count",
-      "packs": [
-        12
+    "lactose_free_milk": {
+      "label": "Lactose\u2011free Milk (carton)",
+      "packages_fl_oz": [
+        32.0,
+        64.0,
+        96.0
+      ],
+      "source": [
+        "lactaid"
+      ],
+      "examples": [
+        "32 fl oz",
+        "64 fl oz",
+        "96 fl oz"
       ]
     },
-    "rolled oats": {
-      "unit": "oz",
-      "packs": [
-        42
+    "tuna_can": {
+      "label": "Tuna (can)",
+      "packages_oz": [
+        5.0,
+        12.0
+      ],
+      "source": [
+        "starkist"
+      ],
+      "examples": [
+        "5 oz",
+        "12 oz"
       ]
     },
-    "low-sugar granola": {
-      "unit": "oz",
-      "packs": [
-        11,
-        12
+    "chicken_can": {
+      "label": "Chicken (can)",
+      "packages_oz": [
+        12.5,
+        9.75
+      ],
+      "source": [
+        "walmart",
+        "campbells"
+      ],
+      "examples": [
+        "12.5 oz",
+        "9.75 oz"
       ]
     },
-    "chia seeds": {
-      "unit": "oz",
-      "packs": [
-        12
-      ]
-    },
-    "ground flaxseed": {
-      "unit": "oz",
-      "packs": [
-        12
-      ]
-    },
-    "peanut butter": {
-      "unit": "oz",
-      "packs": [
-        16,
-        28,
-        40
-      ]
-    },
-    "hummus (no cumin)": {
-      "unit": "oz",
-      "packs": [
-        10,
-        12,
-        16,
-        20
-      ]
-    },
-    "soft whole-wheat tortilla": {
-      "unit": "count",
-      "packs": [
-        8,
-        10
-      ]
-    },
-    "soft whole-grain bread": {
-      "unit": "oz",
-      "packs": [
-        22,
-        24
-      ]
-    },
-    "eggs": {
-      "unit": "count",
-      "packs": [
-        12,
-        18
-      ]
-    },
-    "canned tuna (in water)": {
-      "unit": "oz",
-      "packs": [
-        5
-      ]
-    },
-    "canned chicken": {
-      "unit": "oz",
-      "packs": [
-        12.5
-      ]
-    },
-    "low-sodium black beans (rinsed)": {
-      "unit": "oz",
-      "packs": [
+    "black_beans_can": {
+      "label": "Black Beans (can)",
+      "packages_oz": [
+        15.0,
         15.5
+      ],
+      "source": [
+        "walmart",
+        "amazon"
+      ],
+      "examples": [
+        "15 oz",
+        "15.5 oz"
       ]
     },
-    "low-sodium beans (canned)": {
-      "unit": "oz",
-      "packs": [
-        15.5
-      ]
-    },
-    "diced tomatoes (no salt added)": {
-      "unit": "oz",
-      "packs": [
+    "diced_tomatoes_nsa_can": {
+      "label": "Diced Tomatoes No\u2011Salt\u2011Added (can)",
+      "packages_oz": [
         14.5,
-        28
+        28.0
+      ],
+      "source": [
+        "walmart",
+        "hunts",
+        "kroger",
+        "tuttorosso"
+      ],
+      "examples": [
+        "14.5 oz",
+        "28 oz"
       ]
     },
-    "low-sodium lentil soup": {
-      "unit": "oz",
-      "packs": [
-        16.9
+    "frozen_mixed_veg_bag": {
+      "label": "Frozen Mixed Vegetables (bag)",
+      "packages_oz": [
+        12.0
+      ],
+      "source": [
+        "walmart",
+        "target",
+        "kroger",
+        "aldi"
+      ],
+      "examples": [
+        "12 oz steamable bag"
       ]
     },
-    "low-sodium tomato soup": {
-      "unit": "oz",
-      "packs": [
-        10.75,
-        17
-      ]
-    },
-    "brown rice (microwave pouch)": {
-      "unit": "oz",
-      "packs": [
-        8.8
-      ]
-    },
-    "frozen mixed vegetables": {
-      "unit": "oz",
-      "packs": [
-        12,
-        16
-      ]
-    },
-    "frozen mixed berries": {
-      "unit": "oz",
-      "packs": [
-        16
-      ]
-    },
-    "salmon fillet": {
-      "unit": "oz",
-      "packs": [
-        16,
-        32
-      ]
-    },
-    "cod fillet": {
-      "unit": "oz",
-      "packs": [
-        16,
-        32
-      ]
-    },
-    "lean ground turkey": {
-      "unit": "oz",
-      "packs": [
-        16,
-        20
-      ]
-    },
-    "rice cakes": {
-      "unit": "count",
-      "packs": [
-        14
-      ]
-    },
-    "low-sodium crackers": {
-      "unit": "oz",
-      "packs": [
-        8,
-        10
-      ]
-    },
-    "soft pita": {
-      "unit": "count",
-      "packs": [
-        6
-      ]
-    },
-    "baby potatoes": {
-      "unit": "oz",
-      "packs": [
-        24
+    "frozen_mixed_berries_bag": {
+      "label": "Frozen Mixed Berries (bag)",
+      "packages_oz": [
+        16.0
+      ],
+      "source": [
+        "kroger",
+        "wegmans",
+        "commissary"
+      ],
+      "examples": [
+        "16 oz bag"
       ]
     }
+  },
+  "ingredient_map": {
+    "peanut butter": "peanut_butter",
+    "pb": "peanut_butter",
+    "hummus": "hummus",
+    "ready rice": "ready_rice_pouch",
+    "microwave rice": "ready_rice_pouch",
+    "rolled oats": "rolled_oats_canister",
+    "oats": "rolled_oats_canister",
+    "milk": "lactose_free_milk",
+    "lactose-free milk": "lactose_free_milk",
+    "tuna": "tuna_can",
+    "canned tuna": "tuna_can",
+    "canned chicken": "chicken_can",
+    "chicken (canned)": "chicken_can",
+    "black beans": "black_beans_can",
+    "diced tomatoes (no salt)": "diced_tomatoes_nsa_can",
+    "diced tomatoes": "diced_tomatoes_nsa_can",
+    "mixed vegetables (frozen)": "frozen_mixed_veg_bag",
+    "mixed berries (frozen)": "frozen_mixed_berries_bag"
   }
 }

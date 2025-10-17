@@ -1,0 +1,50 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "2.3.0"
+  last_updated: "2025-10-17T22:46:58Z"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    Overseers are now **avatars** (Ray & Blanca), not AI.
+    Jem v3: Week‑1 offline generator + Viewer + Normalize Names v2 + Samsung importer (zips under /pages/apps/jem/imports).
+    Carol v2: two-person aggregation, **package map** (US seed) + coverage report workflow.
+    Alexandria DM: worker-backed option later; iPad default uses browser TTS; mic capture planned.
+    Stella: on-demand audio engine skeleton planned (NLP/TTS not on schedule—runs as-needed instead of fixed schedule).
+    Tracy: art/skin generator pipeline pending; VRM room placement allowed.
+    Site SW cache-buster '?v=' stripped by Repo-Doctor when requested.
+runtime:
+  workflows:
+    carol_package_map_report: ".github/workflows/carol-package-map-report.yml"
+    jem_normalize_v2: ".github/workflows/jem-normalize-week1.yml"
+    jem_import_samsung: ".github/workflows/jem-import-samsung.yml"
+    jem_merge_progress: ".github/workflows/jem-merge-progress.yml"
+    jem_index_programs: ".github/workflows/jem-index-programs.yml"
+    overseers_repo_doctor: ".github/workflows/overseers-repo-doctor.yml"
+  tools:
+    - "Carol Package Map Report"
+    - "Jem Import Samsung (ZIP)"
+    - "Jem Viewer (Week-1, progress, Week‑2 suggestion)"
+  defaults:
+    carol_persons: 2
+    carol_package_map: "pages/apps/carol/packages/us.json"
+    jem_intake_dir: "pages/apps/jem/intake"
+    jem_programs_dir: "pages/apps/jem/programs"
+    jem_imports_dir: "pages/apps/jem/imports"
+roles:
+  overseers:
+    - id: rey   # Ray avatar
+      abilities: [approve_deployments, manage_secrets, oversee_builds]
+    - id: blanca
+      abilities: [approve_deployments, manage_secrets, oversee_builds]
+entities:
+  fairies:
+    - id: carol_li
+      changes: ["Two-person aggregation default", "US package map seed", "Coverage report workflow"]
+    - id: jem_nassim
+      changes: ["Week‑1 viewer & progress", "Normalize Names v2", "Samsung Health importer (zips)"]
+    - id: alexandria
+      changes: ["DM uses browser TTS by default on iPad; worker optional"]
+    - id: stella
+      changes: ["On-demand sound therapy engine (no rigid schedule)"]
+    - id: tracy
+      changes: ["Room-based avatar placement; skin generator planned"]

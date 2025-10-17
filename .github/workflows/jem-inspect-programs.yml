@@ -1,0 +1,10 @@
+name: Jem — Inspect Programs
+on: { workflow_dispatch: {} }
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect program files and names
+        shell: pwsh
+        run: pwsh -File scripts/Jem-Inspect-Programs.ps1 -ProgramsDir "pages/apps/jem/programs"

@@ -1,4 +1,4 @@
-name: Jem — Normalize Week1 Names
+name: Jem — Normalize Week1 Names (v2)
 on: { workflow_dispatch: {} }
 permissions: { contents: write }
 jobs:
@@ -15,4 +15,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add pages/apps/jem/programs/*
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(jem): normalize week1 names + reindex" && git push; fi
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(jem): normalize week1 names (v2) + reindex" && git push; fi

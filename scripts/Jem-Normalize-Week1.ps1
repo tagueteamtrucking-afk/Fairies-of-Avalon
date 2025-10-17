@@ -10,81 +10,109 @@ if(-not (Test-Path $dir)){ Write-Error "ProgramsDir not found: $dir"; exit 1 }
 $files = Get-ChildItem -Path $dir -Filter "week1-*.json" -File -ErrorAction SilentlyContinue
 if(-not $files){ Write-Host "No week1-*.json files to normalize in $dir"; exit 0 }
 
-$map = @{}
-if(Test-Path (Join-Path $root $MapFile)){
-  try{ $map = Get-Content -Raw -Path (Join-Path $root $MapFile) | ConvertFrom-Json } catch {}
+# Load optional explicit map
+$explicit = @{}
+$mapPath = Join-Path $root $MapFile
+if(Test-Path $mapPath){
+  try{ $explicit = Get-Content -Raw -Path $mapPath | ConvertFrom-Json } catch { Write-Warning "name-map.json invalid; ignoring" }
 }
 
-# Collect items
-$items = @()
-foreach($f in $files){
-  try{
-    $j = Get-Content -Raw -Path $f.FullName | ConvertFrom-Json
-  }catch{
-    Write-Warning "Invalid JSON: $($f.Name) — skipping"
-    continue
+function Get-PersonName([object]$j){
+  if($null -eq $j){ return $null }
+  if($j.PSObject.Properties.Name -contains 'person'){
+    $p = $j.person
+    if($p -is [string]){ return $p }
+    if($p -is [hashtable] -or $p -is [pscustomobject]){
+      if($p.PSObject.Properties.Name -contains 'name'){ return [string]$p.name }
+    }
   }
-  $pname = ($j.person.name | Out-String).Trim()
+  # fallbacks: look for top-level 'name'
+  if($j.PSObject.Properties.Name -contains 'name'){ return [string]$j.name }
+  return $null
+}
+
+function Set-PersonName([ref]$jsonRef, [string]$name){
+  $j = $jsonRef.Value
+  if(-not ($j.PSObject.Properties.Name -contains 'person')){
+    $j | Add-Member -NotePropertyName person -NotePropertyValue (@{ name = $name }) -Force
+  } else {
+    $p = $j.person
+    if($p -is [string]){
+      $j.person = @{ name = $name }
+    } elseif($p -is [hashtable] -or $p -is [pscustomobject]){
+      if(-not ($j.person.PSObject.Properties.Name -contains 'name')){
+        $j.person | Add-Member -NotePropertyName name -NotePropertyValue $name -Force
+      } else {
+        $j.person.name = $name
+      }
+    } else {
+      $j.person = @{ name = $name }
+    }
+  }
+  $jsonRef.Value = $j
+}
+
+# Collect candidates
+$cands = @()
+foreach($f in $files){
+  try{ $j = Get-Content -Raw -Path $f.FullName | ConvertFrom-Json }
+  catch{ Write-Warning "Invalid JSON: $($f.Name) — skipping"; continue }
+  $pname = Get-PersonName $j
   $evalTs = $null
   if($pname -match '^Evaluation-(\d{8}T\d{6}Z)$'){ $evalTs = $Matches[1] }
-  $items += [pscustomobject]@{ File=$f; Name=$pname; EvalTs=$evalTs; Json=$j }
+  $cands += [pscustomobject]@{ File=$f; Json=$j; Name=$pname; EvalTs=$evalTs }
 }
 
-# Determine current presence
-$hasRay     = $items | Where-Object { $_.Name -match '^(?i)ray$' } | Select-Object -First 1
-$hasBlanca  = $items | Where-Object { $_.Name -match '^(?i)blanca$' } | Select-Object -First 1
-$unknowns   = $items | Where-Object { $_.Name -notmatch '^(?i)(ray|blanca)$' }
+# Decide mapping
+$renames = @()
+$haveRay    = $cands | Where-Object { $_.Name -match '^(?i)ray$' } | Select-Object -First 1
+$haveBlanca = $cands | Where-Object { $_.Name -match '^(?i)blanca$' } | Select-Object -First 1
 
-# If name-map.json is present, apply explicit mapping
-$plannedMap = @{}
-if($map.PSObject.Properties.Name.Count -gt 0){
-  foreach($k in $map.PSObject.Properties.Name){
-    $v = [string]$map.$k
-    if($v -match '^(?i)(ray|blanca)$'){ $plannedMap[$k] = $v.Substring(0,1).ToUpper()+$v.Substring(1).ToLower() }
+$byEval = $cands | Where-Object { $_.EvalTs } | Sort-Object EvalTs
+if(-not $haveRay -and $byEval.Count -ge 1){ $renames += @{ old=$byEval[0].Name; new='Ray' } }
+if(-not $haveBlanca -and $byEval.Count -ge 2){ $renames += @{ old=$byEval[1].Name; new='Blanca' } }
+
+# Apply explicit map overrides
+foreach($k in $explicit.PSObject.Properties.Name){
+  $v = [string]$explicit.$k
+  if($v -match '^(?i)(ray|blanca)$'){
+    $renames = $renames | Where-Object { $_.old -ne $k }
+    $renames += @{ old=$k; new=($v.Substring(0,1).ToUpper()+$v.Substring(1).ToLower()) }
   }
-}else{
-  # Heuristic: if there are two unknowns that look like Evaluation-<ts>, sort by ts and map older->Ray, newer->Blanca (only if needed)
-  $evals = $unknowns | Where-Object { $_.EvalTs } | Sort-Object EvalTs
-  if(-not $hasRay -and $evals.Count -ge 1){ $plannedMap[$evals[0].Name] = "Ray" }
-  if(-not $hasBlanca -and $evals.Count -ge 2){ $plannedMap[$evals[1].Name] = "Blanca" }
 }
 
-$changes = @()
-foreach($it in $items){
-  $oldName = $it.Name
-  $targetName = $oldName
-  if($plannedMap.ContainsKey($oldName)){ $targetName = $plannedMap[$oldName] }
-  # Normalize exact casing for Ray/Blanca
-  if($targetName -match '^(?i)ray$'){ $targetName = 'Ray' }
-  elseif($targetName -match '^(?i)blanca$'){ $targetName = 'Blanca' }
+# Execute renames
+$changed = @()
+foreach($c in $cands){
+  $target = $c.Name
+  $mapHit = $renames | Where-Object { $_.old -eq $c.Name } | Select-Object -First 1
+  if($mapHit){ $target = $mapHit.new }
+  if($target -match '^(?i)ray$'){ $target = 'Ray' }
+  elseif($target -match '^(?i)blanca$'){ $target = 'Blanca' }
 
-  $wantRename = $false
-  if($targetName -ne $oldName){ $wantRename = $true }
-  $desiredFile = Join-Path $dir ("week1-"+$targetName.Replace(' ','_')+".json")
-  if($it.File.FullName -ne $desiredFile){ $wantRename = $true }
+  $need = $false
+  if($null -eq $c.Name){ $need = $true }
+  elseif($target -ne $c.Name){ $need = $true }
 
-  if($wantRename){
-    $it.Json.person.name = $targetName
-    # write to temp then move
+  $desiredFile = Join-Path $dir ("week1-"+$target.Replace(' ','_')+".json")
+  if($c.File.FullName -ne $desiredFile){ $need = $true }
+
+  if($need){
+    Set-PersonName ([ref]$c.Json) $target
     $tmp = $desiredFile + ".tmp"
-    [IO.File]::WriteAllText($tmp, ($it.Json | ConvertTo-Json -Depth 12), [Text.Encoding]::UTF8)
+    [IO.File]::WriteAllText($tmp, ($c.Json | ConvertTo-Json -Depth 16), [Text.Encoding]::UTF8)
     if(Test-Path $desiredFile){ Remove-Item -Path $desiredFile -Force }
     Move-Item -Path $tmp -Destination $desiredFile -Force
-    if(Test-Path $it.File.FullName){ Remove-Item -Path $it.File.FullName -Force }
-    $changes += @{ from=$it.File.Name; to=(Split-Path -Leaf $desiredFile); old=$oldName; new=$targetName }
+    if(Test-Path $c.File.FullName){ Remove-Item -Path $c.File.FullName -Force }
+    $changed += ("{0} [{1}] -> {2} [{3}]" -f $c.File.Name, ($c.Name ?? 'null'), (Split-Path -Leaf $desiredFile), $target)
   }
 }
 
-# Rebuild index.json (programs only)
+# Rebuild index.json to include all *.json in programs
 $indexPath = Join-Path $dir "index.json"
-$allJson = Get-ChildItem -Path $dir -Filter "*.json" -File | ForEach-Object { "programs/"+ $_.Name }
-$idx = @{ updated=(Get-Date).ToUniversalTime().ToString('s')+'Z'; files=$allJson }
+$all = Get-ChildItem -Path $dir -Filter "*.json" -File | ForEach-Object { "programs/"+$_.Name }
+$idx = @{ updated=(Get-Date).ToUniversalTime().ToString('s')+'Z'; files=$all }
 [IO.File]::WriteAllText($indexPath, ($idx | ConvertTo-Json -Depth 6), [Text.Encoding]::UTF8)
 
-if($changes.Count -gt 0){
-  Write-Host "Normalized:"
-  $changes | ForEach-Object { Write-Host (" - "+$_.from+" ["+$_.old+"] -> "+$_.to+" ["+$_.new+"]") }
-}else{
-  Write-Host "No renames needed."
-}
-Write-Host "Index rebuilt: programs/index.json"
+if($changed.Count){ Write-Host "Normalized:`n - " + ($changed -join "`n - ") } else { Write-Host "No renames needed." }
+Write-Host "Rebuilt programs/index.json"

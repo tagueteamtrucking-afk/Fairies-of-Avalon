@@ -1,11 +1,11 @@
 ﻿{
-  "updated": "2025-10-17T03:30:55Z",
-  "actions": [
-    "Normalized week1 files (if needed)"
-  ],
-  "warnings": [],
+  "updated": "2025-10-17T03:33:20Z",
   "created_dirs": [
     "pages/apps/jem/intake",
     "pages/apps/jem/logs"
+  ],
+  "warnings": [],
+  "actions": [
+    "Normalized week1 files (if needed)"
   ]
 }

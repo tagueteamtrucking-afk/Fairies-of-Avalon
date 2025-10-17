@@ -1,11 +1,10 @@
-{
-  "updated": "2025-10-06T01:59:04Z",
-  "programs": [
-    {
-      "id": "healthcheck",
-      "title": "Health Check",
-      "type": "script",
-      "entry": "scripts/Run-All.ps1"
-    }
-  ]
-}
+{ "updated": "2025-10-17T02:43:52Z", "files": [
+"programs/index.json"
+, "programs/program-recomp-minimal-20250918T052013Z.json"
+, "programs/program-recomp-minimal-20251006T012726Z.json"
+, "programs/program-recomp-minimal-20251006T015002Z.json"
+, "programs/program-recomp-minimal-20251006T032701Z.json"
+, "programs/program-recomp-minimal-20251006T034438Z.json"
+, "programs/week1-evaluation-20251010T013134Z.json"
+, "programs/week1-evaluation-20251017T013847Z.json"
+] }

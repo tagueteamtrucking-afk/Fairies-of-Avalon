@@ -1,0 +1,275 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jem — Week 1 Viewer & Progress</title>
+<style>
+:root{--bg:#0b0f17;--ink:#e5e7eb;--line:#172033;--card:#0f172a;--accent:#60a5fa;--ok:#16a34a;--warn:#f59e0b;--bad:#ef4444}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto}
+header,main{padding:14px}h1{margin:0 0 8px 0}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px}
+small{color:#94a3b8}.muted{color:#94a3b8}
+.btn{display:inline-block;padding:8px 10px;border:1px solid #334155;border-radius:10px;text-decoration:none;color:var(--ink);background:#0b1220;margin-right:6px;cursor:pointer}
+.btn:hover{border-color:#3b82f6;color:white}
+input,select,textarea{width:100%;padding:8px;background:#0b1220;border:1px solid #334155;border-radius:8px;color:var(--ink)}
+label{display:block;font-size:13px;margin:6px 0 4px}
+hr{border:0;border-top:1px solid var(--line);margin:10px 0}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid #334155;background:#0b1220;border-radius:999px;padding:4px 10px;margin-left:8px}
+.badge.ok{border-color:#1f4e2e;color:#bbf7d0}.badge.fail{border-color:#5a1f26;color:#fecaca}
+.table{width:100%;border-collapse:collapse}.table td,.table th{border-bottom:1px solid #172033;padding:6px;vertical-align:top}
+.notice{background:#1d2a20;border:1px solid #2a3d2e;color:#d1fae5;border-radius:8px;padding:8px;margin:8px 0}
+.warn{background:#33281a;border:1px solid #6b4a2f;color:#fde68a;border-radius:8px;padding:8px;margin:8px 0}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1 1 140px}
+code.k{background:#0b1220;border:1px solid #334155;border-radius:6px;padding:2px 6px}
+</style></head><body>
+<header>
+  <h1>Jem — Week 1 Viewer & Progress
+    <span id="planBadge" class="badge">Plan: …</span>
+    <span id="bioBadge" class="badge">Biometrics: …</span>
+  </h1>
+  <div class="muted">Week 1 is <b>evaluation</b>. Log your tests and what you actually did; export a progress file you can upload to the repo. Jem will suggest a Week‑2 progression based on the results.</div>
+  <div class="row" style="margin-top:8px">
+    <select id="personSel"></select>
+    <button class="btn" id="loadBtn">Load Plan</button>
+    <button class="btn" id="exportProg">Export Progress (.json)</button>
+    <button class="btn" id="downloadW2">Download Week‑2 Suggestion (.json)</button>
+    <a class="btn" id="openPrograms" target="_blank">Open programs folder</a>
+  </div>
+</header>
+<main class="grid">
+  <div class="card">
+    <h3>Week 1 — Tests</h3>
+    <div class="muted">Complete once this week; use pain‑free range. Stop on sharp pain.</div>
+    <div class="row">
+      <div>
+        <label>Sit‑to‑Stand (30s) — count</label>
+        <input id="t_s2s" type="number" min="0" placeholder="e.g., 10">
+      </div>
+      <div>
+        <label>Plank hold — seconds</label>
+        <input id="t_plank" type="number" min="0" placeholder="e.g., 30">
+      </div>
+      <div>
+        <label>Wall sit — seconds</label>
+        <input id="t_wallsit" type="number" min="0" placeholder="e.g., 30">
+      </div>
+      <div>
+        <label>Low step‑ups — RPE (1–10)</label>
+        <input id="t_stepupeffort" type="number" min="1" max="10" placeholder="e.g., 6">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>Pain notes (knees/back/core)</label>
+        <textarea id="t_pain" rows="2" placeholder="Where/when did discomfort appear?"></textarea>
+      </div>
+      <div>
+        <label>Other notes</label>
+        <textarea id="t_notes" rows="2" placeholder="Anything else to remember"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Mobility (daily)</h3>
+    <div id="mobList" class="muted">Load a plan to see items.</div>
+  </div>
+
+  <div class="card">
+    <h3>Strength Sessions (A / B)</h3>
+    <div id="strengthAB" class="muted">Load a plan to see items.</div>
+  </div>
+
+  <div class="card">
+    <h3>Conditioning</h3>
+    <div id="cond" class="muted">Load a plan to see items.</div>
+  </div>
+
+  <div class="card">
+    <h3>Session Log (what I did)</h3>
+    <div class="muted">Check off what you completed this week. Use RPE 1–10; add notes.</div>
+    <table class="table" id="logTable">
+      <thead><tr><th>Session</th><th>Completed</th><th>Avg RPE</th><th>Notes</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+</main>
+<script>
+const planBadge=document.getElementById('planBadge'), bioBadge=document.getElementById('bioBadge');
+const personSel=document.getElementById('personSel');
+const logTable=document.querySelector('#logTable tbody');
+let plan=null, person=null, bio=null;
+
+function setB(el, ok, msg){ el.textContent=(el===planBadge?'Plan: ':'Biometrics: ')+msg; el.classList.remove('ok','fail'); el.classList.add(ok?'ok':'fail','badge'); }
+async function j(url){
+  const u=url+(url.includes('?')?'&':'?')+'cb='+(Date.now()); const r=await fetch(u,{cache:'no-store'});
+  if(!r.ok) throw new Error('HTTP '+r.status+' @ '+url); return r.json();
+}
+
+async function discoverPersons(){
+  personSel.innerHTML='';
+  try{
+    const idx=await j('/pages/apps/jem/programs/index.json');
+    setB(planBadge,true,'index.json ok');
+    // naive: look for any week1-*.json, also read person name from file
+    const opts=[];
+    for(const f of (idx.files||[])){
+      if(!/week1-.*\.json$/i.test(f)) continue;
+      try{
+        const pj=await j('/pages/apps/jem/'+f);
+        const name=pj.person?.name || f.replace(/^.*week1\-|\.json$/g,'');
+        opts.push({name, file:f});
+      }catch{}
+    }
+    if(opts.length===0){ setB(planBadge,false,'no week1 files'); }
+    opts.forEach(o=>{
+      const op=document.createElement('option'); op.value=o.file; op.textContent=o.name+' — '+o.file; personSel.appendChild(op);
+    });
+  }catch(e){ setB(planBadge,false,'missing'); }
+  try{ bio=await j('/pages/apps/jem/programs/biometrics.json'); setB(bioBadge,true,'found'); }catch(e){ setB(bioBadge,false,'none'); }
+}
+discoverPersons();
+
+document.getElementById('openPrograms').href='/pages/apps/jem/programs/';
+
+document.getElementById('loadBtn').addEventListener('click', async()=>{
+  const file=personSel.value; if(!file){ alert('No week1 file selected'); return; }
+  plan=await j('/pages/apps/jem/'+file);
+  person=plan.person||{name:'Unknown'};
+  renderPlan(plan);
+  loadLog();
+});
+
+function el(tag,attrs={},html=''){ const e=document.createElement(tag); Object.assign(e,attrs); e.innerHTML=html; return e; }
+
+function renderPlan(p){
+  // mobility
+  const mob=document.getElementById('mobList'); mob.innerHTML='';
+  (p.daily_mobility||[]).forEach(x=> mob.appendChild(el('div',{},'• '+x)));
+  // strength A/B
+  const ab=document.getElementById('strengthAB'); ab.innerHTML='';
+  (p.strength_template||[]).forEach(block=>{
+    const card=el('div',{},`<b>Session ${block.day}</b>`);
+    const ul=el('ul'); (block.items||[]).forEach(it=>{
+      const s = `${it.name} — ${it.sets} sets × ${it.reps}${it.tempo?(' @ '+it.tempo):''}${it.rest_s?(' • Rest '+it.rest_s+'s'):''}${it.notes?(' • '+it.notes):''}`;
+      ul.appendChild(el('li',{},s));
+    }); card.appendChild(ul); ab.appendChild(card);
+  });
+  // conditioning
+  const c=document.getElementById('cond'); c.innerHTML='';
+  (p.conditioning||[]).forEach(x=> c.appendChild(el('div',{},'• '+x)));
+  // log table rows (Session A and B; 3 of each default)
+  logTable.innerHTML='';
+  const sessions=['A','B','A','B','A']; // 5 days/week default
+  sessions.forEach((s,i)=>{
+    const tr=el('tr'); tr.appendChild(el('td',{},`Session ${s} (Day ${i+1})`));
+    tr.appendChild(el('td',{},`<input type="checkbox" data-k="done_${i}">`));
+    tr.appendChild(el('td',{},`<input type="number" min="1" max="10" step="1" data-k="rpe_${i}" placeholder="5">`));
+    tr.appendChild(el('td',{},`<input type="text" data-k="note_${i}" placeholder="notes">`));
+    logTable.appendChild(tr);
+  });
+}
+
+function keyBase(){ return 'jem:progress:'+ (person?.name||'unknown'); }
+function saveLocal(){
+  const out={ updated:new Date().toISOString(), week:1, person: person||{}, tests:{
+    sit_to_stand_30s: Number(document.getElementById('t_s2s').value||0),
+    plank_hold_s: Number(document.getElementById('t_plank').value||0),
+    wall_sit_s: Number(document.getElementById('t_wallsit').value||0),
+    step_up_rpe: Number(document.getElementById('t_stepupeffort').value||0),
+    pain: document.getElementById('t_pain').value||'',
+    notes: document.getElementById('t_notes').value||''
+  }, sessions: [] };
+  [...logTable.querySelectorAll('tr')].forEach((tr,idx)=>{
+    const done=tr.querySelector('input[data-k="done_'+idx+'"]').checked;
+    const rpe=Number(tr.querySelector('input[data-k="rpe_'+idx+'"]').value||0);
+    const note=(tr.querySelector('input[data-k="note_'+idx+'"]').value||'');
+    out.sessions.push({ day: idx+1, label: idx%2===0?'A':'B', done, rpe, note });
+  });
+  localStorage.setItem(keyBase(), JSON.stringify(out));
+  return out;
+}
+function loadLog(){
+  const s=localStorage.getItem(keyBase()); if(!s) return;
+  try{
+    const o=JSON.parse(s);
+    document.getElementById('t_s2s').value = o.tests?.sit_to_stand_30s||'';
+    document.getElementById('t_plank').value = o.tests?.plank_hold_s||'';
+    document.getElementById('t_wallsit').value = o.tests?.wall_sit_s||'';
+    document.getElementById('t_stepupeffort').value = o.tests?.step_up_rpe||'';
+    document.getElementById('t_pain').value = o.tests?.pain||'';
+    document.getElementById('t_notes').value = o.tests?.notes||'';
+    (o.sessions||[]).forEach((s,idx)=>{
+      const tr=logTable.children[idx]; if(!tr) return;
+      tr.querySelector('input[data-k="done_'+idx+'"]').checked = !!s.done;
+      tr.querySelector('input[data-k="rpe_'+idx+'"]').value = s.rpe||'';
+      tr.querySelector('input[data-k="note_'+idx+'"]').value = s.note||'';
+    });
+  }catch{}
+}
+
+document.getElementById('exportProg').addEventListener('click', ()=>{
+  if(!person){ alert('Load a plan first'); return; }
+  const out=saveLocal();
+  const a=document.createElement('a');
+  a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(out,null,2));
+  const fn = `jem-progress-week1-${(person.name||'unknown').toLowerCase()}.json`;
+  a.download=fn; a.click();
+});
+
+document.getElementById('downloadW2').addEventListener('click', ()=>{
+  if(!plan||!person){ alert('Load a plan first'); return; }
+  const prog=saveLocal();
+  const w2 = suggestWeek2(plan, prog);
+  const a=document.createElement('a');
+  a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(w2,null,2));
+  a.download=`week2-${(person.name||'unknown').toLowerCase()}.json`; a.click();
+});
+
+function suggestWeek2(p, prog){
+  // simple rules
+  const t=prog.tests||{};
+  let incSet = 0, incRepsA = 0, incHold = 0;
+  if((t.plank_hold_s||0) >= 45) incHold += 10;
+  if((t.wall_sit_s||0) >= 45) incHold += 10;
+  if((t.sit_to_stand_30s||0) >= 12) incRepsA += 2;
+  const avgRPE = (prog.sessions||[]).map(s=>s.rpe||0).filter(x=>x>0).reduce((a,b)=>a+b,0) / Math.max(1,(prog.sessions||[]).filter(s=>s.rpe>0).length);
+  if(avgRPE && avgRPE <= 5) incSet += 1;
+
+  function bump(it){
+    const out = JSON.parse(JSON.stringify(it));
+    if(/plank|hold/i.test(out.name) && incHold){ out.reps = (out.reps||'20-30s').toString().replace(/\d+/g, m=> String(Number(m)+incHold) ); }
+    if(/sit\-to\-stand|squat|step\-ups?/i.test(out.name) && incRepsA){ out.reps = bumpReps(out.reps, incRepsA); }
+    return out;
+  }
+  function bumpReps(repStr, inc){
+    if(!repStr) return repStr;
+    const s=repStr.toString();
+    if(/\d+\-\d+/.test(s)){
+      const [a,b]=s.split('-').map(x=>parseInt(x,10));
+      return (a+inc)+'-'+(b+inc);
+    }else if(/\d+\/side/.test(s)){
+      const n=parseInt(s,10); return (n+inc)+"/side";
+    }else if(/\d+/.test(s)){
+      const n=parseInt(s,10); return String(n+inc);
+    }
+    return s;
+  }
+
+  const w2 = JSON.parse(JSON.stringify(p));
+  w2.week = 2;
+  w2.updated = new Date().toISOString();
+  w2.previous_week = { tests: t, avgRPE: Math.round((avgRPE||0)*10)/10 };
+  w2.strength_template = (p.strength_template||[]).map(block=>{
+    const items = (block.items||[]).map(bump);
+    return { day:block.day, items: items.map(x=> incSet? ({...x, sets: (x.sets||3)+incSet}) : x) };
+  });
+  w2.notes = (w2.notes||[]).concat([
+    "Auto-suggested Week‑2 based on Week‑1 results. Increase is conservative; reduce if pain or RPE>8.",
+    "If any movement caused pain, replace it with a tolerated variant and keep volume constant next week."
+  ]);
+  return w2;
+}
+</script>
+</body></html>

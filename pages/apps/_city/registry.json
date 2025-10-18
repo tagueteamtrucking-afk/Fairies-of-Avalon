@@ -1,101 +1,103 @@
-﻿{
-  "updated": "2025-10-18T04:31:55Z",
+{
+  "updated": "20251018T053433Z",
   "items": [
     {
-      "id": "abbey",
-      "icon": "🏦",
-      "name": "Abbey — Vault",
-      "href": "/pages/apps/abbey/index.html"
-    },
-    {
       "id": "alexandria",
-      "icon": "📚",
-      "name": "Alexandria — Library",
-      "href": "/pages/apps/alexandria/index.html"
-    },
-    {
-      "id": "billie",
-      "icon": "🏛️",
-      "name": "billie",
-      "href": "/pages/apps/billie/index.html"
-    },
-    {
-      "id": "carol",
-      "icon": "🔥",
-      "name": "Carol — Bistro",
-      "href": "/pages/apps/carol/index.html"
-    },
-    {
-      "id": "charlotte",
-      "icon": "📡",
-      "name": "Charlotte — Relay",
-      "href": "/pages/apps/charlotte/index.html"
-    },
-    {
-      "id": "clarice",
-      "icon": "⚖️",
-      "name": "Clarice — Court",
-      "href": "/pages/apps/clarice/index.html"
-    },
-    {
-      "id": "jem",
-      "icon": "🐉",
-      "name": "Jem — Dojo",
-      "href": "/pages/apps/jem/index.html"
-    },
-    {
-      "id": "nina",
-      "icon": "🧪",
-      "name": "Nina — Lab",
-      "href": "/pages/apps/nina/index.html"
-    },
-    {
-      "id": "odessa",
-      "icon": "🏛️",
-      "name": "Odessa — Museum",
-      "href": "/pages/apps/odessa/index.html"
-    },
-    {
-      "id": "overseers",
-      "icon": "🏛️",
-      "name": "overseers",
-      "href": "/pages/apps/overseers/index.html"
-    },
-    {
-      "id": "reyczar",
-      "icon": "👑",
-      "name": "Rey Czar — Palace",
-      "href": "/pages/apps/reyczar/index.html"
-    },
-    {
-      "id": "sorcha",
-      "icon": "🎬",
-      "name": "Sorcha — Mansion",
-      "href": "/pages/apps/sorcha/index.html"
-    },
-    {
-      "id": "stella",
-      "icon": "🌌",
-      "name": "Stella — Observatory",
-      "href": "/pages/apps/stella/index.html"
-    },
-    {
-      "id": "themis",
-      "icon": "📜",
-      "name": "Themis — Records",
-      "href": "/pages/apps/themis/index.html"
+      "name": "Alexandria \u2014 Library",
+      "icon": "\ud83d\udcda",
+      "href": "/pages/apps/alexandria/index.html",
+      "desc": "Worldbuilding & DM"
     },
     {
       "id": "tracy",
-      "icon": "🎨",
-      "name": "Tracy — Atelier",
-      "href": "/pages/apps/tracy/index.html"
+      "name": "Tracy \u2014 Atelier",
+      "icon": "\ud83c\udfa8",
+      "href": "/pages/apps/tracy/index.html",
+      "desc": "Skins, 2D, 3D"
+    },
+    {
+      "id": "nina",
+      "name": "Nina \u2014 Lab",
+      "icon": "\ud83e\uddea",
+      "href": "/pages/apps/nina/index.html",
+      "desc": "3D scenes & buttons"
+    },
+    {
+      "id": "charlotte",
+      "name": "Charlotte \u2014 Relay",
+      "icon": "\ud83d\udce1",
+      "href": "/pages/apps/charlotte/index.html",
+      "desc": "Pipelines, UI polish"
+    },
+    {
+      "id": "stella",
+      "name": "Stella \u2014 Observatory",
+      "icon": "\ud83c\udf0c",
+      "href": "/pages/apps/stella/index.html",
+      "desc": "Meditation & sound"
+    },
+    {
+      "id": "jem",
+      "name": "Jem \u2014 Dojo",
+      "icon": "\ud83d\udc09",
+      "href": "/pages/apps/jem/index.html",
+      "desc": "Fitness & coaching"
+    },
+    {
+      "id": "carol",
+      "name": "Carol \u2014 Bistro",
+      "icon": "\ud83d\udd25",
+      "href": "/pages/apps/carol/index.html",
+      "desc": "Menu & shopping"
+    },
+    {
+      "id": "abbey",
+      "name": "Abbey \u2014 Vault",
+      "icon": "\ud83c\udfe6",
+      "href": "/pages/apps/abbey/index.html",
+      "desc": "Subscriptions & ledger"
+    },
+    {
+      "id": "clarice",
+      "name": "Clarice \u2014 Court",
+      "icon": "\u2696\ufe0f",
+      "href": "/pages/apps/clarice/index.html",
+      "desc": "Code & security"
+    },
+    {
+      "id": "sorcha",
+      "name": "Sorcha \u2014 Mansion",
+      "icon": "\ud83c\udfac",
+      "href": "/pages/apps/sorcha/index.html",
+      "desc": "Social & growth"
+    },
+    {
+      "id": "odessa",
+      "name": "Odessa \u2014 Museum",
+      "icon": "\ud83c\udfdb\ufe0f",
+      "href": "/pages/apps/odessa/index.html",
+      "desc": "Research & grants"
+    },
+    {
+      "id": "themis",
+      "name": "Themis \u2014 Records",
+      "icon": "\ud83d\udcdc",
+      "href": "/pages/apps/themis/index.html",
+      "desc": "Reminders & renewals"
     },
     {
       "id": "whitestar",
-      "icon": "⭐",
-      "name": "White Star — Palace",
-      "href": "/pages/apps/whitestar/index.html"
+      "name": "White Star \u2014 Palace",
+      "icon": "\u2b50",
+      "href": "/pages/apps/whitestar/index.html",
+      "desc": "Overseer avatar"
+    },
+    {
+      "id": "reyczar",
+      "name": "Rey Czar \u2014 Palace",
+      "icon": "\ud83d\udc51",
+      "href": "/pages/apps/reyczar/index.html",
+      "desc": "Overseer avatar"
     }
   ]
 }

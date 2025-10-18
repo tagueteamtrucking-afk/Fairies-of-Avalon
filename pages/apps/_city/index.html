@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Avalon — City Plaza</title>
+<link rel="stylesheet" href="/pages/apps/_city/city.css">
+</head><body><main>
+  <h1>🏰 Avalon — City Plaza</h1>
+  <p class="badge">Tap a building to enter an assistant’s room.</p>
+  <div id="grid" class="grid"></div>
+</main>
+<script type="module">
+const regUrl = '/pages/apps/_city/registry.json';
+const grid = document.getElementById('grid');
+fetch(regUrl).then(r=>r.json()).then(reg=>{
+  const items = reg.items || [];
+  items.forEach(x=>{
+    const a = document.createElement('a');
+    a.href = x.href;
+    a.className = 'building';
+    a.setAttribute('data-id', x.id);
+    a.innerHTML = `
+      <div class="b-icon">${x.icon||'🏛️'}</div>
+      <div class="b-name">${x.name}</div>
+      <div class="b-desc">${x.desc||''}</div>
+    `;
+    grid.appendChild(a);
+  });
+}).catch(e=>{
+  const d = document.createElement('div');
+  d.className='card'; d.textContent='Registry not found.'; grid.replaceWith(d);
+});
+</script></body></html>

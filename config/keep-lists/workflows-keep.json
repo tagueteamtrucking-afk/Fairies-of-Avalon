@@ -4,6 +4,7 @@
     "repo-usage-report.yml",
     "repo-sweeper-workflows.yml",
     "start-site-polish.yml",
+    "charlotte-build-link-registry.yml",
     "carol-extract-v2-and-report.yml",
     "carol-aggregate-fromfile-2p.yml",
     "nina-build-scene-index.yml",

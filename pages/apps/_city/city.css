@@ -1,0 +1,12 @@
+:root{--gap:12px;--radius:14px;--panel:#0f172a;--ink:#e5e7eb;--accent:#7caceb;--border:#172033;--wallpaper:url('/asset/textures/wallpapers/avalon-01.jpg')}
+*{box-sizing:border-box}html,body{margin:0;height:100%}body{font-family:system-ui,Segoe UI,Roboto;background:#0b1220;color:var(--ink);background-image:var(--wallpaper);background-size:cover;background-position:center}
+main{max-width:1200px;margin:0 auto;padding:16px}
+h1{margin:10px 0 6px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--gap);margin-top:12px}
+.card{background:rgba(15,23,42,.86);border:1px solid var(--border);border-radius:var(--radius);padding:12px;backdrop-filter:blur(10px)}
+.building{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:var(--ink);border:1px solid var(--border);border-radius:var(--radius);padding:12px;background:linear-gradient(180deg,rgba(12,18,32,.7),rgba(10,14,24,.9));box-shadow:0 10px 20px rgba(0,0,0,.25)}
+.building:hover{outline:1px solid var(--accent);box-shadow:0 10px 28px rgba(124,172,235,.35)}
+.b-icon{height:120px;border-radius:10px;background:#0b1220;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px}
+.b-name{font-size:18px;font-weight:600}
+.b-desc{opacity:.82;font-size:13px}
+.badge{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid var(--border);font-size:12px;opacity:.9}

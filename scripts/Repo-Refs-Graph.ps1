@@ -10,10 +10,9 @@ function Add-Edge([ref]$edges,[string]$src,[string]$dst){
   if([string]::IsNullOrWhiteSpace($src) -or [string]::IsNullOrWhiteSpace($dst)){ return }
   $edges.Value += @{ from=$src; to=$dst }
 }
-
 $edges = @()
 
-# Workflows: find 'pwsh -File scripts/...ps1'
+# Workflows: find "pwsh -File scripts/...ps1"
 $wfDir = Join-Path $repo ".github/workflows"
 if(Test-Path $wfDir){
   $wfs = Get-ChildItem -Path $wfDir -File -Recurse -Include *.yml,*.yaml
@@ -21,7 +20,7 @@ if(Test-Path $wfDir){
     $txt = Read-Text $wf.FullName
     if($null -eq $txt){ continue }
     $src = "/"+($wf.FullName.Replace($repo,"").TrimStart('\','/').Replace('\','/'))
-    $rx = [regex]'pwsh\s+-File\s+([^\s"\']+\.ps1)'
+    $rx = [regex]"pwsh\s+-File\s+([^\s""']+\.ps1)"
     foreach($m in $rx.Matches($txt)){
       $dst = $m.Groups[1].Value.Replace('\','/')
       if(-not $dst.StartsWith("/")){ $dst = "/"+$dst }
@@ -38,7 +37,7 @@ if(Test-Path $sDir){
     $txt = Read-Text $s.FullName
     if($null -eq $txt){ continue }
     $src = "/"+($s.FullName.Replace($repo,"").TrimStart('\','/').Replace('\','/'))
-    $rx = [regex]'pwsh\s+-File\s+([^\s"\']+\.ps1)'
+    $rx = [regex]"pwsh\s+-File\s+([^\s""']+\.ps1)"
     foreach($m in $rx.Matches($txt)){
       $dst = $m.Groups[1].Value.Replace('\','/')
       if(-not $dst.StartsWith("/")){ $dst = "/"+$dst }
@@ -53,7 +52,7 @@ foreach($p in $pages){
   $txt = Read-Text $p.FullName
   if($null -eq $txt){ continue }
   $src = "/"+($p.FullName.Replace($repo,"").TrimStart('\','/').Replace('\','/'))
-  $rx = [regex]'(?:href|src)\s*=\s*["'']([^"'']+)["'']'
+  $rx = [regex]"(?:href|src)\s*=\s*[""']([^""']+)[""']"
   foreach($m in $rx.Matches($txt)){
     $val = $m.Groups[1].Value
     if($val -match '^https?://'){ continue }
@@ -68,9 +67,9 @@ foreach($p in $jsfiles){
   if($null -eq $txt){ continue }
   $src = "/"+($p.FullName.Replace($repo,"").TrimStart('\','/').Replace('\','/'))
   foreach($rx in @(
-    [regex]'import\s+[^;]*?from\s*["'']([^"'']+)["'']',
-    [regex]'import\(\s*["'']([^"'']+)["'']\s*\)',
-    [regex]'fetch\(\s*["'']([^"'']+)["'']'
+    [regex]"import\s+[^;]*?from\s*[""']([^""']+)[""']",
+    [regex]"import\(\s*[""']([^""']+)[""']\s*\)",
+    [regex]"fetch\(\s*[""']([^""']+)[""']"
   )){
     foreach($m in $rx.Matches($txt)){
       $val = $m.Groups[1].Value
@@ -86,7 +85,7 @@ foreach($p in $css){
   $txt = Read-Text $p.FullName
   if($null -eq $txt){ continue }
   $src = "/"+($p.FullName.Replace($repo,"").TrimStart('\','/').Replace('\','/'))
-  $rx = [regex]'url\(\s*["'']?([^"'\)]+)["'']?\s*\)'
+  $rx = [regex]"url\(\s*[""']?([^""'\)]+)[""']?\s*\)"
   foreach($m in $rx.Matches($txt)){
     $val = $m.Groups[1].Value
     if($val -match '^https?://'){ continue }

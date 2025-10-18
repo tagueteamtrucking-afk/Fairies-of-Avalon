@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nina — 3D Buttons (demo)</title>
+<style>html,body{margin:0;height:100%;background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto}canvas{display:block}#hud{position:fixed;left:12px;top:12px;background:rgba(15,23,42,.85);padding:10px;border-radius:12px;border:1px solid #172033}</style>
+</head><body>
+<div id="hud">Click a 3D button to open its room.</div>
+<canvas id="c"></canvas>
+<script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+<script>
+const W =  window.innerWidth, H = window.innerHeight;
+const renderer = new THREE.WebGLRenderer({canvas:document.getElementById('c'),antialias:true});
+renderer.setSize(W,H); const scene = new THREE.Scene(); scene.background = new THREE.Color(0x0b1220);
+const camera = new THREE.PerspectiveCamera(60, W/H, 0.1, 100); camera.position.set(0,1.5,4);
+const light = new THREE.DirectionalLight(0xffffff,1.0); light.position.set(1,2,2); scene.add(light); scene.add(new THREE.AmbientLight(0xffffff,0.35));
+
+const registry = [
+  {id:'alexandria', name:'Library', href:'/pages/apps/alexandria/index.html', shape:'book'},
+  {id:'tracy', name:'Atelier', href:'/pages/apps/tracy/index.html', shape:'easel'},
+  {id:'nina', name:'Lab', href:'/pages/apps/nina/index.html', shape:'orb'},
+  {id:'charlotte', name:'Relay', href:'/pages/apps/charlotte/index.html', shape:'tower'},
+  {id:'stella', name:'Observatory', href:'/pages/apps/stella/index.html', shape:'dome'},
+  {id:'jem', name:'Dojo', href:'/pages/apps/jem/index.html', shape:'pillar'},
+  {id:'carol', name:'Bistro', href:'/pages/apps/carol/index.html', shape:'plate'},
+  {id:'abbey', name:'Vault', href:'/pages/apps/abbey/index.html', shape:'vault'}
+];
+
+function makeButton(item, idx){
+  let geo, mat = new THREE.MeshStandardMaterial({metalness:0.2, roughness:0.5});
+  switch(item.shape){
+    case 'book': geo = new THREE.BoxGeometry(1.2,0.2,0.8); break;
+    case 'easel': geo = new THREE.ConeGeometry(0.6,1.0,5); break;
+    case 'orb': geo = new THREE.SphereGeometry(0.55, 32, 24); break;
+    case 'tower': geo = new THREE.CylinderGeometry(0.35,0.35,1.4,24); break;
+    case 'dome': geo = new THREE.SphereGeometry(0.7, 32, 24, 0, Math.PI*2, 0, Math.PI/2); break;
+    case 'pillar': geo = new THREE.CapsuleGeometry(0.25,0.8,8,16); break;
+    case 'plate': geo = new THREE.TorusGeometry(0.6,0.08,18,48); break;
+    case 'vault': geo = new THREE.TorusKnotGeometry(0.35,0.12,80,12); break;
+    default: geo = new THREE.BoxGeometry(1,1,1);
+  }
+  const mesh = new THREE.Mesh(geo, mat.clone());
+  mesh.position.set((idx%4 - 1.5)*1.6, 0.7 - Math.floor(idx/4)*1.6, 0);
+  mesh.userData = item;
+  scene.add(mesh);
+  return mesh;
+}
+
+const meshes = registry.map(makeButton);
+const raycaster = new THREE.Raycaster(); const mouse = new THREE.Vector2();
+window.addEventListener('click', (e)=>{
+  mouse.x = (e.clientX / W) * 2 - 1;
+  mouse.y = -(e.clientY / H) * 2 + 1;
+  raycaster.setFromCamera(mouse, camera);
+  const hit = raycaster.intersectObjects(meshes)[0];
+  if(hit){ const {href} = hit.object.userData; window.location.href = href; }
+});
+function animate(){ requestAnimationFrame(animate); meshes.forEach(m=>{ m.rotation.y += 0.01; }); renderer.render(scene,camera); }
+animate();
+</script>
+</body></html>

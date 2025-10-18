@@ -1,6 +1,8 @@
-name: Charlotte — Build Link Registry
-on: { workflow_dispatch: {} }
-permissions: { contents: write }
+name: Charlotte - Build Link Registry
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest

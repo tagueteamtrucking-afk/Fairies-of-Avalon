@@ -1,6 +1,8 @@
-name: Repo — Usage Report & Archive Orphans
-on: { workflow_dispatch: {} }
-permissions: { contents: write }
+name: Repo - Usage Report and Archive Orphans
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   archive:
     runs-on: ubuntu-latest

@@ -1,6 +1,8 @@
-name: Read — Full Repo Index
-on: { workflow_dispatch: {} }
-permissions: { contents: write }
+name: Repo - Read Full Index
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   read:
     runs-on: ubuntu-latest

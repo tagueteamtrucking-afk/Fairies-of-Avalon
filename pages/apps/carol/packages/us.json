@@ -1,9 +1,9 @@
 {
   "meta": {
     "region": "US",
-    "version": "0.5.0",
-    "updated": "2025-10-17T22:46:58Z",
-    "notes": "Seed package map; sizes from brand/manufacturer or large grocers; tweak as needed per your store."
+    "version": "0.6.0",
+    "updated": "20251018T020417Z",
+    "notes": "Added dry rice SKUs; same sizes typical US grocery."
   },
   "units": {
     "tbsp_to_g": {
@@ -11,7 +11,8 @@
       "hummus": 15
     },
     "cup_to_g": {
-      "rolled_oats": 80
+      "rolled_oats": 80,
+      "dry_rice": 180
     },
     "fluid_oz_per_cup": 8
   },
@@ -22,15 +23,6 @@
         16.0,
         28.0,
         40.0
-      ],
-      "source": [
-        "target",
-        "amazon"
-      ],
-      "examples": [
-        "16 oz",
-        "28 oz",
-        "40 oz"
       ]
     },
     "hummus": {
@@ -39,39 +31,26 @@
         10.0,
         12.0,
         16.0
-      ],
-      "source": [
-        "walmart"
-      ],
-      "examples": [
-        "10 oz",
-        "12 oz",
-        "16 oz"
       ]
     },
     "ready_rice_pouch": {
       "label": "Microwaveable Ready Rice (pouch)",
       "packages_oz": [
         8.5
-      ],
-      "source": [
-        "bensoriginal"
-      ],
-      "examples": [
-        "8.5 oz pouch"
+      ]
+    },
+    "dry_rice_bag": {
+      "label": "Dry Rice (bag)",
+      "packages_oz": [
+        32.0,
+        80.0,
+        160.0
       ]
     },
     "rolled_oats_canister": {
       "label": "Rolled Oats Canister",
       "packages_oz": [
         42.0
-      ],
-      "source": [
-        "walmart",
-        "kroger"
-      ],
-      "examples": [
-        "42 oz canister"
       ]
     },
     "lactose_free_milk": {
@@ -80,14 +59,6 @@
         32.0,
         64.0,
         96.0
-      ],
-      "source": [
-        "lactaid"
-      ],
-      "examples": [
-        "32 fl oz",
-        "64 fl oz",
-        "96 fl oz"
       ]
     },
     "tuna_can": {
@@ -95,13 +66,6 @@
       "packages_oz": [
         5.0,
         12.0
-      ],
-      "source": [
-        "starkist"
-      ],
-      "examples": [
-        "5 oz",
-        "12 oz"
       ]
     },
     "chicken_can": {
@@ -109,14 +73,6 @@
       "packages_oz": [
         12.5,
         9.75
-      ],
-      "source": [
-        "walmart",
-        "campbells"
-      ],
-      "examples": [
-        "12.5 oz",
-        "9.75 oz"
       ]
     },
     "black_beans_can": {
@@ -124,14 +80,6 @@
       "packages_oz": [
         15.0,
         15.5
-      ],
-      "source": [
-        "walmart",
-        "amazon"
-      ],
-      "examples": [
-        "15 oz",
-        "15.5 oz"
       ]
     },
     "diced_tomatoes_nsa_can": {
@@ -139,45 +87,18 @@
       "packages_oz": [
         14.5,
         28.0
-      ],
-      "source": [
-        "walmart",
-        "hunts",
-        "kroger",
-        "tuttorosso"
-      ],
-      "examples": [
-        "14.5 oz",
-        "28 oz"
       ]
     },
     "frozen_mixed_veg_bag": {
       "label": "Frozen Mixed Vegetables (bag)",
       "packages_oz": [
         12.0
-      ],
-      "source": [
-        "walmart",
-        "target",
-        "kroger",
-        "aldi"
-      ],
-      "examples": [
-        "12 oz steamable bag"
       ]
     },
     "frozen_mixed_berries_bag": {
       "label": "Frozen Mixed Berries (bag)",
       "packages_oz": [
         16.0
-      ],
-      "source": [
-        "kroger",
-        "wegmans",
-        "commissary"
-      ],
-      "examples": [
-        "16 oz bag"
       ]
     }
   },
@@ -187,6 +108,11 @@
     "hummus": "hummus",
     "ready rice": "ready_rice_pouch",
     "microwave rice": "ready_rice_pouch",
+    "dry rice": "dry_rice_bag",
+    "white rice (dry)": "dry_rice_bag",
+    "brown rice (dry)": "dry_rice_bag",
+    "uncooked rice": "dry_rice_bag",
+    "rice (dry)": "dry_rice_bag",
     "rolled oats": "rolled_oats_canister",
     "oats": "rolled_oats_canister",
     "milk": "lactose_free_milk",

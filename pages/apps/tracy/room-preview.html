@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tracy — Skin Preview</title>
+<link rel="stylesheet" href="/pages/apps/tracy/skin/tokens.css">
+<link id="theme" rel="stylesheet" href="/pages/apps/tracy/skin/skins/castle-town.css">
+<style>.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;padding:12px}</style>
+</head><body><div class="grid"><div class="card">Castle Town</div><div class="card">Night</div></div>
+<script>
+function setSkin(k){ document.getElementById('theme').href='/pages/apps/tracy/skin/skins/'+k+'.css'; localStorage.setItem('tracy:skin',k); }
+const k = localStorage.getItem('tracy:skin')||'castle-town'; setSkin(k);
+</script></body></html>

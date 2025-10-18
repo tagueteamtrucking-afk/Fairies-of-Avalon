@@ -15,7 +15,7 @@ if(-not (Test-Path $mapAbs)){ Write-Error "Package map not found at $mapAbs"; ex
 
 try{ $shoppingDoc = Get-Content -Raw -Path $shAbs | ConvertFrom-Json } catch { Write-Error "Invalid JSON in $ShoppingFile"; exit 1 }
 $items = @()
-if($shoppingDoc.items){ $items = $shoppingDoc.items } else { $items = $shoppingDoc } # allow both shapes
+if($shoppingDoc.items){ $items = $shoppingDoc.items } else { $items = $shoppingDoc }
 $map = Get-Content -Raw -Path $mapAbs | ConvertFrom-Json
 
 function Find-Sku([string]$name){
@@ -44,7 +44,7 @@ function CupsToOz([string]$name,[double]$cups){
 }
 function CupsToFlOz([double]$cups){ return $cups * [double]$map.units.fluid_oz_per_cup }
 
-# Aggregate need across two persons
+# Aggregate
 $need = @{}
 foreach($it in $items){
   $n = [string]$it.name

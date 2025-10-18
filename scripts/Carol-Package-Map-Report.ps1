@@ -2,50 +2,23 @@ param(
   [string]$PlansDir="pages/apps/carol/plans",
   [string]$PackageMap="pages/apps/carol/packages/us.json",
   [string]$OutFile="pages/apps/carol/plans/packages-missing.json",
-  [string]$ShoppingFile=""
+  [string]$ShoppingFile="pages/apps/carol/plans/shopping-extracted.json"
 )
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
-$plansAbs = Join-Path $root $PlansDir
 $mapAbs = Join-Path $root $PackageMap
 $outAbs = Join-Path $root $OutFile
+$sfAbs = Join-Path $root $ShoppingFile
 
 if(-not (Test-Path $mapAbs)){ Write-Error "Package map not found at $mapAbs"; exit 1 }
 $map = Get-Content -Raw -Path $mapAbs | ConvertFrom-Json
 
-function Load-Shopping(){
-  if(-not [string]::IsNullOrWhiteSpace($ShoppingFile)){
-    $sf = Join-Path $root $ShoppingFile
-    if(Test-Path $sf){
-      try{ return (Get-Content -Raw -Path $sf | ConvertFrom-Json).items } catch {}
-    }
-  }
-
-  $files = Get-ChildItem -Path $plansAbs -File -Filter "*.json" | Sort-Object LastWriteTime -Descending
-  foreach($f in $files){
-    try{
-      $j = Get-Content -Raw -Path $f.FullName | ConvertFrom-Json
-      if($j.shopping){ return $j.shopping }
-      elseif($j.menu -and $j.menu.shopping){ return $j.menu.shopping }
-      elseif($j.items){ return $j.items }
-    } catch { continue }
-  }
-
-  # fallback: call extractor
-  $extract = Join-Path $root "scripts/Carol-Extract-Shopping.ps1"
-  if(Test-Path $extract){
-    pwsh -File $extract -PlansDir $PlansDir -OutFile "pages/apps/carol/plans/shopping-extracted.json"
-    $sx = Join-Path $root "pages/apps/carol/plans/shopping-extracted.json"
-    if(Test-Path $sx){ try{ return (Get-Content -Raw -Path $sx | ConvertFrom-Json).items } catch {} }
-  }
-  return $null
+$shopping = @()
+if(Test-Path $sfAbs){
+  try{ $shopping = (Get-Content -Raw -Path $sfAbs | ConvertFrom-Json).items } catch {}
 }
 
-$shopping = Load-Shopping
-if($null -eq $shopping -or $shopping.Count -eq 0){
-  Write-Error "No shopping items found even after extraction. Ensure at least one plan JSON exists with ingredients."
-  exit 1
-}
+if($shopping.Count -eq 0){ Write-Error "No shopping-extracted.json found or empty. Run Extract first."; exit 1 }
 
 function Find-Sku([string]$name){
   if([string]::IsNullOrWhiteSpace($name)){ return $null }

@@ -1,24 +1,18 @@
-name: Repo Sweeper — Workflows (preview/delete)
-on:
-  workflow_dispatch:
-    inputs:
-      delete:
-        description: "Set yes to delete unused workflows not in keep list"
-        required: false
-        default: "no"
+name: Repo — Workflows Sweeper (keep-list)
+on: { workflow_dispatch: {} }
 permissions: { contents: write }
 jobs:
-  run:
+  sweep:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Sweep (preview or delete; archive orphans)
+      - name: Sweep workflows
         shell: pwsh
-        run: pwsh -File scripts/Repo-Sweeper-Used-Files.ps1 -KeepListFile "config/keep-lists/workflows-keep.json" -Delete:(${{ github.event.inputs.delete == 'yes' }}) -Archive -VerboseLog
-      - name: Commit changes
+        run: pwsh -File scripts/Workflows-Sweeper.ps1 -KeepList "config/keep-lists/workflows-keep.json"
+      - name: Commit deletions
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A .github/workflows scripts/_archive/** memory-history/*.json || true
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(repo): workflow sweep (delete=${{ github.event.inputs.delete }})" && git push; fi
+          git add -A .github/workflows || true
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(workflows): sweep unused workflows" && git push; fi

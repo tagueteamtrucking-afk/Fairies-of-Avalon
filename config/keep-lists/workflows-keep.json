@@ -1,18 +1,19 @@
 {
-  "workflows": [
-    "repo-inventory.yml",
-    "repo-usage-report.yml",
+  "updated": "20251018T061819Z",
+  "keep": [
+    "00-sanity.yml",
+    "deploy-pages.yml",
+    "read.yml",
+    "repo-usage-archive.yml",
     "repo-sweeper-workflows.yml",
-    "start-site-polish.yml",
-    "charlotte-build-link-registry.yml",
+    "carol-build-pointer.yml",
     "carol-extract-v2-and-report.yml",
     "carol-aggregate-fromfile-2p.yml",
+    "start-site-polish.yml",
+    "charlotte-build-link-registry.yml",
     "nina-build-scene-index.yml",
     "tracy-apply-skin.yml",
     "charlotte-inject-ui-tokens.yml",
-    "abbey-parse-subscriptions.yml",
-    "00-sanity.yml",
-    "deploy-pages.yml",
     "overseers-llm-bridge.yml",
     "site-doctor.yml"
   ]

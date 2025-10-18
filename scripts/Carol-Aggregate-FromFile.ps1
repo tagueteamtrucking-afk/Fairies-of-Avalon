@@ -34,7 +34,7 @@ foreach($it in $items){
   $q=0.0; $u=""; if($it.qty){ $q=[double]$it.qty } elseif($it.quantity){ $q=[double]$it.quantity }
   if($it.unit){ $u=[string]$it.unit } elseif($it.units){ $u=[string]$it.units }
   $q *= [double]$Persons
-  if(-not $need.ContainsKey($n)){ $need[$n] = @{ qty=0.0; unit=$u } }
+  if(-not $need.ContainsKey($n)){ $need[$n]=@{ qty=0.0; unit=$u } }
   $need[$n].qty += $q
   if([string]::IsNullOrWhiteSpace($need[$n].unit) -and -not [string]::IsNullOrWhiteSpace($u)){ $need[$n].unit=$u }
 }
@@ -67,6 +67,7 @@ foreach($k in $need.Keys){
     $out.items += @{ name=$k; unit=$u; sku=$sku; warning="No compatible package sizes" }
   }
 }
+
 $dirOut=Split-Path -Parent $outAbs
 if(-not (Test-Path $dirOut)){ New-Item -ItemType Directory -Force -Path $dirOut | Out-Null }
 [IO.File]::WriteAllText($outAbs, ($out | ConvertTo-Json -Depth 10), [Text.Encoding]::UTF8)

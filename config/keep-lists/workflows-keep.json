@@ -1,15 +1,18 @@
 {
   "workflows": [
-    "deploy-pages.yml",
-    "00-sanity.yml",
+    "repo-inventory.yml",
+    "repo-usage-report.yml",
+    "repo-sweeper-workflows.yml",
+    "start-site-polish.yml",
     "carol-extract-v2-and-report.yml",
     "carol-aggregate-fromfile-2p.yml",
-    "jem-build-week2-from-progress.yml",
-    "charlotte-inject-ui-tokens.yml",
-    "tracy-apply-skin.yml",
     "nina-build-scene-index.yml",
+    "tracy-apply-skin.yml",
+    "charlotte-inject-ui-tokens.yml",
     "abbey-parse-subscriptions.yml",
-    "site-doctor.yml",
-    "overseers-llm-bridge.yml"
+    "00-sanity.yml",
+    "deploy-pages.yml",
+    "overseers-llm-bridge.yml",
+    "site-doctor.yml"
   ]
 }

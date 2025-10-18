@@ -12,7 +12,8 @@ $mapAbs = Join-Path $root $PackageMap
 if(-not (Test-Path $sfAbs)){ Write-Error "No shopping-extracted.json found or empty. Run Extract first."; exit 1 }
 if(-not (Test-Path $mapAbs)){ Write-Error "Package map not found at $mapAbs"; exit 1 }
 
-$items = (Get-Content -Raw -Path $sfAbs | ConvertFrom-Json).items
+$doc = Get-Content -Raw -Path $sfAbs | ConvertFrom-Json
+$items = $doc.items
 $map = Get-Content -Raw -Path $mapAbs | ConvertFrom-Json
 
 function Find-Sku([string]$name){
@@ -25,7 +26,7 @@ function Find-Sku([string]$name){
 
 $missing = @()
 foreach($it in $items){
-  $n = [string]$it.name; if([string]::IsNullOrWhiteSpace($n)){ continue }
+  $n=[string]$it.name; if([string]::IsNullOrWhiteSpace($n)){ continue }
   $sku = Find-Sku $n
   if(-not $sku){
     $example = ('"{0}": "<sku_key>"' -f $n.ToLowerInvariant())
@@ -37,4 +38,4 @@ $report = @{ updated=(Get-Date).ToUniversalTime().ToString('s')+'Z'; missing=$mi
 $dirOut = Split-Path -Parent $outAbs
 if(-not (Test-Path $dirOut)){ New-Item -ItemType Directory -Force -Path $dirOut | Out-Null }
 [IO.File]::WriteAllText($outAbs, ($report | ConvertTo-Json -Depth 6), [Text.Encoding]::UTF8)
-Write-Host "Wrote $OutFile with $($missing.Count) unmapped ingredients."
+Write-Host "Wrote $OutFile with $($missing.Count) unmapped items."

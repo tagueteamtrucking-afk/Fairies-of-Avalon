@@ -1,8 +1,8 @@
 {
   "meta": {
     "region": "US",
-    "version": "0.6.1",
-    "updated": "20251018T023351Z",
+    "version": "0.6.2",
+    "updated": "20251018T033317Z",
     "notes": "Added dry rice SKUs and common dairy alt sizes."
   },
   "units": {

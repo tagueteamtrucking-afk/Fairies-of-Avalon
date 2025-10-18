@@ -1,4 +1,5 @@
 ﻿{
+  "used": [],
   "orphans": [
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1",
@@ -70,6 +71,7 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Tracy-Skin-From-Wallpapers.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Tracy-Wallpaper-Index.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/VersionParam-Sweeper.ps1",
+    "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Workflows-Sweeper.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/alexandria-build-all.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/alexandria-suite.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/carol-meal-plan.ps1",
@@ -80,12 +82,11 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/overseers-llm-bridge.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/tracy-artboard.ps1"
   ],
-  "updated": "2025-10-18T06:00:21Z",
   "totals": {
-    "orphans": 79,
+    "files": 810,
     "used": 0,
-    "scripts": 79,
-    "files": 806
+    "orphans": 80,
+    "scripts": 80
   },
-  "used": []
+  "updated": "2025-10-18T06:34:45Z"
 }

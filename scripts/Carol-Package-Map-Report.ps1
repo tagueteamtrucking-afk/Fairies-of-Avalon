@@ -1,7 +1,8 @@
 param(
   [string]$PlansDir="pages/apps/carol/plans",
   [string]$PackageMap="pages/apps/carol/packages/us.json",
-  [string]$OutFile="pages/apps/carol/plans/packages-missing.json"
+  [string]$OutFile="pages/apps/carol/plans/packages-missing.json",
+  [string]$ShoppingFile=""
 )
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
@@ -12,21 +13,39 @@ $outAbs = Join-Path $root $OutFile
 if(-not (Test-Path $mapAbs)){ Write-Error "Package map not found at $mapAbs"; exit 1 }
 $map = Get-Content -Raw -Path $mapAbs | ConvertFrom-Json
 
-# find a shopping source
-$files = Get-ChildItem -Path $plansAbs -File -Filter "*.json" | Sort-Object LastWriteTime -Descending
-if(-not $files){ Write-Error "No plan JSON files in $plansAbs"; exit 1 }
+function Load-Shopping(){
+  if(-not [string]::IsNullOrWhiteSpace($ShoppingFile)){
+    $sf = Join-Path $root $ShoppingFile
+    if(Test-Path $sf){
+      try{ return (Get-Content -Raw -Path $sf | ConvertFrom-Json).items } catch {}
+    }
+  }
 
-$shopping = @()
-foreach($f in $files){
-  try{
-    $j = Get-Content -Raw -Path $f.FullName | ConvertFrom-Json
-    if($j.shopping){ $shopping = $j.shopping }
-    elseif($j.menu -and $j.menu.shopping){ $shopping = $j.menu.shopping }
-    elseif($j.items){ $shopping = $j.items }
-  } catch { continue }
-  if($shopping.Count -gt 0){ break }
+  $files = Get-ChildItem -Path $plansAbs -File -Filter "*.json" | Sort-Object LastWriteTime -Descending
+  foreach($f in $files){
+    try{
+      $j = Get-Content -Raw -Path $f.FullName | ConvertFrom-Json
+      if($j.shopping){ return $j.shopping }
+      elseif($j.menu -and $j.menu.shopping){ return $j.menu.shopping }
+      elseif($j.items){ return $j.items }
+    } catch { continue }
+  }
+
+  # fallback: call extractor
+  $extract = Join-Path $root "scripts/Carol-Extract-Shopping.ps1"
+  if(Test-Path $extract){
+    pwsh -File $extract -PlansDir $PlansDir -OutFile "pages/apps/carol/plans/shopping-extracted.json"
+    $sx = Join-Path $root "pages/apps/carol/plans/shopping-extracted.json"
+    if(Test-Path $sx){ try{ return (Get-Content -Raw -Path $sx | ConvertFrom-Json).items } catch {} }
+  }
+  return $null
 }
-if($shopping.Count -eq 0){ Write-Error "Could not locate a shopping array in plan JSONs under $plansAbs"; exit 1 }
+
+$shopping = Load-Shopping
+if($null -eq $shopping -or $shopping.Count -eq 0){
+  Write-Error "No shopping items found even after extraction. Ensure at least one plan JSON exists with ingredients."
+  exit 1
+}
 
 function Find-Sku([string]$name){
   if([string]::IsNullOrWhiteSpace($name)){ return $null }

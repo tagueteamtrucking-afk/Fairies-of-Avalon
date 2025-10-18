@@ -11,7 +11,7 @@ jobs:
         run: pwsh -File scripts/Carol-Extract-Shopping-v2.ps1 -PlansDir "pages/apps/carol/plans" -OutFile "pages/apps/carol/plans/shopping-extracted.json"
       - name: Coverage report (from extracted)
         shell: pwsh
-        run: pwsh -File scripts/Carol-Package-Map-Report.ps1 -OutFile "pages/apps/carol/plans/packages-missing.json" -ShoppingFile "pages/apps/carol/plans/shopping-extracted.json"
+        run: pwsh -File scripts/Carol-Package-Map-Report.ps1 -OutFile "pages/apps/carol/plans/packages-missing.json" -ShoppingFile "pages/apps/carol/plans/shopping-extracted.json" -PackageMap "pages/apps/carol/packages/us.json"
       - name: Commit outputs
         shell: bash
         run: |

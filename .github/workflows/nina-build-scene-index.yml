@@ -6,10 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Scene index
+      - name: Build scene index
         shell: pwsh
         run: pwsh -File scripts/Nina-Scene-Index.ps1 -AssetsRoot "asset" -OutFile "pages/apps/overseers/scene-index.json"
-      - name: Commit scene index
+      - name: Commit
         shell: bash
         run: |
           git config user.name "github-actions[bot]"

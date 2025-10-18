@@ -6,13 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inject tokens.css to app index pages
+      - name: Inject tokens.css
         shell: pwsh
         run: pwsh -File scripts/Charlotte-Inject-Tokens.ps1 -AppsRoot "pages/apps"
-      - name: Commit tokens
+      - name: Commit
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/_ui/tokens.css pages/apps/**/index.html
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(ui): inject UI tokens across apps" && git push; fi
+          git add pages/apps/_ui/tokens.css pages/apps/**/index.html || true
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(ui): inject tokens across apps" && git push; fi

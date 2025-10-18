@@ -1,0 +1,24 @@
+name: Start — Site Polish (Charlotte+Tracy+Nina)
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inject tokens
+        shell: pwsh
+        run: pwsh -File scripts/Charlotte-Inject-Tokens.ps1 -AppsRoot "pages/apps"
+      - name: Apply skin (castle-town)
+        shell: pwsh
+        run: pwsh -File scripts/Tracy-Apply-Skin.ps1 -Skin "castle-town"
+      - name: Scene index
+        shell: pwsh
+        run: pwsh -File scripts/Nina-Scene-Index.ps1 -AssetsRoot "asset" -OutFile "pages/apps/overseers/scene-index.json"
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/_ui/tokens.css pages/apps/tracy/skin/active.json pages/apps/overseers/scene-index.json || true
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(site): polish pass" && git push; fi

@@ -1,2 +1,1 @@
-:root{--radius:12px;--gap:12px;--shadow:0 10px 20px rgba(0,0,0,.15)}
-*{box-sizing:border-box}html,body{margin:0}button{border-radius:var(--radius)}.panel{border-radius:var(--radius);box-shadow:var(--shadow)}
+:root{--radius:12px;--gap:12px;--shadow:0 10px 20px rgba(0,0,0,.15)}*{box-sizing:border-box}html,body{margin:0}button{border-radius:var(--radius)}.panel{border-radius:var(--radius);box-shadow:var(--shadow)}

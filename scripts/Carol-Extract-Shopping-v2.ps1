@@ -17,7 +17,6 @@ $chosen = $files[0]
 try{ $j = Get-Content -Raw -Path $chosen.FullName | ConvertFrom-Json }
 catch{ Write-Error "Invalid JSON in $($chosen.Name)"; exit 1 }
 
-# Prefer explicit shopping arrays
 $shopping = @()
 if($j.shopping){ $shopping = $j.shopping }
 elseif($j.menu -and $j.menu.shopping){ $shopping = $j.menu.shopping }
@@ -35,22 +34,14 @@ function Try-Number([object]$v){
   if($v -is [double] -or $v -is [int] -or $v -is [decimal]){ return [double]$v }
   $s = [string]$v
   $s = $s.Trim()
-  # basic "1/2" fraction support
-  if($s -match '^\s*(\d+)\s*/\s*(\d+)\s*$'){
-    $n = [double]$Matches[1]; $d = [double]$Matches[2]; if($d -ne 0){ return $n/$d }
-  }
-  # basic "1 1/2"
-  if($s -match '^\s*(\d+)\s+(\d+)\s*/\s*(\d+)\s*$'){
-    $a=[double]$Matches[1]; $n=[double]$Matches[2]; $d=[double]$Matches[3]; if($d -ne 0){ return $a + ($n/$d) }
-  }
-  # standard double
+  if($s -match '^\s*(\d+)\s*/\s*(\d+)\s*$'){ $n=[double]$Matches[1]; $d=[double]$Matches[2]; if($d -ne 0){ return $n/$d } }
+  if($s -match '^\s*(\d+)\s+(\d+)\s*/\s*(\d+)\s*$'){ $a=[double]$Matches[1]; $n=[double]$Matches[2]; $d=[double]$Matches[3]; if($d -ne 0){ return $a + ($n/$d) } }
   $out = 0.0
   if([double]::TryParse($s, [ref]$out)){ return $out }
   return $null
 }
 
 if($shopping.Count -eq 0){
-  # BFS iterative traversal
   $acc = @{}
   $queue = New-Object System.Collections.Queue
   $queue.Enqueue(@{ node=$j; depth=0 })
@@ -65,48 +56,35 @@ if($shopping.Count -eq 0){
     $nodeCount++
     if($nodeCount -gt $MaxNodes){ break }
 
-    # Avoid revisiting identical JSON fragments by string signature (cheap safeguard)
     try{
       $sig = ""
-      if($node -is [pscustomobject] -or $node -is [hashtable]){
-        $sig = ($node | ConvertTo-Json -Depth 4)
-      } elseif($node -is [System.Collections.IEnumerable] -and -not ($node -is [string])) {
-        $sig = (@($node) | ConvertTo-Json -Depth 2)
-      } else {
-        $sig = [string]$node
-      }
-      if(-not [string]::IsNullOrEmpty($sig)){
-        if($visited.Contains($sig)){ continue } else { $visited.Add($sig) | Out-Null }
-      }
+      if($node -is [pscustomobject] -or $node -is [hashtable]){ $sig = ($node | ConvertTo-Json -Depth 3) }
+      elseif($node -is [System.Collections.IEnumerable] -and -not ($node -is [string]) -and -not ($node -is [byte[]])) { $sig = (@($node) | ConvertTo-Json -Depth 2) }
+      else { $sig = [string]$node }
+      if(-not [string]::IsNullOrEmpty($sig)){ if($visited.Contains($sig)){ continue } else { $visited.Add($sig) | Out-Null } }
     } catch {}
 
     if($node -is [pscustomobject] -or $node -is [hashtable]){
-      $n = $null; $q = $null; $u = $null
+      $n=$null;$q=$null;$u=$null
       if($node.PSObject.Properties.Name -contains 'name'){ $n = [string]$node.name }
       foreach($k in @('qty','quantity')){ if($node.PSObject.Properties.Name -contains $k){ $q = Try-Number $node.$k; if($q -ne $null){ break } } }
       foreach($k in @('unit','units')){ if($node.PSObject.Properties.Name -contains $k){ $u = [string]$node.$k; break } }
       if($n -and ($q -ne $null)){ Add-Item -acc $acc -name $n -qty $q -unit $u }
-
       foreach($p in $node.PSObject.Properties){
         $v = $p.Value
-        if($v -is [pscustomobject] -or $v -is [hashtable]){
-          $queue.Enqueue(@{ node=$v; depth=$depth+1 })
-        } elseif($v -is [System.Collections.IEnumerable] -and -not ($v -is [string]) -and -not ($v -is [byte[]])) {
+        if($v -is [pscustomobject] -or $v -is [hashtable]){ $queue.Enqueue(@{ node=$v; depth=$depth+1 }) }
+        elseif($v -is [System.Collections.IEnumerable] -and -not ($v -is [string]) -and -not ($v -is [byte[]])){
           foreach($e in $v){
-            if($e -is [pscustomobject] -or $e -is [hashtable]){
-              $queue.Enqueue(@{ node=$e; depth=$depth+1 })
-            }
+            if($e -is [pscustomobject] -or $e -is [hashtable]){ $queue.Enqueue(@{ node=$e; depth=$depth+1 }) }
           }
         }
       }
     } elseif($node -is [System.Collections.IEnumerable] -and -not ($node -is [string]) -and -not ($node -is [byte[]])){
       foreach($e in $node){
-        if($e -is [pscustomobject] -or $e -is [hashtable]){
-          $queue.Enqueue(@{ node=$e; depth=$depth+1 })
-        }
+        if($e -is [pscustomobject] -or $e -is [hashtable]){ $queue.Enqueue(@{ node=$e; depth=$depth+1 }) }
       }
     }
-  } # while
+  }
 
   $shopping = @()
   foreach($kv in $acc.GetEnumerator()){
@@ -114,12 +92,7 @@ if($shopping.Count -eq 0){
   }
 }
 
-$payload = @{
-  updated=(Get-Date).ToUniversalTime().ToString('s')+'Z';
-  source_plan=$chosen.Name;
-  count=$shopping.Count;
-  items=$shopping
-}
+$payload = @{ updated=(Get-Date).ToUniversalTime().ToString('s')+'Z'; source_plan=$chosen.Name; count=$shopping.Count; items=$shopping }
 $dirOut = Split-Path -Parent $outAbs
 if(-not (Test-Path $dirOut)){ New-Item -ItemType Directory -Force -Path $dirOut | Out-Null }
 [IO.File]::WriteAllText($outAbs, ($payload | ConvertTo-Json -Depth 6), [Text.Encoding]::UTF8)

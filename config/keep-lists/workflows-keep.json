@@ -1,0 +1,15 @@
+{
+  "workflows": [
+    "deploy-pages.yml",
+    "00-sanity.yml",
+    "carol-extract-v2-and-report.yml",
+    "carol-aggregate-fromfile-2p.yml",
+    "jem-build-week2-from-progress.yml",
+    "charlotte-inject-ui-tokens.yml",
+    "tracy-apply-skin.yml",
+    "nina-build-scene-index.yml",
+    "abbey-parse-subscriptions.yml",
+    "site-doctor.yml",
+    "overseers-llm-bridge.yml"
+  ]
+}

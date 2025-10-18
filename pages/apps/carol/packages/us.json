@@ -1,9 +1,9 @@
 {
   "meta": {
     "region": "US",
-    "version": "0.6.0",
-    "updated": "20251018T020417Z",
-    "notes": "Added dry rice SKUs; same sizes typical US grocery."
+    "version": "0.6.1",
+    "updated": "20251018T023351Z",
+    "notes": "Added dry rice SKUs and common dairy alt sizes."
   },
   "units": {
     "tbsp_to_g": {
@@ -83,7 +83,7 @@
       ]
     },
     "diced_tomatoes_nsa_can": {
-      "label": "Diced Tomatoes No\u2011Salt\u2011Added (can)",
+      "label": "Diced Tomatoes No\u2011Salt Added (can)",
       "packages_oz": [
         14.5,
         28.0

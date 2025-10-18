@@ -1,39 +1,31 @@
 param(
-  [string]$PlansDir="pages/apps/carol/plans",
-  [string]$PackageMap="pages/apps/carol/packages/us.json",
   [string]$OutFile="pages/apps/carol/plans/packages-missing.json",
-  [string]$ShoppingFile="pages/apps/carol/plans/shopping-extracted.json"
+  [string]$ShoppingFile="pages/apps/carol/plans/shopping-extracted.json",
+  [string]$PackageMap="pages/apps/carol/packages/us.json"
 )
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference="Stop"
 $root = Split-Path -Parent $PSScriptRoot
-$mapAbs = Join-Path $root $PackageMap
 $outAbs = Join-Path $root $OutFile
 $sfAbs = Join-Path $root $ShoppingFile
+$mapAbs = Join-Path $root $PackageMap
 
+if(-not (Test-Path $sfAbs)){ Write-Error "No shopping-extracted.json found or empty. Run Extract first."; exit 1 }
 if(-not (Test-Path $mapAbs)){ Write-Error "Package map not found at $mapAbs"; exit 1 }
+
+$items = (Get-Content -Raw -Path $sfAbs | ConvertFrom-Json).items
 $map = Get-Content -Raw -Path $mapAbs | ConvertFrom-Json
-
-$shopping = @()
-if(Test-Path $sfAbs){
-  try{ $shopping = (Get-Content -Raw -Path $sfAbs | ConvertFrom-Json).items } catch {}
-}
-
-if($shopping.Count -eq 0){ Write-Error "No shopping-extracted.json found or empty. Run Extract first."; exit 1 }
 
 function Find-Sku([string]$name){
   if([string]::IsNullOrWhiteSpace($name)){ return $null }
   $k = $name.ToLowerInvariant()
   if($map.ingredient_map.PSObject.Properties.Name -contains $k){ return [string]$map.ingredient_map.$k }
-  foreach($kk in $map.ingredient_map.PSObject.Properties.Name){
-    if($k -like "*$kk*"){ return [string]$map.ingredient_map.$kk }
-  }
+  foreach($kk in $map.ingredient_map.PSObject.Properties.Name){ if($k -like "*$kk*"){ return [string]$map.ingredient_map.$kk } }
   return $null
 }
 
 $missing = @()
-foreach($it in $shopping){
-  $n = [string]$it.name
-  if([string]::IsNullOrWhiteSpace($n)){ continue }
+foreach($it in $items){
+  $n = [string]$it.name; if([string]::IsNullOrWhiteSpace($n)){ continue }
   $sku = Find-Sku $n
   if(-not $sku){
     $example = ('"{0}": "<sku_key>"' -f $n.ToLowerInvariant())

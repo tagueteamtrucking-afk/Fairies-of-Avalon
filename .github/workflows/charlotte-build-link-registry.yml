@@ -2,17 +2,17 @@ name: Charlotte — Build Link Registry
 on: { workflow_dispatch: {} }
 permissions: { contents: write }
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Build registry
         shell: pwsh
-        run: pwsh -File scripts/Charlotte-Build-Link-Registry.ps1 -AppsRoot "pages/apps" -OutFile "pages/apps/_city/registry.json"
-      - name: Commit
+        run: pwsh -File scripts/Charlotte-Build-Link-Registry.ps1 -AppsDir "pages/apps" -OutFile "pages/apps/_city/registry.json"
+      - name: Commit registry
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add pages/apps/_city/registry.json
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(city): rebuild link registry" && git push; fi
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(city): registry" && git push; fi

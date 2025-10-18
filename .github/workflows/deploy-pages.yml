@@ -1,36 +1,31 @@
-name: Deploy GitHub Pages
+name: Deploy — GitHub Pages
 on:
   workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
 permissions:
-  contents: read
   pages: write
   id-token: write
-concurrency: { group: pages, cancel-in-progress: true }
+  contents: read
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Prepare artifact
-        shell: bash
-        run: |
-          set -e
-          mkdir -p dist
-          if [ -f index.html ]; then cp index.html dist/index.html; fi
-          if [ -d pages ]; then cp -R pages dist/pages; fi
-          if [ -d asset ]; then cp -R asset dist/asset; fi
-          if [ -f CNAME ]; then cp CNAME dist/CNAME; fi
-          if [ -f .nojekyll ]; then cp .nojekyll dist/.nojekyll; fi
-          if [ -f kill-sw.html ]; then cp kill-sw.html dist/kill-sw.html; fi
-          if [ ! -f dist/index.html ] && [ ! -d dist/pages ] && [ ! -d dist/asset ]; then
-            echo "Nothing to publish"; exit 1; fi
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: dist }
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment: { name: github-pages }
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

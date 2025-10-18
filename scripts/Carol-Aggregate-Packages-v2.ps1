@@ -1,159 +1,156 @@
 param(
-  [string]$PlansDir="pages/apps/carol/plans",
-  [string]$PackageMap="pages/apps/carol/packages/us.json",
-  [string]$OutFile="pages/apps/carol/plans/shopping-quantized.json",
-  [int]$Persons=2
+  [string]$PlansDir = "pages/apps/carol/plans",
+  [string]$PackageMap = "pages/apps/carol/packages/us.json",
+  [string]$OutFile = "pages/apps/carol/plans/shopping-quantized.json",
+  [int]$Persons = 2
 )
 $ErrorActionPreference = "Stop"
-$root = Split-Path -Parent $PSScriptRoot
-$plansAbs = Join-Path $root $PlansDir
-$mapAbs = Join-Path $root $PackageMap
-$outAbs = Join-Path $root $OutFile
+$here = Split-Path -Parent $PSScriptRoot
+$plansAbs = Join-Path $here $PlansDir
+$pkgAbs   = Join-Path $here $PackageMap
+$outAbs   = Join-Path $here $OutFile
 
-if(-not (Test-Path $mapAbs)){ Write-Error "Package map not found at $mapAbs"; exit 1 }
-$map = Get-Content -Raw -Path $mapAbs | ConvertFrom-Json
-
-# find a shopping source in plans dir
-$files = Get-ChildItem -Path $plansAbs -File -Filter "*.json" | Sort-Object LastWriteTime -Descending
-if(-not $files){ Write-Error "No plan JSON files in $plansAbs"; exit 1 }
-
-$shopping = @()
-$chosen = $null
-foreach($f in $files){
-  try{
-    $j = Get-Content -Raw -Path $f.FullName | ConvertFrom-Json
-    if($j.shopping){ $shopping = $j.shopping; $chosen=$f; break }
-    elseif($j.menu -and $j.menu.shopping){ $shopping = $j.menu.shopping; $chosen=$f; break }
-    elseif($j.items){ $shopping = $j.items; $chosen=$f; break }
-  } catch { continue }
-}
-if($shopping.Count -eq 0){ Write-Error "Could not locate a shopping array in plan JSONs under $plansAbs"; exit 1 }
-
-function Find-Sku([string]$name){
-  if([string]::IsNullOrWhiteSpace($name)){ return $null }
-  $k = $name.ToLowerInvariant()
-  if($map.ingredient_map.PSObject.Properties.Name -contains $k){ return [string]$map.ingredient_map.$k }
-  foreach($kk in $map.ingredient_map.PSObject.Properties.Name){
-    if($k -like "*$kk*"){ return [string]$map.ingredient_map.$kk }
+function Load-Json($p){ try { Get-Content -Raw -Path $p | ConvertFrom-Json -ErrorAction Stop } catch { $null } }
+function Norm($s){ if($null -eq $s){ return $null }; return ($s.ToString().Trim().ToLower()) }
+function NormUnit($u){
+  $u = Norm($u)
+  switch ($u){
+    "tablespoon" {"tbsp"}
+    "tbs" {"tbsp"}
+    "tbsp" {"tbsp"}
+    "teaspoon" {"tsp"}
+    "tsp" {"tsp"}
+    "cup" {"cups"}
+    "cups" {"cups"}
+    "ct" {"ct"}
+    "count" {"ct"}
+    "oz" {"oz"}
+    "fl oz" {"fl_oz"}
+    "floz" {"fl_oz"}
+    default { $u }
   }
-  return $null
 }
 
-function TbspToOz([string]$name,[double]$tbsp){
-  $k = $name.ToLowerInvariant()
-  $gpt = $map.units.tbsp_to_g.$k
-  if($null -eq $gpt){ return $null }
-  $g = $tbsp * [double]$gpt
-  return $g / 28.3495
+if(-not (Test-Path $plansAbs)){ Write-Error "PlansDir not found: $plansAbs"; exit 1 }
+if(-not (Test-Path $pkgAbs)){ Write-Error "PackageMap not found: $pkgAbs"; exit 1 }
+
+$pkg = Load-Json $pkgAbs
+if($null -eq $pkg){ Write-Error "Could not parse PackageMap at $pkgAbs"; exit 1 }
+$ingredientMap = @{}
+if($pkg.ingredient_map){
+  foreach($prop in $pkg.ingredient_map.PSObject.Properties){
+    $ingredientMap[(Norm $prop.Name)] = (Norm $prop.Value)
+  }
 }
-function CupsToOz([string]$name,[double]$cups){
-  $k = $name.ToLowerInvariant()
-  $gpc = $map.units.cup_to_g.$k
-  if($null -eq $gpc){ return $null }
-  $g = $cups * [double]$gpc
-  return $g / 28.3495
-}
-function CupsToFlOz([double]$cups){ return $cups * [double]$map.units.fluid_oz_per_cup }
+$packageSizes = $pkg.package_sizes
 
-# Aggregate
-$need = @{}
-foreach($it in $shopping){
-  $n = [string]$it.name
-  if([string]::IsNullOrWhiteSpace($n)){ continue }
-  $qty = 0.0
-  $u = ""
-  # normalize quantity
-  if($it.qty){ $qty = [double]$it.qty }
-  elseif($it.quantity){ $qty = [double]$it.quantity }
-  if($it.unit){ $u = [string]$it.unit }
-  elseif($it.units){ $u = [string]$it.units }
-
-  # multiply by persons
-  $qtyTotal = $qty * [double]$Persons
-
-  if(-not $need.ContainsKey($n)){ $need[$n] = @{ qty = 0.0; unit = $u } }
-  $need[$n].qty += $qtyTotal
-  if([string]::IsNullOrWhiteSpace($need[$n].unit) -and -not [string]::IsNullOrWhiteSpace($u)){ $need[$n].unit = $u }
+# 1) Prefer shopping-extracted.json if present
+$shoppingExtracted = Join-Path $plansAbs "shopping-extracted.json"
+$items = @()
+if(Test-Path $shoppingExtracted){
+  $doc = Load-Json $shoppingExtracted
+  if($doc){
+    if($doc.items){ $items = @($doc.items) }
+    elseif($doc.shopping){ $items = @($doc.shopping) }
+  }
 }
 
-# Convert to packages by sku
+# 2) Fallback: scan plan jsons for a shopping array
+if($items.Count -eq 0){
+  $candidates = Get-ChildItem -Path $plansAbs -File -Filter "*.json" | Where-Object {
+    $_.Name -notmatch "^shopping-(extracted|quantized)\.json$" -and $_.Name -notmatch "^packages-missing\.json$"
+  }
+  foreach($f in $candidates){
+    $j = Load-Json $f.FullName
+    if($null -eq $j){ continue }
+    if($j.shopping){ $items += @($j.shopping); continue }
+    if($j.menu -and $j.menu.shopping){ $items += @($j.menu.shopping); continue }
+    # If a structure uses days, extractor should be run to build shopping-extracted.json
+  }
+}
+
+if($items.Count -eq 0){
+  Write-Error "Could not locate a shopping array in plan JSONs under $plansAbs and no shopping-extracted.json found. Run Carol-Extract-Shopping-v2.ps1 first."
+  exit 1
+}
+
+# 3) Aggregate by (canonical_name, unit)
+$agg = @{}
+foreach($x in $items){
+  $n = $x.name; if(-not $n){ $n = $x.item }
+  $u = $x.unit; $q = $x.qty
+  if($null -eq $n -or $null -eq $q){ continue }
+  $n = Norm $n; $u = NormUnit $u
+  $canon = if($ingredientMap.ContainsKey($n)) { $ingredientMap[$n] } else { $n }
+  $key = "$canon|$u"
+  if(-not $agg.ContainsKey($key)){ $agg[$key] = [double]0 }
+  $agg[$key] += [double]$q
+}
+
+# 4) Scale for persons
+foreach($k in @($agg.Keys)){ $agg[$k] = $agg[$k] * [double]$Persons }
+
+# 5) Quantize into packages when possible
+function Choose-Package($canon, $unit, $need){
+  $sizes = $packageSizes.PSObject.Properties[$canon].Value
+  if($null -eq $sizes){ return $null }
+  $best = $null
+  foreach($opt in $sizes){
+    $cap = $null
+    switch($unit){
+      "tbsp" { $cap = $opt.tbsp_per_package }
+      "cups" { $cap = $opt.cups_per_package }
+      "ct"   { $cap = $opt.count }
+      "oz"   { $cap = $opt.net_oz }
+      "fl_oz"{ $cap = $opt.fl_oz }
+      default { $cap = $null }
+    }
+    if($null -eq $cap -or $cap -le 0){ continue }
+    $packs = [math]::Ceiling($need / [double]$cap)
+    $left  = ($packs * [double]$cap) - [double]$need
+    $cand = @{
+      package = $opt.package
+      capacity_per_package = $cap
+      packages = [int]$packs
+      leftover = [double]$left
+    }
+    if($null -eq $best){ $best = $cand }
+    else {
+      if($cand.leftover -lt $best.leftover -or ($cand.leftover -eq $best.leftover -and $cand.packages -lt $best.packages)){
+        $best = $cand
+      }
+    }
+  }
+  return $best
+}
+
 $out = @{
-  updated = (Get-Date).ToUniversalTime().ToString('s')+'Z';
-  source_plan = $chosen.Name;
-  persons = $Persons;
-  items = @();
-  notes = @()
+  updated = (Get-Date).ToUniversalTime().ToString("s")+"Z"
+  persons = $Persons
+  package_map = "/"+($pkgAbs.Replace($here,"").TrimStart('\','/').Replace('\','/'))
+  items = @()
+  unmapped = @()
 }
 
-foreach($k in $need.Keys){
-  $entry = $need[$k]
-  $sku = Find-Sku $k
-  $ozNeed = $null
-  $flOzNeed = $null
-  $unit = ($entry.unit ?? "").ToLowerInvariant()
-
-  # unit conversions where possible
-  if($unit -in @("tbsp","tablespoon","tablespoons")){
-    $ozNeed = TbspToOz $k $entry.qty
-  } elseif($unit -in @("cup","cups")){
-    # prefer dry mass conversion for mapped items; else fallback to fl oz
-    $try = CupsToOz $k $entry.qty
-    if($try -ne $null){ $ozNeed = $try } else { $flOzNeed = CupsToFlOz $entry.qty }
-  } elseif($unit -in @("oz","ounce","ounces")){
-    $ozNeed = [double]$entry.qty
-  } elseif($unit -in @("fl oz","floz","fluid_ounce","fluid_ounces")){
-    $flOzNeed = [double]$entry.qty
-  } elseif($unit -in @("can","cans","pouch","pouches","bag","bags","loaf","loaves")){
-    # treat as package units already
-    $out.items += @{ name=$k; unit=$unit; packages=[math]::Ceiling([double]$entry.qty); package_size=null; sku=$sku }
-    continue
+foreach($k in $agg.Keys){
+  $parts = $k.Split("|",2); $canon=$parts[0]; $unit=$parts[1]; $need=[double]$agg[$k]
+  $choice = Choose-Package $canon $unit $need
+  if($null -eq $choice){
+    $out.unmapped += @{ name=$canon; required_qty=[math]::Round($need,2); unit=$unit }
   } else {
-    # unknown unit: emit raw, ask user to map
-    $out.items += @{ name=$k; unit=$unit; raw_qty=[double]$entry.qty; sku=$sku; warning="Unrecognized unit; add conversion or standardize plan units" }
-    continue
+    $out.items += @{
+      name=$canon
+      required_qty=[math]::Round($need,2)
+      unit=$unit
+      package=$choice.package
+      packages=$choice.packages
+      capacity_per_package=$choice.capacity_per_package
+      leftover=[math]::Round($choice.leftover,2)
+    }
   }
-
-  if(-not $sku){
-    $out.items += @{ name=$k; unit=$unit; estimate_oz=$ozNeed; estimate_fl_oz=$flOzNeed; warning="No SKU mapping. Add to ingredient_map." }
-    continue
-  }
-
-  $skuNode = $map.skus.$sku
-  if($null -eq $skuNode){ 
-    $out.items += @{ name=$k; unit=$unit; estimate_oz=$ozNeed; estimate_fl_oz=$flOzNeed; sku=$sku; warning="SKU not defined in map.skus" }
-    continue
-  }
-
-  $packs = @()
-  if($ozNeed -ne $null -and $skuNode.packages_oz){ 
-    $best = $skuNode.packages_oz | Sort-Object { $_ }
-    $need = [double]$ozNeed
-    $count = [math]::Ceiling($need / [double]$best[-1])
-    if($count -lt 1){ $count = 1 }
-    $packs += @{ size_oz=$best[-1]; count=$count }
-  } elseif($flOzNeed -ne $null -and $skuNode.packages_fl_oz){
-    $best = $skuNode.packages_fl_oz | Sort-Object { $_ }
-    $need = [double]$flOzNeed
-    $count = [math]::Ceiling($need / [double]$best[-1])
-    if($count -lt 1){ $count = 1 }
-    $packs += @{ size_fl_oz=$best[-1]; count=$count }
-  } elseif($skuNode.packages_oz){
-    # treat input as oz implicitly
-    $best = $skuNode.packages_oz | Sort-Object { $_ }
-    $need = [double]$entry.qty
-    $count = [math]::Ceiling($need / [double]$best[-1])
-    if($count -lt 1){ $count = 1 }
-    $packs += @{ size_oz=$best[-1]; count=$count }
-  } else {
-    $out.items += @{ name=$k; unit=$unit; sku=$sku; warning="No compatible package sizes for computed units" }
-    continue
-  }
-
-  $out.items += @{ name=$k; unit=$unit; sku=$sku; packages=$packs }
 }
 
-# Write output
-$dirOut = Split-Path -Parent $outAbs
-if(-not (Test-Path $dirOut)){ New-Item -ItemType Directory -Force -Path $dirOut | Out-Null }
-[IO.File]::WriteAllText($outAbs, ($out | ConvertTo-Json -Depth 10), [Text.Encoding]::UTF8)
-Write-Host "Quantized shopping -> $OutFile (persons=$Persons)"
+$dir = Split-Path -Parent $outAbs
+if(-not (Test-Path $dir)){ New-Item -ItemType Directory -Force -Path $dir | Out-Null }
+[IO.File]::WriteAllText($outAbs, ($out | ConvertTo-Json -Depth 6), [Text.Encoding]::UTF8)
+Write-Host "Wrote $OutFile with $($out.items.Count) packaged and $($out.unmapped.Count) unmapped items."

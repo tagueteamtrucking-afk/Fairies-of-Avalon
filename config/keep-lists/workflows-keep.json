@@ -1,20 +1,13 @@
 {
-  "updated": "20251018T061819Z",
+  "updated": "20251018T201634Z",
   "keep": [
     "00-sanity.yml",
     "deploy-pages.yml",
     "read.yml",
     "repo-usage-archive.yml",
     "repo-sweeper-workflows.yml",
-    "carol-build-pointer.yml",
-    "carol-extract-v2-and-report.yml",
-    "carol-aggregate-fromfile-2p.yml",
-    "start-site-polish.yml",
-    "charlotte-build-link-registry.yml",
-    "nina-build-scene-index.yml",
-    "tracy-apply-skin.yml",
-    "charlotte-inject-ui-tokens.yml",
-    "overseers-llm-bridge.yml",
-    "site-doctor.yml"
+    "root-launcher-hotfix.yml",
+    "carol-refresh-2p.yml",
+    "charlotte-build-link-registry.yml"
   ]
 }

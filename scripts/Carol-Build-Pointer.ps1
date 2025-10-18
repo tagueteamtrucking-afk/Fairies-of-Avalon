@@ -1,1 +1,20 @@
-param([string]$PlansDir='pages/apps/carol/plans',[string]$OutFile='pages/apps/carol/index.json') $ErrorActionPreference='Stop'; $root=Split-Path -Parent $PSScriptRoot; $plansAbs=Join-Path $root $PlansDir; $outAbs=Join-Path $root $OutFile; if(-not (Test-Path $plansAbs)){ Write-Error 'PlansDir not found'; exit 1 } $files=Get-ChildItem -Path $plansAbs -File -Filter '*.json' | Sort-Object LastWriteTime -Descending; if(-not $files){ Write-Error 'No plan jsons'; exit 1 } $latest = $files | Where-Object { $_.Name -notmatch 'shopping-(extracted|quantized)|packages-missing' } | Select-Object -First 1; $shoppingQ = Join-Path $plansAbs 'shopping-quantized.json'; $shoppingE = Join-Path $plansAbs 'shopping-extracted.json'; $pointer=@{updated=(Get-Date).ToUniversalTime().ToString('s')+'Z'; plan= if($latest){ '/'+($latest.FullName.Replace($root,'').TrimStart('\','/').Replace('\','/')) } else { $null }; shopping_quantized= if(Test-Path $shoppingQ){ '/'+($shoppingQ.Replace($root,'').TrimStart('\','/').Replace('\','/')) } else { $null }; shopping_extracted= if(Test-Path $shoppingE){ '/'+($shoppingE.Replace($root,'').TrimStart('\','/').Replace('\','/')) } else { $null } }; $dirOut=Split-Path -Parent $outAbs; if(-not (Test-Path $dirOut)){ New-Item -ItemType Directory -Force -Path $dirOut | Out-Null }; [IO.File]::WriteAllText($outAbs, ($pointer | ConvertTo-Json -Depth 5), [Text.Encoding]::UTF8); Write-Host 'Wrote pointer'
+param([string]$PlansDir="pages/apps/carol/plans",[string]$OutFile="pages/apps/carol/index.json")
+$ErrorActionPreference="Stop"
+$root = Split-Path -Parent $PSScriptRoot
+$plansAbs = Join-Path $root $PlansDir
+$outAbs = Join-Path $root $OutFile
+if(-not (Test-Path $plansAbs)){ Write-Error "PlansDir not found: $plansAbs"; exit 1 }
+$files = Get-ChildItem -Path $plansAbs -File -Filter "*.json" | Sort-Object LastWriteTime -Descending
+if(-not $files){ Write-Error "No plan jsons found in $plansAbs"; exit 1 }
+$latest = $files | Where-Object { $_.Name -notmatch "shopping-(extracted|quantized)|packages-missing" } | Select-Object -First 1
+$shoppingQ = Join-Path $plansAbs "shopping-quantized.json"
+$shoppingE = Join-Path $plansAbs "shopping-extracted.json"
+$pointer = @{
+  updated=(Get-Date).ToUniversalTime().ToString("s")+'Z'
+  plan = if($latest){ '/'+($latest.FullName.Replace($root,'').TrimStart('\','/').Replace('\','/')) } else { $null }
+  shopping_quantized = if(Test-Path $shoppingQ){ '/'+($shoppingQ.Replace($root,'').TrimStart('\','/').Replace('\','/')) } else { $null }
+  shopping_extracted = if(Test-Path $shoppingE){ '/'+($shoppingE.Replace($root,'').TrimStart('\','/').Replace('\','/')) } else { $null }
+}
+$dirOut = Split-Path -Parent $outAbs; if(-not (Test-Path $dirOut)){ New-Item -ItemType Directory -Force -Path $dirOut | Out-Null }
+[IO.File]::WriteAllText($outAbs, ($pointer | ConvertTo-Json -Depth 5), [Text.Encoding]::UTF8)
+Write-Host "Wrote $OutFile"

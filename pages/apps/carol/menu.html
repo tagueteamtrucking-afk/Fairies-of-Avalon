@@ -1,1 +1,20 @@
-<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Carol — Menu</title><link rel='stylesheet' href='/pages/apps/_ui/tokens.css'><style>body{background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0}main{max-width:980px;margin:0 auto;padding:14px}.day{background:#0f172a;border:1px solid #172033;border-radius:12px;padding:10px;margin:8px 0}</style></head><body><main><h1>🍽️ Menu</h1><div id='out'></div></main><script>async function load(){ const ptr=await fetch('/pages/apps/carol/index.json').then(r=>r.json()).catch(()=>null); if(!ptr||!ptr.plan){ document.getElementById('out').textContent='No plan pointer found. Run Carol — Build Pointer.'; return; } const plan=await fetch(ptr.plan).then(r=>r.json()).catch(()=>null); if(!plan){ document.getElementById('out').textContent='Plan JSON not found: '+ptr.plan; return; } const days=plan.menu?.days||plan.days||[]; const out=document.getElementById('out'); if(!days.length){ out.textContent='No days array in plan.'; return; } days.forEach((d,i)=>{ const div=document.createElement('div'); div.className='day'; div.innerHTML=`<h3>Day ${i+1}</h3><pre>${JSON.stringify(d,null,2)}</pre>`; out.appendChild(div); }); } load();</script></body></html>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carol — Menu</title><style>body{background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0}main{max-width:980px;margin:0 auto;padding:14px}.day{background:#0f172a;border:1px solid #172033;border-radius:12px;padding:10px;margin:8px 0}</style></head>
+<body><main><h1>🍽️ Menu</h1><div id="out"></div></main>
+<script>
+async function load(){ 
+  const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json()).catch(()=>null);
+  if(!ptr || !ptr.plan){ document.getElementById('out').textContent='No plan pointer found. Run the Carol — Refresh (2‑person) workflow.'; return; }
+  const plan = await fetch(ptr.plan).then(r=>r.json()).catch(()=>null);
+  if(!plan){ document.getElementById('out').textContent='Plan JSON not found: '+ptr.plan; return; }
+  const days = plan.menu?.days || plan.days || [];
+  const out = document.getElementById('out');
+  if(!days.length){ out.textContent='No days array in plan.'; return; }
+  days.forEach((d,i)=>{
+    const div=document.createElement('div'); div.className='day';
+    div.innerHTML = `<h3>Day ${i+1}</h3><pre>${JSON.stringify(d, null, 2)}</pre>`;
+    out.appendChild(div);
+  });
+}
+load();
+</script></body></html>

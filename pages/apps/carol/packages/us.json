@@ -1,67 +1,31 @@
 {
-  "updated": "20251018T061819Z",
-  "notes": [
-    "US retail-focused package sizes. EU food safety principles assumed for menu; US sizing for shopping.",
-    "Peanut butter and hummus tablespoon conversions based on USDA/commonly cited serving sizes: PB 2 tbsp=32g; hummus 1 tbsp\u224815g."
-  ],
-  "sources": {
-    "peanut_butter_tbsp_grams": {
-      "value": 16,
-      "source": "USDA/MyFoodData 2 tbsp = 32 g"
-    },
-    "hummus_tbsp_grams": {
-      "value": 15,
-      "source": "USDA/MyFoodData 1 tbsp \u2248 15 g"
-    },
-    "rice_cups_per_lb": {
-      "value": 2.5,
-      "source": "USDA/FBG yields; long-grain ~185 g per cup"
-    }
-  },
+  "updated": "20251018T201634Z",
   "ingredient_map": {
     "peanut butter": "peanut_butter",
-    "pb": "peanut_butter",
-    "natural peanut butter": "peanut_butter",
     "hummus": "hummus",
-    "single-serve hummus": "hummus_cups",
     "dry rice": "white_rice_dry",
     "white rice": "white_rice_dry",
     "brown rice": "brown_rice_dry",
     "rolled oats": "rolled_oats",
-    "old fashioned oats": "rolled_oats",
+    "eggs": "eggs",
+    "chicken breast": "chicken_breast",
+    "frozen mixed vegetables": "frozen_mixed_veg",
+    "frozen berries": "frozen_berries",
+    "olive oil": "olive_oil",
+    "rice cakes": "rice_cakes",
+    "whole wheat bread": "ww_bread",
+    "tortillas": "tortillas_8in",
+    "low sodium broth": "low_sodium_broth",
+    "panko breadcrumbs": "panko",
+    "canned black beans": "canned_black_beans",
+    "canned chickpeas": "canned_chickpeas",
     "greek yogurt": "greek_yogurt",
     "lactose-free yogurt": "lf_yogurt",
     "lactose free milk": "lf_milk",
     "almond milk": "almond_milk",
-    "eggs": "eggs",
-    "whole eggs": "eggs",
-    "egg": "eggs",
-    "chicken breast": "chicken_breast",
-    "boneless skinless chicken breast": "chicken_breast",
-    "frozen mixed vegetables": "frozen_mixed_veg",
-    "frozen berries": "frozen_berries",
     "spinach": "spinach",
-    "baby spinach": "spinach",
-    "romaine": "romaine",
     "spring mix": "spring_mix",
-    "olive oil": "olive_oil",
-    "extra virgin olive oil": "olive_oil",
-    "rice cakes": "rice_cakes",
-    "whole wheat bread": "ww_bread",
-    "whole grain bread": "ww_bread",
-    "tortillas": "tortillas_8in",
-    "8-inch tortillas": "tortillas_8in",
-    "low sodium broth": "low_sodium_broth",
-    "low-sodium chicken broth": "low_sodium_broth",
-    "low-sodium vegetable broth": "low_sodium_broth",
-    "panko breadcrumbs": "panko",
-    "panko bread crumbs": "panko",
-    "hummus cups": "hummus_cups",
-    "peanut butter pouches": "pb_pouches",
-    "canned black beans": "canned_black_beans",
-    "black beans (canned)": "canned_black_beans",
-    "canned chickpeas": "canned_chickpeas",
-    "chickpeas (canned)": "canned_chickpeas"
+    "romaine": "romaine"
   },
   "package_sizes": {
     "peanut_butter": [
@@ -81,20 +45,6 @@
         "tbsp_per_package": 70
       }
     ],
-    "pb_pouches": [
-      {
-        "package": "box_8ct_1.15oz",
-        "count": 8,
-        "net_oz_each": 1.15,
-        "tbsp_per_each": 2
-      },
-      {
-        "package": "box_10ct_1.15oz",
-        "count": 10,
-        "net_oz_each": 1.15,
-        "tbsp_per_each": 2
-      }
-    ],
     "hummus": [
       {
         "package": "tub_10oz",
@@ -107,20 +57,6 @@
         "tbsp_per_package": 30
       }
     ],
-    "hummus_cups": [
-      {
-        "package": "sleeve_6ct_2oz",
-        "count": 6,
-        "net_oz_each": 2,
-        "tbsp_per_each": 4
-      },
-      {
-        "package": "sleeve_12ct_2oz",
-        "count": 12,
-        "net_oz_each": 2,
-        "tbsp_per_each": 4
-      }
-    ],
     "white_rice_dry": [
       {
         "package": "bag_2lb",
@@ -131,11 +67,6 @@
         "package": "bag_5lb",
         "lb": 5,
         "cups_per_package": 12.5
-      },
-      {
-        "package": "bag_10lb",
-        "lb": 10,
-        "cups_per_package": 25
       }
     ],
     "brown_rice_dry": [
@@ -143,11 +74,6 @@
         "package": "bag_2lb",
         "lb": 2,
         "cups_per_package": 4.8
-      },
-      {
-        "package": "bag_5lb",
-        "lb": 5,
-        "cups_per_package": 12
       }
     ],
     "rolled_oats": [
@@ -155,41 +81,6 @@
         "package": "tub_42oz",
         "net_oz": 42,
         "cups_per_package": 13
-      },
-      {
-        "package": "bag_32oz",
-        "net_oz": 32,
-        "cups_per_package": 10
-      }
-    ],
-    "greek_yogurt": [
-      {
-        "package": "tub_32oz",
-        "net_oz": 32,
-        "servings_2_3cup": 6
-      },
-      {
-        "package": "cups_4ct_5oz",
-        "count": 4,
-        "net_oz_each": 5
-      }
-    ],
-    "lf_yogurt": [
-      {
-        "package": "tub_32oz",
-        "net_oz": 32
-      }
-    ],
-    "lf_milk": [
-      {
-        "package": "half_gallon",
-        "fl_oz": 64
-      }
-    ],
-    "almond_milk": [
-      {
-        "package": "shelf_stable_64fl_oz",
-        "fl_oz": 64
       }
     ],
     "eggs": [
@@ -234,38 +125,11 @@
         "net_oz": 32
       }
     ],
-    "spinach": [
-      {
-        "package": "bag_5oz",
-        "net_oz": 5
-      },
-      {
-        "package": "clamshell_10oz",
-        "net_oz": 10
-      }
-    ],
-    "romaine": [
-      {
-        "package": "hearts_3ct",
-        "count": 3
-      }
-    ],
-    "spring_mix": [
-      {
-        "package": "clamshell_16oz",
-        "net_oz": 16
-      }
-    ],
     "olive_oil": [
       {
         "package": "bottle_500ml",
         "ml": 500,
         "fl_oz": 16.9
-      },
-      {
-        "package": "bottle_750ml",
-        "ml": 750,
-        "fl_oz": 25.4
       }
     ],
     "rice_cakes": [
@@ -285,10 +149,6 @@
       {
         "package": "bag_10ct",
         "count": 10
-      },
-      {
-        "package": "bag_20ct",
-        "count": 20
       }
     ],
     "low_sodium_broth": [
@@ -315,6 +175,52 @@
         "package": "can_15oz",
         "net_oz": 15,
         "drained_oz_est": 9
+      }
+    ],
+    "greek_yogurt": [
+      {
+        "package": "tub_32oz",
+        "net_oz": 32
+      }
+    ],
+    "lf_yogurt": [
+      {
+        "package": "tub_32oz",
+        "net_oz": 32
+      }
+    ],
+    "lf_milk": [
+      {
+        "package": "half_gallon",
+        "fl_oz": 64
+      }
+    ],
+    "almond_milk": [
+      {
+        "package": "shelf_stable_64fl_oz",
+        "fl_oz": 64
+      }
+    ],
+    "spinach": [
+      {
+        "package": "bag_5oz",
+        "net_oz": 5
+      },
+      {
+        "package": "clamshell_10oz",
+        "net_oz": 10
+      }
+    ],
+    "spring_mix": [
+      {
+        "package": "clamshell_16oz",
+        "net_oz": 16
+      }
+    ],
+    "romaine": [
+      {
+        "package": "hearts_3ct",
+        "count": 3
       }
     ]
   }

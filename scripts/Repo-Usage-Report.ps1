@@ -38,7 +38,7 @@ if($ArchiveOrphans){
   $batch = Join-Path $arcAbs $stamp
   New-Item -ItemType Directory -Force -Path $batch | Out-Null
   foreach($p in $orphans){
-    $src = Join-Path $here ($p.TrimStart('/').Replace('/','\'))
+    $src = Join-Path $here ($p.TrimStart('/').Replace('/','\\'))
     if(Test-Path $src){ Move-Item -Path $src -Destination (Join-Path $batch (Split-Path -Leaf $src)) -Force }
   }
 }

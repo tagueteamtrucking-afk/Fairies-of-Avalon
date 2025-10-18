@@ -1,0 +1,12 @@
+{
+  "keep": [
+    "deploy-pages.yml",
+    "root-launcher-hotfix.yml",
+    "repo-read.yml",
+    "repo-workflows-standardize.yml",
+    "charlotte-link-registry.yml",
+    "city-visual.yml",
+    "alexandria-dm-setup.yml",
+    "carol-refresh.yml"
+  ]
+}

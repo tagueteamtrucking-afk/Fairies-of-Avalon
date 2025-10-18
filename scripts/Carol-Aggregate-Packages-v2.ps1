@@ -49,4 +49,3 @@ foreach($k in $agg.Keys){
 }
 $dir = Split-Path -Parent $outAbs; if(-not (Test-Path $dir)){ New-Item -ItemType Directory -Force -Path $dir | Out-Null }
 [IO.File]::WriteAllText($outAbs, ($out | ConvertTo-Json -Depth 6), [Text.Encoding]::UTF8)
-Write-Host "Wrote $OutFile with $($out.items.Count) packaged and $($out.unmapped.Count) unmapped items."

@@ -1,7 +1,6 @@
 param([string]$Root=".", [switch]$ArchiveOrphans, [string]$ArchiveDir="scripts/_archive")
 $ErrorActionPreference="Stop"
 $here = Split-Path -Parent $PSScriptRoot
-$repo = Join-Path $here $Root
 $invPath = Join-Path $here "memory-history/repo-inventory.json"
 $refPath = Join-Path $here "memory-history/repo-refs.json"
 if(-not (Test-Path $invPath)){ Write-Error "Run Repo-Inventory.ps1 first"; exit 1 }
@@ -32,7 +31,6 @@ $out = @{ updated=(Get-Date).ToUniversalTime().ToString("s")+"Z"; totals=@{ file
 $outPath = Join-Path $here "memory-history/repo-usage-report.json"
 $dir = Split-Path -Parent $outPath; if(-not (Test-Path $dir)){ New-Item -ItemType Directory -Force -Path $dir | Out-Null }
 [IO.File]::WriteAllText($outPath, ($out | ConvertTo-Json -Depth 6), [Text.Encoding]::UTF8)
-Write-Host "Wrote $outPath"
 if($ArchiveOrphans){
   $arcAbs = Join-Path $here $ArchiveDir
   if(-not (Test-Path $arcAbs)){ New-Item -ItemType Directory -Force -Path $arcAbs | Out-Null }
@@ -43,5 +41,4 @@ if($ArchiveOrphans){
     $src = Join-Path $here ($p.TrimStart('/').Replace('/','\'))
     if(Test-Path $src){ Move-Item -Path $src -Destination (Join-Path $batch (Split-Path -Leaf $src)) -Force }
   }
-  Write-Host "Archived $($orphans.Count) orphan scripts to $batch"
 }

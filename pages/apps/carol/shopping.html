@@ -4,9 +4,9 @@
 <script>
 async function load(){ 
   const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json()).catch(()=>null);
-  if(!ptr){ document.getElementById('out').textContent='No pointer found.'; return; }
+  if(!ptr){ document.getElementById('out').textContent='No pointer found. Run the Carol Actions.'; return; }
   const url = ptr.shopping_quantized || ptr.shopping_extracted;
-  if(!url){ document.getElementById('out').textContent='No shopping JSON found.'; return; }
+  if(!url){ document.getElementById('out').textContent='No shopping JSON found. Run the Carol Actions.'; return; }
   const doc = await fetch(url).then(r=>r.json()).catch(()=>null);
   if(!doc){ document.getElementById('out').textContent='Could not read '+url; return; }
   const items = doc.items || doc.shopping || [];

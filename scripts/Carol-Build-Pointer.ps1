@@ -17,4 +17,3 @@ $pointer = @{
 }
 $dirOut = Split-Path -Parent $outAbs; if(-not (Test-Path $dirOut)){ New-Item -ItemType Directory -Force -Path $dirOut | Out-Null }
 [IO.File]::WriteAllText($outAbs, ($pointer | ConvertTo-Json -Depth 5), [Text.Encoding]::UTF8)
-Write-Host "Wrote $OutFile"

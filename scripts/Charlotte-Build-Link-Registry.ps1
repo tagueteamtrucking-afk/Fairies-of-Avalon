@@ -41,10 +41,9 @@ foreach($d in $dirs){
       default {"🏛️"}
     }
     $href = "/pages/apps/"+$d.Name+"/index.html"
-    $entries += @{ id=$id; name=$name; icon=$icon; href=$href; desc=""; }
+    $entries += @{ id=$id; name=$name; icon=$icon; href=$href; desc="" }
   }
 }
 $out = @{ updated=(Get-Date).ToUniversalTime().ToString("s")+"Z"; items=$entries }
 $dir = Split-Path -Parent $outAbs; if(-not (Test-Path $dir)){ New-Item -ItemType Directory -Force -Path $dir | Out-Null }
 [IO.File]::WriteAllText($outAbs, ($out | ConvertTo-Json -Depth 5), [Text.Encoding]::UTF8)
-Write-Host "Wrote $OutFile with $($entries.Count) entries."

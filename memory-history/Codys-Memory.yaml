@@ -1,0 +1,40 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "2.3.0"
+  last_updated: "20251018"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    Rules for iPad-first delivery:
+      - Always ship zips.
+      - Workflows-first (flat into .github/workflows/). No CLI required.
+      - No plaintext secrets in client. Use Worker URL only.
+      - One building per assistant; one room with anchors.
+      - No tunnel vision: improve multiple assistants per drop.
+    This update adds Actions for Carol (seed+refresh), Alexandria (DM setup), City visuals,
+    Root launcher fix, and repo read/cleanup.
+delivery_policy:
+  whole_file_replacements_only: true
+  preferred: "GitHub Actions buttons + flat zips"
+  avoid_cli: true
+audio_policy:
+  tts_source: "Cloudflare Worker URL saved in localStorage"
+  api_keys_in_client: false
+assistants_status:
+  alexandria: "DM scaffolds ready; Voice DM page uses Worker URL"
+  carol: "Seed+Refresh ready; package map US; 2-person aggregation"
+  stella: "Voice page uses Worker URL; on-demand playback"
+  jem: "Week1 intake/biometrics flows next; Samsung Health import supported"
+  tracy_nina_charlotte: "City visual pass + registry; Tracy for wallpapers/skins; Nina for 3D buttons; Charlotte keeps links clean"
+repo_ops:
+  actions:
+    - "Root - Launcher Hotfix"
+    - "City - Visual Pass 1"
+    - "Charlotte - Build Link Registry"
+    - "Alexandria - DM Setup (world scaffolds)"
+    - "Carol - Seed 14d Plan & Refresh (2-person)"
+    - "Carol - Refresh v3 (Extract->Aggregate->Pointer, 2-person)"
+    - "Deploy - GitHub Pages"
+  cleanup:
+    - "Repo - Read Full Index"
+    - "Repo - Usage Report and Archive Orphans"

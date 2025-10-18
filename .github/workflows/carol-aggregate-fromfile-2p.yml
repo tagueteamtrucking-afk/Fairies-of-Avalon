@@ -1,4 +1,4 @@
-name: Carol — Aggregate to Packages from Extracted (2‑person)
+name: Carol — Aggregate From Extracted (2‑person)
 on: { workflow_dispatch: {} }
 permissions: { contents: write }
 jobs:
@@ -6,13 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Aggregate to packages (Persons=2)
+      - name: Quantize (Persons=2)
         shell: pwsh
         run: pwsh -File scripts/Carol-Aggregate-FromFile.ps1 -ShoppingFile "pages/apps/carol/plans/shopping-extracted.json" -PackageMap "pages/apps/carol/packages/us.json" -OutFile "pages/apps/carol/plans/shopping-quantized.json" -Persons 2
-      - name: Commit quantized
+      - name: Commit
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add pages/apps/carol/plans/shopping-quantized.json
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(carol): quantized shopping (2-person) from extracted" && git push; fi
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(carol): quantized 2-person shopping from extracted" && git push; fi

@@ -1,5 +1,4 @@
 ﻿{
-  "used": [],
   "orphans": [
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1",
@@ -14,14 +13,18 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-Packages.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Build-Pointer.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Diet-LLM.ps1",
+    "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Expand-14d.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Export-PDF.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Extract-Shopping-v2.ps1",
+    "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Extract-Shopping-v3.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Extract-Shopping.ps1",
+    "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Full-Refresh.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-LLM-Plans.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Meal-Plan-2or6wk.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Meal-Plan-2wk.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Offline-2wk.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Package-Map-Report.ps1",
+    "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Plan-Inspector.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Validate.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Build-Link-Registry.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Design-Tokens.ps1",
@@ -59,6 +62,7 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Repo-Sweeper-Used-Files.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Repo-Sweeper-Workflows.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Repo-Usage-Report.ps1",
+    "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Root-Index-Hotfix.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Run-All.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Site-Doctor.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Stella-Guided-LLM.ps1",
@@ -82,11 +86,12 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/overseers-llm-bridge.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/tracy-artboard.ps1"
   ],
+  "used": [],
+  "updated": "2025-10-18T22:51:44Z",
   "totals": {
-    "files": 810,
     "used": 0,
-    "orphans": 80,
-    "scripts": 80
-  },
-  "updated": "2025-10-18T06:34:45Z"
+    "files": 855,
+    "orphans": 85,
+    "scripts": 85
+  }
 }

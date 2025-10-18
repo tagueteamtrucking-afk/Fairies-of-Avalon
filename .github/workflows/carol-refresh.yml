@@ -1,0 +1,43 @@
+name: Carol - Refresh (Extract->Aggregate->Pointer, 2-person)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract shopping list v3
+        shell: pwsh
+        run: pwsh -File scripts/Carol-Extract-Shopping-v3.ps1 -PlansDir "pages/apps/carol/plans" -OutFile "pages/apps/carol/plans/shopping-extracted.json"
+      - name: Aggregate into US packages (2 persons)
+        shell: pwsh
+        run: pwsh -File scripts/Carol-Aggregate-Packages-v2.ps1 -PlansDir "pages/apps/carol/plans" -PackageMap "pages/apps/carol/packages/us.json" -OutFile "pages/apps/carol/plans/shopping-quantized.json" -Persons 2
+      - name: Build Carol pointer
+        shell: pwsh
+        run: pwsh -File scripts/Carol-Build-Pointer.ps1 -PlansDir "pages/apps/carol/plans" -OutFile "pages/apps/carol/index.json"
+      - name: Prefer latest real mealplan if present
+        shell: pwsh
+        run: |
+          $root = (Split-Path -Parent $PSScriptRoot)
+          $plans = Join-Path $root "pages/apps/carol/plans"
+          $pointerPath = Join-Path $root "pages/apps/carol/index.json"
+          if(Test-Path $plans -and Test-Path $pointerPath){
+            $cands = Get-ChildItem -Path $plans -File -Filter "mealplan-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+            if($cands){
+              $ptr = Get-Content -Raw -Path $pointerPath | ConvertFrom-Json
+              $ptr.plan = "/"+($cands.FullName.Replace($root,'').TrimStart('\','/').Replace('\','/'))
+              [IO.File]::WriteAllText($pointerPath, ($ptr | ConvertTo-Json -Depth 5), [Text.Encoding]::UTF8)
+              Write-Host "Pointer set to latest mealplan: $($ptr.plan)"
+            } else {
+              Write-Host "No mealplan-*.json found; keeping existing pointer."
+            }
+          }
+      - name: Commit Carol outputs
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/carol/index.json                  pages/apps/carol/plans/shopping-extracted.json                  pages/apps/carol/plans/shopping-quantized.json || true
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(carol): refresh (2p) + pointer to real mealplan" && git push; fi

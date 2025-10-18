@@ -1,4 +1,4 @@
-name: Alexandria - DM Setup (world scaffolds)
+name: Alexandria - DM Setup
 on:
   workflow_dispatch:
 permissions:
@@ -9,85 +9,82 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Seed world canon and pages
-        shell: pwsh
+        shell: bash
         run: |
-          $root = "pages/apps/alexandria/worlds/avalon"
-          New-Item -ItemType Directory -Force -Path "$root/sessions" | Out-Null
-          $canon = @{
-            world = "Avalon"
-            canon_version = "0.1.0"
-            magic_rules = @{
-              sources = @("mana","ley lines")
-              constraints = @("equivalent exchange","fatigue","channeling focus")
-            }
-            societies = @(
-              @{ name="Camelot"; type="kingdom"; tech="late medieval"; notes="Overseers' palace" },
-              @{ name="Gothic Library"; type="order"; notes="Alexandria's home" }
-            )
-            physics = @{
-              gravity = "earth-like"
-              anomalies = @("thin veils near standing stones")
+          set -euo pipefail
+          mkdir -p pages/apps/alexandria/worlds/avalon/sessions
+          cat > pages/apps/alexandria/worlds/avalon/canon.json <<'JSON'
+          {
+            "world": "Avalon",
+            "canon_version": "0.1.0",
+            "magic_rules": {
+              "sources": ["mana","ley lines"],
+              "constraints": ["equivalent exchange","fatigue","channeling focus"]
+            },
+            "societies": [
+              {"name":"Camelot","type":"kingdom","tech":"late medieval","notes":"Overseers' palace"},
+              {"name":"Gothic Library","type":"order","notes":"Alexandria's home"}
+            ],
+            "physics": {
+              "gravity": "earth-like",
+              "anomalies": ["thin veils near standing stones"]
             }
           }
-          $canonPath = "$root/canon.json"
-          $biblePath = "$root/story-bible.md"
-          $indexPath = "pages/apps/alexandria/index.html"
-          $voicePath = "pages/apps/alexandria/voice-dm.html"
-          $canon | ConvertTo-Json -Depth 8 | Out-File -Encoding UTF8 $canonPath
-          @"
-# Avalon Story Bible
+          JSON
+          cat > pages/apps/alexandria/worlds/avalon/story-bible.md <<'MD'
+          # Avalon Story Bible
 
-- **World**: Avalon
-- **Tone**: Hopeful high fantasy with grounded economics.
-- **Magic**: Mana + ley lines; constrained by equivalent exchange.
-"@ | Out-File -Encoding UTF8 $biblePath
-          if(-not (Test-Path $indexPath)){
-            @"
-<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Alexandria — Library</title></head>
-<body><main style='padding:12px'>
-<h1>Alexandria — Library</h1>
-<p><a href='/pages/apps/alexandria/worlds/index.html'>Worlds</a> · <a href='/pages/apps/alexandria/maps/index.html'>Maps</a> · <a href='/pages/apps/alexandria/voice-dm.html'>Voice DM</a></p>
-</main></body></html>
-"@ | Out-File -Encoding UTF8 $indexPath
-          }
-          if(-not (Test-Path $voicePath)){
-            @"
-<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Alexandria — Voice DM</title></head>
-<body><main style='padding:12px'><h1>🎲 Voice DM</h1>
-<p>Set your Worker URL once (no API keys here):</p>
-<label>Worker URL <input id='w' size='60' placeholder='https://your-worker.workers.dev'></label>
-<button onclick='save()'>Save</button>
-<hr>
-<button onclick='start()'>🎤 Start</button>
-<button onclick='stop()'>⏹️ Stop</button>
-<pre id='log'></pre>
-</main>
-<script>
-function save(){ localStorage.setItem('OPENAI_WORKER_URL', document.getElementById('w').value); alert('Saved'); }
-let media, rec, chunks=[];
-async function start(){
-  try{
-    media = await navigator.mediaDevices.getUserMedia({audio:true}); 
-    rec = new MediaRecorder(media);
-    rec.ondataavailable = e => { if(e.data.size>0) chunks.push(e.data); };
-    rec.onstop = async () => {
-      const blob = new Blob(chunks, {type:'audio/webm'}); chunks=[];
-      const url = localStorage.getItem('OPENAI_WORKER_URL'); if(!url){ alert('Set Worker URL first'); return; }
-      const fd = new FormData(); fd.append('audio', blob, 'input.webm');
-      const resp = await fetch(url+'/alexandria-dm', { method:'POST', body: fd });
-      const buf = await resp.arrayBuffer(); const audioUrl = URL.createObjectURL(new Blob([buf]));
-      const a = new Audio(audioUrl); a.play();
-    };
-    rec.start();
-    document.getElementById('log').textContent = 'Recording…';
-  }catch(e){ document.getElementById('log').textContent = 'Error: '+e; }
-}
-function stop(){ if(rec){ rec.stop(); if(media){ media.getTracks().forEach(t=>t.stop()); } } }
-</script>
-</body></html>
-"@ | Out-File -Encoding UTF8 $voicePath
-          }
-      - name: Commit Alexandria world scaffolds
+          - **World**: Avalon
+          - **Tone**: Hopeful high fantasy with grounded economics.
+          - **Magic**: Mana + ley lines; constrained by equivalent exchange.
+          MD
+          if [ ! -f pages/apps/alexandria/index.html ]; then
+            cat > pages/apps/alexandria/index.html <<'HTML'
+            <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alexandria — Library</title></head>
+            <body><main style="padding:12px">
+            <h1>Alexandria — Library</h1>
+            <p><a href="/pages/apps/alexandria/worlds/index.html">Worlds</a> · <a href="/pages/apps/alexandria/maps/index.html">Maps</a> · <a href="/pages/apps/alexandria/voice-dm.html">Voice DM</a></p>
+            </main></body></html>
+            HTML
+          fi
+          if [ ! -f pages/apps/alexandria/voice-dm.html ]; then
+            cat > pages/apps/alexandria/voice-dm.html <<'HTML'
+            <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alexandria — Voice DM</title></head>
+            <body><main style="padding:12px"><h1>🎲 Voice DM</h1>
+            <p>Set your Worker URL (no API keys here):</p>
+            <label>Worker URL <input id="w" size="60" placeholder="https://your-worker.workers.dev"></label>
+            <button onclick="save()">Save</button>
+            <hr>
+            <button onclick="start()">🎤 Start</button>
+            <button onclick="stop()">⏹️ Stop</button>
+            <pre id="log"></pre>
+            </main>
+            <script>
+            function save(){ localStorage.setItem('OPENAI_WORKER_URL', document.getElementById('w').value); alert('Saved'); }
+            let media, rec, chunks=[];
+            async function start(){
+              try{
+                media = await navigator.mediaDevices.getUserMedia({audio:true}); 
+                rec = new MediaRecorder(media);
+                rec.ondataavailable = e => { if(e.data.size>0) chunks.push(e.data); };
+                rec.onstop = async () => {
+                  const blob = new Blob(chunks, {type:'audio/webm'}); chunks=[];
+                  const url = localStorage.getItem('OPENAI_WORKER_URL'); if(!url){ alert('Set Worker URL first'); return; }
+                  const fd = new FormData(); fd.append('audio', blob, 'input.webm');
+                  const resp = await fetch(url+'/alexandria-dm', { method:'POST', body: fd });
+                  const buf = await resp.arrayBuffer(); const audioUrl = URL.createObjectURL(new Blob([buf]));
+                  const a = new Audio(audioUrl); a.play();
+                };
+                rec.start();
+                document.getElementById('log').textContent = 'Recording…';
+              }catch(e){ document.getElementById('log').textContent = 'Error: '+e; }
+            }
+            function stop(){ if(rec){ rec.stop(); if(media){ media.getTracks().forEach(t=>t.stop()); } } }
+            </script>
+            </body></html>
+            HTML
+          fi
+      - name: Commit Alexandria scaffolds
         shell: bash
         run: |
           git config user.name "github-actions[bot]"

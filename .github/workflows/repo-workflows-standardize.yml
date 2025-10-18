@@ -1,0 +1,58 @@
+name: Repo - Workflows Standardize (rename + delete old)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  standardize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply rename and keep rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          keep_json="config/workflows-keep.json"
+          map_json="config/workflows-rename.json"
+          mkdir -p .github/workflows
+          if [ -f "$map_json" ]; then
+            python3 - "$map_json" <<'PY'
+import json, os, shutil
+import sys
+mfile = sys.argv[1]
+with open(mfile,'r',encoding='utf-8') as f: m=json.load(f)
+for old,new in m.get("rename",[]):
+    oldp=os.path.join(".github","workflows",old)
+    newp=os.path.join(".github","workflows",new)
+    if os.path.isfile(oldp):
+        os.makedirs(os.path.dirname(newp), exist_ok=True)
+        # if target exists, delete old; else rename
+        if os.path.isfile(newp):
+            os.remove(oldp)
+            print(f"Deleted duplicate {old}")
+        else:
+            os.rename(oldp,newp)
+            print(f"Renamed {old} -> {new}")
+PY
+          fi
+          if [ -f "$keep_json" ]; then
+            python3 - "$keep_json" <<'PY'
+import json, os
+k=json.load(open(sys.argv[1],'r',encoding='utf-8'))
+keep=set(k.get("keep",[]))
+wfdir=os.path.join(".github","workflows")
+for fn in os.listdir(wfdir):
+    if not (fn.endswith(".yml") or fn.endswith(".yaml")): 
+        continue
+    if fn not in keep:
+        os.remove(os.path.join(wfdir,fn))
+        print("Removed",fn)
+PY
+          fi
+      - name: Commit standardization
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows || true
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(workflows): standardize (rename+delete)" && git push; fi

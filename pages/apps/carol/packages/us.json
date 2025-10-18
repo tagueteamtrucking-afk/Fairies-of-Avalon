@@ -1,5 +1,5 @@
 {
-  "updated": "20251018T201634Z",
+  "updated": "20251018T213140Z",
   "ingredient_map": {
     "peanut butter": "peanut_butter",
     "hummus": "hummus",
@@ -38,11 +38,6 @@
         "package": "jar_28oz",
         "net_oz": 28,
         "tbsp_per_package": 49
-      },
-      {
-        "package": "jar_40oz",
-        "net_oz": 40,
-        "tbsp_per_package": 70
       }
     ],
     "hummus": [
@@ -74,153 +69,6 @@
         "package": "bag_2lb",
         "lb": 2,
         "cups_per_package": 4.8
-      }
-    ],
-    "rolled_oats": [
-      {
-        "package": "tub_42oz",
-        "net_oz": 42,
-        "cups_per_package": 13
-      }
-    ],
-    "eggs": [
-      {
-        "package": "dozen",
-        "count": 12
-      },
-      {
-        "package": "18ct",
-        "count": 18
-      }
-    ],
-    "chicken_breast": [
-      {
-        "package": "tray_2.5lb",
-        "lb": 2.5,
-        "pieces_est": 5
-      },
-      {
-        "package": "frozen_bag_3lb",
-        "lb": 3,
-        "pieces_est": 6
-      }
-    ],
-    "frozen_mixed_veg": [
-      {
-        "package": "bag_12oz",
-        "net_oz": 12
-      },
-      {
-        "package": "bag_32oz",
-        "net_oz": 32
-      }
-    ],
-    "frozen_berries": [
-      {
-        "package": "bag_16oz",
-        "net_oz": 16
-      },
-      {
-        "package": "bag_32oz",
-        "net_oz": 32
-      }
-    ],
-    "olive_oil": [
-      {
-        "package": "bottle_500ml",
-        "ml": 500,
-        "fl_oz": 16.9
-      }
-    ],
-    "rice_cakes": [
-      {
-        "package": "sleeve_14ct",
-        "count": 14
-      }
-    ],
-    "ww_bread": [
-      {
-        "package": "loaf_20oz",
-        "net_oz": 20,
-        "slices_est": 20
-      }
-    ],
-    "tortillas_8in": [
-      {
-        "package": "bag_10ct",
-        "count": 10
-      }
-    ],
-    "low_sodium_broth": [
-      {
-        "package": "carton_32fl_oz",
-        "fl_oz": 32
-      }
-    ],
-    "panko": [
-      {
-        "package": "box_8oz",
-        "net_oz": 8
-      }
-    ],
-    "canned_black_beans": [
-      {
-        "package": "can_15oz",
-        "net_oz": 15,
-        "drained_oz_est": 9
-      }
-    ],
-    "canned_chickpeas": [
-      {
-        "package": "can_15oz",
-        "net_oz": 15,
-        "drained_oz_est": 9
-      }
-    ],
-    "greek_yogurt": [
-      {
-        "package": "tub_32oz",
-        "net_oz": 32
-      }
-    ],
-    "lf_yogurt": [
-      {
-        "package": "tub_32oz",
-        "net_oz": 32
-      }
-    ],
-    "lf_milk": [
-      {
-        "package": "half_gallon",
-        "fl_oz": 64
-      }
-    ],
-    "almond_milk": [
-      {
-        "package": "shelf_stable_64fl_oz",
-        "fl_oz": 64
-      }
-    ],
-    "spinach": [
-      {
-        "package": "bag_5oz",
-        "net_oz": 5
-      },
-      {
-        "package": "clamshell_10oz",
-        "net_oz": 10
-      }
-    ],
-    "spring_mix": [
-      {
-        "package": "clamshell_16oz",
-        "net_oz": 16
-      }
-    ],
-    "romaine": [
-      {
-        "package": "hearts_3ct",
-        "count": 3
       }
     ]
   }

@@ -4,7 +4,7 @@
 <script>
 async function load(){ 
   const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json()).catch(()=>null);
-  if(!ptr || !ptr.plan){ document.getElementById('out').textContent='No plan pointer found. Run the Carol — Refresh (2‑person) workflow.'; return; }
+  if(!ptr || !ptr.plan){ document.getElementById('out').textContent='No plan pointer found.'; return; }
   const plan = await fetch(ptr.plan).then(r=>r.json()).catch(()=>null);
   if(!plan){ document.getElementById('out').textContent='Plan JSON not found: '+ptr.plan; return; }
   const days = plan.menu?.days || plan.days || [];

@@ -24,8 +24,8 @@ if($items.Count -eq 0){
     if($j.menu -and $j.menu.days){ foreach($d in $j.menu.days){ if($d.shopping){ $items += @($d.shopping) } } }
   }
 }
-if($items.Count -eq 0){ Write-Error "No shopping items found. Run Carol-Extract-Shopping-v2.ps1 first."; exit 1 }
-$agg = @{}; foreach($x in $items){ $n = $x.name; if(-not $n){ $n = $x.item }; $u = $x.unit; $q = $x.qty; if($null -eq $n -or $null -eq $q){ continue }; $n = Norm $n; $u = NormUnit $u; $canon = if($ingredientMap.ContainsKey($n)) { $ingredientMap[$n] } else { $n }; $key = "$canon|$u"; if(-not $agg.ContainsKey($key)){ $agg[$key] = [double]0 }; $agg[$key] += [double]$q }
+if($items.Count -eq 0){ Write-Error "No shopping items found. Run Carol-Extract-Shopping-v3.ps1 first."; exit 1 }
+$agg = @{}; foreach($x in $items){ $n = $x.name; if(-not $n){ $n = $x.item }; $u = $x.unit; $q = $x.qty; if($null -eq $n -or $null -eq $q){ continue }; $n = Norm $n; $u = NormUnit $u; $canon = if($ingredientMap.ContainsKey($n)) { $ingredientMap[$n] } else { $n }; $key = "$canon|$u"; if(-not $agg.ContainsKey($key)){ $agg[$key] = [double]$q } else { $agg[$key] += [double]$q } }
 foreach($k in @($agg.Keys)){ $agg[$k] = $agg[$k] * [double]$Persons }
 function Choose-Package($canon, $unit, $need){
   $sizesProp = $packageSizes.PSObject.Properties[$canon]; if($null -eq $sizesProp){ return $null }

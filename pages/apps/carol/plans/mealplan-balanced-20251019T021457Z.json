@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "title": "Balanced 14-Day Grazing Plan (2 people)",
+    "constraints": [
+      "DASH-lean",
+      "light dairy",
+      "no shellfish",
+      "no cilantro",
+      "no cumin",
+      "refrigerator-limited",
+      "single-burner + airfryer"
+    ],
+    "units": "US customary (cups, tbsp, tsp, oz, count)"
+  },
+  "menu": {
+    "days": [
+      {
+        "snacks": [
+          "2 slices whole wheat bread + 2 tbsp hummus",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "3/4 cup lactose-free Greek yogurt + 1/2 cup frozen mixed berries",
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)",
+          "1 tortilla (8-inch, whole wheat) + 2 tbsp hummus + romaine shreds",
+          "1 banana + 1 tbsp peanut butter"
+        ]
+      },
+      {
+        "snacks": [
+          "3/4 cup lactose-free Greek yogurt + 1/2 cup frozen mixed berries",
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)",
+          "1 hard-boiled egg + 1/2 cup baby carrots",
+          "2 slices whole wheat bread + 2 tbsp hummus",
+          "1 banana + 1 tbsp peanut butter",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water"
+        ]
+      },
+      {
+        "snacks": [
+          "Romaine lettuce wrap: 3 oz chicken breast (air-fryer, light panko) + 1 tsp olive oil",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "1 hard-boiled egg + 1/2 cup baby carrots",
+          "1 banana + 1 tbsp peanut butter",
+          "2 slices whole wheat bread + 2 tbsp hummus",
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)"
+        ]
+      },
+      {
+        "snacks": [
+          "Romaine lettuce wrap: 3 oz chicken breast (air-fryer, light panko) + 1 tsp olive oil",
+          "2 slices whole wheat bread + 2 tbsp hummus",
+          "3/4 cup lactose-free Greek yogurt + 1/2 cup frozen mixed berries",
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "1 tortilla (8-inch, whole wheat) + 2 tbsp hummus + romaine shreds"
+        ]
+      },
+      {
+        "snacks": [
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "1 tortilla (8-inch, whole wheat) + 2 tbsp hummus + romaine shreds",
+          "2 slices whole wheat bread + 2 tbsp hummus",
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)",
+          "3/4 cup lactose-free Greek yogurt + 1/2 cup frozen mixed berries",
+          "1 banana + 1 tbsp peanut butter"
+        ]
+      },
+      {
+        "snacks": [
+          "1 banana + 1 tbsp peanut butter",
+          "Romaine lettuce wrap: 3 oz chicken breast (air-fryer, light panko) + 1 tsp olive oil",
+          "2 slices whole wheat bread + 2 tbsp hummus",
+          "3/4 cup lactose-free Greek yogurt + 1/2 cup frozen mixed berries",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "1 hard-boiled egg + 1/2 cup baby carrots"
+        ]
+      },
+      {
+        "snacks": [
+          "1 tortilla (8-inch, whole wheat) + 2 tbsp hummus + romaine shreds",
+          "1 banana + 1 tbsp peanut butter",
+          "Romaine lettuce wrap: 3 oz chicken breast (air-fryer, light panko) + 1 tsp olive oil",
+          "3/4 cup lactose-free Greek yogurt + 1/2 cup frozen mixed berries",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "2 slices whole wheat bread + 2 tbsp hummus"
+        ]
+      },
+      {
+        "snacks": [
+          "Romaine lettuce wrap: 3 oz chicken breast (air-fryer, light panko) + 1 tsp olive oil",
+          "2 slices whole wheat bread + 2 tbsp hummus",
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)",
+          "1 banana + 1 tbsp peanut butter",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "1 hard-boiled egg + 1/2 cup baby carrots"
+        ]
+      },
+      {
+        "snacks": [
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "2 slices whole wheat bread + 2 tbsp hummus",
+          "1 tortilla (8-inch, whole wheat) + 2 tbsp hummus + romaine shreds",
+          "1 banana + 1 tbsp peanut butter",
+          "3/4 cup lactose-free Greek yogurt + 1/2 cup frozen mixed berries"
+        ]
+      },
+      {
+        "snacks": [
+          "3/4 cup lactose-free Greek yogurt + 1/2 cup frozen mixed berries",
+          "Romaine lettuce wrap: 3 oz chicken breast (air-fryer, light panko) + 1 tsp olive oil",
+          "1 hard-boiled egg + 1/2 cup baby carrots",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)",
+          "1 tortilla (8-inch, whole wheat) + 2 tbsp hummus + romaine shreds"
+        ]
+      },
+      {
+        "snacks": [
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)",
+          "1 hard-boiled egg + 1/2 cup baby carrots",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "Romaine lettuce wrap: 3 oz chicken breast (air-fryer, light panko) + 1 tsp olive oil",
+          "1 tortilla (8-inch, whole wheat) + 2 tbsp hummus + romaine shreds",
+          "2 slices whole wheat bread + 2 tbsp hummus"
+        ]
+      },
+      {
+        "snacks": [
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)",
+          "2 slices whole wheat bread + 2 tbsp hummus",
+          "1 tortilla (8-inch, whole wheat) + 2 tbsp hummus + romaine shreds",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "1 hard-boiled egg + 1/2 cup baby carrots",
+          "3/4 cup lactose-free Greek yogurt + 1/2 cup frozen mixed berries"
+        ]
+      },
+      {
+        "snacks": [
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "2 slices whole wheat bread + 2 tbsp hummus",
+          "1 tortilla (8-inch, whole wheat) + 2 tbsp hummus + romaine shreds",
+          "1 banana + 1 tbsp peanut butter",
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)",
+          "1 hard-boiled egg + 1/2 cup baby carrots"
+        ]
+      },
+      {
+        "snacks": [
+          "1 banana + 1 tbsp peanut butter",
+          "1 apple + 1 tbsp powdered peanut butter mixed with water",
+          "1 tortilla (8-inch, whole wheat) + 2 tbsp hummus + romaine shreds",
+          "1 hard-boiled egg + 1/2 cup baby carrots",
+          "1/2 cup cooked brown rice + 3 oz chicken breast (plain, not crunchy)",
+          "Romaine lettuce wrap: 3 oz chicken breast (air-fryer, light panko) + 1 tsp olive oil"
+        ]
+      }
+    ]
+  }
+}

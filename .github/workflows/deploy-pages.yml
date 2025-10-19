@@ -1,23 +1,23 @@
 name: Deploy - GitHub Pages
-on: { workflow_dispatch: {} }
+on:
+  workflow_dispatch: {}
 permissions:
+  contents: read
   pages: write
   id-token: write
-  contents: read
 concurrency:
-  group: pages
+  group: "pages"
   cancel-in-progress: true
 jobs:
-  build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/upload-pages-artifact@v3
-        with: { path: ./ }
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment: { name: github-pages, url: ${{ steps.deployment.outputs.page_url }} }
-    steps:
+        with:
+          path: "."
       - id: deployment
         uses: actions/deploy-pages@v4

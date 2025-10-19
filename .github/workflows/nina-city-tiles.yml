@@ -15,13 +15,11 @@ jobs:
           tmp="$(mktemp)"
           node - <<'JS' "$file" "$tmp"
           const fs=require('fs'); const p=process.argv[2]; const o=process.argv[3];
-          // Read and strip UTF-8 BOM if present
           let text = fs.readFileSync(p,'utf8'); if(text.charCodeAt(0)===0xFEFF) text=text.slice(1);
           const reg=JSON.parse(text); const icons={
             alexandria:"📚", charlotte:"📡", nina:"🧪", tracy:"🎨", carol:"🍽️", jem:"🥋",
             stella:"🌌", abbey:"🏦", themis:"⚖️", billie:"💰", sorcha:"🎬", clarice:"🔐"
           };
-          // Odessa removed from roster
           reg.items = (reg.items||[]).filter(it=> (it.name||'').toLowerCase()!=='odessa')
             .map(it=>({ ...it, icon: icons[(it.name||'').toLowerCase()] || it.icon || '🏛️'}));
           fs.writeFileSync(o, JSON.stringify(reg,null,2));

@@ -35,22 +35,35 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          $root = (Split-Path -Parent $PSScriptRoot)
+          $root = $env:GITHUB_WORKSPACE
+          if ([string]::IsNullOrWhiteSpace($root)) { $root = (Get-Location).Path }
           $plans = Join-Path $root "pages/apps/carol/plans"
           $pointerPath = Join-Path $root "pages/apps/carol/index.json"
-          if ( (Test-Path -LiteralPath $plans) -and (Test-Path -LiteralPath $pointerPath) ) {
-            $cands = Get-ChildItem -LiteralPath $plans -File -Filter "mealplan-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-            if ($null -ne $cands) {
-              $ptr = Get-Content -Raw -LiteralPath $pointerPath | ConvertFrom-Json
-              $rel = $cands.FullName.Substring($root.Length).TrimStart('\','/')
-              $ptr.plan = "/" + $rel.Replace('\','/')
-              [IO.File]::WriteAllText($pointerPath, ($ptr | ConvertTo-Json -Depth 5), [Text.Encoding]::UTF8)
-              Write-Host "Pointer set to latest mealplan: $($ptr.plan)"
-            } else {
-              Write-Host "No mealplan-*.json found; keeping existing pointer."
+          if (-not (Test-Path -LiteralPath $plans)) {
+            Write-Error "Plans dir missing at $plans"; exit 1
+          }
+          if (-not (Test-Path -LiteralPath $pointerPath)) {
+            # create minimal pointer so site pages can load, even if plan is null
+            $ptr = @{
+              updated=(Get-Date).ToUniversalTime().ToString("s")+'Z'
+              plan=$null
+              shopping_quantized=$null
+              shopping_extracted=$null
             }
+            $dir = Split-Path -Parent $pointerPath
+            if(-not (Test-Path -LiteralPath $dir)){ New-Item -ItemType Directory -Force -Path $dir | Out-Null }
+            [IO.File]::WriteAllText($pointerPath, ($ptr | ConvertTo-Json -Depth 5), [Text.Encoding]::UTF8)
+            Write-Host "Pointer file created at $pointerPath (plan=null)"
+          }
+          $cands = Get-ChildItem -LiteralPath $plans -File -Filter "mealplan-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+          if ($null -ne $cands) {
+            $ptr = Get-Content -Raw -LiteralPath $pointerPath | ConvertFrom-Json
+            $rel = $cands.FullName.Substring($root.Length).TrimStart('\','/')
+            $ptr.plan = "/" + $rel.Replace('\','/')
+            [IO.File]::WriteAllText($pointerPath, ($ptr | ConvertTo-Json -Depth 5), [Text.Encoding]::UTF8)
+            Write-Host "Pointer set to latest mealplan: $($ptr.plan)"
           } else {
-            Write-Error "Plans or pointer path missing."
+            Write-Host "No mealplan-*.json found; leaving pointer.plan as-is."
           }
 
       - name: Commit Carol outputs

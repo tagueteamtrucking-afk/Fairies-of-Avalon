@@ -1,0 +1,66 @@
+name: Repo — Read Index
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build repo index JSON
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          git config --global --add safe.directory $PWD
+          $paths = git ls-files
+          $items = @()
+          foreach($p in $paths){
+            if(-not [string]::IsNullOrWhiteSpace($p)){
+              try {
+                $fi = Get-Item -LiteralPath $p -ErrorAction Stop
+                $items += [pscustomobject]@{ path=$p; bytes=$fi.Length; mtime=$fi.LastWriteTimeUtc.ToString("o") }
+              } catch {
+                $items += [pscustomobject]@{ path=$p; bytes=$null; mtime=$null }
+              }
+            }
+          }
+          $index = [pscustomobject]@{
+            repo = "${{ github.repository }}"
+            sha = "${{ github.sha }}"
+            generated = (Get-Date).ToString("o")
+            count = $items.Count
+            files = $items
+          }
+          $json = $index | ConvertTo-Json -Depth 6
+          New-Item -ItemType Directory -Force -Path "memory-history" | Out-Null
+          New-Item -ItemType Directory -Force -Path "pages/apps/_city" | Out-Null
+          Set-Content -Path "memory-history/repo-index.json" -Value $json -Encoding UTF8
+          Set-Content -Path "pages/apps/_city/repo-index.json" -Value $json -Encoding UTF8
+
+          # Also write a small by-folder summary
+          $folderStats = @()
+          foreach($g in ($items | Group-Object { ($_.path -split '/')[0] })) {
+            $folderStats += [pscustomobject]@{ folder=$g.Name; files=$g.Count; bytes=($g.Group | Measure-Object -Property bytes -Sum).Sum }
+          }
+          $report = [pscustomobject]@{
+            repo = "${{ github.repository }}"
+            generated = (Get-Date).ToString("o")
+            summary = $folderStats | Sort-Object -Property folder
+          }
+          ($report | ConvertTo-Json -Depth 5) | Set-Content -Path "memory-history/repo-usage-report.json" -Encoding UTF8
+
+      - name: Commit repo index
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Repo: index + folder summary (auto)"
+          file_pattern: |
+            memory-history/repo-index.json
+            memory-history/repo-usage-report.json
+            pages/apps/_city/repo-index.json

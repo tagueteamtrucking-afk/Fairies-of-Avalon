@@ -1,33 +1,4 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Kill SW — Boost</title>
-  <style>
-    body{background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}
-    pre{white-space:pre-wrap;word-break:break-word}
-  </style>
-</head>
-<body>
-  <h1>Service Worker & Cache Reset</h1>
-  <pre id="log">Running…</pre>
-  <script>
-  (async()=>{
-    const lines=[]; const log=(m)=>{lines.push(m); document.getElementById('log').textContent = lines.join("\n");};
-    try{
-      if('serviceWorker' in navigator){
-        const regs = await navigator.serviceWorker.getRegistrations();
-        for(const r of regs){ await r.unregister(); log("Unregistered SW: "+(r.scope||"(scope)")); }
-      } else { log("No serviceWorker API"); }
-      if(window.caches){
-        const keys = await caches.keys();
-        for(const k of keys){ await caches.delete(k); log("Cache deleted: "+k); }
-      } else { log("No caches API"); }
-    }catch(e){ log("Error: "+e); }
-    log("Done. Reloading root…");
-    setTimeout(()=>location.href="/?cb="+Date.now().toString(36), 800);
-  })();
-  </script>
-</body>
-</html>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kill SW — Boost</title>
+<style>body{background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}pre{white-space:pre-wrap}</style></head>
+<body><h1>Service Worker & Cache Reset</h1><pre id="log">Running…</pre>
+<script>(async()=>{const L=[];const log=m=>{L.push(m);document.getElementById('log').textContent=L.join("\n")};try{if('serviceWorker'in navigator){const r=await navigator.serviceWorker.getRegistrations();for(const x of r){await x.unregister();log("Unregistered SW: "+(x.scope||"(scope)"));}}if(window.caches){const k=await caches.keys();for(const c of k){await caches.delete(c);log("Cache deleted: "+c);}}}catch(e){log("Error: "+e)}log("Done. Reloading root…");setTimeout(()=>location.href="/?cb="+Date.now().toString(36),800);})();</script></body></html>

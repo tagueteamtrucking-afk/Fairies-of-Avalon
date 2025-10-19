@@ -18,7 +18,7 @@
 <main>
   <h1>🏰 Avalon</h1>
   <p class="muted">Launching City Plaza…</p>
-  <p><a class="btn" id="fallback" href="/pages/apps/_city/index.html">Open City Plaza</a></p>
+  <p><a class="btn" id="fallback" href="/pages/plaza.html">Open City Plaza</a></p>
 </main>
 <script>
 (async function(){
@@ -32,14 +32,12 @@
       }
     }
   }catch(e){}
-  const target = "/pages/apps/_city/index.html";
+  const target = "/pages/plaza.html";
   const url = new URL(target, location.origin);
   url.searchParams.set("cb", Date.now().toString(36));
   location.replace(url.toString());
 })();
 </script>
-<noscript>
-  <meta http-equiv="refresh" content="0; url=/pages/apps/_city/index.html">
-</noscript>
+<noscript><meta http-equiv="refresh" content="0; url=/pages/plaza.html"></noscript>
 </body>
 </html>

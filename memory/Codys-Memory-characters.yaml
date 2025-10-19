@@ -1,0 +1,131 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "2.5.0-lore"
+  last_updated: "20251019T231051Z"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    Post-merge character & building memory for visual planning.
+    Overseers=avatars only. Billie merges (Sorcha+Odessa). Charlotte absorbs Themis.
+    Nina merges Clarice. Carol diet guardrails updated. No placeholders rule.
+world:
+  city: "Avalon"
+  style: "Mobile city-builder; castle-town; dark midnight palette"
+  accessibility: ["tap>=44px","contrast>=AA","grid fallback"]
+assistants:
+  overseers:
+    - id: overseer_ray
+      name: "Ray Czar"
+      building: "Palace"
+      links:
+        - "/pages/apps/_city/index.html"
+        - "/pages/apps/_city/castle-town.html"
+    - id: overseer_blanca
+      name: "White Star"
+      building: "Palace"
+      links:
+        - "/pages/apps/_city/index.html"
+        - "/pages/apps/_city/castle-town.html"
+  roster:
+    - id: alexandria
+      building: "Gothic Library"
+      room_objects:
+        - obj: "Globe"
+          link: "/pages/apps/alexandria/world-rules.html"
+        - obj: "Bookshelves"
+          link: "/pages/apps/alexandria/stories.html"
+        - obj: "Corkboard"
+          link: "/pages/apps/alexandria/campaigns.html"
+        - obj: "Ink Well (DM Voice)"
+          link: "/pages/apps/alexandria/voice-dm.html"
+      abilities: ["DM & world authoring","session pacing","convert sessions to serials"]
+    - id: tracy
+      building: "Cathedral Studio"
+      room_objects:
+        - obj: "Easel"
+          link: "/pages/apps/tracy/artboards.html"
+        - obj: "Clay Bust"
+          link: "/pages/apps/tracy/props.html"
+        - obj: "Palette"
+          link: "/pages/apps/tracy/wallpapers.html"
+        - obj: "Light Table"
+          link: "/pages/apps/tracy/exports.html"
+      abilities: ["wallpapers","icons","vrm props"]
+    - id: nina
+      merged_from: ["clarice"]
+      building: "Court-Lab"
+      room_objects:
+        - obj: "Server Rack"
+          link: "/pages/apps/nina/diagnostics.html"
+        - obj: "VRM Hanger"
+          link: "/pages/apps/nina/vrm.html"
+        - obj: "Hologram Table"
+          link: "/pages/apps/nina/previews.html"
+      abilities: ["snapshots","asset checks","vrm previews"]
+    - id: charlotte
+      merged_from: ["themis"]
+      building: "Relay-Hall"
+      room_objects:
+        - obj: "Control Wall"
+          link: "/pages/apps/charlotte/workflows.html"
+        - obj: "Calendarium Shelf"
+          link: "/pages/apps/charlotte/expirations.html"
+        - obj: "Clipboard"
+          link: "/pages/apps/charlotte/registry.html"
+      abilities: ["run workflows","compliance reminders","link registry"]
+    - id: carol
+      building: "Restaurant"
+      diet: ["DASH","reduced sodium","reduced added sugar","lactose-light","shellfish-free","tuna/salmon/cod OK","sushi OK","eggs OK","steamed baby carrots OK","frozen & fresh fruit OK","avoid very hard foods"]
+      room_objects:
+        - obj: "Menu Board"
+          link: "/pages/apps/carol/menu.html"
+        - obj: "Pantry Shelf"
+          link: "/pages/apps/carol/shopping.html"
+        - obj: "Recipe Book"
+          link: "/pages/apps/carol/cookbook.html"
+        - obj: "Bell"
+          link: "/pages/apps/carol/menu.html#ics"
+      abilities: ["14-day menus","shopping lists","cookbook","meal alarms"]
+    - id: jem
+      building: "Dojo"
+      room_objects:
+        - obj: "Training Dummy"
+          link: "/pages/apps/jem/evaluate.html"
+        - obj: "Chalkboard"
+          link: "/pages/apps/jem/program-viewer.html"
+        - obj: "Mat"
+          link: "/pages/apps/jem/guided.html"
+      abilities: ["baseline tests","plan generation","progress tracking"]
+    - id: stella
+      building: "Observatory"
+      room_objects:
+        - obj: "Telescope"
+          link: "/pages/apps/stella/guided.html"
+        - obj: "Chimes"
+          link: "/pages/apps/stella/guided.html#relax"
+      abilities: ["guided audio","gateway practice"]
+    - id: abbey
+      building: "Grand Vault"
+      room_objects:
+        - obj: "Mail Slot"
+          link: "/pages/apps/abbey/import.html"
+        - obj: "Ledger Book"
+          link: "/pages/apps/abbey/ledger.html"
+        - obj: "Abacus"
+          link: "/pages/apps/abbey/budget.html"
+      abilities: ["csv imports","ledger","budgets"]
+    - id: billie
+      merged_from: ["sorcha","odessa"]
+      building: "Superstar Mansion (pool; secret basement off-site 18+)"
+      room_objects:
+        - obj: "Camera Rig"
+          link: "/pages/apps/billie/studio.html"
+        - obj: "Storyboard Wall"
+          link: "/pages/apps/billie/storyboards.html"
+        - obj: "Analytics Screen"
+          link: "/pages/apps/billie/analytics.html"
+        - obj: "Wardrobe Rack"
+          link: "/pages/apps/billie/merch.html"
+        - obj: "Secret Door (Members 18+)"
+          link: "https://example.com/members"
+      abilities: ["social video","campaigns","analytics","merch","members (off-site, age-gated)"]

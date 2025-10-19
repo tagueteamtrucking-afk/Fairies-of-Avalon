@@ -1,5 +1,5 @@
 {
-  "updated": "20251019T224810Z",
+  "updated": "20251019T231051Z",
   "items": [
     {
       "name": "palace",
@@ -24,7 +24,7 @@
           "link": "/pages/apps/alexandria/campaigns.html"
         },
         {
-          "obj": "Voice DM",
+          "obj": "Ink Well (DM Voice)",
           "link": "/pages/apps/alexandria/voice-dm.html"
         }
       ]
@@ -45,6 +45,10 @@
         {
           "obj": "Palette",
           "link": "/pages/apps/tracy/wallpapers.html"
+        },
+        {
+          "obj": "Light Table",
+          "link": "/pages/apps/tracy/exports.html"
         }
       ]
     },
@@ -77,7 +81,7 @@
           "link": "/pages/apps/charlotte/workflows.html"
         },
         {
-          "obj": "Calendarium",
+          "obj": "Calendarium Shelf",
           "link": "/pages/apps/charlotte/expirations.html"
         },
         {
@@ -184,7 +188,7 @@
           "link": "/pages/apps/billie/merch.html"
         },
         {
-          "obj": "Secret Door (18+)",
+          "obj": "Secret Door (Members 18+)",
           "link": "https://example.com/members"
         }
       ]

@@ -1,43 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Avalon — Launching…</title>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <style>
-    html,body{margin:0;height:100%;background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto}
-    main{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:12px}
-    .btn{color:#e5e7eb;border:1px solid #334155;border-radius:10px;padding:8px 12px;text-decoration:none}
-    .muted{opacity:.75;font-size:12px}
-  </style>
-</head>
-<body>
-<main>
-  <h1>🏰 Avalon</h1>
-  <p class="muted">Launching City Plaza…</p>
-  <p><a class="btn" id="fallback" href="/pages/plaza.html">Open City Plaza</a></p>
-</main>
-<script>
-(async function(){
-  try{
-    if('serviceWorker' in navigator){
-      const regs = await navigator.serviceWorker.getRegistrations();
-      for(const r of regs){ await r.unregister(); }
-      if(window.caches){
-        const keys = await caches.keys();
-        for(const k of keys){ await caches.delete(k); }
-      }
-    }
-  }catch(e){}
-  const target = "/pages/plaza.html";
-  const url = new URL(target, location.origin);
-  url.searchParams.set("cb", Date.now().toString(36));
-  location.replace(url.toString());
-})();
-</script>
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Avalon</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+</head><body style="background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;display:grid;place-items:center;min-height:100vh">
+<div>Launching City Plaza… If not redirected, <a style="color:#a5b4fc" href="/pages/plaza.html">tap here</a>.</div>
+<script>(async()=>{try{if('serviceWorker'in navigator){const r=await navigator.serviceWorker.getRegistrations();for(const x of r){await x.unregister();}if(window.caches){const k=await caches.keys();for(const c of k){await caches.delete(c);}}}}catch(e){}location.replace('/pages/plaza.html?cb='+Date.now().toString(36));})();</script>
 <noscript><meta http-equiv="refresh" content="0; url=/pages/plaza.html"></noscript>
-</body>
-</html>
+</body></html>

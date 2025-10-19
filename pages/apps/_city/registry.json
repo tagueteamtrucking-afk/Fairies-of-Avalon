@@ -1,90 +1,90 @@
 ﻿{
   "items": [
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/_city/index.html",
-      "name": "_city"
+      "name": "_city",
+      "desc": "",
+      "href": "/pages/apps/_city/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/abbey/index.html",
-      "name": "abbey"
+      "name": "abbey",
+      "desc": "Grand Vault — Finance",
+      "href": "/pages/apps/abbey/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/alexandria/index.html",
-      "name": "alexandria"
+      "name": "alexandria",
+      "desc": "Gothic Library — DM & Worldbuilding",
+      "href": "/pages/apps/alexandria/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/billie/index.html",
-      "name": "billie"
+      "name": "billie",
+      "desc": "Gold Mansion — Monetization",
+      "href": "/pages/apps/billie/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/carol/index.html",
-      "name": "carol"
+      "name": "carol",
+      "desc": "Restaurant — Meal Plans",
+      "href": "/pages/apps/carol/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/charlotte/index.html",
-      "name": "charlotte"
+      "name": "charlotte",
+      "desc": "Relay Tower — Design & Pipelines",
+      "href": "/pages/apps/charlotte/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/clarice/index.html",
-      "name": "clarice"
+      "name": "clarice",
+      "desc": "Courtroom & Palace — Security",
+      "href": "/pages/apps/clarice/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/jem/index.html",
-      "name": "jem"
+      "name": "jem",
+      "desc": "Dojo — Coaching",
+      "href": "/pages/apps/jem/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/nina/index.html",
-      "name": "nina"
+      "name": "nina",
+      "desc": "Futuristic Lab — 3D & VRM",
+      "href": "/pages/apps/nina/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/odessa/index.html",
-      "name": "odessa"
+      "name": "odessa",
+      "desc": "Museum — Research",
+      "href": "/pages/apps/odessa/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/overseers/index.html",
-      "name": "overseers"
+      "name": "overseers",
+      "desc": "",
+      "href": "/pages/apps/overseers/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/reyczar/index.html",
-      "name": "reyczar"
+      "name": "reyczar",
+      "desc": "",
+      "href": "/pages/apps/reyczar/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/sorcha/index.html",
-      "name": "sorcha"
+      "name": "sorcha",
+      "desc": "Mansion & Pool — Social Video",
+      "href": "/pages/apps/sorcha/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/stella/index.html",
-      "name": "stella"
+      "name": "stella",
+      "desc": "Observatory — Audio",
+      "href": "/pages/apps/stella/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/themis/index.html",
-      "name": "themis"
+      "name": "themis",
+      "desc": "Record Hall — Compliance",
+      "href": "/pages/apps/themis/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/tracy/index.html",
-      "name": "tracy"
+      "name": "tracy",
+      "desc": "Cathedral Studio — Artboards",
+      "href": "/pages/apps/tracy/index.html"
     },
     {
-      "icon": "🏛️",
-      "href": "/pages/apps/whitestar/index.html",
-      "name": "whitestar"
+      "name": "whitestar",
+      "desc": "",
+      "href": "/pages/apps/whitestar/index.html"
     }
   ],
-  "updated": "2025-10-19T01:40:47Z"
+  "updated": "2025-10-19T03:29:26Z"
 }

@@ -1,18 +1,26 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carol — Menu</title><style>body{background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0}main{max-width:980px;margin:0 auto;padding:14px}.day{background:#0f172a;border:1px solid #172033;border-radius:12px;padding:10px;margin:8px 0}</style></head>
-<body><main><h1>🍽️ Menu</h1><div id="out"></div></main>
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carol — Menu</title>
+<style>body{background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px} .day{background:#111827;border:1px solid #1f2937;border-radius:12px;margin:8px 0;padding:12px}</style>
+</head><body><main><h1>Carol — 14-Day Menu</h1><div id="out"></div></main>
 <script>
-async function load(){ 
-  const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json()).catch(()=>null);
-  if(!ptr || !ptr.plan){ document.getElementById('out').textContent='No plan pointer found. Run the Carol Actions.'; return; }
-  const plan = await fetch(ptr.plan).then(r=>r.json()).catch(()=>null);
-  if(!plan){ document.getElementById('out').textContent='Plan JSON not found: '+ptr.plan; return; }
-  const days = plan.menu?.days || plan.days || [];
+async function load(){
+  const ptr = await fetch('/pages/apps/carol/index.json?cb='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+  let planUrl = ptr?.plan;
+  if(!planUrl){
+    // fallback: find latest mealplan in plans directory
+    const hint = await fetch('/pages/apps/carol/plans/?index').catch(()=>null);
+  }
+  if(!planUrl){ document.getElementById('out').textContent='No meal plan pointer found.'; return; }
+  const plan = await fetch(planUrl+'?cb='+Date.now()).then(r=>r.json());
   const out = document.getElementById('out');
-  if(!days.length){ out.textContent='No days array in plan.'; return; }
+  out.innerHTML='';
+  const days = plan?.menu?.days || plan?.days || [];
+  if(days.length===0){ out.textContent='Plan has no days.'; return; }
   days.forEach((d,i)=>{
     const div=document.createElement('div'); div.className='day';
-    div.innerHTML = `<h3>Day ${i+1}</h3><pre>${JSON.stringify(d, null, 2)}</pre>`;
+    const snacks = d.snacks || d.items || [];
+    div.innerHTML = '<h3>Day '+(i+1)+'</h3><ul>'+snacks.map(s=>'<li>'+ (typeof s==='string'? s : (s.name||s.item||JSON.stringify(s))) +'</li>').join('') + '</ul>';
     out.appendChild(div);
   });
 }

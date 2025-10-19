@@ -7,6 +7,7 @@
     "charlotte-link-registry.yml",
     "city-visual.yml",
     "alexandria-dm-setup.yml",
-    "carol-refresh.yml"
+    "carol-refresh.yml",
+    "carol-ensure-plan.yml"
   ]
 }

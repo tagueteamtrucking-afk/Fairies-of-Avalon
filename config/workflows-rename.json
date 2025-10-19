@@ -1,6 +1,14 @@
 {
   "rename": [
     [
+      "read.yml",
+      "repo-read.yml"
+    ],
+    [
+      "repo-full-read.yml",
+      "repo-read.yml"
+    ],
+    [
       "carol-refresh-v3-2p.yml",
       "carol-refresh.yml"
     ],
@@ -9,20 +17,12 @@
       "carol-refresh.yml"
     ],
     [
-      "charlotte-build-link-registry.yml",
-      "charlotte-link-registry.yml"
-    ],
-    [
       "city-visual-pass.yml",
       "city-visual.yml"
     ],
     [
-      "read.yml",
-      "repo-read.yml"
-    ],
-    [
-      "repo-usage-archive.yml",
-      "repo-workflows-standardize.yml"
+      "charlotte-build-link-registry.yml",
+      "charlotte-link-registry.yml"
     ]
   ]
 }

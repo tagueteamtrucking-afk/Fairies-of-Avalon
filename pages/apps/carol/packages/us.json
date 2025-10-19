@@ -1,199 +1,121 @@
 {
-  "updated": "20251018T223252Z",
   "ingredient_map": {
-    "peanut butter": "peanut_butter",
+    "lactose-free greek yogurt": "yogurt_lf",
+    "greek yogurt (lactose-free)": "yogurt_lf",
+    "frozen mixed berries": "berries_frozen",
     "hummus": "hummus",
-    "white rice": "white_rice_dry",
-    "dry rice": "white_rice_dry",
-    "rolled oats": "rolled_oats",
-    "eggs": "eggs",
+    "peanut butter": "peanut_butter",
+    "powdered peanut butter": "pb_powder",
+    "whole wheat bread": "bread_ww",
+    "baby carrots": "carrots_baby",
+    "tortillas (8-inch, whole wheat)": "tortilla_ww_8",
     "chicken breast": "chicken_breast",
-    "frozen mixed vegetables": "frozen_mixed_veg",
-    "frozen berries": "frozen_berries",
-    "olive oil": "olive_oil",
-    "rice cakes": "rice_cakes",
-    "whole wheat bread": "ww_bread",
-    "tortillas": "tortillas_8in",
-    "low sodium broth": "low_sodium_broth",
-    "panko breadcrumbs": "panko",
-    "canned black beans": "canned_black_beans",
-    "canned chickpeas": "canned_chickpeas",
-    "lf yogurt": "lf_yogurt",
-    "lactose free milk": "lf_milk",
-    "spinach": "spinach",
-    "spring mix": "spring_mix",
-    "romaine": "romaine"
+    "light panko": "panko_light",
+    "brown rice": "brown_rice",
+    "dry rice": "brown_rice",
+    "romaine hearts": "romaine_hearts",
+    "eggs": "eggs",
+    "bananas": "banana",
+    "apples": "apple"
   },
   "package_sizes": {
-    "peanut_butter": [
+    "yogurt_lf": [
       {
-        "package": "jar_16oz",
+        "package": "32 oz tub",
+        "oz": 32,
+        "tbsp_per_package": 64,
+        "cups_per_package": 4
+      }
+    ],
+    "berries_frozen": [
+      {
+        "package": "16 oz bag",
         "net_oz": 16,
-        "tbsp_per_package": 28
-      },
-      {
-        "package": "jar_28oz",
-        "net_oz": 28,
-        "tbsp_per_package": 49
+        "cups_per_package": 3
       }
     ],
     "hummus": [
       {
-        "package": "tub_10oz",
+        "package": "10 oz tub",
         "net_oz": 10,
-        "tbsp_per_package": 19
-      },
+        "tbsp_per_package": 20
+      }
+    ],
+    "peanut_butter": [
       {
-        "package": "tub_16oz",
+        "package": "16 oz jar",
         "net_oz": 16,
         "tbsp_per_package": 30
       }
     ],
-    "white_rice_dry": [
+    "pb_powder": [
       {
-        "package": "bag_2lb",
-        "lb": 2,
-        "cups_per_package": 5
-      },
-      {
-        "package": "bag_5lb",
-        "lb": 5,
-        "cups_per_package": 12.5
+        "package": "6.5 oz jar",
+        "net_oz": 6.5,
+        "tbsp_per_package": 24
       }
     ],
-    "rolled_oats": [
+    "bread_ww": [
       {
-        "package": "tub_42oz",
-        "net_oz": 42,
-        "cups_per_package": 13
+        "package": "24 oz loaf (20 slices)",
+        "count": 20
       }
     ],
-    "eggs": [
+    "carrots_baby": [
       {
-        "package": "dozen",
-        "count": 12
-      },
+        "package": "16 oz bag",
+        "net_oz": 16,
+        "cups_per_package": 3
+      }
+    ],
+    "tortilla_ww_8": [
       {
-        "package": "18ct",
-        "count": 18
+        "package": "10 ct pack",
+        "count": 10
       }
     ],
     "chicken_breast": [
       {
-        "package": "tray_2.5lb",
-        "lb": 2.5,
-        "pieces_est": 5
-      },
-      {
-        "package": "frozen_bag_3lb",
-        "lb": 3,
-        "pieces_est": 6
+        "package": "2.5 lb bag",
+        "net_oz": 40
       }
     ],
-    "frozen_mixed_veg": [
+    "panko_light": [
       {
-        "package": "bag_12oz",
-        "net_oz": 12
-      },
-      {
-        "package": "bag_32oz",
-        "net_oz": 32
+        "package": "8 oz box",
+        "net_oz": 8,
+        "cups_per_package": 4
       }
     ],
-    "frozen_berries": [
+    "brown_rice": [
       {
-        "package": "bag_16oz",
-        "net_oz": 16
-      },
-      {
-        "package": "bag_32oz",
-        "net_oz": 32
+        "package": "2 lb bag",
+        "net_oz": 32,
+        "cups_per_package": 4
       }
     ],
-    "olive_oil": [
+    "romaine_hearts": [
       {
-        "package": "bottle_500ml",
-        "ml": 500,
-        "fl_oz": 16.9
-      }
-    ],
-    "rice_cakes": [
-      {
-        "package": "sleeve_14ct",
-        "count": 14
-      }
-    ],
-    "ww_bread": [
-      {
-        "package": "loaf_20oz",
-        "net_oz": 20,
-        "slices_est": 20
-      }
-    ],
-    "tortillas_8in": [
-      {
-        "package": "bag_10ct",
-        "count": 10
-      }
-    ],
-    "low_sodium_broth": [
-      {
-        "package": "carton_32fl_oz",
-        "fl_oz": 32
-      }
-    ],
-    "panko": [
-      {
-        "package": "box_8oz",
-        "net_oz": 8
-      }
-    ],
-    "canned_black_beans": [
-      {
-        "package": "can_15oz",
-        "net_oz": 15,
-        "drained_oz_est": 9
-      }
-    ],
-    "canned_chickpeas": [
-      {
-        "package": "can_15oz",
-        "net_oz": 15,
-        "drained_oz_est": 9
-      }
-    ],
-    "lf_yogurt": [
-      {
-        "package": "tub_32oz",
-        "net_oz": 32
-      }
-    ],
-    "lf_milk": [
-      {
-        "package": "half_gallon",
-        "fl_oz": 64
-      }
-    ],
-    "spinach": [
-      {
-        "package": "bag_5oz",
-        "net_oz": 5
-      },
-      {
-        "package": "clamshell_10oz",
-        "net_oz": 10
-      }
-    ],
-    "spring_mix": [
-      {
-        "package": "clamshell_16oz",
-        "net_oz": 16
-      }
-    ],
-    "romaine": [
-      {
-        "package": "hearts_3ct",
+        "package": "3 count bag",
         "count": 3
+      }
+    ],
+    "eggs": [
+      {
+        "package": "12 ct carton",
+        "count": 12
+      }
+    ],
+    "banana": [
+      {
+        "package": "6 ct bunch",
+        "count": 6
+      }
+    ],
+    "apple": [
+      {
+        "package": "3 lb bag (~8 ct)",
+        "count": 8
       }
     ]
   }

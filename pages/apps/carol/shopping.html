@@ -1,25 +1,21 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carol — Shopping</title><style>body{background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0}main{max-width:980px;margin:0 auto;padding:14px}.item{background:#0f172a;border:1px solid #172033;border-radius:12px;padding:10px;margin:8px 0;display:flex;justify-content:space-between;gap:8px;align-items:center}</style></head>
-<body><main><h1>🛒 Shopping List</h1><div id="out"></div></main>
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carol — Shopping</title>
+<style>body{background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px} table{border-collapse:collapse;width:100%} th,td{border:1px solid #1f2937;padding:8px}</style>
+</head><body><main><h1>Carol — Shopping (2 people)</h1><div id="out">Loading…</div></main>
 <script>
-async function load(){ 
-  const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json()).catch(()=>null);
-  if(!ptr){ document.getElementById('out').textContent='No pointer found. Run the Carol Actions.'; return; }
-  const url = ptr.shopping_quantized || ptr.shopping_extracted;
-  if(!url){ document.getElementById('out').textContent='No shopping JSON found. Run the Carol Actions.'; return; }
-  const doc = await fetch(url).then(r=>r.json()).catch(()=>null);
-  if(!doc){ document.getElementById('out').textContent='Could not read '+url; return; }
-  const items = doc.items || doc.shopping || [];
-  const out = document.getElementById('out');
-  if(!items.length){ out.textContent='No items in shopping JSON.'; return; }
-  items.forEach(it=>{
-    const div=document.createElement('div'); div.className='item';
-    const left = document.createElement('div'); left.textContent = it.name || it.item || 'unknown';
-    const right = document.createElement('div');
-    if(it.packages){ right.textContent = `${it.packages} × ${it.package}${it.capacity_per_package?` (cap ${it.capacity_per_package} ${it.unit||''})`:''}`; }
-    else if(it.qty){ right.textContent = `${it.qty} ${it.unit||''}`; }
-    div.appendChild(left); div.appendChild(right); out.appendChild(div);
-  });
+async function load(){
+  try{
+    const doc = await fetch('/pages/apps/carol/plans/shopping-quantized.json?cb='+Date.now()).then(r=>r.json());
+    const items = doc.items||[]; const miss = doc.unmapped||[];
+    let html='<table><thead><tr><th>Item</th><th>Qty Needed</th><th>Unit</th><th>Package</th><th>Packages</th></tr></thead><tbody>';
+    for(const it of items){
+      html+=`<tr><td>${it.name}</td><td>${it.required_qty}</td><td>${it.unit||''}</td><td>${it.package||''}</td><td>${it.packages||''}</td></tr>`;
+    }
+    html+='</tbody></table>';
+    if(miss.length){ html+='<h3>Unmapped</h3><ul>'+miss.map(m=>`<li>${m.name} — ${m.required_qty} ${m.unit||''}</li>`).join('')+'</ul>'; }
+    document.getElementById('out').innerHTML=html;
+  }catch(e){ document.getElementById('out').textContent='Could not load shopping list.'; }
 }
 load();
 </script></body></html>

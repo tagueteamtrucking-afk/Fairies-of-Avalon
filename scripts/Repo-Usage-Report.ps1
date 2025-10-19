@@ -31,14 +31,3 @@ $out = @{ updated=(Get-Date).ToUniversalTime().ToString("s")+"Z"; totals=@{ file
 $outPath = Join-Path $here "memory-history/repo-usage-report.json"
 $dir = Split-Path -Parent $outPath; if(-not (Test-Path $dir)){ New-Item -ItemType Directory -Force -Path $dir | Out-Null }
 [IO.File]::WriteAllText($outPath, ($out | ConvertTo-Json -Depth 6), [Text.Encoding]::UTF8)
-if($ArchiveOrphans){
-  $arcAbs = Join-Path $here $ArchiveDir
-  if(-not (Test-Path $arcAbs)){ New-Item -ItemType Directory -Force -Path $arcAbs | Out-Null }
-  $stamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
-  $batch = Join-Path $arcAbs $stamp
-  New-Item -ItemType Directory -Force -Path $batch | Out-Null
-  foreach($p in $orphans){
-    $src = Join-Path $here ($p.TrimStart('/').Replace('/','\\'))
-    if(Test-Path $src){ Move-Item -Path $src -Destination (Join-Path $batch (Split-Path -Leaf $src)) -Force }
-  }
-}

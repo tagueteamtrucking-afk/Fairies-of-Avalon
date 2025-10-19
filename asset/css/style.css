@@ -1,4 +1,1 @@
-/* Minimal theme for plaza redirect and city cards */
-:root{--bg:#0b1220;--fg:#e6e9ff;--muted:#a5d6ff}
-html,body{background:var(--bg);color:var(--fg);font-family:system-ui,Segoe UI,Roboto}
-a{color:var(--muted)}
+:root{--bg:#0b1220;--fg:#e6e9ff;--muted:#a5d6ff}html,body{background:var(--bg);color:var(--fg);font-family:system-ui,Segoe UI,Roboto}a{color:var(--muted)}

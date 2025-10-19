@@ -16,7 +16,7 @@ jobs:
           <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
           <title>Fantasy Castle Town</title>
           <meta http-equiv="refresh" content="0; url=/pages/apps/_city/index.html">
-          <link rel="stylesheet" href="/asset/css/style.css">
+          <link rel="stylesheet" href="/pages/apps/_city/city.css">
           </head><body style="min-height:100vh;display:grid;place-items:center;color:#e6e9ff">
           If you’re not redirected, <a href="/pages/apps/_city/index.html" style="color:#a5d6ff">enter the City</a>.
           </body></html>
@@ -28,8 +28,8 @@ jobs:
           cat > pages/apps/_city/city.css <<'CSS'
           body{margin:0;background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto}
           .wrap{max-width:1100px;margin:0 auto;padding:18px}
-          .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
-          .card{background:#0f172a;border:1px solid #172033;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+          .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:16px}
+          .card{background:linear-gradient(180deg,#0f172a,#0b1220);border:1px solid #182136;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;box-shadow:0 8px 22px rgba(0,0,0,.25)}
           .card a{color:#a5b4fc;text-decoration:none}
           .icon{font-size:28px}
           CSS
@@ -41,7 +41,7 @@ jobs:
             if(!reg.items || reg.items.length===0){ grid.innerHTML='<div class="card">No apps registered. Run Charlotte — Link Registry.</div>'; return; }
             for(const it of reg.items){
               const d=document.createElement('div'); d.className='card';
-              d.innerHTML=`<div class="icon">${it.icon||'🏛️'}</div><div class="title">${it.name}</div><div class="desc">${it.desc||''}</div><a href="${it.href}">Enter</a>`;
+              d.innerHTML=`<div class="icon">${it.icon||'🏛️'}</div><div class="title">${it.title||it.name}</div><div class="desc">${it.desc||''}</div><a href="${it.href}">Enter</a>`;
               grid.appendChild(d);
             }
           } load();
@@ -52,4 +52,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add pages/plaza.html pages/apps/_city/index.html pages/apps/_city/city.css pages/apps/_city/city.js
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(city): plaza + city" && git push; fi
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(city): plaza + city scaffold" && git push; fi

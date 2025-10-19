@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Theme registry icons
+      - name: Theme registry icons (BOM-safe)
         shell: bash
         run: |
           set -euo pipefail
@@ -15,11 +15,15 @@ jobs:
           tmp="$(mktemp)"
           node - <<'JS' "$file" "$tmp"
           const fs=require('fs'); const p=process.argv[2]; const o=process.argv[3];
-          const reg=JSON.parse(fs.readFileSync(p,'utf8')); const icons={
+          // Read and strip UTF-8 BOM if present
+          let text = fs.readFileSync(p,'utf8'); if(text.charCodeAt(0)===0xFEFF) text=text.slice(1);
+          const reg=JSON.parse(text); const icons={
             alexandria:"📚", charlotte:"📡", nina:"🧪", tracy:"🎨", carol:"🍽️", jem:"🥋",
-            stella:"🌌", abbey:"🏦", themis:"⚖️", billie:"💰", sorcha:"🎬", clarice:"🔐", odessa:"🏛️"
+            stella:"🌌", abbey:"🏦", themis:"⚖️", billie:"💰", sorcha:"🎬", clarice:"🔐"
           };
-          reg.items = (reg.items||[]).map(it=>({ ...it, icon: icons[(it.name||'').toLowerCase()] || it.icon || '🏛️'}));
+          // Odessa removed from roster
+          reg.items = (reg.items||[]).filter(it=> (it.name||'').toLowerCase()!=='odessa')
+            .map(it=>({ ...it, icon: icons[(it.name||'').toLowerCase()] || it.icon || '🏛️'}));
           fs.writeFileSync(o, JSON.stringify(reg,null,2));
           JS
           mv "$tmp" "$file"
@@ -29,4 +33,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add pages/apps/_city/registry.json || true
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(nina): city icons" && git push; fi
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(nina): city icons (BOM-safe) & remove Odessa" && git push; fi

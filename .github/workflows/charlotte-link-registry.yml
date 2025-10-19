@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build registry
+      - name: Build registry (UTF-8 no BOM)
         shell: pwsh
         run: pwsh -File scripts/Charlotte-Build-Link-Registry.ps1 -AppsDir "pages/apps" -OutFile "pages/apps/_city/registry.json"
       - name: Commit registry

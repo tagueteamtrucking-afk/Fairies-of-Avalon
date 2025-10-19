@@ -1,0 +1,3898 @@
+{
+  "repo": "tagueteamtrucking-afk/Fairies-of-Avalon",
+  "sha": "a88c085c200ab488fc5b184ea6c7645028eecce2",
+  "generated": "2025-10-19T08:50:38.6253097+00:00",
+  "count": 778,
+  "files": [
+    {
+      "path": ".github/workflows/MANIFEST.json",
+      "bytes": 1344,
+      "mtime": "2025-10-19T08:50:29.9616507Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-dm-setup.yml",
+      "bytes": 4263,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-voice-dm.yml",
+      "bytes": 3350,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/carol-ensure-plan.yml",
+      "bytes": 1145,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/carol-inspect-plan.yml",
+      "bytes": 1860,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/carol-lock-pointer.yml",
+      "bytes": 1928,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/carol-refresh.yml",
+      "bytes": 3337,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/charlotte-link-registry.yml",
+      "bytes": 741,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/city-visual.yml",
+      "bytes": 3289,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/deploy-pages.yml",
+      "bytes": 500,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/nina-city-tiles.yml",
+      "bytes": 1646,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/repo-read-index.yml",
+      "bytes": 2500,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/repo-read.yml",
+      "bytes": 768,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/repo-retire-odessa.yml",
+      "bytes": 904,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/repo-workflows-standardize.yml",
+      "bytes": 2028,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/root-fix-404.yml",
+      "bytes": 2732,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/root-launcher-hotfix.yml",
+      "bytes": 3901,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/sorcha-storyboard.yml",
+      "bytes": 2332,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".github/workflows/tracy-wallpaper-theme.yml",
+      "bytes": 1096,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": ".nojekyll",
+      "bytes": null,
+      "mtime": null
+    },
+    {
+      "path": "CNAME",
+      "bytes": 23,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": "Cody's Memory.yaml",
+      "bytes": 1731,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": "Cody's Memory.yml",
+      "bytes": 7007,
+      "mtime": "2025-10-19T08:50:29.9621084Z"
+    },
+    {
+      "path": "asset/css/style.css",
+      "bytes": 133,
+      "mtime": "2025-10-19T08:50:29.9630745Z"
+    },
+    {
+      "path": "asset/models/abbey.vrm",
+      "bytes": 12018708,
+      "mtime": "2025-10-19T08:50:30.0378732Z"
+    },
+    {
+      "path": "asset/models/alexandria.vrm",
+      "bytes": 12269756,
+      "mtime": "2025-10-19T08:50:30.0658733Z"
+    },
+    {
+      "path": "asset/models/billie.vrm",
+      "bytes": 13301520,
+      "mtime": "2025-10-19T08:50:30.0768733Z"
+    },
+    {
+      "path": "asset/models/carol.vrm",
+      "bytes": 11898172,
+      "mtime": "2025-10-19T08:50:30.1248733Z"
+    },
+    {
+      "path": "asset/models/charlotte.vrm",
+      "bytes": 11740028,
+      "mtime": "2025-10-19T08:50:30.1498734Z"
+    },
+    {
+      "path": "asset/models/clarice.vrm",
+      "bytes": 12848640,
+      "mtime": "2025-10-19T08:50:30.1788734Z"
+    },
+    {
+      "path": "asset/models/jem.vrm",
+      "bytes": 12475488,
+      "mtime": "2025-10-19T08:50:30.2058735Z"
+    },
+    {
+      "path": "asset/models/models.json",
+      "bytes": 762,
+      "mtime": "2025-10-19T08:50:30.2058735Z"
+    },
+    {
+      "path": "asset/models/nina.vrm",
+      "bytes": 11272372,
+      "mtime": "2025-10-19T08:50:30.2298735Z"
+    },
+    {
+      "path": "asset/models/odessa.vrm",
+      "bytes": 12378488,
+      "mtime": "2025-10-19T08:50:30.2558735Z"
+    },
+    {
+      "path": "asset/models/reyczar.vrm",
+      "bytes": 11931700,
+      "mtime": "2025-10-19T08:50:30.2808736Z"
+    },
+    {
+      "path": "asset/models/sorcha.vrm",
+      "bytes": 12620220,
+      "mtime": "2025-10-19T08:50:30.3058736Z"
+    },
+    {
+      "path": "asset/models/stella.vrm",
+      "bytes": 12012132,
+      "mtime": "2025-10-19T08:50:30.3138736Z"
+    },
+    {
+      "path": "asset/models/themis.vrm",
+      "bytes": 11647684,
+      "mtime": "2025-10-19T08:50:30.3388736Z"
+    },
+    {
+      "path": "asset/models/tracy.vrm",
+      "bytes": 12321368,
+      "mtime": "2025-10-19T08:50:30.3638737Z"
+    },
+    {
+      "path": "asset/models/whitestar.vrm",
+      "bytes": 12038836,
+      "mtime": "2025-10-19T08:50:30.3788737Z"
+    },
+    {
+      "path": "asset/textures/wallpapers/castle village 01.jpg",
+      "bytes": 10719,
+      "mtime": "2025-10-19T08:50:30.3801975Z"
+    },
+    {
+      "path": "asset/textures/wallpapers/castle village 02.jpg",
+      "bytes": 8347,
+      "mtime": "2025-10-19T08:50:30.3803449Z"
+    },
+    {
+      "path": "asset/textures/wallpapers/castle village 03.jpg",
+      "bytes": 8118,
+      "mtime": "2025-10-19T08:50:30.3803449Z"
+    },
+    {
+      "path": "asset/textures/wallpapers/castle village 04.jpg",
+      "bytes": 8665,
+      "mtime": "2025-10-19T08:50:30.3803449Z"
+    },
+    {
+      "path": "asset/winged-models/WingedAlexandria.vrm",
+      "bytes": 14303112,
+      "mtime": "2025-10-19T08:50:30.4198737Z"
+    },
+    {
+      "path": "asset/winged-models/WingedBillie.vrm",
+      "bytes": 16451236,
+      "mtime": "2025-10-19T08:50:30.4588738Z"
+    },
+    {
+      "path": "asset/winged-models/WingedReyCzar.vrm",
+      "bytes": 14324996,
+      "mtime": "2025-10-19T08:50:30.4978739Z"
+    },
+    {
+      "path": "asset/winged-models/WingedWhiteStar.vrm",
+      "bytes": 13925688,
+      "mtime": "2025-10-19T08:50:30.5078739Z"
+    },
+    {
+      "path": "asset/wings/Wing1415.fbx",
+      "bytes": 2079968,
+      "mtime": "2025-10-19T08:50:30.5168739Z"
+    },
+    {
+      "path": "asset/wings/Wing1421.fbx",
+      "bytes": 1918432,
+      "mtime": "2025-10-19T08:50:30.5208739Z"
+    },
+    {
+      "path": "asset/wings/Wing1423.fbx",
+      "bytes": 2,
+      "mtime": "2025-10-19T08:50:30.5208739Z"
+    },
+    {
+      "path": "asset/wings/Wing1433.fbx",
+      "bytes": 2063792,
+      "mtime": "2025-10-19T08:50:30.5258739Z"
+    },
+    {
+      "path": "asset/wings/Wing1436.fbx",
+      "bytes": 2,
+      "mtime": "2025-10-19T08:50:30.5258739Z"
+    },
+    {
+      "path": "asset/wings/Wing1437.fbx",
+      "bytes": 2,
+      "mtime": "2025-10-19T08:50:30.5258739Z"
+    },
+    {
+      "path": "asset/wings/Wing1438.fbx",
+      "bytes": 2,
+      "mtime": "2025-10-19T08:50:30.5258739Z"
+    },
+    {
+      "path": "asset/wings/Wing1439.fbx",
+      "bytes": 2319872,
+      "mtime": "2025-10-19T08:50:30.5278739Z"
+    },
+    {
+      "path": "asset/wings/manifest.json",
+      "bytes": 6880,
+      "mtime": "2025-10-19T08:50:30.5278739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing02.png",
+      "bytes": 370089,
+      "mtime": "2025-10-19T08:50:30.5278739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing02_c.png",
+      "bytes": 48313,
+      "mtime": "2025-10-19T08:50:30.5288055Z"
+    },
+    {
+      "path": "asset/wings/textures/wing02_e.png",
+      "bytes": 6225,
+      "mtime": "2025-10-19T08:50:30.5288055Z"
+    },
+    {
+      "path": "asset/wings/textures/wing02_nrm.png",
+      "bytes": 93943,
+      "mtime": "2025-10-19T08:50:30.5288055Z"
+    },
+    {
+      "path": "asset/wings/textures/wing03.png",
+      "bytes": 399350,
+      "mtime": "2025-10-19T08:50:30.5288739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing03_c.png",
+      "bytes": 17954,
+      "mtime": "2025-10-19T08:50:30.5288739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing03_nrm.png",
+      "bytes": 376766,
+      "mtime": "2025-10-19T08:50:30.5288739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing05.png",
+      "bytes": 67398,
+      "mtime": "2025-10-19T08:50:30.5298739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing05diff.png",
+      "bytes": 23185,
+      "mtime": "2025-10-19T08:50:30.5298739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1415.png",
+      "bytes": 317204,
+      "mtime": "2025-10-19T08:50:30.5298739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1415_c.png",
+      "bytes": 34482,
+      "mtime": "2025-10-19T08:50:30.5298739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1415_nrm.png",
+      "bytes": 86856,
+      "mtime": "2025-10-19T08:50:30.5298739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1417.png",
+      "bytes": 397457,
+      "mtime": "2025-10-19T08:50:30.5308739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1417_c.png",
+      "bytes": 60675,
+      "mtime": "2025-10-19T08:50:30.5308739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1417_nrm.png",
+      "bytes": 108437,
+      "mtime": "2025-10-19T08:50:30.5308739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1419.png",
+      "bytes": 366430,
+      "mtime": "2025-10-19T08:50:30.5308739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1419_c.png",
+      "bytes": 12418,
+      "mtime": "2025-10-19T08:50:30.5308739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1419_nrm.png",
+      "bytes": 104763,
+      "mtime": "2025-10-19T08:50:30.5318739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1420.png",
+      "bytes": 984225,
+      "mtime": "2025-10-19T08:50:30.5328739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1420_c.png",
+      "bytes": 119877,
+      "mtime": "2025-10-19T08:50:30.5328739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1420_jellyfish.png",
+      "bytes": 25741,
+      "mtime": "2025-10-19T08:50:30.5328739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1420_nrm.png",
+      "bytes": 255983,
+      "mtime": "2025-10-19T08:50:30.5328739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1421.png",
+      "bytes": 302350,
+      "mtime": "2025-10-19T08:50:30.5338739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1421_c.png",
+      "bytes": 38354,
+      "mtime": "2025-10-19T08:50:30.5338739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1421_nrm.png",
+      "bytes": 89739,
+      "mtime": "2025-10-19T08:50:30.5338739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1422(1).png",
+      "bytes": 370089,
+      "mtime": "2025-10-19T08:50:30.5338739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1422_c(1).png",
+      "bytes": 48313,
+      "mtime": "2025-10-19T08:50:30.5338739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1422_e(1).png",
+      "bytes": 6225,
+      "mtime": "2025-10-19T08:50:30.5338739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1422_nrm(1).png",
+      "bytes": 93943,
+      "mtime": "2025-10-19T08:50:30.5338739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1423.png",
+      "bytes": 325495,
+      "mtime": "2025-10-19T08:50:30.5348739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1423_c.png",
+      "bytes": 25368,
+      "mtime": "2025-10-19T08:50:30.5348739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1423_nrm.png",
+      "bytes": 101614,
+      "mtime": "2025-10-19T08:50:30.5348739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1424.png",
+      "bytes": 456713,
+      "mtime": "2025-10-19T08:50:30.5358739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1424_c.png",
+      "bytes": 12432,
+      "mtime": "2025-10-19T08:50:30.5358739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1424_nrm.png",
+      "bytes": 120254,
+      "mtime": "2025-10-19T08:50:30.5358739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1425.png",
+      "bytes": 415037,
+      "mtime": "2025-10-19T08:50:30.5358739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1425_c.png",
+      "bytes": 16469,
+      "mtime": "2025-10-19T08:50:30.5358739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1425_nrm.png",
+      "bytes": 97185,
+      "mtime": "2025-10-19T08:50:30.5358739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1426.png",
+      "bytes": 356248,
+      "mtime": "2025-10-19T08:50:30.5368739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1426_c.png",
+      "bytes": 25734,
+      "mtime": "2025-10-19T08:50:30.5368739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1426_nrm.png",
+      "bytes": 89159,
+      "mtime": "2025-10-19T08:50:30.5368739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1427.png",
+      "bytes": 440239,
+      "mtime": "2025-10-19T08:50:30.5378739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1427_c.png",
+      "bytes": 46170,
+      "mtime": "2025-10-19T08:50:30.5378739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1427_nrm.png",
+      "bytes": 107484,
+      "mtime": "2025-10-19T08:50:30.5378739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1428.png",
+      "bytes": 396849,
+      "mtime": "2025-10-19T08:50:30.5378739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1428_c.png",
+      "bytes": 55998,
+      "mtime": "2025-10-19T08:50:30.5378739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1428_nrm.png",
+      "bytes": 421356,
+      "mtime": "2025-10-19T08:50:30.5388739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1429.png",
+      "bytes": 417253,
+      "mtime": "2025-10-19T08:50:30.5388739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1429_c.png",
+      "bytes": 23749,
+      "mtime": "2025-10-19T08:50:30.5388739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1429_nrm.png",
+      "bytes": 102642,
+      "mtime": "2025-10-19T08:50:30.5398739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1430.png",
+      "bytes": 387816,
+      "mtime": "2025-10-19T08:50:30.5398739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1430_c.png",
+      "bytes": 24835,
+      "mtime": "2025-10-19T08:50:30.5398739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1430_nrm.png",
+      "bytes": 105480,
+      "mtime": "2025-10-19T08:50:30.5398739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1431.png",
+      "bytes": 408920,
+      "mtime": "2025-10-19T08:50:30.5408739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1431_c.png",
+      "bytes": 15620,
+      "mtime": "2025-10-19T08:50:30.5408739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1431_nrm.png",
+      "bytes": 366432,
+      "mtime": "2025-10-19T08:50:30.5418739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1432.png",
+      "bytes": 415178,
+      "mtime": "2025-10-19T08:50:30.5418739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1432_c.png",
+      "bytes": 25198,
+      "mtime": "2025-10-19T08:50:30.5418739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1432_nrm.png",
+      "bytes": 382335,
+      "mtime": "2025-10-19T08:50:30.5428739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1433.png",
+      "bytes": 348530,
+      "mtime": "2025-10-19T08:50:30.5428739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1433_c.png",
+      "bytes": 6097,
+      "mtime": "2025-10-19T08:50:30.5428739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1433_nrm.png",
+      "bytes": 347259,
+      "mtime": "2025-10-19T08:50:30.5428739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1434.png",
+      "bytes": 418329,
+      "mtime": "2025-10-19T08:50:30.5438739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1434_c.png",
+      "bytes": 13490,
+      "mtime": "2025-10-19T08:50:30.5438739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1434_nrm.png",
+      "bytes": 374755,
+      "mtime": "2025-10-19T08:50:30.5448739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1435.png",
+      "bytes": 399350,
+      "mtime": "2025-10-19T08:50:30.5448739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1435_c.png",
+      "bytes": 17954,
+      "mtime": "2025-10-19T08:50:30.5448739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1435_nrm.png",
+      "bytes": 376766,
+      "mtime": "2025-10-19T08:50:30.5458739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1436.png",
+      "bytes": 1248727,
+      "mtime": "2025-10-19T08:50:30.5468739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1436_c.png",
+      "bytes": 17942,
+      "mtime": "2025-10-19T08:50:30.5468739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1436_nrm.png",
+      "bytes": 326829,
+      "mtime": "2025-10-19T08:50:30.5478739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1437.png",
+      "bytes": 415949,
+      "mtime": "2025-10-19T08:50:30.5478739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1437_c.png",
+      "bytes": 8514,
+      "mtime": "2025-10-19T08:50:30.5478739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1437_nrm.png",
+      "bytes": 88078,
+      "mtime": "2025-10-19T08:50:30.5478739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1438.png",
+      "bytes": 403679,
+      "mtime": "2025-10-19T08:50:30.5488739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1438_c.png",
+      "bytes": 4293,
+      "mtime": "2025-10-19T08:50:30.5488739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1438_nrm.png",
+      "bytes": 79496,
+      "mtime": "2025-10-19T08:50:30.5488739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1439.png",
+      "bytes": 441939,
+      "mtime": "2025-10-19T08:50:30.5488739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1439_c.png",
+      "bytes": 28444,
+      "mtime": "2025-10-19T08:50:30.5498739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing1439_nrm.png",
+      "bytes": 364168,
+      "mtime": "2025-10-19T08:50:30.5498739Z"
+    },
+    {
+      "path": "asset/wings/textures/wing162.png",
+      "bytes": 328076,
+      "mtime": "2025-10-19T08:50:30.5508739Z"
+    },
+    {
+      "path": "asset/wings/wing02.fbx",
+      "bytes": 2615200,
+      "mtime": "2025-10-19T08:50:30.5638739Z"
+    },
+    {
+      "path": "asset/wings/wing03.fbx",
+      "bytes": 3079104,
+      "mtime": "2025-10-19T08:50:30.5708740Z"
+    },
+    {
+      "path": "asset/wings/wing05.fbx",
+      "bytes": 533164,
+      "mtime": "2025-10-19T08:50:30.5718740Z"
+    },
+    {
+      "path": "asset/wings/wing1417.fbx",
+      "bytes": 2866896,
+      "mtime": "2025-10-19T08:50:30.5778740Z"
+    },
+    {
+      "path": "asset/wings/wing1419.fbx",
+      "bytes": 1737136,
+      "mtime": "2025-10-19T08:50:30.5828740Z"
+    },
+    {
+      "path": "asset/wings/wing1420.fbx",
+      "bytes": 1118448,
+      "mtime": "2025-10-19T08:50:30.5848740Z"
+    },
+    {
+      "path": "asset/wings/wing1422.fbx",
+      "bytes": 2615200,
+      "mtime": "2025-10-19T08:50:30.5908740Z"
+    },
+    {
+      "path": "asset/wings/wing1424.fbx",
+      "bytes": 2,
+      "mtime": "2025-10-19T08:50:30.5908740Z"
+    },
+    {
+      "path": "asset/wings/wing1425.fbx",
+      "bytes": 2,
+      "mtime": "2025-10-19T08:50:30.5908740Z"
+    },
+    {
+      "path": "asset/wings/wing1426.fbx",
+      "bytes": 2,
+      "mtime": "2025-10-19T08:50:30.5908740Z"
+    },
+    {
+      "path": "asset/wings/wing1427.fbx",
+      "bytes": 1636528,
+      "mtime": "2025-10-19T08:50:30.5948740Z"
+    },
+    {
+      "path": "asset/wings/wing1428.fbx",
+      "bytes": 2,
+      "mtime": "2025-10-19T08:50:30.5948740Z"
+    },
+    {
+      "path": "asset/wings/wing1429.fbx",
+      "bytes": 4398288,
+      "mtime": "2025-10-19T08:50:30.5978740Z"
+    },
+    {
+      "path": "asset/wings/wing1430.fbx",
+      "bytes": 2,
+      "mtime": "2025-10-19T08:50:30.5978740Z"
+    },
+    {
+      "path": "asset/wings/wing1431.fbx",
+      "bytes": 2456624,
+      "mtime": "2025-10-19T08:50:30.6038740Z"
+    },
+    {
+      "path": "asset/wings/wing1434.fbx",
+      "bytes": 2721040,
+      "mtime": "2025-10-19T08:50:30.6108740Z"
+    },
+    {
+      "path": "asset/wings/wing1435.fbx",
+      "bytes": 3079104,
+      "mtime": "2025-10-19T08:50:30.6168740Z"
+    },
+    {
+      "path": "asset/wings/wing162.fbx",
+      "bytes": 275580,
+      "mtime": "2025-10-19T08:50:30.6178740Z"
+    },
+    {
+      "path": "avalon-carol-unique-2.9.4/pages/apps/carol/packages/us.json",
+      "bytes": 3157,
+      "mtime": "2025-10-19T08:50:30.6190189Z"
+    },
+    {
+      "path": "avalon-carol-unique-2.9.4/pages/apps/carol/plans/index.json",
+      "bytes": 106,
+      "mtime": "2025-10-19T08:50:30.6190189Z"
+    },
+    {
+      "path": "avalon-carol-unique-2.9.4/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+      "bytes": 88106,
+      "mtime": "2025-10-19T08:50:30.6191903Z"
+    },
+    {
+      "path": "avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1",
+      "bytes": 7036,
+      "mtime": "2025-10-19T08:50:30.6191903Z"
+    },
+    {
+      "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html",
+      "bytes": 7794,
+      "mtime": "2025-10-19T08:50:30.6196316Z"
+    },
+    {
+      "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/packages/us.json",
+      "bytes": 3405,
+      "mtime": "2025-10-19T08:50:30.6197591Z"
+    },
+    {
+      "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/index.json",
+      "bytes": 106,
+      "mtime": "2025-10-19T08:50:30.6197591Z"
+    },
+    {
+      "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/twoperson-2wk-unique-20251015T005600Z.json",
+      "bytes": 90325,
+      "mtime": "2025-10-19T08:50:30.6198553Z"
+    },
+    {
+      "path": "avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1",
+      "bytes": 6702,
+      "mtime": "2025-10-19T08:50:30.6198553Z"
+    },
+    {
+      "path": "cloudflare/README.md",
+      "bytes": 561,
+      "mtime": "2025-10-19T08:50:30.6198553Z"
+    },
+    {
+      "path": "cloudflare/worker-alexandria.js",
+      "bytes": 3934,
+      "mtime": "2025-10-19T08:50:30.6201027Z"
+    },
+    {
+      "path": "config/keep-lists/workflows-keep.json",
+      "bytes": 277,
+      "mtime": "2025-10-19T08:50:30.6201785Z"
+    },
+    {
+      "path": "config/workflows-keep.json",
+      "bytes": 276,
+      "mtime": "2025-10-19T08:50:30.6201785Z"
+    },
+    {
+      "path": "config/workflows-rename.json",
+      "bytes": 445,
+      "mtime": "2025-10-19T08:50:30.6201785Z"
+    },
+    {
+      "path": "docs/OAuth-Notes.md",
+      "bytes": 268,
+      "mtime": "2025-10-19T08:50:30.6201785Z"
+    },
+    {
+      "path": "index.html",
+      "bytes": 1633,
+      "mtime": "2025-10-19T08:50:30.6201785Z"
+    },
+    {
+      "path": "kill-sw-boost.html",
+      "bytes": 796,
+      "mtime": "2025-10-19T08:50:30.6201785Z"
+    },
+    {
+      "path": "kill-sw.html",
+      "bytes": 718,
+      "mtime": "2025-10-19T08:50:30.6201785Z"
+    },
+    {
+      "path": "memory-history/20250913T083955Z-Codys-Memory.yaml",
+      "bytes": 21661,
+      "mtime": "2025-10-19T08:50:30.6201785Z"
+    },
+    {
+      "path": "memory-history/20250913T085610Z-Codys-Memory.yaml",
+      "bytes": 22003,
+      "mtime": "2025-10-19T08:50:30.6208579Z"
+    },
+    {
+      "path": "memory-history/20250913T184428Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208579Z"
+    },
+    {
+      "path": "memory-history/20250913T185031Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208579Z"
+    },
+    {
+      "path": "memory-history/20250913T192026Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208579Z"
+    },
+    {
+      "path": "memory-history/20250913T193745Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208579Z"
+    },
+    {
+      "path": "memory-history/20250913T195049Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208579Z"
+    },
+    {
+      "path": "memory-history/20250913T202952Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208579Z"
+    },
+    {
+      "path": "memory-history/20250913T204046Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T205141Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T211642Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T211643Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T212718Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T214031Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T215309Z-Codys-Memory.yaml",
+      "bytes": 16318,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T221734Z-Codys-Memory.yaml",
+      "bytes": 23513,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T223028Z-Codys-Memory.yaml",
+      "bytes": 23513,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T224153Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T224309Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T225621Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T232626Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T234050Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250913T235341Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250914T031341Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250914T035014Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250914T043733Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250914T045342Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250914T053153Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250914T055319Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250914T064519Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6208740Z"
+    },
+    {
+      "path": "memory-history/20250914T065740Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T072712Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T074014Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T075306Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T083756Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T085322Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T092949Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T094145Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T095503Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T103142Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T105312Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T112148Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T113932Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T115332Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T115333Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T130223Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T133138Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T135313Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T142946Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T142947Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T144235Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T145545Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6218740Z"
+    },
+    {
+      "path": "memory-history/20250914T152814Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T154026Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T154027Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T155324Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T163450Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T165329Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T172707Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T174000Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T175316Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T184046Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T185547Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T192153Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T193924Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T195318Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T203016Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T204233Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T205546Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T212618Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T212619Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T213955Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T215327Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T223147Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6228740Z"
+    },
+    {
+      "path": "memory-history/20250914T225352Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250914T232647Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250914T234133Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250914T234134Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250914T235359Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T032853Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T035758Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T044252Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T045601Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T053818Z-Codys-Memory.yaml",
+      "bytes": 22534,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T055731Z-Codys-Memory.yaml",
+      "bytes": 34824,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T062707Z-Codys-Memory.yaml",
+      "bytes": 12044,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T065622Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T065739Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T073229Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T075358Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T084755Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T093811Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T095349Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T104121Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6238740Z"
+    },
+    {
+      "path": "memory-history/20250915T105410Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T112630Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T114150Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T115456Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T133345Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T135354Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T143531Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T145349Z-Codys-Memory.yaml",
+      "bytes": 3551,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T150856Z-Codys-Memory.yaml",
+      "bytes": 10570,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T151120Z-Codys-Memory.yaml",
+      "bytes": 10570,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T152330Z-Codys-Memory.yaml",
+      "bytes": 10570,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T153523Z-Codys-Memory.yaml",
+      "bytes": 10570,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T155401Z-Codys-Memory.yaml",
+      "bytes": 10570,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T160028Z-Codys-Memory.yaml",
+      "bytes": 2123,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T163307Z-Codys-Memory.yaml",
+      "bytes": 7426,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T164733Z-Codys-Memory.yaml",
+      "bytes": 7426,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T164734Z-Codys-Memory.yaml",
+      "bytes": 7426,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T173146Z-Codys-Memory.yaml",
+      "bytes": 7426,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T173147Z-Codys-Memory.yaml",
+      "bytes": 7426,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T175348Z-Codys-Memory.yaml",
+      "bytes": 928,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T184924Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T184925Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T192414Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6248740Z"
+    },
+    {
+      "path": "memory-history/20250915T194046Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T195345Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T203329Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T205352Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T212903Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T212904Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T214127Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T215424Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T223318Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T225330Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T232717Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T234059Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250915T235346Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250916T030600Z-Codys-Memory.yaml",
+      "bytes": 597,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250916T044014Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250916T044015Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250916T045301Z-BROKEN-Codys-Memory.yaml",
+      "bytes": 30374,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250916T045301Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250916T051838Z-BROKEN-Codys-Memory.yaml",
+      "bytes": 26927,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250916T053453Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250916T053454Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250916T055206Z-BROKEN-Codys-Memory.yaml",
+      "bytes": 21858,
+      "mtime": "2025-10-19T08:50:30.6258740Z"
+    },
+    {
+      "path": "memory-history/20250916T055342Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T055343Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T065214Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T073114Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T073115Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T075350Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T084909Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T093747Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T095343Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T104018Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T105336Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T112630Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T114121Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T115415Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T133641Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T135432Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T144101Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T145326Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T145327Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T153621Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T155352Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T164525Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T164526Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T165831Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T173244Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T175321Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T184839Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6268740Z"
+    },
+    {
+      "path": "memory-history/20250916T192411Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T194032Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T195354Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T203442Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T205313Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T212837Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T214115Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T214116Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T215405Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T222941Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T224238Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T224239Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T225550Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T232454Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T234039Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250916T235337Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T030528Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T030529Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T034708Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T043946Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T045335Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T053440Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T053441Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T055327Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T065153Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T072949Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T074258Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T075554Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T084658Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6278740Z"
+    },
+    {
+      "path": "memory-history/20250917T093430Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T095336Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T103915Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T105321Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T105322Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T112627Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T114119Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T115422Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T133436Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T135419Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T143902Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T145408Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T153449Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T155330Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T164515Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T165749Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T173207Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T175310Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T184849Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T192359Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T192400Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T194119Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T194120Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T195332Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T203404Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T205316Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T205317Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6288740Z"
+    },
+    {
+      "path": "memory-history/20250917T205541Z-Codys-Memory.yaml",
+      "bytes": 20083,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250917T205634Z-BROKEN-Codys-Memory.yaml",
+      "bytes": 20083,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250917T205748Z-BROKEN-Codys-Memory.yaml",
+      "bytes": 21858,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250917T212554Z-Codys-Memory.yaml",
+      "bytes": 996,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250917T214108Z-Codys-Memory.yaml",
+      "bytes": 4853,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250917T223023Z-Codys-Memory.yaml",
+      "bytes": 448,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250917T224146Z-Codys-Memory.yaml",
+      "bytes": 448,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250917T224147Z-Codys-Memory.yaml",
+      "bytes": 448,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250917T225437Z-Codys-Memory.yaml",
+      "bytes": 448,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250917T232747Z-Codys-Memory.yaml",
+      "bytes": 448,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250917T234052Z-Codys-Memory.yaml",
+      "bytes": 448,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250917T235350Z-Codys-Memory.yaml",
+      "bytes": 2155,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250918T001302Z-BROKEN-Codys-Memory.yaml",
+      "bytes": 11851,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250918T005814Z-Codys-Memory.yaml",
+      "bytes": 4682,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20250918T012606Z-Codys-Memory.yaml",
+      "bytes": 1866,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/20251017T224658Z-Codys-Memory.yaml",
+      "bytes": 2347,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/Codys-Memory.json",
+      "bytes": 725,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/Codys-Memory.yaml",
+      "bytes": 1207,
+      "mtime": "2025-10-19T08:50:30.6298740Z"
+    },
+    {
+      "path": "memory-history/repo-inventory.json",
+      "bytes": 154197,
+      "mtime": "2025-10-19T08:50:30.6318740Z"
+    },
+    {
+      "path": "memory-history/repo-read-index.json",
+      "bytes": 862643,
+      "mtime": "2025-10-19T08:50:30.6338740Z"
+    },
+    {
+      "path": "memory-history/repo-refs.json",
+      "bytes": 13404,
+      "mtime": "2025-10-19T08:50:30.6338740Z"
+    },
+    {
+      "path": "memory-history/repo-usage-report.json",
+      "bytes": 8177,
+      "mtime": "2025-10-19T08:50:30.6338740Z"
+    },
+    {
+      "path": "memory-history/retired/odessa/index.html",
+      "bytes": 400,
+      "mtime": "2025-10-19T08:50:30.6348820Z"
+    },
+    {
+      "path": "pages/apps/Index.html",
+      "bytes": 1642,
+      "mtime": "2025-10-19T08:50:30.6349890Z"
+    },
+    {
+      "path": "pages/apps/_city/buttons-3d.html",
+      "bytes": 3351,
+      "mtime": "2025-10-19T08:50:30.6350587Z"
+    },
+    {
+      "path": "pages/apps/_city/castle-town.html",
+      "bytes": 862,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/_city/city-index-patch.html",
+      "bytes": 231,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/_city/city.css",
+      "bytes": 828,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/_city/city.js",
+      "bytes": 557,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/_city/hero.css",
+      "bytes": 56,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/_city/index.html",
+      "bytes": 2619,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/_city/map.js",
+      "bytes": 3357,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/_city/registry.json",
+      "bytes": 2016,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/_city/repo-index.html",
+      "bytes": 3719,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/_city/theme.css",
+      "bytes": 163,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/_ui/tokens.css",
+      "bytes": 206,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/abbey/importer.html",
+      "bytes": 1820,
+      "mtime": "2025-10-19T08:50:30.6351201Z"
+    },
+    {
+      "path": "pages/apps/abbey/index.html",
+      "bytes": 494,
+      "mtime": "2025-10-19T08:50:30.6356187Z"
+    },
+    {
+      "path": "pages/apps/alexandria/app.css",
+      "bytes": 1660,
+      "mtime": "2025-10-19T08:50:30.6356187Z"
+    },
+    {
+      "path": "pages/apps/alexandria/app.js",
+      "bytes": 1680,
+      "mtime": "2025-10-19T08:50:30.6357252Z"
+    },
+    {
+      "path": "pages/apps/alexandria/config.json",
+      "bytes": 46,
+      "mtime": "2025-10-19T08:50:30.6357252Z"
+    },
+    {
+      "path": "pages/apps/alexandria/dm/config.json",
+      "bytes": 63,
+      "mtime": "2025-10-19T08:50:30.6357252Z"
+    },
+    {
+      "path": "pages/apps/alexandria/dm/dm.css",
+      "bytes": 809,
+      "mtime": "2025-10-19T08:50:30.6358428Z"
+    },
+    {
+      "path": "pages/apps/alexandria/dm/dm.html",
+      "bytes": 1228,
+      "mtime": "2025-10-19T08:50:30.6358428Z"
+    },
+    {
+      "path": "pages/apps/alexandria/dm/dm.js",
+      "bytes": 5192,
+      "mtime": "2025-10-19T08:50:30.6358428Z"
+    },
+    {
+      "path": "pages/apps/alexandria/dm/play.html",
+      "bytes": 8428,
+      "mtime": "2025-10-19T08:50:30.6358428Z"
+    },
+    {
+      "path": "pages/apps/alexandria/index.html",
+      "bytes": 588,
+      "mtime": "2025-10-19T08:50:30.6358428Z"
+    },
+    {
+      "path": "pages/apps/alexandria/maps/index.html",
+      "bytes": 252,
+      "mtime": "2025-10-19T08:50:30.6358428Z"
+    },
+    {
+      "path": "pages/apps/alexandria/session-log.html",
+      "bytes": 1537,
+      "mtime": "2025-10-19T08:50:30.6358428Z"
+    },
+    {
+      "path": "pages/apps/alexandria/voice-dm.html",
+      "bytes": 1371,
+      "mtime": "2025-10-19T08:50:30.6358428Z"
+    },
+    {
+      "path": "pages/apps/alexandria/world-rules.html",
+      "bytes": 1248,
+      "mtime": "2025-10-19T08:50:30.6358740Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/atlas.json",
+      "bytes": 940,
+      "mtime": "2025-10-19T08:50:30.6362774Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/continuity-checklist.json",
+      "bytes": 146,
+      "mtime": "2025-10-19T08:50:30.6363382Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/lore-bible.json",
+      "bytes": 399,
+      "mtime": "2025-10-19T08:50:30.6363382Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/notable-figures.json",
+      "bytes": 318,
+      "mtime": "2025-10-19T08:50:30.6363382Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/npc-codex.json",
+      "bytes": 1497,
+      "mtime": "2025-10-19T08:50:30.6363382Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/scene-seeds.json",
+      "bytes": 945,
+      "mtime": "2025-10-19T08:50:30.6363382Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/seed-20250918T031302Z-avalon.json",
+      "bytes": 229,
+      "mtime": "2025-10-19T08:50:30.6363382Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/timeline.json",
+      "bytes": 920,
+      "mtime": "2025-10-19T08:50:30.6363382Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/atlas.json",
+      "bytes": 940,
+      "mtime": "2025-10-19T08:50:30.6363382Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/continuity-checklist.json",
+      "bytes": 146,
+      "mtime": "2025-10-19T08:50:30.6366444Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/lore-bible.json",
+      "bytes": 399,
+      "mtime": "2025-10-19T08:50:30.6366444Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/notable-figures.json",
+      "bytes": 318,
+      "mtime": "2025-10-19T08:50:30.6366444Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/npc-codex.json",
+      "bytes": 1497,
+      "mtime": "2025-10-19T08:50:30.6366444Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/scene-seeds.json",
+      "bytes": 945,
+      "mtime": "2025-10-19T08:50:30.6366444Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/seed-20250918T052002Z-avalon.json",
+      "bytes": 229,
+      "mtime": "2025-10-19T08:50:30.6366444Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/timeline.json",
+      "bytes": 920,
+      "mtime": "2025-10-19T08:50:30.6366444Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/atlas.json",
+      "bytes": 940,
+      "mtime": "2025-10-19T08:50:30.6366444Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/continuity-checklist.json",
+      "bytes": 146,
+      "mtime": "2025-10-19T08:50:30.6368842Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/lore-bible.json",
+      "bytes": 399,
+      "mtime": "2025-10-19T08:50:30.6368842Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/notable-figures.json",
+      "bytes": 318,
+      "mtime": "2025-10-19T08:50:30.6368842Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/npc-codex.json",
+      "bytes": 1497,
+      "mtime": "2025-10-19T08:50:30.6368842Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/scene-seeds.json",
+      "bytes": 945,
+      "mtime": "2025-10-19T08:50:30.6368842Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/seed-20251006T012716Z-avalon.json",
+      "bytes": 229,
+      "mtime": "2025-10-19T08:50:30.6368842Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/timeline.json",
+      "bytes": 920,
+      "mtime": "2025-10-19T08:50:30.6368842Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/atlas.json",
+      "bytes": 940,
+      "mtime": "2025-10-19T08:50:30.6368842Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/continuity-checklist.json",
+      "bytes": 146,
+      "mtime": "2025-10-19T08:50:30.6371088Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/lore-bible.json",
+      "bytes": 399,
+      "mtime": "2025-10-19T08:50:30.6371088Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/notable-figures.json",
+      "bytes": 318,
+      "mtime": "2025-10-19T08:50:30.6371088Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/npc-codex.json",
+      "bytes": 1497,
+      "mtime": "2025-10-19T08:50:30.6371088Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/scene-seeds.json",
+      "bytes": 945,
+      "mtime": "2025-10-19T08:50:30.6371088Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/seed-20251006T014952Z-avalon.json",
+      "bytes": 229,
+      "mtime": "2025-10-19T08:50:30.6371088Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/timeline.json",
+      "bytes": 920,
+      "mtime": "2025-10-19T08:50:30.6371088Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/atlas.json",
+      "bytes": 940,
+      "mtime": "2025-10-19T08:50:30.6371088Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/continuity-checklist.json",
+      "bytes": 146,
+      "mtime": "2025-10-19T08:50:30.6373522Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/lore-bible.json",
+      "bytes": 399,
+      "mtime": "2025-10-19T08:50:30.6373522Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/notable-figures.json",
+      "bytes": 318,
+      "mtime": "2025-10-19T08:50:30.6373522Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/npc-codex.json",
+      "bytes": 1497,
+      "mtime": "2025-10-19T08:50:30.6373522Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/scene-seeds.json",
+      "bytes": 945,
+      "mtime": "2025-10-19T08:50:30.6373522Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/seed-20251006T032652Z-avalon.json",
+      "bytes": 229,
+      "mtime": "2025-10-19T08:50:30.6373522Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/timeline.json",
+      "bytes": 920,
+      "mtime": "2025-10-19T08:50:30.6373522Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/atlas.json",
+      "bytes": 940,
+      "mtime": "2025-10-19T08:50:30.6373522Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/continuity-checklist.json",
+      "bytes": 146,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/lore-bible.json",
+      "bytes": 399,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/notable-figures.json",
+      "bytes": 318,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/npc-codex.json",
+      "bytes": 1497,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/scene-seeds.json",
+      "bytes": 945,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/seed-20251006T034428Z-avalon.json",
+      "bytes": 229,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/timeline.json",
+      "bytes": 920,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/avalon/world.json",
+      "bytes": 5786,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/index.html",
+      "bytes": 249,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/index.json",
+      "bytes": 239,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/latest.txt",
+      "bytes": 24,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/terra/world.json",
+      "bytes": 5928,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/world-avalon-prime.json",
+      "bytes": 281,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/billie/index.html",
+      "bytes": 500,
+      "mtime": "2025-10-19T08:50:30.6375772Z"
+    },
+    {
+      "path": "pages/apps/billie/overview.html",
+      "bytes": 518,
+      "mtime": "2025-10-19T08:50:30.6380713Z"
+    },
+    {
+      "path": "pages/apps/buildings.css",
+      "bytes": 1001,
+      "mtime": "2025-10-19T08:50:30.6380713Z"
+    },
+    {
+      "path": "pages/apps/carol/debug/plan-inspect.json",
+      "bytes": 3,
+      "mtime": "2025-10-19T08:50:30.6381680Z"
+    },
+    {
+      "path": "pages/apps/carol/index.html",
+      "bytes": 533,
+      "mtime": "2025-10-19T08:50:30.6381680Z"
+    },
+    {
+      "path": "pages/apps/carol/index.json",
+      "bytes": 194,
+      "mtime": "2025-10-19T08:50:30.6381680Z"
+    },
+    {
+      "path": "pages/apps/carol/library/evidence.json",
+      "bytes": 450,
+      "mtime": "2025-10-19T08:50:30.6381680Z"
+    },
+    {
+      "path": "pages/apps/carol/menu.html",
+      "bytes": 3240,
+      "mtime": "2025-10-19T08:50:30.6381680Z"
+    },
+    {
+      "path": "pages/apps/carol/packages/README.md",
+      "bytes": 1696,
+      "mtime": "2025-10-19T08:50:30.6381680Z"
+    },
+    {
+      "path": "pages/apps/carol/packages/us.json",
+      "bytes": 2373,
+      "mtime": "2025-10-19T08:50:30.6384786Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/index.json",
+      "bytes": 106,
+      "mtime": "2025-10-19T08:50:30.6384786Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/mealplan-balanced-20250918T052011Z.json",
+      "bytes": 992,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/mealplan-balanced-20251006T012724Z.json",
+      "bytes": 992,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/mealplan-balanced-20251006T015000Z.json",
+      "bytes": 992,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/mealplan-balanced-20251006T032700Z.json",
+      "bytes": 992,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/mealplan-balanced-20251006T034437Z.json",
+      "bytes": 992,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/mealplan-balanced-20251019T021457Z.json",
+      "bytes": 6852,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/mealplan-dash-14d-20251019T030217Z.json",
+      "bytes": 12138,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/mealplan-dash-14d-current-shopping.json",
+      "bytes": 2422,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/mealplan-dash-14d-current.json",
+      "bytes": 64348,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/offline-twoperson-2wk-20251010T013559Z.json",
+      "bytes": 55351,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/packages-missing.json",
+      "bytes": 59,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/plan-14d-seeded.json",
+      "bytes": 2795,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/shopping-extracted.json",
+      "bytes": 57,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/shopping-quantized.json",
+      "bytes": 2611,
+      "mtime": "2025-10-19T08:50:30.6385706Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/twoperson-2wk-20251007T150516Z.json",
+      "bytes": 28811,
+      "mtime": "2025-10-19T08:50:30.6388741Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/twoperson-2wk-20251009T183226Z.json",
+      "bytes": 29168,
+      "mtime": "2025-10-19T08:50:30.6388741Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/twoperson-2wk-20251009T203748Z.json",
+      "bytes": 65214,
+      "mtime": "2025-10-19T08:50:30.6388741Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/twoperson-2wk-20251009T211251Z.json",
+      "bytes": 16281,
+      "mtime": "2025-10-19T08:50:30.6388741Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/twoperson-2wk-20251009T214354Z.json",
+      "bytes": 17482,
+      "mtime": "2025-10-19T08:50:30.6388741Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/twoperson-2wk-20251010T011509Z.json",
+      "bytes": 6751,
+      "mtime": "2025-10-19T08:50:30.6388741Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/twoperson-2wk-20251014T232110Z.json",
+      "bytes": 6160,
+      "mtime": "2025-10-19T08:50:30.6388741Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json",
+      "bytes": 80767,
+      "mtime": "2025-10-19T08:50:30.6388741Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+      "bytes": 88106,
+      "mtime": "2025-10-19T08:50:30.6388741Z"
+    },
+    {
+      "path": "pages/apps/carol/preferences.html",
+      "bytes": 2033,
+      "mtime": "2025-10-19T08:50:30.6388741Z"
+    },
+    {
+      "path": "pages/apps/carol/profile/preferences.json",
+      "bytes": 1339,
+      "mtime": "2025-10-19T08:50:30.6388741Z"
+    },
+    {
+      "path": "pages/apps/carol/shopping.html",
+      "bytes": 1630,
+      "mtime": "2025-10-19T08:50:30.6398741Z"
+    },
+    {
+      "path": "pages/apps/carol/templates/mealplan-balanced-14d.json",
+      "bytes": 6706,
+      "mtime": "2025-10-19T08:50:30.6398741Z"
+    },
+    {
+      "path": "pages/apps/carol/videos.html",
+      "bytes": 1363,
+      "mtime": "2025-10-19T08:50:30.6398741Z"
+    },
+    {
+      "path": "pages/apps/carol/videos/index.json",
+      "bytes": 55,
+      "mtime": "2025-10-19T08:50:30.6398741Z"
+    },
+    {
+      "path": "pages/apps/charlotte/index.html",
+      "bytes": 579,
+      "mtime": "2025-10-19T08:50:30.6398741Z"
+    },
+    {
+      "path": "pages/apps/charlotte/manifest.json",
+      "bytes": 1015,
+      "mtime": "2025-10-19T08:50:30.6404911Z"
+    },
+    {
+      "path": "pages/apps/charlotte/pipelines/20250918T031302Z-avalon/plan.json",
+      "bytes": 342,
+      "mtime": "2025-10-19T08:50:30.6405570Z"
+    },
+    {
+      "path": "pages/apps/charlotte/pipelines/20250918T052002Z-avalon/plan.json",
+      "bytes": 382,
+      "mtime": "2025-10-19T08:50:30.6405570Z"
+    },
+    {
+      "path": "pages/apps/charlotte/pipelines/20251006T012716Z-avalon/plan.json",
+      "bytes": 382,
+      "mtime": "2025-10-19T08:50:30.6405570Z"
+    },
+    {
+      "path": "pages/apps/charlotte/pipelines/20251006T014952Z-avalon/plan.json",
+      "bytes": 382,
+      "mtime": "2025-10-19T08:50:30.6405570Z"
+    },
+    {
+      "path": "pages/apps/charlotte/pipelines/20251006T032652Z-avalon/plan.json",
+      "bytes": 382,
+      "mtime": "2025-10-19T08:50:30.6405570Z"
+    },
+    {
+      "path": "pages/apps/charlotte/pipelines/20251006T034428Z-avalon/plan.json",
+      "bytes": 382,
+      "mtime": "2025-10-19T08:50:30.6405570Z"
+    },
+    {
+      "path": "pages/apps/charlotte/pipelines/index.json",
+      "bytes": 253,
+      "mtime": "2025-10-19T08:50:30.6405570Z"
+    },
+    {
+      "path": "pages/apps/charlotte/voiceovers/20250918T031302Z-avalon/opening.txt",
+      "bytes": 50,
+      "mtime": "2025-10-19T08:50:30.6409504Z"
+    },
+    {
+      "path": "pages/apps/charlotte/voiceovers/index.json",
+      "bytes": 54,
+      "mtime": "2025-10-19T08:50:30.6409504Z"
+    },
+    {
+      "path": "pages/apps/clarice/diagnostics.html",
+      "bytes": 769,
+      "mtime": "2025-10-19T08:50:30.6409504Z"
+    },
+    {
+      "path": "pages/apps/clarice/index.html",
+      "bytes": 516,
+      "mtime": "2025-10-19T08:50:30.6411035Z"
+    },
+    {
+      "path": "pages/apps/clarice/reports/graphics-audit-20251010T000205Z.json",
+      "bytes": 253,
+      "mtime": "2025-10-19T08:50:30.6411035Z"
+    },
+    {
+      "path": "pages/apps/index.html",
+      "bytes": 1551,
+      "mtime": "2025-10-19T08:50:30.6411035Z"
+    },
+    {
+      "path": "pages/apps/jem/dashboard.html",
+      "bytes": 291,
+      "mtime": "2025-10-19T08:50:30.6411035Z"
+    },
+    {
+      "path": "pages/apps/jem/evaluate.html",
+      "bytes": 3009,
+      "mtime": "2025-10-19T08:50:30.6413045Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/.gitkeep",
+      "bytes": null,
+      "mtime": null
+    },
+    {
+      "path": "pages/apps/jem/imports/SamsungHealthExport_Blanca.zip",
+      "bytes": 15764,
+      "mtime": "2025-10-19T08:50:30.6414004Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/SamsungHealthExport_Ray.zip",
+      "bytes": 2121931,
+      "mtime": "2025-10-19T08:50:30.6478741Z"
+    },
+    {
+      "path": "pages/apps/jem/index.html",
+      "bytes": 513,
+      "mtime": "2025-10-19T08:50:30.6478741Z"
+    },
+    {
+      "path": "pages/apps/jem/library/evidence.json",
+      "bytes": 474,
+      "mtime": "2025-10-19T08:50:30.6478741Z"
+    },
+    {
+      "path": "pages/apps/jem/program-viewer.html",
+      "bytes": 2962,
+      "mtime": "2025-10-19T08:50:30.6478741Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/biometrics.json",
+      "bytes": 187,
+      "mtime": "2025-10-19T08:50:30.6478741Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/index.html",
+      "bytes": 484,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/index.json",
+      "bytes": 456,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/program-recomp-minimal-20250918T052013Z.json",
+      "bytes": 2679,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T012726Z.json",
+      "bytes": 2679,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T015002Z.json",
+      "bytes": 2679,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T032701Z.json",
+      "bytes": 2679,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T034438Z.json",
+      "bytes": 2679,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/week1-Blanca.json",
+      "bytes": 4889,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/week1-Ray.json",
+      "bytes": 5026,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/week1-evaluation-20251010T013134Z.json",
+      "bytes": 4989,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/programs/week1-evaluation-20251017T013847Z.json",
+      "bytes": 4849,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/viewer-empty-state-patch.html",
+      "bytes": 790,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/jem/viewer.html",
+      "bytes": 12777,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/nina/index.html",
+      "bytes": 488,
+      "mtime": "2025-10-19T08:50:30.6489731Z"
+    },
+    {
+      "path": "pages/apps/nina/viewer.html",
+      "bytes": 2838,
+      "mtime": "2025-10-19T08:50:30.6495315Z"
+    },
+    {
+      "path": "pages/apps/nina/vrm-index.json",
+      "bytes": 2479,
+      "mtime": "2025-10-19T08:50:30.6495315Z"
+    },
+    {
+      "path": "pages/apps/nina/vrm.html",
+      "bytes": 532,
+      "mtime": "2025-10-19T08:50:30.6495315Z"
+    },
+    {
+      "path": "pages/apps/overseers/index.html",
+      "bytes": 469,
+      "mtime": "2025-10-19T08:50:30.6495315Z"
+    },
+    {
+      "path": "pages/apps/overseers/repo-doctor-report.json",
+      "bytes": 201,
+      "mtime": "2025-10-19T08:50:30.6497158Z"
+    },
+    {
+      "path": "pages/apps/overseers/scene-index.json",
+      "bytes": 729,
+      "mtime": "2025-10-19T08:50:30.6497158Z"
+    },
+    {
+      "path": "pages/apps/overseers/vrm-index.json",
+      "bytes": 5137,
+      "mtime": "2025-10-19T08:50:30.6497158Z"
+    },
+    {
+      "path": "pages/apps/reyczar/index.html",
+      "bytes": 311,
+      "mtime": "2025-10-19T08:50:30.6497158Z"
+    },
+    {
+      "path": "pages/apps/rooms/rooms.json",
+      "bytes": 1834,
+      "mtime": "2025-10-19T08:50:30.6497158Z"
+    },
+    {
+      "path": "pages/apps/shared/worker.js",
+      "bytes": 141,
+      "mtime": "2025-10-19T08:50:30.6497158Z"
+    },
+    {
+      "path": "pages/apps/sorcha/coach.html",
+      "bytes": 1294,
+      "mtime": "2025-10-19T08:50:30.6497158Z"
+    },
+    {
+      "path": "pages/apps/sorcha/index.html",
+      "bytes": 654,
+      "mtime": "2025-10-19T08:50:30.6500673Z"
+    },
+    {
+      "path": "pages/apps/sorcha/storyboards.html",
+      "bytes": 514,
+      "mtime": "2025-10-19T08:50:30.6500673Z"
+    },
+    {
+      "path": "pages/apps/sorcha/storyboards/storyboard-20251019T033626Z.json",
+      "bytes": 1704,
+      "mtime": "2025-10-19T08:50:30.6500673Z"
+    },
+    {
+      "path": "pages/apps/sorcha/uploader.html",
+      "bytes": 1372,
+      "mtime": "2025-10-19T08:50:30.6500673Z"
+    },
+    {
+      "path": "pages/apps/stella/README.md",
+      "bytes": 392,
+      "mtime": "2025-10-19T08:50:30.6500673Z"
+    },
+    {
+      "path": "pages/apps/stella/app.css",
+      "bytes": 1660,
+      "mtime": "2025-10-19T08:50:30.6503139Z"
+    },
+    {
+      "path": "pages/apps/stella/app.js",
+      "bytes": 1683,
+      "mtime": "2025-10-19T08:50:30.6503139Z"
+    },
+    {
+      "path": "pages/apps/stella/components/component-map-button.json",
+      "bytes": 924,
+      "mtime": "2025-10-19T08:50:30.6503139Z"
+    },
+    {
+      "path": "pages/apps/stella/components/index.json",
+      "bytes": 285,
+      "mtime": "2025-10-19T08:50:30.6504568Z"
+    },
+    {
+      "path": "pages/apps/stella/guided.html",
+      "bytes": 1447,
+      "mtime": "2025-10-19T08:50:30.6504568Z"
+    },
+    {
+      "path": "pages/apps/stella/guided/20251009T185549Z-blanca-focus/script.json",
+      "bytes": 2757,
+      "mtime": "2025-10-19T08:50:30.6505575Z"
+    },
+    {
+      "path": "pages/apps/stella/guided/20251009T185625Z-blanca-calm/script.json",
+      "bytes": 2968,
+      "mtime": "2025-10-19T08:50:30.6505575Z"
+    },
+    {
+      "path": "pages/apps/stella/index.html",
+      "bytes": 477,
+      "mtime": "2025-10-19T08:50:30.6505575Z"
+    },
+    {
+      "path": "pages/apps/stella/library/evidence.json",
+      "bytes": 414,
+      "mtime": "2025-10-19T08:50:30.6505575Z"
+    },
+    {
+      "path": "pages/apps/stella/play.html",
+      "bytes": 1343,
+      "mtime": "2025-10-19T08:50:30.6505575Z"
+    },
+    {
+      "path": "pages/apps/stella/stella.css",
+      "bytes": 1016,
+      "mtime": "2025-10-19T08:50:30.6505575Z"
+    },
+    {
+      "path": "pages/apps/stella/stella.js",
+      "bytes": 4184,
+      "mtime": "2025-10-19T08:50:30.6505575Z"
+    },
+    {
+      "path": "pages/apps/stella/voice.html",
+      "bytes": 4109,
+      "mtime": "2025-10-19T08:50:30.6505575Z"
+    },
+    {
+      "path": "pages/apps/theme/tokens.css",
+      "bytes": 322,
+      "mtime": "2025-10-19T08:50:30.6505575Z"
+    },
+    {
+      "path": "pages/apps/theme/tokens.js",
+      "bytes": 364,
+      "mtime": "2025-10-19T08:50:30.6510008Z"
+    },
+    {
+      "path": "pages/apps/theme/tokens.json",
+      "bytes": 349,
+      "mtime": "2025-10-19T08:50:30.6510008Z"
+    },
+    {
+      "path": "pages/apps/themis/expirations.html",
+      "bytes": 1692,
+      "mtime": "2025-10-19T08:50:30.6510008Z"
+    },
+    {
+      "path": "pages/apps/themis/index.html",
+      "bytes": 501,
+      "mtime": "2025-10-19T08:50:30.6511199Z"
+    },
+    {
+      "path": "pages/apps/tracy/3d/index.html",
+      "bytes": 397,
+      "mtime": "2025-10-19T08:50:30.6511961Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-1.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6513016Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-2.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6513590Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-3.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6513590Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-4.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6513590Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-5.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6513590Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-6.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6513590Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-7.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6513590Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-8.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6513590Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-1.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6513590Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-2.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6515883Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-3.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6515883Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-4.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6515883Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-5.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6515883Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-6.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6515883Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-7.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6515883Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-8.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6515883Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-1.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6515883Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-2.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6518166Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-3.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6518166Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-4.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6518166Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-5.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6518166Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-6.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6518166Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-7.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6518166Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-8.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6518166Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-1.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6518166Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-2.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6520432Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-3.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6520432Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-4.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6520432Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-5.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6520432Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-6.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6520432Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-7.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6520432Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-8.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6520432Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-1.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6520432Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-2.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6522879Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-3.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6522879Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-4.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6522879Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-5.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6522879Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-6.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6522879Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-7.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6522879Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-8.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6522879Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-1.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6522879Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-2.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-3.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-4.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-5.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-6.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-7.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-8.json",
+      "bytes": 295,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/index.html",
+      "bytes": 425,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/artboards/index.json",
+      "bytes": 208,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/index.html",
+      "bytes": 496,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/room-preview.html",
+      "bytes": 808,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/skin/active.json",
+      "bytes": 67,
+      "mtime": "2025-10-19T08:50:30.6525048Z"
+    },
+    {
+      "path": "pages/apps/tracy/skin/skins/castle-town.css",
+      "bytes": 86,
+      "mtime": "2025-10-19T08:50:30.6528448Z"
+    },
+    {
+      "path": "pages/apps/tracy/skin/skins/night.css",
+      "bytes": 92,
+      "mtime": "2025-10-19T08:50:30.6528908Z"
+    },
+    {
+      "path": "pages/apps/tracy/skin/tokens.css",
+      "bytes": 380,
+      "mtime": "2025-10-19T08:50:30.6528908Z"
+    },
+    {
+      "path": "pages/apps/tracy/skins/avalon-skin.css",
+      "bytes": 2091,
+      "mtime": "2025-10-19T08:50:30.6528908Z"
+    },
+    {
+      "path": "pages/apps/tracy/wallpaper-index.json",
+      "bytes": 57,
+      "mtime": "2025-10-19T08:50:30.6528908Z"
+    },
+    {
+      "path": "pages/apps/tracy/wallpapers.html",
+      "bytes": 1437,
+      "mtime": "2025-10-19T08:50:30.6528908Z"
+    },
+    {
+      "path": "pages/apps/whitestar/index.html",
+      "bytes": 315,
+      "mtime": "2025-10-19T08:50:30.6528908Z"
+    },
+    {
+      "path": "pages/diagnostics/version-scan.json",
+      "bytes": 426,
+      "mtime": "2025-10-19T08:50:30.6528908Z"
+    },
+    {
+      "path": "pages/index.html",
+      "bytes": 1551,
+      "mtime": "2025-10-19T08:50:30.6528908Z"
+    },
+    {
+      "path": "pages/plaza.html",
+      "bytes": 88,
+      "mtime": "2025-10-19T08:50:30.6528908Z"
+    },
+    {
+      "path": "pages/rooms/abbey.html",
+      "bytes": 1038,
+      "mtime": "2025-10-19T08:50:30.6528908Z"
+    },
+    {
+      "path": "pages/rooms/alexandria.html",
+      "bytes": 1069,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/billie.html",
+      "bytes": 1061,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/carol.html",
+      "bytes": 1036,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/charlotte.html",
+      "bytes": 1058,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/clarice.html",
+      "bytes": 1062,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/index.html",
+      "bytes": 1353,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/jem.html",
+      "bytes": 1014,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/nina.html",
+      "bytes": 1039,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/odessa.html",
+      "bytes": 1033,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/overseers.html",
+      "bytes": 1062,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/sorcha.html",
+      "bytes": 1049,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/stella.html",
+      "bytes": 1043,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/themis.html",
+      "bytes": 1043,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "pages/rooms/tracy.html",
+      "bytes": 1048,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "scripts/Abbey-Parse-Transactions.ps1",
+      "bytes": 1250,
+      "mtime": "2025-10-19T08:50:30.6533326Z"
+    },
+    {
+      "path": "scripts/Abbey-Subscriptions-From-Ledger.ps1",
+      "bytes": 1258,
+      "mtime": "2025-10-19T08:50:30.6537589Z"
+    },
+    {
+      "path": "scripts/Agents-LLM.ps1",
+      "bytes": 1853,
+      "mtime": "2025-10-19T08:50:30.6537589Z"
+    },
+    {
+      "path": "scripts/Alexandria-DM-LLM.ps1",
+      "bytes": 2764,
+      "mtime": "2025-10-19T08:50:30.6537589Z"
+    },
+    {
+      "path": "scripts/Alexandria-Validate.ps1",
+      "bytes": 814,
+      "mtime": "2025-10-19T08:50:30.6537589Z"
+    },
+    {
+      "path": "scripts/Alexandria-World-LLM.ps1",
+      "bytes": 2129,
+      "mtime": "2025-10-19T08:50:30.6537589Z"
+    },
+    {
+      "path": "scripts/AsInt.psm1",
+      "bytes": 1229,
+      "mtime": "2025-10-19T08:50:30.6537589Z"
+    },
+    {
+      "path": "scripts/Carol-Aggregate-FromFile.ps1",
+      "bytes": 4185,
+      "mtime": "2025-10-19T08:50:30.6537589Z"
+    },
+    {
+      "path": "scripts/Carol-Aggregate-Packages-v2.ps1",
+      "bytes": 4497,
+      "mtime": "2025-10-19T08:50:30.6537589Z"
+    },
+    {
+      "path": "scripts/Carol-Aggregate-Packages.ps1",
+      "bytes": 6749,
+      "mtime": "2025-10-19T08:50:30.6537589Z"
+    },
+    {
+      "path": "scripts/Carol-Build-Pointer.ps1",
+      "bytes": 1438,
+      "mtime": "2025-10-19T08:50:30.6537589Z"
+    },
+    {
+      "path": "scripts/Carol-Diet-LLM.ps1",
+      "bytes": 2164,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Expand-14d.ps1",
+      "bytes": 2012,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Export-PDF.ps1",
+      "bytes": 2929,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Extract-Shopping-v2.ps1",
+      "bytes": 1480,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Extract-Shopping-v3.ps1",
+      "bytes": 4072,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Extract-Shopping.ps1",
+      "bytes": 2647,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Full-Refresh.ps1",
+      "bytes": 648,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-LLM-Plans.ps1",
+      "bytes": 2076,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Meal-Plan-2or6wk.ps1",
+      "bytes": 4570,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Meal-Plan-2wk.ps1",
+      "bytes": 2654,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Offline-2wk.ps1",
+      "bytes": 2709,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Package-Map-Report.ps1",
+      "bytes": 1785,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Plan-Inspector.ps1",
+      "bytes": 1414,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Carol-Validate.ps1",
+      "bytes": 1379,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Charlotte-Build-Link-Registry.ps1",
+      "bytes": 2262,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Charlotte-Design-Tokens.ps1",
+      "bytes": 1457,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Charlotte-Inject-Tokens.ps1",
+      "bytes": 521,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Charlotte-Site-Manifest.ps1",
+      "bytes": 470,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Charlotte-TTS-OpenAI.ps1",
+      "bytes": 1911,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Charlotte-TTS.ps1",
+      "bytes": 1859,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Clarice-Graphics-Audit.ps1",
+      "bytes": 1222,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Clarice-Snapshot.ps1",
+      "bytes": 391,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/FactCheck-LLM.ps1",
+      "bytes": 3334,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Hotfix-StripV-And-UnregisterSW.ps1",
+      "bytes": 686,
+      "mtime": "2025-10-19T08:50:30.6538741Z"
+    },
+    {
+      "path": "scripts/Jem-Import-SamsujgHealth.ps1",
+      "bytes": 2278,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-Import-SamsungHealth.ps1",
+      "bytes": 1846,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-Inspect-Programs.ps1",
+      "bytes": 839,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-LLM-Programs.ps1",
+      "bytes": 2116,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-Merge-Progress.ps1",
+      "bytes": 1354,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-Normalize-Week1.ps1",
+      "bytes": 5789,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-Pack-Imports.ps1",
+      "bytes": 1138,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-Progression-Engine.ps1",
+      "bytes": 2552,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-Rescue-Intake.ps1",
+      "bytes": 1879,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-Training-LLM.ps1",
+      "bytes": 2392,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-Validate.ps1",
+      "bytes": 810,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-Week1-Evaluation.ps1",
+      "bytes": 1733,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Jem-Week1-Plan.ps1",
+      "bytes": 5490,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/LLM-Bridge.ps1",
+      "bytes": 2128,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Nina-Generate-Rooms.ps1",
+      "bytes": 2032,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Nina-Scene-Index.ps1",
+      "bytes": 849,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Nina-VRM-Index.ps1",
+      "bytes": 817,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Nina-VRM-Sanity.ps1",
+      "bytes": 853,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Repo-Doctor.ps1",
+      "bytes": 3205,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Repo-Inventory.ps1",
+      "bytes": 822,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Repo-Read-All.ps1",
+      "bytes": 1312,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Repo-Refs-Graph.ps1",
+      "bytes": 1867,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Repo-Sweeper-Used-Files.ps1",
+      "bytes": 1427,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Repo-Sweeper-Workflows.ps1",
+      "bytes": 1489,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Repo-Usage-Report.ps1",
+      "bytes": 1822,
+      "mtime": "2025-10-19T08:50:30.6548741Z"
+    },
+    {
+      "path": "scripts/Root-Index-Hotfix.ps1",
+      "bytes": 3157,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/Run-All.ps1",
+      "bytes": 1460,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/Site-Doctor.ps1",
+      "bytes": 2320,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/Stella-Guided-LLM.ps1",
+      "bytes": 2189,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/Stella-LLM-Components.ps1",
+      "bytes": 2280,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/Stella-Schedule-LLM.ps1",
+      "bytes": 2986,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/Stella-Validate.ps1",
+      "bytes": 552,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/Tracy-Apply-Skin.ps1",
+      "bytes": 330,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/Tracy-Optimize-Images.ps1",
+      "bytes": 730,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/Tracy-Skin-From-Wallpapers.ps1",
+      "bytes": 3876,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/Tracy-Wallpaper-Index.ps1",
+      "bytes": 723,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/VersionParam-Sweeper.ps1",
+      "bytes": 954,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/Workflows-Sweeper.ps1",
+      "bytes": 905,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/nina-3d-index.ps1",
+      "bytes": 404,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-build-all.ps1",
+      "bytes": 2985,
+      "mtime": "2025-10-19T08:50:30.6558741Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-suite.ps1",
+      "bytes": 1863,
+      "mtime": "2025-10-19T08:50:30.6567778Z"
+    },
+    {
+      "path": "scripts/overseers/carol-meal-plan.ps1",
+      "bytes": 1377,
+      "mtime": "2025-10-19T08:50:30.6567778Z"
+    },
+    {
+      "path": "scripts/overseers/charlotte-pipeline-plan.ps1",
+      "bytes": 991,
+      "mtime": "2025-10-19T08:50:30.6567778Z"
+    },
+    {
+      "path": "scripts/overseers/charlotte-tts-azure.ps1",
+      "bytes": 2171,
+      "mtime": "2025-10-19T08:50:30.6567778Z"
+    },
+    {
+      "path": "scripts/overseers/jem-program-plan.ps1",
+      "bytes": 1508,
+      "mtime": "2025-10-19T08:50:30.6567778Z"
+    },
+    {
+      "path": "scripts/overseers/nina-3d-index.ps1",
+      "bytes": 1903,
+      "mtime": "2025-10-19T08:50:30.6567778Z"
+    },
+    {
+      "path": "scripts/overseers/overseers-llm-bridge.ps1",
+      "bytes": 3451,
+      "mtime": "2025-10-19T08:50:30.6567778Z"
+    },
+    {
+      "path": "scripts/overseers/tracy-artboard.ps1",
+      "bytes": 1373,
+      "mtime": "2025-10-19T08:50:30.6567778Z"
+    },
+    {
+      "path": "scripts/tracy-artboard.ps1",
+      "bytes": 502,
+      "mtime": "2025-10-19T08:50:30.6567778Z"
+    },
+    {
+      "path": "version.txt",
+      "bytes": 24,
+      "mtime": "2025-10-19T08:50:30.6567778Z"
+    },
+    {
+      "path": "workers/stella-voice-worker.js",
+      "bytes": 3501,
+      "mtime": "2025-10-19T08:50:30.6567778Z"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "project": "Avalon",
+    "file_name": "Cody's Memory.yaml",
+    "version": "2.3.0",
+    "last_updated": "20251019T035424Z",
+    "notes": "Odessa retired. Sorcha covers social+adult (18+ hidden) track. City/Workers-based audio I/O. Canonical workflows; BOM-safe JSON."
+  },
+  "assistants": {
+    "removed": [
+      "odessa"
+    ],
+    "sensitive": {
+      "sorcha": "adult_content (hidden server-side; never hosted on Pages)"
+    }
+  },
+  "rules": [
+    "Always ship two zips: workflows(FLAT) + site(ROOT)",
+    "Use canonical names\u2014update in-place",
+    "No secrets in client",
+    "Workers handle API keys & uploads",
+    "UTF-8 no BOM for JSON written by scripts",
+    "Registry ignores Odessa"
+  ]
+}

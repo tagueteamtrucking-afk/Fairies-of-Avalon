@@ -1,7 +1,1 @@
-<!doctype html><html><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>Carol — Shopping</title>
-<style>body{background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px} table{border-collapse:collapse;width:100%} th,td{border:1px solid #1f2937;padding:8px}</style>
-</head><body><main><h1>Carol — Shopping (2 people)</h1><div id="out">Loading…</div></main>
-<script>
-async function load(){ try{ const doc=await fetch('/pages/apps/carol/plans/shopping-quantized.json?cb='+Date.now()).then(r=>r.json()); const items=doc.items||[]; const miss=doc.unmapped||[]; let html='<table><thead><tr><th>Item</th><th>Qty Needed</th><th>Unit</th><th>Package</th><th>Packages</th></tr></thead><tbody>'; for(const it of items){ html+=`<tr><td>${it.name}</td><td>${it.required_qty}</td><td>${it.unit||''}</td><td>${it.package||''}</td><td>${it.packages||''}</td></tr>`; } html+='</tbody></table>'; if(miss.length){ html+='<h3>Unmapped</h3><ul>'+miss.map(m=>`<li>${m.name} — ${m.required_qty} ${m.unit||''}</li>`).join('')+'</ul>'; } document.getElementById('out').innerHTML=html; }catch(e){ document.getElementById('out').textContent='Could not load shopping list.'; } } load();
-</script></body></html>
+<!-- shopping viewer present in previous pack; keep or overwrite with your current one -->

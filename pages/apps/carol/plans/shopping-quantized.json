@@ -1,4 +1,179 @@
 ﻿{
+  "items": [
+    {
+      "package": "clamshell_10oz",
+      "name": "spinach",
+      "unit": "oz",
+      "required_qty": 40.0,
+      "capacity_per_package": 10,
+      "packages": 4,
+      "leftover": 0.0
+    },
+    {
+      "package": "half_gallon",
+      "name": "lf_milk",
+      "unit": "fl_oz",
+      "required_qty": 256.0,
+      "capacity_per_package": 64,
+      "packages": 4,
+      "leftover": 0.0
+    },
+    {
+      "package": "box_8oz",
+      "name": "panko",
+      "unit": "oz",
+      "required_qty": 16.0,
+      "capacity_per_package": 8,
+      "packages": 2,
+      "leftover": 0.0
+    },
+    {
+      "package": "bag_32oz",
+      "name": "frozen_berries",
+      "unit": "oz",
+      "required_qty": 64.0,
+      "capacity_per_package": 32,
+      "packages": 2,
+      "leftover": 0.0
+    },
+    {
+      "package": "hearts_3ct",
+      "name": "romaine",
+      "unit": "ct",
+      "required_qty": 6.0,
+      "capacity_per_package": 3,
+      "packages": 2,
+      "leftover": 0.0
+    },
+    {
+      "package": "bag_32oz",
+      "name": "frozen_mixed_veg",
+      "unit": "oz",
+      "required_qty": 128.0,
+      "capacity_per_package": 32,
+      "packages": 4,
+      "leftover": 0.0
+    },
+    {
+      "package": "carton_32fl_oz",
+      "name": "low_sodium_broth",
+      "unit": "fl_oz",
+      "required_qty": 128.0,
+      "capacity_per_package": 32,
+      "packages": 4,
+      "leftover": 0.0
+    },
+    {
+      "package": "tub_42oz",
+      "name": "rolled_oats",
+      "unit": "cups",
+      "required_qty": 20.0,
+      "capacity_per_package": 13,
+      "packages": 2,
+      "leftover": 6.0
+    },
+    {
+      "package": "can_15oz",
+      "name": "canned_chickpeas",
+      "unit": "ct",
+      "required_qty": 4.0,
+      "capacity_per_package": 1,
+      "packages": 4,
+      "leftover": 0.0
+    },
+    {
+      "package": "jar_16oz",
+      "name": "peanut_butter",
+      "unit": "tbsp",
+      "required_qty": 28.0,
+      "capacity_per_package": 28,
+      "packages": 1,
+      "leftover": 0.0
+    },
+    {
+      "package": "bag_10ct",
+      "name": "tortillas_8in",
+      "unit": "ct",
+      "required_qty": 24.0,
+      "capacity_per_package": 10,
+      "packages": 3,
+      "leftover": 6.0
+    },
+    {
+      "package": "tub_10oz",
+      "name": "hummus",
+      "unit": "tbsp",
+      "required_qty": 48.0,
+      "capacity_per_package": 19,
+      "packages": 3,
+      "leftover": 9.0
+    },
+    {
+      "package": "sleeve_14ct",
+      "name": "rice_cakes",
+      "unit": "ct",
+      "required_qty": 56.0,
+      "capacity_per_package": 14,
+      "packages": 4,
+      "leftover": 0.0
+    },
+    {
+      "package": "bag_5lb",
+      "name": "white_rice_dry",
+      "unit": "cups",
+      "required_qty": 12.0,
+      "capacity_per_package": 12.5,
+      "packages": 1,
+      "leftover": 0.5
+    },
+    {
+      "package": "can_15oz",
+      "name": "canned_black_beans",
+      "unit": "ct",
+      "required_qty": 4.0,
+      "capacity_per_package": 1,
+      "packages": 4,
+      "leftover": 0.0
+    },
+    {
+      "package": "tub_32oz",
+      "name": "lf_yogurt",
+      "unit": "oz",
+      "required_qty": 64.0,
+      "capacity_per_package": 32,
+      "packages": 2,
+      "leftover": 0.0
+    },
+    {
+      "package": "loaf_20oz",
+      "name": "ww_bread",
+      "unit": "ct",
+      "required_qty": 56.0,
+      "capacity_per_package": 1,
+      "packages": 56,
+      "leftover": 0.0
+    },
+    {
+      "package": "dozen",
+      "name": "eggs",
+      "unit": "ct",
+      "required_qty": 48.0,
+      "capacity_per_package": 12,
+      "packages": 4,
+      "leftover": 0.0
+    },
+    {
+      "package": "clamshell_16oz",
+      "name": "spring_mix",
+      "unit": "oz",
+      "required_qty": 32.0,
+      "capacity_per_package": 16,
+      "packages": 2,
+      "leftover": 0.0
+    }
+  ],
+  "package_map": "/pages/apps/carol/packages/us.json",
+  "updated": "2025-10-19T01:12:02Z",
   "unmapped": [
     {
       "name": "chicken_breast",
@@ -9,181 +184,6 @@
       "name": "olive_oil",
       "unit": "tbsp",
       "required_qty": 16.0
-    }
-  ],
-  "updated": "2025-10-18T23:06:40Z",
-  "package_map": "/pages/apps/carol/packages/us.json",
-  "items": [
-    {
-      "packages": 4,
-      "required_qty": 4.0,
-      "package": "can_15oz",
-      "leftover": 0.0,
-      "unit": "ct",
-      "name": "canned_black_beans",
-      "capacity_per_package": 1
-    },
-    {
-      "packages": 56,
-      "required_qty": 56.0,
-      "package": "loaf_20oz",
-      "leftover": 0.0,
-      "unit": "ct",
-      "name": "ww_bread",
-      "capacity_per_package": 1
-    },
-    {
-      "packages": 2,
-      "required_qty": 64.0,
-      "package": "tub_32oz",
-      "leftover": 0.0,
-      "unit": "oz",
-      "name": "lf_yogurt",
-      "capacity_per_package": 32
-    },
-    {
-      "packages": 2,
-      "required_qty": 32.0,
-      "package": "clamshell_16oz",
-      "leftover": 0.0,
-      "unit": "oz",
-      "name": "spring_mix",
-      "capacity_per_package": 16
-    },
-    {
-      "packages": 4,
-      "required_qty": 128.0,
-      "package": "carton_32fl_oz",
-      "leftover": 0.0,
-      "unit": "fl_oz",
-      "name": "low_sodium_broth",
-      "capacity_per_package": 32
-    },
-    {
-      "packages": 4,
-      "required_qty": 48.0,
-      "package": "dozen",
-      "leftover": 0.0,
-      "unit": "ct",
-      "name": "eggs",
-      "capacity_per_package": 12
-    },
-    {
-      "packages": 2,
-      "required_qty": 6.0,
-      "package": "hearts_3ct",
-      "leftover": 0.0,
-      "unit": "ct",
-      "name": "romaine",
-      "capacity_per_package": 3
-    },
-    {
-      "packages": 4,
-      "required_qty": 4.0,
-      "package": "can_15oz",
-      "leftover": 0.0,
-      "unit": "ct",
-      "name": "canned_chickpeas",
-      "capacity_per_package": 1
-    },
-    {
-      "packages": 3,
-      "required_qty": 24.0,
-      "package": "bag_10ct",
-      "leftover": 6.0,
-      "unit": "ct",
-      "name": "tortillas_8in",
-      "capacity_per_package": 10
-    },
-    {
-      "packages": 4,
-      "required_qty": 56.0,
-      "package": "sleeve_14ct",
-      "leftover": 0.0,
-      "unit": "ct",
-      "name": "rice_cakes",
-      "capacity_per_package": 14
-    },
-    {
-      "packages": 2,
-      "required_qty": 20.0,
-      "package": "tub_42oz",
-      "leftover": 6.0,
-      "unit": "cups",
-      "name": "rolled_oats",
-      "capacity_per_package": 13
-    },
-    {
-      "packages": 1,
-      "required_qty": 28.0,
-      "package": "jar_16oz",
-      "leftover": 0.0,
-      "unit": "tbsp",
-      "name": "peanut_butter",
-      "capacity_per_package": 28
-    },
-    {
-      "packages": 1,
-      "required_qty": 12.0,
-      "package": "bag_5lb",
-      "leftover": 0.5,
-      "unit": "cups",
-      "name": "white_rice_dry",
-      "capacity_per_package": 12.5
-    },
-    {
-      "packages": 4,
-      "required_qty": 40.0,
-      "package": "clamshell_10oz",
-      "leftover": 0.0,
-      "unit": "oz",
-      "name": "spinach",
-      "capacity_per_package": 10
-    },
-    {
-      "packages": 4,
-      "required_qty": 128.0,
-      "package": "bag_32oz",
-      "leftover": 0.0,
-      "unit": "oz",
-      "name": "frozen_mixed_veg",
-      "capacity_per_package": 32
-    },
-    {
-      "packages": 4,
-      "required_qty": 256.0,
-      "package": "half_gallon",
-      "leftover": 0.0,
-      "unit": "fl_oz",
-      "name": "lf_milk",
-      "capacity_per_package": 64
-    },
-    {
-      "packages": 2,
-      "required_qty": 64.0,
-      "package": "bag_32oz",
-      "leftover": 0.0,
-      "unit": "oz",
-      "name": "frozen_berries",
-      "capacity_per_package": 32
-    },
-    {
-      "packages": 3,
-      "required_qty": 48.0,
-      "package": "tub_10oz",
-      "leftover": 9.0,
-      "unit": "tbsp",
-      "name": "hummus",
-      "capacity_per_package": 19
-    },
-    {
-      "packages": 2,
-      "required_qty": 16.0,
-      "package": "box_8oz",
-      "leftover": 0.0,
-      "unit": "oz",
-      "name": "panko",
-      "capacity_per_package": 8
     }
   ],
   "persons": 2

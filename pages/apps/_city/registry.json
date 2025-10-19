@@ -1,4 +1,101 @@
 {
-  "updated": "20251019T055846Z",
-  "items": []
+  "items": [
+    {
+      "desc": "",
+      "href": "/pages/apps/_city/index.html",
+      "title": "_city",
+      "name": "_city"
+    },
+    {
+      "desc": "Finance & Reports",
+      "href": "/pages/apps/abbey/index.html",
+      "title": "Abbey — Grand Vault",
+      "name": "abbey"
+    },
+    {
+      "desc": "DM & Worldbuilding (Voice DM available)",
+      "href": "/pages/apps/alexandria/index.html",
+      "title": "Alexandria — Gothic Library",
+      "name": "alexandria"
+    },
+    {
+      "desc": "Monetization & Shops",
+      "href": "/pages/apps/billie/index.html",
+      "title": "Billie — Gold Mansion",
+      "name": "billie"
+    },
+    {
+      "desc": "Meal Plans & Shopping",
+      "href": "/pages/apps/carol/index.html",
+      "title": "Carol — Restaurant",
+      "name": "carol"
+    },
+    {
+      "desc": "Design & Pipelines",
+      "href": "/pages/apps/charlotte/index.html",
+      "title": "Charlotte — Relay Tower",
+      "name": "charlotte"
+    },
+    {
+      "desc": "Security & Backups",
+      "href": "/pages/apps/clarice/index.html",
+      "title": "Clarice — Courtroom & Palace",
+      "name": "clarice"
+    },
+    {
+      "desc": "Coaching & Biometrics",
+      "href": "/pages/apps/jem/index.html",
+      "title": "Jem — Dojo",
+      "name": "jem"
+    },
+    {
+      "desc": "3D & VRM",
+      "href": "/pages/apps/nina/index.html",
+      "title": "Nina — Futuristic Lab",
+      "name": "nina"
+    },
+    {
+      "desc": "",
+      "href": "/pages/apps/overseers/index.html",
+      "title": "overseers",
+      "name": "overseers"
+    },
+    {
+      "desc": "",
+      "href": "/pages/apps/reyczar/index.html",
+      "title": "reyczar",
+      "name": "reyczar"
+    },
+    {
+      "desc": "Social Video (incl. 18+ hidden track)",
+      "href": "/pages/apps/sorcha/index.html",
+      "title": "Sorcha — Mansion & Pool",
+      "name": "sorcha"
+    },
+    {
+      "desc": "Meditations & Gateway Practice",
+      "href": "/pages/apps/stella/index.html",
+      "title": "Stella — Observatory",
+      "name": "stella"
+    },
+    {
+      "desc": "Compliance & Reminders",
+      "href": "/pages/apps/themis/index.html",
+      "title": "Themis — Record Hall",
+      "name": "themis"
+    },
+    {
+      "desc": "Artboards & Wallpapers",
+      "href": "/pages/apps/tracy/index.html",
+      "title": "Tracy — Cathedral Studio",
+      "name": "tracy"
+    },
+    {
+      "desc": "",
+      "href": "/pages/apps/whitestar/index.html",
+      "title": "whitestar",
+      "name": "whitestar"
+    }
+  ],
+  "updated": "2025-10-19T06:28:08Z"
 }

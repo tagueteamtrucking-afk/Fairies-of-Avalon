@@ -1,28 +1,100 @@
-<!doctype html><html><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carol — Menu</title>
-<style>body{background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px} .day{background:#111827;border:1px solid #1f2937;border-radius:12px;margin:8px 0;padding:12px}</style>
-</head><body><main><h1>Carol — 14-Day Menu</h1><div id="out"></div></main>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Carol — 14-Day Menu</title>
+<style>
+  :root{--bg:#0b1220;--panel:#0f172a;--border:#1f2937;--fg:#e5e7eb;--link:#a5b4fc}
+  html,body{background:var(--bg);color:var(--fg);font-family:system-ui,Segoe UI,Roboto;margin:0}
+  main{max-width:900px;margin:0 auto;padding:16px}
+  .day{background:var(--panel);border:1px solid var(--border);border-radius:12px;margin:10px 0;padding:12px}
+  h1{margin:8px 0 14px}
+  details>summary{cursor:pointer;font-weight:600}
+  ul{margin:8px 0 0 0.5rem;padding-left:1rem}
+  .muted{opacity:0.75}
+  .dbg{font-size:12px;opacity:.8;margin:8px 0 12px}
+  .warn{background:#3b1d1d;border:1px solid #6b2323;padding:8px;border-radius:10px}
+  a{color:var(--link)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Carol — 14-Day Menu</h1>
+  <div id="dbg" class="dbg"></div>
+  <div id="out"></div>
+</main>
 <script>
-async function load(){
-  const ptr = await fetch('/pages/apps/carol/index.json?cb='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
-  let planUrl = ptr?.plan;
-  if(!planUrl){
-    // fallback: find latest mealplan in plans directory
-    const hint = await fetch('/pages/apps/carol/plans/?index').catch(()=>null);
+function fmtItem(x){
+  if(typeof x==='string') return x;
+  if(!x || typeof x!=='object') return JSON.stringify(x);
+  const name = x.name || x.item || x.title || x.label || 'item';
+  const qty  = (x.qty ?? x.quantity ?? x.amount);
+  const unit = (x.unit || x.units || '');
+  const prep = (x.prep || x.method || '');
+  let s = name;
+  if(qty!=null){ s += ' — ' + qty + (unit?' '+unit:''); }
+  if(prep){ s += ' ('+prep+')'; }
+  return s;
+}
+function asArray(v){
+  if(v==null) return [];
+  if(Array.isArray(v)) return v;
+  return [v];
+}
+function flattenDay(d){
+  // Accept many schemas: snacks[], meals[], items[], or breakfast/lunch/dinner/snacks keys
+  let items = [];
+  if(Array.isArray(d)) return d;
+  const keys = ['snacks','meals','items','entries','foods'];
+  for(const k of keys){
+    if(Array.isArray(d?.[k])) items = items.concat(d[k]);
   }
-  if(!planUrl){ document.getElementById('out').textContent='No meal plan pointer found.'; return; }
-  const plan = await fetch(planUrl+'?cb='+Date.now()).then(r=>r.json());
+  // meal-time keys
+  const mt = ['breakfast','morning_snack','lunch','afternoon_snack','dinner','evening_snack','snack','second_breakfast'];
+  for(const k of mt){
+    if(d?.[k]) items = items.concat(asArray(d[k]));
+  }
+  return items;
+}
+async function load(){
+  const dbg = document.getElementById('dbg');
   const out = document.getElementById('out');
-  out.innerHTML='';
-  const days = plan?.menu?.days || plan?.days || [];
-  if(days.length===0){ out.textContent='Plan has no days.'; return; }
-  days.forEach((d,i)=>{
-    const div=document.createElement('div'); div.className='day';
-    const snacks = d.snacks || d.items || [];
-    div.innerHTML = '<h3>Day '+(i+1)+'</h3><ul>'+snacks.map(s=>'<li>'+ (typeof s==='string'? s : (s.name||s.item||JSON.stringify(s))) +'</li>').join('') + '</ul>';
-    out.appendChild(div);
-  });
+  out.textContent = 'Loading…';
+  try{
+    const q = new URL(location.href).searchParams;
+    const override = q.get('plan'); // optional ?plan=/pages/apps/carol/plans/...
+    let planUrl = override;
+    let ptr = null;
+    if(!planUrl){
+      ptr = await fetch('/pages/apps/carol/index.json?cb='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null);
+      planUrl = ptr?.plan || null;
+    }
+    dbg.innerHTML = `<div>Pointer: <code>${(ptr?JSON.stringify(ptr):'null')}</code></div><div>Plan URL: <code>${planUrl||'(none)'}</code></div>`;
+    if(!planUrl){
+      out.innerHTML = '<div class="warn">No meal plan pointer found. Run Actions → <b>Carol – Ensure Plan</b> then <b>Carol – Refresh</b>, then Deploy.</div>';
+      return;
+    }
+    const plan = await fetch(planUrl+'?cb='+Date.now()).then(r=>r.json());
+    const days = (plan?.menu?.days) || plan?.days || [];
+    out.innerHTML='';
+    if(!Array.isArray(days) || days.length===0){
+      out.innerHTML = '<div class="warn">Plan loaded but has no days array.</div>';
+      return;
+    }
+    days.forEach((d,i)=>{
+      const items = flattenDay(d);
+      const li = items.map(s=>'<li>'+fmtItem(s)+'</li>').join('');
+      const block = document.createElement('details');
+      block.className = 'day'; block.open = false;
+      block.innerHTML = `<summary>Day ${i+1} <span class="muted">(${items.length} items)</span></summary>` + (items.length? `<ul>${li}</ul>` : '<div class="muted" style="padding:6px 0 0 2px">No items for this day.</div>');
+      out.appendChild(block);
+    });
+  }catch(e){
+    out.innerHTML = '<div class="warn">Error loading plan: '+e+'</div>';
+  }
 }
 load();
-</script></body></html>
+</script>
+</body>
+</html>

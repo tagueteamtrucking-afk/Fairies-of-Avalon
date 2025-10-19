@@ -1,0 +1,83 @@
+﻿{
+  "scenes": [
+    {
+      "day": 1,
+      "topic": "What I ate (DASH style)",
+      "broll": [
+        "prep hands",
+        "airfryer closeup",
+        "mixing bowl",
+        "text overlay"
+      ],
+      "script": "Day 1 choices: "
+    },
+    {
+      "day": 2,
+      "topic": "What I ate (DASH style)",
+      "broll": [
+        "prep hands",
+        "airfryer closeup",
+        "mixing bowl",
+        "text overlay"
+      ],
+      "script": "Day 2 choices: "
+    },
+    {
+      "day": 3,
+      "topic": "What I ate (DASH style)",
+      "broll": [
+        "prep hands",
+        "airfryer closeup",
+        "mixing bowl",
+        "text overlay"
+      ],
+      "script": "Day 3 choices: "
+    },
+    {
+      "day": 4,
+      "topic": "What I ate (DASH style)",
+      "broll": [
+        "prep hands",
+        "airfryer closeup",
+        "mixing bowl",
+        "text overlay"
+      ],
+      "script": "Day 4 choices: "
+    },
+    {
+      "day": 5,
+      "topic": "What I ate (DASH style)",
+      "broll": [
+        "prep hands",
+        "airfryer closeup",
+        "mixing bowl",
+        "text overlay"
+      ],
+      "script": "Day 5 choices: "
+    },
+    {
+      "day": 6,
+      "topic": "What I ate (DASH style)",
+      "broll": [
+        "prep hands",
+        "airfryer closeup",
+        "mixing bowl",
+        "text overlay"
+      ],
+      "script": "Day 6 choices: "
+    },
+    {
+      "day": 7,
+      "topic": "What I ate (DASH style)",
+      "broll": [
+        "prep hands",
+        "airfryer closeup",
+        "mixing bowl",
+        "text overlay"
+      ],
+      "script": "Day 7 choices: "
+    }
+  ],
+  "updated": "2025-10-19T03:36:26Z",
+  "source": "mealplan-balanced-20250918T052011Z.json"
+}

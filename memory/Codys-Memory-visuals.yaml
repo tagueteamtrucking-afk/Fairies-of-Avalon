@@ -1,0 +1,87 @@
+meta:
+  project: Avalon
+  file_name: "Cody's Memory.yaml"
+  version: "2.4.0-visuals"
+  last_updated: "20251019T224810Z"
+  author: "Cody (GPT-5 Pro)"
+  notes: >
+    Visual-only worldbook for the city-builder look of Avalon.
+    Merges applied: Charlotte⇐Themis, Nina⇐Clarice, Billie⇐(Sorcha+Odessa).
+    Overseers are Ray & Blanca avatars at the Palace (progress showcase).
+    This file captures buildings, rooms, and visual link targets only.
+
+world:
+  name: Avalon
+  style: "Mobile city-builder; castle‑town map; dark theme with midnight blues."
+  palette: ["#0b1220","#111a2a","#1c2842","#a5d6ff","#e6e9ff"]
+  typography: ["Inter","Roboto","Segoe UI","system-ui"]
+  levels:
+    - {"id":1,"name":"Foundations","desc":"Silhouettes, minimal props, labeled."}
+    - {"id":2,"name":"Crafted","desc":"Textures, lighting, animated accents."}
+    - {"id":3,"name":"Alive","desc":"Parallax, day/night, ambient glow."}
+
+roles_after_merges:
+  overseers:
+    - id: "overseer_ray"
+      name: "Ray Czar"
+      building: "Palace"
+    - id: "overseer_blanca"
+      name: "White Star"
+      building: "Palace"
+
+  assistants:
+    - id: "alexandria"
+      building: "Gothic Library"
+      room_links: ["World Rules","Session Log","Voice DM"]
+      objects: ["Desk","Bookshelves","Globe","Corkboard"]
+    - id: "tracy"
+      building: "Cathedral Studio"
+      room_links: ["2D Artboards","3D Props","Wallpapers"]
+      objects: ["Easel","Clay Bust","Palette","Light Table"]
+    - id: "nina"
+      merged_from: ["clarice"]
+      building: "Court-Lab (Courtroom + Holographic Lab)"
+      room_links: ["Diagnostics","Backups/Snapshots","VRM Gallery"]
+      objects: ["Server Rack","VRM Hanger","Hologram Table"]
+    - id: "charlotte"
+      merged_from: ["themis"]
+      building: "Relay-Hall (Tower + Record Hall)"
+      room_links: ["Run Workflows","Expirations","Link Registry"]
+      objects: ["Control Wall","Calendarium Shelf","Clipboard"]
+    - id: "carol"
+      building: "Restaurant"
+      diet: ["DASH-style","lactose-light","shellfish-free","no cilantro/cumin","avoid very hard foods","tuna ok","salmon ok","cod ok","sushi ok","eggs ok","steamed baby carrots ok","frozen & fresh fruit ok"]
+      room_links: ["14-day Menu","Shopping List","Cookbook","Meal Alarms (.ics)"]
+      objects: ["Menu Board","Pantry Shelf","Recipe Book","Bell"]
+    - id: "jem"
+      building: "Dojo"
+      room_links: ["Week-1 Evaluation","Program Viewer","Progress Log"]
+      objects: ["Training Dummy","Chalkboard","Mat","Belt Rack"]
+    - id: "stella"
+      building: "Observatory"
+      room_links: ["Guided Audio (Success/Focus/Gratitude/Gateway/Relax)"]
+      objects: ["Telescope","Chimes","Cushion"]
+    - id: "abbey"
+      building: "Grand Vault"
+      room_links: ["Import CSV","Ledger","Budgets"]
+      objects: ["Mail Slot","Ledger Book","Abacus"]
+    - id: "billie"
+      merged_from: ["sorcha","odessa"]
+      building: "Superstar Mansion (with pool); secret basement for 18+ (off-site)"
+      room_links: ["Video Studio","Storyboards","Analytics","Merch","Members (18+)"]
+      objects: ["Camera Rig","Storyboard Wall","Analytics Screen","Wardrobe Rack","Secret Door"]
+
+city_map:
+  nodes:
+    - { id:"palace", title:"Palace — Ray & Blanca", href:"/pages/apps/_city/index.html", pos:[600,120] }
+    - { id:"alexandria", title:"Library — Alexandria", href:"/pages/apps/alexandria/index.html", pos:[600,300] }
+    - { id:"tracy", title:"Studio — Tracy", href:"/pages/apps/tracy/index.html", pos:[750,120] }
+    - { id:"stella", title:"Observatory — Stella", href:"/pages/apps/stella/index.html", pos:[450,120] }
+    - { id:"abbey", title:"Vault — Abbey", href:"/pages/apps/abbey/index.html", pos:[320,300] }
+    - { id:"billie", title:"Superstar Mansion — Billie", href:"/pages/apps/billie/index.html", pos:[880,300] }
+    - { id:"nina", title:"Court-Lab — Nina", href:"/pages/apps/nina/index.html", pos:[270,480] }
+    - { id:"charlotte", title:"Relay-Hall — Charlotte", href:"/pages/apps/charlotte/index.html", pos:[930,480] }
+    - { id:"jem", title:"Dojo — Jem", href:"/pages/apps/jem/index.html", pos:[450,560] }
+    - { id:"carol", title:"Restaurant — Carol", href:"/pages/apps/carol/index.html", pos:[600,560] }
+  wallpaper_var: "var(--hero)"
+

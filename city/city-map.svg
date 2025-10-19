@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+<style>
+  .bg{fill:rgba(10,20,40,.35)} .rd{stroke:#2a395a;stroke-width:14;stroke-linecap:round}
+  .bd{fill:#152035;stroke:#2a3756;stroke-width:2} .tx{fill:#e6e9ff;font:14px/1.2 system-ui,Segoe UI,Roboto;text-anchor:middle}
+</style>
+<rect x="50" y="80" width="1100" height="540" rx="28" class="bg"/>
+<line x1="600" y1="155" x2="600" y2="300" class="rd"/><line x1="600" y1="300" x2="600" y2="560" class="rd"/>
+<line x1="320" y1="330" x2="880" y2="330" class="rd"/><line x1="270" y1="510" x2="930" y2="510" class="rd"/><line x1="450" y1="590" x2="750" y2="590" class="rd"/>
+<a href="/pages/apps/_city/index.html"><rect x="535" y="85" width="130" height="70" rx="12" class="bd"/><text x="600" y="125" class="tx">🏰 Palace</text></a>
+<a href="/pages/apps/stella/index.html"><rect x="405" y="95" width="90" height="60" rx="12" class="bd"/><text x="450" y="125" class="tx">🔭 Stella</text></a>
+<a href="/pages/apps/tracy/index.html"><rect x="695" y="95" width="110" height="60" rx="12" class="bd"/><text x="750" y="125" class="tx">🎨 Tracy</text></a>
+<a href="/pages/apps/abbey/index.html"><rect x="265" y="270" width="110" height="60" rx="12" class="bd"/><text x="320" y="300" class="tx">🏦 Abbey</text></a>
+<a href="/pages/apps/billie/index.html"><rect x="825" y="270" width="110" height="60" rx="12" class="bd"/><text x="880" y="300" class="tx">💫 Billie</text></a>
+<a href="/pages/apps/alexandria/index.html"><rect x="530" y="270" width="140" height="60" rx="12" class="bd"/><text x="600" y="300" class="tx">📚 Alexandria</text></a>
+<a href="/pages/apps/nina/index.html"><rect x="215" y="450" width="110" height="60" rx="12" class="bd"/><text x="270" y="480" class="tx">🧪 Nina</text></a>
+<a href="/pages/apps/charlotte/index.html"><rect x="875" y="450" width="120" height="60" rx="12" class="bd"/><text x="930" y="480" class="tx">📡 Charlotte</text></a>
+<a href="/pages/apps/jem/index.html"><rect x="400" y="530" width="100" height="60" rx="12" class="bd"/><text x="450" y="560" class="tx">🥋 Jem</text></a>
+<a href="/pages/apps/carol/index.html"><rect x="540" y="530" width="120" height="60" rx="12" class="bd"/><text x="600" y="560" class="tx">🍽️ Carol</text></a>
+</svg>

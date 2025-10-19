@@ -1,0 +1,9 @@
+:root{
+  --bg:#0b1220; --panel:#111a2a; --muted:#8aa2d3; --text:#e6e9ff; --accent:#a5d6ff;
+  --stroke:#1c2842; --radius:14px; --pad:14px; --shadow:0 8px 22px rgba(0,0,0,.25);
+  --hero:url('/asset/textures/wallpapers/hero.jpg');
+}
+body{background:var(--bg);color:var(--text);font:16px/1.5 system-ui,Segoe UI,Roboto;margin:0}
+.panel{background:linear-gradient(180deg,#0f172a,#0b1220);border:1px solid #182136;border-radius:var(--radius);box-shadow:var(--shadow);padding:var(--pad)}
+a{color:var(--accent);text-decoration:none}
+button{background:#152035;border:1px solid #243553;color:var(--text);border-radius:10px;padding:8px 12px}

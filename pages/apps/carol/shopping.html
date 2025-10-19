@@ -16,7 +16,6 @@ async function load(){
     if(r.ok){ data = await r.json(); }
   }
   if(!data){
-    // fallback: derive naive list from plan
     const plan = await (await fetch(ptr.plan+'?cb='+Date.now())).json();
     const acc = {};
     (plan.days||[]).forEach(d=> (d.items||[]).forEach(it=> (it.ingredients||[]).forEach(g=>{

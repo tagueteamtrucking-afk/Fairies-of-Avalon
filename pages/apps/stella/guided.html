@@ -1,39 +1,21 @@
-<!doctype html>
-<html><head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Stella — Guided Audio</title>
-  <style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}</style>
-</head>
-<body>
-  <h1>Stella — Guided Audio</h1>
-  <p><label>Worker URL <input id="w" size="60" placeholder="https://your-worker.workers.dev"></label>
-     <button onclick="localStorage.setItem('OPENAI_WORKER_URL',document.getElementById('w').value);alert('Saved')">Save</button></p>
-  <p>
-    <select id="prog">
-      <option value="success">Success & Determination</option>
-      <option value="focus">Focus & Deep Work</option>
-      <option value="gratitude">Gratitude & Happiness</option>
-      <option value="gateway">Gateway Practice</option>
-      <option value="relax">Relaxation & Sleep</option>
-    </select>
-    <button onclick="play()">▶️ Play</button>
-  </p>
-  <pre id="log"></pre>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stella — Guided Audio</title><style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}a{color:#a5d6ff}</style></head>
+<body><h1>Stella — Guided Audio</h1>
+<p><label>Worker URL <input id="w" size="60" placeholder="https://your-worker.workers.dev"></label> <button onclick="save()">Save</button></p>
+<p><select id="prog"><option value="success">Success & Drive</option><option value="focus">Focus & Deep Work</option><option value="gratitude">Gratitude</option><option value="gateway">Gateway Practice</option><option value="relax">Relaxation</option></select> <button onclick="play()">▶️ Play</button></p>
+<pre id="log"></pre>
 <script>
-async function play(){
-  const url = localStorage.getItem('OPENAI_WORKER_URL'); if(!url){ alert('Set Worker URL first'); return; }
-  const prog = document.getElementById('prog').value;
-  const prompt = {
-    success: "Guided meditation for success, drive, and resilience. 8 minutes. Calm, confident tone.",
-    focus:   "Guided session for deep work focus with gentle breathing cues. 10 minutes.",
-    gratitude:"Gratitude and happiness meditation. 8 minutes.",
-    gateway: "Gateway practice: relaxation + focus + resonant breathing + imagery. 12 minutes.",
-    relax:   "Wind-down body scan with soft ambient background notes. 12 minutes."
-  }[prog] || "Guided meditation 8 minutes.";
-  const resp = await fetch(url + "/speak", { method:"POST",
-    headers:{ "content-type":"application/json" }, body: JSON.stringify({ text: prompt }) });
-  const buf = await resp.arrayBuffer(); new Audio(URL.createObjectURL(new Blob([buf]))).play();
-  document.getElementById('log').textContent = "Playing: " + prog;
+function save(){ localStorage.setItem('OPENAI_WORKER_URL', document.getElementById('w').value); alert('Saved'); }
+async function play(){ const url=localStorage.getItem('OPENAI_WORKER_URL'); if(!url){ alert('Set Worker URL first'); return; }
+  const m={success:'Guided meditation for success, drive, resilience. 8 min.',
+           focus:'Guided deep work focus. 10 min.',
+           gratitude:'Gratitude and happiness. 8 min.',
+           gateway:'Gateway: relaxation + resonance + imagery. 12 min.',
+           relax:'Wind-down body scan. 12 min.'}[document.getElementById('prog').value];
+  const r=await fetch(url+'/speak',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text:m})});
+  const buf=await r.arrayBuffer(); new Audio(URL.createObjectURL(new Blob([buf]))).play();
+  document.getElementById('log').textContent='Playing…';
 }
 </script>
+<p><a href="/pages/apps/stella/index.html">← Back</a></p>
 </body></html>

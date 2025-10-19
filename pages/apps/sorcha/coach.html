@@ -1,11 +1,9 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sorcha — Coaching</title>
-<style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px} textarea{width:100%;min-height:160px}</style></head>
+<title>Sorcha — Coaching</title><style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px} textarea{width:100%;min-height:160px}</style></head>
 <body>
 <h1>🧠 Sorcha — Coaching Notes</h1>
-<p>Capture what worked, what didn’t, and next experiments. Notes stay in your browser (localStorage) unless you send them to the Worker.</p>
-<p><textarea id="t" placeholder="Write feedback or paste transcripts here…"></textarea></p>
-<p><button onclick="save()">Save (local)</button> <button onclick="send()">Send to Worker</button></p>
+<p>Notes stay in your browser. <button onclick="save()">Save (local)</button> <button onclick="send()">Send to Worker</button></p>
+<textarea id="t" placeholder="What worked? what to test next?"></textarea>
 <pre id="log"></pre>
 <script>
 function save(){ localStorage.setItem('sorcha_notes', document.getElementById('t').value); alert('Saved locally'); }
@@ -17,4 +15,5 @@ async function send(){
 }
 document.getElementById('t').value = localStorage.getItem('sorcha_notes')||'';
 </script>
+<p><a href="/pages/apps/sorcha/index.html" style="color:#a5d6ff">← Back</a></p>
 </body></html>

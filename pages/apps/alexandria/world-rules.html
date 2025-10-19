@@ -1,0 +1,11 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alexandria — World Rules</title><style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px} textarea{width:100%;min-height:50vh}</style></head>
+<body><h1>World Rules — Editor</h1>
+<p>Saved locally in your browser. Use <b>Download</b> to save a JSON file into the repo later.</p>
+<textarea id="t">{ "magic":{"sources":["arcane","divine"],"costs":["fatigue"]}, "physics":{"mana_conservation":true} }</textarea>
+<p><button onclick="save()">Save (local)</button> <button onclick="dl()">Download JSON</button> <a href="/pages/apps/alexandria/index.html" style="color:#a5d6ff">← Back</a></p>
+<script>
+function save(){ localStorage.setItem('alex_world_rules', document.getElementById('t').value); alert('Saved locally.'); }
+function dl(){ const blob=new Blob([document.getElementById('t').value],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='world-rules.json'; a.click(); }
+document.getElementById('t').value = localStorage.getItem('alex_world_rules') || document.getElementById('t').value;
+</script></body></html>

@@ -2,7 +2,7 @@
 <title>Alexandria — Voice DM</title><style>body{background:#0b1220;color:#e6e9eb;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}</style></head>
 <body>
 <h1>Alexandria — Voice DM</h1>
-<label>Worker URL <input id="w" size="60" placeholder="https://your-worker.workers.dev"></label> <button onclick="save()">Save</button>
+<p><label>Worker URL <input id="w" size="60" placeholder="https://your-worker.workers.dev"></label> <button onclick="save()">Save</button></p>
 <p><button onclick="start()">🎤 Start</button> <button onclick="stop()">⏹️ Stop</button></p>
 <pre id="log"></pre>
 <script>
@@ -22,4 +22,5 @@ async function start(){ try{
 }catch(e){ document.getElementById('log').textContent='Error: '+e; }}
 function stop(){ if(rec){ rec.stop(); if(media){ media.getTracks().forEach(t=>t.stop()); } } }
 </script>
+<p><a href="/pages/apps/alexandria/index.html" style="color:#a5d6ff">← Back</a></p>
 </body></html>

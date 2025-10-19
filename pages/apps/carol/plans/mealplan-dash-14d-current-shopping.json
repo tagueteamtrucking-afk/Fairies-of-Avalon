@@ -51,13 +51,18 @@
       "package": "12 oz squeeze \u00d7 1"
     },
     {
+      "item": "lemon",
+      "need": "~7",
+      "package": "7 count"
+    },
+    {
       "item": "chicken breast",
       "need": "~7 lb",
       "package": "bulk pack 7 lb"
     },
     {
       "item": "brown rice (dry)",
-      "need": "~7 cups cooked",
+      "need": "~3.5 cups dry",
       "package": "2 lb bag \u00d7 1"
     },
     {
@@ -69,6 +74,16 @@
       "item": "olive oil",
       "need": "~14 tsp",
       "package": "17 oz bottle \u00d7 1"
+    },
+    {
+      "item": "garlic powder",
+      "need": "~3.5 tsp",
+      "package": "jar \u00d7 1"
+    },
+    {
+      "item": "black pepper",
+      "need": "~14 pinches",
+      "package": "jar \u00d7 1"
     },
     {
       "item": "hummus",

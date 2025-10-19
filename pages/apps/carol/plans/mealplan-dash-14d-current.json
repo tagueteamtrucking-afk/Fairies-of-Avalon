@@ -9,7 +9,8 @@
       "no cilantro",
       "no cumin",
       "no powdered PB"
-    ]
+    ],
+    "disclaimer": "Nutrition is estimated; verify with labels or a dietitian."
   },
   "days": [
     {
@@ -29,7 +30,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -46,10 +56,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -64,13 +83,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -87,8 +119,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -105,10 +154,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -118,7 +176,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -139,7 +206,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -156,10 +232,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -174,13 +259,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -197,8 +295,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -215,10 +330,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -228,7 +352,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -249,7 +382,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -266,10 +408,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -284,13 +435,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -307,8 +471,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -325,10 +506,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -338,7 +528,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -359,7 +558,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -376,10 +584,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -394,13 +611,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -417,8 +647,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -435,10 +682,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -448,7 +704,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -469,7 +734,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -486,10 +760,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -504,13 +787,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -527,8 +823,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -545,10 +858,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -558,7 +880,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -579,7 +910,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -596,10 +936,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -614,13 +963,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -637,8 +999,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -655,10 +1034,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -668,7 +1056,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -689,7 +1086,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -706,10 +1112,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -724,13 +1139,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -747,8 +1175,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -765,10 +1210,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -778,7 +1232,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -799,7 +1262,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -816,10 +1288,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -834,13 +1315,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -857,8 +1351,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -875,10 +1386,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -888,7 +1408,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -909,7 +1438,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -926,10 +1464,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -944,13 +1491,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -967,8 +1527,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -985,10 +1562,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -998,7 +1584,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -1019,7 +1614,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -1036,10 +1640,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -1054,13 +1667,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -1077,8 +1703,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -1095,10 +1738,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -1108,7 +1760,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -1129,7 +1790,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -1146,10 +1816,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -1164,13 +1843,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -1187,8 +1879,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -1205,10 +1914,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -1218,7 +1936,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -1239,7 +1966,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -1256,10 +1992,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -1274,13 +2019,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -1297,8 +2055,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -1315,10 +2090,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -1328,7 +2112,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -1349,7 +2142,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -1366,10 +2168,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -1384,13 +2195,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -1407,8 +2231,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -1425,10 +2266,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -1438,7 +2288,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     },
@@ -1459,7 +2318,16 @@
               "item": "old\u2011fashioned oats",
               "qty": "1/4 cup"
             }
-          ]
+          ],
+          "method": "Stir oats into yogurt, top with thawed berries. Eat cold.",
+          "nutrition": {
+            "kcal": 260,
+            "protein_g": 20,
+            "carb_g": 35,
+            "fat_g": 5,
+            "sodium_mg": 80,
+            "added_sugar_g": 8
+          }
         },
         {
           "title": "Whole\u2011grain toast + almond butter + banana",
@@ -1476,10 +2344,19 @@
               "item": "banana",
               "qty": "1/2 small"
             }
-          ]
+          ],
+          "method": "Toast bread. Spread almond butter. Top with banana slices.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 28,
+            "fat_g": 11,
+            "sodium_mg": 140,
+            "added_sugar_g": 6
+          }
         },
         {
-          "title": "Tuna\u2011free chickpea salad wrap",
+          "title": "Chickpea salad wrap (tuna\u2011free)",
           "ingredients": [
             {
               "item": "whole\u2011wheat tortilla (8 in)",
@@ -1494,13 +2371,26 @@
               "qty": "1/4 cup"
             },
             {
-              "item": "light mayo or yogurt (LF)",
+              "item": "light LF mayo or yogurt",
               "qty": "1 tbsp"
+            },
+            {
+              "item": "lemon juice",
+              "qty": "1 tsp"
             }
-          ]
+          ],
+          "method": "Mash chickpeas with lemon and LF mayo/yogurt. Fold in celery. Wrap in tortilla.",
+          "nutrition": {
+            "kcal": 320,
+            "protein_g": 12,
+            "carb_g": 46,
+            "fat_g": 9,
+            "sodium_mg": 360,
+            "added_sugar_g": 3
+          }
         },
         {
-          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "title": "Chicken, rice & broccoli (air fryer + skillet)",
           "ingredients": [
             {
               "item": "chicken breast",
@@ -1517,8 +2407,25 @@
             {
               "item": "olive oil",
               "qty": "1 tsp"
+            },
+            {
+              "item": "garlic powder",
+              "qty": "1/4 tsp"
+            },
+            {
+              "item": "black pepper",
+              "qty": "pinch"
             }
-          ]
+          ],
+          "method": "Season chicken with garlic & pepper; air fry 390\u00b0F (200\u00b0C) 10\u201312 min until 165\u00b0F. Steam/air-fry broccoli. Serve over warm rice, drizzle oil.",
+          "nutrition": {
+            "kcal": 420,
+            "protein_g": 36,
+            "carb_g": 38,
+            "fat_g": 12,
+            "sodium_mg": 220,
+            "added_sugar_g": 2
+          }
         },
         {
           "title": "Hummus & veggie box",
@@ -1535,10 +2442,19 @@
               "item": "english cucumber",
               "qty": "1/2"
             }
-          ]
+          ],
+          "method": "Portion hummus; slice cucumber; serve with carrots.",
+          "nutrition": {
+            "kcal": 210,
+            "protein_g": 6,
+            "carb_g": 18,
+            "fat_g": 13,
+            "sodium_mg": 220,
+            "added_sugar_g": 1
+          }
         },
         {
-          "title": "Fruit & nut snack",
+          "title": "Fruit & nuts",
           "ingredients": [
             {
               "item": "apple",
@@ -1548,7 +2464,16 @@
               "item": "almonds, unsalted",
               "qty": "1 oz"
             }
-          ]
+          ],
+          "method": "Eat as is.",
+          "nutrition": {
+            "kcal": 220,
+            "protein_g": 6,
+            "carb_g": 22,
+            "fat_g": 14,
+            "sodium_mg": 0,
+            "added_sugar_g": 0
+          }
         }
       ]
     }

@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Abbey — Importer</title><style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #1b2436;padding:8px 6px;text-align:left}th{background:#111a2b}</style></head>
+<body><h1>Abbey — CSV Importer</h1>
+<p>Drop a bank/credit CSV file to summarize locally (no uploads). You can download the JSON after parsing and add it to the repo.</p>
+<input type="file" id="f" accept=".csv" multiple><button onclick="go()">Parse</button><pre id="log"></pre><div id="out"></div>
+<script>
+function parseCSV(text){const [h,...rows]=text.trim().split(/\r?\n/);const keys=h.split(',').map(s=>s.trim());return rows.map(r=>Object.fromEntries(r.split(',').map((v,i)=>[keys[i],v.trim()])))}
+async function go(){const fi=document.getElementById('f');const out=[];for(const file of fi.files){const txt=await file.text();out.push(...parseCSV(txt))}
+  document.getElementById('log').textContent='Rows: '+out.length; const sum={income:0,expense:0};
+  out.forEach(r=>{const amt=parseFloat(r.amount||r.Amount||'0'); if(!isNaN(amt)){ if(amt>=0) sum.income+=amt; else sum.expense+=amt; }});
+  const div=document.getElementById('out'); div.innerHTML='<p><b>Income:</b> '+sum.income.toFixed(2)+' · <b>Expense:</b> '+sum.expense.toFixed(2)+'</p>';
+  const blob=new Blob([JSON.stringify({rows:out,summary:sum},null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='abbey-ledger.json'; a.textContent='Download ledger.json'; div.appendChild(a);
+}
+</script>
+<p><a href="/pages/apps/abbey/index.html" style="color:#a5d6ff">← Back</a></p>
+</body></html>

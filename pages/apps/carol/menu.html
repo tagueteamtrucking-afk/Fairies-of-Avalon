@@ -1,30 +1,69 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Carol — 14‑Day Menu</title>
-<style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}details{background:#0f172a;border:1px solid #182136;border-radius:12px;margin:10px 0;padding:10px}a{color:#a5d6ff}</style>
-</head><body>
+<style>
+body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}
+a{color:#a5d6ff} .t{width:100%;border-collapse:collapse} th,td{border-bottom:1px solid #1b2436;padding:10px;text-align:left;vertical-align:top}
+th{background:#111a2b;position:sticky;top:0} .day{margin:18px 0 28px}
+.code{font-family:ui-monospace,consolas,monaco;opacity:.8}
+.btn{background:#1f2a44;border:1px solid #2a3658;border-radius:10px;padding:10px 14px;color:#e6e9ff;text-decoration:none;display:inline-block;margin-right:10px}
+</style></head>
+<body>
 <h1>Carol — 14‑Day Menu</h1>
-<div id="debug" style="opacity:.6;font-family:ui-monospace,consolas,monaco"></div>
+<div id="debug" class="code"></div>
+<p>
+  <a class="btn" href="/pages/apps/carol/index.html">← Back to restaurant</a>
+  <a class="btn" href="/pages/apps/carol/shopping.html">🧺 Shopping</a>
+  <a class="btn" href="#" onclick="window.print();return false;">🖨️ Print / Save PDF</a>
+  <a class="btn" href="#" onclick="downloadICS();return false;">⏰ Download Meal Alarms (.ics)</a>
+</p>
 <div id="menu"></div>
-<p><a href="/pages/apps/carol/index.html">← Back to restaurant</a> · <a href="/pages/apps/carol/shopping.html">Shopping list</a> · <a href="#" onclick="window.print();return false;">Print / Save PDF</a></p>
 <script>
+function esc(s){return (s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}
 async function load(){
   const ptr = await (await fetch('/pages/apps/carol/index.json?cb='+Date.now())).json();
-  document.getElementById('debug').textContent = 'Plan: '+ptr.plan;
+  document.getElementById('debug').textContent = 'Plan: '+ptr.plan+' | Updated: '+(ptr.updated||'');
   const plan = await (await fetch(ptr.plan+'?cb='+Date.now())).json();
-  const el = document.getElementById('menu');
-  el.innerHTML='';
-  (plan.days||[]).forEach((d,i)=>{
-    const dd=document.createElement('details'); dd.open = i<1;
-    dd.innerHTML='<summary>Day '+(i+1)+'</summary>';
-    const ul=document.createElement('ul');
-    (d.items||[]).forEach(it=>{
-      const li=document.createElement('li');
-      let ing = (it.ingredients||[]).map(x=>`${x.qty} ${x.item}`).join('; ');
-      li.textContent = `${it.title}${ing? ' — '+ing: ''}`;
-      ul.appendChild(li);
-    });
-    dd.appendChild(ul); el.appendChild(dd);
+  const root = document.getElementById('menu'); root.innerHTML='';
+  (plan.days||[]).forEach((d,di)=>{
+    const wrap=document.createElement('div'); wrap.className='day';
+    wrap.innerHTML='<h2>Day '+(di+1)+'</h2>';
+    const t=document.createElement('table'); t.className='t';
+    t.innerHTML='<thead><tr><th>Mini‑meal</th><th>Ingredients</th><th>Cookbook (prep, cook, serve)</th><th>Nutrition (est.)</th></tr></thead>';
+    const tb=document.createElement('tbody');
+    (d.items||[]).forEach((it,ii)=>{
+      const tr=document.createElement('tr');
+      const ing=(it.ingredients||[]).map(g=> esc(g.qty)+' '+esc(g.item)).join('<br>');
+      const n=it.nutrition||{}; const nTxt = 
+        ['kcal','protein_g','carb_g','fat_g','sodium_mg','added_sugar_g']
+        .map(k=> it.nutrition && (k in it.nutrition) ? (k.replace('_g',' (g)').replace('_mg',' (mg)')+': '+it.nutrition[k]) : null)
+        .filter(Boolean).join('<br>');
+      tr.innerHTML = '<td><b>'+esc(it.title)+'</b></td><td>'+ing+'</td><td>'+esc(it.method||"")+'</td><td>'+nTxt+'</td>';
+      tb.appendChild(tr);
+    }); t.appendChild(tb); wrap.appendChild(t); root.appendChild(wrap);
   });
+}
+function pad(n){return (n<10?'0':'')+n}
+function icsEvent(dtstart, dtend, title){
+  return ['BEGIN:VEVENT','DTSTAMP:'+dtstart,'DTSTART:'+dtstart,'DTEND:'+dtend,'SUMMARY:'+title,'END:VEVENT'].join('\r\n');
+}
+function downloadICS(){
+  const start = new Date(); // today
+  const meals = ['08:00','10:30','13:00','15:30','18:00','20:30']; // 6 per day
+  let lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Avalon//Carol Meal Alarms//EN'];
+  for(let d=0; d<14; d++){
+    const base=new Date(start.getFullYear(), start.getMonth(), start.getDate()+d);
+    for(const hhmm of meals){
+      const [h,m]=hhmm.split(':').map(x=>parseInt(x,10));
+      const s=new Date(base.getFullYear(),base.getMonth(),base.getDate(),h,m);
+      const e=new Date(s.getTime()+30*60000);
+      const stamp = s.getUTCFullYear()+pad(s.getUTCMonth()+1)+pad(s.getUTCDate())+'T'+pad(s.getUTCHours())+pad(s.getUTCMinutes())+'00Z';
+      const stamp2= e.getUTCFullYear()+pad(e.getUTCMonth()+1)+pad(e.getUTCDate())+'T'+pad(e.getUTCMinutes())+'00Z';
+      lines.push(icsEvent(stamp, stamp2, 'Carol Meal / Snack'));
+    }
+  }
+  lines.push('END:VCALENDAR');
+  const blob=new Blob([lines.join('\r\n')],{type:'text/calendar'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='carol-meal-alarms.ics'; a.click();
 }
 load();
 </script></body></html>

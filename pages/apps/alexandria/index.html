@@ -1,4 +1,21 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Alexandria — Gothic Library</title><style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}a{color:#a5d6ff}</style></head>
-<body><h1>Alexandria — Gothic Library</h1><ul><li><a href="/pages/apps/alexandria/voice-dm.html">🎲 Voice DM</a></li>
-<li><a href="/pages/apps/alexandria/world-rules.html">📜 World Rules (local editor)</a></li></ul><p><a href="/pages/plaza.html">← Back to City</a></p></body></html>
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alexandria — Gothic Library</title>
+<link rel="stylesheet" href="/pages/apps/_shared/ui.css">
+<link rel="stylesheet" href="/pages/apps/_shared/room.css">
+</head><body><div class="wrap">
+<div class="nav">
+  <a class="btn" href="/">Home</a>
+  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
+  <a class="btn" href="/pages/apps/_city/index.html">Grid</a>
+</div>
+<div class="hero"></div>
+<h1>Alexandria — Gothic Library</h1>
+<div id="room" class="room"></div>
+<div class="footer">Build: 20251019T232747Z</div>
+<script type="module">
+import { mountRoom } from '/pages/apps/_shared/room.js';
+const items = [{"icon": "🌐", "title": "Globe — World Rules & Maps", "href": "/pages/apps/alexandria/world-rules.html", "desc": "Define magic, societies, travel, politics."}, {"icon": "📚", "title": "Bookshelves — Stories & Sheets", "href": "/pages/apps/alexandria/stories.html", "desc": "Write & organize stories, characters."}, {"icon": "🗺️", "title": "Corkboard — Campaigns", "href": "/pages/apps/alexandria/campaigns.html", "desc": "Track sessions & recaps."}, {"icon": "🗣️", "title": "DM Voice", "href": "/pages/apps/alexandria/voice-dm.html", "desc": "Speak as the DM (worker TTS)."}];
+mountRoom(document.getElementById('room'), items);
+</script>
+</div></body></html>

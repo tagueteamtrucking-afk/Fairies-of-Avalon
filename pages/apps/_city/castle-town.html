@@ -1,16 +1,56 @@
 <!doctype html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Avalon — Castle Town</title>
-<link rel="stylesheet" href="./city.css">
-<style>.ctr{max-width:1200px;margin:0 auto;padding:16px}.bar{display:flex;gap:10px;align-items:center}.btn{background:#152035;border:1px solid #243553;border-radius:10px;padding:8px 12px;color:#e6e9ff;text-decoration:none}</style>
-</head><body>
-<div class="ctr">
-  <div class="bar">
-    <h1 style="margin:0">🏰 Avalon — Castle Town</h1>
-    <a class="btn" href="/pages/apps/_city/index.html">Grid</a>
-    <a class="btn" href="/">Home</a>
-  </div>
-  <svg id="map" viewBox="0 0 1200 700" style="width:100%;height:auto;background:rgba(0,0,0,.2);border:1px solid #243553;border-radius:12px"></svg>
+<link rel="stylesheet" href="/pages/apps/_shared/ui.css">
+<style>
+svg{width:100%;height:auto;background:rgba(0,0,0,.2);border:1px solid #243553;border-radius:12px}
+.bg{fill:rgba(10,20,40,.35)} .rd{stroke:#2a395a;stroke-width:14;stroke-linecap:round}
+.bd{fill:#152035;stroke:#2a3756;stroke-width:2} .tx{fill:#e6e9ff;font:14px/1.2 system-ui,Segoe UI,Roboto;text-anchor:middle}
+</style>
+</head><body><div class="wrap">
+<div class="nav">
+  <a class="btn" href="/">Home</a>
+  <a class="btn" href="/pages/apps/_city/index.html">Grid</a>
 </div>
-<script src="./map.js"></script>
-</body></html>
+<div class="hero"></div>
+<h1>🏰 Avalon — Castle Town</h1>
+<p class="muted">Tap a building to enter its room.</p>
+<svg id="map" viewBox="0 0 1200 700" role="img" aria-label="Avalon Castle-Town Map">
+  <rect x="50" y="80" width="1100" height="540" rx="28" class="bg"/>
+  <line x1="600" y1="155" x2="600" y2="300" class="rd"/><line x1="600" y1="300" x2="600" y2="560" class="rd"/>
+  <line x1="320" y1="330" x2="880" y2="330" class="rd"/><line x1="270" y1="510" x2="930" y2="510" class="rd"/><line x1="450" y1="590" x2="750" y2="590" class="rd"/>
+  <!-- buildings injected by JS fallback rendered inline -->
+</svg>
+<div class="footer">Build: 20251019T232747Z</div>
+<script>
+const REG = "/city/city-registry.json";
+const buildings = [
+  {id:'palace', label:'🏰 Palace — Ray & Blanca', href:'/pages/apps/_city/index.html', x:600, y:120, w:130, h:70},
+  {id:'stella', label:'🔭 Stella — Observatory', href:'/pages/apps/stella/index.html', x:450, y:120, w:90, h:60},
+  {id:'tracy', label:'🎨 Tracy — Studio', href:'/pages/apps/tracy/index.html', x:750, y:120, w:110, h:60},
+  {id:'abbey', label:'🏦 Abbey — Vault', href:'/pages/apps/abbey/index.html', x:320, y:300, w:110, h:60},
+  {id:'billie', label:'💫 Billie — Mansion', href:'/pages/apps/billie/index.html', x:880, y:300, w:120, h:60},
+  {id:'alexandria', label:'📚 Alexandria — Library', href:'/pages/apps/alexandria/index.html', x:600, y:300, w:140, h:60},
+  {id:'nina', label:'🧪 Nina — Court-Lab', href:'/pages/apps/nina/index.html', x:270, y:480, w:110, h:60},
+  {id:'charlotte', label:'📡 Charlotte — Relay-Hall', href:'/pages/apps/charlotte/index.html', x:930, y:480, w:120, h:60},
+  {id:'jem', label:'🥋 Jem — Dojo', href:'/pages/apps/jem/index.html', x:450, y:560, w:100, h:60},
+  {id:'carol', label:'🍽️ Carol — Restaurant', href:'/pages/apps/carol/index.html', x:600, y:560, w:120, h:60}
+];
+function draw(list){
+  const svg=document.getElementById('map'); const svgns='http://www.w3.org/2000/svg';
+  for(const b of list){
+    const g=document.createElementNS(svgns,'g'); g.style.cursor='pointer'; g.setAttribute('role','link'); g.setAttribute('tabindex','0');
+    const r=document.createElementNS(svgns,'rect'); r.setAttribute('x',b.x-b.w/2); r.setAttribute('y',b.y-b.h/2); r.setAttribute('width',b.w); r.setAttribute('height',b.h); r.setAttribute('rx',12); r.setAttribute('class','bd');
+    const t=document.createElementNS(svgns,'text'); t.setAttribute('x',b.x); t.setAttribute('y',b.y+5); t.setAttribute('class','tx'); t.textContent=b.label;
+    g.appendChild(r); g.appendChild(t);
+    g.addEventListener('click',()=>location.href=b.href);
+    g.addEventListener('keypress',(e)=>{ if(e.key==='Enter'||e.key===' '){location.href=b.href}});
+    svg.appendChild(g);
+  }
+}
+fetch(REG,{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{
+  // registry is optional here; we only need it later for room intros
+  draw(buildings);
+}).catch(()=>draw(buildings));
+</script>
+</div></body></html>

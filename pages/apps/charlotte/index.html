@@ -1,4 +1,21 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Charlotte — Relay Tower</title><style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}a{color:#a5d6ff}</style></head>
-<body><h1>Charlotte — Relay Tower</h1><ul><li><a href="https://github.com/">🔗 Rebuild Link Registry (GitHub Actions)</a></li>
-<li><a href="https://github.com/">🎨 Theme / Wallpaper (run workflow)</a></li></ul><p><a href="/pages/plaza.html">← Back to City</a></p></body></html>
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Charlotte — Relay‑Hall</title>
+<link rel="stylesheet" href="/pages/apps/_shared/ui.css">
+<link rel="stylesheet" href="/pages/apps/_shared/room.css">
+</head><body><div class="wrap">
+<div class="nav">
+  <a class="btn" href="/">Home</a>
+  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
+  <a class="btn" href="/pages/apps/_city/index.html">Grid</a>
+</div>
+<div class="hero"></div>
+<h1>Charlotte — Relay‑Hall</h1>
+<div id="room" class="room"></div>
+<div class="footer">Build: 20251019T232747Z</div>
+<script type="module">
+import { mountRoom } from '/pages/apps/_shared/room.js';
+const items = [{"icon": "🖥️", "title": "Control Wall — Workflows", "href": "/pages/apps/charlotte/workflows.html", "desc": "Trigger & monitor actions."}, {"icon": "📜", "title": "Calendarium — Expirations", "href": "/pages/apps/charlotte/expirations.html", "desc": "Renewals & reminders."}, {"icon": "📋", "title": "Clipboard — Link Registry", "href": "/pages/apps/charlotte/registry.html", "desc": "Keep links clean."}];
+mountRoom(document.getElementById('room'), items);
+</script>
+</div></body></html>

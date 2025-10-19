@@ -1,3 +1,21 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nina — Futuristic Lab</title><style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}a{color:#a5d6ff}</style></head>
-<body><h1>Nina — Futuristic Lab</h1><ul><li><a href="/pages/apps/nina/vrm.html">🧪 VRM Viewer (coming online)</a></li></ul><p><a href="/pages/plaza.html">← Back to City</a></p></body></html>
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nina — Court‑Lab</title>
+<link rel="stylesheet" href="/pages/apps/_shared/ui.css">
+<link rel="stylesheet" href="/pages/apps/_shared/room.css">
+</head><body><div class="wrap">
+<div class="nav">
+  <a class="btn" href="/">Home</a>
+  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
+  <a class="btn" href="/pages/apps/_city/index.html">Grid</a>
+</div>
+<div class="hero"></div>
+<h1>Nina — Court‑Lab</h1>
+<div id="room" class="room"></div>
+<div class="footer">Build: 20251019T232747Z</div>
+<script type="module">
+import { mountRoom } from '/pages/apps/_shared/room.js';
+const items = [{"icon": "🗄️", "title": "Server Rack — Diagnostics", "href": "/pages/apps/nina/diagnostics.html", "desc": "Check versions, status, health."}, {"icon": "🪝", "title": "VRM Hanger — Avatars", "href": "/pages/apps/nina/vrm.html", "desc": "Catalog avatars & wings."}, {"icon": "✨", "title": "Hologram Table — Previews", "href": "/pages/apps/nina/previews.html", "desc": "Preview assets in 3D (later)."}];
+mountRoom(document.getElementById('room'), items);
+</script>
+</div></body></html>

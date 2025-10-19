@@ -1,6 +1,6 @@
-{
-  "updated": "20251019T030217Z",
-  "plan": "/pages/apps/carol/plans/mealplan-dash-14d-20251019T030217Z.json",
-  "shopping_quantized": "/pages/apps/carol/plans/shopping-quantized.json",
-  "shopping_extracted": "/pages/apps/carol/plans/shopping-extracted.json"
+﻿{
+  "plan": "/pages/apps/carol/plans/mealplan-balanced-20251019T021457Z.json",
+  "shopping_extracted": "/pages/apps/carol/plans/shopping-extracted.json",
+  "updated": "2025-10-19T03:31:55Z",
+  "shopping_quantized": "/pages/apps/carol/plans/shopping-quantized.json"
 }

@@ -1,124 +1,90 @@
 ﻿{
   "items": [
     {
-      "desc": "",
-      "name": "_city",
-      "id": "_city",
       "icon": "🏛️",
-      "href": "/pages/apps/_city/index.html"
+      "href": "/pages/apps/_city/index.html",
+      "name": "_city"
     },
     {
-      "desc": "",
-      "name": "Abbey — Vault",
-      "id": "abbey",
-      "icon": "🏦",
-      "href": "/pages/apps/abbey/index.html"
-    },
-    {
-      "desc": "",
-      "name": "Alexandria — Library",
-      "id": "alexandria",
-      "icon": "📚",
-      "href": "/pages/apps/alexandria/index.html"
-    },
-    {
-      "desc": "",
-      "name": "Billie",
-      "id": "billie",
       "icon": "🏛️",
-      "href": "/pages/apps/billie/index.html"
+      "href": "/pages/apps/abbey/index.html",
+      "name": "abbey"
     },
     {
-      "desc": "",
-      "name": "Carol — Bistro",
-      "id": "carol",
-      "icon": "🔥",
-      "href": "/pages/apps/carol/index.html"
-    },
-    {
-      "desc": "",
-      "name": "Charlotte — Relay",
-      "id": "charlotte",
-      "icon": "📡",
-      "href": "/pages/apps/charlotte/index.html"
-    },
-    {
-      "desc": "",
-      "name": "Clarice — Court",
-      "id": "clarice",
-      "icon": "⚖️",
-      "href": "/pages/apps/clarice/index.html"
-    },
-    {
-      "desc": "",
-      "name": "Jem — Dojo",
-      "id": "jem",
-      "icon": "🐉",
-      "href": "/pages/apps/jem/index.html"
-    },
-    {
-      "desc": "",
-      "name": "Nina — Lab",
-      "id": "nina",
-      "icon": "🧪",
-      "href": "/pages/apps/nina/index.html"
-    },
-    {
-      "desc": "",
-      "name": "Odessa — Museum",
-      "id": "odessa",
       "icon": "🏛️",
-      "href": "/pages/apps/odessa/index.html"
+      "href": "/pages/apps/alexandria/index.html",
+      "name": "alexandria"
     },
     {
-      "desc": "",
-      "name": "Overseers",
-      "id": "overseers",
       "icon": "🏛️",
-      "href": "/pages/apps/overseers/index.html"
+      "href": "/pages/apps/billie/index.html",
+      "name": "billie"
     },
     {
-      "desc": "",
-      "name": "Reyczar",
-      "id": "reyczar",
       "icon": "🏛️",
-      "href": "/pages/apps/reyczar/index.html"
+      "href": "/pages/apps/carol/index.html",
+      "name": "carol"
     },
     {
-      "desc": "",
-      "name": "Sorcha — Mansion",
-      "id": "sorcha",
-      "icon": "🎬",
-      "href": "/pages/apps/sorcha/index.html"
-    },
-    {
-      "desc": "",
-      "name": "Stella — Observatory",
-      "id": "stella",
-      "icon": "🌌",
-      "href": "/pages/apps/stella/index.html"
-    },
-    {
-      "desc": "",
-      "name": "Themis — Records",
-      "id": "themis",
-      "icon": "📜",
-      "href": "/pages/apps/themis/index.html"
-    },
-    {
-      "desc": "",
-      "name": "Tracy — Atelier",
-      "id": "tracy",
-      "icon": "🎨",
-      "href": "/pages/apps/tracy/index.html"
-    },
-    {
-      "desc": "",
-      "name": "Whitestar",
-      "id": "whitestar",
       "icon": "🏛️",
-      "href": "/pages/apps/whitestar/index.html"
+      "href": "/pages/apps/charlotte/index.html",
+      "name": "charlotte"
+    },
+    {
+      "icon": "🏛️",
+      "href": "/pages/apps/clarice/index.html",
+      "name": "clarice"
+    },
+    {
+      "icon": "🏛️",
+      "href": "/pages/apps/jem/index.html",
+      "name": "jem"
+    },
+    {
+      "icon": "🏛️",
+      "href": "/pages/apps/nina/index.html",
+      "name": "nina"
+    },
+    {
+      "icon": "🏛️",
+      "href": "/pages/apps/odessa/index.html",
+      "name": "odessa"
+    },
+    {
+      "icon": "🏛️",
+      "href": "/pages/apps/overseers/index.html",
+      "name": "overseers"
+    },
+    {
+      "icon": "🏛️",
+      "href": "/pages/apps/reyczar/index.html",
+      "name": "reyczar"
+    },
+    {
+      "icon": "🏛️",
+      "href": "/pages/apps/sorcha/index.html",
+      "name": "sorcha"
+    },
+    {
+      "icon": "🏛️",
+      "href": "/pages/apps/stella/index.html",
+      "name": "stella"
+    },
+    {
+      "icon": "🏛️",
+      "href": "/pages/apps/themis/index.html",
+      "name": "themis"
+    },
+    {
+      "icon": "🏛️",
+      "href": "/pages/apps/tracy/index.html",
+      "name": "tracy"
+    },
+    {
+      "icon": "🏛️",
+      "href": "/pages/apps/whitestar/index.html",
+      "name": "whitestar"
     }
   ],
-  "updated": "2025-10-18T22:56:10Z"
+  "updated": "2025-10-19T01:40:47Z"
 }

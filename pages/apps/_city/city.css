@@ -1,4 +1,6 @@
 body{margin:0;background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto}
+:root{--hero:url('/asset/textures/wallpapers/hero.jpg')}
+body::before{content:'';position:fixed;inset:0;background-image:var(--hero);background-size:cover;background-position:center;opacity:.18;filter:saturate(1.1) contrast(1.05);pointer-events:none}
 .wrap{max-width:1100px;margin:0 auto;padding:18px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:16px}
 .card{background:linear-gradient(180deg,#0f172a,#0b1220);border:1px solid #182136;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;box-shadow:0 8px 22px rgba(0,0,0,.25)}

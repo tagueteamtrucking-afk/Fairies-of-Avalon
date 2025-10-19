@@ -1,0 +1,99 @@
+{
+  "items": [
+    {
+      "item": "lactose-free Greek yogurt, plain",
+      "need": "~21 cups",
+      "package": "32 oz tub \u00d7 4"
+    },
+    {
+      "item": "mixed berries (frozen)",
+      "need": "~21 cups",
+      "package": "3 lb bag \u00d7 2"
+    },
+    {
+      "item": "old\u2011fashioned oats",
+      "need": "~3.5 cups",
+      "package": "42 oz canister \u00d7 1"
+    },
+    {
+      "item": "sprouted whole\u2011grain bread",
+      "need": "14 slices",
+      "package": "1 loaf \u00d7 1"
+    },
+    {
+      "item": "almond butter",
+      "need": "~14 tbsp",
+      "package": "16 oz jar \u00d7 1"
+    },
+    {
+      "item": "banana",
+      "need": "~7 small",
+      "package": "bunch of 7"
+    },
+    {
+      "item": "whole\u2011wheat tortilla (8 in)",
+      "need": "14 wraps",
+      "package": "10\u2011count pack \u00d7 2"
+    },
+    {
+      "item": "chickpeas, canned",
+      "need": "~7 cups (rinsed)",
+      "package": "15 oz can \u00d7 7"
+    },
+    {
+      "item": "celery",
+      "need": "~3.5 cups diced",
+      "package": "1 bunch \u00d7 1"
+    },
+    {
+      "item": "light LF mayo or yogurt",
+      "need": "~14 tbsp",
+      "package": "12 oz squeeze \u00d7 1"
+    },
+    {
+      "item": "chicken breast",
+      "need": "~7 lb",
+      "package": "bulk pack 7 lb"
+    },
+    {
+      "item": "brown rice (dry)",
+      "need": "~7 cups cooked",
+      "package": "2 lb bag \u00d7 1"
+    },
+    {
+      "item": "broccoli florets",
+      "need": "~14 cups",
+      "package": "2 lb bag \u00d7 2"
+    },
+    {
+      "item": "olive oil",
+      "need": "~14 tsp",
+      "package": "17 oz bottle \u00d7 1"
+    },
+    {
+      "item": "hummus",
+      "need": "~42 tbsp (~2.6 cups)",
+      "package": "32 oz tub \u00d7 1"
+    },
+    {
+      "item": "baby carrots",
+      "need": "~14 cups",
+      "package": "5 lb bag \u00d7 1"
+    },
+    {
+      "item": "english cucumber",
+      "need": "~7 units",
+      "package": "7 count"
+    },
+    {
+      "item": "apple",
+      "need": "14 small",
+      "package": "3 lb bag \u00d7 2"
+    },
+    {
+      "item": "almonds, unsalted",
+      "need": "14 oz",
+      "package": "16 oz bag \u00d7 1"
+    }
+  ]
+}

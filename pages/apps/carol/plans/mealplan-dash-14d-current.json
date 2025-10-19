@@ -1,0 +1,1556 @@
+{
+  "meta": {
+    "pattern": "DASH",
+    "persons": 2,
+    "kcal_target_per_person": 1900,
+    "notes": [
+      "shellfish-free",
+      "lactose-light",
+      "no cilantro",
+      "no cumin",
+      "no powdered PB"
+    ]
+  },
+  "days": [
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Lactose\u2011free Greek yogurt with berries & oats",
+          "ingredients": [
+            {
+              "item": "lactose-free Greek yogurt, plain",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "mixed berries (frozen)",
+              "qty": "3/4 cup"
+            },
+            {
+              "item": "old\u2011fashioned oats",
+              "qty": "1/4 cup"
+            }
+          ]
+        },
+        {
+          "title": "Whole\u2011grain toast + almond butter + banana",
+          "ingredients": [
+            {
+              "item": "sprouted whole\u2011grain bread",
+              "qty": "1 slice"
+            },
+            {
+              "item": "almond butter",
+              "qty": "1 tbsp"
+            },
+            {
+              "item": "banana",
+              "qty": "1/2 small"
+            }
+          ]
+        },
+        {
+          "title": "Tuna\u2011free chickpea salad wrap",
+          "ingredients": [
+            {
+              "item": "whole\u2011wheat tortilla (8 in)",
+              "qty": "1"
+            },
+            {
+              "item": "chickpeas, canned, rinsed",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "celery, diced",
+              "qty": "1/4 cup"
+            },
+            {
+              "item": "light mayo or yogurt (LF)",
+              "qty": "1 tbsp"
+            }
+          ]
+        },
+        {
+          "title": "Chicken, rice & broccoli (air fryer/chop)",
+          "ingredients": [
+            {
+              "item": "chicken breast",
+              "qty": "4 oz"
+            },
+            {
+              "item": "brown rice, cooked",
+              "qty": "1/2 cup"
+            },
+            {
+              "item": "broccoli florets",
+              "qty": "1 cup"
+            },
+            {
+              "item": "olive oil",
+              "qty": "1 tsp"
+            }
+          ]
+        },
+        {
+          "title": "Hummus & veggie box",
+          "ingredients": [
+            {
+              "item": "hummus",
+              "qty": "3 tbsp"
+            },
+            {
+              "item": "baby carrots",
+              "qty": "1 cup"
+            },
+            {
+              "item": "english cucumber",
+              "qty": "1/2"
+            }
+          ]
+        },
+        {
+          "title": "Fruit & nut snack",
+          "ingredients": [
+            {
+              "item": "apple",
+              "qty": "1 small"
+            },
+            {
+              "item": "almonds, unsalted",
+              "qty": "1 oz"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

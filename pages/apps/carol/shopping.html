@@ -1,1 +1,37 @@
-<!-- shopping viewer present in previous pack; keep or overwrite with your current one -->
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carol — Shopping List (2p)</title>
+<style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}a{color:#a5d6ff}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #1b2436;padding:8px 6px;text-align:left}th{background:#111a2b}</style></head>
+<body>
+<h1>Carol — Shopping (2 people)</h1>
+<div id="debug" style="opacity:.6;font-family:ui-monospace,consolas,monaco"></div>
+<div id="root"></div>
+<p><a href="/pages/apps/carol/index.html">← Back to restaurant</a> · <a href="/pages/apps/carol/menu.html">Menu</a> · <a href="#" onclick="window.print();return false;">Print / Save PDF</a></p>
+<script>
+async function load(){
+  const ptr = await (await fetch('/pages/apps/carol/index.json?cb='+Date.now())).json();
+  document.getElementById('debug').textContent = 'Shopping: '+(ptr.shopping_quantized||'(not set)');
+  let data=null;
+  if(ptr.shopping_quantized){
+    const r = await fetch(ptr.shopping_quantized+'?cb='+Date.now());
+    if(r.ok){ data = await r.json(); }
+  }
+  if(!data){
+    // fallback: derive naive list from plan
+    const plan = await (await fetch(ptr.plan+'?cb='+Date.now())).json();
+    const acc = {};
+    (plan.days||[]).forEach(d=> (d.items||[]).forEach(it=> (it.ingredients||[]).forEach(g=>{
+      const k=(g.item||'').toLowerCase();
+      if(!k)return; acc[k]=acc[k]||{item:g.item, qtys:[]}; acc[k].qtys.push(g.qty||'');
+    })));
+    data = { items: Object.values(acc).map(x=>({ item:x.item, need:x.qtys.join(' + ') }))};
+  }
+  const root=document.getElementById('root');
+  if(!data || !(data.items||[]).length){ root.textContent='No shopping data found.'; return; }
+  const t=document.createElement('table'); t.innerHTML='<thead><tr><th>Item</th><th>Qty (2p)</th><th>Suggested package</th></tr></thead>'; const tb=document.createElement('tbody');
+  (data.items||[]).forEach(x=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${x.item}</td><td>${x.need||x.qty||''}</td><td>${x.package||''}</td>`; tb.appendChild(tr);
+  }); t.appendChild(tb); root.appendChild(t);
+}
+load();
+</script></body></html>

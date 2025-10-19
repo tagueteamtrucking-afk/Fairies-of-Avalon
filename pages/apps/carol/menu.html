@@ -1,1 +1,30 @@
-<!-- viewer present in previous pack; keep or overwrite with your current one -->
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carol — 14‑Day Menu</title>
+<style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}details{background:#0f172a;border:1px solid #182136;border-radius:12px;margin:10px 0;padding:10px}a{color:#a5d6ff}</style>
+</head><body>
+<h1>Carol — 14‑Day Menu</h1>
+<div id="debug" style="opacity:.6;font-family:ui-monospace,consolas,monaco"></div>
+<div id="menu"></div>
+<p><a href="/pages/apps/carol/index.html">← Back to restaurant</a> · <a href="/pages/apps/carol/shopping.html">Shopping list</a> · <a href="#" onclick="window.print();return false;">Print / Save PDF</a></p>
+<script>
+async function load(){
+  const ptr = await (await fetch('/pages/apps/carol/index.json?cb='+Date.now())).json();
+  document.getElementById('debug').textContent = 'Plan: '+ptr.plan;
+  const plan = await (await fetch(ptr.plan+'?cb='+Date.now())).json();
+  const el = document.getElementById('menu');
+  el.innerHTML='';
+  (plan.days||[]).forEach((d,i)=>{
+    const dd=document.createElement('details'); dd.open = i<1;
+    dd.innerHTML='<summary>Day '+(i+1)+'</summary>';
+    const ul=document.createElement('ul');
+    (d.items||[]).forEach(it=>{
+      const li=document.createElement('li');
+      let ing = (it.ingredients||[]).map(x=>`${x.qty} ${x.item}`).join('; ');
+      li.textContent = `${it.title}${ing? ' — '+ing: ''}`;
+      ul.appendChild(li);
+    });
+    dd.appendChild(ul); el.appendChild(dd);
+  });
+}
+load();
+</script></body></html>

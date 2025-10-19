@@ -5,14 +5,13 @@
     "frozen mixed berries": "berries_frozen",
     "hummus": "hummus",
     "peanut butter": "peanut_butter",
-    "powdered peanut butter": "pb_powder",
+    "almond butter": "almond_butter",
     "whole wheat bread": "bread_ww",
     "baby carrots": "carrots_baby",
     "tortillas (8-inch, whole wheat)": "tortilla_ww_8",
     "chicken breast": "chicken_breast",
     "light panko": "panko_light",
     "brown rice": "brown_rice",
-    "dry rice": "brown_rice",
     "romaine hearts": "romaine_hearts",
     "eggs": "eggs",
     "bananas": "banana",
@@ -48,11 +47,11 @@
         "tbsp_per_package": 30
       }
     ],
-    "pb_powder": [
+    "almond_butter": [
       {
-        "package": "6.5 oz jar",
-        "net_oz": 6.5,
-        "tbsp_per_package": 24
+        "package": "12 oz jar",
+        "net_oz": 12,
+        "tbsp_per_package": 22
       }
     ],
     "bread_ww": [

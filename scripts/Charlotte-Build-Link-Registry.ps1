@@ -7,11 +7,27 @@ $items = @()
 if(Test-Path $appsAbs){
   $dirs = Get-ChildItem -Path $appsAbs -Directory
   foreach($d in $dirs){
-    # pick index.html inside each app folder
     $idx = Join-Path $d.FullName "index.html"
     if(Test-Path $idx){
-      $rel = "/"+($idx.Replace($here,'').TrimStart('\','/').Replace('\','/'))
-      $items += @{ name=$d.Name; href=$rel; icon="🏛️" }
+      $rel = "/"+($idx.Replace($here,"").TrimStart('\','/').Replace('\','/'))
+      $name = $d.Name
+      $desc = switch ($name.ToLower()) {
+        "alexandria" {"Gothic Library — DM & Worldbuilding"}
+        "charlotte" {"Relay Tower — Design & Pipelines"}
+        "nina" {"Futuristic Lab — 3D & VRM"}
+        "tracy" {"Cathedral Studio — Artboards"}
+        "carol" {"Restaurant — Meal Plans"}
+        "jem" {"Dojo — Coaching"}
+        "stella" {"Observatory — Audio"}
+        "abbey" {"Grand Vault — Finance"}
+        "themis" {"Record Hall — Compliance"}
+        "billie" {"Gold Mansion — Monetization"}
+        "sorcha" {"Mansion & Pool — Social Video"}
+        "clarice" {"Courtroom & Palace — Security"}
+        "odessa" {"Museum — Research"}
+        default {""}
+      }
+      $items += @{ name=$name; desc=$desc; href=$rel }
     }
   }
 }

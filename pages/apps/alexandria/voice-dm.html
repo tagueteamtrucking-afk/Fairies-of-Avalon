@@ -1,22 +1,24 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Alexandria — Voice DM</title><style>body{background:#0b0f17;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0}main{max-width:900px;margin:0 auto;padding:14px}.card{background:#0f172a;border:1px solid #172033;border-radius:12px;padding:12px;margin:10px 0}.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1 1 180px}.btn{padding:8px 10px;border:1px solid #334155;border-radius:10px;background:#0b1220;color:#e5e7eb;cursor:pointer}</style></head>
-<body><main>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alexandria — Voice DM</title></head>
+<body style="background:#0b1220;color:#e6e9eb;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px">
 <h1>Alexandria — Voice DM</h1>
-<div class="card"><div class="row"><label>Voice<select id="voice"><option>amber</option><option>alloy</option><option>shimmer</option><option>verse</option><option>coral</option></select></label><label>Model<select id="model"><option>tts-1</option><option>tts-1-hd</option></select></label></div></div>
-<div class="card"><h3>DM Speak</h3><div class="row"><textarea id="prompt" rows="3" placeholder="Describe a scene, ask to roll, set rules of magic…"></textarea><button class="btn" id="sendBtn">Send</button></div><audio id="ttsAudio" controls></audio></div>
-<div class="card"><h3>Mic</h3><div class="row"><button class="btn" id="recBtn">Hold to record</button><input id="sttOut" placeholder="Transcript"/></div></div>
-<div class="card"><h3>Session Log</h3><pre id="log"></pre></div>
-</main>
+<label>Worker URL <input id="w" size="60" placeholder="https://your-worker.workers.dev"></label> <button onclick="save()">Save</button>
+<p><button onclick="start()">🎤 Start</button> <button onclick="stop()">⏹️ Stop</button></p>
+<pre id="log"></pre>
 <script>
-const W = localStorage.getItem('stella:worker') || 'https://YOUR-WORKER.SUBDOMAIN.workers.dev';
-const vSel=document.getElementById('voice'); vSel.value=localStorage.getItem('alex:voice')||'amber';
-const mSel=document.getElementById('model'); mSel.value=localStorage.getItem('alex:model')||'tts-1';
-vSel.onchange=()=>localStorage.setItem('alex:voice',vSel.value);
-mSel.onchange=()=>localStorage.setItem('alex:model',mSel.value);
-async function speak(text){ const r=await fetch(W+'/tts',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text,voice:vSel.value,model:mSel.value})}); const b=await r.blob(); const u=URL.createObjectURL(b); const a=document.getElementById('ttsAudio'); a.src=u; a.play(); }
-async function send(txt){ const sys='You are Alexandria, a patient Dungeon Master and worldbuilder. Keep strict notes, ask for confirmation before hard consequences, and help track inventory. Use concise scene descriptions and give clear options.'; const r=await fetch(W+'/chat',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:txt}]})}); const j=await r.json(); const c=j.choices?.[0]?.message?.content||JSON.stringify(j); document.getElementById('log').textContent+='\nDM: '+c; speak(c); }
-document.getElementById('sendBtn').onclick=()=>{ const t=document.getElementById('prompt').value.trim(); if(t){ document.getElementById('log').textContent+='\nYou: '+t; send(t);} };
-let mediaStream, mediaRecorder, chunks=[]; const recBtn=document.getElementById('recBtn');
-recBtn.onmousedown=recBtn.ontouchstart=async()=>{ try{ mediaStream=await navigator.mediaDevices.getUserMedia({audio:true}); chunks=[]; mediaRecorder=new MediaRecorder(mediaStream,{mimeType:'audio/webm'}); mediaRecorder.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); }; mediaRecorder.onstop=async()=>{ const blob=new Blob(chunks,{type:'audio/webm'}); const fd=new FormData(); fd.append('file',blob,'audio.webm'); const r=await fetch(W+'/stt',{method:'POST',body:fd}); const j=await r.json(); const t=j.text||''; document.getElementById('sttOut').value=t; document.getElementById('log').textContent+='\nYou: '+t; send(t); }; mediaRecorder.start(); recBtn.textContent='Release to stop'; } catch(e){ alert('Mic failed: '+e.message); } };
-recBtn.onmouseup=recBtn.ontouchend=()=>{ if(mediaRecorder&&mediaRecorder.state==='recording'){ mediaRecorder.stop(); recBtn.textContent='Hold to record'; } };
-</script></body></html>
+function save(){ localStorage.setItem('OPENAI_WORKER_URL', document.getElementById('w').value); alert('Saved'); }
+let media,rec,chunks=[];
+async function start(){ try{
+  media=await navigator.mediaDevices.getUserMedia({audio:true}); rec=new MediaRecorder(media);
+  rec.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data)};
+  rec.onstop=async()=>{ const blob=new Blob(chunks,{type:'audio/webm'}); chunks=[];
+    const url=localStorage.getItem('OPENAI_WORKER_URL'); if(!url){ alert('Set Worker URL first'); return; }
+    const fd=new FormData(); fd.append('audio',blob,'input.webm');
+    const txt=await (await fetch(url+'/alexandria-dm',{method:'POST',body:fd})).text();
+    const ttsBuf=await (await fetch(url+'/speak',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text:txt})})).arrayBuffer();
+    new Audio(URL.createObjectURL(new Blob([ttsBuf]))).play();
+    document.getElementById('log').textContent=txt;
+  }; rec.start(); document.getElementById('log').textContent='Recording…';
+}catch(e){ document.getElementById('log').textContent='Error: '+e; }}
+function stop(){ if(rec){ rec.stop(); if(media){ media.getTracks().forEach(t=>t.stop()); } } }
+</script>
+</body></html>

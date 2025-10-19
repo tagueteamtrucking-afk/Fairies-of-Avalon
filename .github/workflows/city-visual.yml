@@ -6,11 +6,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Write city landing
+      - name: City landing page
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p pages/apps/_city
+          mkdir -p pages pages/apps/_city
+          cat > pages/plaza.html <<'HTML'
+          <!doctype html><html lang="en"><head>
+          <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+          <title>Fantasy Castle Town</title>
+          <meta http-equiv="refresh" content="0; url=/pages/apps/_city/index.html">
+          <link rel="stylesheet" href="/asset/css/style.css">
+          </head><body style="min-height:100vh;display:grid;place-items:center;color:#e6e9ff">
+          If you’re not redirected, <a href="/pages/apps/_city/index.html" style="color:#a5d6ff">enter the City</a>.
+          </body></html>
+          HTML
           cat > pages/apps/_city/index.html <<'HTML'
           <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Avalon — City</title><link rel="stylesheet" href="./city.css"></head>
           <body><main class="wrap"><h1>🏰 Avalon City</h1><div id="grid" class="grid"></div></main><script src="./city.js"></script></body></html>
@@ -18,34 +28,28 @@ jobs:
           cat > pages/apps/_city/city.css <<'CSS'
           body{margin:0;background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto}
           .wrap{max-width:1100px;margin:0 auto;padding:18px}
-          .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px}
+          .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
           .card{background:#0f172a;border:1px solid #172033;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
           .card a{color:#a5b4fc;text-decoration:none}
           .icon{font-size:28px}
           CSS
           cat > pages/apps/_city/city.js <<'JS'
           async function load(){
-            let reg;
-            try{ reg = await fetch('/pages/apps/_city/registry.json?cb='+Date.now()).then(r=>r.json()); }catch(e){}
-            const items = reg?.items || [];
-            const grid = document.getElementById('grid');
-            grid.innerHTML = '';
-            if(items.length===0){
-              grid.innerHTML = '<div class="card">No apps registered. Run Charlotte — Link Registry.</div>';
-              return;
-            }
-            for(const it of items){
-              const d = document.createElement('div'); d.className='card';
-              d.innerHTML = `<div class="icon">${it.icon||'🏛️'}</div><div class="title">${it.name}</div><div class="desc">${it.desc||''}</div><a href="${it.href}">Enter</a>`;
+            const res = await fetch('/pages/apps/_city/registry.json?cb='+Date.now());
+            const reg = res.ok ? await res.json() : {items:[]};
+            const grid = document.getElementById('grid'); grid.innerHTML = '';
+            if(!reg.items || reg.items.length===0){ grid.innerHTML='<div class="card">No apps registered. Run Charlotte — Link Registry.</div>'; return; }
+            for(const it of reg.items){
+              const d=document.createElement('div'); d.className='card';
+              d.innerHTML=`<div class="icon">${it.icon||'🏛️'}</div><div class="title">${it.name}</div><div class="desc">${it.desc||''}</div><a href="${it.href}">Enter</a>`;
               grid.appendChild(d);
             }
-          }
-          load();
+          } load();
           JS
-      - name: Commit City visuals
+      - name: Commit City
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/_city/index.html pages/apps/_city/city.css pages/apps/_city/city.js
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(city): visual" && git push; fi
+          git add pages/plaza.html pages/apps/_city/index.html pages/apps/_city/city.css pages/apps/_city/city.js
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(city): plaza + city" && git push; fi

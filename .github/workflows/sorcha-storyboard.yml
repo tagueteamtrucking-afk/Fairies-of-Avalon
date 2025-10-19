@@ -1,0 +1,43 @@
+name: Sorcha - Faceless Video Storyboards
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  storyboard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build storyboard seed from latest Carol plan
+        shell: pwsh
+        run: |
+          $ErrorActionPreference="Stop"
+          $root = $env:GITHUB_WORKSPACE
+          $plans = Join-Path $root "pages/apps/carol/plans"
+          $outDir = Join-Path $root "pages/apps/sorcha/storyboards"
+          if(-not (Test-Path -LiteralPath $plans)){ Write-Error "Carol plans missing"; exit 1 }
+          $latest = Get-ChildItem -LiteralPath $plans -File -Filter "mealplan-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+          if($null -eq $latest){ Write-Error "No mealplan json found"; exit 1 }
+          $plan = Get-Content -Raw -LiteralPath $latest.FullName | ConvertFrom-Json
+          $days = @($plan.menu.days); if(-not $days){ $days = @($plan.days) }
+          $scenes = @()
+          for($i=0;$i -lt $days.Count;$i++){
+            $items = @()
+            $d = $days[$i]
+            if($d.snacks){ $items = $d.snacks } elseif($d.items){ $items = $d.items } else { $items = @() }
+            $scenes += @{
+              day = $i+1
+              topic = "What I ate (DASH style)"
+              broll = @("prep hands","airfryer closeup","mixing bowl","text overlay")
+              script = "Day "+($i+1)+" choices: "+($items -join "; ")
+            }
+          }
+          $doc = @{ updated=(Get-Date).ToUniversalTime().ToString("s")+'Z'; source=$latest.Name; scenes=$scenes }
+          if(-not (Test-Path -LiteralPath $outDir)){ New-Item -ItemType Directory -Force -Path $outDir | Out-Null }
+          $outPath = Join-Path $outDir ("storyboard-"+(Get-Date -Format "yyyyMMddTHHmmssZ")+".json")
+          [IO.File]::WriteAllText($outPath, ($doc | ConvertTo-Json -Depth 6), [Text.Encoding]::UTF8)
+      - name: Commit storyboard
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/sorcha/storyboards/*.json || true
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(sorcha): storyboard from mealplan" && git push; fi

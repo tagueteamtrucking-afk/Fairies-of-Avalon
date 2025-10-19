@@ -1,0 +1,39 @@
+name: Root - Fix 404 & Redirect to Plaza
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write index.html + kill-sw
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p pages
+          cat > index.html <<'HTML'
+          <!doctype html><html lang="en"><head>
+          <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+          <title>Avalon</title>
+          <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+          <meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+          </head><body style="background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;display:grid;place-items:center;min-height:100vh">
+          <div>Launching City Plaza… If not redirected, <a style="color:#a5b4fc" href="/pages/plaza.html">tap here</a>.</div>
+          <script>(async()=>{try{if('serviceWorker'in navigator){const r=await navigator.serviceWorker.getRegistrations();for(const x of r){await x.unregister();}if(window.caches){const k=await caches.keys();for(const c of k){await caches.delete(c);}}}}catch(e){}location.replace('/pages/plaza.html?cb='+Date.now().toString(36));})();</script>
+          <noscript><meta http-equiv="refresh" content="0; url=/pages/plaza.html"></noscript>
+          </body></html>
+          HTML
+          cat > kill-sw-boost.html <<'HTML'
+          <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kill SW</title></head>
+          <body style="background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;padding:16px">
+          <h1>Service Worker & Cache Reset</h1><pre id="log">Running…</pre>
+          <script>(async()=>{const L=[];const log=m=>{L.push(m);document.getElementById('log').textContent=L.join('\n')};try{if('serviceWorker'in navigator){const r=await navigator.serviceWorker.getRegistrations();for(const x of r){await x.unregister();log('Unregistered SW');}}if(window.caches){const k=await caches.keys();for(const c of k){await caches.delete(c);log('Cache deleted '+c);}}}catch(e){log('Error '+e)}log('Done.');})();</script>
+          </body></html>
+          HTML
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html kill-sw-boost.html
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "fix(root): 404 -> plaza redirect + SW reset" && git push; fi

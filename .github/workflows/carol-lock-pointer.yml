@@ -1,4 +1,4 @@
-name: Carol - Lock Pointer to Restored Plan
+name: Carol - Lock Pointer (current latest)
 on: { workflow_dispatch: {} }
 permissions: { contents: write }
 jobs:
@@ -6,26 +6,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Lock pointer to restored plan
+      - name: Lock pointer to the most recent mealplan-*.json with items
         shell: pwsh
         run: |
-          $ErrorActionPreference = "Stop"
+          $ErrorActionPreference="Stop"
           $root = $env:GITHUB_WORKSPACE
-          $pointerPath = Join-Path $root "pages/apps/carol/index.json"
-          $target = "/pages/apps/carol/plans/mealplan-balanced-20251019T021457Z.json".Replace('\','/')
-          if(-not (Test-Path -LiteralPath $pointerPath)){ New-Item -ItemType Directory -Force -Path (Split-Path -Parent $pointerPath) | Out-Null; }
-          $ptr = @{
-            updated=(Get-Date).ToUniversalTime().ToString("s")+'Z';
-            plan=$target;
-            shopping_quantized="/pages/apps/carol/plans/shopping-quantized.json";
-            shopping_extracted="/pages/apps/carol/plans/shopping-extracted.json"
+          $plans = Join-Path $root "pages/apps/carol/plans"
+          $ptrPath = Join-Path $root "pages/apps/carol/index.json"
+          if(-not (Test-Path -LiteralPath $plans)){ Write-Error "Plans dir missing"; exit 1 }
+          $cands = Get-ChildItem -LiteralPath $plans -File -Filter "mealplan-*.json" | Sort-Object LastWriteTime -Descending
+          $pick = $null
+          foreach($f in $cands){
+            try { $p = Get-Content -Raw -LiteralPath $f.FullName | ConvertFrom-Json } catch { continue }
+            $days = @($p.menu.days); if(-not $days){ $days = @($p.days) }
+            if($days.Count -ge 14){ $pick = $f; break }
           }
-          [IO.File]::WriteAllText($pointerPath, ($ptr | ConvertTo-Json -Depth 5), [Text.Encoding]::UTF8)
-          Write-Host "Pointer set to $target"
+          if($null -eq $pick){ Write-Error "No 14-day mealplan found"; exit 1 }
+          $rel = "/"+($pick.FullName.Substring($root.Length).TrimStart('\','/').Replace('\','/'))
+          $ptr = @{ updated=(Get-Date).ToUniversalTime().ToString("s")+'Z'; plan=$rel; shopping_quantized="/pages/apps/carol/plans/shopping-quantized.json"; shopping_extracted="/pages/apps/carol/plans/shopping-extracted.json" }
+          [IO.File]::WriteAllText($ptrPath, ($ptr | ConvertTo-Json -Depth 6), [Text.Encoding]::UTF8)
       - name: Commit pointer
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/carol/index.json pages/apps/carol/plans/mealplan-balanced-20251019T021457Z.json || true
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(carol): lock pointer to restored plan" && git push; fi
+          git add pages/apps/carol/index.json || true
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(carol): lock pointer to 14d plan" && git push; fi

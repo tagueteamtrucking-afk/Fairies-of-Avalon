@@ -2,7 +2,7 @@ name: Charlotte - Link Registry
 on: { workflow_dispatch: {} }
 permissions: { contents: write }
 jobs:
-  build:
+  registry:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

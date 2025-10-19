@@ -1,0 +1,32 @@
+name: Nina - City Tiles
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  tiles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Theme registry icons
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="pages/apps/_city/registry.json"
+          [ -f "$file" ] || { echo "registry.json missing; run Charlotte - Link Registry"; exit 0; }
+          tmp="$(mktemp)"
+          node - <<'JS' "$file" "$tmp"
+          const fs=require('fs'); const p=process.argv[2]; const o=process.argv[3];
+          const reg=JSON.parse(fs.readFileSync(p,'utf8')); const icons={
+            alexandria:"📚", charlotte:"📡", nina:"🧪", tracy:"🎨", carol:"🍽️", jem:"🥋",
+            stella:"🌌", abbey:"🏦", themis:"⚖️", billie:"💰", sorcha:"🎬", clarice:"🔐", odessa:"🏛️"
+          };
+          reg.items = (reg.items||[]).map(it=>({ ...it, icon: icons[(it.name||'').toLowerCase()] || it.icon || '🏛️'}));
+          fs.writeFileSync(o, JSON.stringify(reg,null,2));
+          JS
+          mv "$tmp" "$file"
+      - name: Commit tiles
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/_city/registry.json || true
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(nina): city icons" && git push; fi

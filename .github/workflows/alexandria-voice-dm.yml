@@ -1,0 +1,55 @@
+name: Alexandria - Voice DM (pages & logs)
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  dm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Seed Voice DM page + sessions log
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p pages/apps/alexandria/sessions
+          cat > pages/apps/alexandria/voice-dm.html <<'HTML'
+          <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alexandria — Voice DM</title></head>
+          <body style="background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px">
+            <h1>🎲 Alexandria — Voice DM</h1>
+            <p><label>Worker URL <input id="w" size="60" placeholder="https://your-worker.workers.dev"></label>
+               <button onclick="save()">Save</button></p>
+            <p><button onclick="start()">🎤 Start</button> <button onclick="stop()">⏹️ Stop</button></p>
+            <pre id="log" style="white-space:pre-wrap"></pre>
+            <script>
+              function save(){ localStorage.setItem('OPENAI_WORKER_URL', document.getElementById('w').value); alert('Saved'); }
+              let media, rec, chunks=[];
+              async function start(){
+                try{
+                  media = await navigator.mediaDevices.getUserMedia({audio:true});
+                  rec = new MediaRecorder(media);
+                  rec.ondataavailable = e => { if(e.data.size>0) chunks.push(e.data); };
+                  rec.onstop = async () => {
+                    const blob = new Blob(chunks,{type:'audio/webm'}); chunks=[];
+                    const url = localStorage.getItem('OPENAI_WORKER_URL'); if(!url){ alert('Set Worker URL first'); return; }
+                    const fd = new FormData(); fd.append('audio', blob, 'input.webm');
+                    const resp = await fetch(url+'/alexandria-dm', { method:'POST', body: fd });
+                    const text = await resp.text();
+                    const id = new Date().toISOString().replace(/[:.]/g,'-');
+                    await fetch('/pages/apps/alexandria/sessions/'+id+'.txt', { method:'PUT', body:text });
+                    const tts = await fetch(url+'/speak', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({text}) });
+                    const buf = await tts.arrayBuffer(); new Audio(URL.createObjectURL(new Blob([buf]))).play();
+                    document.getElementById('log').textContent = text;
+                  };
+                  rec.start(); document.getElementById('log').textContent='Recording…';
+                }catch(e){ document.getElementById('log').textContent='Error: '+e; }
+              }
+              function stop(){ if(rec){ rec.stop(); if(media){ media.getTracks().forEach(t=>t.stop()); } } }
+            </script>
+          </body></html>
+          HTML
+      - name: Commit pages
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/alexandria/voice-dm.html || true
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(alexandria): voice DM page" && git push; fi

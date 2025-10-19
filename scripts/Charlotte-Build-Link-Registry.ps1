@@ -1,16 +1,19 @@
-\
-param([string]$AppsDir="pages/apps",[string]$OutFile="pages/apps/_city/registry.json")
-$ErrorActionPreference="Stop"
-$root = $PSScriptRoot
-$appsAbs = Join-Path $root $AppsDir
-$outAbs = Join-Path $root $OutFile
+param(
+  [string]$AppsDir="pages/apps",
+  [string]$OutFile="pages/apps/_city/registry.json"
+)
+$ErrorActionPreference = "Stop"
+$here = Split-Path -Parent $PSScriptRoot
+$appsAbs = Join-Path $here $AppsDir
+$outAbs = Join-Path $here $OutFile
 $items = @()
-if(Test-Path $appsAbs){
-  $dirs = Get-ChildItem -Path $appsAbs -Directory | Where-Object { $_.Name.ToLower() -ne "odessa" } # remove Odessa
+
+if(Test-Path -LiteralPath $appsAbs){
+  $dirs = Get-ChildItem -LiteralPath $appsAbs -Directory | Where-Object { $_.Name.ToLower() -ne "odessa" }
   foreach($d in $dirs){
     $idx = Join-Path $d.FullName "index.html"
-    if(Test-Path $idx){
-      $rel = "/"+($idx.Replace($root,"").TrimStart('\','/').Replace('\','/'))
+    if(Test-Path -LiteralPath $idx){
+      $rel = "/"+($idx.Replace($here,"").TrimStart('\','/').Replace('\','/'))
       $name = $d.Name
       $title = switch ($name.ToLower()) {
         "alexandria" {"Alexandria — Gothic Library"}
@@ -28,7 +31,7 @@ if(Test-Path $appsAbs){
         default { $name }
       }
       $desc = switch ($name.ToLower()) {
-        "alexandria" {"DM & Worldbuilding (with Voice DM)"}
+        "alexandria" {"DM & Worldbuilding (Voice DM available)"}
         "charlotte" {"Design & Pipelines"}
         "nina" {"3D & VRM"}
         "tracy" {"Artboards & Wallpapers"}
@@ -38,7 +41,7 @@ if(Test-Path $appsAbs){
         "abbey" {"Finance & Reports"}
         "themis" {"Compliance & Reminders"}
         "billie" {"Monetization & Shops"}
-        "sorcha" {"Social Video & Storyboards (incl. 18+ hidden track)"}
+        "sorcha" {"Social Video (incl. 18+ hidden track)"} 
         "clarice" {"Security & Backups"}
         default { "" }
       }
@@ -47,6 +50,6 @@ if(Test-Path $appsAbs){
   }
 }
 $doc = @{ updated=(Get-Date).ToUniversalTime().ToString("s")+"Z"; items=$items }
-$enc = New-Object System.Text.UTF8Encoding($false)  # UTF-8 no BOM (BOM caused Node JSON error)
-$dir = Split-Path -Parent $outAbs; if(-not (Test-Path $dir)){ New-Item -ItemType Directory -Force -Path $dir | Out-Null }
+$enc = New-Object System.Text.UTF8Encoding($false)  # no BOM
+$dir = Split-Path -Parent $outAbs; if(-not (Test-Path -LiteralPath $dir)){ New-Item -ItemType Directory -Force -Path $dir | Out-Null }
 [IO.File]::WriteAllText($outAbs, ($doc | ConvertTo-Json -Depth 6), $enc)

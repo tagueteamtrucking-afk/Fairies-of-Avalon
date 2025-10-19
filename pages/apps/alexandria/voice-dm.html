@@ -1,26 +1,13 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Alexandria — Voice DM</title><style>body{background:#0b1220;color:#e6e9eb;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}</style></head>
-<body>
-<h1>Alexandria — Voice DM</h1>
-<p><label>Worker URL <input id="w" size="60" placeholder="https://your-worker.workers.dev"></label> <button onclick="save()">Save</button></p>
-<p><button onclick="start()">🎤 Start</button> <button onclick="stop()">⏹️ Stop</button></p>
-<pre id="log"></pre>
-<script>
-function save(){ localStorage.setItem('OPENAI_WORKER_URL', document.getElementById('w').value); alert('Saved'); }
-let media,rec,chunks=[];
-async function start(){ try{
-  media=await navigator.mediaDevices.getUserMedia({audio:true}); rec=new MediaRecorder(media);
-  rec.ondataavailable=e=>{if(e.data.size>0)chunks.push(e.data)};
-  rec.onstop=async()=>{ const blob=new Blob(chunks,{type:'audio/webm'}); chunks=[];
-    const url=localStorage.getItem('OPENAI_WORKER_URL'); if(!url){ alert('Set Worker URL first'); return; }
-    const fd=new FormData(); fd.append('audio',blob,'input.webm');
-    const txt=await (await fetch(url+'/alexandria-dm',{method:'POST',body:fd})).text();
-    const ttsBuf=await (await fetch(url+'/speak',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text:txt})})).arrayBuffer();
-    new Audio(URL.createObjectURL(new Blob([ttsBuf]))).play();
-    document.getElementById('log').textContent=txt;
-  }; rec.start(); document.getElementById('log').textContent='Recording…';
-}catch(e){ document.getElementById('log').textContent='Error: '+e; }}
-function stop(){ if(rec){ rec.stop(); if(media){ media.getTracks().forEach(t=>t.stop()); } } }
-</script>
+<title>Alexandria — Voice DM</title><style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}a{color:#a5d6ff}textarea,input,button{font:inherit}</style></head>
+<body><h1>Alexandria — Voice DM</h1>
+<p>Paste your Worker URL once (saved locally): <input id="w" style="width:60%"><button onclick="save()">Save</button></p>
+<p><textarea id="t" placeholder="Say something to the DM…" style="width:100%;min-height:120px"></textarea></p>
+<p><button onclick="speak()">Speak</button> <audio id="a" controls style="width:100%"></audio></p>
 <p><a href="/pages/apps/alexandria/index.html" style="color:#a5d6ff">← Back</a></p>
-</body></html>
+<script type="module">
+import {{getWorker,setWorker}} from '/pages/apps/shared/worker.js';
+const w=document.getElementById('w'); w.value=getWorker();
+window.save=()=>setWorker(w.value.trim());
+window.speak=async()=>{const url=(getWorker()||'').replace(/\/$/,'')+'/speak'; const text=document.getElementById('t').value||'Hello from Alexandria'; const r=await fetch(url,{method:'POST',headers:{{'content-type':'application/json'}},body:JSON.stringify({{voice:'dm',text}})}); const blob=await r.blob(); document.getElementById('a').src=URL.createObjectURL(blob);};
+</script></body></html>

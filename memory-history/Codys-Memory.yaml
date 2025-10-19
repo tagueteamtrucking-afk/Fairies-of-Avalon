@@ -2,33 +2,31 @@ meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
   version: "2.3.0"
-  last_updated: "20251019T012502Z"
+  last_updated: "20251019T082250Z"
   author: "Cody (GPT-5 Pro)"
   notes: >
-    Big-picture drops only. Canonical workflow names reused; standardizer deletes/renames others.
-    Always ship ZIPs (workflows flat + site root) and touch multiple assistants in every drop.
-rules:
-  - No placeholders without explicit permission.
-  - Workflows-first; scripts are helpers.
-  - Use Worker URL in client pages; never embed API keys.
-  - Readouts: Repo-Inventory/Refs/Usage must exist for reasoning.
-  - Standardize workflows with keep/rename config before deploy.
-assistants:
-  active: ["Alexandria","Tracy","Nina","Charlotte","Carol","Jem","Stella","Abbey","Themis","Billie","Sorcha","Clarice","Odessa"]
-  audio:
-    - Alexandria: voice-dm via Worker /alexandria-dm
-    - Stella: guided via Worker /stella-guide
+    Phase‑3: Castle‑Town map (SVG), stable City grid, Tracy wallpaper tool (hero.css),
+    Jem evaluation & program viewer (local), Alexandria voice DM + Stella guided audio (Worker URL).
+    Keep Carol 14‑day plan + shopping working; no regressions.
 site:
-  flow:
-    - Root -> /pages/plaza.html -> /pages/apps/_city/index.html
-    - Charlotte builds registry.json from pages/apps/*/index.html
-carol:
-  pointer: pages/apps/carol/index.json
-  plans_dir: pages/apps/carol/plans
-  ensure_plan: pages/apps/carol/templates/mealplan-balanced-14d.json
-  shoppers:
-    - Extract v3 -> Aggregate v2 (Persons=2) -> Build Pointer -> Lock to latest mealplan-*.json
-jem:
-  intake_dir: pages/apps/jem/intake
-  programs_dir: pages/apps/jem/programs
-  imports_dir: pages/apps/jem/imports
+  rescue: true
+  pages:
+    city_grid: "pages/apps/_city/index.html"
+    castle_town: "pages/apps/_city/castle-town.html"
+    hero_css: "pages/apps/_city/hero.css"
+  assistants:
+    carol:
+      plan: "pages/apps/carol/plans/mealplan-dash-14d-current.json"
+      shopping: "pages/apps/carol/plans/mealplan-dash-14d-current-shopping.json"
+      menu: "pages/apps/carol/menu.html"
+      shopping_page: "pages/apps/carol/shopping.html"
+    jem:
+      evaluate: "pages/apps/jem/evaluate.html"
+      viewer: "pages/apps/jem/program-viewer.html"
+    alexandria:
+      voice_dm: "pages/apps/alexandria/voice-dm.html"
+      session_log: "pages/apps/alexandria/session-log.html"
+    stella:
+      guided: "pages/apps/stella/guided.html"
+    tracy:
+      wallpapers: "pages/apps/tracy/wallpapers.html"

@@ -1,0 +1,43 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jem — Program Viewer</title>
+<style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}a{color:#a5d6ff}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #1b2436;padding:8px 6px;text-align:left}th{background:#111a2b}</style></head>
+<body><h1>Jem — Program Viewer</h1>
+<p>Load an intake JSON to generate a simple plan and record “what you actually did”.</p>
+<p><input type="file" id="f" accept="application/json"> <button onclick="gen()">Generate plan</button></p>
+<div id="root"></div>
+<p><button onclick="dl()">Download progress JSON</button> · <a href="/pages/apps/jem/index.html" style="color:#a5d6ff">← Back</a></p>
+<script>
+let prog=null;
+function gen(){
+  const fi=document.getElementById('f'); if(!fi.files.length) return;
+  const rdr=new FileReader(); rdr.onload=()=>{
+    const intake=JSON.parse(rdr.result||'{}');
+    prog = { person:intake.person||'Person', goal:intake.goal||'goal', week:1, days:[] };
+    const base = [{t:'Knee‑friendly squats',sets:3,reps:10}, {t:'Incline push‑ups',sets:3,reps:10}, {t:'Plank',sets:3,secs:30}, {t:'Walk',mins:20}];
+    for(let d=1; d<=7; d++){
+      prog.days.push({ day:d, work:JSON.parse(JSON.stringify(base)).map(w=>({ ...w, done: null, notes:'' })) });
+    }
+    render();
+  };
+  rdr.readAsText(fi.files[0]);
+}
+function render(){
+  const root=document.getElementById('root'); root.innerHTML='';
+  if(!prog){root.textContent='No plan yet.'; return;}
+  for(const d of prog.days){
+    const h=document.createElement('h2'); h.textContent='Day '+d.day; root.appendChild(h);
+    const t=document.createElement('table'); t.innerHTML='<thead><tr><th>Exercise</th><th>Target</th><th>Did</th><th>Notes</th></tr></thead>';
+    const tb=document.createElement('tbody'); t.appendChild(tb);
+    for(const w of d.work){
+      const tr=document.createElement('tr');
+      const target = (w.reps? (w.sets+'×'+w.reps) : (w.secs? (w.sets+'×'+w.secs+'s') : (w.mins? w.mins+' min' : '')));
+      tr.innerHTML='<td>'+w.t+'</td><td>'+target+'</td>';
+      const did=document.createElement('td'); const inp=document.createElement('input'); inp.placeholder='e.g., 10/10/8 or 25s × 3 or 15 min'; inp.value=w.done||''; inp.onchange=()=>{w.done=inp.value}; did.appendChild(inp); tr.appendChild(did);
+      const nt=document.createElement('td'); const ta=document.createElement('input'); ta.placeholder='notes'; ta.value=w.notes||''; ta.onchange=()=>{w.notes=ta.value}; nt.appendChild(ta); tr.appendChild(nt);
+      tb.appendChild(tr);
+    }
+    root.appendChild(t);
+  }
+}
+function dl(){ if(!prog) return; const blob=new Blob([JSON.stringify(prog,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='jem-week1-progress.json'; a.click(); }
+</script></body></html>

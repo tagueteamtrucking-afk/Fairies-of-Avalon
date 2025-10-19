@@ -1,0 +1,42 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jem — Week‑1 Evaluation</title>
+<style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}label{display:block;margin-top:10px}input,select,button,textarea{font:inherit}fieldset{border:1px solid #243553;border-radius:10px;margin:12px 0;padding:12px}</style></head>
+<body><h1>Jem — Week‑1 Evaluation</h1>
+<p>This form captures a starting point. Save locally, then upload JSON to <code>/pages/apps/jem/intake/</code> in the repo to build plans.</p>
+<label>Person
+<select id="person"><option>Ray</option><option>Blanca</option></select>
+</label>
+<fieldset><legend>Goals</legend>
+<label>Primary goal <select id="goal"><option value="hypertrophy">Hypertrophy</option><option value="fat_loss">Fat loss</option><option value="endurance">Endurance</option><option value="mobility">Mobility</option></select></label>
+<label>Constraints (comma‑separated): <input id="constraints" placeholder="weak knees, low back pain, limited space, no gym"></label>
+</fieldset>
+<fieldset><legend>Baseline tests</legend>
+<label>3×10 bodyweight squats — how many per set? <input id="sq" placeholder="e.g., 10, 8, 6"></label>
+<label>3×10 incline pushups — how many per set? <input id="pu" placeholder="e.g., 8, 6, 5"></label>
+<label>Plank — seconds <input id="plank" type="number" min="0" placeholder="30"></label>
+<label>Step count (typical day) <input id="steps" type="number" min="0" placeholder="3500"></label>
+</fieldset>
+<fieldset><legend>Equipment available</legend>
+<label><input type="checkbox" id="band"> Resistance bands</label>
+<label><input type="checkbox" id="kb"> Kettlebell/dumbbell (one)</label>
+<label><input type="checkbox" id="mat" checked> Mat</label>
+</fieldset>
+<button onclick="save()">Download intake JSON</button>
+<p><a href="/pages/apps/jem/index.html" style="color:#a5d6ff">← Back</a></p>
+<script>
+function parseInts(s){return (s||'').split(',').map(x=>parseInt(x.trim(),10)).filter(x=>!isNaN(x));}
+function save(){
+  const data={
+    person:document.getElementById('person').value,
+    goal:document.getElementById('goal').value,
+    constraints:document.getElementById('constraints').value,
+    tests:{squats:parseInts(document.getElementById('sq').value),pushups:parseInts(document.getElementById('pu').value),plank_sec:parseInt(document.getElementById('plank').value||'0',10),steps:parseInt(document.getElementById('steps').value||'0',10)},
+    equipment:{band:document.getElementById('band').checked,kb:document.getElementById('kb').checked,mat:document.getElementById('mat').checked},
+    ts:new Date().toISOString()
+  };
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  const name=(data.person||'person').toLowerCase(); a.download=`intake-${name}-${Date.now()}.json`; a.click();
+}
+</script>
+</body></html>

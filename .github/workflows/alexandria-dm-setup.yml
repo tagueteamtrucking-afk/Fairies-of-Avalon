@@ -1,8 +1,6 @@
 name: Alexandria - DM Setup
-on:
-  workflow_dispatch:
-permissions:
-  contents: write
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -14,30 +12,8 @@ jobs:
           set -euo pipefail
           mkdir -p pages/apps/alexandria/worlds/avalon/sessions
           cat > pages/apps/alexandria/worlds/avalon/canon.json <<'JSON'
-          {
-            "world": "Avalon",
-            "canon_version": "0.1.0",
-            "magic_rules": {
-              "sources": ["mana","ley lines"],
-              "constraints": ["equivalent exchange","fatigue","channeling focus"]
-            },
-            "societies": [
-              {"name":"Camelot","type":"kingdom","tech":"late medieval","notes":"Overseers' palace"},
-              {"name":"Gothic Library","type":"order","notes":"Alexandria's home"}
-            ],
-            "physics": {
-              "gravity": "earth-like",
-              "anomalies": ["thin veils near standing stones"]
-            }
-          }
+          {"world":"Avalon","canon_version":"0.1.0","magic_rules":{"sources":["mana","ley lines"],"constraints":["equivalent exchange","fatigue","channeling focus"]},"societies":[{"name":"Camelot","type":"kingdom","tech":"late medieval","notes":"Overseers' palace"},{"name":"Gothic Library","type":"order","notes":"Alexandria's home"}],"physics":{"gravity":"earth-like","anomalies":["thin veils near standing stones"]}}
           JSON
-          cat > pages/apps/alexandria/worlds/avalon/story-bible.md <<'MD'
-          # Avalon Story Bible
-
-          - **World**: Avalon
-          - **Tone**: Hopeful high fantasy with grounded economics.
-          - **Magic**: Mana + ley lines; constrained by equivalent exchange.
-          MD
           if [ ! -f pages/apps/alexandria/index.html ]; then
             cat > pages/apps/alexandria/index.html <<'HTML'
             <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alexandria — Library</title></head>
@@ -89,5 +65,5 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/alexandria/worlds/avalon/canon.json                  pages/apps/alexandria/worlds/avalon/story-bible.md                  pages/apps/alexandria/index.html                  pages/apps/alexandria/voice-dm.html || true
+          git add pages/apps/alexandria/worlds/avalon/canon.json                  pages/apps/alexandria/index.html                  pages/apps/alexandria/voice-dm.html || true
           if git diff --cached --quiet; then echo "No changes"; else git commit -m "feat(alexandria): DM scaffolds" && git push; fi

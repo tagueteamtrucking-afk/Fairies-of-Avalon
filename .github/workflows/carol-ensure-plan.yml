@@ -1,0 +1,26 @@
+name: Carol - Ensure Plan (create 14d if missing)
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  ensure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure baseline 14-day plan exists
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p pages/apps/carol/plans pages/apps/carol/templates
+          # only create if no mealplan-*.json present
+          if ls pages/apps/carol/plans/mealplan-*.json >/dev/null 2>&1; then
+            echo "Mealplan exists; skipping seed."
+          else
+            cp pages/apps/carol/templates/mealplan-balanced-14d.json "pages/apps/carol/plans/mealplan-balanced-$(date -u +%Y%m%dT%H%M%SZ).json"
+          fi
+      - name: Commit plan if created
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/carol/plans/mealplan-*.json || true
+          if git diff --cached --quiet; then echo "No new plan"; else git commit -m "feat(carol): seed 14d plan (balanced)" && git push; fi

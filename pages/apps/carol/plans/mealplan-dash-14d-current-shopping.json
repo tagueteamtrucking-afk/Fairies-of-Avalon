@@ -27,8 +27,8 @@
     },
     {
       "item": "banana",
-      "need": "~7 small",
-      "package": "bunch of 7"
+      "need": "7 small",
+      "package": "bunch \u00d7 1"
     },
     {
       "item": "whole\u2011wheat tortilla (8 in)",
@@ -37,13 +37,13 @@
     },
     {
       "item": "chickpeas, canned",
-      "need": "~7 cups (rinsed)",
-      "package": "15 oz can \u00d7 7"
+      "need": "~7 cans",
+      "package": "15 oz \u00d7 7"
     },
     {
       "item": "celery",
-      "need": "~3.5 cups diced",
-      "package": "1 bunch \u00d7 1"
+      "need": "1 bunch",
+      "package": "1 \u00d7 bunch"
     },
     {
       "item": "light LF mayo or yogurt",
@@ -52,7 +52,7 @@
     },
     {
       "item": "lemon",
-      "need": "~7",
+      "need": "7",
       "package": "7 count"
     },
     {
@@ -97,7 +97,7 @@
     },
     {
       "item": "english cucumber",
-      "need": "~7 units",
+      "need": "7 units",
       "package": "7 count"
     },
     {

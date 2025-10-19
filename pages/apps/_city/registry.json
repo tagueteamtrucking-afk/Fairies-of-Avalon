@@ -1,101 +1,77 @@
 {
+  "updated": "20251019T073325Z",
   "items": [
     {
-      "desc": "",
-      "href": "/pages/apps/_city/index.html",
-      "title": "_city",
-      "name": "_city"
+      "name": "alexandria",
+      "title": "Alexandria \u2014 Gothic Library",
+      "desc": "DM & Worldbuilding",
+      "href": "/pages/apps/alexandria/index.html"
     },
     {
-      "desc": "Finance & Reports",
-      "href": "/pages/apps/abbey/index.html",
-      "title": "Abbey — Grand Vault",
-      "name": "abbey"
-    },
-    {
-      "desc": "DM & Worldbuilding (Voice DM available)",
-      "href": "/pages/apps/alexandria/index.html",
-      "title": "Alexandria — Gothic Library",
-      "name": "alexandria"
-    },
-    {
-      "desc": "Monetization & Shops",
-      "href": "/pages/apps/billie/index.html",
-      "title": "Billie — Gold Mansion",
-      "name": "billie"
-    },
-    {
-      "desc": "Meal Plans & Shopping",
-      "href": "/pages/apps/carol/index.html",
-      "title": "Carol — Restaurant",
-      "name": "carol"
-    },
-    {
+      "name": "charlotte",
+      "title": "Charlotte \u2014 Relay Tower",
       "desc": "Design & Pipelines",
-      "href": "/pages/apps/charlotte/index.html",
-      "title": "Charlotte — Relay Tower",
-      "name": "charlotte"
+      "href": "/pages/apps/charlotte/index.html"
     },
     {
-      "desc": "Security & Backups",
-      "href": "/pages/apps/clarice/index.html",
-      "title": "Clarice — Courtroom & Palace",
-      "name": "clarice"
-    },
-    {
-      "desc": "Coaching & Biometrics",
-      "href": "/pages/apps/jem/index.html",
-      "title": "Jem — Dojo",
-      "name": "jem"
-    },
-    {
+      "name": "nina",
+      "title": "Nina \u2014 Futuristic Lab",
       "desc": "3D & VRM",
-      "href": "/pages/apps/nina/index.html",
-      "title": "Nina — Futuristic Lab",
-      "name": "nina"
+      "href": "/pages/apps/nina/index.html"
     },
     {
-      "desc": "",
-      "href": "/pages/apps/overseers/index.html",
-      "title": "overseers",
-      "name": "overseers"
-    },
-    {
-      "desc": "",
-      "href": "/pages/apps/reyczar/index.html",
-      "title": "reyczar",
-      "name": "reyczar"
-    },
-    {
-      "desc": "Social Video (incl. 18+ hidden track)",
-      "href": "/pages/apps/sorcha/index.html",
-      "title": "Sorcha — Mansion & Pool",
-      "name": "sorcha"
-    },
-    {
-      "desc": "Meditations & Gateway Practice",
-      "href": "/pages/apps/stella/index.html",
-      "title": "Stella — Observatory",
-      "name": "stella"
-    },
-    {
-      "desc": "Compliance & Reminders",
-      "href": "/pages/apps/themis/index.html",
-      "title": "Themis — Record Hall",
-      "name": "themis"
-    },
-    {
+      "name": "tracy",
+      "title": "Tracy \u2014 Cathedral Studio",
       "desc": "Artboards & Wallpapers",
-      "href": "/pages/apps/tracy/index.html",
-      "title": "Tracy — Cathedral Studio",
-      "name": "tracy"
+      "href": "/pages/apps/tracy/index.html"
     },
     {
-      "desc": "",
-      "href": "/pages/apps/whitestar/index.html",
-      "title": "whitestar",
-      "name": "whitestar"
+      "name": "carol",
+      "title": "Carol \u2014 Restaurant",
+      "desc": "Meal Plans & Shopping",
+      "href": "/pages/apps/carol/index.html"
+    },
+    {
+      "name": "jem",
+      "title": "Jem \u2014 Dojo",
+      "desc": "Coaching & Biometrics",
+      "href": "/pages/apps/jem/index.html"
+    },
+    {
+      "name": "stella",
+      "title": "Stella \u2014 Observatory",
+      "desc": "Meditations & Gateway",
+      "href": "/pages/apps/stella/index.html"
+    },
+    {
+      "name": "abbey",
+      "title": "Abbey \u2014 Grand Vault",
+      "desc": "Finance & Reports",
+      "href": "/pages/apps/abbey/index.html"
+    },
+    {
+      "name": "themis",
+      "title": "Themis \u2014 Record Hall",
+      "desc": "Compliance & Reminders",
+      "href": "/pages/apps/themis/index.html"
+    },
+    {
+      "name": "billie",
+      "title": "Billie \u2014 Gold Mansion",
+      "desc": "Monetization",
+      "href": "/pages/apps/billie/index.html"
+    },
+    {
+      "name": "sorcha",
+      "title": "Sorcha \u2014 Mansion & Pool",
+      "desc": "Social Video",
+      "href": "/pages/apps/sorcha/index.html"
+    },
+    {
+      "name": "clarice",
+      "title": "Clarice \u2014 Courtroom & Palace",
+      "desc": "Security & Backups",
+      "href": "/pages/apps/clarice/index.html"
     }
-  ],
-  "updated": "2025-10-19T06:28:08Z"
+  ]
 }

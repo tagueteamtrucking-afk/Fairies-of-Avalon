@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alexandria — Session Log</title><style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}textarea{width:100%;min-height:200px}</style></head>
+<body><h1>Alexandria — Session Log</h1>
+<p>Use this to jot campaign sessions; saved locally. You can download JSON and commit later.</p>
+<p><input id="title" placeholder="Session title"> <button onclick="add()">Add entry</button></p>
+<ul id="list"></ul>
+<p><button onclick="dl()">Download JSON</button> · <a href="/pages/apps/alexandria/index.html" style="color:#a5d6ff">← Back</a></p>
+<script>
+const key='alex_session_log';
+function load(){const arr=JSON.parse(localStorage.getItem(key)||'[]'); const ul=document.getElementById('list'); ul.innerHTML=''; arr.forEach((x,i)=>{const li=document.createElement('li'); li.innerHTML='<b>'+x.title+'</b> — '+new Date(x.ts).toLocaleString(); ul.appendChild(li);});}
+function add(){const t=document.getElementById('title').value.trim(); if(!t) return; const arr=JSON.parse(localStorage.getItem(key)||'[]'); arr.push({title:t,ts:Date.now()}); localStorage.setItem(key,JSON.stringify(arr)); load();}
+function dl(){const a=localStorage.getItem(key)||'[]'; const blob=new Blob([a],{type:'application/json'}); const link=document.createElement('a'); link.href=URL.createObjectURL(blob); link.download='alexandria-session-log.json'; link.click();}
+load();
+</script></body></html>

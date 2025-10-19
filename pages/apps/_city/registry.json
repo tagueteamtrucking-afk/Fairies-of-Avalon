@@ -4,97 +4,113 @@
       "name": "_city",
       "desc": "",
       "title": "_city",
-      "href": "/pages/apps/_city/index.html"
+      "href": "/pages/apps/_city/index.html",
+      "icon": "🏛️"
     },
     {
       "name": "abbey",
       "desc": "Finance & Reports",
       "title": "Abbey — Grand Vault",
-      "href": "/pages/apps/abbey/index.html"
+      "href": "/pages/apps/abbey/index.html",
+      "icon": "🏦"
     },
     {
       "name": "alexandria",
       "desc": "DM & Worldbuilding (Voice DM available)",
       "title": "Alexandria — Gothic Library",
-      "href": "/pages/apps/alexandria/index.html"
+      "href": "/pages/apps/alexandria/index.html",
+      "icon": "📚"
     },
     {
       "name": "billie",
       "desc": "Monetization & Shops",
       "title": "Billie — Gold Mansion",
-      "href": "/pages/apps/billie/index.html"
+      "href": "/pages/apps/billie/index.html",
+      "icon": "💰"
     },
     {
       "name": "carol",
       "desc": "Meal Plans & Shopping",
       "title": "Carol — Restaurant",
-      "href": "/pages/apps/carol/index.html"
+      "href": "/pages/apps/carol/index.html",
+      "icon": "🍽️"
     },
     {
       "name": "charlotte",
       "desc": "Design & Pipelines",
       "title": "Charlotte — Relay Tower",
-      "href": "/pages/apps/charlotte/index.html"
+      "href": "/pages/apps/charlotte/index.html",
+      "icon": "📡"
     },
     {
       "name": "clarice",
       "desc": "Security & Backups",
       "title": "Clarice — Courtroom & Palace",
-      "href": "/pages/apps/clarice/index.html"
+      "href": "/pages/apps/clarice/index.html",
+      "icon": "🔐"
     },
     {
       "name": "jem",
       "desc": "Coaching & Biometrics",
       "title": "Jem — Dojo",
-      "href": "/pages/apps/jem/index.html"
+      "href": "/pages/apps/jem/index.html",
+      "icon": "🥋"
     },
     {
       "name": "nina",
       "desc": "3D & VRM",
       "title": "Nina — Futuristic Lab",
-      "href": "/pages/apps/nina/index.html"
+      "href": "/pages/apps/nina/index.html",
+      "icon": "🧪"
     },
     {
       "name": "overseers",
       "desc": "",
       "title": "overseers",
-      "href": "/pages/apps/overseers/index.html"
+      "href": "/pages/apps/overseers/index.html",
+      "icon": "🏛️"
     },
     {
       "name": "reyczar",
       "desc": "",
       "title": "reyczar",
-      "href": "/pages/apps/reyczar/index.html"
+      "href": "/pages/apps/reyczar/index.html",
+      "icon": "🏛️"
     },
     {
       "name": "sorcha",
       "desc": "Social Video (incl. 18+ hidden track)",
       "title": "Sorcha — Mansion & Pool",
-      "href": "/pages/apps/sorcha/index.html"
+      "href": "/pages/apps/sorcha/index.html",
+      "icon": "🎬"
     },
     {
       "name": "stella",
       "desc": "Meditations & Gateway Practice",
       "title": "Stella — Observatory",
-      "href": "/pages/apps/stella/index.html"
+      "href": "/pages/apps/stella/index.html",
+      "icon": "🌌"
     },
     {
       "name": "themis",
       "desc": "Compliance & Reminders",
       "title": "Themis — Record Hall",
-      "href": "/pages/apps/themis/index.html"
+      "href": "/pages/apps/themis/index.html",
+      "icon": "⚖️"
     },
     {
       "name": "tracy",
       "desc": "Artboards & Wallpapers",
       "title": "Tracy — Cathedral Studio",
-      "href": "/pages/apps/tracy/index.html"
+      "href": "/pages/apps/tracy/index.html",
+      "icon": "🎨"
     },
     {
       "name": "whitestar",
       "desc": "",
       "title": "whitestar",
-      "href": "/pages/apps/whitestar/index.html"
+      "href": "/pages/apps/whitestar/index.html",
+      "icon": "🏛️"
     }
   ],
   "updated": "2025-10-19T04:32:31Z"

@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kill SW</title></head>
-<body style="background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto;padding:16px">
-<h1>Service Worker & Cache Reset</h1><pre id="log">Running…</pre>
-<script>(async()=>{const L=[];const log=m=>{L.push(m);document.getElementById('log').textContent=L.join('\n')};try{if('serviceWorker'in navigator){const r=await navigator.serviceWorker.getRegistrations();for(const x of r){await x.unregister();log('Unregistered SW');}}if(window.caches){const k=await caches.keys();for(const c of k){await caches.delete(c);log('Cache deleted '+c);}}}catch(e){log('Error '+e)}log('Done.');})();</script>
-<p><a style="color:#93c5fd" href="/pages/plaza.html">Back to City</a></p>
+<body style="background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:20px">
+<h1>Clear SW & Caches</h1><pre id="log">Running…</pre>
+<script>(async()=>{const L=[];const log=m=>{L.push(m);document.getElementById('log').textContent=L.join('\n')};try{if('serviceWorker'in navigator){const r=await navigator.serviceWorker.getRegistrations();for(const x of r){await x.unregister();log('Unregistered SW');}}if(window.caches){const k=await caches.keys();for(const c of k){await caches.delete(c);log('Cache '+c+' deleted');}}}catch(e){log('Error '+e)}log('Done.');})();</script>
+<p><a href="/">Back Home</a></p>
 </body></html>

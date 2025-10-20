@@ -1,21 +1,42 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Alexandria — Gothic Library</title>
-<link rel="stylesheet" href="/pages/apps/_shared/ui.css">
-<link rel="stylesheet" href="/pages/apps/_shared/room.css">
-</head><body><div class="wrap">
-<div class="nav">
-  <a class="btn" href="/">Home</a>
-  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
-  <a class="btn" href="/pages/apps/_city/index.html">Grid</a>
-</div>
-<div class="hero"></div>
-<h1>Alexandria — Gothic Library</h1>
-<div id="room" class="room"></div>
-<div class="footer">Build: 20251019T232747Z</div>
-<script type="module">
-import { mountRoom } from '/pages/apps/_shared/room.js';
-const items = [{"icon": "🌐", "title": "Globe — World Rules & Maps", "href": "/pages/apps/alexandria/world-rules.html", "desc": "Define magic, societies, travel, politics."}, {"icon": "📚", "title": "Bookshelves — Stories & Sheets", "href": "/pages/apps/alexandria/stories.html", "desc": "Write & organize stories, characters."}, {"icon": "🗺️", "title": "Corkboard — Campaigns", "href": "/pages/apps/alexandria/campaigns.html", "desc": "Track sessions & recaps."}, {"icon": "🗣️", "title": "DM Voice", "href": "/pages/apps/alexandria/voice-dm.html", "desc": "Speak as the DM (worker TTS)."}];
-mountRoom(document.getElementById('room'), items);
-</script>
-</div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alexandria — Gothic Library</title>
+  <style>
+    :root{--bg:#0a0c10;--fg:#e8ecf1;--tile:#11161d;--tileb:#1b2430;--acc:#6ec1ff;--mut:#a8b3c2}
+    html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    header{padding:24px 16px;text-align:center;border-bottom:1px solid #202a36}
+    main{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));padding:16px}
+    a.card{display:grid;gap:6px;padding:16px;background:linear-gradient(180deg,var(--tile),var(--tileb));border:1px solid #202a36;border-radius:12px;color:var(--fg);text-decoration:none}
+    a.card:hover{border-color:var(--acc)}
+    .emoji{font-size:28px}
+    .mut{color:var(--mut);font-size:12px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 Alexandria — Gothic Library</h1>
+    <p class="mut">DM sessions, worlds, and logs.</p>
+  </header>
+  <main>
+    <a class="card" href="/pages/apps/alexandria/voice-dm.html">
+      <div class="emoji">🪶</div>
+      <div><strong>Voice DM</strong><div class="mut">Run a session (browser TTS ok)</div></div>
+    </a>
+    <a class="card" href="/pages/apps/alexandria/session-log.html">
+      <div class="emoji">📜</div>
+      <div><strong>Session Log</strong><div class="mut">Keep continuity for serials</div></div>
+    </a>
+    <a class="card" href="/pages/apps/alexandria/world-rules.html">
+      <div class="emoji">🌍</div>
+      <div><strong>World Rules</strong><div class="mut">Maps, lore, timelines</div></div>
+    </a>
+    <a class="card" href="/pages/apps/_city/index.html">
+      <div class="emoji">🏰</div>
+      <div><strong>Back to City</strong></div>
+    </a>
+  </main>
+</body>
+</html>

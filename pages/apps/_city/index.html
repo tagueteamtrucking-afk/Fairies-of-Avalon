@@ -1,30 +1,82 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Avalon — City</title>
-  <link rel="stylesheet" href="../theme/tokens.css">
-  <link rel="stylesheet" href="city.css">
+  <link rel="stylesheet" href="./city.css">
 </head>
 <body>
-  <header class="head">
-    <h1>City of Avalon</h1>
-    <p class="muted">Tap a building to enter the room.</p>
+  <header class="hero">
+    <h1>🏰 Avalon</h1>
+    <p class="sub">Tap a building to enter its room.</p>
   </header>
-  <main>
-    <nav class="grid">
-      <a class="tile" href="/pages/rooms/alexandria.html"><span class="b">Gothic Library</span><span>Alexandria</span></a>
-      <a class="tile" href="/pages/rooms/tracy.html"><span class="b">Stained Glass Cathedral</span><span>Tracy</span></a>
-      <a class="tile" href="/pages/rooms/carol.html"><span class="b">Bistro</span><span>Carol</span></a>
-      <a class="tile" href="/pages/rooms/jem.html"><span class="b">Dojo</span><span>Jem</span></a>
-      <a class="tile" href="/pages/rooms/stella.html"><span class="b">Observatory / Apothecary</span><span>Stella</span></a>
-      <a class="tile" href="/pages/rooms/nina.html"><span class="b">Lab</span><span>Nina</span></a>
-      <a class="tile" href="/pages/rooms/charlotte.html"><span class="b">Relay Hall</span><span>Charlotte</span></a>
-      <a class="tile" href="/pages/rooms/abbey.html"><span class="b">Vault</span><span>Abbey</span></a>
-      <a class="tile" href="/pages/rooms/billie.html"><span class="b">Mansion</span><span>Billie</span></a>
-      <a class="tile" href="/pages/rooms/overseers.html"><span class="b">Palace</span><span>Overseers</span></a>
-    </nav>
+
+  <main class="grid">
+    <!-- Alexandria — Gothic Library -->
+    <a class="tile" href="/pages/rooms/alexandria.html">
+      <div class="emoji">📚</div>
+      <div class="label"><strong>Gothic Library</strong><span>Alexandria</span></div>
+    </a>
+
+    <!-- Tracy — Stained Glass Cathedral (Studio) -->
+    <a class="tile" href="/pages/rooms/tracy.html">
+      <div class="emoji">🖼️</div>
+      <div class="label"><strong>Stained Glass Cathedral</strong><span>Tracy</span></div>
+    </a>
+
+    <!-- Carol — Bistro (Kitchen) -->
+    <a class="tile" href="/pages/rooms/carol.html">
+      <div class="emoji">🍽️</div>
+      <div class="label"><strong>Bistro (Kitchen)</strong><span>Carol</span></div>
+    </a>
+
+    <!-- Jem — Dojo -->
+    <a class="tile" href="/pages/rooms/jem.html">
+      <div class="emoji">🥋</div>
+      <div class="label"><strong>Dojo</strong><span>Jem</span></div>
+    </a>
+
+    <!-- Stella — Observatory / Apothecary -->
+    <a class="tile" href="/pages/rooms/stella.html">
+      <div class="emoji">🌌</div>
+      <div class="label"><strong>Observatory / Apothecary</strong><span>Stella</span></div>
+    </a>
+
+    <!-- Nina — Lab -->
+    <a class="tile" href="/pages/rooms/nina.html">
+      <div class="emoji">🧪</div>
+      <div class="label"><strong>Lab</strong><span>Nina</span></div>
+    </a>
+
+    <!-- Charlotte — Relay Hall -->
+    <a class="tile" href="/pages/rooms/charlotte.html">
+      <div class="emoji">🛰️</div>
+      <div class="label"><strong>Relay Hall</strong><span>Charlotte</span></div>
+    </a>
+
+    <!-- Abbey — Vault -->
+    <a class="tile" href="/pages/rooms/abbey.html">
+      <div class="emoji">🏦</div>
+      <div class="label"><strong>Vault</strong><span>Abbey</span></div>
+    </a>
+
+    <!-- Billie — Mansion (PG-13) -->
+    <a class="tile" href="/pages/rooms/billie.html">
+      <div class="emoji">🎬</div>
+      <div class="label"><strong>Mansion</strong><span>Billie</span></div>
+    </a>
+
+    <!-- Overseers — Palace -->
+    <a class="tile" href="/pages/rooms/overseers.html">
+      <div class="emoji">🏛️</div>
+      <div class="label"><strong>Palace</strong><span>Overseers</span></div>
+    </a>
   </main>
+
+  <footer class="foot">
+    <a href="/pages/plaza.html">Plaza</a> • 
+    <a href="/kill-sw.html">Reset Service Worker</a>
+  </footer>
 </body>
 </html>

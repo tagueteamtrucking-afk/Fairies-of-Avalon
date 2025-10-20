@@ -1,84 +1,98 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jem — Evaluate</title>
-  <link rel="stylesheet" href="../theme/tokens.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jem — Evaluate Today</title>
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#0b0f18;color:#e7ecf3}
-    header{padding:16px;border-bottom:1px solid #1e2a44}
-    main{padding:16px}
-    .card{max-width:720px;margin:0 auto;background:#101624;border:1px solid #1c2440;border-radius:10px;padding:16px}
-    label{display:block;margin:10px 0 6px}
-    select,textarea,button{width:100%;padding:10px;border-radius:8px;border:1px solid #2a375a;background:#0b1220;color:#e7ecf3}
-    button{cursor:pointer;margin-top:12px}
-    .row{display:flex;gap:12px;flex-wrap:wrap}
-    .row>div{flex:1 1 220px}
-    .muted{opacity:.75}
-    .ok{color:#7dfd86}
+    :root{--bg:#0a0c10;--fg:#e8ecf1;--tile:#11161d;--tileb:#1b2430;--acc:#6ec1ff;--mut:#a8b3c2}
+    html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    header{padding:24px 16px;text-align:center;border-bottom:1px solid #202a36}
+    main{max-width:720px;margin:0 auto;padding:16px;display:grid;gap:16px}
+    section{background:linear-gradient(180deg,var(--tile),var(--tileb));border:1px solid #202a36;border-radius:12px;padding:16px}
+    label{display:block;margin-top:8px}
+    select,textarea,button{width:100%;padding:10px;border-radius:8px;border:1px solid #202a36;background:#0f141b;color:var(--fg)}
+    button{cursor:pointer}
+    .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+    .mut{color:var(--mut);font-size:12px}
+    .ok{color:#7fe3a6}
   </style>
 </head>
 <body>
   <header>
-    <h1>Jem — Daily Evaluation</h1>
-    <p class="muted">Baseline: warm‑up (morning), micro‑set (break), unwind/stretch (evening).</p>
+    <h1>🥋 Jem — Evaluate Today</h1>
+    <p class="mut">Log what you did and how it felt. This builds the week‑1 foundation.</p>
   </header>
   <main>
-    <div class="card">
+    <section>
+      <h2>Push‑ups</h2>
       <div class="row">
-        <div>
-          <label for="style">Push‑up style</label>
+        <label>Style
           <select id="style">
             <option value="wall">Wall</option>
             <option value="knees">Knees</option>
             <option value="strict">Strict</option>
           </select>
-        </div>
-        <div>
-          <label for="difficulty">Difficulty</label>
+        </label>
+        <label>Difficulty
           <select id="difficulty">
             <option value="too_easy">Too easy</option>
             <option value="about_right" selected>About right</option>
             <option value="too_hard">Too hard</option>
           </select>
-        </div>
+        </label>
       </div>
-      <label for="notes">Notes (soreness, swaps, time limits)</label>
-      <textarea id="notes" rows="5" placeholder="Write anything that helps Jem adapt next week…"></textarea>
+      <label>Notes
+        <textarea id="notes" rows="3" placeholder="Soreness, joints, anything notable…"></textarea>
+      </label>
       <button id="save">Save today’s log</button>
-      <p id="status" class="ok" style="display:none">Saved.</p>
-      <p class="muted">Data is stored locally on this device (for now). Weekly: we’ll synthesize a plan update.</p>
-    </div>
+      <p id="status" class="mut"></p>
+    </section>
+
+    <section>
+      <h2>Today’s Cadence</h2>
+      <ul>
+        <li><strong>Morning</strong>: gentle warm‑up (neck, shoulders, hips).</li>
+        <li><strong>Midday</strong>: micro‑set (push‑ups + band pull‑aparts).</li>
+        <li><strong>Evening</strong>: unwind & stretch (spine, hamstrings, calves).</li>
+      </ul>
+      <p class="mut">We’ll scale reps/sets after week‑1 based on your logs and Samsung Health imports.</p>
+    </section>
+
+    <section>
+      <a href="/pages/apps/_city/index.html" style="color:#6ec1ff">← Back to City</a>
+    </section>
   </main>
-<script>
-(function(){
-  const LS_KEY = 'jem:eval:' + (new Date()).toISOString().slice(0,10);
-  const styleEl = document.getElementById('style');
-  const diffEl = document.getElementById('difficulty');
-  const notesEl = document.getElementById('notes');
-  const statusEl = document.getElementById('status');
-  // Load prior value for today
-  try{
-    const prior = JSON.parse(localStorage.getItem(LS_KEY) || 'null');
-    if(prior){
-      styleEl.value = prior.style || 'wall';
-      diffEl.value = prior.difficulty || 'about_right';
-      notesEl.value = prior.notes || '';
-    }
-  }catch{}
-  document.getElementById('save').addEventListener('click', () => {
-    const payload = {
-      date: (new Date()).toISOString().slice(0,10),
-      style: styleEl.value,
-      difficulty: diffEl.value,
-      notes: notesEl.value.trim()
+  <script>
+    const $ = s => document.querySelector(s);
+    const todayKey = () => {
+      const d = new Date();
+      const s = d.toISOString().slice(0,10); // YYYY-MM-DD
+      return 'jem:log:'+s;
     };
-    localStorage.setItem(LS_KEY, JSON.stringify(payload));
-    statusEl.style.display = 'block';
-    setTimeout(()=>statusEl.style.display='none', 1500);
-  });
-})();
-</script>
+    $('#save').addEventListener('click', () => {
+      const entry = {
+        date: new Date().toISOString(),
+        style: $('#style').value,
+        difficulty: $('#difficulty').value,
+        notes: $('#notes').value.trim()
+      };
+      localStorage.setItem(todayKey(), JSON.stringify(entry));
+      $('#status').textContent = 'Saved. ('+ todayKey() +')';
+      $('#status').className = 'ok';
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+      const prev = localStorage.getItem(todayKey());
+      if(prev){
+        try{ 
+          const j = JSON.parse(prev);
+          $('#style').value = j.style || 'wall';
+          $('#difficulty').value = j.difficulty || 'about_right';
+          $('#notes').value = j.notes || '';
+          $('#status').textContent = 'Loaded saved log for today.';
+        }catch(e){}
+      }
+    });
+  </script>
 </body>
 </html>

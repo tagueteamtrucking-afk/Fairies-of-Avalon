@@ -1,20 +1,77 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Stella — Guided Audio</title><style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}a{color:#a5d6ff}select,input,button{font:inherit}</style></head>
-<body><h1>Stella — Guided Audio</h1>
-<p>Worker URL: <input id="w" style="width:60%"> <button onclick="save()">Save</button></p>
-<p>Program: <select id="p">
-<option value="success">Success & Determination</option>
-<option value="focus">Focus</option>
-<option value="gratitude">Gratitude</option>
-<option value="gateway">Gateway</option>
-<option value="relax">Relax</option>
-</select>
-</p>
-<p><button onclick="play()">Play</button> <audio id="a" controls style="width:100%"></audio></p>
-<p><a href="/pages/apps/stella/index.html" style="color:#a5d6ff">← Back</a></p>
-<script type="module">
-import {{getWorker,setWorker}} from '/pages/apps/shared/worker.js';
-const w=document.getElementById('w'); w.value=getWorker();
-window.save=()=>setWorker(w.value.trim());
-window.play=async()=>{{const url=(getWorker()||'').replace(/\/$/,'')+'/speak'; const r=await fetch(url,{{method:'POST',headers:{{'content-type':'application/json'}},body:JSON.stringify({{voice:document.getElementById('p').value,text:'Start'}})}}); const blob=await r.blob(); document.getElementById('a').src=URL.createObjectURL(blob);}}
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stella — Guided Sessions</title>
+  <style>
+    :root{--bg:#0a0c10;--fg:#e8ecf1;--tile:#11161d;--tileb:#1b2430;--acc:#6ec1ff;--mut:#a8b3c2}
+    html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    header{padding:24px 16px;text-align:center;border-bottom:1px solid #202a36}
+    main{max-width:780px;margin:0 auto;padding:16px;display:grid;gap:16px}
+    section{background:linear-gradient(180deg,var(--tile),var(--tileb));border:1px solid #202a36;border-radius:12px;padding:16px}
+    button{padding:10px 14px;border-radius:8px;border:1px solid #202a36;background:#0f141b;color:var(--fg);cursor:pointer}
+    .mut{color:var(--mut);font-size:12px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌌 Stella — Guided Sessions</h1>
+    <p class="mut">On-demand; browser TTS for now. No medical claims.</p>
+  </header>
+  <main>
+    <section>
+      <h2>Calm Reset</h2>
+      <p class="mut">Box breathing + gentle orientation.</p>
+      <div>
+        <button data-session="calm">Play</button>
+        <button id="stop">Stop</button>
+      </div>
+    </section>
+    <section>
+      <h2>Focus Sprint</h2>
+      <p class="mut">Short induction + NLP cueing + light binaurals (simulated verbal cueing here).</p>
+      <div>
+        <button data-session="focus">Play</button>
+        <button id="stop2">Stop</button>
+      </div>
+    </section>
+    <section>
+      <h2>Sleep Drift</h2>
+      <p class="mut">4‑7‑8 + body scan + soft reframe for sleep.</p>
+      <div>
+        <button data-session="sleep">Play</button>
+        <button id="stop3">Stop</button>
+      </div>
+    </section>
+    <section>
+      <a href="/pages/apps/_city/index.html" style="color:#6ec1ff">← Back to City</a>
+    </section>
+  </main>
+  <script>
+    const calm = `Welcome. We'll begin with box breathing: inhale for four, hold for four, exhale for four, hold for four. Repeat three times. Release the jaw, lower the shoulders. Picture a calm horizon. You’re safe, present, and able.`;
+    const focus = `Close your eyes gently. Count down five to one. At one, your attention narrows to a single helpful task. Say quietly: Now. Begin. Maintain easy posture and steady breath as focus builds.`;
+    const sleep = `Lie comfortably. Inhale four, hold seven, exhale eight. Let the face soften. Scan the body from crown to toes; anything tight may loosen now. Imagine drifting on a quiet lake at dusk.`;
+
+    function speak(text){
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.95; u.pitch = 1.0;
+      speechSynthesis.speak(u);
+    }
+    function stop(){ speechSynthesis.cancel(); }
+
+    document.querySelectorAll('button[data-session]').forEach(b=>{
+      b.addEventListener('click', ()=>{
+        const key = b.getAttribute('data-session');
+        if(key==='calm') speak(calm);
+        if(key==='focus') speak(focus);
+        if(key==='sleep') speak(sleep);
+      });
+    });
+    document.getElementById('stop').onclick = stop;
+    document.getElementById('stop2').onclick = stop;
+    document.getElementById('stop3').onclick = stop;
+  </script>
+</body>
+</html>

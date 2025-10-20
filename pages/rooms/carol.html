@@ -1,18 +1,42 @@
-﻿<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carol — Restaurant</title>
-<link rel="stylesheet" href="/pages/apps/buildings.css">
-<link rel="stylesheet" href="/pages/apps/tracy/skins/avalon-skin.css">
-<header class="hero room-bg carol"><h1>Carol — Restaurant</h1></header>
-<main class="grid">
-  <div class="card">
-    <div class="kv"><b>Avatar</b><span class="small">If the model doesn't load, check the VRM path or upload the avatar file.</span></div>
-    <iframe class="viewer" src="/pages/apps/nina/viewer.html?src=%2Fasset%2Fwinged-models%2FCarol.vrm"></iframe>
-    <div class="kv"><b>Controls</b><span class="small">Drag to orbit. Pinch/scroll to zoom.</span></div>
-  </div>
-  <div class="card">
-    <div class="kv"><b>Shortcuts</b>
-      <a class="btn" href="/pages/plaza.html">← Back to Plaza</a>
-      <a class="btn" href="/pages/apps/nina/viewer.html?src=%2Fasset%2Fwinged-models%2FCarol.vrm" target="_blank">Open Viewer</a>
-    </div>
-  </div>
-</main>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carol — Bistro (Kitchen)</title>
+  <style>
+    :root{--bg:#0a0c10;--fg:#e8ecf1;--tile:#11161d;--tileb:#1b2430;--acc:#6ec1ff;--mut:#a8b3c2}
+    html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    header{padding:24px 16px;text-align:center;border-bottom:1px solid #202a36}
+    main{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));padding:16px}
+    a.card{display:grid;gap:6px;padding:16px;background:linear-gradient(180deg,var(--tile),var(--tileb));border:1px solid #202a36;border-radius:12px;color:var(--fg);text-decoration:none}
+    a.card:hover{border-color:var(--acc)}
+    .emoji{font-size:28px}
+    .mut{color:var(--mut);font-size:12px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍽️ Carol — Bistro (Kitchen)</h1>
+    <p class="mut">Menu, shopping, and preferences.</p>
+  </header>
+  <main>
+    <a class="card" href="/pages/apps/carol/menu.html">
+      <div class="emoji">📋</div>
+      <div><strong>Menu (14‑day)</strong><div class="mut">See the current plan</div></div>
+    </a>
+    <a class="card" href="/pages/apps/carol/shopping.html">
+      <div class="emoji">🛒</div>
+      <div><strong>Shopping</strong><div class="mut">Quantities for two people</div></div>
+    </a>
+    <a class="card" href="/pages/apps/carol/preferences.html">
+      <div class="emoji">⚙️</div>
+      <div><strong>Preferences</strong><div class="mut">Allergies and swaps</div></div>
+    </a>
+    <a class="card" href="/pages/apps/_city/index.html">
+      <div class="emoji">🏰</div>
+      <div><strong>Back to City</strong></div>
+    </a>
+  </main>
+</body>
+</html>

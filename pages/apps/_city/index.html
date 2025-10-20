@@ -1,74 +1,30 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Avalon • City</title>
-  <link rel="stylesheet" href="./city.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Avalon — City</title>
+  <link rel="stylesheet" href="../theme/tokens.css">
+  <link rel="stylesheet" href="city.css">
 </head>
 <body>
-<header>
-  <h1>Avalon — City Map</h1>
-</header>
-
-<div class="grid">
-  <a class="tile" href="/pages/rooms/alexandria.html">
-    <div class="badge">Gothic Library</div>
-    <h3>Alexandria</h3>
-    <div class="sub">DM, worlds, lore</div>
-  </a>
-
-  <a class="tile" href="/pages/rooms/tracy.html">
-    <div class="badge">Stained Glass Cathedral</div>
-    <h3>Tracy</h3>
-    <div class="sub">Wallpapers & skins</div>
-  </a>
-
-  <a class="tile" href="/pages/rooms/carol.html">
-    <div class="badge">Bistro</div>
-    <h3>Carol</h3>
-    <div class="sub">14‑day menus & shopping</div>
-  </a>
-
-  <a class="tile" href="/pages/rooms/jem.html">
-    <div class="badge">Dojo</div>
-    <h3>Jem</h3>
-    <div class="sub">Daily movement & weekly adjust</div>
-  </a>
-
-  <a class="tile" href="/pages/rooms/stella.html">
-    <div class="badge">Observatory / Apothecary</div>
-    <h3>Stella</h3>
-    <div class="sub">On‑demand guided audio</div>
-  </a>
-
-  <a class="tile" href="/pages/rooms/abbey.html">
-    <div class="badge">Vault</div>
-    <h3>Abbey</h3>
-    <div class="sub">Imports, ledger, budgets</div>
-  </a>
-
-  <a class="tile" href="/pages/rooms/charlotte.html">
-    <div class="badge">Relay / Linguist</div>
-    <h3>Charlotte</h3>
-    <div class="sub">Workflows & voiceovers</div>
-  </a>
-
-  <a class="tile" href="/pages/rooms/overseers.html">
-    <div class="badge">Palace</div>
-    <h3>Overseers</h3>
-    <div class="sub">Ray Czar & White Star</div>
-  </a>
-
-  <a class="tile" href="/pages/rooms/billie.html">
-    <div class="badge">Mansion</div>
-    <h3>Billie</h3>
-    <div class="sub">PG‑13 creator studio</div>
-  </a>
-</div>
-
-<div class="footer">
-  <a href="/kill-sw.html">Reset Service Worker</a>
-</div>
+  <header class="head">
+    <h1>City of Avalon</h1>
+    <p class="muted">Tap a building to enter the room.</p>
+  </header>
+  <main>
+    <nav class="grid">
+      <a class="tile" href="/pages/rooms/alexandria.html"><span class="b">Gothic Library</span><span>Alexandria</span></a>
+      <a class="tile" href="/pages/rooms/tracy.html"><span class="b">Stained Glass Cathedral</span><span>Tracy</span></a>
+      <a class="tile" href="/pages/rooms/carol.html"><span class="b">Bistro</span><span>Carol</span></a>
+      <a class="tile" href="/pages/rooms/jem.html"><span class="b">Dojo</span><span>Jem</span></a>
+      <a class="tile" href="/pages/rooms/stella.html"><span class="b">Observatory / Apothecary</span><span>Stella</span></a>
+      <a class="tile" href="/pages/rooms/nina.html"><span class="b">Lab</span><span>Nina</span></a>
+      <a class="tile" href="/pages/rooms/charlotte.html"><span class="b">Relay Hall</span><span>Charlotte</span></a>
+      <a class="tile" href="/pages/rooms/abbey.html"><span class="b">Vault</span><span>Abbey</span></a>
+      <a class="tile" href="/pages/rooms/billie.html"><span class="b">Mansion</span><span>Billie</span></a>
+      <a class="tile" href="/pages/rooms/overseers.html"><span class="b">Palace</span><span>Overseers</span></a>
+    </nav>
+  </main>
 </body>
 </html>

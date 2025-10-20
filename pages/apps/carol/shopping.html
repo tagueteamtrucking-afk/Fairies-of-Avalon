@@ -1,119 +1,91 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Carol • Shopping List</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carol — Shopping List</title>
   <link rel="stylesheet" href="../theme/tokens.css">
   <style>
-    body{font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin:0; background:var(--bg); color:var(--fg)}
-    header{padding:16px 20px; border-bottom:1px solid var(--border); background:var(--panel-bg)}
-    h1{font-size:20px; margin:0}
-    main{padding:16px 20px; max-width:900px; margin:0 auto}
-    .note{background:var(--panel-bg); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin:12px 0}
-    .grid{display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:12px; margin-top:12px}
-    .card{background:var(--panel-bg); border:1px solid var(--border); border-radius:12px; padding:12px}
-    .card h3{margin:0 0 8px 0; font-size:16px}
-    .item{display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-top:1px dashed var(--hairline)}
-    .item:first-child{border-top:0}
-    .muted{opacity:.8}
-    .ok{color:var(--ok)}
-    .warn{color:var(--warn)}
-    .btn{display:inline-block; padding:10px 14px; border-radius:10px; border:1px solid var(--border); background:var(--panel-bg); color:var(--fg); text-decoration:none}
-    footer{padding:24px; text-align:center; opacity:.8}
-    code{background:var(--chip); padding:2px 6px; border-radius:6px}
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; background: var(--bg, #0b0f18); color: var(--fg, #e7ecf3); }
+    header { padding: 16px; border-bottom: 1px solid #243; }
+    main { padding: 16px; }
+    .card { background: #101624; border: 1px solid #1c2440; border-radius: 10px; padding: 16px; margin: 0 auto; max-width: 800px; }
+    .muted { opacity: .75; }
+    ul { line-height: 1.6; }
+    .pill { display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid #2a375a; font-size:12px; margin-left: 8px; }
+    .warn { color:#ffb86b; }
+    a.button { display:inline-block; padding:10px 14px; border:1px solid #2a375a; border-radius:8px; text-decoration:none; color:inherit; margin-top:12px; }
+    .row { display:flex; gap:16px; flex-wrap:wrap; }
+    .row > div { flex:1 1 300px; }
+    .qty { opacity:.9; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Shopping List (for current 14‑day plan)</h1>
+    <h1>Carol — Shopping List <span class="pill">2 people</span></h1>
+    <p class="muted">Plan source & diet rules are configured in <code>pages/apps/carol/index.json</code>.</p>
   </header>
   <main>
-    <div id="status" class="note">Loading…</div>
-    <div id="grid" class="grid" hidden></div>
+    <div id="root" class="card">Loading shopping list…</div>
   </main>
-  <footer>
-    <a class="btn" href="./menu.html">← Back to Menu</a>
-  </footer>
 <script>
-(async function(){
-  const status = document.getElementById('status');
-  const grid = document.getElementById('grid');
-  async function fetchJSON(path){
-    const res = await fetch(path, {cache:'no-store'});
-    if(!res.ok) throw new Error('HTTP '+res.status+' for '+path);
+(async () => {
+  const root = document.getElementById('root');
+  async function loadJSON(path) {
+    const res = await fetch(path, { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     return res.json();
   }
-  try{
-    // Read plan pointer for display only
-    let activePlan = null;
-    try {
-      const idx = await fetchJSON('./index.json');
-      activePlan = idx.pointer || null;
-    } catch(_) {}
-
-    // Try quantized first
-    const qPath = './plans/shopping-quantized.json';
+  try {
+    // Prefer quantized; fall back to extracted
     let data;
     try {
-      data = await fetchJSON(qPath);
-    } catch(e) {
-      status.innerHTML = [
-        '<strong>No shopping file found yet.</strong>',
-        'Run the <em>Carol — Extract from Plan (safe alias)</em> workflow to generate:',
-        '<div style="margin-top:8px"><code>pages/apps/carol/plans/shopping-quantized.json</code></div>',
-        (activePlan?('<div class="muted" style="margin-top:8px">Current plan: <code>'+activePlan+'</code></div>'):'')
-      ].join('<br>');
-      return;
+      data = await loadJSON('plans/shopping-quantized.json');
+    } catch (e) {
+      data = await loadJSON('plans/shopping-extracted.json');
     }
-
-    status.remove();
-    grid.hidden = false;
-
-    // Expected format: either an array of {category, items:[{name, qty, unit, notes}...]}
-    // or a flat object keyed by categories. Be defensive.
-    let groups = [];
-    if (Array.isArray(data)) {
-      groups = data;
-    } else if (data && typeof data === 'object') {
-      groups = Object.keys(data).map(k => ({category:k, items:data[k]}));
-    }
-
-    if (!groups.length) {
-      const div = document.createElement('div');
-      div.className = 'note';
-      div.textContent = 'Shopping file is present but empty.';
-      document.querySelector('main').appendChild(div);
-      return;
-    }
-
-    for (const g of groups) {
-      const card = document.createElement('div');
-      card.className = 'card';
-      const h = document.createElement('h3');
-      h.textContent = g.category || 'Other';
-      card.appendChild(h);
-
-      const list = document.createElement('div');
-      const items = Array.isArray(g.items) ? g.items : [];
-      for (const it of items) {
-        const row = document.createElement('div');
-        row.className = 'item';
-        const left = document.createElement('div');
-        const right = document.createElement('div');
-        left.textContent = it.name || 'Item';
-        right.className = 'muted';
-        const qty = [it.qty, it.unit].filter(Boolean).join(' ');
-        right.textContent = qty || (it.size || '');
-        row.appendChild(left);
-        row.appendChild(right);
-        list.appendChild(row);
+    // Expected shapes:
+    // 1) { items: [{name, qty, unit, notes, section}] }
+    // 2) { by_section: { SectionName: [ {name, qty, unit, notes} ] } }
+    let sections = {};
+    if (data.by_section) {
+      sections = data.by_section;
+    } else if (Array.isArray(data.items)) {
+      for (const item of data.items) {
+        const sec = item.section || 'General';
+        sections[sec] = sections[sec] || [];
+        sections[sec].push(item);
       }
-      card.appendChild(list);
-      grid.appendChild(card);
+    } else {
+      throw new Error('Unrecognized shopping format');
     }
-  }catch(err){
-    status.innerHTML = 'Error: '+(err && err.message ? err.message : err);
+    const secNames = Object.keys(sections).sort((a,b)=>a.localeCompare(b));
+    const frag = document.createDocumentFragment();
+    for (const s of secNames) {
+      const box = document.createElement('div');
+      box.style.marginBottom = '18px';
+      const h = document.createElement('h2'); h.textContent = s; h.style.marginBottom='8px';
+      const ul = document.createElement('ul');
+      for (const it of sections[s]) {
+        const li = document.createElement('li');
+        const qty = (it.qty !== undefined ? it.qty : (it.quantity !== undefined ? it.quantity : ''));
+        const unit = it.unit || '';
+        const notes = it.notes || '';
+        li.innerHTML = `<span class="qty">${qty ? qty : ''} ${unit ? unit : ''}</span> <strong>${it.name || it.item}</strong> ${notes ? `<span class="muted">— ${notes}</span>` : ''}`;
+        ul.appendChild(li);
+      }
+      box.appendChild(h); box.appendChild(ul);
+      frag.appendChild(box);
+    }
+    root.innerHTML = '';
+    root.appendChild(frag);
+  } catch (err) {
+    root.innerHTML = `
+      <p class="warn"><strong>Shopping data not found.</strong></p>
+      <p>Run the GitHub Action: <em>“Carol — Extract from Plan (safe alias)”</em>.
+      It reads your plan and writes <code>pages/apps/carol/plans/shopping-quantized.json</code>.</p>
+      <p class="muted">Advanced: The extractor expects <code>twoperson-2wk-merged.json</code>. The workflow creates a temporary alias to your real plan and removes it after.</p>
+      <a class="button" href="menu.html">Back to Menu</a>`;
   }
 })();
 </script>

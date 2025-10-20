@@ -1,10 +1,21 @@
 {
+  "plan": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
   "people": 2,
-  "pointer": "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "backup": "/pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json",
-  "notes": [
-    "Prefer sunflower seed butter when a spread is used.",
-    "Swap very hard/crunchy items for soft/butter alternatives.",
-    "Shellfish-free; lactose-light; easy on onions & bell peppers; avoid cumin."
-  ]
+  "diet_rules": {
+    "prefer_sunflower_seed_butter": true,
+    "hard_to_soft_swaps": true,
+    "shellfish_free": true,
+    "lactose_light": true,
+    "avoid_spices": [
+      "cumin"
+    ],
+    "easy_on": [
+      "onions",
+      "bell peppers"
+    ]
+  },
+  "views": {
+    "menu": "pages/apps/carol/menu.html",
+    "shopping": "pages/apps/carol/shopping.html"
+  }
 }

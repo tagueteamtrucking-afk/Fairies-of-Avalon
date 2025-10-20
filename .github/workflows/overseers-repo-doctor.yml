@@ -1,38 +1,24 @@
-name: Overseers — Repo Doctor (report only)
+name: Overseers — Repo Doctor (report-only)
 on:
   workflow_dispatch:
-
 permissions:
   contents: read
-
+  actions: read
 jobs:
-  doctor:
+  report:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup PowerShell
-        uses: PowerShell/PowerShell@v1
-        with:
-          pwsh-version: '7.4.x'
-
-      - name: Repo Doctor (report only)
+      - name: Run Repo Doctor
         shell: pwsh
-        run: |
-          if (Test-Path './scripts/Repo-Doctor.ps1') {
-            ./scripts/Repo-Doctor.ps1
-          } else {
-            Write-Host 'scripts/Repo-Doctor.ps1 not found; creating empty report.'
-          }
-          $Out = 'pages/apps/overseers/repo-doctor-report.json'
-          New-Item -Force -ItemType Directory -Path (Split-Path $Out) | Out-Null
-          if (!(Test-Path $Out)) { '{}' | Set-Content -Path $Out -Encoding UTF8 }
-          Get-ChildItem -Recurse -File | Select-Object FullName, Length, LastWriteTimeUtc |
-            ConvertTo-Json -Depth 4 | Set-Content -Path $Out -Encoding UTF8
-
-      - name: Upload Report
+        run: ./scripts/Repo-Doctor.ps1
+      - name: Upload reports
         uses: actions/upload-artifact@v4
         with:
           name: repo-doctor-report
-          path: pages/apps/overseers/repo-doctor-report.json
+          path: |
+            memory-history/repo-usage-report.json
+            memory-history/repo-inventory.json
+            memory-history/repo-refs.json
+            pages/apps/overseers/repo-doctor-report.json

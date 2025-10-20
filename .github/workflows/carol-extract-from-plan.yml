@@ -3,54 +3,54 @@ on:
   workflow_dispatch:
     inputs:
       plan_path:
-        description: 'Path to the canonical 14-day plan JSON'
-        required: true
+        description: 'Plan JSON to use'
         default: 'pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json'
+        required: true
 permissions:
   contents: write
 jobs:
   extract:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up PowerShell
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
         with:
-          python-version: '3.11'
-      - name: Install PowerShell (pwsh)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y powershell
-
+          fetch-depth: 0
       - name: Prepare alias expected by extractor
+        shell: bash
+        run: |
+          set -e
+          SRC="${{ github.event.inputs.plan_path }}"
+          ALIAS="pages/apps/carol/plans/twoperson-2wk-merged.json"
+          if [ ! -f "$SRC" ]; then
+            echo "Plan file not found: $SRC"
+            exit 1
+          fi
+          cp "$SRC" "$ALIAS"
+      - name: Run extractor
         shell: pwsh
         run: |
-          $plan = "${{ github.event.inputs.plan_path }}"
-          if(!(Test-Path $plan)){ throw "Plan not found: $plan" }
-          Copy-Item -Path $plan -Destination "pages/apps/carol/plans/twoperson-2wk-merged.json" -Force
-
-      - name: Run extractor (v3) → shopping JSON
-        shell: pwsh
-        run: ./scripts/Carol-Extract-Shopping-v3.ps1
-
-      - name: Remove alias
+          ./scripts/Carol-Extract-Shopping-v3.ps1
+      - name: Cleanup alias
         if: always()
-        shell: pwsh
+        shell: bash
+        run: rm -f pages/apps/carol/plans/twoperson-2wk-merged.json || true
+      - name: Commit shopping lists
+        shell: bash
         run: |
-          if(Test-Path "pages/apps/carol/plans/twoperson-2wk-merged.json"){ Remove-Item "pages/apps/carol/plans/twoperson-2wk-merged.json" -Force }
-
-      - name: Commit results
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pages/apps/carol/plans/shopping-*.json || true
-          git commit -m "Carol: update shopping list from plan" || echo "No changes"
-          git push
-
-      - name: Upload artifact (shopping JSONs)
+          if ! git diff --cached --quiet; then
+            git commit -m "Carol: extract shopping from plan"
+            git push
+          else
+            echo "No shopping changes to commit."
+          fi
+      - name: Upload lists as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: carol-shopping-jsons
-          path: pages/apps/carol/plans/shopping-*.json
+          name: carol-shopping
+          path: |
+            pages/apps/carol/plans/shopping-*.json
+          if-no-files-found: warn

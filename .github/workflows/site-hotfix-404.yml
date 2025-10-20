@@ -1,0 +1,144 @@
+name: Site — Hotfix 404 (links & city)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch Plaza and City (ensure /pages prefix)
+        shell: bash
+        run: |
+          set -e
+          mkdir -p pages/apps/_city
+          cat > pages/plaza.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Avalon Plaza</title>
+            <meta http-equiv="refresh" content="0; url=/pages/apps/_city/index.html">
+            <style>
+              html,body{margin:0;padding:0;background:#0b0e12;color:#f5f7fa;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";}
+              .wrap{display:flex;min-height:100vh;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+              a{color:#80b3ff;text-decoration:none}
+              a:hover{text-decoration:underline}
+              .btn{display:inline-block;padding:12px 16px;border:1px solid #24334a;border-radius:10px;background:#111826}
+              .btn:active{transform:translateY(1px)}
+            </style>
+          </head>
+          <body>
+            <div class="wrap">
+              <h1>Avalon Plaza</h1>
+              <p>Redirecting to the City…</p>
+              <a class="btn" href="/pages/apps/_city/index.html">Enter the City</a>
+              <p><a href="/kill-sw.html">Reset service worker (if pages look stale)</a></p>
+            </div>
+          </body>
+          </html>
+          HTML
+          cat > pages/apps/_city/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Avalon — City</title>
+            <style>
+              :root{
+                --bg:#0b0e12;--panel:#0f1623;--ink:#e9eef7;--muted:#9db2cf;--tile:#111a2b;--tile-border:#1d2a40;--accent:#7aa2ff;
+              }
+              *{box-sizing:border-box}
+              html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial}
+              header{padding:20px 16px}
+              h1{margin:0;font-weight:700;font-size:24px}
+              .city{padding:0 16px 40px}
+              .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+              .tile{display:block;background:var(--tile);border:1px solid var(--tile-border);border-radius:14px;padding:16px;text-decoration:none;color:var(--ink);min-height:120px}
+              .tile span{display:block;color:var(--muted);margin-top:6px;font-size:13px}
+              .tile:focus,.tile:hover{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(122,162,255,.2)}
+              footer{padding:20px 16px;border-top:1px solid var(--tile-border);color:var(--muted);font-size:13px}
+              a{color:var(--accent)}
+            </style>
+          </head>
+          <body>
+            <header>
+              <h1>⚜️ Avalon — City</h1>
+              <p style="color:var(--muted);margin-top:8px">Tap a building to enter its room.</p>
+            </header>
+            <main class="city">
+              <div class="grid">
+                <a class="tile" href="/pages/rooms/carol.html">
+                  <strong>🍽️ Bistro</strong>
+                  <span>Carol — Kitchen / Menus</span>
+                </a>
+                <a class="tile" href="/pages/rooms/jem.html">
+                  <strong>🥋 Dojo</strong>
+                  <span>Jem — Daily training</span>
+                </a>
+                <a class="tile" href="/pages/rooms/tracy.html">
+                  <strong>🪟 Stained Glass Cathedral</strong>
+                  <span>Tracy — Art & Skins</span>
+                </a>
+                <a class="tile" href="/pages/rooms/alexandria.html">
+                  <strong>📚 Gothic Library</strong>
+                  <span>Alexandria — DM & Worlds</span>
+                </a>
+                <a class="tile" href="/pages/rooms/stella.html">
+                  <strong>🔭 Observatory</strong>
+                  <span>Stella — Guided audio</span>
+                </a>
+                <a class="tile" href="/pages/rooms/nina.html">
+                  <strong>🧪 Lab</strong>
+                  <span>Nina — 3D/VRM</span>
+                </a>
+                <a class="tile" href="/pages/rooms/charlotte.html">
+                  <strong>📡 Relay-Hall</strong>
+                  <span>Charlotte — Pipelines</span>
+                </a>
+                <a class="tile" href="/pages/rooms/abbey.html">
+                  <strong>🏦 Vault</strong>
+                  <span>Abbey — Money</span>
+                </a>
+                <a class="tile" href="/pages/rooms/overseers.html">
+                  <strong>👑 Palace</strong>
+                  <span>Overseers — Status</span>
+                </a>
+                <a class="tile" href="/pages/rooms/billie.html">
+                  <strong>🏛️ Mansion</strong>
+                  <span>Billie — Storyboards</span>
+                </a>
+              </div>
+            </main>
+            <footer>
+              Tip: If you still see old pages, visit <a href="/kill-sw.html">/kill-sw.html</a> then reload.
+            </footer>
+          </body>
+          </html>
+          HTML
+          # Optional: ensure root index.html has a valid city link (best-effort)
+          if [ -f index.html ]; then
+            sed -i.bak 's|/apps/_city|/pages/apps/_city|g' index.html || true
+            sed -i.bak 's|href="/rooms/|href="/pages/rooms/|g' index.html || true
+            sed -i.bak 's|href="/apps/|href="/pages/apps/|g' index.html || true
+          fi
+      - name: Commit changes
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pages/plaza.html pages/apps/_city/index.html index.html || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Hotfix: fix 404s by correcting City/Plaza links to /pages/*"
+            git push
+          else
+            echo "No changes to commit."
+          fi

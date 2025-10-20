@@ -1,0 +1,60 @@
+name: Carol — Set Current Plan Pointer
+on:
+  workflow_dispatch:
+    inputs:
+      plan_path:
+        description: 'Plan JSON to set as current'
+        default: 'pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json'
+        required: true
+permissions:
+  contents: write
+jobs:
+  set-pointer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Write pointer files
+        shell: bash
+        run: |
+          set -e
+          PLAN="${{ github.event.inputs.plan_path }}"
+          if [ ! -f "$PLAN" ]; then
+            echo "Plan missing: $PLAN"
+            exit 1
+          fi
+          mkdir -p pages/apps/carol
+          cat > pages/apps/carol/index.json <<'JSON'
+          {
+            "plan": "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+            "shopping": {
+              "extracted": "/pages/apps/carol/plans/shopping-extracted.json",
+              "quantized": "/pages/apps/carol/plans/shopping-quantized.json"
+            },
+            "diet": {
+              "use_sunflower_seed_butter": true,
+              "swap_hard_to_butters": true,
+              "avoid": ["shellfish", "cumin"],
+              "easy_on": ["onions", "bell peppers"],
+              "lactose_light": true
+            }
+          }
+          JSON
+          mkdir -p pages/apps/carol/plans
+          cat > pages/apps/carol/plans/index.json <<'JSON'
+          { "latest": "twoperson-2wk-unique-20251015T022300Z.json" }
+          JSON
+      - name: Commit pointer
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/carol/index.json pages/apps/carol/plans/index.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Carol: set current plan pointer"
+            git push
+          else
+            echo "No pointer changes to commit."
+          fi

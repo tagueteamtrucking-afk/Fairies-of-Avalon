@@ -7,14 +7,8 @@
   "diet": {
     "use_sunflower_seed_butter": true,
     "swap_hard_to_butters": true,
-    "avoid": [
-      "shellfish",
-      "cumin"
-    ],
-    "easy_on": [
-      "onions",
-      "bell peppers"
-    ],
+    "avoid": ["shellfish", "cumin"],
+    "easy_on": ["onions", "bell peppers"],
     "lactose_light": true
   }
 }

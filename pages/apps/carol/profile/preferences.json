@@ -1,54 +1,32 @@
 {
-  "names": {
-    "A": "Ray",
-    "B": "Blanca"
-  },
-  "shopping_interval_days": 14,
-  "plan_weeks_default": 2,
-  "texture_limits": {
-    "avoid_very_crunchy": true,
-    "allowed_light_panko": true,
-    "peanuts_policy": "powder_or_peanut_butter_only"
-  },
-  "prep_style": {
-    "bulk_prep": false,
-    "partial_prep_ok": true
-  },
-  "appliances": [
-    "single_burner",
-    "galanz_microwave_airfryer_convection",
-    "small_food_processor",
-    "immersion_blender",
-    "stand_mixer",
-    "crock_pot"
-  ],
-  "storage": {
-    "fridge": "smaller_than_standard",
-    "freezer": "slightly_bigger_than_standard"
-  },
-  "eating_pattern": {
-    "grazing": true,
-    "events_per_day_target": "6-8",
-    "opposite_schedules": true
-  },
-  "allergies": {
-    "shellfish": true
-  },
+  "diet_style": "DASH",
+  "people": 2,
   "avoid": {
-    "cilantro": true,
-    "cumin": true
+    "allergens": [
+      "shellfish"
+    ],
+    "spices": [
+      "cumin"
+    ],
+    "limits": [
+      "onions",
+      "bell peppers"
+    ]
   },
-  "easy_on": {
-    "onions": true,
-    "bell_peppers": true
-  },
-  "dairy": {
-    "restriction": "light",
-    "notes": "Likely lactose intolerance \u2014 prefer lactose-free milk/yogurt, low-lactose aged cheeses, and plant-based alternatives; note LF subs."
+  "lactose": "light",
+  "measurement_rules": [
+    "cups",
+    "tbsp",
+    "tsp",
+    "fl oz",
+    "oz"
+  ],
+  "substitutions": {
+    "spread_preference": "sunflower seed butter",
+    "hard_or_crunchy_foods": "prefer butters/softer alternatives to protect teeth/jaw"
   },
   "notes": [
-    "Prefer softer textures; moist-heat cooking (braise/stew/slow-cook).",
-    "Truck-driver context: minimal dishes, limited counter space and water.",
-    "Grazers: 6\u20138 snack-size eating events; opposite schedules OK."
+    "Prefer EU safety standards for product sourcing; US fallback.",
+    "Storage: small fridge; slightly larger than standard freezer"
   ]
 }

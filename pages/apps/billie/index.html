@@ -1,21 +1,46 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Billie — Superstar Mansion</title>
-<link rel="stylesheet" href="/pages/apps/_shared/ui.css">
-<link rel="stylesheet" href="/pages/apps/_shared/room.css">
-</head><body><div class="wrap">
-<div class="nav">
-  <a class="btn" href="/">Home</a>
-  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
-  <a class="btn" href="/pages/apps/_city/index.html">Grid</a>
-</div>
-<div class="hero"></div>
-<h1>Billie — Superstar Mansion</h1>
-<div id="room" class="room"></div>
-<div class="footer">Build: 20251019T232747Z</div>
-<script type="module">
-import { mountRoom } from '/pages/apps/_shared/room.js';
-const items = [{"icon": "🎥", "title": "Camera Rig — Studio", "href": "/pages/apps/billie/studio.html", "desc": "Edit & assemble faceless videos."}, {"icon": "🗂️", "title": "Storyboard Wall — Campaigns", "href": "/pages/apps/billie/storyboards.html", "desc": "Plan series & posts."}, {"icon": "📈", "title": "Analytics Screen — Growth", "href": "/pages/apps/billie/analytics.html", "desc": "Metrics dashboards."}, {"icon": "👗", "title": "Wardrobe Rack — Merch", "href": "/pages/apps/billie/merch.html", "desc": "Link to shops."}, {"icon": "🕳️", "title": "Secret Door — Members (18+)", "href": "https://example.com/members", "desc": "Off‑site; age‑gated & compliant."}];
-mountRoom(document.getElementById('room'), items);
-</script>
-</div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Billie · Mansion</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;padding:0;background:#0b0e13;color:#e9eef5;}
+    header,footer{padding:16px 20px;}
+    header{background:#151a22;border-bottom:1px solid #2a3240;}
+    main{padding:20px;max-width:900px;margin:0 auto;}
+    .card{background:#12161d;border:1px solid #2a3240;border-radius:12px;padding:16px;margin:12px 0;}
+    a{color:#8ab4ff;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;background:#1b2230;border:1px solid #2a3240;color:#cfe3ff;font-size:12px;margin-left:8px;}
+    nav a{margin-right:14px}
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Billie — Mansion</strong>
+    <span class="pill">PG / Safe</span>
+    <nav style="float:right">
+      <a href="/pages/apps/_city/index.html">← City</a>
+      <a href="/pages/apps/billie/overview.html">Overview</a>
+      <a href="/pages/apps/billie/storyboards.html">Storyboards</a>
+      <a href="/pages/apps/billie/analytics.html">Analytics</a>
+    </nav>
+    <div style="clear:both"></div>
+  </header>
+  <main>
+    <div class="card">
+      <h2>Welcome to Billie’s Mansion</h2>
+      <p>This is a safe, creator-focused space for campaign planning, storyboards, and basic analytics. There is no members area, age-gate, or restricted content on this site.</p>
+      <ul>
+        <li><a href="/pages/apps/billie/overview.html">Go to Overview</a></li>
+        <li><a href="/pages/apps/billie/storyboards.html">Open Storyboards</a></li>
+        <li><a href="/pages/apps/billie/analytics.html">Analytics (beta)</a></li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    <small>Billie · Mansion · Safe mode</small>
+  </footer>
+</body>
+</html>

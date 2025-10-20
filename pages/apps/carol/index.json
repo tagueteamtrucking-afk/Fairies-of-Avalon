@@ -1,5 +1,5 @@
 {
-  "plan": "/pages/apps/carol/plans/mealplan-dash-14d-current.json",
-  "shopping_quantized": "/pages/apps/carol/plans/mealplan-dash-14d-current-shopping.json",
-  "updated": "20251019T073325Z"
+  "plan_index": "/pages/apps/carol/plans/index.json",
+  "menu_view": "/pages/apps/carol/menu.html",
+  "shopping_view": "/pages/apps/carol/shopping.html"
 }

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Avalon · PIN Configuration</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;padding:20px;background:#0b0e13;color:#e9eef5}
+    .card{max-width:680px;margin:0 auto;background:#12161d;border:1px solid #2a3240;border-radius:12px;padding:18px}
+    input,select,button{font:inherit}
+    input[type="password"]{width:100%;padding:10px;border-radius:8px;border:1px solid #2a3240;background:#0b0e13;color:#e9eef5}
+    .row{display:flex;gap:10px;align-items:center;margin:10px 0}
+    .list{margin:10px 0 0 0;padding:0;list-style:none}
+    .item{display:flex;gap:10px;align-items:center;margin:6px 0}
+    .item span{display:inline-block;min-width:80px}
+    .hint{color:#aab7cf}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>PIN Configuration</h1>
+    <p class="hint">Add up to 10 four-digit PINs. Choose a role for each (e.g., <code>dev</code> for you). The list is stored locally in this browser’s <code>localStorage</code>.</p>
+
+    <div class="row">
+      <input id="pin" type="password" inputmode="numeric" pattern="\d{4}" maxlength="4" minlength="4" placeholder="4-digit PIN" />
+      <select id="role">
+        <option value="user">user</option>
+        <option value="dev">dev</option>
+      </select>
+      <button id="add">Add</button>
+      <button id="clear" style="margin-left:auto">Clear All</button>
+    </div>
+
+    <ul id="list" class="list"></ul>
+
+    <p class="hint">Security truth: on a static site, this is a convenience feature, not strong security. For real access control, use an edge worker (e.g., Cloudflare) or a server with authenticated sessions.</p>
+    <p><a href="/pages/apps/_city/index.html" style="color:#8ab4ff">← Back to City</a></p>
+  </div>
+
+<script>
+const toHex = (buf)=>[...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("");
+async function sha256(s){const enc=new TextEncoder();return toHex(await crypto.subtle.digest("SHA-256", enc.encode(s)));}
+function getList(){ try{return JSON.parse(localStorage.getItem("avalon:pin-hashes")||"[]");}catch{return [];} }
+function setList(list){ localStorage.setItem("avalon:pin-hashes", JSON.stringify(list)); }
+function render(){
+  const list = getList();
+  const ul = document.getElementById("list");
+  ul.innerHTML = "";
+  list.forEach((rec, i)=>{
+    const li = document.createElement("li");
+    li.className = "item";
+    li.innerHTML = `<span>${rec.role||"user"}</span><code>${rec.hash.slice(0,10)}…</code> <button data-i="${i}">Remove</button>`;
+    ul.appendChild(li);
+  });
+  ul.querySelectorAll("button[data-i]").forEach(btn=>btn.addEventListener("click", ev=>{
+    const idx = Number(ev.currentTarget.dataset.i);
+    const list = getList();
+    list.splice(idx,1); setList(list); render();
+  }));
+}
+document.getElementById("add").addEventListener("click", async ()=>{
+  const pin = document.getElementById("pin").value.trim();
+  const role = document.getElementById("role").value;
+  if(!/^\d{4}$/.test(pin)){ alert("PIN must be 4 digits."); return; }
+  const hash = await sha256(pin);
+  const list = getList();
+  if(list.length>=10){ alert("Limit 10 PINs."); return; }
+  if(list.some(r=>r.hash===hash)){ alert("PIN already added."); return; }
+  list.push({hash, role}); setList(list); document.getElementById("pin").value=""; render();
+});
+document.getElementById("clear").addEventListener("click", ()=>{
+  if(confirm("Clear all stored PINs in this browser?")){ localStorage.removeItem("avalon:pin-hashes"); render(); }
+});
+render();
+</script>
+</body>
+</html>

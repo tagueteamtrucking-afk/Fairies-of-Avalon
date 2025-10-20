@@ -1,32 +1,26 @@
 {
+  "persons": 2,
   "diet_style": "DASH",
-  "people": 2,
-  "avoid": {
-    "allergens": [
-      "shellfish"
-    ],
-    "spices": [
-      "cumin"
-    ],
-    "limits": [
-      "onions",
-      "bell peppers"
-    ]
-  },
+  "allergies": [
+    "shellfish"
+  ],
   "lactose": "light",
-  "measurement_rules": [
-    "cups",
-    "tbsp",
-    "tsp",
-    "fl oz",
-    "oz"
+  "dislikes": [
+    "cilantro"
+  ],
+  "go_easy_on": [
+    "onions",
+    "bell peppers"
+  ],
+  "avoid_spices": [
+    "cumin"
   ],
   "substitutions": {
-    "spread_preference": "sunflower seed butter",
-    "hard_or_crunchy_foods": "prefer butters/softer alternatives to protect teeth/jaw"
+    "nut_seed_spread_preference": "sunflower seed butter",
+    "hard_crunchy_rule": "Suggest soft/butter alternatives"
   },
   "notes": [
-    "Prefer EU safety standards for product sourcing; US fallback.",
-    "Storage: small fridge; slightly larger than standard freezer"
+    "Use US measures; shopping quantized for 2 people.",
+    "Prefer EU safety standards for products when relevant (US fallback)."
   ]
 }

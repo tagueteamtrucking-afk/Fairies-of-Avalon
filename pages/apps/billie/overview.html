@@ -1,53 +1,35 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-required-role="user">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Billie · Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Billie — Overview</title>
+  <script src="/pages/apps/shared/auth-gate.js" defer></script>
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;padding:0;background:#0b0e13;color:#e9eef5;}
-    header,footer{padding:16px 20px;}
-    header{background:#151a22;border-bottom:1px solid #2a3240;}
-    main{padding:20px;max-width:900px;margin:0 auto;}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-    .card{background:#12161d;border:1px solid #2a3240;border-radius:12px;padding:16px}
-    a{color:#8ab4ff;text-decoration:none}
-    a:hover{text-decoration:underline}
-    .pill{display:inline-block;padding:4px 10px;border-radius:999px;background:#1b2230;border:1px solid #2a3240;color:#cfe3ff;font-size:12px;margin-left:8px;}
+    body{background:#0e0e0f;color:#eee;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    main{max-width:920px;margin:22px auto;padding:0 16px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .card{background:#151517;border:1px solid #2a2a2d;border-radius:12px;padding:14px}
+    .muted{opacity:.85}
+    .btn{display:inline-block;padding:10px 12px;border-radius:8px;background:#2a6df4;color:#fff;text-decoration:none;font-weight:600}
   </style>
 </head>
 <body>
-  <header>
-    <strong>Billie — Overview</strong>
-    <span class="pill">PG / Safe</span>
-    <nav style="float:right">
-      <a href="/pages/apps/_city/index.html">← City</a>
-      <a href="/pages/apps/billie/index.html">Mansion</a>
-    </nav>
-    <div style="clear:both"></div>
-  </header>
   <main>
-    <p>No age verification, no members-only content. This page summarizes creator tasks in a safe, on-site way.</p>
-    <div class="grid">
+    <h1>Billie — Overview</h1>
+    <p class="muted">Safe, PG‑13 planning tools. No age‑restricted content lives on this site.</p>
+    <div class="row">
       <div class="card">
-        <h3>Campaign Planning</h3>
-        <p>Define the high-level beats for upcoming posts and shorts.</p>
-        <p><a href="/pages/apps/billie/storyboards.html">Open storyboards</a></p>
+        <h3>Next Campaign</h3>
+        <p class="muted">Define theme, audience, target platforms, and posting cadence.</p>
+        <a class="btn" href="/pages/apps/billie/storyboards.html">Open Storyboards</a>
       </div>
       <div class="card">
-        <h3>Analytics (beta)</h3>
-        <p>Track basics like views, saves, and completion rates.</p>
-        <p><a href="/pages/apps/billie/analytics.html">Open analytics</a></p>
-      </div>
-      <div class="card">
-        <h3>Back to City</h3>
-        <p>Return to the Avalon city map.</p>
-        <p><a href="/pages/apps/_city/index.html">Open City</a></p>
+        <h3>Performance Snapshot</h3>
+        <p class="muted">Link metrics export here (CSV/JSON). <a href="#">Add File</a></p>
+        <a class="btn" href="/pages/apps/billie/analytics.html">Open Analytics</a>
       </div>
     </div>
   </main>
-  <footer>
-    <small>Billie · Overview · Safe mode</small>
-  </footer>
 </body>
 </html>

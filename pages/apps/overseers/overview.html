@@ -1,57 +1,40 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-required-role="dev">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Overseers · Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Overseers — Overview</title>
+  <script src="/pages/apps/shared/auth-gate.js" defer></script>
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;padding:0;background:#0b0e13;color:#e9eef5;}
-    header,footer{padding:16px 20px;}
-    header{background:#151a22;border-bottom:1px solid #2a3240;}
-    main{padding:20px;max-width:980px;margin:0 auto;}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-    .card{background:#12161d;border:1px solid #2a3240;border-radius:12px;padding:16px}
-    a{color:#8ab4ff;text-decoration:none}
-    a:hover{text-decoration:underline}
-    .ok{color:#b9f6ca}
-    .warn{color:#ffd180}
-    .todo{color:#ff8a80}
+    body{background:#0e0e0f;color:#eee;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    main{max-width:960px;margin:22px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .card{background:#151517;border:1px solid #2a2a2d;border-radius:12px;padding:14px}
+    .btn{display:inline-block;padding:10px 12px;border-radius:8px;background:#2a6df4;color:#fff;text-decoration:none;font-weight:600}
+    .muted{opacity:.85}
   </style>
 </head>
 <body>
-  <header>
-    <strong>Overseers — Overview</strong>
-    <nav style="float:right">
-      <a href="/pages/apps/_city/index.html">← City</a>
-    </nav>
-    <div style="clear:both"></div>
-  </header>
   <main>
-    <div class="grid">
-      <div class="card">
-        <h3>Carol Plan Pointer</h3>
-        <p class="ok">Points to: <code>/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json</code></p>
-        <p><a href="/pages/apps/carol/menu.html">Open Menu</a> · <a href="/pages/apps/carol/shopping.html">Shopping</a></p>
-      </div>
-      <div class="card">
-        <h3>Billie Safety</h3>
-        <p class="ok">No members/age-gate on-site. Landing and overview are PG.</p>
-        <p><a href="/pages/apps/billie/index.html">Mansion</a> · <a href="/pages/apps/billie/overview.html">Overview</a></p>
-      </div>
-      <div class="card">
-        <h3>PIN Gate</h3>
-        <p class="warn">Configured via client-side PIN hashes (local-only). Add real hashes in <code>PIN Config</code>.</p>
-        <p><a href="/pages/pin-config.html">Open PIN Config</a></p>
-      </div>
-      <div class="card">
-        <h3>Hygiene</h3>
-        <p>Run the “Repo Doctor” workflow to produce a report. It proposes deletions as a PR; does not auto-delete.</p>
-        <p><em>Actions → Overseers — Repo Doctor (report only)</em></p>
-      </div>
-    </div>
+    <h1>Overseers — Overview</h1>
+    <p class="muted">For Ray (Dev). Blanca (User) can browse City and apps; only Dev sees this page.</p>
+    <section class="grid">
+      <article class="card">
+        <h3>City</h3>
+        <p class="muted">Map tiles → Rooms → Apps.</p>
+        <a class="btn" href="/pages/apps/_city/index.html">Open City</a>
+      </article>
+      <article class="card">
+        <h3>Hygiene Report</h3>
+        <p class="muted">Run the Repo Doctor workflow; download the artifact report.</p>
+        <a class="btn" href="https://github.com/OWNER/REPO/actions" target="_blank" rel="noopener">Open Actions</a>
+      </article>
+      <article class="card">
+        <h3>Edge Auth</h3>
+        <p class="muted">Deploy the Cloudflare auth worker (requires CF secrets).</p>
+        <a class="btn" href="https://github.com/OWNER/REPO/actions" target="_blank" rel="noopener">Deploy Worker</a>
+      </article>
+    </section>
   </main>
-  <footer>
-    <small>Ray Czar & White Star · Oversight</small>
-  </footer>
 </body>
 </html>

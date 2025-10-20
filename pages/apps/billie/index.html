@@ -1,46 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-required-role="user">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Billie · Mansion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Billie — Mansion</title>
+  <script src="/pages/apps/shared/auth-gate.js" defer></script>
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;padding:0;background:#0b0e13;color:#e9eef5;}
-    header,footer{padding:16px 20px;}
-    header{background:#151a22;border-bottom:1px solid #2a3240;}
-    main{padding:20px;max-width:900px;margin:0 auto;}
-    .card{background:#12161d;border:1px solid #2a3240;border-radius:12px;padding:16px;margin:12px 0;}
-    a{color:#8ab4ff;text-decoration:none}
-    a:hover{text-decoration:underline}
-    .pill{display:inline-block;padding:4px 10px;border-radius:999px;background:#1b2230;border:1px solid #2a3240;color:#cfe3ff;font-size:12px;margin-left:8px;}
-    nav a{margin-right:14px}
+    body{background:#0e0e0f;color:#eee;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    main{max-width:900px;margin:24px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:16px}
+    .card{background:#151517;border:1px solid #2a2a2d;border-radius:12px;padding:14px;text-decoration:none;color:inherit;display:block}
+    .card h3{margin:0 0 6px}
+    .card p{margin:0;opacity:.9}
   </style>
 </head>
 <body>
-  <header>
-    <strong>Billie — Mansion</strong>
-    <span class="pill">PG / Safe</span>
-    <nav style="float:right">
-      <a href="/pages/apps/_city/index.html">← City</a>
-      <a href="/pages/apps/billie/overview.html">Overview</a>
-      <a href="/pages/apps/billie/storyboards.html">Storyboards</a>
-      <a href="/pages/apps/billie/analytics.html">Analytics</a>
-    </nav>
-    <div style="clear:both"></div>
-  </header>
   <main>
-    <div class="card">
-      <h2>Welcome to Billie’s Mansion</h2>
-      <p>This is a safe, creator-focused space for campaign planning, storyboards, and basic analytics. There is no members area, age-gate, or restricted content on this site.</p>
-      <ul>
-        <li><a href="/pages/apps/billie/overview.html">Go to Overview</a></li>
-        <li><a href="/pages/apps/billie/storyboards.html">Open Storyboards</a></li>
-        <li><a href="/pages/apps/billie/analytics.html">Analytics (beta)</a></li>
-      </ul>
-    </div>
+    <h1>Billie — Creator HQ</h1>
+    <p>PG‑13 tools for planning content and tracking performance.</p>
+    <section class="grid">
+      <a class="card" href="/pages/apps/billie/overview.html"><h3>Overview</h3><p>Quick status & jump‑offs.</p></a>
+      <a class="card" href="/pages/apps/billie/storyboards.html"><h3>Storyboards</h3><p>Map scenes and beats.</p></a>
+      <a class="card" href="/pages/apps/billie/analytics.html"><h3>Analytics</h3><p>See what’s working.</p></a>
+    </section>
   </main>
-  <footer>
-    <small>Billie · Mansion · Safe mode</small>
-  </footer>
 </body>
 </html>

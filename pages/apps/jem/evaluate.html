@@ -1,78 +1,66 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jem — Week‑1 Evaluation</title>
-<link rel="stylesheet" href="/pages/apps/_shared/ui-lite.css">
-</head><body><div class="wrap">
-<div class="nav">
-  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
-  <a class="btn" href="/pages/apps/jem/program-viewer.html">📋 Program Viewer</a>
-</div>
-<h1>🥋 Jem — Week‑1 Evaluation</h1>
-<p class="muted">Small‑space tests for Ray & Blanca. Educational use only; stop if dizzy, chest pain, or unusual symptoms; consult a clinician for personalized medical advice.</p>
+<!doctype html>
+<html lang="en" data-required-role="user">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jem — Evaluate</title>
+  <link rel="stylesheet" href="/pages/apps/jem/jem.css">
+  <script src="/pages/apps/shared/auth-gate.js" defer></script>
+  <script src="/pages/apps/jem/jem.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Jem — Today’s Plan & Log</h1>
+    <p class="muted">Baseline: fitness ≈ 3/10. Daily cadence: <strong>Morning warm‑up</strong>, <strong>Midday micro‑set</strong>, <strong>Evening unwind</strong>.</p>
+    <div id="status" class="small muted">Loading…</div>
 
-<div class="grid">
-  <div class="panel">
-    <h3>Participant</h3>
-    <label>Name</label><input id="name" placeholder="Ray or Blanca">
-    <label style="margin-top:8px">Age</label><input id="age" type="number" min="16" max="90">
-    <label style="margin-top:8px">Sex</label><select id="sex"><option>Unspecified</option><option>Female</option><option>Male</option></select>
-    <label style="margin-top:8px">Height (in)</label><input id="height_in" type="number" min="48" max="84">
-    <label style="margin-top:8px">Weight (lb)</label><input id="weight_lb" type="number" min="80" max="500">
-    <label style="margin-top:8px">Resting BP (if known)</label><input id="bp" placeholder="e.g., 138/86">
-  </div>
+    <section class="grid" style="margin-top:12px">
+      <article class="card">
+        <h3>Morning Warm‑up</h3>
+        <p class="muted small">Gentle joint circles; neck, shoulders, hips; 5–7 minutes.</p>
+        <label><input id="warmup_done" type="checkbox"> Mark complete</label>
+      </article>
 
-  <div class="panel">
-    <h3>Goals & Limits</h3>
-    <label>Primary goal</label><select id="goal"><option>Fat loss + BP control</option><option>Strength & posture</option><option>Mobility + pain reduction</option></select>
-    <label style="margin-top:8px">Knee/back pain (0–10)</label><input id="pain" type="number" min="0" max="10" value="3">
-    <label style="margin-top:8px">Equipment available</label>
-    <select id="equip" multiple size="5">
-      <option value="none" selected>No equipment</option>
-      <option value="mat">Mat</option>
-      <option value="bands">Resistance bands (future)</option>
-      <option value="wrist">Wrist weights (future)</option>
-      <option value="ankle">Ankle weights (future)</option>
-      <option value="vest">Weighted vest (future)</option>
-    </select>
-  </div>
+      <article class="card">
+        <h3>Midday Micro‑set</h3>
+        <p class="muted small">Push‑up variation + band pull‑apart + wall sit (short).</p>
+        <label><input id="break_done" type="checkbox"> Mark complete</label>
+      </article>
 
-  <div class="panel">
-    <h3>Baseline tests</h3>
-    <label>30s Sit‑to‑Stand (chair ~17")</label><input id="sts30" type="number" min="0" max="40" value="0">
-    <label style="margin-top:8px">Push‑ups max (select style)</label>
-    <select id="pu_style"><option value="wall">Wall</option><option value="knees">Knees</option><option value="regular">Regular</option></select>
-    <input id="pushups" type="number" min="0" max="60" value="0">
-    <label style="margin-top:8px">Plank hold (sec)</label><input id="plank" type="number" min="0" max="600" value="0">
-    <label style="margin-top:8px">Wall‑sit (sec)</label><input id="wallsit" type="number" min="0" max="600" value="0">
-    <label style="margin-top:8px">Single‑leg balance L/R (sec)</label>
-    <div style="display:flex;gap:8px"><input id="balL" type="number" min="0" max="120" placeholder="Left"><input id="balR" type="number" min="0" max="120" placeholder="Right"></div>
-    <label style="margin-top:8px">3‑min Step test (optional) — HR after (bpm)</label><input id="hr3m" type="number" min="0" max="220">
-    <label style="margin-top:8px">Hamstring reach (fingertips past shin?)</label><select id="reach"><option>Tight</option><option>Neutral</option><option>Good</option></select>
-  </div>
-</div>
+      <article class="card">
+        <h3>Evening Unwind</h3>
+        <p class="muted small">Calm stretch; hips/hamstrings; 6–8 minutes.</p>
+        <label><input id="unwind_done" type="checkbox"> Mark complete</label>
+      </article>
 
-<div class="panel">
-  <button class="btn" id="save">⬇️ Download Intake JSON</button>
-</div>
+      <article class="card">
+        <h3>Push‑ups — Style & Difficulty</h3>
+        <div class="row">
+          <label><input type="radio" name="pushup_style" value="wall"> Wall</label>
+          <label><input type="radio" name="pushup_style" value="knees"> Knees</label>
+          <label><input type="radio" name="pushup_style" value="strict"> Strict</label>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <label><input type="radio" name="pushup_diff" value="easy"> Too easy</label>
+          <label><input type="radio" name="pushup_diff" value="just_right"> About right</label>
+          <label><input type="radio" name="pushup_diff" value="hard"> Too hard</label>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <label>Reps done <input id="pushup_reps" type="number" min="0" step="1" value="0"></label>
+        </div>
+      </article>
 
-<script>
-function grab(id){ return document.getElementById(id).value }
-document.getElementById('save').onclick = ()=>{
-  const data = {
-    ts: new Date().toISOString(),
-    person: { name: grab('name'), age: +grab('age')||null, sex: grab('sex'), height_in: +grab('height_in')||null, weight_lb:+grab('weight_lb')||null, bp: grab('bp')||null },
-    goals: { primary: grab('goal'), pain: +grab('pain')||0 },
-    equipment: Array.from(document.getElementById('equip').selectedOptions).map(o=>o.value),
-    tests: {
-      sts30:+grab('sts30')||0, pushups:{ style:grab('pu_style'), reps:+grab('pushups')||0 },
-      plank_sec:+grab('plank')||0, wallsit_sec:+grab('wallsit')||0,
-      balance_sec:{L:+grab('balL')||0, R:+grab('balR')||0},
-      hr3m:+grab('hr3m')||null, reach:grab('reach')
-    }
-  };
-  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
-  const name=(data.person.name||"Eval")+"-"+new Date().toISOString().replace(/[:.]/g,"")+".json";
-  a.download = name; a.click();
-};
-</script>
-</div></body></html>
+      <article class="card">
+        <h3>Notes</h3>
+        <textarea id="notes" rows="4" style="width:100%;background:#1c1c21;color:#fff;border:1px solid #333;border-radius:8px;padding:8px"></textarea>
+        <div class="row" style="margin-top:10px">
+          <button class="btn" onclick="jem.saveLog()">Save Today</button>
+          <button class="btn secondary" onclick="jem.exportAll()">Export Logs (JSON)</button>
+        </div>
+      </article>
+    </section>
+
+    <p class="muted small">Weekly, Jem scales volume based on your logs and (optionally) Samsung Health imports.</p>
+  </main>
+</body>
+</html>

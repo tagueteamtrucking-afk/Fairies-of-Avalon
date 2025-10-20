@@ -1,25 +1,82 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Avalon City</title>
-<link rel="stylesheet" href="./city.css">
-</head><body>
-<main class="wrap">
-  <h1>🏰 Avalon City</h1>
-  <p class="hint">Static links below always work. If the registry loads, tiles get richer automatically.</p>
-  <div id="grid" class="grid noscript">
-    <a class="card" href="/pages/apps/alexandria/index.html"><span class="icon">🏛️</span><div><b>Alexandria</b><div class="small">Gothic Library — DM & Worldbuilding</div></div></a>
-    <a class="card" href="/pages/apps/charlotte/index.html"><span class="icon">🏛️</span><div><b>Charlotte</b><div class="small">Relay Tower — Design & Pipelines</div></div></a>
-    <a class="card" href="/pages/apps/nina/index.html"><span class="icon">🏛️</span><div><b>Nina</b><div class="small">Futuristic Lab — 3D & VRM</div></div></a>
-    <a class="card" href="/pages/apps/tracy/index.html"><span class="icon">🏛️</span><div><b>Tracy</b><div class="small">Cathedral Studio — Artboards & Wallpapers</div></div></a>
-    <a class="card" href="/pages/apps/carol/index.html"><span class="icon">🏛️</span><div><b>Carol</b><div class="small">Restaurant — Meal Plans & Shopping</div></div></a>
-    <a class="card" href="/pages/apps/jem/index.html"><span class="icon">🏛️</span><div><b>Jem</b><div class="small">Dojo — Coaching & Biometrics</div></div></a>
-    <a class="card" href="/pages/apps/stella/index.html"><span class="icon">🏛️</span><div><b>Stella</b><div class="small">Observatory — Meditations & Gateway</div></div></a>
-    <a class="card" href="/pages/apps/abbey/index.html"><span class="icon">🏛️</span><div><b>Abbey</b><div class="small">Grand Vault — Finance & Reports</div></div></a>
-    <a class="card" href="/pages/apps/themis/index.html"><span class="icon">🏛️</span><div><b>Themis</b><div class="small">Record Hall — Compliance & Reminders</div></div></a>
-    <a class="card" href="/pages/apps/billie/index.html"><span class="icon">🏛️</span><div><b>Billie</b><div class="small">Gold Mansion — Monetization</div></div></a>
-    <a class="card" href="/pages/apps/sorcha/index.html"><span class="icon">🏛️</span><div><b>Sorcha</b><div class="small">Mansion & Pool — Social Video</div></div></a>
-    <a class="card" href="/pages/apps/clarice/index.html"><span class="icon">🏛️</span><div><b>Clarice</b><div class="small">Courtroom & Palace — Security & Backups</div></div></a>
-  </div>
-</main>
-<script src="./city.js"></script>
-</body></html>
+<!doctype html>
+<html lang="en" data-required-role="user">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Avalon — City</title>
+  <link rel="stylesheet" href="/pages/apps/_city/city.css">
+  <script src="/pages/apps/shared/auth-gate.js" defer></script>
+  <style>
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;padding:16px}
+    .tile{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111;color:#eee;
+          border:1px solid #282828;border-radius:12px;min-height:120px;text-decoration:none;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+    .tile img{width:56px;height:56px;object-fit:cover;border-radius:8px;margin-bottom:8px}
+    .tile span{font-weight:600}
+    .note{padding:8px 16px;color:#aaa;font-size:0.9rem}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="note">City → tap a building to enter a character’s room.</div>
+    <section class="grid">
+      <a class="tile" href="/pages/rooms/alexandria.html">
+        <img src="/asset/textures/wallpapers/castle village 03.jpg" alt="Gothic Library">
+        <span>Alexandria</span>
+      </a>
+      <a class="tile" href="/pages/rooms/tracy.html">
+        <img src="/asset/textures/wallpapers/castle village 02.jpg" alt="Studio">
+        <span>Tracy</span>
+      </a>
+      <a class="tile" href="/pages/rooms/nina.html">
+        <img src="/asset/textures/wallpapers/castle village 04.jpg" alt="Lab">
+        <span>Nina</span>
+      </a>
+      <a class="tile" href="/pages/rooms/charlotte.html">
+        <img src="/asset/textures/wallpapers/castle village 01.jpg" alt="Relay Hall">
+        <span>Charlotte</span>
+      </a>
+      <a class="tile" href="/pages/rooms/carol.html">
+        <img src="/asset/textures/wallpapers/castle village 03.jpg" alt="Bistro">
+        <span>Carol</span>
+      </a>
+      <a class="tile" href="/pages/rooms/jem.html">
+        <img src="/asset/textures/wallpapers/castle village 02.jpg" alt="Dojo">
+        <span>Jem</span>
+      </a>
+      <a class="tile" href="/pages/rooms/stella.html">
+        <img src="/asset/textures/wallpapers/castle village 04.jpg" alt="Observatory">
+        <span>Stella</span>
+      </a>
+      <a class="tile" href="/pages/rooms/abbey.html">
+        <img src="/asset/textures/wallpapers/castle village 01.jpg" alt="Vault">
+        <span>Abbey</span>
+      </a>
+      <a class="tile" href="/pages/rooms/overseers.html">
+        <img src="/asset/textures/wallpapers/castle village 03.jpg" alt="Palace">
+        <span>Overseers</span>
+      </a>
+      <a class="tile" href="/pages/rooms/billie.html">
+        <img src="/asset/textures/wallpapers/castle village 02.jpg" alt="Mansion">
+        <span>Billie</span>
+      </a>
+      <a class="tile" href="/pages/rooms/themis.html">
+        <img src="/asset/textures/wallpapers/castle village 04.jpg" alt="Records">
+        <span>Themis</span>
+      </a>
+      <a class="tile" href="/pages/rooms/clarice.html">
+        <img src="/asset/textures/wallpapers/castle village 01.jpg" alt="Court">
+        <span>Clarice</span>
+      </a>
+      <a class="tile" href="/pages/rooms/reyczar.html">
+        <img src="/asset/textures/wallpapers/castle village 03.jpg" alt="Palace">
+        <span>Rey Czar</span>
+      </a>
+      <a class="tile" href="/pages/rooms/whitestar.html">
+        <img src="/asset/textures/wallpapers/castle village 02.jpg" alt="Palace">
+        <span>White Star</span>
+      </a>
+    </section>
+    <div class="note">If you want custom icons for each building, click here to <a href="#">Add Image</a>.</div>
+  </main>
+</body>
+</html>

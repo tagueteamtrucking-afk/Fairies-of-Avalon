@@ -1,56 +1,40 @@
-name: Carol - Refresh (Extract->Aggregate->Pointer, 2-person)
-on: { workflow_dispatch: {} }
-permissions: { contents: write }
+name: Carol — Refresh (Extract Shopping)
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
 jobs:
-  refresh:
+  extract-shopping:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Ensure Carol plan directory
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p pages/apps/carol/plans
-          mkdir -p pages/apps/carol
-      - name: Extract shopping list v3
+
+      - name: Show plan pointer
         shell: pwsh
         run: |
-          pwsh -NoLogo -NoProfile -File scripts/Carol-Extract-Shopping-v3.ps1 -PlansDir "pages/apps/carol/plans" -OutFile "pages/apps/carol/plans/shopping-extracted.json"
-      - name: Aggregate into US packages (2 persons)
+          Get-Content pages/apps/carol/index.json | Write-Host
+
+      - name: Extract shopping (v3)
         shell: pwsh
         run: |
-          pwsh -NoLogo -NoProfile -File scripts/Carol-Aggregate-Packages-v2.ps1 -PlansDir "pages/apps/carol/plans" -PackageMap "pages/apps/carol/packages/us.json" -OutFile "pages/apps/carol/plans/shopping-quantized.json" -Persons 2
-      - name: Build Carol pointer
+          ./scripts/Carol-Extract-Shopping-v3.ps1
+
+      - name: Commit updated shopping files
         shell: pwsh
-        run: |
-          pwsh -NoLogo -NoProfile -File scripts/Carol-Build-Pointer.ps1 -PlansDir "pages/apps/carol/plans" -OutFile "pages/apps/carol/index.json"
-      - name: Prefer latest real mealplan if present
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = "Stop"
-          $root = $env:GITHUB_WORKSPACE; if([string]::IsNullOrWhiteSpace($root)){ $root = (Get-Location).Path }
-          $plans = Join-Path $root "pages/apps/carol/plans"
-          $pointerPath = Join-Path $root "pages/apps/carol/index.json"
-          if (-not (Test-Path -LiteralPath $plans)) { Write-Error "Plans dir missing at $plans"; exit 1 }
-          if (-not (Test-Path -LiteralPath $pointerPath)) {
-            $ptr = @{ updated=(Get-Date).ToUniversalTime().ToString("s")+'Z'; plan=$null; shopping_quantized=$null; shopping_extracted=$null }
-            $dir = Split-Path -Parent $pointerPath; if(-not (Test-Path -LiteralPath $dir)){ New-Item -ItemType Directory -Force -Path $dir | Out-Null }
-            [IO.File]::WriteAllText($pointerPath, ($ptr | ConvertTo-Json -Depth 5), [Text.Encoding]::UTF8)
-          }
-          $cands = Get-ChildItem -LiteralPath $plans -File -Filter "mealplan-*.json" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-          if ($null -ne $cands) {
-            $ptr = Get-Content -Raw -LiteralPath $pointerPath | ConvertFrom-Json
-            $rel = $cands.FullName.Substring($root.Length).TrimStart('\','/')
-            $ptr.plan = "/" + $rel.Replace('\','/')
-            [IO.File]::WriteAllText($pointerPath, ($ptr | ConvertTo-Json -Depth 5), [Text.Encoding]::UTF8)
-            Write-Host "Pointer set to latest mealplan: $($ptr.plan)"
-          } else {
-            Write-Host "No mealplan-*.json found; leaving pointer.plan as-is."
-          }
-      - name: Commit Carol outputs
-        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/carol/index.json pages/apps/carol/plans/shopping-extracted.json pages/apps/carol/plans/shopping-quantized.json || true
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(carol): refresh (2p), pointer built + locked to mealplan if present" && git push; fi
+          git add pages/apps/carol/plans/shopping-*.json || echo "No shopping json to add"
+          git commit -m "Carol: refresh shopping lists" || echo "No changes"
+          git push
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: carol-shopping-json
+          path: |
+            pages/apps/carol/plans/shopping-*.json
+          if-no-files-found: warn

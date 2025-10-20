@@ -1,34 +1,53 @@
-name: Carol - Lock Pointer (current latest)
-on: { workflow_dispatch: {} }
-permissions: { contents: write }
+name: Carol — Lock Pointer (14-day plan)
+
+on:
+  workflow_dispatch:
+    inputs:
+      plan_path:
+        description: "Plan JSON path (default: 14-day unique)"
+        required: true
+        default: "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
+      backup_path:
+        description: "Backup plan JSON path"
+        required: true
+        default: "pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json"
+      people:
+        description: "Number of people"
+        required: true
+        default: "2"
+
+permissions:
+  contents: write
+
 jobs:
-  lock:
+  lock-pointer:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Lock pointer to the most recent mealplan-*.json with items
+
+      - name: Write Carol pointer file
         shell: pwsh
         run: |
-          $ErrorActionPreference="Stop"
-          $root = $env:GITHUB_WORKSPACE
-          $plans = Join-Path $root "pages/apps/carol/plans"
-          $ptrPath = Join-Path $root "pages/apps/carol/index.json"
-          if(-not (Test-Path -LiteralPath $plans)){ Write-Error "Plans dir missing"; exit 1 }
-          $cands = Get-ChildItem -LiteralPath $plans -File -Filter "mealplan-*.json" | Sort-Object LastWriteTime -Descending
-          $pick = $null
-          foreach($f in $cands){
-            try { $p = Get-Content -Raw -LiteralPath $f.FullName | ConvertFrom-Json } catch { continue }
-            $days = @($p.menu.days); if(-not $days){ $days = @($p.days) }
-            if($days.Count -ge 14){ $pick = $f; break }
-          }
-          if($null -eq $pick){ Write-Error "No 14-day mealplan found"; exit 1 }
-          $rel = "/"+($pick.FullName.Substring($root.Length).TrimStart('\','/').Replace('\','/'))
-          $ptr = @{ updated=(Get-Date).ToUniversalTime().ToString("s")+'Z'; plan=$rel; shopping_quantized="/pages/apps/carol/plans/shopping-quantized.json"; shopping_extracted="/pages/apps/carol/plans/shopping-extracted.json" }
-          [IO.File]::WriteAllText($ptrPath, ($ptr | ConvertTo-Json -Depth 6), [Text.Encoding]::UTF8)
+          $pointer = @{
+            people  = [int]( '${{ github.event.inputs.people }}' )
+            pointer = '/' + '${{ github.event.inputs.plan_path }}'.TrimStart('/')
+            backup  = '/' + '${{ github.event.inputs.backup_path }}'.TrimStart('/')
+            notes   = @(
+              'Prefer sunflower seed butter when a spread is used.',
+              'Swap very hard/crunchy items for soft/butter alternatives.',
+              'Shellfish-free; lactose-light; easy on onions & bell peppers; avoid cumin.'
+            )
+          } | ConvertTo-Json -Depth 5
+
+          $outPath = 'pages/apps/carol/index.json'
+          New-Item -Type Directory -Force -Path (Split-Path $outPath) | Out-Null
+          Set-Content -LiteralPath $outPath -Value $pointer -Encoding UTF8
+
       - name: Commit pointer
-        shell: bash
+        shell: pwsh
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/carol/index.json || true
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "chore(carol): lock pointer to 14d plan" && git push; fi
+          git add pages/apps/carol/index.json
+          git commit -m "Carol: lock pointer to ${{ github.event.inputs.plan_path }} (people=${{ github.event.inputs.people }})" || echo "No changes"
+          git push

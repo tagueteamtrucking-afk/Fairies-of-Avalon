@@ -1,35 +1,43 @@
 <!doctype html>
-<html lang="en" data-required-role="user">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Billie — Overview</title>
-  <script src="/pages/apps/shared/auth-gate.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Billie • Overview</title>
+  <link rel="stylesheet" href="../theme/tokens.css">
   <style>
-    body{background:#0e0e0f;color:#eee;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    main{max-width:920px;margin:22px auto;padding:0 16px}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .card{background:#151517;border:1px solid #2a2a2d;border-radius:12px;padding:14px}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:var(--bg);color:var(--fg)}
+    header{padding:18px 20px;border-bottom:1px solid var(--border);background:var(--panel-bg)}
+    h1{margin:0;font-size:20px}
+    main{padding:16px 20px;max-width:900px;margin:0 auto}
+    .card{background:var(--panel-bg);border:1px solid var(--border);border-radius:14px;padding:14px;margin:12px 0}
+    h2{margin:0 0 8px 0;font-size:16px}
+    ul{margin:6px 0 0 20px}
     .muted{opacity:.85}
-    .btn{display:inline-block;padding:10px 12px;border-radius:8px;background:#2a6df4;color:#fff;text-decoration:none;font-weight:600}
   </style>
 </head>
 <body>
-  <main>
-    <h1>Billie — Overview</h1>
-    <p class="muted">Safe, PG‑13 planning tools. No age‑restricted content lives on this site.</p>
-    <div class="row">
-      <div class="card">
-        <h3>Next Campaign</h3>
-        <p class="muted">Define theme, audience, target platforms, and posting cadence.</p>
-        <a class="btn" href="/pages/apps/billie/storyboards.html">Open Storyboards</a>
-      </div>
-      <div class="card">
-        <h3>Performance Snapshot</h3>
-        <p class="muted">Link metrics export here (CSV/JSON). <a href="#">Add File</a></p>
-        <a class="btn" href="/pages/apps/billie/analytics.html">Open Analytics</a>
-      </div>
-    </div>
-  </main>
+<header><h1>Billie — Overview (PG‑13)</h1></header>
+<main>
+  <div class="card">
+    <h2>Scope</h2>
+    <p class="muted">Creator persona for social video. PG‑13 only. No age gates, no adult areas on site.</p>
+  </div>
+  <div class="card">
+    <h2>Channels & Assets</h2>
+    <ul>
+      <li>Shorts/Reels/TikTok — safe topics, behind‑the‑scenes, making‑of</li>
+      <li>Storyboards — plan the arc before filming</li>
+      <li>Analytics — light, for posting cadence only</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Links</h2>
+    <ul>
+      <li><a href="./storyboards.html">Storyboards</a></li>
+      <li><a href="../_city/index.html">Back to City</a></li>
+    </ul>
+  </div>
+</main>
 </body>
 </html>

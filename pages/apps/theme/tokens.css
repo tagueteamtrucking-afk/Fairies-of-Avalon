@@ -1,5 +1,12 @@
-:root {
-  --avalon-bg: #0b0f1a;
-  --avalon-fg: #eaf2ff;
-  --avalon-accent: #7bb0ff;
+:root{
+  --bg: #0b0f14;
+  --fg: #e8eef7;
+  --panel-bg: #131a22;
+  --border: #2a3646;
+  --hairline: #334256;
+  --chip:#1b2430;
+  --ok:#7ee787;
+  --warn:#ffcc66;
+  --accent:#69a7ff;
 }
+a{color:var(--accent)}

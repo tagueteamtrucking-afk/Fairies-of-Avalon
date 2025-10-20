@@ -1,85 +1,121 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carol — Shopping List</title>
-  <link rel="stylesheet" href="/pages/apps/theme/tokens.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carol • Shopping List</title>
+  <link rel="stylesheet" href="../theme/tokens.css">
   <style>
-    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: #0b0f1a; color: #eaf2ff; }
-    header { padding: 16px; text-align: center; }
-    .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px 40px; }
-    .card { background: rgba(255,255,255,0.08); border-radius: 14px; padding: 16px; margin: 12px 0; }
-    .muted { opacity: 0.85; }
-    a { color: var(--avalon-accent, #7bb0ff); }
-    ul { padding-left: 18px; }
-    .note { font-size: 0.95rem; opacity: 0.9; }
-    .warn { color: #ffd27b; }
+    body{font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin:0; background:var(--bg); color:var(--fg)}
+    header{padding:16px 20px; border-bottom:1px solid var(--border); background:var(--panel-bg)}
+    h1{font-size:20px; margin:0}
+    main{padding:16px 20px; max-width:900px; margin:0 auto}
+    .note{background:var(--panel-bg); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin:12px 0}
+    .grid{display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:12px; margin-top:12px}
+    .card{background:var(--panel-bg); border:1px solid var(--border); border-radius:12px; padding:12px}
+    .card h3{margin:0 0 8px 0; font-size:16px}
+    .item{display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-top:1px dashed var(--hairline)}
+    .item:first-child{border-top:0}
+    .muted{opacity:.8}
+    .ok{color:var(--ok)}
+    .warn{color:var(--warn)}
+    .btn{display:inline-block; padding:10px 14px; border-radius:10px; border:1px solid var(--border); background:var(--panel-bg); color:var(--fg); text-decoration:none}
+    footer{padding:24px; text-align:center; opacity:.8}
+    code{background:var(--chip); padding:2px 6px; border-radius:6px}
   </style>
 </head>
 <body>
   <header>
-    <h1>Shopping List</h1>
-    <p class="muted">Two-person, 14&nbsp;days. Respecting sunflower seed butter &amp; soft‑swap rules.</p>
+    <h1>Shopping List (for current 14‑day plan)</h1>
   </header>
-  <div class="wrap">
-    <div id="status" class="card">Loading shopping list…</div>
-    <div id="list"></div>
-  </div>
+  <main>
+    <div id="status" class="note">Loading…</div>
+    <div id="grid" class="grid" hidden></div>
+  </main>
+  <footer>
+    <a class="btn" href="./menu.html">← Back to Menu</a>
+  </footer>
+<script>
+(async function(){
+  const status = document.getElementById('status');
+  const grid = document.getElementById('grid');
+  async function fetchJSON(path){
+    const res = await fetch(path, {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status+' for '+path);
+    return res.json();
+  }
+  try{
+    // Read plan pointer for display only
+    let activePlan = null;
+    try {
+      const idx = await fetchJSON('./index.json');
+      activePlan = idx.pointer || null;
+    } catch(_) {}
 
-  <script>
-    async function load() {
-      const status = document.getElementById('status');
-      const list = document.getElementById('list');
-      try {
-        const res = await fetch('/pages/apps/carol/plans/shopping-quantized.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('not_ready');
-        const data = await res.json();
-
-        status.textContent = 'Ready';
-        const out = document.createElement('div');
-        out.className = 'card';
-
-        const byCat = {};
-        for (const item of (data.items || [])) {
-          const cat = item.category || 'Other';
-          byCat[cat] = byCat[cat] || [];
-          byCat[cat].push(item);
-        }
-        for (const [cat, items] of Object.entries(byCat)) {
-          const h = document.createElement('h3'); h.textContent = cat;
-          out.appendChild(h);
-          const ul = document.createElement('ul');
-          for (const it of items) {
-            const li = document.createElement('li');
-            const qty = (it.total || it.qty || it.quantity || '').toString();
-            li.textContent = [it.name, qty, it.unit].filter(Boolean).join(' • ');
-            ul.appendChild(li);
-          }
-          out.appendChild(ul);
-        }
-        const note = document.createElement('p');
-        note.className = 'note';
-        note.innerHTML = 'Notes: Prefer sunflower seed butter for spreads. Swap very hard/crunchy foods for softer alternatives.';
-        out.appendChild(note);
-
-        list.replaceChildren(out);
-      } catch (e) {
-        status.innerHTML = '<span class="warn">Shopping list not generated yet.</span>';
-        const help = document.createElement('div');
-        help.className = 'card';
-        help.innerHTML = `
-          <h3>Next step</h3>
-          <ol>
-            <li>Run the workflow <b>“Carol — Refresh (Extract Shopping)”</b>.</li>
-            <li>When it completes, refresh this page.</li>
-          </ol>
-          <p class="note">This page looks for <code>/pages/apps/carol/plans/shopping-quantized.json</code>.</p>
-        `;
-        list.replaceChildren(help);
-      }
+    // Try quantized first
+    const qPath = './plans/shopping-quantized.json';
+    let data;
+    try {
+      data = await fetchJSON(qPath);
+    } catch(e) {
+      status.innerHTML = [
+        '<strong>No shopping file found yet.</strong>',
+        'Run the <em>Carol — Extract from Plan (safe alias)</em> workflow to generate:',
+        '<div style="margin-top:8px"><code>pages/apps/carol/plans/shopping-quantized.json</code></div>',
+        (activePlan?('<div class="muted" style="margin-top:8px">Current plan: <code>'+activePlan+'</code></div>'):'')
+      ].join('<br>');
+      return;
     }
-    load();
-  </script>
+
+    status.remove();
+    grid.hidden = false;
+
+    // Expected format: either an array of {category, items:[{name, qty, unit, notes}...]}
+    // or a flat object keyed by categories. Be defensive.
+    let groups = [];
+    if (Array.isArray(data)) {
+      groups = data;
+    } else if (data && typeof data === 'object') {
+      groups = Object.keys(data).map(k => ({category:k, items:data[k]}));
+    }
+
+    if (!groups.length) {
+      const div = document.createElement('div');
+      div.className = 'note';
+      div.textContent = 'Shopping file is present but empty.';
+      document.querySelector('main').appendChild(div);
+      return;
+    }
+
+    for (const g of groups) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      const h = document.createElement('h3');
+      h.textContent = g.category || 'Other';
+      card.appendChild(h);
+
+      const list = document.createElement('div');
+      const items = Array.isArray(g.items) ? g.items : [];
+      for (const it of items) {
+        const row = document.createElement('div');
+        row.className = 'item';
+        const left = document.createElement('div');
+        const right = document.createElement('div');
+        left.textContent = it.name || 'Item';
+        right.className = 'muted';
+        const qty = [it.qty, it.unit].filter(Boolean).join(' ');
+        right.textContent = qty || (it.size || '');
+        row.appendChild(left);
+        row.appendChild(right);
+        list.appendChild(row);
+      }
+      card.appendChild(list);
+      grid.appendChild(card);
+    }
+  }catch(err){
+    status.innerHTML = 'Error: '+(err && err.message ? err.message : err);
+  }
+})();
+</script>
 </body>
 </html>

@@ -1,66 +1,105 @@
 <!doctype html>
-<html lang="en" data-required-role="user">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jem — Evaluate</title>
-  <link rel="stylesheet" href="/pages/apps/jem/jem.css">
-  <script src="/pages/apps/shared/auth-gate.js" defer></script>
-  <script src="/pages/apps/jem/jem.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jem • Evaluate</title>
+  <link rel="stylesheet" href="../theme/tokens.css">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:var(--bg);color:var(--fg)}
+    header{padding:18px 20px;border-bottom:1px solid var(--border);background:var(--panel-bg)}
+    h1{margin:0;font-size:20px}
+    main{padding:16px 20px;max-width:900px;margin:0 auto}
+    .card{background:var(--panel-bg);border:1px solid var(--border);border-radius:14px;padding:14px;margin:12px 0}
+    h2{margin:0 0 8px 0;font-size:16px}
+    label{display:block;margin:8px 0}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:var(--panel-bg);color:var(--fg)}
+    .muted{opacity:.85}
+    textarea{width:100%;min-height:90px;background:var(--panel-bg);color:var(--fg);border:1px solid var(--border);border-radius:10px;padding:10px}
+    .log{white-space:pre-wrap;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;background:var(--panel-bg);border:1px solid var(--border);border-radius:10px;padding:10px;margin-top:8px}
+  </style>
 </head>
 <body>
-  <main>
-    <h1>Jem — Today’s Plan & Log</h1>
-    <p class="muted">Baseline: fitness ≈ 3/10. Daily cadence: <strong>Morning warm‑up</strong>, <strong>Midday micro‑set</strong>, <strong>Evening unwind</strong>.</p>
-    <div id="status" class="small muted">Loading…</div>
+<header><h1>Jem — Evaluate</h1></header>
+<main>
+  <div class="card">
+    <h2>Push‑ups</h2>
+    <div class="row">
+      <label><input type="radio" name="style" value="wall"> Wall</label>
+      <label><input type="radio" name="style" value="knees"> Knees</label>
+      <label><input type="radio" name="style" value="strict"> Strict</label>
+    </div>
+    <div class="row">
+      <label><input type="radio" name="feel" value="too-easy"> Too easy</label>
+      <label><input type="radio" name="feel" value="about-right"> About right</label>
+      <label><input type="radio" name="feel" value="too-hard"> Too hard</label>
+    </div>
+  </div>
 
-    <section class="grid" style="margin-top:12px">
-      <article class="card">
-        <h3>Morning Warm‑up</h3>
-        <p class="muted small">Gentle joint circles; neck, shoulders, hips; 5–7 minutes.</p>
-        <label><input id="warmup_done" type="checkbox"> Mark complete</label>
-      </article>
+  <div class="card">
+    <h2>Notes</h2>
+    <textarea id="notes" placeholder="How did it feel? Any soreness to track?"></textarea>
+    <div style="margin-top:10px">
+      <button class="btn" id="saveBtn">Save Today</button>
+      <span class="muted" id="saveMsg"></span>
+    </div>
+  </div>
 
-      <article class="card">
-        <h3>Midday Micro‑set</h3>
-        <p class="muted small">Push‑up variation + band pull‑apart + wall sit (short).</p>
-        <label><input id="break_done" type="checkbox"> Mark complete</label>
-      </article>
+  <div class="card">
+    <h2>Today’s Log</h2>
+    <div id="log" class="log"></div>
+  </div>
+</main>
+<script>
+(function(){
+  const todayKey = (()=>{
+    const d = new Date(); const pad = n => (n<10?'0':'')+n;
+    return 'jem:eval:'+ d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+  })();
+  const saveBtn = document.getElementById('saveBtn');
+  const saveMsg = document.getElementById('saveMsg');
+  const notes = document.getElementById('notes');
+  const log = document.getElementById('log');
 
-      <article class="card">
-        <h3>Evening Unwind</h3>
-        <p class="muted small">Calm stretch; hips/hamstrings; 6–8 minutes.</p>
-        <label><input id="unwind_done" type="checkbox"> Mark complete</label>
-      </article>
-
-      <article class="card">
-        <h3>Push‑ups — Style & Difficulty</h3>
-        <div class="row">
-          <label><input type="radio" name="pushup_style" value="wall"> Wall</label>
-          <label><input type="radio" name="pushup_style" value="knees"> Knees</label>
-          <label><input type="radio" name="pushup_style" value="strict"> Strict</label>
-        </div>
-        <div class="row" style="margin-top:8px">
-          <label><input type="radio" name="pushup_diff" value="easy"> Too easy</label>
-          <label><input type="radio" name="pushup_diff" value="just_right"> About right</label>
-          <label><input type="radio" name="pushup_diff" value="hard"> Too hard</label>
-        </div>
-        <div class="row" style="margin-top:8px">
-          <label>Reps done <input id="pushup_reps" type="number" min="0" step="1" value="0"></label>
-        </div>
-      </article>
-
-      <article class="card">
-        <h3>Notes</h3>
-        <textarea id="notes" rows="4" style="width:100%;background:#1c1c21;color:#fff;border:1px solid #333;border-radius:8px;padding:8px"></textarea>
-        <div class="row" style="margin-top:10px">
-          <button class="btn" onclick="jem.saveLog()">Save Today</button>
-          <button class="btn secondary" onclick="jem.exportAll()">Export Logs (JSON)</button>
-        </div>
-      </article>
-    </section>
-
-    <p class="muted small">Weekly, Jem scales volume based on your logs and (optionally) Samsung Health imports.</p>
-  </main>
+  function read(name){
+    const els = document.querySelectorAll('input[name="'+name+'"]');
+    for(const el of els){ if(el.checked) return el.value; }
+    return null;
+  }
+  function setFrom(obj){
+    if(obj.style){
+      const el = document.querySelector('input[name="style"][value="'+obj.style+'"]');
+      if(el) el.checked = true;
+    }
+    if(obj.feel){
+      const el = document.querySelector('input[name="feel"][value="'+obj.feel+'"]');
+      if(el) el.checked = true;
+    }
+    if(obj.notes){ notes.value = obj.notes; }
+  }
+  function load(){
+    try{
+      const raw = localStorage.getItem(todayKey);
+      if(!raw){ log.textContent = 'No entry yet.'; return; }
+      const obj = JSON.parse(raw);
+      setFrom(obj);
+      log.textContent = JSON.stringify(obj, null, 2);
+    }catch(e){ log.textContent = 'Error reading saved entry.'; }
+  }
+  saveBtn.addEventListener('click', ()=>{
+    const obj = {
+      date: new Date().toISOString(),
+      style: read('style'),
+      feel: read('feel'),
+      notes: notes.value.trim()
+    };
+    localStorage.setItem(todayKey, JSON.stringify(obj));
+    saveMsg.textContent = 'Saved.';
+    load();
+  });
+  load();
+})();
+</script>
 </body>
 </html>

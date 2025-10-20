@@ -1,0 +1,37 @@
+name: Repo — Sweeper Report (PR)
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Sweeper (used files)
+        shell: pwsh
+        run: |
+          pwsh -File scripts/Repo-Sweeper-Used-Files.ps1
+
+      - name: Create PR with suggested removals (if any)
+        shell: bash
+        run: |
+          set -e
+          BR="sweeper/$(date -u +%Y%m%dT%H%M%SZ)"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          if git status --porcelain | grep -q .; then
+            git checkout -b "$BR"
+            git add -A
+            git commit -m "Sweeper: propose removals/cleanups"
+            git push -u origin "$BR"
+            gh pr create --fill --title "Sweeper: remove unused files" --body "Automated sweep PR. Review carefully before merging."
+          else
+            echo "No changes to propose."
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

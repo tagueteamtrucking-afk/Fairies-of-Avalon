@@ -1,0 +1,59 @@
+name: Carol — Extract from Plan (safe alias)
+
+on:
+  workflow_dispatch:
+    inputs:
+      plan_path:
+        description: 'Path to the 14‑day plan JSON to extract from'
+        required: true
+        default: 'pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json'
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify & create alias for v3 script
+        shell: pwsh
+        run: |
+          $plan = '${{ inputs.plan_path }}'
+          if(!(Test-Path $plan)){ throw "Selected plan not found: $plan" }
+          $alias = 'pages/apps/carol/plans/twoperson-2wk-merged.json'
+          Copy-Item -Force $plan $alias
+          Write-Host "Aliased plan for extractor: $alias"
+
+      - name: Extract shopping (v3)
+        shell: pwsh
+        run: |
+          pwsh -File scripts/Carol-Extract-Shopping-v3.ps1
+
+      - name: Upload shopping artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: carol-shopping
+          path: |
+            pages/apps/carol/plans/shopping-*.json
+          if-no-files-found: warn
+
+      - name: Commit shopping outputs
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add pages/apps/carol/plans/shopping-*.json || true
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Carol: extract shopping from ${{ inputs.plan_path }}"
+            git push
+          fi
+
+      - name: Cleanup alias
+        if: always()
+        shell: pwsh
+        run: |
+          Remove-Item -Force -ErrorAction SilentlyContinue pages/apps/carol/plans/twoperson-2wk-merged.json

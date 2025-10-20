@@ -1,11 +1,11 @@
-name: Carol — Extract from Plan (safe alias)
+name: Carol — Extract Shopping (from chosen plan)
 on:
   workflow_dispatch:
     inputs:
       plan_path:
-        description: 'Plan JSON to use'
-        default: 'pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json'
+        description: 'Plan JSON to use for extraction'
         required: true
+        default: pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json
 permissions:
   contents: write
 jobs:
@@ -13,44 +13,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Prepare alias expected by extractor
+      - name: Prepare alias for extractor
         shell: bash
         run: |
-          set -e
-          SRC="${{ github.event.inputs.plan_path }}"
-          ALIAS="pages/apps/carol/plans/twoperson-2wk-merged.json"
-          if [ ! -f "$SRC" ]; then
-            echo "Plan file not found: $SRC"
+          set -euo pipefail
+          src="${{ github.event.inputs.plan_path }}"
+          dst="pages/apps/carol/plans/twoperson-2wk-merged.json"
+          if [ ! -f "$src" ]; then
+            echo "::error::Plan not found: $src"
             exit 1
           fi
-          cp "$SRC" "$ALIAS"
+          cp "$src" "$dst"
       - name: Run extractor
         shell: pwsh
-        run: |
-          ./scripts/Carol-Extract-Shopping-v3.ps1
-      - name: Cleanup alias
-        if: always()
-        shell: bash
-        run: rm -f pages/apps/carol/plans/twoperson-2wk-merged.json || true
-      - name: Commit shopping lists
+        run: ./scripts/Carol-Extract-Shopping-v3.ps1
+      - name: Commit shopping results
         shell: bash
         run: |
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/carol/plans/shopping-*.json || true
-          if ! git diff --cached --quiet; then
-            git commit -m "Carol: extract shopping from plan"
-            git push
-          else
-            echo "No shopping changes to commit."
-          fi
-      - name: Upload lists as artifact
+          git add pages/apps/carol/plans/shopping-extracted.json pages/apps/carol/plans/shopping-quantized.json
+          git commit -m "Carol: shopping extracted from ${{ github.event.inputs.plan_path }}" || echo "No changes"
+          git push
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: carol-shopping
           path: |
-            pages/apps/carol/plans/shopping-*.json
-          if-no-files-found: warn
+            pages/apps/carol/plans/shopping-extracted.json
+            pages/apps/carol/plans/shopping-quantized.json

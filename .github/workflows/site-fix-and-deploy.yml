@@ -1,0 +1,215 @@
+name: Site — Fix Routes & Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      plan_path:
+        description: 'Carol plan file to set as current'
+        required: true
+        default: pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+jobs:
+  fix-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Write 404 and Plaza and City (and Carol pointer)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p pages/apps/_city
+          mkdir -p pages/apps/carol/plans
+
+          # 404.html at repo root
+          cat > 404.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>Not Found — Redirecting…</title>
+          <style>
+            html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;background:#0b0d12;color:#edf2f7;display:grid;place-items:center}
+            .card{padding:2rem;border:1px solid #2d3748;border-radius:12px;background:#111827;max-width:720px}
+            a.button{display:inline-block;margin-top:1rem;padding:.75rem 1rem;border-radius:10px;border:1px solid #4b5563;text-decoration:none;color:#e5e7eb}
+          </style>
+          <div class="card">
+            <h1>Page not found</h1>
+            <p>We’re redirecting you to the Avalon City map.</p>
+            <p><a class="button" href="/pages/apps/_city/index.html">Go to City</a></p>
+          </div>
+          <script>
+          (function() {
+            var p = location.pathname || '';
+            // If the route forgot the /pages prefix, add it
+            if (p.startsWith('/apps/') || p.startsWith('/rooms/')) {
+              location.replace('/pages' + p + location.search + location.hash);
+            } else {
+              location.replace('/pages/apps/_city/index.html');
+            }
+          })();
+          </script>
+          HTML
+
+          # pages/plaza.html (redirect to City with styled fallback)
+          cat > pages/plaza.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <meta http-equiv="refresh" content="0; url=/pages/apps/_city/index.html">
+          <title>Plaza → City</title>
+          <style>
+            html,body{height:100%;margin:0;background:#0b0d12;color:#e5e7eb;display:grid;place-items:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
+            .wrap{text-align:center}
+            a{color:#e5e7eb}
+            .btn{display:inline-block;margin-top:1rem;padding:.75rem 1rem;border-radius:10px;border:1px solid #4b5563;text-decoration:none}
+          </style>
+          <div class="wrap">
+            <h1>Plaza</h1>
+            <p>Taking you to the City…</p>
+            <a class="btn" href="/pages/apps/_city/index.html">Enter City</a>
+          </div>
+          <script>location.replace('/pages/apps/_city/index.html');</script>
+          HTML
+
+          # pages/apps/_city/index.html (improved City grid)
+          cat > pages/apps/_city/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>Avalon — City</title>
+          <link rel="preload" href="/asset/textures/wallpapers/castle village 04.jpg" as="image">
+          <link rel="stylesheet" href="/pages/apps/_city/city.css">
+          <body>
+            <header class="hero">
+              <h1 class="logo">Avalon</h1>
+              <nav class="crumbs">
+                <a href="/index.html">Home</a>
+                <span>/</span>
+                <strong>City</strong>
+              </nav>
+            </header>
+
+            <main class="grid">
+              <a class="tile" data-bg="01" href="/pages/rooms/alexandria.html" aria-label="Gothic Library — Alexandria">
+                <div class="label"><span class="emoji">📚</span><span>Gothic Library</span><small>Alexandria</small></div>
+              </a>
+              <a class="tile" data-bg="02" href="/pages/rooms/tracy.html" aria-label="Stained Glass Cathedral — Tracy">
+                <div class="label"><span class="emoji">🎨</span><span>Stained Glass Cathedral</span><small>Tracy</small></div>
+              </a>
+              <a class="tile" data-bg="03" href="/pages/rooms/jem.html" aria-label="Dojo — Jem">
+                <div class="label"><span class="emoji">🥋</span><span>Dojo</span><small>Jem</small></div>
+              </a>
+              <a class="tile" data-bg="04" href="/pages/rooms/carol.html" aria-label="Bistro — Carol">
+                <div class="label"><span class="emoji">🍽️</span><span>Bistro</span><small>Carol</small></div>
+              </a>
+
+              <a class="tile" data-bg="02" href="/pages/rooms/stella.html" aria-label="Observatory — Stella">
+                <div class="label"><span class="emoji">🔭</span><span>Observatory</span><small>Stella</small></div>
+              </a>
+              <a class="tile" data-bg="01" href="/pages/rooms/nina.html" aria-label="Lab — Nina">
+                <div class="label"><span class="emoji">🧪</span><span>Lab</span><small>Nina</small></div>
+              </a>
+              <a class="tile" data-bg="03" href="/pages/rooms/charlotte.html" aria-label="Relay Hall — Charlotte">
+                <div class="label"><span class="emoji">🛰️</span><span>Relay Hall</span><small>Charlotte</small></div>
+              </a>
+              <a class="tile" data-bg="04" href="/pages/rooms/abbey.html" aria-label="Vault — Abbey">
+                <div class="label"><span class="emoji">🏦</span><span>Vault</span><small>Abbey</small></div>
+              </a>
+
+              <a class="tile" data-bg="01" href="/pages/rooms/overseers.html" aria-label="Palace — Overseers">
+                <div class="label"><span class="emoji">🏰</span><span>Palace</span><small>Overseers</small></div>
+              </a>
+              <a class="tile" data-bg="03" href="/pages/rooms/billie.html" aria-label="Mansion — Billie (PG-13)">
+                <div class="label"><span class="emoji">🎬</span><span>Mansion</span><small>Billie (PG‑13)</small></div>
+              </a>
+            </main>
+
+            <footer class="foot">
+              <a class="btn" href="/pages/plaza.html">Back to Plaza</a>
+              <a class="btn" href="/kill-sw.html">Reset App Cache</a>
+            </footer>
+
+            <script src="/pages/apps/_city/city.js" defer></script>
+          </body>
+          </html>
+          HTML
+
+          # pages/apps/_city/city.css
+          cat > pages/apps/_city/city.css <<'CSS'
+          :root{
+            --bg:#0b0d12;--fg:#e5e7eb;--muted:#9ca3af;--card:#0f172a;--line:#1f2937;
+            --tile-h: 140px; --rad: 16px; --gap: 14px;
+          }
+          *{box-sizing:border-box}
+          html,body{height:100%}
+          body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
+          .hero{padding:20px 16px 8px;border-bottom:1px solid var(--line);backdrop-filter:saturate(120%) blur(2px);position:sticky;top:0;background:linear-gradient(0deg,transparent,rgba(0,0,0,.25))}
+          .logo{margin:0;font-size:22px;letter-spacing:.12em;text-transform:uppercase}
+          .crumbs{font-size:12px;color:var(--muted);display:flex;gap:.5rem;align-items:center}
+          .grid{padding:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap);max-width:980px;margin:0 auto}
+          @media(min-width:820px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+          .tile{position:relative;display:block;height:var(--tile-h);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;text-decoration:none;color:inherit;background:#0e1726}
+          .tile::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.75) saturate(1.1);transition:filter .2s ease}
+          .tile[data-bg="01"]::before{background-image:url('/asset/textures/wallpapers/castle village 01.jpg')}
+          .tile[data-bg="02"]::before{background-image:url('/asset/textures/wallpapers/castle village 02.jpg')}
+          .tile[data-bg="03"]::before{background-image:url('/asset/textures/wallpapers/castle village 03.jpg')}
+          .tile[data-bg="04"]::before{background-image:url('/asset/textures/wallpapers/castle village 04.jpg')}
+          .tile:hover::before{filter:brightness(0.9) saturate(1.2)}
+          .label{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.55));display:flex;gap:.6rem;align-items:center}
+          .label .emoji{font-size:20px}
+          .label span{font-weight:600}
+          .label small{margin-left:auto;color:var(--muted)}
+          .foot{padding:20px 16px;display:flex;gap:10px;justify-content:center;border-top:1px solid var(--line)}
+          .btn{display:inline-block;padding:.55rem .9rem;border:1px solid var(--line);border-radius:12px;color:var(--fg);text-decoration:none}
+          CSS
+
+          # pages/apps/_city/city.js
+          cat > pages/apps/_city/city.js <<'JS'
+          document.addEventListener('keydown', (e)=>{
+            if((e.key==='r' && (e.ctrlKey||e.metaKey)) || e.key==='F5'){
+              // Encourage a fresh reload on city to avoid old SW caches
+              if(location.pathname.includes('/pages/apps/_city/')){
+                sessionStorage.setItem('forceReload', '1');
+              }
+            }
+          });
+          if(sessionStorage.getItem('forceReload')==='1'){
+            sessionStorage.removeItem('forceReload');
+            if('serviceWorker' in navigator){
+              caches && caches.keys && caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)));
+              navigator.serviceWorker.getRegistrations().then(list=>list.forEach(r=>r.unregister()));
+            }
+          }
+          JS
+
+          # Carol pointers
+          PLAN_PATH="${{ github.event.inputs.plan_path }}"
+          printf '{{"current_plan":"%s","diet_rules":{{"sunflower_seed_butter_preferred":true,"soft_alternatives_for_hard_foods":true}}}}' "$PLAN_PATH" > pages/apps/carol/index.json
+          printf '{{"latest":"%s"}}' "$PLAN_PATH" > pages/apps/carol/plans/index.json
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Site: 404/Plaza/City refresh + Carol pointer -> ${{ github.event.inputs.plan_path }}" || echo "No changes to commit"
+          git push
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

@@ -3,16 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Avalon — Plaza</title>
-  <meta http-equiv="refresh" content="2;url=/pages/apps/_city/index.html">
+  <title>Avalon Plaza</title>
+  <meta http-equiv="refresh" content="0; url=/pages/apps/_city/index.html">
   <style>
-    body { margin: 0; padding: 24px; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: #0a0c10; color: #e8ecf1; }
-    a { color: #6ec1ff; }
+    html,body{margin:0;padding:0;background:#0b0e12;color:#f5f7fa;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji";}
+    .wrap{display:flex;min-height:100vh;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+    a{color:#80b3ff;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .btn{display:inline-block;padding:12px 16px;border:1px solid #24334a;border-radius:10px;background:#111826}
+    .btn:active{transform:translateY(1px)}
   </style>
 </head>
 <body>
-  <h1>Plaza</h1>
-  <p>Taking you to the City… If it doesn’t move, tap <a href="/pages/apps/_city/index.html">Continue</a>.</p>
-  <p>If the site looks stale, tap <a href="/kill-sw.html">Reset Service Worker</a> once, then reload.</p>
+  <div class="wrap">
+    <h1>Avalon Plaza</h1>
+    <p>Redirecting to the City…</p>
+    <a class="btn" href="/pages/apps/_city/index.html">Enter the City</a>
+    <p><a href="/kill-sw.html">Reset service worker (if pages look stale)</a></p>
+  </div>
 </body>
 </html>

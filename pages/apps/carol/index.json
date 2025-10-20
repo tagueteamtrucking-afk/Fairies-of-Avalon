@@ -1,20 +1,20 @@
 {
-  "current_plan": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "shopping_files": [
-    "pages/apps/carol/plans/shopping-quantized.json",
-    "pages/apps/carol/plans/shopping-extracted.json"
-  ],
-  "diet_rules": {
-    "prefer_seed_butter": "sunflower seed butter",
-    "hard_to_soft": true,
-    "shellfish_free": true,
-    "lactose_light": true,
-    "avoid_spices": [
+  "plan": "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+  "shopping": {
+    "extracted": "/pages/apps/carol/plans/shopping-extracted.json",
+    "quantized": "/pages/apps/carol/plans/shopping-quantized.json"
+  },
+  "diet": {
+    "use_sunflower_seed_butter": true,
+    "swap_hard_to_butters": true,
+    "avoid": [
+      "shellfish",
       "cumin"
     ],
     "easy_on": [
       "onions",
       "bell peppers"
-    ]
+    ],
+    "lactose_light": true
   }
 }

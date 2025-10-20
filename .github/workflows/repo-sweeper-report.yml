@@ -12,26 +12,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run Sweeper (used files)
-        shell: pwsh
-        run: |
-          pwsh -File scripts/Repo-Sweeper-Used-Files.ps1
+        with:
+          fetch-depth: 0
 
-      - name: Create PR with suggested removals (if any)
+      - name: Create branch
+        id: branch
         shell: bash
         run: |
           set -e
-          BR="sweeper/$(date -u +%Y%m%dT%H%M%SZ)"
+          BR="sweeper/${GITHUB_RUN_ID}"
+          git switch -c "$BR"
+          echo "branch=$BR" >> $GITHUB_OUTPUT
+
+      - name: Run sweeper script
+        shell: pwsh
+        run: ./scripts/Repo-Sweeper-Used-Files.ps1
+
+      - name: Commit proposed removals
+        shell: bash
+        run: |
+          set -e
           git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          if git status --porcelain | grep -q .; then
-            git checkout -b "$BR"
-            git add -A
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
             git commit -m "Sweeper: propose removals/cleanups"
-            git push -u origin "$BR"
-            gh pr create --fill --title "Sweeper: remove unused files" --body "Automated sweep PR. Review carefully before merging."
           else
-            echo "No changes to propose."
+            echo "No changes produced by sweeper."
           fi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: ${{ steps.branch.outputs.branch }}
+          title: "Sweeper: propose removals/cleanups"
+          body: |
+            Automated proposal from sweeper workflow.
+          draft: false

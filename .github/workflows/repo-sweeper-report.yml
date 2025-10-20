@@ -1,51 +1,27 @@
 name: Repo — Sweeper Report (PR)
-
 on:
   workflow_dispatch: {}
-
 permissions:
   contents: write
   pull-requests: write
-
 jobs:
-  sweep:
+  sweeper:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Create branch
-        id: branch
-        shell: bash
+      - name: Run Sweeper
         run: |
-          set -e
-          BR="sweeper/${GITHUB_RUN_ID}"
-          git switch -c "$BR"
-          echo "branch=$BR" >> $GITHUB_OUTPUT
+          pwsh -File ./scripts/Repo-Sweeper-Used-Files.ps1
 
-      - name: Run sweeper script
-        shell: pwsh
-        run: ./scripts/Repo-Sweeper-Used-Files.ps1
-
-      - name: Commit proposed removals
-        shell: bash
-        run: |
-          set -e
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m "Sweeper: propose removals/cleanups"
-          else
-            echo "No changes produced by sweeper."
-          fi
-
-      - name: Create Pull Request
+      - name: Create PR
         uses: peter-evans/create-pull-request@v6
         with:
-          branch: ${{ steps.branch.outputs.branch }}
+          commit-message: "Sweeper: propose removals/cleanups"
           title: "Sweeper: propose removals/cleanups"
-          body: |
-            Automated proposal from sweeper workflow.
-          draft: false
+          branch: "sweeper/20251020T225036Z"
+          delete-branch: true
+          labels: |
+            maintenance
+            sweeper

@@ -1,77 +1,60 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Avalon — City</title>
-  <style>
-    :root{
-      --bg:#0b0e12;--panel:#0f1623;--ink:#e9eef7;--muted:#9db2cf;--tile:#111a2b;--tile-border:#1d2a40;--accent:#7aa2ff;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial}
-    header{padding:20px 16px}
-    h1{margin:0;font-weight:700;font-size:24px}
-    .city{padding:0 16px 40px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
-    .tile{display:block;background:var(--tile);border:1px solid var(--tile-border);border-radius:14px;padding:16px;text-decoration:none;color:var(--ink);min-height:120px}
-    .tile span{display:block;color:var(--muted);margin-top:6px;font-size:13px}
-    .tile:focus,.tile:hover{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(122,162,255,.2)}
-    footer{padding:20px 16px;border-top:1px solid var(--tile-border);color:var(--muted);font-size:13px}
-    a{color:var(--accent)}
-  </style>
-</head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Avalon — City</title>
+<link rel="preload" href="/asset/textures/wallpapers/castle village 04.jpg" as="image">
+<link rel="stylesheet" href="/pages/apps/_city/city.css">
 <body>
-  <header>
-    <h1>⚜️ Avalon — City</h1>
-    <p style="color:var(--muted);margin-top:8px">Tap a building to enter its room.</p>
+  <header class="hero">
+    <h1 class="logo">Avalon</h1>
+    <nav class="crumbs">
+      <a href="/index.html">Home</a>
+      <span>/</span>
+      <strong>City</strong>
+    </nav>
   </header>
-  <main class="city">
-    <div class="grid">
-      <a class="tile" href="/pages/rooms/carol.html">
-        <strong>🍽️ Bistro</strong>
-        <span>Carol — Kitchen / Menus</span>
-      </a>
-      <a class="tile" href="/pages/rooms/jem.html">
-        <strong>🥋 Dojo</strong>
-        <span>Jem — Daily training</span>
-      </a>
-      <a class="tile" href="/pages/rooms/tracy.html">
-        <strong>🪟 Stained Glass Cathedral</strong>
-        <span>Tracy — Art & Skins</span>
-      </a>
-      <a class="tile" href="/pages/rooms/alexandria.html">
-        <strong>📚 Gothic Library</strong>
-        <span>Alexandria — DM & Worlds</span>
-      </a>
-      <a class="tile" href="/pages/rooms/stella.html">
-        <strong>🔭 Observatory</strong>
-        <span>Stella — Guided audio</span>
-      </a>
-      <a class="tile" href="/pages/rooms/nina.html">
-        <strong>🧪 Lab</strong>
-        <span>Nina — 3D/VRM</span>
-      </a>
-      <a class="tile" href="/pages/rooms/charlotte.html">
-        <strong>📡 Relay-Hall</strong>
-        <span>Charlotte — Pipelines</span>
-      </a>
-      <a class="tile" href="/pages/rooms/abbey.html">
-        <strong>🏦 Vault</strong>
-        <span>Abbey — Money</span>
-      </a>
-      <a class="tile" href="/pages/rooms/overseers.html">
-        <strong>👑 Palace</strong>
-        <span>Overseers — Status</span>
-      </a>
-      <a class="tile" href="/pages/rooms/billie.html">
-        <strong>🏛️ Mansion</strong>
-        <span>Billie — Storyboards</span>
-      </a>
-    </div>
+
+  <main class="grid">
+    <a class="tile" data-bg="01" href="/pages/rooms/alexandria.html" aria-label="Gothic Library — Alexandria">
+      <div class="label"><span class="emoji">📚</span><span>Gothic Library</span><small>Alexandria</small></div>
+    </a>
+    <a class="tile" data-bg="02" href="/pages/rooms/tracy.html" aria-label="Stained Glass Cathedral — Tracy">
+      <div class="label"><span class="emoji">🎨</span><span>Stained Glass Cathedral</span><small>Tracy</small></div>
+    </a>
+    <a class="tile" data-bg="03" href="/pages/rooms/jem.html" aria-label="Dojo — Jem">
+      <div class="label"><span class="emoji">🥋</span><span>Dojo</span><small>Jem</small></div>
+    </a>
+    <a class="tile" data-bg="04" href="/pages/rooms/carol.html" aria-label="Bistro — Carol">
+      <div class="label"><span class="emoji">🍽️</span><span>Bistro</span><small>Carol</small></div>
+    </a>
+
+    <a class="tile" data-bg="02" href="/pages/rooms/stella.html" aria-label="Observatory — Stella">
+      <div class="label"><span class="emoji">🔭</span><span>Observatory</span><small>Stella</small></div>
+    </a>
+    <a class="tile" data-bg="01" href="/pages/rooms/nina.html" aria-label="Lab — Nina">
+      <div class="label"><span class="emoji">🧪</span><span>Lab</span><small>Nina</small></div>
+    </a>
+    <a class="tile" data-bg="03" href="/pages/rooms/charlotte.html" aria-label="Relay Hall — Charlotte">
+      <div class="label"><span class="emoji">🛰️</span><span>Relay Hall</span><small>Charlotte</small></div>
+    </a>
+    <a class="tile" data-bg="04" href="/pages/rooms/abbey.html" aria-label="Vault — Abbey">
+      <div class="label"><span class="emoji">🏦</span><span>Vault</span><small>Abbey</small></div>
+    </a>
+
+    <a class="tile" data-bg="01" href="/pages/rooms/overseers.html" aria-label="Palace — Overseers">
+      <div class="label"><span class="emoji">🏰</span><span>Palace</span><small>Overseers</small></div>
+    </a>
+    <a class="tile" data-bg="03" href="/pages/rooms/billie.html" aria-label="Mansion — Billie (PG-13)">
+      <div class="label"><span class="emoji">🎬</span><span>Mansion</span><small>Billie (PG‑13)</small></div>
+    </a>
   </main>
-  <footer>
-    Tip: If you still see old pages, visit <a href="/kill-sw.html">/kill-sw.html</a> then reload.
+
+  <footer class="foot">
+    <a class="btn" href="/pages/plaza.html">Back to Plaza</a>
+    <a class="btn" href="/kill-sw.html">Reset App Cache</a>
   </footer>
+
+  <script src="/pages/apps/_city/city.js" defer></script>
 </body>
 </html>

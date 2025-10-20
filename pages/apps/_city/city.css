@@ -1,44 +1,25 @@
-:root {
-  --bg: #0a0c10;
-  --fg: #e8ecf1;
-  --muted: #a8b3c2;
-  --tile: #11161d;
-  --tile-b: #1b2430;
-  --acc: #6ec1ff;
+:root{
+  --bg:#0b0d12;--fg:#e5e7eb;--muted:#9ca3af;--card:#0f172a;--line:#1f2937;
+  --tile-h: 140px; --rad: 16px; --gap: 14px;
 }
-
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-
-.hero { padding: 24px 16px; text-align: center; border-bottom: 1px solid var(--tile-b); }
-.hero h1 { margin: 0 0 6px; font-size: 28px; }
-.hero .sub { margin: 0; color: var(--muted); }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
-  padding: 16px;
-}
-
-.tile {
-  display: grid;
-  gap: 8px;
-  padding: 16px;
-  background: linear-gradient(180deg, var(--tile), var(--tile-b));
-  border: 1px solid #202a36;
-  border-radius: 12px;
-  text-decoration: none;
-  color: var(--fg);
-  min-height: 120px;
-}
-
-.tile:hover, .tile:focus { outline: none; border-color: var(--acc); }
-
-.emoji { font-size: 28px; }
-.label { display: grid; }
-.label strong { font-size: 14px; line-height: 1.2; }
-.label span { color: var(--muted); font-size: 12px; }
-
-.foot { text-align: center; padding: 14px; color: var(--muted); }
-.foot a { color: var(--acc); }
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
+.hero{padding:20px 16px 8px;border-bottom:1px solid var(--line);backdrop-filter:saturate(120%) blur(2px);position:sticky;top:0;background:linear-gradient(0deg,transparent,rgba(0,0,0,.25))}
+.logo{margin:0;font-size:22px;letter-spacing:.12em;text-transform:uppercase}
+.crumbs{font-size:12px;color:var(--muted);display:flex;gap:.5rem;align-items:center}
+.grid{padding:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap);max-width:980px;margin:0 auto}
+@media(min-width:820px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+.tile{position:relative;display:block;height:var(--tile-h);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;text-decoration:none;color:inherit;background:#0e1726}
+.tile::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.75) saturate(1.1);transition:filter .2s ease}
+.tile[data-bg="01"]::before{background-image:url('/asset/textures/wallpapers/castle village 01.jpg')}
+.tile[data-bg="02"]::before{background-image:url('/asset/textures/wallpapers/castle village 02.jpg')}
+.tile[data-bg="03"]::before{background-image:url('/asset/textures/wallpapers/castle village 03.jpg')}
+.tile[data-bg="04"]::before{background-image:url('/asset/textures/wallpapers/castle village 04.jpg')}
+.tile:hover::before{filter:brightness(0.9) saturate(1.2)}
+.label{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.55));display:flex;gap:.6rem;align-items:center}
+.label .emoji{font-size:20px}
+.label span{font-weight:600}
+.label small{margin-left:auto;color:var(--muted)}
+.foot{padding:20px 16px;display:flex;gap:10px;justify-content:center;border-top:1px solid var(--line)}
+.btn{display:inline-block;padding:.55rem .9rem;border:1px solid var(--line);border-radius:12px;color:var(--fg);text-decoration:none}

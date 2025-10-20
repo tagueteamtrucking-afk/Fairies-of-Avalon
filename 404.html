@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Not Found — Redirecting…</title>
+<style>
+  html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;background:#0b0d12;color:#edf2f7;display:grid;place-items:center}
+  .card{padding:2rem;border:1px solid #2d3748;border-radius:12px;background:#111827;max-width:720px}
+  a.button{display:inline-block;margin-top:1rem;padding:.75rem 1rem;border-radius:10px;border:1px solid #4b5563;text-decoration:none;color:#e5e7eb}
+</style>
+<div class="card">
+  <h1>Page not found</h1>
+  <p>We’re redirecting you to the Avalon City map.</p>
+  <p><a class="button" href="/pages/apps/_city/index.html">Go to City</a></p>
+</div>
+<script>
+(function() {
+  var p = location.pathname || '';
+  if (p.startsWith('/apps/') || p.startsWith('/rooms/')) {
+    location.replace('/pages' + p + location.search + location.hash);
+  } else {
+    location.replace('/pages/apps/_city/index.html');
+  }
+})();
+</script>

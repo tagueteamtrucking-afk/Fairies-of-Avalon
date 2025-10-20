@@ -1,10 +1,10 @@
 {
-  "people": 2,
-  "pointer": "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "backup": "/pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json",
   "notes": [
     "Prefer sunflower seed butter when a spread is used.",
     "Swap very hard/crunchy items for soft/butter alternatives.",
     "Shellfish-free; lactose-light; easy on onions & bell peppers; avoid cumin."
-  ]
+  ],
+  "pointer": "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+  "backup": "/pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json",
+  "people": 2
 }

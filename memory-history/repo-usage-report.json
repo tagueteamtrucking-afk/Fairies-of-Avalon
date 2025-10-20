@@ -1,11 +1,12 @@
 ﻿{
-  "totals": {
-    "orphans": 85,
-    "scripts": 85,
-    "used": 0,
-    "files": 855
-  },
+  "updated": "2025-10-20T02:50:13Z",
   "used": [],
+  "totals": {
+    "files": 849,
+    "used": 0,
+    "orphans": 88,
+    "scripts": 88
+  },
   "orphans": [
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1",
@@ -17,6 +18,7 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Alexandria-World-LLM.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-FromFile.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-Packages-v2.ps1",
+    "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-Packages-v3.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-Packages.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Build-Pointer.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Diet-LLM.ps1",
@@ -32,6 +34,7 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Offline-2wk.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Package-Map-Report.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Plan-Inspector.ps1",
+    "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Plan-Merge.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Validate.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Build-Link-Registry.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Design-Tokens.ps1",
@@ -63,6 +66,7 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Nina-VRM-Index.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Nina-VRM-Sanity.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Repo-Doctor.ps1",
+    "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Repo-Index.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Repo-Inventory.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Repo-Read-All.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Repo-Refs-Graph.ps1",
@@ -92,6 +96,5 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/nina-3d-index.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/overseers-llm-bridge.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/tracy-artboard.ps1"
-  ],
-  "updated": "2025-10-18T22:53:54Z"
+  ]
 }

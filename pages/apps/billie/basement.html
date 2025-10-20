@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Billie — Basement (Members)</title>
+<link rel="stylesheet" href="/pages/apps/_shared/ui-lite.css">
+</head><body><div class="wrap">
+<div class="nav">
+  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
+  <a class="btn" href="/pages/apps/billie/index.html">🏠 Mansion</a>
+</div>
+<h1>🔒 Billie — Members Area (Compliance‑First)</h1>
+<div class="panel">
+  <p>This page is a **compliance‑only gateway**. It does not host or generate explicit content. If you later choose to operate a members area, use a **separate platform** that provides <b>age verification</b>, <b>consent controls</b>, <b>copyright moderation</b>, and <b>robust reporting</b>. Host adult materials <b>off GitHub Pages</b>.</p>
+  <ul class="muted">
+    <li>Require proof of age and explicit consent from all participants.</li>
+    <li>Never depict real people without their explicit permission; do not create deepfakes.</li>
+    <li>Follow local/federal laws and platform policies; consult a licensed attorney.</li>
+  </ul>
+</div>
+<div class="panel">
+  <h3>Members Link (off‑site)</h3>
+  <p>Configure your chosen platform URL here (stored only on this device):</p>
+  <input id="url" placeholder="https://your-members-platform.example/username">
+  <button class="btn" id="save">Save</button>
+  <a class="btn" id="open" target="_blank" rel="noopener">Open Members</a>
+  <small class="muted">Nothing is stored in this repo; it stays on your device.</small>
+</div>
+<script>
+const K='billie_members_url';
+const url=document.getElementById('url'); const open=document.getElementById('open');
+url.value = localStorage.getItem(K) || '';
+function upd(){ open.href = url.value||'#'; open.style.pointerEvents = url.value?'auto':'none'; open.textContent = url.value? 'Open Members' : 'Set URL first'; }
+upd();
+document.getElementById('save').onclick = ()=>{ localStorage.setItem(K,url.value||''); upd(); };
+</script>
+</div></body></html>

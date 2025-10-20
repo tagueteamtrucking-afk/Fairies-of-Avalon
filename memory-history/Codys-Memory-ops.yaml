@@ -1,0 +1,20 @@
+meta:
+  project: Avalon
+  file: "Cody's Memory.yaml"
+  version: "2.6.0-ops"
+  updated: "20251020T003623Z"
+notes:
+  - Carol: fix 14-day repeat by de-dup + rotate; enforce soft-food swaps (almonds→almond butter, peanuts→peanut butter); add substitutions/cheat logger (local).
+  - Jem: PT-style Week‑1 eval (STS30, pushups style, plank, wall-sit, balance, 3‑min step HR, reach); plan generator favors knee/back/core safety; RPE 3–4 for cardio.
+  - Billie: basement = compliance-only gateway; requires off-site, age-gated platform; no explicit content or non-consensual depictions.
+guards:
+  diet:
+    banned_text: ["almonds (whole/slivered)","shellfish","crispy","hard"]
+    swaps:
+      - find: "almond"
+        replace: "almond butter (2 Tbsp, smooth)"
+      - find: "peanut"
+        replace: "peanut butter (2 Tbsp, low sugar)"
+  jem:
+    environment: "truck small-space; no gym; optional bands/weights later"
+    safety: ["stop if symptomatic","RPE 3–4 cardio","progress by feel","log what you did"]

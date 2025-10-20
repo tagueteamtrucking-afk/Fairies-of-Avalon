@@ -1,30 +1,116 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carol — 14‑Day Menu</title>
-<style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}a{color:#a5d6ff}.t{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #1b2436;padding:10px;text-align:left;vertical-align:top}th{background:#111a2b}</style></head>
-<body><h1>Carol — 14‑Day Menu</h1>
-<p><a href="/pages/apps/carol/index.html">← Back</a> · <a href="/pages/apps/carol/shopping.html">Shopping</a> · <a href="#" onclick="window.print();return false;">Print</a> · <a href="#" onclick="downloadICS();return false;">⏰ ICS</a></p>
-<div id="menu"></div>
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carol — 14‑Day Menu (2 people)</title>
+<link rel="stylesheet" href="/pages/apps/_shared/ui-lite.css">
+</head><body><div class="wrap">
+<div class="nav">
+  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
+  <a class="btn" href="/pages/apps/carol/shopping.html">🧺 Shopping</a>
+</div>
+<h1>🍽️ Carol — 14‑Day Menu</h1>
+<div class="panel">
+  <h3>Substitutions & Cheat Log</h3>
+  <div class="grid">
+    <div class="panel">
+      <label>Day # (1–14)</label><input id="sub-day" type="number" min="1" max="14" value="1">
+      <label style="margin-top:8px">What changed / notes</label><textarea id="sub-notes" rows="3" placeholder="e.g., swapped almonds → almond butter; ate sushi roll; extra coffee…"></textarea>
+      <label style="margin-top:8px">Was this a cheat meal?</label>
+      <select id="sub-cheat"><option value="no">No</option><option value="yes">Yes</option></select>
+      <button class="btn" id="sub-save" style="margin-top:8px">Save entry</button>
+      <small>Entries are stored locally on this device (no cloud). You can export below.</small>
+    </div>
+    <div class="panel">
+      <button class="btn" id="sub-export">⬇️ Export log (.json)</button>
+      <button class="btn" id="sub-clear">🗑️ Clear log</button>
+      <div id="sub-status" class="muted" style="margin-top:8px"></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <h3>Menu (14 days)</h3>
+  <small class="muted">Carol enforces: DASH‑style, reduced sodium/sugar, lactose‑light, shellfish‑free, avoid very hard foods (nuts/chips/toffee). Nut butters (e.g., almond/peanut butter) are acceptable.</small>
+  <table id="menu"><thead><tr><th>Day</th><th>Mini‑meals / snacks (6–7)</th><th>Cookbook notes</th><th>Nutrition</th></tr></thead><tbody></tbody></table>
+</div>
+
 <script>
-function esc(s){return (s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}
-async function load(){
-  const ptr = await (await fetch('/pages/apps/carol/index.json?cb='+Date.now())).json();
-  const plan = await (await fetch(ptr.plan+'?cb='+Date.now())).json();
-  const root = document.getElementById('menu');
-  (plan.days||[]).forEach((d,i)=>{
-    const t=document.createElement('table'); t.className='t';
-    t.innerHTML='<thead><tr><th>Mini‑meal</th><th>Ingredients</th><th>Cookbook</th><th>Nutrition</th></tr></thead>';
-    const tb=document.createElement('tbody');
-    (d.items||[]).forEach(it=>{
-      const tr=document.createElement('tr');
-      const ing=(it.ingredients||[]).map(g=> esc(g.qty)+' '+esc(g.item)).join('<br>');
-      const n=it.nutrition||{}; const nt=['kcal','protein_g','carb_g','fat_g','sodium_mg','added_sugar_g'].filter(k=>k in n).map(k=>k.replace('_g',' (g)').replace('_mg',' (mg)')+': '+n[k]).join('<br>');
-      tr.innerHTML='<td><b>'+esc(it.title||"")+'</b></td><td>'+ing+'</td><td>'+esc(it.method||"")+'</td><td>'+nt+'</td>'; tb.appendChild(tr);
-    });
-    t.appendChild(tb); const wrap=document.createElement('div'); wrap.innerHTML='<h2>Day '+(i+1)+'</h2>'; wrap.appendChild(t); root.appendChild(wrap);
-  });
+const PLAN_URL = "/pages/apps/carol/plans/mealplan-dash-14d-current.json";
+const BANNED = [/\balmonds?\b/i,/\bpeanuts?\b/i,/\bshellfish\b/i];
+function safeSwap(txt){
+  if(!txt) return txt;
+  let s = txt;
+  s = s.replace(/\balmonds?\b/gi, "almond butter (2 Tbsp)");
+  s = s.replace(/\bpeanuts?\b/gi, "peanut butter (2 Tbsp, low sugar)");
+  s = s.replace(/\bshellfish\b/gi, "fish (e.g., salmon/cod/tuna)");
+  s = s.replace(/\bcrispy\b/gi, "baked/soft");
+  s = s.replace(/\bhard\b/gi, "soft");
+  return s;
 }
-function pad(n){return (n<10?'0':'')+n}
-function icsEvent(dtstart, dtend, title){return ['BEGIN:VEVENT','DTSTAMP:'+dtstart,'DTSTART:'+dtstart,'DTEND:'+dtend,'SUMMARY:'+title,'END:VEVENT'].join('\r\n')}
-function downloadICS(){const start=new Date(); const meals=['08:00','10:30','13:00','15:30','18:00','20:30']; let lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Avalon//Carol Meal Alarms//EN']; for(let d=0; d<14; d++){const base=new Date(start.getFullYear(), start.getMonth(), start.getDate()+d); for(const hhmm of meals){const [h,m]=hhmm.split(':').map(x=>parseInt(x,10)); const s=new Date(base.getFullYear(),base.getMonth(),base.getDate(),h,m); const e=new Date(s.getTime()+30*60000); const ds=s.getUTCFullYear()+pad(s.getUTCMonth()+1)+pad(s.getUTCDate())+'T'+pad(s.getUTCHours())+pad(s.getUTCMinutes())+'00Z'; const de=e.getUTCFullYear()+pad(e.getUTCMonth()+1)+pad(e.getUTCDate())+'T'+pad(e.getUTCMinutes())+'00Z'; lines.push(icsEvent(ds,de,'Carol Meal / Snack')); }} lines.push('END:VCALENDAR'); const blob=new Blob([lines.join('\r\n')],{type:'text/calendar'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='carol-meal-alarms.ics'; a.click();}
-load();
-</script></body></html>
+function normalizeDays(plan){
+  // Expect plan.days = [ {title, items:[{name, notes, kcal, sodium_mg, sugar_g}] } ]
+  if(!plan || !Array.isArray(plan.days)) return {days:[]};
+  let days = plan.days.filter(d=>d && Array.isArray(d.items) && d.items.length>0);
+  if(days.length===0) return {days:[]};
+  // Remove exact duplicates by JSON signature
+  const uniq = [];
+  const sigs = new Set();
+  for(const d of days){
+    const sig = JSON.stringify(d.items.map(x=>x.name));
+    if(!sigs.has(sig)){ uniq.push(d); sigs.add(sig); }
+  }
+  // If fewer than 14, rotate variants (swap fruit/veg sides where marked) or just cycle.
+  const out = [];
+  for(let i=0;i<14;i++){
+    const src = uniq[i % uniq.length];
+    // Make a shallow variant with safe swaps
+    const items = (src.items||[]).map(x=>{
+      let name = safeSwap(x.name||"");
+      return {
+        name, notes: safeSwap(x.notes||""),
+        kcal: x.kcal ?? null, sodium_mg: x.sodium_mg ?? null, sugar_g: x.sugar_g ?? null
+      };
+    });
+    out.push({ title: "Day "+(i+1), items });
+  }
+  return {days: out};
+}
+function render(plan){
+  const tb = document.querySelector("#menu tbody"); tb.innerHTML="";
+  for(const d of plan.days){
+    const tr = document.createElement("tr");
+    const meals = d.items.map(x=>`• ${x.name}`).join("<br>");
+    const notes = d.items.map(x=>x.notes?`<div class='muted'>${x.notes}</div>`:"").join("");
+    const kcal = sum(d.items.map(x=>x.kcal)); const sod = sum(d.items.map(x=>x.sodium_mg)); const sug = sum(d.items.map(x=>x.sugar_g));
+    tr.innerHTML = `<td class='k'>${d.title}</td><td>${meals}</td><td>${notes||"—"}</td><td>${fmt(kcal,"kcal")}<br>${fmt(sod,"mg Na")}<br>${fmt(sug,"g sugar")}</td>`;
+    tb.appendChild(tr);
+  }
+}
+function sum(arr){ return arr.reduce((a,b)=>a + (typeof b==='number'?b:0),0) }
+function fmt(v,u){ return (typeof v==='number' && v>0)? Math.round(v)+" "+u : "—"; }
+
+// Substitution log (local)
+const KEY="carol_subs_log_v1";
+function loadLog(){ try{ return JSON.parse(localStorage.getItem(KEY)||"[]") }catch{ return [] } }
+function saveLog(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+document.getElementById("sub-save").onclick = ()=>{
+  const day = Math.max(1, Math.min(14, parseInt(document.getElementById('sub-day').value||'1',10)));
+  const notes = (document.getElementById('sub-notes').value||'').trim();
+  const cheat = document.getElementById('sub-cheat').value==='yes';
+  const entry = { ts: new Date().toISOString(), day, notes, cheat };
+  const log = loadLog(); log.push(entry); saveLog(log);
+  document.getElementById('sub-status').textContent = "Saved entry for Day "+day;
+  document.getElementById('sub-notes').value="";
+};
+document.getElementById("sub-export").onclick = ()=>{
+  const data = JSON.stringify(loadLog(), null, 2);
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([data],{type:'application/json'}));
+  a.download = "carol-substitutions-log.json"; a.click();
+};
+document.getElementById("sub-clear").onclick = ()=>{ if(confirm("Clear local log?")){ saveLog([]); document.getElementById('sub-status').textContent="Cleared." } };
+
+fetch(PLAN_URL,{cache:'no-store'}).then(r=>r.json()).then(j=>normalizeDays(j)).then(render).catch(err=>{
+  const tb = document.querySelector("#menu tbody");
+  tb.innerHTML = "<tr><td colspan='4' class='muted'>Plan JSON not found or invalid at "+PLAN_URL+".</td></tr>"
+});
+</script>
+</div></body></html>

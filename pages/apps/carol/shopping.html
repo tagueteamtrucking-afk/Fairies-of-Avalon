@@ -1,10 +1,85 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carol — Shopping (2p)</title><style>body{background:#0b1220;color:#e6e9ff;font-family:system-ui,Segoe UI,Roboto;margin:0;padding:16px}a{color:#a5d6ff}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #1b2436;padding:8px 6px;text-align:left}th{background:#111a2b}</style></head>
-<body><h1>Carol — Shopping (2 people)</h1><div id="root"></div>
-<p><a href="/pages/apps/carol/index.html">← Back</a></p>
-<script>
-async function load(){const ptr=await (await fetch('/pages/apps/carol/index.json?cb='+Date.now())).json(); let d=null; if(ptr.shopping_quantized){const r=await fetch(ptr.shopping_quantized+'?cb='+Date.now()); if(r.ok) d=await r.json();}
-  if(!d){const plan=await (await fetch(ptr.plan+'?cb='+Date.now())).json(); const acc={}; (plan.days||[]).forEach(x=>(x.items||[]).forEach(it=>(it.ingredients||[]).forEach(g=>{const k=(g.item||'').toLowerCase(); if(!k) return; acc[k]=acc[k]||{item:g.item,need:[]}; acc[k].need.push(g.qty||''); }))); d={items:Object.values(acc).map(x=>({item:x.item,need:x.need.join(' + ')}))};}
-  const t=document.createElement('table'); t.innerHTML='<thead><tr><th>Item</th><th>Qty (2p)</th><th>Package</th></tr></thead>'; const tb=document.createElement('tbody'); (d.items||[]).forEach(x=>{const tr=document.createElement('tr'); tr.innerHTML='<td>'+x.item+'</td><td>'+(x.need||x.qty||'')+'</td><td>'+(x.package||'')+'</td>'; tb.appendChild(tr)}); t.appendChild(tb); document.getElementById('root').appendChild(t); }
-load();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carol — Shopping List</title>
+  <link rel="stylesheet" href="/pages/apps/theme/tokens.css">
+  <style>
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: #0b0f1a; color: #eaf2ff; }
+    header { padding: 16px; text-align: center; }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px 40px; }
+    .card { background: rgba(255,255,255,0.08); border-radius: 14px; padding: 16px; margin: 12px 0; }
+    .muted { opacity: 0.85; }
+    a { color: var(--avalon-accent, #7bb0ff); }
+    ul { padding-left: 18px; }
+    .note { font-size: 0.95rem; opacity: 0.9; }
+    .warn { color: #ffd27b; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Shopping List</h1>
+    <p class="muted">Two-person, 14&nbsp;days. Respecting sunflower seed butter &amp; soft‑swap rules.</p>
+  </header>
+  <div class="wrap">
+    <div id="status" class="card">Loading shopping list…</div>
+    <div id="list"></div>
+  </div>
+
+  <script>
+    async function load() {
+      const status = document.getElementById('status');
+      const list = document.getElementById('list');
+      try {
+        const res = await fetch('/pages/apps/carol/plans/shopping-quantized.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('not_ready');
+        const data = await res.json();
+
+        status.textContent = 'Ready';
+        const out = document.createElement('div');
+        out.className = 'card';
+
+        const byCat = {};
+        for (const item of (data.items || [])) {
+          const cat = item.category || 'Other';
+          byCat[cat] = byCat[cat] || [];
+          byCat[cat].push(item);
+        }
+        for (const [cat, items] of Object.entries(byCat)) {
+          const h = document.createElement('h3'); h.textContent = cat;
+          out.appendChild(h);
+          const ul = document.createElement('ul');
+          for (const it of items) {
+            const li = document.createElement('li');
+            const qty = (it.total || it.qty || it.quantity || '').toString();
+            li.textContent = [it.name, qty, it.unit].filter(Boolean).join(' • ');
+            ul.appendChild(li);
+          }
+          out.appendChild(ul);
+        }
+        const note = document.createElement('p');
+        note.className = 'note';
+        note.innerHTML = 'Notes: Prefer sunflower seed butter for spreads. Swap very hard/crunchy foods for softer alternatives.';
+        out.appendChild(note);
+
+        list.replaceChildren(out);
+      } catch (e) {
+        status.innerHTML = '<span class="warn">Shopping list not generated yet.</span>';
+        const help = document.createElement('div');
+        help.className = 'card';
+        help.innerHTML = `
+          <h3>Next step</h3>
+          <ol>
+            <li>Run the workflow <b>“Carol — Refresh (Extract Shopping)”</b>.</li>
+            <li>When it completes, refresh this page.</li>
+          </ol>
+          <p class="note">This page looks for <code>/pages/apps/carol/plans/shopping-quantized.json</code>.</p>
+        `;
+        list.replaceChildren(help);
+      }
+    }
+    load();
+  </script>
+</body>
+</html>

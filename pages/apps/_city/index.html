@@ -1,25 +1,26 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Avalon · City</title>
-  <style>
-    html,body{margin:0;height:100%;background:#060607;color:#fff;font-family:ui-sans-serif,system-ui}
-    header{padding:16px 20px;font-weight:600}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;max-width:1100px;margin:10px auto;padding:10px}
-    .tile{position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 8px 22px rgba(0,0,0,.3)}
-    .tile img{display:block;width:100%;height:140px;object-fit:cover;filter:saturate(1.1)}
-    .tile a{position:absolute;inset:auto 0 0 0;background:linear-gradient(180deg,transparent, rgba(0,0,0,.8));padding:10px 12px;text-decoration:none;color:#fff;font-weight:600}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avalon • City</title>
+<style>
+  html,body{margin:0;height:100%;font:16px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;color:#fff;background:#0b0d18}
+  header{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.1);background:linear-gradient(180deg,#0b0d18,#101326)}
+  h1{margin:0;font-size:20px}
+  main{padding:16px;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}
+  a.tile{position:relative;display:block;border-radius:14px;overflow:hidden;height:150px;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.15);background:#000}
+  a.tile img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.05)}
+  a.tile span{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.55);padding:6px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.18)}
+</style>
 </head>
 <body>
-  <header>Avalon · City</header>
-  <main class="grid">
-    <figure class="tile">
-      <img src="/asset/textures/buildings/phoenix-pagoda.jpg" alt="Carol · Bistro">
-      <a href="/pages/rooms/carol.html">Carol · Bistro</a>
-    </figure>
-  </main>
+<header><h1>Avalon • City</h1></header>
+<main>
+  <a class="tile" href="/pages/rooms/carol.html" aria-label="Carol’s Bistro">
+    <img src="/asset/textures/buildings/phoenix-pagoda.jpg" alt="Carol — Phoenix Pagoda">
+    <span>Carol • Bistro</span>
+  </a>
+</main>
 </body>
 </html>

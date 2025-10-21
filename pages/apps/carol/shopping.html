@@ -1,135 +1,155 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Carol · Shopping List</title>
-  <style>
-    :root{
-      --bg: #0e0a0a;
-      --paper: rgba(255,255,255,.92);
-      --gold: #caa75a;
-      --ink: #2b1b1b;
-    }
-    html,body{height:100%;margin:0;background:var(--bg) url('/asset/textures/ui/carol-menu-bg.jpg') center/cover fixed no-repeat;color:var(--ink);font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;}
-    header{background:linear-gradient(90deg, rgba(0,0,0,.55), rgba(0,0,0,.15));color:#fff;padding:16px 20px;display:flex;gap:14px;align-items:center;position:sticky;top:0;z-index:10}
-    header img{width:44px;height:44px;object-fit:cover;border-radius:8px;border:2px solid var(--gold);box-shadow:0 0 0 2px rgba(0,0,0,.4)}
-    header h1{margin:0;font-size:1.25rem}
-    header small{opacity:.9;display:block;font-size:.8rem}
-    .wrap{max-width:980px;margin:16px auto;padding:12px}
-    .group{background:var(--paper);padding:10px 12px;border-radius:12px;margin:10px 0;border:1px solid rgba(0,0,0,.08)}
-    .group h3{margin:0 0 8px;color:#7a1111;font-size:1rem}
-    .item{display:flex;justify-content:space-between;padding:6px 0;border-top:1px dashed rgba(0,0,0,.1)}
-    .item:first-child{border-top:0}
-    .hint{background:rgba(0,0,0,.55);color:#f6ecd7;border-left:3px solid var(--gold);padding:10px 12px;border-radius:12px;margin:12px 0}
-    kbd{background:#111;color:#fff;border-radius:6px;padding:2px 6px}
-    a.btn{display:inline-block;background:#b62e2e;color:#fff;text-decoration:none;padding:10px 14px;border-radius:10px;border:1px solid rgba(0,0,0,.2)}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carol • Shopping List</title>
+<style>
+  :root{
+    --bg:url('/asset/textures/ui/carol-menu-bg.jpg');
+    --card-bg:rgba(0,0,0,.55);
+    --accent:#E1B12C;
+    --txt:#fff;
+    --muted:#e8d8a6;
+  }
+  html,body{margin:0;height:100%;color:var(--txt);font:16px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial}
+  body{background-image:var(--bg);background-size:cover;background-attachment:fixed;background-position:center}
+  header{background:linear-gradient(180deg, rgba(0,0,0,.75), rgba(0,0,0,.35));padding:16px 20px;display:flex;gap:16px;align-items:center;position:sticky;top:0;backdrop-filter:blur(4px);border-bottom:1px solid rgba(255,255,255,.15)}
+  header img{height:56px;width:auto;border-radius:6px;box-shadow:0 4px 18px rgba(0,0,0,.5)}
+  h1{margin:0;font-size:20px;letter-spacing:.5px}
+  .hint{font-size:12px;color:var(--muted)}
+  main{padding:16px;display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));}
+  .cat{background:var(--card-bg);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 14px}
+  .cat h3{margin:0 0 8px 0;font-size:16px;color:var(--accent)}
+  ul{margin:6px 0 0 16px;padding:0}
+  li{margin:2px 0}
+  .msg{margin:12px 16px;background:rgba(0,0,0,.6);border-left:3px solid var(--accent);padding:10px 12px;border-radius:10px}
+  .topnav{margin-left:auto;display:flex;gap:8px}
+  .topnav a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:6px 10px;border-radius:8px;background:rgba(0,0,0,.25)}
+</style>
 </head>
 <body>
 <header>
-  <img src="/asset/textures/rooms/carol-restaurant.jpg" alt="Carol Bistro"/>
+  <img src="/asset/textures/rooms/carol-restaurant.jpg" alt="Carol Bistro">
   <div>
-    <h1>Carol · Shopping List (2 people · 14 days)</h1>
-    <small id="srcLabel">Loading…</small>
+    <h1>Carol • Shopping List</h1>
+    <div class="hint" id="srcHint">Loading…</div>
   </div>
-  <div style="margin-left:auto"><a class="btn" href="/pages/apps/carol/menu.html">Back to Menu</a></div>
+  <nav class="topnav">
+    <a href="/pages/rooms/carol.html">Room</a>
+    <a href="/pages/apps/carol/menu.html">Menu</a>
+    <a href="/pages/apps/_city/index.html">City</a>
+  </nav>
 </header>
-<div class="wrap">
-  <div id="list"></div>
-  <div class="hint" id="hint" hidden>
-    I couldn't find a quantified shopping JSON. If your plan file doesn't include ingredients, run the workflow <b>Carol — Pin & Extract (14‑day)</b> to create <code>shopping-quantized.json</code>. Then reload this page.
-  </div>
-</div>
+<div class="msg" id="msg"></div>
+<main id="grid"></main>
+
 <script>
-const POINTER="/pages/apps/carol/index.json";
-const DEFAULTS={shopping:"/pages/apps/carol/plans/shopping-quantized.json", plan:"/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"};
-const GROUPS=["Produce","Dairy","Protein","Grains","Pantry","Frozen","Spices","Other"];
-function groupify(items){
-  const map = new Map();
-  GROUPS.forEach(g=>map.set(g, []));
-  const put=(g,it)=>{(map.get(GROUPS.includes(g)?g:"Other")||map.get("Other")).push(it)};
-  for(const it of items){
-    const g=(it.group||it.category||"Other");
-    put(g, it);
-  }
-  return map;
-}
-function render(items){
-  const map = groupify(items);
-  const out=[];
-  map.forEach((arr,grp)=>{
-    if(arr.length===0) return;
-    out.push(`<section class="group"><h3>${grp}</h3>`+
-      arr.map(i=>`<div class="item"><span>${i.name}${i.note?` <em>(${i.note})</em>`:""}</span><span>${i.qty||""} ${i.unit||""}</span></div>`).join("")+
-      `</section>`);
-  });
-  return out.join("");
-}
-async function load(){
-  const lbl=document.getElementById('srcLabel');
-  const list=document.getElementById('list');
-  const hint=document.getElementById('hint');
+const ptrUrl = "/pages/apps/carol/index.json";
+
+async function fetchJson(url){
   try{
-    const p = await fetch(POINTER).then(r=> r.ok ? r.json() : {shopping_latest: DEFAULTS.shopping, plan_latest: DEFAULTS.plan});
-    const urls=[p.shopping_latest, DEFAULTS.shopping];
-    // Try quantified first
-    for(const url of urls){
-      try{
-        const res = await fetch(url,{cache:"no-store"});
-        if(!res.ok) throw new Error(res.status);
-        const data = await res.json();
-        const items = Array.isArray(data.items)?data.items : (Array.isArray(data)?data: (data.shopping||[]));
-        if(items.length){
-          lbl.textContent = "Source: "+url.split('/').slice(-1)[0];
-          list.innerHTML = render(items);
-          return;
-        }
-      }catch(e){}
-    }
-    // Derive from plan (best‑effort) — requires ingredients in the plan
-    try{
-      const res = await fetch(p.plan_latest || DEFAULTS.plan);
-      const plan = await res.json();
-      const ingredients = [];
-      const coll = Array.isArray(plan.days)? plan.days : (Array.isArray(plan.plan)? plan.plan : (plan.menu||[]));
-      if(Array.isArray(coll)){
-        for(const d of coll){
-          const poss = d.ingredients||d.Items||d.items||d.Meals||d.meals;
-          if(Array.isArray(poss)){
-            for(const it of poss){
-              if(typeof it==="string"){
-                ingredients.push({name: it, qty:"", unit:"", group:"Other"});
-              }else if(it && typeof it==="object"){
-                ingredients.push({
-                  name: it.name || it.item || it.ingredient || it.title || "Item",
-                  qty: it.qty || it.quantity || "",
-                  unit: it.unit || "",
-                  group: it.group || it.category || "Other",
-                  note: it.note || ""
-                });
-              }
-            }
-          }
-        }
-      }
-      if(ingredients.length){
-        lbl.textContent = "Derived from plan (ingredients in plan)";
-        list.innerHTML = render(ingredients);
-        return;
-      }
-    }catch(e){}
-    // If all fails
-    lbl.textContent = "No quantified list found.";
-    hint.hidden = false;
-    list.innerHTML = `<section class="group"><h3>No items</h3><div class="item"><span>Generate with workflow or ensure ingredients exist in plan JSON.</span><span></span></div></section>`;
-  }catch(e){
-    lbl.textContent = "Error loading.";
-    hint.hidden=false;
-    list.textContent = e;
-  }
+    const r = await fetch(url, {cache:"no-store"});
+    if(!r.ok) return null;
+    return await r.json();
+  }catch(e){ return null; }
 }
-load();
+
+function groupList(items){
+  const cats = {
+    "Produce":[],"Bakery":[],"Dairy/Eggs":[],"Protein":[],"Grains/Pasta":[],"Canned/Boxed":[],"Frozen":[],"Oils/Condiments":[],"Spices/Seasoning":[],"Other":[]
+  };
+  const map = Object.keys(cats);
+  const kw = (s)=>s.toLowerCase();
+  for (const it of items){
+    const name = (it.name||it.item||it.ingredient||it.title||String(it)).trim();
+    const qty = it.qty||it.quantity||it.amount||it.count||it.size||"";
+    const line = qty ? `${name} — ${qty}` : name;
+    const k = kw(name);
+    let bucket = "Other";
+    if (/(apple|banana|berry|orange|lettuce|spinach|kale|tomato|onion|pepper|carrot|cucumber|garlic|lime|lemon)/i.test(name)) bucket="Produce";
+    else if (/(bread|tortilla|pita|bun|bagel)/i.test(name)) bucket="Bakery";
+    else if (/(milk|yogurt|cheese|egg)/i.test(name)) bucket="Dairy/Eggs";
+    else if (/(chicken|beef|turkey|pork|tofu|salmon|tuna|cod|shrimp|beans|lentil|egg)/i.test(name)) bucket="Protein";
+    else if (/(rice|pasta|noodle|oat|quinoa|bread|cereal)/i.test(name)) bucket="Grains/Pasta";
+    else if (/(can|canned|broth|stock|sauce|tomato paste|beans?)/i.test(name)) bucket="Canned/Boxed";
+    else if (/(frozen)/i.test(name)) bucket="Frozen";
+    else if (/(olive oil|oil|vinegar|butter|sunflower seed butter|peanut butter|almond butter|mustard|ketchup|mayo)/i.test(name)) bucket="Oils/Condiments";
+    else if (/(salt|pepper|cumin|paprika|spice|season)/i.test(name)) bucket="Spices/Seasoning";
+    cats[bucket].push(line);
+  }
+  return cats;
+}
+
+function renderCats(src, cats){
+  document.getElementById("srcHint").textContent = src;
+  const grid = document.getElementById("grid");
+  grid.innerHTML = Object.entries(cats).map(([k,arr])=>{
+    if(!arr.length) return "";
+    return `<section class="cat"><h3>${k}</h3><ul>${arr.map(x=>`<li>${x}</li>`).join("")}</ul></section>`
+  }).join("");
+}
+
+function flatten(list){
+  if (Array.isArray(list)) return list;
+  if (list && Array.isArray(list.items)) return list.items;
+  if (list && Array.isArray(list.shopping)) return list.shopping;
+  if (list && list.data && Array.isArray(list.data.items)) return list.data.items;
+  return [];
+}
+
+async function tryDerived(){
+  const planCandidates = [
+    "/pages/apps/carol/plans/twoperson-2wk-merged.json",
+    "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+    "/pages/apps/carol/plans/mealplan-dash-14d-current.json"
+  ];
+  for (const p of planCandidates){
+    const j = await fetchJson(p);
+    if(!j) continue;
+    // naive derivation
+    const items = [];
+    const days = j.days || j.plan || j.menu || [];
+    if (Array.isArray(days) && days.length){
+      days.forEach(d=>{
+        (["breakfast","lunch","dinner","snack"]).forEach(m=>{
+          if(d && d[m] && d[m].ingredients && Array.isArray(d[m].ingredients)){
+            d[m].ingredients.forEach(ii=>items.push(ii));
+          }
+        });
+      });
+      if (items.length){
+        const cats = groupList(items);
+        renderCats(`Derived from ${p.split('/').pop()}`, cats);
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+(async function main(){
+  const msg = document.getElementById("msg");
+  const ptr = await fetchJson(ptrUrl);
+  const quant = ptr?.shopping?.quantized || "/pages/apps/carol/plans/shopping-quantized.json";
+  const extr  = ptr?.shopping?.extracted || "/pages/apps/carol/plans/shopping-extracted.json";
+
+  let list = await fetchJson(quant);
+  if (list){
+    renderCats(`Quantized list (${quant.split('/').pop()})`, groupList(flatten(list)));
+    return;
+  }
+  list = await fetchJson(extr);
+  if (list){
+    renderCats(`Extracted list (${extr.split('/').pop()})`, groupList(flatten(list)));
+    return;
+  }
+  const ok = await tryDerived();
+  if (!ok){
+    msg.innerHTML = `No quantified or extracted list found, and the plan lacks ingredients to derive a list. Please run the workflow “Carol — Pin Plan & Extract (14‑day)”.`;
+    document.getElementById("srcHint").textContent = "Shopping list not found";
+  }
+})();
 </script>
 </body>
 </html>

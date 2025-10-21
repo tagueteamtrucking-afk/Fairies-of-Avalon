@@ -1,11 +1,12 @@
 {
-  "updated": "2025-10-21T01:41:38.211646Z",
   "plan_latest": "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "plan_fallbacks": [
-    "/pages/apps/carol/plans/mealplan-dash-14d-current.json",
-    "/pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json",
-    "/pages/apps/carol/plans/twoperson-2wk-20251009T203748Z.json"
-  ],
-  "shopping_latest": "/pages/apps/carol/plans/shopping-quantized.json",
-  "notes": "Menu tries plan_latest first; Shopping uses shopping_latest or derives from the plan if missing."
+  "shopping": {
+    "quantized": "/pages/apps/carol/plans/shopping-quantized.json",
+    "extracted": "/pages/apps/carol/plans/shopping-extracted.json"
+  },
+  "ui": {
+    "wallpaper": "/asset/textures/ui/carol-menu-bg.jpg",
+    "room_image": "/asset/textures/rooms/carol-restaurant.jpg",
+    "building_image": "/asset/textures/buildings/phoenix-pagoda.jpg"
+  }
 }

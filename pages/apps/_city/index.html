@@ -1,72 +1,36 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Avalon City</title>
-<link rel="stylesheet" href="./city.css">
+<style>
+  :root{ --bg:#0b0f17; --ink:#e8ecf1; --stroke:rgba(255,255,255,0.12); --glass:rgba(255,255,255,0.04); --accent:#9cc1ff;}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header{padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--stroke);position:sticky;top:0;background:#0b0f17f2;backdrop-filter: blur(6px);}
+  a.btn{color:var(--ink);text-decoration:none;border:1px solid var(--stroke);padding:8px 10px;border-radius:10px;font-weight:600}
+  a.btn:hover{border-color:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;padding:16px}
+  .tile{border:1px solid var(--stroke);background:var(--glass);border-radius:12px;padding:16px}
+  .tile h3{margin:0 0 6px 0}
+  .muted{opacity:.85}
+</style>
 </head>
 <body>
-<header class="topbar">
-  <div class="brand">🏙️ Avalon City</div>
-  <nav class="actions">
-    <a class="act" href="/kill-sw.html" title="Clear caches">🧹 Reset</a>
-    <a class="act" href="/pages/index.html" title="Home">🏠 Home</a>
-  </nav>
+<header>
+  <a class="btn" href="/">🏠 Home</a>
+  <a class="btn" href="/kill-sw.html">🧹 Fix Cache</a>
 </header>
-
-<main class="grid">
-  <a class="tile" href="/pages/apps/alexandria/voice-dm.html">
-    <div class="tile-img tile-lib" role="img" aria-label="Library desk with quill"></div>
-    <div class="tile-meta"><b>Gothic Library</b><span>Alexandria — Voice DM</span></div>
-  </a>
-
-  <a class="tile" href="/pages/apps/tracy/index.html">
-    <div class="tile-img tile-cathedral" role="img" aria-label="Stained-glass studio"></div>
-    <div class="tile-meta"><b>Cathedral Studio</b><span>Tracy — Artboards & Skins</span></div>
-  </a>
-
-  <a class="tile" href="/pages/apps/jem/index.html">
-    <div class="tile-img tile-dojo" role="img" aria-label="Dojo training hall"></div>
-    <div class="tile-meta"><b>Dojo</b><span>Jem — Training & Evaluate</span></div>
-  </a>
-
-  <a class="tile" href="/pages/apps/carol/menu.html">
-    <div class="tile-img tile-bistro" role="img" aria-label="Bistro kitchen"></div>
-    <div class="tile-meta"><b>Bistro</b><span>Carol — Menu & Shopping</span></div>
-  </a>
-
-  <a class="tile" href="/pages/apps/stella/guided.html">
-    <div class="tile-img tile-observatory" role="img" aria-label="Observatory night sky"></div>
-    <div class="tile-meta"><b>Observatory</b><span>Stella — Guided Audio</span></div>
-  </a>
-
-  <a class="tile" href="/pages/apps/nina/index.html">
-    <div class="tile-img tile-lab" role="img" aria-label="Hologram lab"></div>
-    <div class="tile-meta"><b>Lab</b><span>Nina — 3D & Previews</span></div>
-  </a>
-
-  <a class="tile" href="/pages/apps/charlotte/index.html">
-    <div class="tile-img tile-relay" role="img" aria-label="Control wall"></div>
-    <div class="tile-meta"><b>Relay Hall</b><span>Charlotte — Pipelines</span></div>
-  </a>
-
-  <a class="tile" href="/pages/apps/abbey/index.html">
-    <div class="tile-img tile-vault" role="img" aria-label="Vault & ledgers"></div>
-    <div class="tile-meta"><b>Vault</b><span>Abbey — Money Tools</span></div>
-  </a>
-
-  <a class="tile" href="/pages/apps/overseers/index.html">
-    <div class="tile-img tile-palace" role="img" aria-label="Palace"></div>
-    <div class="tile-meta"><b>Palace</b><span>Overseers — Status</span></div>
-  </a>
-
-  <a class="tile" href="/pages/apps/billie/index.html">
-    <div class="tile-img tile-mansion" role="img" aria-label="Creator mansion"></div>
-    <div class="tile-meta"><b>Mansion</b><span>Billie — Storyboards</span></div>
-  </a>
-</main>
-
-<script src="./city.js"></script>
+<section class="grid">
+  <div class="tile"><h3>📚 Gothic Library</h3><div class="muted">Alexandria — Adventures & Lore</div><a class="btn" href="/pages/apps/alexandria/voice-dm.html">Enter</a></div>
+  <div class="tile"><h3>🎨 Cathedral Studio</h3><div class="muted">Tracy — Artboards & Skins</div><a class="btn" href="/pages/apps/tracy/index.html">Enter</a></div>
+  <div class="tile"><h3>🥋 Dojo</h3><div class="muted">Jem — Daily movement</div><a class="btn" href="/pages/apps/jem/index.html">Enter</a></div>
+  <div class="tile"><h3>🍽️ Bistro</h3><div class="muted">Carol — Menu & Shopping</div><a class="btn" href="/pages/apps/carol/menu.html">Enter</a></div>
+  <div class="tile"><h3>🔭 Observatory</h3><div class="muted">Stella — Guided Audio</div><a class="btn" href="/pages/apps/stella/guided.html">Enter</a></div>
+  <div class="tile"><h3>🧪 Lab</h3><div class="muted">Nina — 3D/VRM</div><a class="btn" href="/pages/apps/nina/index.html">Enter</a></div>
+  <div class="tile"><h3>🗄️ Relay Hall</h3><div class="muted">Charlotte — Workflows</div><a class="btn" href="/pages/apps/charlotte/index.html">Enter</a></div>
+  <div class="tile"><h3>🏦 Vault</h3><div class="muted">Abbey — Finance Tools</div><a class="btn" href="/pages/apps/abbey/index.html">Enter</a></div>
+  <div class="tile"><h3>🏛️ Palace</h3><div class="muted">Overseers — Status</div><a class="btn" href="/pages/apps/overseers/index.html">Enter</a></div>
+  <div class="tile"><h3>🏠 Mansion</h3><div class="muted">Billie — Storyboards (PG‑13)</div><a class="btn" href="/pages/apps/billie/index.html">Enter</a></div>
+</section>
 </body>
 </html>

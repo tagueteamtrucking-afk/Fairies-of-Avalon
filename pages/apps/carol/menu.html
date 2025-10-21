@@ -1,116 +1,112 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carol — 14‑Day Menu (2 people)</title>
-<link rel="stylesheet" href="/pages/apps/_shared/ui-lite.css">
-</head><body><div class="wrap">
-<div class="nav">
-  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
-  <a class="btn" href="/pages/apps/carol/shopping.html">🧺 Shopping</a>
-</div>
-<h1>🍽️ Carol — 14‑Day Menu</h1>
-<div class="panel">
-  <h3>Substitutions & Cheat Log</h3>
-  <div class="grid">
-    <div class="panel">
-      <label>Day # (1–14)</label><input id="sub-day" type="number" min="1" max="14" value="1">
-      <label style="margin-top:8px">What changed / notes</label><textarea id="sub-notes" rows="3" placeholder="e.g., swapped almonds → almond butter; ate sushi roll; extra coffee…"></textarea>
-      <label style="margin-top:8px">Was this a cheat meal?</label>
-      <select id="sub-cheat"><option value="no">No</option><option value="yes">Yes</option></select>
-      <button class="btn" id="sub-save" style="margin-top:8px">Save entry</button>
-      <small>Entries are stored locally on this device (no cloud). You can export below.</small>
-    </div>
-    <div class="panel">
-      <button class="btn" id="sub-export">⬇️ Export log (.json)</button>
-      <button class="btn" id="sub-clear">🗑️ Clear log</button>
-      <div id="sub-status" class="muted" style="margin-top:8px"></div>
-    </div>
-  </div>
-</div>
-
-<div class="panel">
-  <h3>Menu (14 days)</h3>
-  <small class="muted">Carol enforces: DASH‑style, reduced sodium/sugar, lactose‑light, shellfish‑free, avoid very hard foods (nuts/chips/toffee). Nut butters (e.g., almond/peanut butter) are acceptable.</small>
-  <table id="menu"><thead><tr><th>Day</th><th>Mini‑meals / snacks (6–7)</th><th>Cookbook notes</th><th>Nutrition</th></tr></thead><tbody></tbody></table>
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carol — 14‑Day Menu</title>
+<style>
+  :root{ --bg:#0b0f17; --ink:#e8ecf1; --stroke:rgba(255,255,255,0.12); --glass:rgba(255,255,255,0.04); --accent:#9cc1ff;}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header{padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--stroke);position:sticky;top:0;background:#0b0f17f2;backdrop-filter: blur(6px);}
+  a.btn{color:var(--ink);text-decoration:none;border:1px solid var(--stroke);padding:8px 10px;border-radius:10px;font-weight:600}
+  a.btn:hover{border-color:var(--accent)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;padding:16px}
+  .card{border:1px solid var(--stroke);background:var(--glass);border-radius:12px;padding:12px}
+  .meta{opacity:.8;font-size:.95rem}
+  h3{margin:4px 0 8px 0}
+  ul{margin:0 0 8px 18px}
+  .note{padding:10px;border:1px dashed var(--stroke);border-radius:10px;margin:12px}
+</style>
+</head>
+<body>
+<header>
+  <a class="btn" href="/pages/apps/_city/index.html">🏰 City</a>
+  <a class="btn" href="/pages/apps/carol/shopping.html">🛒 Shopping</a>
+  <span class="meta" id="planMeta"></span>
+</header>
+<div id="status" class="note">Loading plan…</div>
+<section id="days" class="grid" hidden></section>
 
 <script>
-const PLAN_URL = "/pages/apps/carol/plans/mealplan-dash-14d-current.json";
-const BANNED = [/\balmonds?\b/i,/\bpeanuts?\b/i,/\bshellfish\b/i];
-function safeSwap(txt){
-  if(!txt) return txt;
-  let s = txt;
-  s = s.replace(/\balmonds?\b/gi, "almond butter (2 Tbsp)");
-  s = s.replace(/\bpeanuts?\b/gi, "peanut butter (2 Tbsp, low sugar)");
-  s = s.replace(/\bshellfish\b/gi, "fish (e.g., salmon/cod/tuna)");
-  s = s.replace(/\bcrispy\b/gi, "baked/soft");
-  s = s.replace(/\bhard\b/gi, "soft");
-  return s;
+const statusEl = document.getElementById('status');
+const daysEl = document.getElementById('days');
+const planMeta = document.getElementById('planMeta');
+
+async function loadJSON(url){
+  const r = await fetch(url + '?v=' + Date.now());
+  if(!r.ok) throw new Error('HTTP ' + r.status + ' for ' + url);
+  return r.json();
 }
-function normalizeDays(plan){
-  // Expect plan.days = [ {title, items:[{name, notes, kcal, sodium_mg, sugar_g}] } ]
-  if(!plan || !Array.isArray(plan.days)) return {days:[]};
-  let days = plan.days.filter(d=>d && Array.isArray(d.items) && d.items.length>0);
-  if(days.length===0) return {days:[]};
-  // Remove exact duplicates by JSON signature
-  const uniq = [];
-  const sigs = new Set();
+
+// Attempts to discover meals in a variety of shapes
+function extractDays(plan){
+  // Common shapes we might see:
+  // plan.days = [{date, meals:[{name, items[]}]}] OR
+  // plan.weeks = [{days:[...] }] OR
+  // plan[0..13] = day objects
+  let days = [];
+  if(Array.isArray(plan.days)) days = plan.days;
+  else if(Array.isArray(plan.weeks)) {
+    for(const w of plan.weeks) if(Array.isArray(w.days)) days.push(...w.days);
+  } else if(Array.isArray(plan)) { days = plan; }
+
+  // Normalize each day -> { title, meals:[{label, text}] }
+  const norm = [];
+  let dnum = 1;
   for(const d of days){
-    const sig = JSON.stringify(d.items.map(x=>x.name));
-    if(!sigs.has(sig)){ uniq.push(d); sigs.add(sig); }
+    const entry = { title: d.title || d.date || ('Day ' + dnum++), meals: [] };
+    if(Array.isArray(d.meals)){
+      for(const m of d.meals){
+        const label = m.label || m.name || m.type || 'Meal';
+        const text = m.text || m.description || m.entry || m.item || m.recipe || m.title || JSON.stringify(m);
+        entry.meals.push({label, text});
+      }
+    } else {
+      // Look for common meal keys
+      const keys = Object.keys(d);
+      const guessKeys = ['breakfast','brunch','snack','lunch','dinner','supper','evening','dessert'];
+      for(const k of guessKeys){
+        if(d[k]) entry.meals.push({label: k[0].toUpperCase()+k.slice(1), text: (typeof d[k]==='string'?d[k]:JSON.stringify(d[k]))});
+      }
+      // Fallback: if there is a 'menu' array
+      if(Array.isArray(d.menu)){
+        for(const t of d.menu){ entry.meals.push({label:'Meal', text: (typeof t==='string'?t:JSON.stringify(t))}); }
+      }
+    }
+    norm.push(entry);
   }
-  // If fewer than 14, rotate variants (swap fruit/veg sides where marked) or just cycle.
-  const out = [];
-  for(let i=0;i<14;i++){
-    const src = uniq[i % uniq.length];
-    // Make a shallow variant with safe swaps
-    const items = (src.items||[]).map(x=>{
-      let name = safeSwap(x.name||"");
-      return {
-        name, notes: safeSwap(x.notes||""),
-        kcal: x.kcal ?? null, sodium_mg: x.sodium_mg ?? null, sugar_g: x.sugar_g ?? null
-      };
-    });
-    out.push({ title: "Day "+(i+1), items });
-  }
-  return {days: out};
+  return norm;
 }
-function render(plan){
-  const tb = document.querySelector("#menu tbody"); tb.innerHTML="";
-  for(const d of plan.days){
-    const tr = document.createElement("tr");
-    const meals = d.items.map(x=>`• ${x.name}`).join("<br>");
-    const notes = d.items.map(x=>x.notes?`<div class='muted'>${x.notes}</div>`:"").join("");
-    const kcal = sum(d.items.map(x=>x.kcal)); const sod = sum(d.items.map(x=>x.sodium_mg)); const sug = sum(d.items.map(x=>x.sugar_g));
-    tr.innerHTML = `<td class='k'>${d.title}</td><td>${meals}</td><td>${notes||"—"}</td><td>${fmt(kcal,"kcal")}<br>${fmt(sod,"mg Na")}<br>${fmt(sug,"g sugar")}</td>`;
-    tb.appendChild(tr);
+
+(async () => {
+  try{
+    let idx;
+    try { idx = await loadJSON('./index.json'); } catch(e){ idx = {}; }
+    const defaultPlan = 'plans/twoperson-2wk-unique-20251015T022300Z.json';
+    const planPath = idx.current_plan || idx.plan || defaultPlan;
+    planMeta.textContent = 'Plan: ' + planPath;
+    const plan = await loadJSON(planPath);
+    const normDays = extractDays(plan);
+    if(!normDays.length) throw new Error('Could not find days/meals in the plan data.');
+    statusEl.remove();
+    daysEl.hidden = false;
+    // render
+    for(const d of normDays){
+      const card = document.createElement('article'); card.className='card';
+      const h = document.createElement('h3'); h.textContent = d.title; card.appendChild(h);
+      const ul = document.createElement('ul');
+      for(const m of d.meals){
+        const li = document.createElement('li');
+        li.innerHTML = '<strong>' + m.label + ':</strong> ' + m.text;
+        ul.appendChild(li);
+      }
+      card.appendChild(ul);
+      daysEl.appendChild(card);
+    }
+  }catch(err){
+    statusEl.innerHTML = '⚠️ ' + err.message + '<br>Check that the plan JSON exists and is valid.';
   }
-}
-function sum(arr){ return arr.reduce((a,b)=>a + (typeof b==='number'?b:0),0) }
-function fmt(v,u){ return (typeof v==='number' && v>0)? Math.round(v)+" "+u : "—"; }
-
-// Substitution log (local)
-const KEY="carol_subs_log_v1";
-function loadLog(){ try{ return JSON.parse(localStorage.getItem(KEY)||"[]") }catch{ return [] } }
-function saveLog(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
-document.getElementById("sub-save").onclick = ()=>{
-  const day = Math.max(1, Math.min(14, parseInt(document.getElementById('sub-day').value||'1',10)));
-  const notes = (document.getElementById('sub-notes').value||'').trim();
-  const cheat = document.getElementById('sub-cheat').value==='yes';
-  const entry = { ts: new Date().toISOString(), day, notes, cheat };
-  const log = loadLog(); log.push(entry); saveLog(log);
-  document.getElementById('sub-status').textContent = "Saved entry for Day "+day;
-  document.getElementById('sub-notes').value="";
-};
-document.getElementById("sub-export").onclick = ()=>{
-  const data = JSON.stringify(loadLog(), null, 2);
-  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([data],{type:'application/json'}));
-  a.download = "carol-substitutions-log.json"; a.click();
-};
-document.getElementById("sub-clear").onclick = ()=>{ if(confirm("Clear local log?")){ saveLog([]); document.getElementById('sub-status').textContent="Cleared." } };
-
-fetch(PLAN_URL,{cache:'no-store'}).then(r=>r.json()).then(j=>normalizeDays(j)).then(render).catch(err=>{
-  const tb = document.querySelector("#menu tbody");
-  tb.innerHTML = "<tr><td colspan='4' class='muted'>Plan JSON not found or invalid at "+PLAN_URL+".</td></tr>"
-});
+})();
 </script>
-</div></body></html>
+</body>
+</html>

@@ -1,9 +1,9 @@
 {
   "current_plan": "plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "shopping": {
-    "quantized": "plans/shopping-quantized.json",
-    "extracted": "plans/shopping-extracted.json"
-  },
-  "latest_plan": "plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "notes": "Pointers set by workflow"
+  "shopping_extracted": "plans/shopping-extracted.json",
+  "shopping_quantized": "plans/shopping-quantized.json",
+  "preferences": {
+    "spreads_prefer": "sunflower seed butter",
+    "swap_hard_foods": "use butters/smooth alternatives"
+  }
 }

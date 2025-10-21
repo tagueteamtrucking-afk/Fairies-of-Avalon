@@ -1,85 +1,62 @@
-name: Carol — Refresh Menu & Shopping
+
+name: Carol — Refresh Menu + Shopping
+
 on:
   workflow_dispatch:
     inputs:
       plan_path:
-        description: "Path to the 14-day plan JSON to use as the source"
-        default: "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
-        required: false
+        description: 'Path to the 14-day plan JSON to use'
+        required: true
+        default: pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json
+
 permissions:
   contents: write
   pull-requests: write
+
 jobs:
-  build:
+  refresh:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare merged plan & pointers
+      - name: Ensure merged plan exists (copy from chosen plan)
         shell: pwsh
         run: |
-          $ErrorActionPreference = 'Stop'
-          $plan = "${ github.event.inputs.plan_path }"
-          if ([string]::IsNullOrWhiteSpace($plan)) { $plan = "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json" }
-          if (!(Test-Path $plan)) {
-            Write-Host "::group::Available plans in repo"
-            Get-ChildItem -Path pages/apps/carol/plans -Filter *.json -Recurse | ForEach-Object { $_.FullName }
-            Write-Host "::endgroup::"
-            throw "Plan not found: $plan"
-          }
-          New-Item -ItemType Directory -Force -Path "pages/apps/carol/plans" | Out-Null
-          Copy-Item -Path $plan -Destination "pages/apps/carol/plans/twoperson-2wk-merged.json" -Force
+          $ErrorActionPreference = "Stop"
+          $src = "${{ github.event.inputs.plan_path }}"
+          $dst = "pages/apps/carol/plans/twoperson-2wk-merged.json"
+          if (!(Test-Path $src)) { throw "Plan source not found: $src" }
+          New-Item -ItemType Directory -Force -Path (Split-Path $dst) | Out-Null
+          Copy-Item -Force $src $dst
+          Write-Host "Merged plan ready: $dst"
 
-          $idx = @{ 
-            plan_path      = "plans/twoperson-2wk-merged.json"
-            fallback_paths = @($plan, "plans/mealplan-dash-14d-current.json")
-            shopping_path  = "plans/shopping-quantized.json"
-            images         = @{ 
-              hero     = "/asset/textures/wallpapers/carol-interior.jpg"
-              menu_bg  = "/asset/textures/wallpapers/carol-menu-bg.jpg"
-              building = "/asset/textures/wallpapers/carol-pagoda.jpg"
-            }
-          } | ConvertTo-Json -Depth 6
-          Set-Content -Path "pages/apps/carol/index.json" -Value $idx -Encoding UTF8
-
-      - name: Extract shopping (PowerShell)
+      - name: Extract shopping (v3 script)
         shell: pwsh
         run: |
-          $ErrorActionPreference = 'Stop'
-          pwsh -File scripts/Carol-Extract-Shopping-v3.ps1
+          $ErrorActionPreference = "Stop"
+          ./scripts/Carol-Extract-Shopping-v3.ps1
+          if (!(Test-Path "pages/apps/carol/plans/shopping-quantized.json")) {
+            Write-Error "Expected shopping-quantized.json was not created."
+          }
 
-      - name: Commit changes (attempt direct to main)
-        shell: pwsh
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit changes (if any)
+        shell: bash
         run: |
-          $ErrorActionPreference = 'Stop'
-          git config user.email "actions@github.com"
-          git config user.name "github-actions[bot]"
-          git add pages/apps/carol/index.json pages/apps/carol/plans/twoperson-2wk-merged.json pages/apps/carol/plans/shopping-quantized.json
-          if ((git diff --cached --name-only).Length -eq 0) {
-            Write-Host "No changes to commit"
-            exit 0
-          }
-          git commit -m "Carol: refresh merged plan + shopping list"
-          try {
-            git push origin HEAD:main
-            Write-Host "Pushed direct to main."
-          } catch {
-            Write-Host "Direct push failed, creating a PR branch..."
-            $branch = "carol/refresh-20251021T064919Z"
-            git checkout -b $branch
-            git push origin $branch
-          }
+          set -e
+          if git status --porcelain | grep -q .; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A
+            git commit -m "Carol: refresh menu pointers and shopping list"
+          else
+            echo "No changes to commit"
+          fi
 
-      - name: Open PR (best-effort)
-        if: ${{ failure() != true }}
+      - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          title: "Carol: refresh merged plan + shopping"
-          commit-message: "Carol: refresh merged plan + shopping list"
-          branch: "carol/refresh-20251021T064919Z"
+          title: "Carol: refresh 14‑day menu & shopping list"
+          branch: "carol/refresh-${{ github.run_id }}"
+          commit-message: "Carol: refresh 14‑day menu & shopping list"
           delete-branch: true
-          body: |
-            Auto-generated update to refresh merged plan and shopping list.

@@ -1,27 +1,51 @@
 name: City — Link Prefix Patch
+
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+
 permissions:
   contents: write
   pull-requests: write
+
 jobs:
   patch:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: pwsh
     steps:
       - uses: actions/checkout@v4
-      - name: Normalize City/Room links (PowerShell)
-        shell: pwsh
+
+      - name: Rewrite /apps → /pages/apps and /rooms → /pages/rooms
         run: |
-          $ErrorActionPreference = "Stop"
-          $files = Get-ChildItem -Path "pages" -Recurse -Include *.html
+          $files = git ls-files | Where-Object { $_ -match '^pages/.*\.(html|js|css)$' }
           foreach($f in $files){
-            $t = Get-Content $f.FullName -Raw
-            $t2 = $t -replace "href=['""]\/apps\/","href='/pages/apps/" -replace "href=['""]\/rooms\/","href='/pages/rooms/"
-            if($t2 -ne $t){ $t2 | Set-Content $f.FullName -NoNewline }
+            $t = Get-Content $f -Raw
+            $t = $t -replace 'href="/apps/', 'href="/pages/apps/'
+            $t = $t -replace 'src="/apps/', 'src="/pages/apps/'
+            $t = $t -replace 'href="/rooms/', 'href="/pages/rooms/'
+            $t = $t -replace 'src="/rooms/', 'src="/pages/rooms/'
+            Set-Content -NoNewline -Path $f -Value $t
           }
-      - uses: peter-evans/create-pull-request@v6
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b city/link-prefix-patch
+          git add -A
+          if(git diff --cached --quiet){ 
+            Write-Host "No changes to commit."
+          } else {
+            git commit -m "City: patch link prefixes for GitHub Pages"
+            git push --set-upstream origin city/link-prefix-patch
+          }
+
+      - name: Create PR (if changes)
+        if: ${{ always() }}
+        uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: "City: normalize /apps and /rooms to /pages/apps and /pages/rooms"
-          branch: city/link-prefix-patch
           title: "City: link prefix patch"
-          body: "Normalize anchors so Plaza → Building → Room stops 404s on Pages."
+          commit-message: "City: link prefix patch"
+          branch: city/link-prefix-patch
+          body: |
+            Convert root-relative links to GitHub Pages paths:
+            - `/apps/*` → `/pages/apps/*`
+            - `/rooms/*` → `/pages/rooms/*`

@@ -11,7 +11,7 @@
 (function(){
   const p = location.pathname;
   let target = null;
-  if(p.startsWith('/apps/')) target = '/pages' + p;
+  if(p.startsWith('/pages/apps/')) target = '/pages' + p;
   if(p.startsWith('/rooms/')) target = '/pages' + p;
   if(!target){
     // Some pages live under /pages/apps/_city/ now
@@ -23,3 +23,4 @@
 </script>
 <noscript><a href="/pages/apps/_city/index.html">Go to Avalon City</a></noscript>
 </body></html>
+

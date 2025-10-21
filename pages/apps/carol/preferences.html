@@ -3,7 +3,7 @@
 <style>body{font-family:system-ui;background:#0b0f17;color:#e5e7eb;margin:0}header{padding:12px 16px;border-bottom:1px solid #172033}main{padding:16px}input,textarea,button{background:#111827;border:1px solid #334155;border-radius:8px;color:#e5e7eb;padding:8px;margin:4px 0;width:100%}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}button{cursor:pointer}</style>
 <header><h1>Carol — Learning Preferences</h1></header>
 <main>
-  <p>Add likes/dislikes/avoidance notes. Click <b>Download feedback.json</b>, then upload it to <code>pages/apps/carol/profile/feedback.json</code> and re-run the plan workflow.</p>
+  <p>Add likes/dislikes/avoidance notes. Click <b>Download feedback.json</b>, then upload it to <code>pages/pages/apps/carol/profile/feedback.json</code> and re-run the plan workflow.</p>
   <div class="row">
     <div><label>Likes (comma-separated)<textarea id="likes" rows="6">greek yogurt, cottage cheese, fruit cups, hummus, baked salmon</textarea></label></div>
     <div><label>Dislikes (comma-separated)<textarea id="dislikes" rows="6">cilantro, cumin, raw onions</textarea></label></div>
@@ -26,3 +26,4 @@ document.getElementById('download').addEventListener('click', ()=>{
   a.download = 'feedback.json'; a.click();
 });
 </script>
+

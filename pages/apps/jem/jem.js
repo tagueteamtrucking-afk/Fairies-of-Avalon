@@ -1,4 +1,4 @@
-// pages/apps/jem/jem.js
+// pages/pages/apps/jem/jem.js
 (function(){
   const todayKey = new Date().toISOString().slice(0,10);
   const storeKey = k => `jem:log:${k}`;
@@ -56,3 +56,4 @@
   window.jem = { saveLog, exportAll };
   document.addEventListener('DOMContentLoaded', renderStatus);
 })();
+

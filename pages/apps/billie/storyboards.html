@@ -33,17 +33,18 @@
         const el = document.getElementById('story');
         el.textContent = JSON.stringify(data, null, 2);
       }catch(_){
-        document.getElementById('story').innerHTML = '<div class="muted">No storyboard JSON found yet. Add one under <code>pages/apps/billie/storyboards/</code> or use Sorcha’s storyboard as a seed.</div>';
+        document.getElementById('story').innerHTML = '<div class="muted">No storyboard JSON found yet. Add one under <code>pages/pages/apps/billie/storyboards/</code> or use Sorcha’s storyboard as a seed.</div>';
       }
     })();
   </script>
   <div class="card">
     <h2>Actions</h2>
     <ul>
-      <li>Create a new JSON in <code>pages/apps/billie/storyboards/</code> (e.g., <code>storyboard-YYYYMMDDThhmmssZ.json</code>).</li>
+      <li>Create a new JSON in <code>pages/pages/apps/billie/storyboards/</code> (e.g., <code>storyboard-YYYYMMDDThhmmssZ.json</code>).</li>
       <li>Reference it here or in Sorcha’s storyboard viewer.</li>
     </ul>
   </div>
 </main>
 </body>
 </html>
+

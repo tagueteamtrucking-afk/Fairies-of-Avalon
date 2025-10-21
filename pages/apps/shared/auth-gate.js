@@ -1,4 +1,4 @@
-// pages/apps/shared/auth-gate.js
+// pages/pages/apps/shared/auth-gate.js
 // Gate pages via Cloudflare Worker (/auth/*). Shows a PIN modal if unauthenticated.
 (async function(){
   const requiredRole = document.documentElement.getAttribute('data-required-role') || null;
@@ -77,3 +77,4 @@
     showModal();
   }
 })();
+

@@ -1,24 +1,20 @@
 {
-  "active_plan": "plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "fallback_plan": "plans/twoperson-2wk-20251014T234049Z.json",
-  "shopping_files": [
-    "plans/shopping-quantized.json",
-    "plans/mealplan-dash-14d-current-shopping.json"
-  ],
-  "images": {
-    "exterior": "/asset/textures/wallpapers/carol-pagoda-exterior.jpg",
-    "interior": "/asset/textures/wallpapers/carol-restaurant-interior.jpg",
-    "menu_bg": "/asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg"
+  "activePlan": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+  "activeShopping": "pages/apps/carol/plans/shopping-quantized.json",
+  "heroImages": {
+    "menu": "/asset/textures/wallpapers/carol-restaurant-interior.jpg",
+    "shopping": "/asset/textures/wallpapers/carol-pagoda-exterior.jpg",
+    "menuBackdrop": "/asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg"
   },
-  "diet": {
-    "swap_hard_foods_to_butters": true,
-    "prefer_sunflower_seed_butter": true,
-    "shellfish_free": true,
-    "lactose_light": true,
-    "avoid_spices": [
+  "dietRules": {
+    "preferSeedButter": "sunflower seed butter",
+    "avoidHardCrunchy": true,
+    "shellfishFree": true,
+    "lactoseLight": true,
+    "avoidSpices": [
       "cumin"
     ],
-    "easy_on": [
+    "easyOn": [
       "onions",
       "bell peppers"
     ]

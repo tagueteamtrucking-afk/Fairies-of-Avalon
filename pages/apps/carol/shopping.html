@@ -1,34 +1,22 @@
+
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Carol — Shopping List</title>
-  <link rel="stylesheet" href="./carol.css">
-  <script defer src="./shopping.js"></script>
-  <style>:root{ --hero:url('/asset/textures/wallpapers/carol-pagoda-exterior.jpg'); }</style>
+  <link rel="stylesheet" href="./carol.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="title">
-      <div class="small">Shopping source:</div>
-      <div id="shopSrc" class="hilite">loading…</div>
-    </div>
-    <nav class="nav">
-      <a class="btn" href="/pages/apps/_city/index.html">🏙️ City</a>
-      <a class="btn" href="./menu.html">🍽️ Menu</a>
-    </nav>
-  </header>
-
-  <div id="notice" class="notice" style="display:none"></div>
-
-  <main style="padding:1rem">
-    <table class="table" id="table">
-      <thead><tr><th>Category</th><th>Item</th><th>Qty</th><th>Notes</th></tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </main>
-
-  <footer class="small">If items include peanut butter, display swaps to sunflower seed butter.</footer>
+  <div class="hero hero--shopping"><h1>Carol · Bistro · Shopping</h1></div>
+  <nav>
+    <a href="/pages/apps/_city/index.html">🏙️ City</a>
+    <a href="./menu.html">🍽️ Menu</a>
+  </nav>
+  <div class="flush">
+    <table class="table" id="shopTable"></table>
+  </div>
+  <div class="source" id="source"></div>
+<script src="./shopping.js"></script>
 </body>
 </html>

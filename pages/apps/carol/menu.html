@@ -1,31 +1,22 @@
+
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Carol — 14‑Day Menu</title>
-  <link rel="stylesheet" href="./carol.css">
-  <script defer src="./menu.js"></script>
-  <style>
-    :root{ --hero:url('/asset/textures/wallpapers/carol-restaurant-interior.jpg'); }
-  </style>
+  <link rel="stylesheet" href="./carol.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="title">
-      <div class="small">Plan:</div>
-      <div id="planName" class="hilite">loading…</div>
-    </div>
-    <nav class="nav">
-      <a class="btn" href="/pages/apps/_city/index.html">🏙️ City</a>
-      <a class="btn" href="./shopping.html">🛒 Shopping</a>
-    </nav>
-  </header>
-
-  <div id="notice" class="notice" style="display:none"></div>
-  <main id="grid" class="grid" aria-live="polite"></main>
-  <footer>
-    <div class="small">Preferences: sunflower seed butter preferred; hard/crunchy → softer/“butter” forms; shellfish‑free; lactose‑light; avoid cumin; easy on onions & bell peppers.</div>
-  </footer>
+  <div class="hero"><h1>Carol · Bistro · 14‑Day Menu</h1></div>
+  <nav>
+    <a href="/pages/apps/_city/index.html">🏙️ City</a>
+    <a href="./shopping.html">🛒 Shopping</a>
+  </nav>
+  <div class="flush">
+    <div id="days" class="grid"></div>
+  </div>
+  <div class="source" id="source"></div>
+<script src="./menu.js"></script>
 </body>
 </html>

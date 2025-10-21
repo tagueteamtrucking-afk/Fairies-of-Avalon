@@ -1,82 +1,103 @@
+
 (async () => {
-  async function getJSON(path){
-    const res = await fetch(path, {cache:'no-store'});
-    if(!res.ok) throw new Error(`Fetch failed ${res.status}: ${path}`);
+  const table = document.getElementById('shopTable');
+  const sourceEl = document.getElementById('source');
+
+  function swapDiet(text) {
+    if (!text) return text;
+    let t = String(text);
+    t = t.replace(/\bpeanut butter\b/gi, 'sunflower seed butter');
+    t = t.replace(/\bpeanuts\b/gi, 'sunflower seeds');
+    return t;
+  }
+
+  function rowsFromData(data) {
+    const rows = [];
+    if (Array.isArray(data)) {
+      for (const it of data) {
+        if (it && typeof it === 'object') {
+          rows.push([it.category || it.cat || '', swapDiet(it.name || it.item || ''), it.qty || it.quantity || it.count || '', it.notes || it.note || '']);
+        } else {
+          rows.push(['', swapDiet(String(it)), '', '']);
+        }
+      }
+      return rows;
+    }
+    // category arrays
+    if (Array.isArray(data.categories)) {
+      for (const cat of data.categories) {
+        const cname = cat.name || cat.category || '';
+        const items = cat.items || cat.list || [];
+        for (const it of items) {
+          if (it && typeof it === 'object') {
+            rows.push([cname, swapDiet(it.name || it.item || ''), it.qty || it.quantity || '', it.notes || '']);
+          } else {
+            rows.push([cname, swapDiet(String(it)), '', '']);
+          }
+        }
+      }
+      return rows;
+    }
+    // map object
+    const keys = Object.keys(data || {});
+    if (keys.length) {
+      for (const k of keys) {
+        const v = data[k];
+        if (Array.isArray(v)) {
+          for (const it of v) {
+            if (it && typeof it === 'object') {
+              rows.push([k, swapDiet(it.name || it.item || ''), it.qty || it.quantity || '', it.notes || '']);
+            } else {
+              rows.push([k, swapDiet(String(it)), '', '']);
+            }
+          }
+        } else {
+          rows.push([k, swapDiet(typeof v==='string'?v:JSON.stringify(v)), '', '']);
+        }
+      }
+      return rows;
+    }
+    return rows;
+  }
+
+  async function loadJSON(path) {
+    const res = await fetch(path, {cache: 'no-store'});
+    if (!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
     return res.json();
   }
-  const pointer = await getJSON('./index.json');
-  const candidates = (pointer.shopping_files||[]).map(p => './'+p.replace(/^\.?\/?/,''));
-  const shopSrc = document.getElementById('shopSrc');
-  const noticeEl = document.getElementById('notice');
-  const tbody = document.getElementById('tbody');
 
-  let data, src;
-  for(const c of candidates){
-    try{ data = await getJSON(c); src = c; break; }catch{}
-  }
-  if(!data){
-    noticeEl.style.display='block';
-    noticeEl.innerHTML = 'No shopping file found yet. Please run the workflow “Carol — Refresh Menu + Shopping” to generate <code>plans/shopping-quantized.json</code>.';
-    shopSrc.textContent = 'not found';
+  let pointer;
+  try {
+    pointer = await loadJSON('./index.json');
+  } catch (e) {
+    sourceEl.textContent = 'Pointer missing: ./index.json';
     return;
   }
-  shopSrc.textContent = src.replace(/^\.\//,'');
-
-  // Accept various shapes:
-  //  - { categories:[{name:'Produce', items:[{name,qty,unit,notes}]}] }
-  //  - { items:[{category,name,qty,unit,note}] }
-  //  - flat object map: { "Produce":[{...}], "Dairy":[{...}] }
-  let rows = [];
-  if(Array.isArray(data.categories)){
-    data.categories.forEach(cat => {
-      (cat.items||[]).forEach(it => rows.push({
-        category: cat.name||'Other',
-        name: it.name||it.item||'',
-        qty: it.qty||it.quantity||'',
-        unit: it.unit||'',
-        notes: it.notes||it.note||''
-      }));
-    });
-  } else if(Array.isArray(data.items)){
-    data.items.forEach(it => rows.push({
-      category: it.category||'Other',
-      name: it.name||it.item||'',
-      qty: it.qty||it.quantity||'',
-      unit: it.unit||'',
-      notes: it.notes||it.note||''
-    }));
-  } else if (data && typeof data === 'object'){
-    Object.keys(data).forEach(cat => {
-      const list = Array.isArray(data[cat]) ? data[cat] : [];
-      list.forEach(it => rows.push({
-        category: cat,
-        name: it.name||it.item||'',
-        qty: it.qty||it.quantity||'',
-        unit: it.unit||'',
-        notes: it.notes||it.note||''
-      }));
-    });
+  if (pointer.heroImages?.shopping) {
+    document.querySelector('.hero').style.backgroundImage = `url('${pointer.heroImages.shopping}')`;
   }
-  if(!rows.length){
-    noticeEl.style.display='block';
-    noticeEl.textContent = 'Shopping JSON loaded but I could not parse any rows.';
+
+  const candidates = [
+    pointer.activeShopping,
+    'pages/apps/carol/plans/shopping-quantized.json',
+    'pages/apps/carol/plans/mealplan-dash-14d-current-shopping.json'
+  ].filter(Boolean);
+
+  let used = null, data = null, err = null;
+  for (const c of candidates) {
+    try {
+      const path = '/' + c.replace(/^\/?/, '');
+      data = await loadJSON(path);
+      used = c; break;
+    } catch (e) { err = e; }
+  }
+  if (!data) {
+    table.innerHTML = `<tr><td>Could not load shopping JSON</td><td>${err?err.message:''}</td></tr>`;
     return;
   }
-  // Apply diet swap for display
-  rows.forEach(r => {
-    if(r.name) r.name = String(r.name).replace(/peanut\s*butter/gi, 'sunflower seed butter');
-    if(r.notes) r.notes = String(r.notes).replace(/peanut\s*butter/gi, 'sunflower seed butter');
-  });
-  // render
-  const frag = document.createDocumentFragment();
-  rows.forEach(r => {
-    const tr = document.createElement('tr');
-    const td = (t)=>{const d=document.createElement('td'); d.textContent=t||''; return d;};
-    tr.appendChild(td(r.category));
-    tr.appendChild(td(r.name));
-    tr.appendChild(td([r.qty,r.unit].filter(Boolean).join(' ')));
-    tr.appendChild(td(r.notes||''));
-    frag.appendChild(tr);
-  });
-  tbody.appendChild(frag);
+  sourceEl.textContent = `Shopping: ${used}`;
+
+  const rows = rowsFromData(data);
+  table.innerHTML = `<thead><tr><th>Category</th><th>Item</th><th>Qty</th><th>Notes</th></tr></thead>`
+    + `<tbody>` + rows.map(r=>`<tr><td>${r[0]||''}</td><td>${r[1]||''}</td><td>${r[2]||''}</td><td>${r[3]||''}</td></tr>`).join('') + `</tbody>`;
 })();

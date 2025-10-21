@@ -2,167 +2,90 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Carol — 14‑Day Menu (Phoenix Pagoda)</title>
-  <link rel="stylesheet" href="/pages/apps/carol/theme.css"/>
-  <style>.hidden{display:none}</style>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Carol • 14‑Day Menu</title>
+  <link rel="stylesheet" href="./theme.css"/>
 </head>
 <body>
-  <header class="header-hero">
-    <div>
-      <div class="kicker">Carol • The Phoenix Pagoda</div>
-      <h1>14‑Day Menu</h1>
-      <div class="subtitle">DASH‑style • shellfish‑free • lactose‑light • easy on onions/bell peppers • no cumin • prefer sunflower seed butter • soften hard foods</div>
+  <header class="app-hero bg-menu">
+    <div class="wrap">
+      <h1>Carol’s Menu</h1>
+      <p class="kicker">DASH‑leaning • shellfish‑free • lactose‑light • sunflower‑seed‑butter preference • gentle textures</p>
+      <div class="toolbar">
+        <a class="btn" href="./shopping.html">View Shopping List</a>
+        <a class="btn" href="/pages/apps/_city/index.html">← Back to City</a>
+      </div>
     </div>
   </header>
-
-  <main class="page-wrap">
-    <div class="toolbar">
-      <span class="pill">Viewing: <strong id="planName">Loading…</strong></span>
-      <a class="pill" href="/pages/apps/carol/shopping.html">🛒 Shopping List</a>
+  <main class="wrap">
+    <div class="card">
+      <h2>14‑Day Plan</h2>
+      <p id="planInfo" class="small"></p>
+      <div id="days" class="grid"></div>
+      <p class="notice" id="notice"></p>
     </div>
-
-    <section id="menuGrid" class="grid"></section>
-
-    <template id="dayCard">
-      <article class="card">
-        <div class="hd"><h3>Day N</h3></div>
-        <div class="bd"><ul class="items"></ul></div>
-      </article>
-    </template>
-
-    <hr class="sep"/>
-    <div class="note">
-      Substitutions: prefer <b>sunflower seed butter</b> for spreads. Very hard/crunchy foods → pick a soft alternative (mashed/steamed, yogurts, soups, butters).
+    <div class="card">
+      <h2>Diet Rules Applied</h2>
+      <ul class="clean">
+        <li>Prefer <b>sunflower seed butter</b> where a spread is used.</li>
+        <li>Hard/crunchy items → swap to <b>butters/soft alternatives</b>.</li>
+        <li>Shellfish‑free; lactose‑light; easy on onions & bell peppers; avoid cumin.</li>
+      </ul>
     </div>
   </main>
-
-  <footer class="footer">
-    <div>Menu renders from <code>pages/apps/carol/index.json</code> → <code>plan_latest</code>. Update that pointer to switch plans.</div>
-  </footer>
-
 <script>
-(async function(){
-  const grid = document.getElementById('menuGrid');
-  const planName = document.getElementById('planName');
-  const tmpl = document.getElementById('dayCard');
-
-  function flattenText(x){
-    if (x == null) return null;
-    if (typeof x === 'string') return x;
-    if (typeof x === 'number') return String(x);
-    if (Array.isArray(x)) return x.map(flattenText).filter(Boolean).join(' · ');
-    if (typeof x === 'object'){
-      // Join stringy fields that look like meal items
-      const keys = Object.keys(x);
-      const parts = [];
-      for(const k of keys){
-        const v = x[k];
-        const t = flattenText(v);
-        if(t && /breakfast|lunch|dinner|snack|meal|item|entree|side|soup|salad|bowl|wrap|stew|sandwich|plate|taco|rice|noodle|pasta|veg|fruit|yogurt|oats|egg/i.test(k)){
-          parts.push(t);
-        }
-      }
-      if (parts.length) return parts.join(' · ');
-      // fallback: stringify shallow
-      return null;
-    }
-    return null;
+async function loadJSON(path){
+  const r = await fetch(path, {cache:'no-store'});
+  if(!r.ok) throw new Error('HTTP '+r.status+' for '+path);
+  return r.json();
+}
+function normalizeDays(plan){
+  // Accept either {days: [...]} or {"Day 1": {...}, ...} or [{...}, ...]
+  if(Array.isArray(plan)) return plan;
+  if(plan.days && Array.isArray(plan.days)) return plan.days;
+  const keys = Object.keys(plan).filter(k=>/^day\s*\d+/i.test(k));
+  if(keys.length){
+    return keys.sort((a,b)=>{
+      const na = parseInt(a.match(/\d+/)); const nb = parseInt(b.match(/\d+/));
+      return na-nb;
+    }).map(k=>({ title: k, ...(plan[k]||{}) }));
   }
-
-  function extractDays(obj){
-    // return array of 14 day arrays (each day is list of items)
-    const days = [];
-
-    function harvestDay(dayObj){
-      const items = [];
-      if (Array.isArray(dayObj)){
-        for(const it of dayObj){
-          const t = flattenText(it);
-          if(t) items.push(t);
-        }
-      } else if (typeof dayObj === 'object' && dayObj){
-        // Prefer common meal buckets
-        const bucketKeys = ['breakfast','snack','snacks','lunch','dinner','sides'];
-        let pushed = false;
-        for(const bk of bucketKeys){
-          if (dayObj[bk] != null){
-            const t = flattenText(dayObj[bk]);
-            if (t){ items.push(t); pushed = true; }
-          }
-        }
-        if(!pushed){
-          // collect any stringy fields
-          for(const [k,v] of Object.entries(dayObj)){
-            const t = flattenText(v);
-            if (t){ items.push(t); }
-          }
-        }
-      }
-      return items.filter(Boolean);
+  return [];
+}
+function renderDayCard(day, i){
+  const title = day.title || ('Day ' + (i+1));
+  const meals = day.meals || day.menu || day.items || [];
+  const lines = Array.isArray(meals) ? meals
+               : (typeof meals==='object' ? Object.values(meals) : []);
+  const parts = lines.map(x=>{
+    if(typeof x==='string') return '<li>'+x+'</li>';
+    if(x && typeof x==='object'){
+      const name = x.name || x.title || x.item || 'Meal';
+      const note = x.note ? ' <span class="small">('+x.note+')</span>' : '';
+      return '<li>'+name+note+'</li>';
     }
-
-    function scan(node){
-      if(!node) return;
-      if (Array.isArray(node)){
-        // Heuristic: arrays of length 14 or between 7..16 that smell like days
-        if (node.length>=7 && node.length<=31){
-          const sample = node.slice(0,2).map(x => typeof x === 'object' || Array.isArray(x)).every(Boolean);
-          if (sample){
-            const cand = node.map(harvestDay);
-            if (cand.filter(x => x.length).length >= 7){ days.push(...cand); return; }
-          }
-        }
-        for(const v of node) scan(v);
-      } else if (typeof node === 'object'){
-        for(const [k,v] of Object.entries(node)){
-          if (/^day\d+$/i.test(k) || /^d\d+$/i.test(k)){ days.push(harvestDay(v)); }
-          else if (/days?|menu|plan|schedule|week/i.test(k)) scan(v);
-          else scan(v);
-        }
-      }
-    }
-
-    scan(obj);
-    // normalize to 14
-    if (days.length > 14) days.length = 14;
-    if (days.length < 14){
-      // Repeat last known days to reach 14 (display only; does not mutate source data)
-      while(days.length < 14){ days.push(days[days.length-1] || []); }
-    }
-    return days;
-  }
-
+    return '';
+  }).join('');
+  return `<div class="day">
+    <h3>${title}</h3>
+    <ul class="clean">${parts}</ul>
+  </div>`;
+}
+(async () => {
   try{
-    const ptr = await (await fetch('/pages/apps/carol/index.json', {cache:'no-store'})).json();
-    const planUrl = ptr.plan_latest || '/pages/apps/carol/plans/mealplan-dash-14d-current.json';
-    planName.textContent = planUrl.split('/').pop();
-
-    const res = await fetch(planUrl, {cache:'no-store'});
-    if(!res.ok){ throw new Error('Plan not found: ' + planUrl); }
-    const plan = await res.json();
-    const days = extractDays(plan);
-
-    days.forEach((items, i) => {
-      const node = tmpl.content.cloneNode(true);
-      node.querySelector('h3').textContent = 'Day ' + (i+1);
-      const ul = node.querySelector('.items');
-      if (items.length === 0){
-        const li = document.createElement('li');
-        li.textContent = 'No items found in plan for this day.';
-        ul.appendChild(li);
-      } else {
-        for(const t of items){
-          const li = document.createElement('li');
-          li.textContent = t;
-          ul.appendChild(li);
-        }
-      }
-      grid.appendChild(node);
-    });
-
-  }catch(err){
-    grid.innerHTML = '<div class="card"><div class="bd"><div class="badge">Error</div><p>'+ (err && err.message ? err.message : String(err)) +'</p><p>Check <code>/pages/apps/carol/index.json</code> → <code>plan_latest</code> and that the file exists.</p></div></div>';
+    const pointer = await loadJSON('./index.json');
+    const planPath = (pointer && pointer.plan) ? ('/'+pointer.plan.replace(/^\/?/,'').replace(/\/+/, '/')) : null;
+    if(!planPath) throw new Error('Missing plan path in index.json');
+    document.getElementById('planInfo').textContent = 'Plan file: ' + planPath;
+    const plan = await loadJSON(planPath);
+    const days = normalizeDays(plan);
+    const html = days.map(renderDayCard).join('');
+    document.getElementById('days').innerHTML = html || '<div class="notice">No days found in plan file.</div>';
+    if(!html){
+      document.getElementById('notice').innerHTML = 'If this plan file is correct but the format is different, run the workflow <b>Carol — Refresh Menu & Shopping</b> to copy/normalize and regenerate a compatible view.';
+    }
+  }catch(e){
+    document.getElementById('notice').innerHTML = 'Could not load plan. '+e.message+'<br/>Ensure the plan exists and then run <b>Carol — Refresh Menu & Shopping</b>.';
   }
 })();
 </script>

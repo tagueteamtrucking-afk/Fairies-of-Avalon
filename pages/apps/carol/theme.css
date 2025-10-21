@@ -1,77 +1,69 @@
-/* Carol theme using pagoda imagery; absolute URLs for GitHub Pages */
-:root{
-  --carol-hero: url('/asset/textures/wallpapers/carol-pagoda.jpg');
-  --carol-interior: url('/asset/textures/wallpapers/carol-interior.jpg');
-  --carol-card-bg: url('/asset/textures/wallpapers/carol-menu-bg.jpg');
-  --ink: #1a1a1a;
-  --gold: #d7b66f;
-  --paper: #fffdf7;
-  --rose: #6b2d2a;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#0b0b0d;color:#eee;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Apple Color Emoji','Segoe UI Emoji'}
 
-.header-hero{
+:root {
+  --bg: #0b0f14;
+  --ink: #f5f7fb;
+  --muted: #9fb3c8;
+  --accent: #d08200;
+  --card: rgba(17,22,28,0.8);
+  --card-brd: rgba(255,255,255,0.07);
+  --pad: 14px;
+  --radius: 14px;
+  --shadow: 0 8px 26px rgba(0,0,0,.45);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin:0; padding:0; background: var(--bg); color: var(--ink);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+.app-hero {
   min-height: 36vh;
-  display:flex;align-items:flex-end;
-  background-image: linear-gradient(180deg, rgba(10,10,12,0.1), rgba(10,10,12,0.85)), var(--carol-hero);
-  background-size:cover;background-position:center;
-  padding:24px 16px 16px;
-  border-bottom: 2px solid rgba(215,182,111,.25);
+  background-image: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.75)),
+    url('/asset/textures/wallpapers/carol-interior.jpg');
+  background-size: cover;
+  background-position: center;
+  display:flex; align-items:flex-end;
+  padding: 20px;
+  border-bottom: 1px solid var(--card-brd);
 }
-.header-hero h1{margin:0;font-weight:800;letter-spacing:.5px}
-.header-hero .subtitle{opacity:.85;margin-top:4px}
-
-.page-wrap{
-  background-image: linear-gradient(180deg, rgba(10,10,12,0.6), rgba(10,10,12,0.96)), var(--carol-interior);
-  background-size:cover;background-position:center;
-  padding: 16px;
-  min-height:64vh;
+.app-hero h1 { margin:0; font-size: clamp(26px, 4vw, 40px); }
+.app-hero p { margin:6px 0 12px 0; color: var(--muted); }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-brd);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--pad);
+  margin-bottom: 18px;
 }
-
-.toolbar{
-  display:flex;gap:8px;flex-wrap:wrap;
-  justify-content:space-between;align-items:center;margin:10px 0 18px;
+.card h2 { margin: 0 0 10px 0; font-size: 20px; }
+.grid {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
 }
-.toolbar .pill{
-  background:#131316;border:1px solid rgba(215,182,111,.25);
-  padding:8px 12px;border-radius:999px;color:#f1f1f1;opacity:.95
+.day {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--card-brd);
+  border-radius: 12px; padding: 12px;
 }
-a.pill{text-decoration:none}
-.pill.small{padding:6px 10px;font-size:14px}
-
-.grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;
+.day h3 { margin: 0 0 8px 0; font-size: 16px; }
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  background: rgba(255,255,255,0.08); border: 1px solid var(--card-brd);
+  font-size: 12px; margin-right: 6px; color: var(--muted);
 }
-.card{
-  background: #0f0f11;
-  border:1px solid rgba(215,182,111,.25);
-  border-radius:12px;overflow:hidden;
-  box-shadow: 0 6px 20px rgba(0,0,0,.35);
+.toolbar { display:flex; gap:10px; flex-wrap: wrap; }
+.btn {
+  appearance:none; border:1px solid var(--card-brd); background: rgba(255,255,255,0.06);
+  color: var(--ink); padding: 10px 14px; border-radius: 10px; cursor: pointer;
 }
-.card .hd{
-  background-image: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.55)), var(--carol-card-bg);
-  background-size:cover;background-position:center;
-  padding:10px 12px;border-bottom:1px solid rgba(215,182,111,.2);
+.btn:hover { background: rgba(255,255,255,0.12); }
+.notice { color: var(--muted); font-size: 14px; }
+.kicker { color: var(--muted); font-size: 13px; }
+.bg-menu {
+  background-image: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.8)),
+    url('/asset/textures/wallpapers/carol-menu-bg.jpg');
 }
-.card .hd h3{margin:0;font-size:18px;letter-spacing:.3px}
-.card .bd{padding:12px}
-.card ul{margin:0;padding-left:18px}
-.note{font-size:12px;opacity:.85;margin-top:4px}
-.kicker{color:var(--gold);font-weight:600;letter-spacing:.3px;font-size:13px}
-.center{display:flex;justify-content:center;align-items:center}
-.badge{background:#19202a;border:1px solid #314055;border-radius:8px;padding:6px 10px;font-size:13px}
-
-hr.sep{border:0;border-top:1px solid rgba(215,182,111,.25);margin:14px 0}
-
-.print-btn{
-  all:unset;cursor:pointer;
-  background:#15161a;border:1px solid rgba(215,182,111,.35);
-  padding:8px 12px;border-radius:999px;
-}
-.print-btn:hover{filter:brightness(1.1)}
-
-.footer{
-  padding:20px 12px;color:#bbb;font-size:12px;
-  border-top:1px dashed rgba(215,182,111,.25);
-}
+.small { font-size: 12px; color: var(--muted); }
+.link { color: #aad1ff; text-decoration: underline; }
+ul.clean { margin: 8px 0; padding-left: 18px; }

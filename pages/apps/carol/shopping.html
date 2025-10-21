@@ -2,100 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Carol — Shopping List</title>
-  <link rel="stylesheet" href="/pages/apps/carol/theme.css"/>
-  <style>.qty{opacity:.85} .group{margin:10px 0}</style>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Carol • Shopping List</title>
+  <link rel="stylesheet" href="./theme.css"/>
 </head>
 <body>
-  <header class="header-hero">
-    <div>
-      <div class="kicker">Carol • The Phoenix Pagoda</div>
+  <header class="app-hero">
+    <div class="wrap">
       <h1>Shopping List</h1>
-      <div class="subtitle">Quantized for two people • check items as you pack</div>
+      <p class="kicker">Quantized for two people • US measures</p>
+      <div class="toolbar">
+        <a class="btn" href="./menu.html">← Back to Menu</a>
+        <a class="btn" href="/pages/apps/_city/index.html">City</a>
+      </div>
     </div>
   </header>
-
-  <main class="page-wrap">
-    <div class="toolbar">
-      <button class="print-btn" onclick="window.print()">🖨️ Print</button>
-      <a class="pill" href="/pages/apps/carol/menu.html">🍽️ Back to Menu</a>
+  <main class="wrap">
+    <div class="card">
+      <h2>Items</h2>
+      <div id="list"></div>
+      <p id="notice" class="notice"></p>
     </div>
-
-    <section id="list"></section>
-    <template id="groupTmpl">
-      <div class="card group">
-        <div class="hd"><h3>Group</h3></div>
-        <div class="bd"><div class="items"></div></div>
-      </div>
-    </template>
+    <div class="card">
+      <h2>Notes</h2>
+      <ul class="clean">
+        <li>Prefer <b>sunflower seed butter</b> where spreads apply.</li>
+        <li>Swap very hard/crunchy items for <b>butters/soft alternatives</b> as needed.</li>
+      </ul>
+    </div>
   </main>
-
-  <footer class="footer">
-    <div>Rendered from <code>pages/apps/carol/index.json</code> → <code>shopping_latest</code>. If missing, run the "Carol — Refresh Menu & Shopping" workflow.</div>
-  </footer>
-
 <script>
-(async function(){
-  const list = document.getElementById('list');
-  const tmpl = document.getElementById('groupTmpl');
-
+async function loadJSON(path){
+  const r = await fetch(path, {cache:'no-store'});
+  if(!r.ok) throw new Error('HTTP '+r.status+' for '+path);
+  return r.json();
+}
+function renderShopping(obj){
+  // Expect either {items:[{name,qty,unit,...}]} or a plain array, or a dict
+  let rows = [];
+  if(Array.isArray(obj)) rows = obj;
+  else if(obj && Array.isArray(obj.items)) rows = obj.items;
+  else if(obj && typeof obj==='object'){
+    rows = Object.keys(obj).map(k=>({name:k, ...(obj[k]||{})}));
+  }
+  if(!rows.length) return '<p class="notice">No shopping items were found.</p>';
+  const html = '<ul class="clean">' + rows.map(it=>{
+    const n = it.name || it.item || it.title || 'Item';
+    const q = [it.qty||it.quantity, it.unit].filter(Boolean).join(' ');
+    const note = it.note ? ' <span class="small">('+it.note+')</span>' : '';
+    return '<li>' + (q?('<b>'+q+'</b> – '):'') + n + note + '</li>';
+  }).join('') + '</ul>';
+  return html;
+}
+(async () => {
   try{
-    const ptr = await (await fetch('/pages/apps/carol/index.json', {cache:'no-store'})).json();
-    const url = ptr.shopping_latest || '/pages/apps/carol/plans/shopping-quantized.json';
-
-    const res = await fetch(url, {cache:'no-store'});
-    if(!res.ok){ throw new Error('Shopping file not found: ' + url); }
-    const data = await res.json();
-
-    // normalize to { group: [ {name, qty, unit}, ...] }
-    function normalize(d){
-      const out = {};
-      function push(g, item){
-        if(!out[g]) out[g] = [];
-        out[g].push(item);
-      }
-      if(Array.isArray(d)){
-        for(const it of d){
-          const group = it.group || it.category || 'General';
-          push(group, {name: it.name || it.item || it.title || 'Item', qty: it.qty || it.quantity || 1, unit: it.unit || ''});
-        }
-      } else if (typeof d === 'object'){
-        for(const [g, arr] of Object.entries(d)){
-          if(Array.isArray(arr)){
-            for(const it of arr){
-              push(g, {name: it.name || it.item || it.title || 'Item', qty: it.qty || it.quantity || 1, unit: it.unit || ''});
-            }
-          }
-        }
-      }
-      return out;
-    }
-
-    const groups = normalize(data);
-    const gNames = Object.keys(groups);
-    if(gNames.length === 0){
-      list.innerHTML = '<div class="card"><div class="bd"><p>No items present. Re-run the extraction workflow.</p></div></div>';
-      return;
-    }
-
-    for(const g of gNames){
-      const node = tmpl.content.cloneNode(true);
-      node.querySelector('h3').textContent = g;
-      const wrap = node.querySelector('.items');
-
-      for(const it of groups[g]){
-        const id = 'chk-' + Math.random().toString(36).slice(2);
-        const row = document.createElement('label');
-        row.style.display = 'flex'; row.style.alignItems='center'; row.style.gap='8px'; row.style.padding='6px 0';
-        row.innerHTML = `<input id="${id}" type="checkbox"/> <span>${it.name}</span> <span class="qty">${it.qty||''} ${it.unit||''}</span>`;
-        wrap.appendChild(row);
-      }
-      list.appendChild(node);
-    }
-
-  }catch(err){
-    list.innerHTML = '<div class="card"><div class="bd"><div class="badge">Error</div><p>'+ (err && err.message ? err.message : String(err)) +'</p></div></div>';
+    const pointer = await loadJSON('./index.json');
+    const path = (pointer && pointer.shopping) ? ('/'+pointer.shopping.replace(/^\/?/,'').replace(/\/+/, '/')) : null;
+    if(!path) throw new Error('Missing shopping path in index.json');
+    const data = await loadJSON(path);
+    document.getElementById('list').innerHTML = renderShopping(data);
+  }catch(e){
+    document.getElementById('notice').innerHTML = 'No shopping list found yet. Run the workflow <b>Carol — Refresh Menu & Shopping</b> with your plan path to generate <code>shopping-quantized.json</code>.';
   }
 })();
 </script>

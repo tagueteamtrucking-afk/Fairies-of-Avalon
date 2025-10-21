@@ -1,9 +1,6 @@
 {
-  "plan_latest": "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "shopping_latest": "/pages/apps/carol/plans/shopping-quantized.json",
-  "images": {
-    "hero": "/asset/textures/wallpapers/carol-pagoda.jpg",
-    "interior": "/asset/textures/wallpapers/carol-interior.jpg",
-    "menu_bg": "/asset/textures/wallpapers/carol-menu-bg.jpg"
-  }
+  "plan": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+  "merged_plan": "pages/apps/carol/plans/twoperson-2wk-merged.json",
+  "shopping": "pages/apps/carol/plans/shopping-quantized.json",
+  "updated": "2025-10-21T06:03:11.145867"
 }

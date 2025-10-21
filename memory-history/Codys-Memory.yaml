@@ -1,32 +1,19 @@
 meta:
   project: Avalon
-  file_name: "Cody's Memory.yaml"
-  version: "2.3.0"
-  last_updated: "20251019T082250Z"
-  author: "Cody (GPT-5 Pro)"
+  file_name: "Codys-Memory.yaml"
+  version: "3.0.1"
+  last_updated: "20251021T060311Z"
   notes: >
-    Phase‑3: Castle‑Town map (SVG), stable City grid, Tracy wallpaper tool (hero.css),
-    Jem evaluation & program viewer (local), Alexandria voice DM + Stella guided audio (Worker URL).
-    Keep Carol 14‑day plan + shopping working; no regressions.
-site:
-  rescue: true
-  pages:
-    city_grid: "pages/apps/_city/index.html"
-    castle_town: "pages/apps/_city/castle-town.html"
-    hero_css: "pages/apps/_city/hero.css"
-  assistants:
-    carol:
-      plan: "pages/apps/carol/plans/mealplan-dash-14d-current.json"
-      shopping: "pages/apps/carol/plans/mealplan-dash-14d-current-shopping.json"
-      menu: "pages/apps/carol/menu.html"
-      shopping_page: "pages/apps/carol/shopping.html"
-    jem:
-      evaluate: "pages/apps/jem/evaluate.html"
-      viewer: "pages/apps/jem/program-viewer.html"
-    alexandria:
-      voice_dm: "pages/apps/alexandria/voice-dm.html"
-      session_log: "pages/apps/alexandria/session-log.html"
-    stella:
-      guided: "pages/apps/stella/guided.html"
-    tracy:
-      wallpapers: "pages/apps/tracy/wallpapers.html"
+    Added Carol UI (menu + shopping), City page cleanup, and image assets for Carol.
+    Pointer index.json established; workflows remove inline PowerShell 'param' usage.
+carol:
+  pointer_file: "/pages/apps/carol/index.json"
+  plan: "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
+  merged_plan_expected: "pages/apps/carol/plans/twoperson-2wk-merged.json"
+  shopping_target: "pages/apps/carol/plans/shopping-quantized.json"
+city:
+  index: "/pages/apps/_city/index.html"
+images:
+  carol_pagoda: "/asset/textures/wallpapers/carol-pagoda.jpg"
+  carol_interior: "/asset/textures/wallpapers/carol-interior.jpg"
+  carol_menu_bg: "/asset/textures/wallpapers/carol-menu-bg.jpg"

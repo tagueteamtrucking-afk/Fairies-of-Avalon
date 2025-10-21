@@ -1,0 +1,34 @@
+meta:
+  project: Avalon
+  file_name: "Cody-Memory.yaml"
+  version: "3.0.1"
+  last_updated: "2025-10-21T07:11:28Z"
+  author: "GPT-5 Pro (assistant)"
+notes: >
+  This snapshot records the Carol (Phoenix Pagoda) menu/shopping UI refresh,
+  image assets, and the workflow to generate shopping lists on demand.
+city_building:
+  buildings:
+    - character: "Tracy"
+      building: "Stained Glass Cathedral (Studio)"
+    - character: "Jem"
+      building: "Dojo"
+    - character: "Carol"
+      building: "Phoenix Pagoda (Bistro)"
+  navigation: "City → Building → Room → App panels"
+carol:
+  images:
+    exterior: "/asset/textures/wallpapers/carol-pagoda-exterior.jpg"
+    interior: "/asset/textures/wallpapers/carol-restaurant-interior.jpg"
+    menu_bg: "/asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg"
+  plan_pointer: "/pages/apps/carol/index.json"
+  plan_defaults:
+    - "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
+    - "/pages/apps/carol/plans/twoperson-2wk-merged.json"
+  workflow: "carol-refresh-menu-shopping.yml"
+  diet_rules:
+    - "DASH‑style; reduced sodium and added sugar"
+    - "Shellfish‑free; light lactose"
+    - "Avoid cumin; easy on onions & bell peppers"
+    - "Prefer sunflower seed butter in place of peanut/almond butters"
+    - "If a food is very hard/crunchy, suggest a soft alternative"

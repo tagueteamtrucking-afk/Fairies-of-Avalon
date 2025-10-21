@@ -1,74 +1,33 @@
+
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Carol — Shopping List</title>
-  <link rel="stylesheet" href="./theme.css"/>
+  <link rel="stylesheet" href="./carol.css?v=1" />
 </head>
 <body>
-  <div class="header">
-    <div class="inner">
-      <a class="btn" href="./menu.html">🍽️ Menu</a>
-      <a class="btn" href="/pages/apps/_city/index.html">🏙️ City</a>
-      <div class="title" id="label">Loading…</div>
+  <div class="backdrop"></div>
+  <header class="header">
+    <div class="brand">
+      <div class="dot"></div>
+      <h1>Carol — Shopping</h1>
     </div>
-  </div>
-  <div class="hero"></div>
-  <div id="content" class="grid"></div>
-  <div id="notice" class="notice" style="display:none"></div>
-<script>
-(async () => {
-  const label = document.getElementById('label');
-  const grid = document.getElementById('content');
-  const notice = document.getElementById('notice');
-
-  const ptr = await fetch('./index.json').then(r => r.json()).catch(()=>({}));
-  const path = ptr?.shopping_path || "plans/shopping-quantized.json";
-
-  label.textContent = "Shopping: "+path;
-  let data = null;
-  try {
-    const res = await fetch(path);
-    if (res.ok) data = await res.json();
-  } catch (e) {}
-
-  if (!data){
-    notice.style.display='block';
-    notice.innerHTML = "No quantified shopping list found at <small class='code'>"+path+"</small>.<br/>Run the workflow <b>Carol — Refresh Menu & Shopping</b> to generate it. The Menu page will still work as a reference.";
-    return;
-  }
-
-  // Normalize: expect either {{category:[{item,qty,unit}]}} or array
-  function normalize(d){
-    const out = [];
-    if (Array.isArray(d)){
-      out.push({name:'Shopping', items:d});
-      return out;
-    }
-    for (const [k,v] of Object.entries(d)){
-      if (Array.isArray(v)) out.push({name:k, items:v});
-    }
-    return out;
-  }
-
-  const cats = normalize(data);
-  for (const c of cats){
-    const card = document.createElement('div');
-    card.className='card';
-    card.innerHTML = "<h3>"+c.name+"</h3><div class='body'></div>";
-    const body = card.querySelector('.body');
-    (c.items||[]).forEach(it => {
-      let name = (it.item || it.name || it.title || String(it)).replace(/peanut butter/gi,'sunflower seed butter');
-      const qty = [it.qty || it.quantity, it.unit].filter(Boolean).join(" ");
-      const row = document.createElement('div');
-      row.className='kv';
-      row.innerHTML = "<div class='k'>"+(qty || '—')+"</div><div class='v'>"+name+"</div>";
-      body.appendChild(row);
-    });
-    grid.appendChild(card);
-  }
-})();  
-</script>
+    <nav class="nav">
+      <a href="/pages/apps/_city/index.html">🏙️ City</a>
+      <a class="active" href="./shopping.html">🛒 Shopping</a>
+      <a href="./menu.html">🍽️ Menu</a>
+    </nav>
+  </header>
+  <main class="content">
+    <div class="plan-banner">
+      <div class="title">Quantized shopping list (2 people, 14 days)</div>
+      <div id="status" class="note">Loading…</div>
+    </div>
+    <section id="list" class="grid"></section>
+    <p class="footer">If this is empty, run the <em>Carol — Refresh Menu + Shopping</em> workflow to generate <code>pages/apps/carol/plans/shopping-quantized.json</code>.</p>
+  </main>
+  <script src="./shopping.js?v=1"></script>
 </body>
 </html>

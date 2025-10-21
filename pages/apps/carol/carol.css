@@ -1,78 +1,114 @@
 
-:root{
-  --carol-accent:#D62828;
-  --carol-gold:#E1B12C;
-  --carol-deep:#2C2C2C;
-  --carol-text:#F7F3E9;
-  --card-bg: rgba(0,0,0,.55);
+/* Carol (Phoenix Pagoda) — visual polish */
+:root {
+  --bg: #0b0e14;
+  --paper: rgba(20, 20, 24, 0.75);
+  --ink: #f5f5f7;
+  --ink-dim: #d2d2d6;
+  --accent: #ff5533;
+  --gold: #d8b46a;
 }
 
-html,body{
-  margin:0; padding:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; 
-  background:#111; color:var(--carol-text);
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg) url('/asset/textures/wallpapers/carol-restaurant-interior.jpg') center / cover fixed no-repeat;
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  min-height: 100%;
 }
 
-.header-hero{
-  background-image:url('/asset/textures/wallpapers/carol-pagoda.jpg');
-  background-size:cover; background-position:center;
-  min-height:42vh; position:relative;
-  display:flex; align-items:flex-end; justify-content:flex-start;
-  box-shadow: inset 0 0 0 9999px rgba(0,0,0,.25);
-}
-.header-hero .title{
-  margin:2rem; padding:.6rem 1rem; background:var(--card-bg); backdrop-filter:saturate(120%) blur(4px);
-  border:1px solid rgba(225,177,44,.5); border-radius:10px;
-  font-weight:700; letter-spacing:.02em;
-}
-.header-hero small{ display:block; opacity:.9; font-weight:500; }
-
-.wrapper{ max-width:1100px; margin:0 auto; padding:1rem; }
-
-.card{
-  background:var(--card-bg); border:1px solid rgba(225,177,44,.4); border-radius:12px;
-  padding:1rem; margin:1rem 0; box-shadow:0 8px 30px rgba(0,0,0,.20);
-}
-.card h2{
-  margin:.2rem 0 .6rem 0; font-size:1.2rem; color:#FFEAA7;
-  letter-spacing:.02em;
+.backdrop::before {
+  content: "";
+  position: fixed; inset: 0;
+  background: radial-gradient(1200px 600px at 30% 10%, rgba(255,120,60,0.30), transparent 60%),
+              linear-gradient(to bottom, rgba(8,8,10,0.70), rgba(8,8,10,0.85) 40%, rgba(8,8,10,0.95));
+  pointer-events: none;
+  z-index: 0;
 }
 
-.menu-banner{
-  background-image:url('/asset/textures/wallpapers/carol-menu-bg.jpg');
-  background-size:cover; background-position:center;
-  border-radius:14px; padding:1rem; outline:1px solid rgba(225,177,44,.35);
+.header {
+  position: sticky; top: 0; z-index: 10;
+  backdrop-filter: blur(10px);
+  background: rgba(10, 10, 12, 0.6);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; gap: 12px; align-items: center;
+  padding: 12px 16px;
 }
 
-.grid{
-  display:grid; gap:.8rem;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
-.tag{
-  display:inline-block; font-size:.82rem; padding:.1rem .5rem; border:1px solid rgba(225,177,44,.4);
-  border-radius:999px; color:#FAD390; margin-right:.3rem; margin-bottom:.3rem; background:rgba(0,0,0,.35);
+.header .brand {
+  display:flex; gap:10px; align-items:center;
 }
 
-.meal{ border-left:3px solid var(--carol-gold); }
-.meal h3{ margin:.1rem 0 .4rem 0; color:#FFD166; font-size:1.05rem; }
-.meal ul{ margin:.3rem 0 0 1rem; padding:0; }
-.meal li{ margin:.2rem 0; }
-
-.footer-note{
-  text-align:center; opacity:.8; font-size:.9rem; margin:2rem 0;
+.brand .dot {
+  width:12px; height:12px; border-radius:50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px 2px rgba(255,85,51,0.65);
 }
 
-.kicker{
-  background-image:url('/asset/textures/wallpapers/carol-interior.jpg');
-  background-size:cover; background-position:center 35%;
-  min-height:22vh; border-radius:14px; margin-top:1rem;
-  outline:1px solid rgba(225,177,44,.35);
-  box-shadow: inset 0 0 0 9999px rgba(0,0,0,.25);
+.brand h1 {
+  font-size: 16px; margin: 0; letter-spacing: 0.3px; color: var(--ink);
 }
 
-/* Buttons */
-button, .btn{
-  appearance:none; border:1px solid rgba(225,177,44,.6);
-  background:#3c2a1a; color:#ffe8b6; border-radius:10px; padding:.55rem .9rem; font-weight:600;
+.nav a {
+  color: var(--ink-dim);
+  text-decoration: none; font-size: 14px; padding: 8px 10px; border-radius: 8px;
 }
-button:hover,.btn:hover{ filter:brightness(1.05); cursor:pointer; }
-.small{ font-size:.9rem; padding:.4rem .7rem; }
+.nav a.active, .nav a:hover { color: var(--ink); background: rgba(255,255,255,0.06); }
+
+.content {
+  position: relative; z-index: 1; padding: 20px 16px 40px;
+}
+
+.plan-banner {
+  background: url('/asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg') center / cover no-repeat;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 18px; margin: 10px 0 18px 0;
+  color: #3a1a08;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.45);
+}
+
+.plan-banner .title {
+  font-weight: 700; letter-spacing: 0.4px; font-size: 18px;
+}
+
+.grid {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 12px;
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.14);
+  background: rgba(28, 28, 34, 0.75);
+}
+.card h3 { margin: 0 0 8px 0; font-size: 15px; }
+.card ul { margin: 0; padding-left: 18px; color: var(--ink-dim); }
+.card li { margin: 6px 0; }
+
+.note { font-size: 13px; color: var(--ink-dim); margin-top: 6px; }
+
+.badge {
+  display:inline-block; padding:2px 8px; border-radius: 12px;
+  background: rgba(216,180,106,0.12); color: var(--gold); font-size: 12px;
+  border: 1px solid rgba(216,180,106,0.35);
+}
+
+.footer {
+  margin-top: 24px; font-size: 12px; color: var(--ink-dim);
+}
+
+.linkbar { display:flex; gap:10px; flex-wrap:wrap; }
+.linkbar a {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--ink); text-decoration: none; padding: 8px 10px; border-radius: 8px;
+}
+.linkbar a:hover { background: rgba(255,255,255,0.12); }

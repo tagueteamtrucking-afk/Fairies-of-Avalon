@@ -1,13 +1,8 @@
 {
-  "plan_path": "plans/twoperson-2wk-merged.json",
-  "fallback_paths": [
-    "plans/twoperson-2wk-unique-20251015T022300Z.json",
-    "plans/mealplan-dash-14d-current.json"
-  ],
-  "shopping_path": "plans/shopping-quantized.json",
-  "images": {
-    "building": "/asset/textures/wallpapers/carol-pagoda.jpg",
-    "hero": "/asset/textures/wallpapers/carol-interior.jpg",
-    "menu_bg": "/asset/textures/wallpapers/carol-menu-bg.jpg"
-  }
+  "active_plan": "plans/twoperson-2wk-unique-20251015T022300Z.json",
+  "fallbacks": [
+    "plans/twoperson-2wk-merged.json",
+    "plans/mealplan-dash-14d-current.json",
+    "plans/mealplan-balanced-20251019T021457Z.json"
+  ]
 }

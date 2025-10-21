@@ -1,32 +1,55 @@
-name: Carol — Pin & Extract (14‑day)
+name: Carol — Pin Plan & Extract (14‑day)
+
 on:
   workflow_dispatch:
+
 permissions:
   contents: write
+
 jobs:
-  build:
+  pin_and_extract:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Pin canonical plan to expected alias
-        shell: pwsh
+
+      - name: Configure git user
         run: |
-          $ErrorActionPreference = "Stop"
-          $src = "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
-          $dst = "pages/apps/carol/plans/twoperson-2wk-merged.json"
-          if (!(Test-Path $src)) { throw "Canonical plan not found: $src" }
-          Copy-Item $src $dst -Force
-          git config user.email "actions@github.com"
           git config user.name "github-actions[bot]"
-          git add $dst
-          git commit -m "Carol: pin merged alias for extractor" || echo "No changes to commit"
-      - name: Extract shopping (v3)
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Pin plan alias (idempotent)
+        shell: bash
+        run: |
+          set -e
+          SRC="pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
+          DST="pages/apps/carol/plans/twoperson-2wk-merged.json"
+          if [ ! -f "$SRC" ]; then
+            echo "ERROR: Source plan $SRC not found"; exit 1
+          fi
+          cp -f "$SRC" "$DST"
+          git add "$DST" || true
+          if git diff --cached --quiet; then
+            echo "No alias change to commit."
+          else
+            git commit -m "Carol: pin plan alias to $DST"
+            git push
+          fi
+
+      - name: Run extractor (always)
         shell: pwsh
         run: |
-          $ErrorActionPreference = "Stop"
+          $ErrorActionPreference = 'Stop'
           ./scripts/Carol-Extract-Shopping-v3.ps1
-          git add pages/apps/carol/plans/shopping-*.json
-          git commit -m "Carol: shopping extracted" || echo "No changes to commit"
-      - name: Push
-        run: git push
+
+      - name: Commit extractor outputs (if any)
+        shell: bash
+        run: |
+          set -e
+          git add pages/apps/carol/plans/shopping*.json || true
+          if git diff --cached --quiet; then
+            echo "No shopping changes to commit."
+          else
+            git commit -m "Carol: update shopping lists from extractor"
+            git push
+          fi

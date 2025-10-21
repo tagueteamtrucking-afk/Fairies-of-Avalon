@@ -1,100 +1,144 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Carol — Shopping List</title>
-<link rel="stylesheet" href="/pages/apps/carol/carol.css"/>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Carol — Shopping List (Two‑Person)</title>
+  <link rel="stylesheet" href="theme.css"/>
+  <style>
+    .list{display:grid; gap:10px}
+    .cat{background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.12); border-radius:12px; overflow:hidden}
+    .cat h3{margin:0; padding:.7rem 1rem; background:rgba(0,0,0,.35); border-bottom:1px solid rgba(255,255,255,.08)}
+    .items{padding:.6rem .9rem}
+    .row{display:flex; align-items:center; gap:10px; padding:.35rem 0; border-bottom:1px dashed rgba(255,255,255,.08)}
+    .row:last-child{border-bottom:none}
+    .qty{margin-left:auto; color:var(--muted)}
+    .toolbar{display:flex; gap:10px; margin:12px 0; flex-wrap:wrap}
+    .toolbar button{padding:.55rem .8rem; border-radius:10px; border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.5); color:var(--text-100)}
+  </style>
 </head>
 <body>
-  <header class="header-hero">
-    <div class="title">
-      <div style="font-size:1.35rem;">Bistro — Shopping List</div>
-      <small>Two people · 14 days · US measures</small>
-    </div>
+  <header class="header">
+    <div class="badge"><span class="dot"></span> Phoenix Pagoda — Carol’s Restaurant</div>
+    <div class="title"><h1>Shopping List (2 people)</h1></div>
+    <p class="sub">DASH‑ish, shellfish‑free, lactose‑light, easy on onions/bell peppers; prefer sunflower seed butter; softer alternatives for hard foods.</p>
+    <nav class="navbar">
+      <a class="secondary" href="menu.html">Menu</a>
+      <a href="shopping.html">Shopping</a>
+    </nav>
   </header>
 
-  <main class="wrapper">
-    <section class="card">
-      <div id="status" class="tag">Loading…</div>
-      <a class="btn" href="/pages/apps/carol/menu.html">Back to Menu</a>
-    </section>
-
-    <section id="list" class="grid"></section>
-
-    <div class="kicker"></div>
-
-    <p class="footer-note">If no shopping file is present, run the “Carol — Refresh from Pointer” workflow.</p>
+  <main>
+    <div id="msg" class="note">Loading shopping list…</div>
+    <div class="toolbar">
+      <button onclick="checkAll(true)">Check all</button>
+      <button onclick="checkAll(false)">Uncheck all</button>
+      <button onclick="window.print()">Print</button>
+    </div>
+    <section id="list" class="list" hidden></section>
   </main>
 
+  <footer>
+    <small class="code">If nothing loads, run the workflow <b>Carol — Refresh Menu &amp; Shopping</b>. Pointer: <b>pages/apps/carol/index.json</b>.</small>
+  </footer>
+
 <script>
-async function loadPointer(){
-  const url = '/pages/apps/carol/index.json';
-  const res = await fetch(url, {cache:'no-store'});
-  if(!res.ok){ throw new Error('Pointer missing at '+url); }
+async function fetchJSON(path){
+  const res = await fetch(path, {cache:'no-store'});
+  if(!res.ok) throw new Error(`HTTP ${res.status} for ${path}`);
   return await res.json();
 }
-function el(tag, attrs={}, children=[]){
-  const e = document.createElement(tag);
-  for(const [k,v] of Object.entries(attrs)){
-    if(k==='class') e.className=v;
-    else if(k==='html') e.innerHTML=v;
-    else e.setAttribute(k, v);
-  }
-  for(const c of children){ if(c) e.appendChild(c); }
-  return e;
-}
 
-function renderGroup(title, items){
-  const rows = items.map(it => {
-    const name = it.name ?? it.item ?? it.ingredient ?? JSON.stringify(it);
-    const qty = it.qty ?? it.quantity ?? it.amount ?? it.count ?? '';
-    const unit = it.unit ?? '';
-    const note = it.note ?? it.notes ?? '';
-    return el('div', {class:'card'}, [
-      el('h3', {html: name}),
-      el('div', {html: [qty, unit].filter(Boolean).join(' ')}),
-      note ? el('div', {html: note, class:'tag'}) : null
-    ]);
-  });
-  return el('section', {}, [el('div', {class:'card'}, [el('h2', {html: title})]), ...rows]);
-}
+function normalize(items){
+  // Accepts several shapes and returns { [category]: [ {name, qty, unit} ] }
+  const out = {};
+  const add = (cat, name, qty=null, unit=null)=>{
+    cat = cat || "General";
+    out[cat] ||= [];
+    out[cat].push({name, qty, unit});
+  };
 
-async function boot(){
-  try{
-    const pointer = await loadPointer();
-    const shopUrl = pointer.shopping_latest;
-    if(!shopUrl){ throw new Error('shopping_latest missing in pointer.'); }
-
-    const res = await fetch(shopUrl, {cache:'no-store'});
-    if(!res.ok){ throw new Error('Shopping file not found at ' + shopUrl); }
-    const data = await res.json();
-
-    // Accept either a flat list or grouped object
-    let groups = data.groups || data;
-    const listRoot = document.getElementById('list');
-    listRoot.innerHTML = '';
-    if (Array.isArray(groups)){
-      listRoot.appendChild(renderGroup('All Items', groups));
-    } else if (typeof groups === 'object'){
-      for(const [group, items] of Object.entries(groups)){
-        const arr = Array.isArray(items) ? items : [items];
-        listRoot.appendChild(renderGroup(group, arr));
+  if(Array.isArray(items)){
+    for(const it of items){
+      if(typeof it === 'string'){ add("General", it); continue; }
+      if(it){
+        add(it.category || "General", it.name || it.item || it.title || "(item)", it.qty || it.quantity || null, it.unit || null);
       }
-    } else {
-      throw new Error('Unrecognized shopping format.');
     }
-
-    document.getElementById('status').textContent = 'Loaded ' + (Array.isArray(groups) ? groups.length : Object.values(groups).reduce((a,b)=>a+(Array.isArray(b)?b.length:1),0)) + ' items';
-  }catch(err){
-    const s = document.getElementById('status');
-    s.textContent = 'Error: ' + err.message;
-    s.className = 'tag';
-    console.error(err);
+    return out;
   }
+
+  if(items && typeof items === 'object'){
+    // keys as categories
+    for(const [cat,val] of Object.entries(items)){
+      if(Array.isArray(val)){
+        for(const it of val){
+          if(typeof it==='string'){ add(cat, it); }
+          else if(it){ add(cat, it.name||it.item||it.title||"(item)", it.qty||it.quantity||null, it.unit||null); }
+        }
+      }else if(val && typeof val==='object'){
+        // object of name: qty
+        for(const [name,q] of Object.entries(val)){
+          if(q && typeof q==='object'){
+            add(cat, name, q.qty||q.quantity||null, q.unit||null);
+          }else{
+            add(cat, name, q, null);
+          }
+        }
+      }
+    }
+    return out;
+  }
+  return {};
 }
 
-boot();
+function renderList(map){
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+  for(const [cat, arr] of Object.entries(map)){
+    const sec = document.createElement('section');
+    sec.className = 'cat';
+    const inner = arr.map((it,i)=>{
+      const id = `i_${cat.replace(/\s+/g,'_')}_${i}`;
+      const q = it.qty!=null ? String(it.qty) : "";
+      const u = it.unit ? String(it.unit) : "";
+      const qty = [q,u].filter(Boolean).join(" ");
+      return `<label class="row" for="${id}">
+        <input id="${id}" type="checkbox"/>
+        <span>${it.name}</span>
+        <span class="qty">${qty}</span>
+      </label>`;
+    }).join("");
+    sec.innerHTML = `<h3>${cat}</h3><div class="items">${inner}</div>`;
+    list.appendChild(sec);
+  }
+  document.getElementById('msg').remove();
+  list.hidden = false;
+}
+
+function checkAll(state){
+  document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked = state);
+}
+
+async function main(){
+  const msg = document.getElementById('msg');
+  try{
+    const ptr = await fetchJSON('index.json');
+    let shopPath = ptr.shopping_latest || 'pages/apps/carol/plans/shopping-quantized.json';
+    let obj;
+    try {
+      obj = await fetchJSON('../../../' + shopPath.replace(/^\/+/,''));
+    } catch(e){
+      obj = await fetchJSON('/' + shopPath.replace(/^\/+/,''));
+    }
+    // obj can be already grouped or a flat array
+    const map = normalize(obj.items || obj.list || obj || []);
+    renderList(map);
+  }catch(err){
+    msg.textContent = "Couldn’t load the shopping list: " + err.message + ". Run the workflow “Carol — Refresh Menu & Shopping” to generate it.";
+  }
+}
+main();
 </script>
 </body>
 </html>

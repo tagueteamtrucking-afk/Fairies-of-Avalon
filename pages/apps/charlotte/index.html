@@ -1,21 +1,51 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Charlotte — Relay‑Hall</title>
-<link rel="stylesheet" href="/pages/apps/_shared/ui.css">
-<link rel="stylesheet" href="/pages/apps/_shared/room.css">
-</head><body><div class="wrap">
-<div class="nav">
-  <a class="btn" href="/">Home</a>
-  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
-  <a class="btn" href="/pages/apps/_city/index.html">Grid</a>
-</div>
-<div class="hero"></div>
-<h1>Charlotte — Relay‑Hall</h1>
-<div id="room" class="room"></div>
-<div class="footer">Build: 20251019T232747Z</div>
-<script type="module">
-import { mountRoom } from '/pages/apps/_shared/room.js';
-const items = [{"icon": "🖥️", "title": "Control Wall — Workflows", "href": "/pages/apps/charlotte/workflows.html", "desc": "Trigger & monitor actions."}, {"icon": "📜", "title": "Calendarium — Expirations", "href": "/pages/apps/charlotte/expirations.html", "desc": "Renewals & reminders."}, {"icon": "📋", "title": "Clipboard — Link Registry", "href": "/pages/apps/charlotte/registry.html", "desc": "Keep links clean."}];
-mountRoom(document.getElementById('room'), items);
-</script>
-</div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Charlotte — AI Projects Crawler</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;background:#0b0c10;color:#e8e8e8;padding:1rem}
+    h1{margin:0 0 .5rem 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem}
+    .card{background:#162029;border:1px solid #2b3a47;border-radius:10px;padding:1rem}
+    .sub{opacity:.8;font-size:.9rem}
+    a{color:#8ec6ff}
+  </style>
+  <script type="module">
+    async function load(){
+      const res = await fetch('./crawler/index.json', {cache:'no-store'}).catch(()=>null);
+      const root = document.getElementById('root');
+      if(!res || !res.ok){ root.innerHTML='<p><b>No snapshot yet.</b> Run the "Charlotte — AI Projects Crawler" workflow.</p>'; return; }
+      const data = await res.json();
+      document.getElementById('meta').textContent = `Generated: ${data.generated_at} via ${data.source}`;
+      const grid = document.getElementById('grid');
+      Object.entries(data.results).forEach(([q, items])=>{
+        const sec = document.createElement('div');
+        sec.className='card';
+        sec.innerHTML = `<div><b>Query:</b> ${q}</div>`;
+        const ul = document.createElement('ul');
+        (items||[]).slice(0,8).forEach(it=>{
+          const li = document.createElement('li');
+          if(it.error){ li.textContent = it.error; }
+          else{
+            li.innerHTML = `<a href="${it.url}" target="_blank">${it.name}</a> — ⭐ ${it.stars} — ${it.license||'license?'}`;
+          }
+          ul.appendChild(li);
+        });
+        sec.appendChild(ul);
+        grid.appendChild(sec);
+      });
+    }
+    load();
+  </script>
+</head>
+<body>
+  <h1>Charlotte — AI Projects Crawler</h1>
+  <p id="meta" class="sub">Loading…</p>
+  <div id="root">
+    <div id="grid" class="grid"></div>
+  </div>
+  <p class="sub">Sources: GitHub API (public). Respect project licenses; avoid scraping sites against their Terms.</p>
+</body>
+</html>

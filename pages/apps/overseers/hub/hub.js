@@ -32,7 +32,6 @@ function setLink(id, url, label) {
 }
 
 function getRepoBase(){
-  // User-configurable GitHub repo base stored in localStorage
   return localStorage.getItem('avalon_repo_actions_base') || null;
 }
 function promptRepoBase(){

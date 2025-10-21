@@ -1,34 +1,36 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Carol — Shopping List</title>
-  <link rel="stylesheet" href="./carol.css?v=20251021">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carol — Shopping List (2 people, 14 days)</title>
   <style>
-    .header.shop { background-image: image-set(url("/asset/textures/wallpapers/carol-pagoda-exterior.jpg") 1x); }
-    .group { margin: .75rem 0 1rem; }
-    .group h3 { margin: .2rem 0 .3rem; color: #e6b85c; }
-    .group ul { margin:.2rem 0 .6rem; padding-left:1rem; }
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;background:#0b0c10;color:#e8e8e8;padding:1rem}
+    table{border-collapse:collapse;width:100%}
+    th,td{border:1px solid #2b3a47;padding:.5rem;text-align:left}
+    .sub{opacity:.8}
   </style>
+  <script type="module">
+    async function load(){
+      const pointer = await fetch('./index.json',{cache:'no-store'}).then(r=>r.json());
+      const data = await fetch(pointer.shopping,{cache:'no-store'}).then(r=>r.json());
+      document.getElementById('meta').textContent = `For ${data.meta.people} people · ${data.meta.days} days`;
+      const tbody = document.getElementById('tbody');
+      data.items.forEach(it=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${it.item}</td><td>${it.qty}</td><td>${it.unit}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+    load();
+  </script>
 </head>
 <body>
-  <header class="header shop">
-    <div class="title">
-      <div class="kicker">Phoenix Pagoda • Pantry</div>
-      <h1 style="margin:.2rem 0 0">Shopping List (2 people)</h1>
-      <div style="font-size:.9rem;color:#c7cbe0">Matches the active 14‑day plan</div>
-    </div>
-  </header>
-  <main class="main">
-    <div id="debug" class="notice" style="display:none"></div>
-    <section id="list"></section>
-    <div class="notice">
-      Notes: prefer <strong>sunflower seed butter</strong>; swap very hard foods to soft/butter alternatives.
-    </div>
-  </main>
-  <footer>Back to <a href="./menu.html">Menu</a></footer>
-  <script>window.CAROL_DEBUG = /[?&#](debug=1)/.test(location.href);</script>
-  <script src="./shopping.js?v=20251021"></script>
+  <h1>Carol — Shopping List</h1>
+  <p id="meta" class="sub">Loading…</p>
+  <table>
+    <thead><tr><th>Item</th><th>Qty</th><th>Unit</th></tr></thead>
+    <tbody id="tbody"></tbody>
+  </table>
 </body>
 </html>

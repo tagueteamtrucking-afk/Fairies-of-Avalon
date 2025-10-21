@@ -1,60 +1,72 @@
 <!doctype html>
 <html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Avalon — City</title>
-<link rel="preload" href="/asset/textures/wallpapers/castle village 04.jpg" as="image">
-<link rel="stylesheet" href="/pages/apps/_city/city.css">
+<title>Avalon City</title>
+<link rel="stylesheet" href="./city.css">
+</head>
 <body>
-  <header class="hero">
-    <h1 class="logo">Avalon</h1>
-    <nav class="crumbs">
-      <a href="/index.html">Home</a>
-      <span>/</span>
-      <strong>City</strong>
-    </nav>
-  </header>
+<header class="topbar">
+  <div class="brand">🏙️ Avalon City</div>
+  <nav class="actions">
+    <a class="act" href="/kill-sw.html" title="Clear caches">🧹 Reset</a>
+    <a class="act" href="/pages/index.html" title="Home">🏠 Home</a>
+  </nav>
+</header>
 
-  <main class="grid">
-    <a class="tile" data-bg="01" href="/pages/rooms/alexandria.html" aria-label="Gothic Library — Alexandria">
-      <div class="label"><span class="emoji">📚</span><span>Gothic Library</span><small>Alexandria</small></div>
-    </a>
-    <a class="tile" data-bg="02" href="/pages/rooms/tracy.html" aria-label="Stained Glass Cathedral — Tracy">
-      <div class="label"><span class="emoji">🎨</span><span>Stained Glass Cathedral</span><small>Tracy</small></div>
-    </a>
-    <a class="tile" data-bg="03" href="/pages/rooms/jem.html" aria-label="Dojo — Jem">
-      <div class="label"><span class="emoji">🥋</span><span>Dojo</span><small>Jem</small></div>
-    </a>
-    <a class="tile" data-bg="04" href="/pages/rooms/carol.html" aria-label="Bistro — Carol">
-      <div class="label"><span class="emoji">🍽️</span><span>Bistro</span><small>Carol</small></div>
-    </a>
+<main class="grid">
+  <a class="tile" href="/pages/apps/alexandria/voice-dm.html">
+    <div class="tile-img tile-lib" role="img" aria-label="Library desk with quill"></div>
+    <div class="tile-meta"><b>Gothic Library</b><span>Alexandria — Voice DM</span></div>
+  </a>
 
-    <a class="tile" data-bg="02" href="/pages/rooms/stella.html" aria-label="Observatory — Stella">
-      <div class="label"><span class="emoji">🔭</span><span>Observatory</span><small>Stella</small></div>
-    </a>
-    <a class="tile" data-bg="01" href="/pages/rooms/nina.html" aria-label="Lab — Nina">
-      <div class="label"><span class="emoji">🧪</span><span>Lab</span><small>Nina</small></div>
-    </a>
-    <a class="tile" data-bg="03" href="/pages/rooms/charlotte.html" aria-label="Relay Hall — Charlotte">
-      <div class="label"><span class="emoji">🛰️</span><span>Relay Hall</span><small>Charlotte</small></div>
-    </a>
-    <a class="tile" data-bg="04" href="/pages/rooms/abbey.html" aria-label="Vault — Abbey">
-      <div class="label"><span class="emoji">🏦</span><span>Vault</span><small>Abbey</small></div>
-    </a>
+  <a class="tile" href="/pages/apps/tracy/index.html">
+    <div class="tile-img tile-cathedral" role="img" aria-label="Stained-glass studio"></div>
+    <div class="tile-meta"><b>Cathedral Studio</b><span>Tracy — Artboards & Skins</span></div>
+  </a>
 
-    <a class="tile" data-bg="01" href="/pages/rooms/overseers.html" aria-label="Palace — Overseers">
-      <div class="label"><span class="emoji">🏰</span><span>Palace</span><small>Overseers</small></div>
-    </a>
-    <a class="tile" data-bg="03" href="/pages/rooms/billie.html" aria-label="Mansion — Billie (PG-13)">
-      <div class="label"><span class="emoji">🎬</span><span>Mansion</span><small>Billie (PG‑13)</small></div>
-    </a>
-  </main>
+  <a class="tile" href="/pages/apps/jem/index.html">
+    <div class="tile-img tile-dojo" role="img" aria-label="Dojo training hall"></div>
+    <div class="tile-meta"><b>Dojo</b><span>Jem — Training & Evaluate</span></div>
+  </a>
 
-  <footer class="foot">
-    <a class="btn" href="/pages/plaza.html">Back to Plaza</a>
-    <a class="btn" href="/kill-sw.html">Reset App Cache</a>
-  </footer>
+  <a class="tile" href="/pages/apps/carol/menu.html">
+    <div class="tile-img tile-bistro" role="img" aria-label="Bistro kitchen"></div>
+    <div class="tile-meta"><b>Bistro</b><span>Carol — Menu & Shopping</span></div>
+  </a>
 
-  <script src="/pages/apps/_city/city.js" defer></script>
+  <a class="tile" href="/pages/apps/stella/guided.html">
+    <div class="tile-img tile-observatory" role="img" aria-label="Observatory night sky"></div>
+    <div class="tile-meta"><b>Observatory</b><span>Stella — Guided Audio</span></div>
+  </a>
+
+  <a class="tile" href="/pages/apps/nina/index.html">
+    <div class="tile-img tile-lab" role="img" aria-label="Hologram lab"></div>
+    <div class="tile-meta"><b>Lab</b><span>Nina — 3D & Previews</span></div>
+  </a>
+
+  <a class="tile" href="/pages/apps/charlotte/index.html">
+    <div class="tile-img tile-relay" role="img" aria-label="Control wall"></div>
+    <div class="tile-meta"><b>Relay Hall</b><span>Charlotte — Pipelines</span></div>
+  </a>
+
+  <a class="tile" href="/pages/apps/abbey/index.html">
+    <div class="tile-img tile-vault" role="img" aria-label="Vault & ledgers"></div>
+    <div class="tile-meta"><b>Vault</b><span>Abbey — Money Tools</span></div>
+  </a>
+
+  <a class="tile" href="/pages/apps/overseers/index.html">
+    <div class="tile-img tile-palace" role="img" aria-label="Palace"></div>
+    <div class="tile-meta"><b>Palace</b><span>Overseers — Status</span></div>
+  </a>
+
+  <a class="tile" href="/pages/apps/billie/index.html">
+    <div class="tile-img tile-mansion" role="img" aria-label="Creator mansion"></div>
+    <div class="tile-meta"><b>Mansion</b><span>Billie — Storyboards</span></div>
+  </a>
+</main>
+
+<script src="./city.js"></script>
 </body>
 </html>

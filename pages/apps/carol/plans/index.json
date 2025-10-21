@@ -1,1 +1,8 @@
-{{"latest":"pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"}}
+{
+  "latest": "plans/twoperson-2wk-unique-20251015T022300Z.json",
+  "all": [
+    "plans/twoperson-2wk-unique-20251015T022300Z.json",
+    "plans/twoperson-2wk-20251014T234049Z.json",
+    "plans/mealplan-dash-14d-current.json"
+  ]
+}

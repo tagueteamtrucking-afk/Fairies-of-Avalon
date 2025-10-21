@@ -1,25 +1,33 @@
+/* Avalon City */
 :root{
-  --bg:#0b0d12;--fg:#e5e7eb;--muted:#9ca3af;--card:#0f172a;--line:#1f2937;
-  --tile-h: 140px; --rad: 16px; --gap: 14px;
+  --bg:#0b0f1a; --fg:#e6ecff; --muted:#9fb3d1; --frame:rgba(255,255,255,.08);
+  --card:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
 }
 *{box-sizing:border-box}
-html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
-.hero{padding:20px 16px 8px;border-bottom:1px solid var(--line);backdrop-filter:saturate(120%) blur(2px);position:sticky;top:0;background:linear-gradient(0deg,transparent,rgba(0,0,0,.25))}
-.logo{margin:0;font-size:22px;letter-spacing:.12em;text-transform:uppercase}
-.crumbs{font-size:12px;color:var(--muted);display:flex;gap:.5rem;align-items:center}
-.grid{padding:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap);max-width:980px;margin:0 auto}
-@media(min-width:820px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
-.tile{position:relative;display:block;height:var(--tile-h);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;text-decoration:none;color:inherit;background:#0e1726}
-.tile::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.75) saturate(1.1);transition:filter .2s ease}
-.tile[data-bg="01"]::before{background-image:url('/asset/textures/wallpapers/castle village 01.jpg')}
-.tile[data-bg="02"]::before{background-image:url('/asset/textures/wallpapers/castle village 02.jpg')}
-.tile[data-bg="03"]::before{background-image:url('/asset/textures/wallpapers/castle village 03.jpg')}
-.tile[data-bg="04"]::before{background-image:url('/asset/textures/wallpapers/castle village 04.jpg')}
-.tile:hover::before{filter:brightness(0.9) saturate(1.2)}
-.label{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.55));display:flex;gap:.6rem;align-items:center}
-.label .emoji{font-size:20px}
-.label span{font-weight:600}
-.label small{margin-left:auto;color:var(--muted)}
-.foot{padding:20px 16px;display:flex;gap:10px;justify-content:center;border-top:1px solid var(--line)}
-.btn{display:inline-block;padding:.55rem .9rem;border:1px solid var(--line);border-radius:12px;color:var(--fg);text-decoration:none}
+html,body{height:100%; margin:0}
+body{background:radial-gradient(1000px 700px at 70% -10%,#1a2440 0%,#0b0f1a 60%,#060913 100%); color:var(--fg); font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial}
+
+.topbar{position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; padding:14px 16px; background:rgba(6,9,19,.7); backdrop-filter:blur(6px); border-bottom:1px solid var(--frame)}
+.brand{font-weight:700}
+.actions{display:flex; gap:10px}
+.act{color:var(--fg); text-decoration:none; background:rgba(255,255,255,.06); padding:10px 12px; border-radius:10px; border:1px solid var(--frame)}
+
+.grid{display:grid; gap:16px; padding:18px; grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:720px){ .grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.tile{display:block; text-decoration:none; color:var(--fg); background:var(--card); border:1px solid var(--frame); border-radius:14px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.tile-img{aspect-ratio:16/9; background-size:cover; background-position:center; filter:saturate(.9) contrast(1.05)}
+.tile-meta{padding:12px 14px; display:flex; flex-direction:column; gap:4px}
+.tile-meta b{font-size:16px}
+.tile-meta span{font-size:13px; color:var(--muted)}
+
+/* Image themes (replace with photos later) */
+.tile-lib{background-image:linear-gradient(135deg,#2a355a,#11182b)}
+.tile-cathedral{background-image:linear-gradient(135deg,#503c6e,#131129)}
+.tile-dojo{background-image:linear-gradient(135deg,#465a2a,#121a0f)}
+.tile-bistro{background-image:linear-gradient(135deg,#5a2a35,#1a0f14)}
+.tile-observatory{background-image:linear-gradient(135deg,#20375a,#0d1422)}
+.tile-lab{background-image:linear-gradient(135deg,#2a5a50,#0f1a18)}
+.tile-relay{background-image:linear-gradient(135deg,#5a4a2a,#1a160d)}
+.tile-vault{background-image:linear-gradient(135deg,#414040,#0f0f0f)}
+.tile-palace{background-image:linear-gradient(135deg,#5a2a5a,#1a0f1a)}
+.tile-mansion{background-image:linear-gradient(135deg,#3a4a5a,#0f141a)}

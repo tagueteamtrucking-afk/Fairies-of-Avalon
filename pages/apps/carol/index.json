@@ -1,14 +1,14 @@
 {
-  "activePlan": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "activeShopping": "pages/apps/carol/plans/shopping-quantized.json",
-  "heroImages": {
-    "menu": "/asset/textures/wallpapers/carol-restaurant-interior.jpg",
-    "shopping": "/asset/textures/wallpapers/carol-pagoda-exterior.jpg",
-    "menuBackdrop": "/asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg"
+  "activePlan": "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+  "activeShopping": "/pages/apps/carol/plans/shopping-quantized.json",
+  "images": {
+    "heroMenu": "/asset/textures/wallpapers/carol-restaurant-interior.jpg",
+    "heroShopping": "/asset/textures/wallpapers/carol-pagoda-exterior.jpg",
+    "cardBg": "/asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg"
   },
   "dietRules": {
-    "preferSeedButter": "sunflower seed butter",
-    "avoidHardCrunchy": true,
+    "preferSunflowerSeedButter": true,
+    "softAlternativeForHardFoods": true,
     "shellfishFree": true,
     "lactoseLight": true,
     "avoidSpices": [

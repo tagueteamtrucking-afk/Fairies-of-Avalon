@@ -1,35 +1,27 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Avalon — City</title>
-  <link rel="stylesheet" href="../theme/tokens.css" />
   <style>
-    body{margin:0;font-family:ui-sans-serif,system-ui;-webkit-font-smoothing:antialiased;background:#0b0f14;color:#eaeef6}
-    .wrap{max-width:1100px;margin:0 auto;padding:20px}
-    h1{margin:0 0 12px}
-    .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
-    a.card{display:block;text-decoration:none;color:inherit;border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;background:#121821}
-    .thumb{height:120px;background:url('/asset/textures/wallpapers/carol-pagoda-exterior.jpg') center/cover no-repeat}
-    .meta{padding:12px}
-    .meta h3{margin:0 0 4px}
-    .meta .sub{color:#9fb1c5;font-size:.9rem}
+    body{margin:0;background:#0b0c10;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    header{padding:16px 18px;border-bottom:1px solid #ffffff22;background:#0008}
+    .wrap{padding:16px;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+    a.card{display:block;text-decoration:none;color:inherit;background:#ffffff10;border:1px solid #ffffff22;border-radius:12px;overflow:hidden}
+    a.card .ph{height:120px;background:linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,.0)),url('/asset/textures/wallpapers/carol-pagoda-exterior.jpg') center/cover}
+    a.card h3{margin:0;padding:12px 12px 2px 12px}
+    a.card p{margin:0;padding:0 12px 12px 12px;color:#ffffffcc;font-size:14px}
   </style>
 </head>
 <body>
+  <header><strong>Avalon</strong> — City</header>
   <div class="wrap">
-    <h1>🏙️ Avalon — City</h1>
-    <div class="grid">
-      <a class="card" href="/pages/apps/carol/menu.html">
-        <div class="thumb"></div>
-        <div class="meta">
-          <h3>Carol · Bistro</h3>
-          <div class="sub">Menu & Shopping</div>
-        </div>
-      </a>
-    </div>
+    <a class="card" href="/pages/apps/carol/menu.html">
+      <div class="ph"></div>
+      <h3>Carol — Phoenix Pagoda</h3>
+      <p>Menu & Shopping</p>
+    </a>
   </div>
 </body>
 </html>

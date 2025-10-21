@@ -1,120 +1,158 @@
-
-(async () => {
-  const daysEl = document.getElementById('days');
-  const sourceEl = document.getElementById('source');
-
-  function swapDiet(text) {
-    if (!text) return text;
-    // sunflower seed butter swap and softer alternatives wording
-    let t = String(text);
-    t = t.replace(/\bpeanut butter\b/gi, 'sunflower seed butter');
-    t = t.replace(/\bpeanuts\b/gi, 'sunflower seeds');
-    return t;
-  }
-  function normalizeMealValue(v) {
-    if (!v) return [];
-    if (Array.isArray(v)) return v.map(x => swapDiet(typeof x === 'string' ? x : JSON.stringify(x)));
-    if (typeof v === 'string') return [swapDiet(v)];
-    if (typeof v === 'object') {
-      // Try common shapes
-      if (Array.isArray(v.items)) return v.items.map(x=>swapDiet(typeof x==='string'?x:(x.name||JSON.stringify(x))));
-      if (Array.isArray(v.menu)) return v.menu.map(x=>swapDiet(typeof x==='string'?x:(x.name||JSON.stringify(x))));
-      if (Array.isArray(v.list)) return v.list.map(x=>swapDiet(typeof x==='string'?x:(x.name||JSON.stringify(x))));
-      return [swapDiet(JSON.stringify(v))];
-    }
-    return [swapDiet(String(v))];
-  }
-  function extractDayMeals(day) {
-    const keys = Object.keys(day || {});
-    const find = (names) => {
-      for (const n of names) {
-        const k = keys.find(k => k.toLowerCase() === n.toLowerCase());
-        if (k) return day[k];
-      }
-      return undefined;
-    };
-    const sections = [
-      ['Breakfast','breakfast','bk','am'],
-      ['Lunch','lunch','midday','noon'],
-      ['Dinner','dinner','supper','pm'],
-      ['Snacks','snacks','snack','extras']
-    ].map(([label, ...alts]) => ({ label, value: find([label, ...alts]) }));
-    // If totally custom, try a generic "meals" list
-    if (sections.every(s => !s.value) && Array.isArray(day.meals)) {
-      return day.meals.map(m => ({
-        label: m.name || m.title || 'Meal',
-        items: normalizeMealValue(m.items || m.menu || m.list || m)
-      }));
-    }
-    // Map to items
-    return sections.filter(s => s.value !== undefined).map(s => ({
-      label: s.label,
-      items: normalizeMealValue(s.value)
-    }));
-  }
-  function extractDays(plan) {
-    if (!plan) return [];
-    if (Array.isArray(plan.days)) return plan.days;
-    if (plan.plan && Array.isArray(plan.plan.days)) return plan.plan.days;
-    const dayKeys = Array.from({length: 14}, (_,i)=>`Day ${i+1}`);
-    const hasDayKeys = dayKeys.some(k => k in plan);
-    if (hasDayKeys) return dayKeys.map(k => plan[k]).filter(Boolean);
-    if (Array.isArray(plan.itinerary)) return plan.itinerary;
-    if (Array.isArray(plan.menuDays)) return plan.menuDays;
-    // single-week shape + 7-day
-    const dayKeys7 = Array.from({length: 7}, (_,i)=>`Day ${i+1}`);
-    if (dayKeys7.some(k => k in plan)) return dayKeys7.map(k => plan[k]).filter(Boolean);
-    return [];
-  }
-
-  async function loadJSON(path) {
-    const res = await fetch(path, {cache: 'no-store'});
-    if (!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
-    return res.json();
-  }
-
-  // Load pointer
-  let pointerPath = './index.json';
-  let pointer;
+async function fetchJSON(url) {
   try {
-    pointer = await loadJSON(pointerPath);
-  } catch (e) {
-    sourceEl.textContent = `Pointer missing: ${pointerPath}`;
+    const r = await fetch(url, {cache: 'no-store'});
+    if (!r.ok) return null;
+    return await r.json();
+  } catch (e) { return null; }
+}
+
+function setHero(url) {
+  const hero = document.getElementById('hero');
+  hero.style.backgroundImage = `linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.0)), url('${url}')`;
+}
+
+function setCardBg(url) {
+  document.documentElement.style.setProperty('--card-bg', `url('${url}')`);
+}
+
+function showNotice(msg) {
+  const el = document.getElementById('notice');
+  el.style.display = 'block';
+  el.textContent = msg;
+}
+
+// Normalize various plan shapes into [{day:1..14, meals:[{type,text}]}]
+function normalizePlan(raw) {
+  const out = [];
+  const pushDay = (idx, mealsObj) => {
+    const day = idx + 1;
+    const meals = [];
+    const map = (label, keys) => {
+      for (const k of keys) {
+        if (mealsObj?.[k]) { meals.push({type: label, text: mealsObj[k]}); return; }
+      }
+    };
+    map('Breakfast', ['breakfast','Breakfast','AM','am']);
+    map('Lunch',     ['lunch','Lunch','Midday','midday']);
+    map('Dinner',    ['dinner','Dinner','PM','pm','supper']);
+    // snacks
+    const snackKeys = ['snacks','snack','Snack','Snack1','snack1','Snack2','snack2'];
+    for (const k of snackKeys) {
+      if (mealsObj?.[k]) {
+        const v = mealsObj[k];
+        if (Array.isArray(v)) v.forEach(s=> meals.push({type:'Snack', text:s}));
+        else meals.push({type:'Snack', text:v});
+      }
+    }
+    // If still empty, try generic keys
+    if (meals.length===0) {
+      Object.entries(mealsObj||{}).forEach(([k,v])=>{
+        if (typeof v === 'string' && v.trim()) meals.push({type:k, text:v});
+      });
+    }
+    out.push({day, meals});
+  };
+
+  // 1) Array of days: raw.days[] or raw[]
+  if (Array.isArray(raw?.days)) {
+    raw.days.slice(0,14).forEach((d,i)=> pushDay(i, d));
+    return out;
+  }
+  if (Array.isArray(raw)) {
+    raw.slice(0,14).forEach((d,i)=> pushDay(i, d));
+    return out;
+  }
+
+  // 2) Object with "Day 1", "Day 2", ...
+  const dayKeys = Object.keys(raw||{}).filter(k=>/^day\s*\d+$/i.test(k)).sort((a,b)=>{
+    const ai = parseInt(a.match(/\d+/)?.[0]||'0',10);
+    const bi = parseInt(b.match(/\d+/)?.[0]||'0',10);
+    return ai-bi;
+  });
+  if (dayKeys.length) {
+    dayKeys.slice(0,14).forEach((k,i)=> pushDay(i, raw[k]));
+    return out;
+  }
+
+  // 3) Nested shapes common in older files
+  if (raw?.plan?.days && Array.isArray(raw.plan.days)) {
+    raw.plan.days.slice(0,14).forEach((d,i)=> pushDay(i, d));
+    return out;
+  }
+
+  return null;
+}
+
+function applyDietNotes(text) {
+  if (!text) return text;
+  const lower = text.toLowerCase();
+  if (lower.includes('peanut butter') || lower.includes('almond butter') || lower.includes('nut butter')) {
+    return text.replace(/butter/gi, 'butter (use sunflower seed butter)');
+  }
+  if (lower.includes('peanuts')) {
+    return text.replace(/peanuts/gi, 'sunflower seeds (or sunflower seed butter)');
+  }
+  // very hard/crunchy hints: show display note only
+  return text;
+}
+
+function render(plan) {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  plan.forEach(({day, meals})=>{
+    const card = document.createElement('div');
+    card.className='card';
+    const h = document.createElement('header');
+    h.innerHTML = `<h3>Day ${day}</h3>`;
+    const b = document.createElement('div');
+    b.className = 'body';
+    const wrap = document.createElement('div');
+    wrap.className = 'meals';
+    meals.forEach(m=>{
+      const row = document.createElement('div'); row.className='meal';
+      const tag = document.createElement('div'); tag.className='tag'; tag.textContent = m.type;
+      const txt = document.createElement('div'); txt.className='text'; txt.textContent = applyDietNotes(m.text||'');
+      row.appendChild(tag); row.appendChild(txt); wrap.appendChild(row);
+    });
+    b.appendChild(wrap);
+    card.appendChild(h); card.appendChild(b);
+    grid.appendChild(card);
+  });
+}
+
+(async function main(){
+  const ptr = await fetchJSON('./index.json') || {};
+  const img = ptr.images || {};
+  if (img.heroMenu) setHero(img.heroMenu);
+  if (img.cardBg) setCardBg(img.cardBg);
+
+  const candidates = [];
+  if (ptr.activePlan) candidates.push(ptr.activePlan);
+  candidates.push(
+    '/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json',
+    '/pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json',
+    '/pages/apps/carol/plans/mealplan-dash-14d-current.json',
+    '/pages/apps/carol/plans/plan-14d-seeded.json',
+    '/pages/apps/carol/plans/offline-twoperson-2wk-20251010T013559Z.json'
+  );
+
+  let raw=null, used=null;
+  for (const p of candidates) {
+    raw = await fetchJSON(p);
+    if (raw) { used = p; break; }
+  }
+  if (!raw) {
+    showNotice('No meal plan file found. Add one under /pages/apps/carol/plans/ then reload.');
     return;
   }
-  const planPath = pointer.activePlan || 'plans/mealplan-dash-14d-current.json';
-  sourceEl.textContent = `Plan: ${planPath}`;
-  // swap hero if pointer has images
-  if (pointer.heroImages?.menu) {
-    document.querySelector('.hero').style.backgroundImage = `url('${pointer.heroImages.menu}')`;
-  }
 
-  // Load and render
-  try {
-    const plan = await loadJSON('/' + planPath.replace(/^\/?/, ''));
-    const days = extractDays(plan);
-    if (!days.length) {
-      daysEl.innerHTML = `<div class="card day"><h3>No days found in plan</h3><div class="kv">Check JSON shape</div></div>`;
-      return;
-    }
-    days.forEach((day, idx) => {
-      const meals = extractDayMeals(day);
-      const div = document.createElement('div');
-      div.className = 'card day';
-      const title = `Day ${idx+1}`;
-      const inner = [`<h3>${title}</h3>`]
-      if (!meals.length) {
-        // Fallback: pretty-print the object (compact)
-        inner.push(`<div class="kv">`+swapDiet(JSON.stringify(day)).replaceAll('"','&quot;')+`</div>`);
-      } else {
-        for (const m of meals) {
-          inner.push(`<div class="meal"><h4>${m.label}</h4><div>${m.items.map(x=>`• ${x}`).join('<br/>')}</div></div>`);
-        }
-      }
-      div.innerHTML = inner.join("");
-      daysEl.appendChild(div);
-    });
-  } catch (err) {
-    daysEl.innerHTML = `<div class="card day"><h3>Could not load plan</h3><div class="kv">${err.message}</div></div>`;
+  const norm = normalizePlan(raw);
+  if (!norm) {
+    showNotice('Could not understand plan format. The page will be updated to support this schema.');
+    return;
   }
+  if (used && used!==ptr.activePlan) {
+    showNotice(`Showing plan from: ${used}`);
+  }
+  render(norm);
 })();

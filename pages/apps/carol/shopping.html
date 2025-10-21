@@ -1,22 +1,26 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Carol — Shopping List</title>
-  <link rel="stylesheet" href="./carol.css" />
+  <link rel="stylesheet" href="./carol.css">
+  <script defer src="./shopping.js"></script>
 </head>
 <body>
-  <div class="hero hero--shopping"><h1>Carol · Bistro · Shopping</h1></div>
-  <nav>
-    <a href="/pages/apps/_city/index.html">🏙️ City</a>
-    <a href="./menu.html">🍽️ Menu</a>
-  </nav>
-  <div class="flush">
-    <table class="table" id="shopTable"></table>
+  <div id="hero" class="header-hero">
+    <div class="title">
+      <div>Carol — Phoenix Pagoda</div>
+      <small>Shopping list for two • auto‑quantized</small>
+    </div>
   </div>
-  <div class="source" id="source"></div>
-<script src="./shopping.js"></script>
+  <div class="container">
+    <div class="actions">
+      <a class="button" href="./menu.html">Back to Menu</a>
+      <span class="hint">If list is empty, run the “Carol — Refresh Shopping (direct commit)” workflow.</span>
+    </div>
+    <div id="shopping"></div>
+  </div>
+  <footer class="page">Diet rules applied: sunflower seed butter preferred; softer substitutions where needed.</footer>
 </body>
 </html>

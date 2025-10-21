@@ -1,103 +1,71 @@
-
-(async () => {
-  const table = document.getElementById('shopTable');
-  const sourceEl = document.getElementById('source');
-
-  function swapDiet(text) {
-    if (!text) return text;
-    let t = String(text);
-    t = t.replace(/\bpeanut butter\b/gi, 'sunflower seed butter');
-    t = t.replace(/\bpeanuts\b/gi, 'sunflower seeds');
-    return t;
-  }
-
-  function rowsFromData(data) {
-    const rows = [];
-    if (Array.isArray(data)) {
-      for (const it of data) {
-        if (it && typeof it === 'object') {
-          rows.push([it.category || it.cat || '', swapDiet(it.name || it.item || ''), it.qty || it.quantity || it.count || '', it.notes || it.note || '']);
-        } else {
-          rows.push(['', swapDiet(String(it)), '', '']);
-        }
-      }
-      return rows;
-    }
-    // category arrays
-    if (Array.isArray(data.categories)) {
-      for (const cat of data.categories) {
-        const cname = cat.name || cat.category || '';
-        const items = cat.items || cat.list || [];
-        for (const it of items) {
-          if (it && typeof it === 'object') {
-            rows.push([cname, swapDiet(it.name || it.item || ''), it.qty || it.quantity || '', it.notes || '']);
-          } else {
-            rows.push([cname, swapDiet(String(it)), '', '']);
-          }
-        }
-      }
-      return rows;
-    }
-    // map object
-    const keys = Object.keys(data || {});
-    if (keys.length) {
-      for (const k of keys) {
-        const v = data[k];
-        if (Array.isArray(v)) {
-          for (const it of v) {
-            if (it && typeof it === 'object') {
-              rows.push([k, swapDiet(it.name || it.item || ''), it.qty || it.quantity || '', it.notes || '']);
-            } else {
-              rows.push([k, swapDiet(String(it)), '', '']);
-            }
-          }
-        } else {
-          rows.push([k, swapDiet(typeof v==='string'?v:JSON.stringify(v)), '', '']);
-        }
-      }
-      return rows;
-    }
-    return rows;
-  }
-
-  async function loadJSON(path) {
-    const res = await fetch(path, {cache: 'no-store'});
-    if (!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
-    return res.json();
-  }
-
-  let pointer;
+async function fetchJSON(url) {
   try {
-    pointer = await loadJSON('./index.json');
-  } catch (e) {
-    sourceEl.textContent = 'Pointer missing: ./index.json';
-    return;
-  }
-  if (pointer.heroImages?.shopping) {
-    document.querySelector('.hero').style.backgroundImage = `url('${pointer.heroImages.shopping}')`;
-  }
-
-  const candidates = [
-    pointer.activeShopping,
-    'pages/apps/carol/plans/shopping-quantized.json',
-    'pages/apps/carol/plans/mealplan-dash-14d-current-shopping.json'
-  ].filter(Boolean);
-
-  let used = null, data = null, err = null;
-  for (const c of candidates) {
-    try {
-      const path = '/' + c.replace(/^\/?/, '');
-      data = await loadJSON(path);
-      used = c; break;
-    } catch (e) { err = e; }
-  }
+    const r = await fetch(url, {cache:'no-store'});
+    if (!r.ok) return null;
+    return await r.json();
+  } catch (e) { return null; }
+}
+function setHero(url) {
+  const hero = document.getElementById('hero');
+  hero.style.backgroundImage = `linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.0)), url('${url}')`;
+}
+function renderShopping(data) {
+  const root = document.getElementById('shopping');
+  root.innerHTML = '';
   if (!data) {
-    table.innerHTML = `<tr><td>Could not load shopping JSON</td><td>${err?err.message:''}</td></tr>`;
+    const div = document.createElement('div');
+    div.className = 'notice';
+    div.textContent = 'No shopping list found yet. Run the “Carol — Refresh Shopping (direct commit)” workflow to generate shopping-quantized.json.';
+    root.appendChild(div);
     return;
   }
-  sourceEl.textContent = `Shopping: ${used}`;
-
-  const rows = rowsFromData(data);
-  table.innerHTML = `<thead><tr><th>Category</th><th>Item</th><th>Qty</th><th>Notes</th></tr></thead>`
-    + `<tbody>` + rows.map(r=>`<tr><td>${r[0]||''}</td><td>${r[1]||''}</td><td>${r[2]||''}</td><td>${r[3]||''}</td></tr>`).join('') + `</tbody>`;
+  // Accept either {category:[items]} or flat list
+  if (Array.isArray(data)) {
+    const g = document.createElement('div'); g.className='group';
+    g.innerHTML = `<header><strong>All Items</strong><span>${data.length}</span></header>`;
+    const ul = document.createElement('ul');
+    data.forEach(x=>{
+      const li = document.createElement('li');
+      li.textContent = typeof x === 'string' ? x : (x?.name || JSON.stringify(x));
+      ul.appendChild(li);
+    });
+    g.appendChild(ul); root.appendChild(g); return;
+  }
+  // Grouped
+  Object.keys(data).sort().forEach(cat=>{
+    const items = data[cat];
+    const g = document.createElement('div'); g.className='group';
+    g.innerHTML = `<header><strong>${cat}</strong><span>${Array.isArray(items)?items.length:0}</span></header>`;
+    const ul = document.createElement('ul');
+    (Array.isArray(items)?items:[]).forEach(it=>{
+      const li = document.createElement('li');
+      if (typeof it === 'string') li.textContent = it;
+      else {
+        const qty = it.qty || it.quantity || it.amount || '';
+        const unit = it.unit || '';
+        const name = it.name || it.item || JSON.stringify(it);
+        li.textContent = [qty, unit, name].filter(Boolean).join(' ').replace(/\s+/g,' ').trim();
+      }
+      ul.appendChild(li);
+    });
+    g.appendChild(ul); root.appendChild(g);
+  });
+}
+(async function main(){
+  const ptr = await fetchJSON('./index.json') || {};
+  const img = ptr.images || {};
+  if (img.heroShopping) setHero(img.heroShopping);
+  const candidates = [];
+  if (ptr.activeShopping) candidates.push(ptr.activeShopping);
+  candidates.push(
+    '/pages/apps/carol/plans/shopping-quantized.json',
+    '/pages/apps/carol/plans/mealplan-dash-14d-current-shopping.json',
+    '/pages/apps/carol/plans/shopping-extracted.json'
+  );
+  let data=null, used=null;
+  for (const p of candidates) {
+    data = await fetchJSON(p);
+    if (data) { used = p; break; }
+  }
+  renderShopping(data);
 })();

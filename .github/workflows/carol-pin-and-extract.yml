@@ -1,0 +1,48 @@
+name: Carol — Pin & Extract (14-day)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify canonical plan exists
+        shell: bash
+        run: |
+          set -e
+          PLAN="pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
+          test -f "$PLAN" || (echo "::error::Canonical plan not found at $PLAN" && exit 1)
+          echo "PLAN=$PLAN" >> $GITHUB_ENV
+
+      - name: Create alias expected by extractor
+        shell: bash
+        run: |
+          set -e
+          cp "$PLAN" "pages/apps/carol/plans/twoperson-2wk-merged.json"
+
+      - name: Run extractor v3 (PowerShell Core is built-in)
+        shell: pwsh
+        run: |
+          ./scripts/Carol-Extract-Shopping-v3.ps1
+
+      - name: Commit shopping outputs and pointers
+        shell: bash
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pages/apps/carol/plans/shopping-*.json pages/apps/carol/plans/twoperson-2wk-merged.json pages/apps/carol/index.json || true
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "Carol: extract shopping from 14‑day plan (2025-10-21T01:14:01Z)"
+            git push
+          fi

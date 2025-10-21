@@ -5,18 +5,5 @@
     "heroMenu": "/asset/textures/wallpapers/carol-restaurant-interior.jpg",
     "heroShopping": "/asset/textures/wallpapers/carol-pagoda-exterior.jpg",
     "cardBg": "/asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg"
-  },
-  "dietRules": {
-    "preferSunflowerSeedButter": true,
-    "softAlternativeForHardFoods": true,
-    "shellfishFree": true,
-    "lactoseLight": true,
-    "avoidSpices": [
-      "cumin"
-    ],
-    "easyOn": [
-      "onions",
-      "bell peppers"
-    ]
   }
 }

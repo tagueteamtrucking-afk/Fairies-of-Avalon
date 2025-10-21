@@ -1,14 +1,19 @@
 meta:
-  project: "Avalon"
-  snapshot: "2025-10-21T08:45Z"
+  project: Avalon
+  file: "Cody-Memory.yaml"
+  last_updated: "2025-10-21T19:31:53.653315Z"
   author: "GPT-5 Pro"
-notes:
-  - Two-ZIP delivery rule (root zip + workflows zip) for iPad.
-  - Carol menu & shopping now render without extractor dependency.
-  - Images wired: carol-pagoda-exterior.jpg, carol-restaurant-interior.jpg, carol-menu-bg-gold-crane.jpg.
-  - Pointer file: /pages/apps/carol/index.json selects active plan & shopping file.
-  - Direct workflow commits shopping list to main; no inline 'param(...)' in YAML; uses pwsh.
-rules_summary:
-  - Prefer sunflower seed butter; soften very hard foods.
-  - Shellfish-free; lactose-light; avoid cumin; easy on onions/peppers.
-  - City → Building → Room → App link discipline; no placeholders.
+summary:
+  carol:
+    changes:
+      - Added robust menu & shopping pages that work without waiting for extractors.
+      - Implemented fallback plan/shopping resolution + debug mode (?debug=1).
+      - Wired Phoenix Pagoda imagery (exterior/interior/menu background).
+      - Pointer index.json controls active plan & shopping.
+      - Provided workflow that copies selected plan to twoperson-2wk-merged.json and runs extractor.
+    active_plan: "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
+    active_shopping: "/pages/apps/carol/plans/shopping-quantized.json"
+repo_guidance:
+  avoid_param_error:
+    reason: "param(...) executed under bash shell; set shell: pwsh or call pwsh -File."
+    fix: "Use defaults.run.shell: pwsh in workflows; never inline param(...) in bash."

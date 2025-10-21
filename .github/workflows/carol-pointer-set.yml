@@ -1,35 +1,53 @@
-name: Carol — Set Current Plan Pointer
+name: Carol — Set Plan Pointer
+
 on:
   workflow_dispatch:
     inputs:
       plan_path:
-        description: 'Path to the plan JSON under pages/apps/carol/plans'
+        description: 'Path to the plan JSON to use as current/latest'
         required: true
-        default: pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json
+        default: 'pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json'
+
 permissions:
   contents: write
+
 jobs:
   set-pointer:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Write pointer files
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set pointer files (index.json, plans/index.json)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $plan = '${{ github.event.inputs.plan_path }}'
+          if (!(Test-Path $plan)) { throw "Plan not found: $plan" }
+
+          $carolDir = 'pages/apps/carol'
+          $plansDir = Join-Path $carolDir 'plans'
+          New-Item -ItemType Directory -Force -Path $plansDir | Out-Null
+
+          $indexObj = @{
+            current_plan = 'plans/' + [IO.Path]::GetFileName($plan)
+            latest_plan  = 'plans/' + [IO.Path]::GetFileName($plan)
+            shopping = @{ extracted = 'plans/shopping-extracted.json'; quantized = 'plans/shopping-quantized.json' }
+            notes = 'Pointers set by workflow'
+          }
+          $indexJson = ($indexObj | ConvertTo-Json -Depth 5)
+          Set-Content -Path (Join-Path $carolDir 'index.json') -Value $indexJson -Encoding UTF8
+
+          $plansIndex = @{ latest = 'plans/' + [IO.Path]::GetFileName($plan); all = @('plans/' + [IO.Path]::GetFileName($plan)) }
+          $plansIndexJson = ($plansIndex | ConvertTo-Json -Depth 5)
+          Set-Content -Path (Join-Path $plansDir 'index.json') -Value $plansIndexJson -Encoding UTF8
+
+      - name: Commit pointer
         shell: bash
         run: |
-          set -euo pipefail
-          mkdir -p pages/apps/carol/plans
-          cat > pages/apps/carol/index.json <<JSON
-          {"current_plan":"${{ github.event.inputs.plan_path }}",
-           "diet_rules":{"sunflower_seed_butter_preferred":true,"soft_alternatives_for_hard_foods":true}}
-          JSON
-          cat > pages/apps/carol/plans/index.json <<JSON
-          {"latest":"${{ github.event.inputs.plan_path }}"}
-          JSON
-      - name: Commit
-        shell: bash
-        run: |
+          set -e
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pages/apps/carol/index.json pages/apps/carol/plans/index.json
-          git commit -m "Carol: set pointer -> ${{ github.event.inputs.plan_path }}" || echo "No changes"
+          git commit -m "Carol: set plan pointer -> ${{ github.event.inputs.plan_path }}" || echo "No changes to commit"
           git push

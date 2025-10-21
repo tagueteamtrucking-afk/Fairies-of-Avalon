@@ -1,0 +1,31 @@
+name: Site — Route Corrector (apps/ → pages/apps/)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  correct:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rewrite links in HTML (apps→pages/apps, rooms→pages/rooms)
+        shell: bash
+        run: |
+          set -e
+          shopt -s globstar
+          for f in **/*.html; do
+            [ -f "$f" ] || continue
+            sed -i 's/href=\"\/apps\//href=\"\/pages\/apps\//g' "$f"
+            sed -i 's/href=\"\/rooms\//href=\"\/pages\/rooms\//g' "$f"
+          done
+      - name: Commit corrections
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Route Corrector: fix links to /pages/…" || echo "No changes to commit"
+          git push

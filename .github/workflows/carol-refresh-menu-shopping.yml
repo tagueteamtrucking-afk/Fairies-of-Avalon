@@ -3,52 +3,86 @@ on:
   workflow_dispatch:
     inputs:
       plan_path:
-        description: "Path to the 14‑day plan JSON"
-        required: true
+        description: "Path to the 14-day plan JSON to use"
+        required: false
         default: "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
-
 permissions:
   contents: write
   pull-requests: write
-
 jobs:
-  refresh:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Copy plan to merged filename for extractor
+      - name: Prepare plan and run extractor (PowerShell)
         shell: pwsh
         run: |
-          $plan = "${{ github.event.inputs.plan_path }}"
-          if (-not (Test-Path $plan)) { throw "Plan not found: $plan" }
-          New-Item -ItemType Directory -Force -Path "pages/apps/carol/plans" | Out-Null
-          Copy-Item -Force $plan "pages/apps/carol/plans/twoperson-2wk-merged.json"
+          $ErrorActionPreference = 'Stop'
 
-      - name: Extract shopping (v3)
-        shell: pwsh
-        run: |
-          ./scripts/Carol-Extract-Shopping-v3.ps1
+          $planPath = "${{ inputs.plan_path }}"
+          if ([string]::IsNullOrWhiteSpace($planPath)) {
+            $planPath = 'pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json'
+          }
+          if (!(Test-Path $planPath)) {
+            Write-Host "Available plans under pages/apps/carol/plans:"
+            Get-ChildItem -Path pages/apps/carol/plans -Filter *.json -File | ForEach-Object { Write-Host " - " $_.FullName }
+            throw "Plan file not found: $planPath"
+          }
 
-      - name: Update Carol pointer
-        shell: pwsh
-        run: |
-          $pointer = @{ 
-            plan = "${{ github.event.inputs.plan_path }}"
-            merged_plan = "pages/apps/carol/plans/twoperson-2wk-merged.json"
-            shopping = "pages/apps/carol/plans/shopping-quantized.json"
-            updated = (Get-Date).ToString("s")
-          } | ConvertTo-Json -Depth 5
-          Set-Content -NoNewline -Path "pages/apps/carol/index.json" -Value $pointer
+          # Ensure target name the extractor expects
+          $merged = 'pages/apps/carol/plans/twoperson-2wk-merged.json'
+          Copy-Item -Force $planPath $merged
 
-      - name: Create Pull Request
+          # Update Carol index.json pointer
+          $indexPath = 'pages/apps/carol/index.json'
+          if (!(Test-Path $indexPath)) {
+            $obj = [ordered]@{
+              plan        = $planPath
+              merged_plan = $merged
+              shopping    = 'pages/apps/carol/plans/shopping-quantized.json'
+              updated     = (Get-Date).ToString('o')
+            }
+            $obj | ConvertTo-Json -Depth 8 | Set-Content -Path $indexPath -Encoding UTF8
+          } else {
+            $json = Get-Content $indexPath -Raw | ConvertFrom-Json
+            $json.plan        = $planPath
+            $json.merged_plan = $merged
+            $json.shopping    = 'pages/apps/carol/plans/shopping-quantized.json'
+            $json.updated     = (Get-Date).ToString('o')
+            $json | ConvertTo-Json -Depth 8 | Set-Content -Path $indexPath -Encoding UTF8
+          }
+
+          # Run extractor (ensures we're in PowerShell, not bash)
+          pwsh -NoLogo -NoProfile -File scripts/Carol-Extract-Shopping-v3.ps1
+
+          if (!(Test-Path 'pages/apps/carol/plans/shopping-quantized.json')) {
+            throw 'Expected pages/apps/carol/plans/shopping-quantized.json not found after extraction.'
+          }
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ((git status --porcelain).Length -eq 0) {
+            Write-Host "No changes to commit."
+          } else {
+            git commit -m "Carol: refresh from $planPath"
+            $branch = "carol/refresh-20251021T061904Z"
+            git checkout -b $branch
+            git push -u origin $branch
+          }
+
+      - name: Open PR (best-effort)
         uses: peter-evans/create-pull-request@v6
+        continue-on-error: true
         with:
-          commit-message: "chore(carol): refresh menu & shopping"
-          branch: "carol/refresh-${{ github.run_id }}"
-          title: "Carol: Refresh menu & shopping"
+          branch: "carol/refresh-20251021T061904Z"
+          title: "Carol: refresh menu & shopping"
           body: |
-            - Copied plan to extractor filename
-            - Ran shopping extractor v3
-            - Updated /pages/apps/carol/index.json pointer
+            This PR updates Carol pointers and regenerates **shopping-quantized.json** from the plan:
+            - Plan: ${{ inputs.plan_path }}
+            - Merged to: pages/apps/carol/plans/twoperson-2wk-merged.json
+            - Shopping: pages/apps/carol/plans/shopping-quantized.json
+          commit-message: "Carol: refresh menu & shopping"
+          labels: "carol,shopping,automation"

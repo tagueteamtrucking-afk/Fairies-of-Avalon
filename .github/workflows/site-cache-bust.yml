@@ -4,18 +4,16 @@ on:
 permissions:
   contents: write
 jobs:
-  bust:
+  bump:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Touch version.txt
-        shell: pwsh
+        shell: bash
         run: |
-          $ErrorActionPreference = 'Stop'
-          $stamp = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss K')
-          "Updated: $stamp" | Set-Content -Path version.txt -Encoding UTF8
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > version.txt
+          git config user.email "actions@github.com"
+          git config user.name "github-actions[bot]"
           git add version.txt
-          git commit -m "Cache bust: $stamp"
-          git push
+          git commit -m "Cache bust" || echo "No changes"
+          git push origin HEAD:main || true

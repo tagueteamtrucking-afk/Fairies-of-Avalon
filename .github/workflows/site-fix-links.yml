@@ -3,47 +3,27 @@ on:
   workflow_dispatch: {}
 permissions:
   contents: write
-  pull-requests: write
 jobs:
-  patch:
+  fix:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Rewrite links
+      - uses: actions/checkout@v4
+      - name: Rewrite broken /apps paths to /pages/apps
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-          $files = Get-ChildItem -Recurse -Include *.html,*.js | Where-Object { -not ($_.FullName -match '\.git|node_modules') }
-
-          foreach ($f in $files) {
+          $files = Get-ChildItem -Recurse -Include *.html,*.css,*.js -Path pages
+          foreach($f in $files){
             $c = Get-Content $f.FullName -Raw
-            # Replace only occurrences of "/apps/" not already prefixed by "/pages"
-            $c2 = $c -replace '(?<!/pages)/apps/', '/pages/apps/'
-            if ($c2 -ne $c) {
-              Set-Content -Path $f.FullName -Value $c2 -Encoding UTF8
-            }
+            $new = $c -replace 'href="/apps/','href="/pages/apps/' -replace "href='/apps/","href='/pages/apps/"
+            if($new -ne $c){ Set-Content $f.FullName $new -Encoding UTF8 }
           }
-
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if ((git status --porcelain).Length -eq 0) {
-            Write-Host "No link changes detected."
+          git config user.email "actions@github.com"
+          git config user.name "github-actions[bot]"
+          git add pages
+          if ((git diff --cached --name-only).Length -gt 0){
+            git commit -m "Site: fix /apps/* links to /pages/apps/*"
+            git push origin HEAD:main
           } else {
-            git commit -m "Site: patch links to /pages/apps/* to avoid 404s on GH Pages"
-            $branch = "site/link-patch-20251021T061904Z"
-            git checkout -b $branch
-            git push -u origin $branch
+            Write-Host "No link changes needed."
           }
-
-      - name: Open PR (best-effort)
-        uses: peter-evans/create-pull-request@v6
-        continue-on-error: true
-        with:
-          branch: "site/link-patch-20251021T061904Z"
-          title: "Site: fix links → /pages/apps/*"
-          body: "Rewrite '/apps/' to '/pages/apps/' where safe to eliminate 404s on GitHub Pages."
-          commit-message: "Site: patch links to /pages/apps/*"
-          labels: "routing,city,automation"

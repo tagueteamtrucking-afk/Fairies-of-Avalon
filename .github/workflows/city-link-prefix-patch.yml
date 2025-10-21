@@ -1,5 +1,4 @@
 name: City — Link Prefix Patch
-
 on:
   workflow_dispatch:
 
@@ -10,42 +9,30 @@ permissions:
 jobs:
   patch:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: pwsh
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Rewrite /apps → /pages/apps and /rooms → /pages/rooms
+      - name: Rewrite /apps/ → /pages/apps/ in .html/.js
+        shell: pwsh
         run: |
-          $files = git ls-files | Where-Object { $_ -match '^pages/.*\.(html|js|css)$' }
+          $files = Get-ChildItem -Recurse -Include *.html,*.js -Path .
+          $changed = 0
           foreach($f in $files){
-            $t = Get-Content $f -Raw
-            $t = $t -replace 'href="/apps/', 'href="/pages/apps/'
-            $t = $t -replace 'src="/apps/', 'src="/pages/apps/'
-            $t = $t -replace 'href="/rooms/', 'href="/pages/rooms/'
-            $t = $t -replace 'src="/rooms/', 'src="/pages/rooms/'
-            Set-Content -NoNewline -Path $f -Value $t
+            $t = Get-Content $f.FullName -Raw
+            $n = $t -replace '(?<!/pages)/apps/', '/pages/apps/'
+            if($n -ne $t){
+              Set-Content -NoNewline -Path $f.FullName -Value $n
+              $changed++
+            }
           }
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b city/link-prefix-patch
-          git add -A
-          if(git diff --cached --quiet){ 
-            Write-Host "No changes to commit."
-          } else {
-            git commit -m "City: patch link prefixes for GitHub Pages"
-            git push --set-upstream origin city/link-prefix-patch
-          }
+          "Changed files: $changed"
 
-      - name: Create PR (if changes)
-        if: ${{ always() }}
+      - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          title: "City: link prefix patch"
-          commit-message: "City: link prefix patch"
-          branch: city/link-prefix-patch
+          commit-message: "fix(city): rewrite /apps/* → /pages/apps/* to avoid 404 on GH Pages"
+          branch: "city/prefix-patch-${{ github.run_id }}"
+          title: "City: Prefix patch for app links"
           body: |
-            Convert root-relative links to GitHub Pages paths:
-            - `/apps/*` → `/pages/apps/*`
-            - `/rooms/*` → `/pages/rooms/*`
+            Rewrites `/apps/` → `/pages/apps/` in HTML/JS so links resolve on GH Pages host.

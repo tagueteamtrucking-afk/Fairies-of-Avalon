@@ -1,0 +1,30 @@
+meta:
+  project: Avalon
+  file_name: "Codys-Memory.yaml"
+  version: "3.0.1-carol-ui"
+  last_updated: "20251021T064919Z"
+  author: "GPT-5 Pro (assistant)"
+notes: >
+  Added Carol Pagoda imagery (building/hero/menu-bg). Robust Menu renderer that adapts to
+  unknown 14‑day plan shapes. Shopping page now gracefully handles missing extractor output
+  with clear guidance to run the Carol workflow. Link policy reminder: use /pages/apps/* on GH Pages.
+
+carol_ui:
+  plan_pointer: "pages/apps/carol/index.json"
+  images:
+    building: "/asset/textures/wallpapers/carol-pagoda.jpg"
+    hero: "/asset/textures/wallpapers/carol-interior.jpg"
+    menu_bg: "/asset/textures/wallpapers/carol-menu-bg.jpg"
+  shopping_path: "pages/apps/carol/plans/shopping-quantized.json"
+  fallbacks:
+    - "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
+    - "pages/apps/carol/plans/mealplan-dash-14d-current.json"
+  rules:
+    - "Prefer sunflower seed butter where spreads apply."
+    - "Soft alternatives for very hard/crunchy foods."
+    - "DASH‑leaning choices; shellfish‑free; light lactose; easy on cumin/onions/bell peppers."
+
+workflows:
+  carol_refresh_menu_shopping: ".github/workflows/carol-refresh-menu-shopping.yml"
+  site_fix_links: ".github/workflows/site-fix-links.yml"
+  site_cache_bust: ".github/workflows/site-cache-bust.yml"

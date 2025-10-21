@@ -1,6 +1,13 @@
 {
-  "plan": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "merged_plan": "pages/apps/carol/plans/twoperson-2wk-merged.json",
-  "shopping": "pages/apps/carol/plans/shopping-quantized.json",
-  "updated": "2025-10-21T06:03:11.145867"
+  "plan_path": "plans/twoperson-2wk-merged.json",
+  "fallback_paths": [
+    "plans/twoperson-2wk-unique-20251015T022300Z.json",
+    "plans/mealplan-dash-14d-current.json"
+  ],
+  "shopping_path": "plans/shopping-quantized.json",
+  "images": {
+    "building": "/asset/textures/wallpapers/carol-pagoda.jpg",
+    "hero": "/asset/textures/wallpapers/carol-interior.jpg",
+    "menu_bg": "/asset/textures/wallpapers/carol-menu-bg.jpg"
+  }
 }

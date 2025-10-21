@@ -1,4 +1,4 @@
-﻿export default {
+export default {
   "radius": {
     "lg": "12px",
     "md": "10px"

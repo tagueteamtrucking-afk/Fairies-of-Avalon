@@ -1,53 +1,37 @@
 name: Carol — Set Plan Pointer
-
 on:
   workflow_dispatch:
     inputs:
       plan_path:
-        description: 'Path to the plan JSON to use as current/latest'
+        description: "Path to plan JSON"
         required: true
-        default: 'pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json'
-
+        default: "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
 permissions:
   contents: write
-
 jobs:
   set-pointer:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set pointer files (index.json, plans/index.json)
+      - uses: actions/checkout@v4
+      - name: Update pointer files
         shell: pwsh
         run: |
-          $ErrorActionPreference = 'Stop'
-          $plan = '${{ github.event.inputs.plan_path }}'
-          if (!(Test-Path $plan)) { throw "Plan not found: $plan" }
-
-          $carolDir = 'pages/apps/carol'
-          $plansDir = Join-Path $carolDir 'plans'
-          New-Item -ItemType Directory -Force -Path $plansDir | Out-Null
-
-          $indexObj = @{
-            current_plan = 'plans/' + [IO.Path]::GetFileName($plan)
-            latest_plan  = 'plans/' + [IO.Path]::GetFileName($plan)
-            shopping = @{ extracted = 'plans/shopping-extracted.json'; quantized = 'plans/shopping-quantized.json' }
-            notes = 'Pointers set by workflow'
+          $plan = "${{ github.event.inputs.plan_path }}"
+          $idxPath = "pages/apps/carol/index.json"
+          $plansIdx = "pages/apps/carol/plans/index.json"
+          $idx = @{ 
+            current_plan = "plans/" + [IO.Path]::GetFileName($plan)
+            shopping_extracted = "plans/shopping-extracted.json"
+            shopping_quantized = "plans/shopping-quantized.json"
+            preferences = @{ spreads_prefer = "sunflower seed butter"; swap_hard_foods = "use butters/smooth alternatives" }
           }
-          $indexJson = ($indexObj | ConvertTo-Json -Depth 5)
-          Set-Content -Path (Join-Path $carolDir 'index.json') -Value $indexJson -Encoding UTF8
+          $null = New-Item -ItemType Directory -Force -Path (Split-Path $idxPath)
+          $idx | ConvertTo-Json -Depth 6 | Set-Content -Path $idxPath -Encoding UTF8
+          $obj = @{ latest = [IO.Path]::GetFileName($plan) }
+          $obj | ConvertTo-Json -Depth 6 | Set-Content -Path $plansIdx -Encoding UTF8
 
-          $plansIndex = @{ latest = 'plans/' + [IO.Path]::GetFileName($plan); all = @('plans/' + [IO.Path]::GetFileName($plan)) }
-          $plansIndexJson = ($plansIndex | ConvertTo-Json -Depth 5)
-          Set-Content -Path (Join-Path $plansDir 'index.json') -Value $plansIndexJson -Encoding UTF8
-
-      - name: Commit pointer
-        shell: bash
-        run: |
-          set -e
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
           git add pages/apps/carol/index.json pages/apps/carol/plans/index.json
-          git commit -m "Carol: set plan pointer -> ${{ github.event.inputs.plan_path }}" || echo "No changes to commit"
+          git commit -m "Carol: set plan pointer to $plan" || echo "No changes to commit"
           git push

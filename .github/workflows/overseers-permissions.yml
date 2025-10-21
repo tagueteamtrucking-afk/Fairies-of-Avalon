@@ -22,12 +22,9 @@ jobs:
           $files = Get-ChildItem -Recurse -File 'permissions/grants' -ErrorAction SilentlyContinue
           $approvals = @()
           foreach($f in $files){
-            try{
-              $json = Get-Content $f.FullName -Raw | ConvertFrom-Json -ErrorAction Stop
-              $approvals += $json
-            }catch{}
+            try{ $json = Get-Content $f.FullName -Raw | ConvertFrom-Json -ErrorAction Stop; $approvals += $json }catch{}
           }
-          $state = [ordered]@{ last_updated = '2025-10-21T23:05:17Z'; approvals = $approvals }
+          $state = [ordered]@{ last_updated = '2025-10-21T23:43:45Z'; approvals = $approvals }
           $state | ConvertTo-Json -Depth 100 | Set-Content -Path $out
       - name: Commit updates
         run: |

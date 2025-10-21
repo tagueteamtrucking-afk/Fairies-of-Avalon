@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Overseers Hub · Avalon</title>
+  <link rel="stylesheet" href="./hub.css">
+  <script type="importmap" src="/importmap.json"></script>
+  <script type="module" src="./hub.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Overseers Hub</h1>
+    <div id="wpi-badge" class="badge">WPI: …</div>
+    <div id="files-badge" class="badge">Files: …</div>
+  </header>
+
+  <section id="actions">
+    <h2>Actions</h2>
+    <div class="grid actions-grid">
+      <a class="action" target="_blank" id="run-memory-sweep" rel="noopener">Run: Repo Sweep</a>
+      <a class="action" target="_blank" id="run-deploy" rel="noopener">Run: Deploy Pages</a>
+      <a class="action" target="_blank" id="open-permissions" rel="noopener">Permissions State</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Fairies</h2>
+    <div id="fairies" class="grid"></div>
+  </section>
+
+  <section>
+    <h2>Telemetry</h2>
+    <pre id="telemetry"></pre>
+  </section>
+
+  <footer>
+    <a href="/kill-sw.html">Kill Service Worker</a> ·
+    <span>Domain: fairiesofavalon.com</span>
+  </footer>
+</body>
+</html>

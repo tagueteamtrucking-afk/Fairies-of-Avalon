@@ -1,6 +1,19 @@
-<!doctype html><meta charset="utf-8"><title>Kill SW</title>
-<body style="font-family:system-ui;padding:24px"><h1>Kill Service Worker</h1><pre id="log"></pre>
-<script>(async()=>{const o=document.getElementById('log');const log=s=>o.textContent+=s+"\n";
-if('serviceWorker'in navigator){const r=await navigator.serviceWorker.getRegistrations();log("Found "+r.length+" registrations");for(const a of r){try{await a.unregister();log("Unregistered: "+(a.active&&a.active.scriptURL||'(unknown)'));}catch(e){log("Unregister failed: "+e);}}}
-if(window.caches){const n=await caches.keys();for(const k of n){await caches.delete(k);log("Deleted cache: "+k);}}
-log("Done. Close this tab and reload the site.");})();</script></body>
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Kill SW</title></head>
+<body>
+<h1>Kill Service Worker</h1>
+<p>This clears service workers and reloads. Use after deploying to GitHub Pages if you see stale content.</p>
+<script>
+(async () => {
+  if ('serviceWorker' in navigator) {
+    const regs = await navigator.serviceWorker.getRegistrations();
+    for (const r of regs) { try { await r.unregister(); } catch(e){} }
+  }
+  if ('caches' in window) {
+    const keys = await caches.keys();
+    await Promise.all(keys.map(k => caches.delete(k)));
+  }
+  location.href = '/';
+})();
+</script>
+</body></html>

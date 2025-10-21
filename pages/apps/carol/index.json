@@ -1,9 +1,9 @@
 {
   "current_plan": "plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "latest_plan": "plans/twoperson-2wk-unique-20251015T022300Z.json",
   "shopping": {
-    "extracted": "plans/shopping-extracted.json",
-    "quantized": "plans/shopping-quantized.json"
+    "quantized": "plans/shopping-quantized.json",
+    "extracted": "plans/shopping-extracted.json"
   },
-  "notes": "Pointers set; run 'Carol \u2014 Extract Shopping (from chosen plan)' workflow to regenerate shopping files."
+  "latest_plan": "plans/twoperson-2wk-unique-20251015T022300Z.json",
+  "notes": "Pointers set by workflow"
 }

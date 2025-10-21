@@ -1,0 +1,78 @@
+
+:root{
+  --carol-accent:#D62828;
+  --carol-gold:#E1B12C;
+  --carol-deep:#2C2C2C;
+  --carol-text:#F7F3E9;
+  --card-bg: rgba(0,0,0,.55);
+}
+
+html,body{
+  margin:0; padding:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; 
+  background:#111; color:var(--carol-text);
+}
+
+.header-hero{
+  background-image:url('/asset/textures/wallpapers/carol-pagoda.jpg');
+  background-size:cover; background-position:center;
+  min-height:42vh; position:relative;
+  display:flex; align-items:flex-end; justify-content:flex-start;
+  box-shadow: inset 0 0 0 9999px rgba(0,0,0,.25);
+}
+.header-hero .title{
+  margin:2rem; padding:.6rem 1rem; background:var(--card-bg); backdrop-filter:saturate(120%) blur(4px);
+  border:1px solid rgba(225,177,44,.5); border-radius:10px;
+  font-weight:700; letter-spacing:.02em;
+}
+.header-hero small{ display:block; opacity:.9; font-weight:500; }
+
+.wrapper{ max-width:1100px; margin:0 auto; padding:1rem; }
+
+.card{
+  background:var(--card-bg); border:1px solid rgba(225,177,44,.4); border-radius:12px;
+  padding:1rem; margin:1rem 0; box-shadow:0 8px 30px rgba(0,0,0,.20);
+}
+.card h2{
+  margin:.2rem 0 .6rem 0; font-size:1.2rem; color:#FFEAA7;
+  letter-spacing:.02em;
+}
+
+.menu-banner{
+  background-image:url('/asset/textures/wallpapers/carol-menu-bg.jpg');
+  background-size:cover; background-position:center;
+  border-radius:14px; padding:1rem; outline:1px solid rgba(225,177,44,.35);
+}
+
+.grid{
+  display:grid; gap:.8rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+.tag{
+  display:inline-block; font-size:.82rem; padding:.1rem .5rem; border:1px solid rgba(225,177,44,.4);
+  border-radius:999px; color:#FAD390; margin-right:.3rem; margin-bottom:.3rem; background:rgba(0,0,0,.35);
+}
+
+.meal{ border-left:3px solid var(--carol-gold); }
+.meal h3{ margin:.1rem 0 .4rem 0; color:#FFD166; font-size:1.05rem; }
+.meal ul{ margin:.3rem 0 0 1rem; padding:0; }
+.meal li{ margin:.2rem 0; }
+
+.footer-note{
+  text-align:center; opacity:.8; font-size:.9rem; margin:2rem 0;
+}
+
+.kicker{
+  background-image:url('/asset/textures/wallpapers/carol-interior.jpg');
+  background-size:cover; background-position:center 35%;
+  min-height:22vh; border-radius:14px; margin-top:1rem;
+  outline:1px solid rgba(225,177,44,.35);
+  box-shadow: inset 0 0 0 9999px rgba(0,0,0,.25);
+}
+
+/* Buttons */
+button, .btn{
+  appearance:none; border:1px solid rgba(225,177,44,.6);
+  background:#3c2a1a; color:#ffe8b6; border-radius:10px; padding:.55rem .9rem; font-weight:600;
+}
+button:hover,.btn:hover{ filter:brightness(1.05); cursor:pointer; }
+.small{ font-size:.9rem; padding:.4rem .7rem; }

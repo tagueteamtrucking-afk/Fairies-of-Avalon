@@ -1,178 +1,123 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Carol • 14‑Day Menu</title>
-<style>
-  :root{
-    --bg:url('/asset/textures/ui/carol-menu-bg.jpg');
-    --card-bg:rgba(0,0,0,.55);
-    --accent:#E1B12C;
-    --txt:#fff;
-    --muted:#e8d8a6;
-  }
-  html,body{margin:0;height:100%;color:var(--txt);font:16px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial}
-  body{
-    background-image:var(--bg);
-    background-size:cover;
-    background-attachment:fixed;
-    background-position:center;
-    backdrop-filter:saturate(1.1);
-  }
-  header{
-    background:linear-gradient(180deg, rgba(0,0,0,.75), rgba(0,0,0,.35));
-    padding:16px 20px;
-    display:flex;gap:16px;align-items:center;position:sticky;top:0;backdrop-filter:blur(4px);
-    border-bottom:1px solid rgba(255,255,255,.15);
-  }
-  header img{height:56px;width:auto;border-radius:6px;box-shadow:0 4px 18px rgba(0,0,0,.5)}
-  h1{margin:0;font-size:20px;letter-spacing:.5px}
-  .hint{font-size:12px;color:var(--muted)}
-  main{padding:16px;display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));}
-  .day{background:var(--card-bg);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 14px}
-  .day h3{margin:0 0 8px 0;font-size:16px;color:var(--accent)}
-  .meal{margin:6px 0}
-  .meal b{color:var(--muted)}
-  .msg{margin:12px 16px;background:rgba(0,0,0,.6);border-left:3px solid var(--accent);padding:10px 12px;border-radius:10px}
-  a.btn{display:inline-block;margin:10px 0 0 0;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.25);text-decoration:none;color:#fff}
-  .topnav{margin-left:auto;display:flex;gap:8px}
-  .topnav a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:6px 10px;border-radius:8px;background:rgba(0,0,0,.25)}
-</style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Carol — 14‑Day Menu</title>
+<link rel="stylesheet" href="/pages/apps/carol/carol.css"/>
 </head>
 <body>
-<header>
-  <img src="/asset/textures/rooms/carol-restaurant.jpg" alt="Carol Bistro">
-  <div>
-    <h1>Carol • 14‑Day Menu</h1>
-    <div class="hint" id="srcHint">Loading plan…</div>
-  </div>
-  <nav class="topnav">
-    <a href="/pages/rooms/carol.html">Room</a>
-    <a href="/pages/apps/carol/shopping.html">Shopping</a>
-    <a href="/pages/apps/_city/index.html">City</a>
-  </nav>
-</header>
-<div class="msg" id="msg"></div>
-<main id="grid"></main>
+  <header class="header-hero">
+    <div class="title">
+      <div style="font-size:1.35rem;">Carol — Bistro Menu</div>
+      <small>Current 14‑day plan · sunflower seed butter preference · soft‑food swaps when appropriate</small>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <section class="card menu-banner">
+      <div id="plan-meta" class="tag">Loading plan…</div>
+      <div class="tag">DASH‑leaning</div>
+      <div class="tag">Shellfish‑free</div>
+      <div class="tag">Light lactose</div>
+      <div class="tag">Limit cumin, onions & bell peppers</div>
+      <div class="tag">Prefer sunflower seed butter</div>
+    </section>
+
+    <section id="days" class="grid"></section>
+
+    <section class="card">
+      <a class="btn" href="/pages/apps/carol/shopping.html">View Shopping List</a>
+      <button id="reload" class="small">Reload</button>
+    </section>
+
+    <div class="kicker"></div>
+
+    <p class="footer-note">Nutrition guidance is educational only and not a substitute for medical advice.</p>
+  </main>
 
 <script>
-const ptrUrl = "/pages/apps/carol/index.json";
-const hardCandidates = [
-  "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "/pages/apps/carol/plans/mealplan-dash-14d-current.json",
-  "/pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json"
-];
-
-function subButter(s){
-  if(!s) return s;
-  const swaps = [
-    ["peanut butter","sunflower seed butter"],
-    ["almond butter","sunflower seed butter"],
-    ["cashew butter","sunflower seed butter"],
-    ["hazelnut spread","sunflower seed butter"]
-  ];
-  let out = s;
-  for (const [a,b] of swaps){
-    const rx = new RegExp(a,"ig");
-    out = out.replace(rx,b);
+async function loadPointer(){
+  const url = '/pages/apps/carol/index.json';
+  const res = await fetch(url, {cache:'no-store'});
+  if(!res.ok){ throw new Error('Pointer missing at '+url); }
+  return await res.json();
+}
+function get(obj, path, fallback){
+  return path.split('.').reduce((o,k)=> (o && (k in o)) ? o[k] : undefined, obj) ?? fallback;
+}
+function el(tag, attrs={}, children=[]){
+  const e = document.createElement(tag);
+  for(const [k,v] of Object.entries(attrs)){
+    if(k==='class') e.className=v;
+    else if(k==='html') e.innerHTML=v;
+    else e.setAttribute(k, v);
   }
-  return out;
+  for(const c of children){ if(c) e.appendChild(c); }
+  return e;
 }
 
-async function fetchJson(url){
+function renderDay(day, index){
+  const meals = [];
+  function addMeal(title, items){
+    if(!items || (Array.isArray(items) && items.length===0)) return;
+    const list = Array.isArray(items) ? items : [items];
+    meals.push(el('div', {class:'card meal'}, [
+      el('h3', {html:title}),
+      el('ul', {}, list.map(x=> el('li', {html:(typeof x === 'string')? x : (x.name || JSON.stringify(x)) })))
+    ]));
+  }
+  addMeal('Breakfast', get(day, 'breakfast') || get(day, 'meals.breakfast'));
+  addMeal('Snack #1', get(day, 'snack1') || get(day, 'meals.snacks.0'));
+  addMeal('Lunch', get(day, 'lunch') || get(day, 'meals.lunch'));
+  addMeal('Snack #2', get(day, 'snack2') || get(day, 'meals.snacks.1'));
+  addMeal('Dinner', get(day, 'dinner') || get(day, 'meals.dinner'));
+  addMeal('Snack #3', get(day, 'snack3') || get(day, 'meals.snacks.2'));
+
+  return el('section', {class:'day'}, [
+    el('div', {class:'card'}, [
+      el('h2', {html:`Day ${index+1}`})
+    ]]),
+    ...meals
+  ]);
+}
+
+async function boot(){
   try{
-    const r = await fetch(url, {cache:"no-store"});
-    if(!r.ok) return null;
-    return await r.json();
-  }catch(e){ return null; }
-}
+    const pointer = await loadPointer();
+    const planUrl = pointer.plan_latest;
+    if(!planUrl){ throw new Error('plan_latest missing in pointer.'); }
 
-function getDaysFromPlan(p){
-  if(!p) return [];
-  // common shapes
-  if (Array.isArray(p.days)) return p.days;
-  if (Array.isArray(p.plan)) return p.plan;
-  if (Array.isArray(p.menu)) return p.menu;
-  const keys = Object.keys(p);
-  const dayKeys = keys.filter(k=>/^day\d+/i.test(k) || /^Day\d+$/i.test(k));
-  if(dayKeys.length){
-    return dayKeys.sort((a,b)=>{
-      const na=parseInt(a.replace(/^\D+/,""))||0;
-      const nb=parseInt(b.replace(/^\D+/,""))||0;
-      return na-nb;
-    }).map(k=>p[k]);
-  }
-  // sometimes it's nested
-  if (p.data && Array.isArray(p.data.days)) return p.data.days;
-  return [];
-}
+    const planRes = await fetch(planUrl, {cache:'no-store'});
+    if(!planRes.ok){ throw new Error('Plan not found at ' + planUrl); }
+    const plan = await planRes.json();
 
-function prettyMealBlock(d){
-  // try common field names
-  const parts = [];
-  const tryFields = [
-    ["Breakfast", ["breakfast","am","morning","meal1"]],
-    ["Lunch", ["lunch","midday","noon","meal2"]],
-    ["Snack", ["snack","snacks"]],
-    ["Dinner", ["dinner","pm","evening","meal3"]]
-  ];
-  tryFields.forEach(([label, fields])=>{
-    for (const f of fields){
-      if (d && d[f]){
-        const val = Array.isArray(d[f]) ? d[f].join(", ") : String(d[f]);
-        parts.push(`<div class="meal"><b>${label}:</b> ${subButter(val)}</div>`);
-        return;
-      }
+    // Try to detect common shapes
+    let days = plan.days || plan.plan || plan.menu || plan.weeks || plan;
+    if(Array.isArray(days) && Array.isArray(days[0])){
+      // Flatten array-of-weeks into days
+      days = days.flat();
     }
-  });
-  // generic fallback
-  if (!parts.length && d){
-    const txt = subButter(
-      (Array.isArray(d)? d.join(", ") : typeof d==="object" ? Object.values(d).join(", ") : String(d))
-    );
-    parts.push(`<div class="meal">${txt}</div>`);
-  }
-  return parts.join("");
-}
-
-function dayTitle(idx, d){
-  const base = `Day ${idx+1}`;
-  if(d && (d.title || d.name)) return `${base} — ${d.title||d.name}`;
-  return base;
-}
-
-function renderDays(srcLabel, days){
-  document.getElementById("srcHint").textContent = `Source: ${srcLabel} · ${days.length} day entries`;
-  const grid = document.getElementById("grid");
-  if(!days.length){
-    document.getElementById("msg").innerHTML = `No day entries found in the selected plan.`;
-    return;
-  }
-  grid.innerHTML = days.map((d,i)=>{
-    return `<section class="day"><h3>${dayTitle(i,d)}</h3>${prettyMealBlock(d)}</section>`
-  }).join("");
-}
-
-(async function main(){
-  const msg = document.getElementById("msg");
-  const ptr = await fetchJson(ptrUrl);
-  const candidates = [];
-  if(ptr && ptr.plan_latest) candidates.push(ptr.plan_latest);
-  candidates.push(...hardCandidates);
-  let plan=null, used=null;
-  for (const c of candidates){
-    const j = await fetchJson(c);
-    if(j){
-      const days = getDaysFromPlan(j);
-      if(days && days.length){
-        plan = j; used = c; renderDays(c.split('/').pop(), days); msg.textContent=""; return;
-      }
+    if(Array.isArray(plan.weeks) && plan.weeks.length && Array.isArray(plan.weeks[0].days)){
+      days = plan.weeks.flatMap(w=> w.days);
     }
+    if(!Array.isArray(days)){
+      throw new Error('Could not find an array of days in this plan.');
+    }
+
+    document.getElementById('plan-meta').textContent = `Loaded ${days.length} days from ${planUrl.split('/').pop()}`;
+    const daysRoot = document.getElementById('days');
+    daysRoot.innerHTML = '';
+    days.forEach((d,i)=> daysRoot.appendChild(renderDay(d,i)));
+
+  }catch(err){
+    document.getElementById('plan-meta').textContent = 'Error: ' + err.message;
+    console.error(err);
   }
-  msg.innerHTML = `Couldn’t load a 14‑day plan from known locations. Please run the workflow “Carol — Pin Plan & Extract (14‑day)”.`;
-  document.getElementById("srcHint").textContent = "Plan not found";
-})();
+}
+
+document.getElementById('reload').addEventListener('click', boot);
+boot();
 </script>
 </body>
 </html>

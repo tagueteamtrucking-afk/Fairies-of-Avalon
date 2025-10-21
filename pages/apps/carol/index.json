@@ -1,12 +1,6 @@
 {
   "plan_latest": "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "shopping": {
-    "quantized": "/pages/apps/carol/plans/shopping-quantized.json",
-    "extracted": "/pages/apps/carol/plans/shopping-extracted.json"
-  },
-  "ui": {
-    "wallpaper": "/asset/textures/ui/carol-menu-bg.jpg",
-    "room_image": "/asset/textures/rooms/carol-restaurant.jpg",
-    "building_image": "/asset/textures/buildings/phoenix-pagoda.jpg"
-  }
+  "shopping_latest": "/pages/apps/carol/plans/shopping-quantized.json",
+  "preferences": "/pages/apps/carol/profile/preferences.json",
+  "package_map": "/pages/apps/carol/packages/us.json"
 }

@@ -1,155 +1,100 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Carol • Shopping List</title>
-<style>
-  :root{
-    --bg:url('/asset/textures/ui/carol-menu-bg.jpg');
-    --card-bg:rgba(0,0,0,.55);
-    --accent:#E1B12C;
-    --txt:#fff;
-    --muted:#e8d8a6;
-  }
-  html,body{margin:0;height:100%;color:var(--txt);font:16px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial}
-  body{background-image:var(--bg);background-size:cover;background-attachment:fixed;background-position:center}
-  header{background:linear-gradient(180deg, rgba(0,0,0,.75), rgba(0,0,0,.35));padding:16px 20px;display:flex;gap:16px;align-items:center;position:sticky;top:0;backdrop-filter:blur(4px);border-bottom:1px solid rgba(255,255,255,.15)}
-  header img{height:56px;width:auto;border-radius:6px;box-shadow:0 4px 18px rgba(0,0,0,.5)}
-  h1{margin:0;font-size:20px;letter-spacing:.5px}
-  .hint{font-size:12px;color:var(--muted)}
-  main{padding:16px;display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));}
-  .cat{background:var(--card-bg);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 14px}
-  .cat h3{margin:0 0 8px 0;font-size:16px;color:var(--accent)}
-  ul{margin:6px 0 0 16px;padding:0}
-  li{margin:2px 0}
-  .msg{margin:12px 16px;background:rgba(0,0,0,.6);border-left:3px solid var(--accent);padding:10px 12px;border-radius:10px}
-  .topnav{margin-left:auto;display:flex;gap:8px}
-  .topnav a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.3);padding:6px 10px;border-radius:8px;background:rgba(0,0,0,.25)}
-</style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Carol — Shopping List</title>
+<link rel="stylesheet" href="/pages/apps/carol/carol.css"/>
 </head>
 <body>
-<header>
-  <img src="/asset/textures/rooms/carol-restaurant.jpg" alt="Carol Bistro">
-  <div>
-    <h1>Carol • Shopping List</h1>
-    <div class="hint" id="srcHint">Loading…</div>
-  </div>
-  <nav class="topnav">
-    <a href="/pages/rooms/carol.html">Room</a>
-    <a href="/pages/apps/carol/menu.html">Menu</a>
-    <a href="/pages/apps/_city/index.html">City</a>
-  </nav>
-</header>
-<div class="msg" id="msg"></div>
-<main id="grid"></main>
+  <header class="header-hero">
+    <div class="title">
+      <div style="font-size:1.35rem;">Bistro — Shopping List</div>
+      <small>Two people · 14 days · US measures</small>
+    </div>
+  </header>
+
+  <main class="wrapper">
+    <section class="card">
+      <div id="status" class="tag">Loading…</div>
+      <a class="btn" href="/pages/apps/carol/menu.html">Back to Menu</a>
+    </section>
+
+    <section id="list" class="grid"></section>
+
+    <div class="kicker"></div>
+
+    <p class="footer-note">If no shopping file is present, run the “Carol — Refresh from Pointer” workflow.</p>
+  </main>
 
 <script>
-const ptrUrl = "/pages/apps/carol/index.json";
+async function loadPointer(){
+  const url = '/pages/apps/carol/index.json';
+  const res = await fetch(url, {cache:'no-store'});
+  if(!res.ok){ throw new Error('Pointer missing at '+url); }
+  return await res.json();
+}
+function el(tag, attrs={}, children=[]){
+  const e = document.createElement(tag);
+  for(const [k,v] of Object.entries(attrs)){
+    if(k==='class') e.className=v;
+    else if(k==='html') e.innerHTML=v;
+    else e.setAttribute(k, v);
+  }
+  for(const c of children){ if(c) e.appendChild(c); }
+  return e;
+}
 
-async function fetchJson(url){
+function renderGroup(title, items){
+  const rows = items.map(it => {
+    const name = it.name ?? it.item ?? it.ingredient ?? JSON.stringify(it);
+    const qty = it.qty ?? it.quantity ?? it.amount ?? it.count ?? '';
+    const unit = it.unit ?? '';
+    const note = it.note ?? it.notes ?? '';
+    return el('div', {class:'card'}, [
+      el('h3', {html: name}),
+      el('div', {html: [qty, unit].filter(Boolean).join(' ')}),
+      note ? el('div', {html: note, class:'tag'}) : null
+    ]);
+  });
+  return el('section', {}, [el('div', {class:'card'}, [el('h2', {html: title})]), ...rows]);
+}
+
+async function boot(){
   try{
-    const r = await fetch(url, {cache:"no-store"});
-    if(!r.ok) return null;
-    return await r.json();
-  }catch(e){ return null; }
-}
+    const pointer = await loadPointer();
+    const shopUrl = pointer.shopping_latest;
+    if(!shopUrl){ throw new Error('shopping_latest missing in pointer.'); }
 
-function groupList(items){
-  const cats = {
-    "Produce":[],"Bakery":[],"Dairy/Eggs":[],"Protein":[],"Grains/Pasta":[],"Canned/Boxed":[],"Frozen":[],"Oils/Condiments":[],"Spices/Seasoning":[],"Other":[]
-  };
-  const map = Object.keys(cats);
-  const kw = (s)=>s.toLowerCase();
-  for (const it of items){
-    const name = (it.name||it.item||it.ingredient||it.title||String(it)).trim();
-    const qty = it.qty||it.quantity||it.amount||it.count||it.size||"";
-    const line = qty ? `${name} — ${qty}` : name;
-    const k = kw(name);
-    let bucket = "Other";
-    if (/(apple|banana|berry|orange|lettuce|spinach|kale|tomato|onion|pepper|carrot|cucumber|garlic|lime|lemon)/i.test(name)) bucket="Produce";
-    else if (/(bread|tortilla|pita|bun|bagel)/i.test(name)) bucket="Bakery";
-    else if (/(milk|yogurt|cheese|egg)/i.test(name)) bucket="Dairy/Eggs";
-    else if (/(chicken|beef|turkey|pork|tofu|salmon|tuna|cod|shrimp|beans|lentil|egg)/i.test(name)) bucket="Protein";
-    else if (/(rice|pasta|noodle|oat|quinoa|bread|cereal)/i.test(name)) bucket="Grains/Pasta";
-    else if (/(can|canned|broth|stock|sauce|tomato paste|beans?)/i.test(name)) bucket="Canned/Boxed";
-    else if (/(frozen)/i.test(name)) bucket="Frozen";
-    else if (/(olive oil|oil|vinegar|butter|sunflower seed butter|peanut butter|almond butter|mustard|ketchup|mayo)/i.test(name)) bucket="Oils/Condiments";
-    else if (/(salt|pepper|cumin|paprika|spice|season)/i.test(name)) bucket="Spices/Seasoning";
-    cats[bucket].push(line);
-  }
-  return cats;
-}
+    const res = await fetch(shopUrl, {cache:'no-store'});
+    if(!res.ok){ throw new Error('Shopping file not found at ' + shopUrl); }
+    const data = await res.json();
 
-function renderCats(src, cats){
-  document.getElementById("srcHint").textContent = src;
-  const grid = document.getElementById("grid");
-  grid.innerHTML = Object.entries(cats).map(([k,arr])=>{
-    if(!arr.length) return "";
-    return `<section class="cat"><h3>${k}</h3><ul>${arr.map(x=>`<li>${x}</li>`).join("")}</ul></section>`
-  }).join("");
-}
-
-function flatten(list){
-  if (Array.isArray(list)) return list;
-  if (list && Array.isArray(list.items)) return list.items;
-  if (list && Array.isArray(list.shopping)) return list.shopping;
-  if (list && list.data && Array.isArray(list.data.items)) return list.data.items;
-  return [];
-}
-
-async function tryDerived(){
-  const planCandidates = [
-    "/pages/apps/carol/plans/twoperson-2wk-merged.json",
-    "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-    "/pages/apps/carol/plans/mealplan-dash-14d-current.json"
-  ];
-  for (const p of planCandidates){
-    const j = await fetchJson(p);
-    if(!j) continue;
-    // naive derivation
-    const items = [];
-    const days = j.days || j.plan || j.menu || [];
-    if (Array.isArray(days) && days.length){
-      days.forEach(d=>{
-        (["breakfast","lunch","dinner","snack"]).forEach(m=>{
-          if(d && d[m] && d[m].ingredients && Array.isArray(d[m].ingredients)){
-            d[m].ingredients.forEach(ii=>items.push(ii));
-          }
-        });
-      });
-      if (items.length){
-        const cats = groupList(items);
-        renderCats(`Derived from ${p.split('/').pop()}`, cats);
-        return true;
+    // Accept either a flat list or grouped object
+    let groups = data.groups || data;
+    const listRoot = document.getElementById('list');
+    listRoot.innerHTML = '';
+    if (Array.isArray(groups)){
+      listRoot.appendChild(renderGroup('All Items', groups));
+    } else if (typeof groups === 'object'){
+      for(const [group, items] of Object.entries(groups)){
+        const arr = Array.isArray(items) ? items : [items];
+        listRoot.appendChild(renderGroup(group, arr));
       }
+    } else {
+      throw new Error('Unrecognized shopping format.');
     }
+
+    document.getElementById('status').textContent = 'Loaded ' + (Array.isArray(groups) ? groups.length : Object.values(groups).reduce((a,b)=>a+(Array.isArray(b)?b.length:1),0)) + ' items';
+  }catch(err){
+    const s = document.getElementById('status');
+    s.textContent = 'Error: ' + err.message;
+    s.className = 'tag';
+    console.error(err);
   }
-  return false;
 }
 
-(async function main(){
-  const msg = document.getElementById("msg");
-  const ptr = await fetchJson(ptrUrl);
-  const quant = ptr?.shopping?.quantized || "/pages/apps/carol/plans/shopping-quantized.json";
-  const extr  = ptr?.shopping?.extracted || "/pages/apps/carol/plans/shopping-extracted.json";
-
-  let list = await fetchJson(quant);
-  if (list){
-    renderCats(`Quantized list (${quant.split('/').pop()})`, groupList(flatten(list)));
-    return;
-  }
-  list = await fetchJson(extr);
-  if (list){
-    renderCats(`Extracted list (${extr.split('/').pop()})`, groupList(flatten(list)));
-    return;
-  }
-  const ok = await tryDerived();
-  if (!ok){
-    msg.innerHTML = `No quantified or extracted list found, and the plan lacks ingredients to derive a list. Please run the workflow “Carol — Pin Plan & Extract (14‑day)”.`;
-    document.getElementById("srcHint").textContent = "Shopping list not found";
-  }
-})();
+boot();
 </script>
 </body>
 </html>

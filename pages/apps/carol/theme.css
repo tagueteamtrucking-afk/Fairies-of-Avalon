@@ -1,97 +1,77 @@
+/* Carol theme using pagoda imagery; absolute URLs for GitHub Pages */
 :root{
-  --accent:#eab308;
-  --bg-900: #0b0b0d;
-  --bg-800: #111114;
-  --text-100: #f7f7f8;
-  --text-300: #dddddf;
-  --muted: #a3a3ad;
-  --ring: #f59e0b;
-  --radius: 12px;
-  --hero:url("../../../asset/textures/wallpapers/carol-pagoda.jpg");
-  --interior:url("../../../asset/textures/wallpapers/carol-interior.jpg");
-  --menu-bg:url("../../../asset/textures/wallpapers/carol-menu-bg.jpg");
+  --carol-hero: url('/asset/textures/wallpapers/carol-pagoda.jpg');
+  --carol-interior: url('/asset/textures/wallpapers/carol-interior.jpg');
+  --carol-card-bg: url('/asset/textures/wallpapers/carol-menu-bg.jpg');
+  --ink: #1a1a1a;
+  --gold: #d7b66f;
+  --paper: #fffdf7;
+  --rose: #6b2d2a;
 }
-
 *{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  color:var(--text-100);
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.60), rgba(0,0,0,.75)),
-    var(--interior);
-  background-size:cover;
-  background-attachment:fixed;
+html,body{margin:0;padding:0;background:#0b0b0d;color:#eee;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Apple Color Emoji','Segoe UI Emoji'}
+
+.header-hero{
+  min-height: 36vh;
+  display:flex;align-items:flex-end;
+  background-image: linear-gradient(180deg, rgba(10,10,12,0.1), rgba(10,10,12,0.85)), var(--carol-hero);
+  background-size:cover;background-position:center;
+  padding:24px 16px 16px;
+  border-bottom: 2px solid rgba(215,182,111,.25);
+}
+.header-hero h1{margin:0;font-weight:800;letter-spacing:.5px}
+.header-hero .subtitle{opacity:.85;margin-top:4px}
+
+.page-wrap{
+  background-image: linear-gradient(180deg, rgba(10,10,12,0.6), rgba(10,10,12,0.96)), var(--carol-interior);
+  background-size:cover;background-position:center;
+  padding: 16px;
+  min-height:64vh;
 }
 
-.header{
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.70)),
-    var(--hero);
-  background-size:cover;
-  background-position:center;
-  padding: clamp(24px, 5vw, 48px);
-  border-bottom: 1px solid rgba(255,255,255,.08);
+.toolbar{
+  display:flex;gap:8px;flex-wrap:wrap;
+  justify-content:space-between;align-items:center;margin:10px 0 18px;
 }
-.header .title{
-  display:flex; align-items:center; gap:12px;
+.toolbar .pill{
+  background:#131316;border:1px solid rgba(215,182,111,.25);
+  padding:8px 12px;border-radius:999px;color:#f1f1f1;opacity:.95
 }
-.badge{display:inline-flex; align-items:center; gap:6px; padding:.25rem .5rem; border-radius:999px; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.15); color:var(--text-300); font-size:.85rem}
-.badge .dot{width:.5rem; height:.5rem; border-radius:999px; background:var(--accent);}
-
-h1{margin:0; font-size: clamp(1.4rem, 3.4vw, 2.2rem); font-weight:700}
-.sub{margin:.35rem 0 0 0; color:var(--text-300)}
-
-.navbar{
-  display:flex; gap:12px; margin-top:16px; flex-wrap:wrap
-}
-.navbar a{
-  color:var(--bg-900);
-  background:var(--accent);
-  padding:.6rem .9rem; border-radius:10px; text-decoration:none; font-weight:600;
-  border:1px solid #9a6b00;
-}
-.navbar a.secondary{
-  background:rgba(0,0,0,.5); color:var(--text-100);
-  border:1px solid rgba(255,255,255,.15);
-}
-
-main{padding: clamp(16px, 4vw, 28px)}
+a.pill{text-decoration:none}
+.pill.small{padding:6px 10px;font-size:14px}
 
 .grid{
-  display:grid; gap:16px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;
 }
-
 .card{
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.70)),
-    var(--menu-bg);
-  background-size:cover;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius: var(--radius);
-  overflow:hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  background: #0f0f11;
+  border:1px solid rgba(215,182,111,.25);
+  border-radius:12px;overflow:hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,.35);
 }
 .card .hd{
-  padding:.8rem 1rem;
-  background: rgba(0,0,0,.35);
-  border-bottom:1px solid rgba(255,255,255,.08);
-  display:flex; justify-content:space-between; align-items:center
+  background-image: linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.55)), var(--carol-card-bg);
+  background-size:cover;background-position:center;
+  padding:10px 12px;border-bottom:1px solid rgba(215,182,111,.2);
 }
-.card .hd h3{margin:0; font-size:1.05rem}
-.card .bd{padding:.9rem 1rem}
-.card .bd ul{margin:.35rem 0 0 1rem; color:var(--text-300)}
+.card .hd h3{margin:0;font-size:18px;letter-spacing:.3px}
+.card .bd{padding:12px}
+.card ul{margin:0;padding-left:18px}
+.note{font-size:12px;opacity:.85;margin-top:4px}
+.kicker{color:var(--gold);font-weight:600;letter-spacing:.3px;font-size:13px}
+.center{display:flex;justify-content:center;align-items:center}
+.badge{background:#19202a;border:1px solid #314055;border-radius:8px;padding:6px 10px;font-size:13px}
 
-.note{
-  margin:16px 0;
-  padding:12px 14px;
-  border-radius: 10px;
-  background: rgba(0,0,0,.45);
-  border:1px solid rgba(255,255,255,.12);
-  color: var(--text-300);
+hr.sep{border:0;border-top:1px solid rgba(215,182,111,.25);margin:14px 0}
+
+.print-btn{
+  all:unset;cursor:pointer;
+  background:#15161a;border:1px solid rgba(215,182,111,.35);
+  padding:8px 12px;border-radius:999px;
 }
+.print-btn:hover{filter:brightness(1.1)}
 
-footer{padding:20px; color:var(--muted); text-align:center}
-small.code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+.footer{
+  padding:20px 12px;color:#bbb;font-size:12px;
+  border-top:1px dashed rgba(215,182,111,.25);
+}

@@ -3,157 +3,168 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Carol — Phoenix Pagoda Menu</title>
-  <link rel="stylesheet" href="theme.css"/>
+  <title>Carol — 14‑Day Menu (Phoenix Pagoda)</title>
+  <link rel="stylesheet" href="/pages/apps/carol/theme.css"/>
+  <style>.hidden{display:none}</style>
 </head>
 <body>
-  <header class="header">
-    <div class="badge"><span class="dot"></span> Phoenix Pagoda — Carol’s Restaurant</div>
-    <div class="title">
-      <h1>Two‑Person 14‑Day Menu</h1>
+  <header class="header-hero">
+    <div>
+      <div class="kicker">Carol • The Phoenix Pagoda</div>
+      <h1>14‑Day Menu</h1>
+      <div class="subtitle">DASH‑style • shellfish‑free • lactose‑light • easy on onions/bell peppers • no cumin • prefer sunflower seed butter • soften hard foods</div>
     </div>
-    <p class="sub">Shellfish‑free • lactose‑light • easy on onions & bell peppers • avoid cumin • prefer sunflower seed butter • softer alternatives for hard foods</p>
-    <nav class="navbar">
-      <a href="menu.html">Menu</a>
-      <a class="secondary" href="shopping.html">Shopping List</a>
-    </nav>
   </header>
 
-  <main>
-    <div id="msg" class="note">Loading plan…</div>
-    <section id="grid" class="grid" hidden></section>
+  <main class="page-wrap">
+    <div class="toolbar">
+      <span class="pill">Viewing: <strong id="planName">Loading…</strong></span>
+      <a class="pill" href="/pages/apps/carol/shopping.html">🛒 Shopping List</a>
+    </div>
+
+    <section id="menuGrid" class="grid"></section>
+
+    <template id="dayCard">
+      <article class="card">
+        <div class="hd"><h3>Day N</h3></div>
+        <div class="bd"><ul class="items"></ul></div>
+      </article>
+    </template>
+
+    <hr class="sep"/>
+    <div class="note">
+      Substitutions: prefer <b>sunflower seed butter</b> for spreads. Very hard/crunchy foods → pick a soft alternative (mashed/steamed, yogurts, soups, butters).
+    </div>
   </main>
 
-  <footer>
-    <small class="code">If this page looks blank, update <b>pages/apps/carol/index.json</b> to point at your current plan and re-run the “Carol — Refresh Menu &amp; Shopping” workflow.</small>
+  <footer class="footer">
+    <div>Menu renders from <code>pages/apps/carol/index.json</code> → <code>plan_latest</code>. Update that pointer to switch plans.</div>
   </footer>
 
 <script>
-async function fetchJSON(path){
-  const res = await fetch(path, {cache:'no-store'});
-  if(!res.ok) throw new Error(`HTTP ${res.status} for ${path}`);
-  return await res.json();
-}
+(async function(){
+  const grid = document.getElementById('menuGrid');
+  const planName = document.getElementById('planName');
+  const tmpl = document.getElementById('dayCard');
 
-function pick(arr, keys){ // shallow pick
-  const out = {}; for(const k of keys){ if(arr[k] != null) out[k] = arr[k]; } return out;
-}
-
-function findDaysShape(plan){
-  // 1) explicit arrays that obviously represent days
-  if(Array.isArray(plan.days)) return plan.days;
-  if(Array.isArray(plan.menu)) return plan.menu;
-  if(Array.isArray(plan.plan)) return plan.plan;
-  if(Array.isArray(plan.schedule)) return plan.schedule;
-
-  // 2) weeks[0].days style
-  if(plan.weeks && Array.isArray(plan.weeks)){
-    for(const wk of plan.weeks){
-      if(wk && Array.isArray(wk.days)) return wk.days;
-    }
-  }
-
-  // 3) objects keyed day1..day14
-  const dayKeys = Object.keys(plan).filter(k=>/^day\d{1,2}$/i.test(k)).sort((a,b)=>{
-    const na = parseInt(a.replace(/\D/g,''),10), nb = parseInt(b.replace(/\D/g,''),10);
-    return na-nb;
-  });
-  if(dayKeys.length>=7){ return dayKeys.map(k=>plan[k]); }
-
-  // 4) last resort: find any array whose elements look like day objects
-  for(const [k,v] of Object.entries(plan)){
-    if(Array.isArray(v) && v.length && typeof v[0]==='object'){
-      return v;
-    }
-  }
-  return null;
-}
-
-function extractMeals(day){
-  // normalize typical meal channels
-  const buckets = [];
-  const labels = ["breakfast","lunch","dinner","snack","snacks","brunch","supper"];
-  // 1) if 'meals' array
-  if(Array.isArray(day.meals)){
-    for(const m of day.meals){
-      if(typeof m === 'string'){ buckets.push(m); }
-      else if(m && (m.name || m.title)){ buckets.push(m.name || m.title); }
-      else if(m && m.item){ buckets.push(m.item); }
-    }
-    if(buckets.length) return buckets;
-  }
-  // 2) named channels
-  for(const key of labels){
-    if(day[key]){
-      const v = day[key];
-      if(Array.isArray(v)){
-        for(const it of v){
-          if(typeof it==='string') buckets.push(it);
-          else if(it && (it.name||it.title)) buckets.push(it.name||it.title);
-          else if(it && it.item) buckets.push(it.item);
+  function flattenText(x){
+    if (x == null) return null;
+    if (typeof x === 'string') return x;
+    if (typeof x === 'number') return String(x);
+    if (Array.isArray(x)) return x.map(flattenText).filter(Boolean).join(' · ');
+    if (typeof x === 'object'){
+      // Join stringy fields that look like meal items
+      const keys = Object.keys(x);
+      const parts = [];
+      for(const k of keys){
+        const v = x[k];
+        const t = flattenText(v);
+        if(t && /breakfast|lunch|dinner|snack|meal|item|entree|side|soup|salad|bowl|wrap|stew|sandwich|plate|taco|rice|noodle|pasta|veg|fruit|yogurt|oats|egg/i.test(k)){
+          parts.push(t);
         }
-      }else if(typeof v==='string'){
-        buckets.push(v);
-      }else if(v && (v.name||v.title)){
-        buckets.push(v.name||v.title);
+      }
+      if (parts.length) return parts.join(' · ');
+      // fallback: stringify shallow
+      return null;
+    }
+    return null;
+  }
+
+  function extractDays(obj){
+    // return array of 14 day arrays (each day is list of items)
+    const days = [];
+
+    function harvestDay(dayObj){
+      const items = [];
+      if (Array.isArray(dayObj)){
+        for(const it of dayObj){
+          const t = flattenText(it);
+          if(t) items.push(t);
+        }
+      } else if (typeof dayObj === 'object' && dayObj){
+        // Prefer common meal buckets
+        const bucketKeys = ['breakfast','snack','snacks','lunch','dinner','sides'];
+        let pushed = false;
+        for(const bk of bucketKeys){
+          if (dayObj[bk] != null){
+            const t = flattenText(dayObj[bk]);
+            if (t){ items.push(t); pushed = true; }
+          }
+        }
+        if(!pushed){
+          // collect any stringy fields
+          for(const [k,v] of Object.entries(dayObj)){
+            const t = flattenText(v);
+            if (t){ items.push(t); }
+          }
+        }
+      }
+      return items.filter(Boolean);
+    }
+
+    function scan(node){
+      if(!node) return;
+      if (Array.isArray(node)){
+        // Heuristic: arrays of length 14 or between 7..16 that smell like days
+        if (node.length>=7 && node.length<=31){
+          const sample = node.slice(0,2).map(x => typeof x === 'object' || Array.isArray(x)).every(Boolean);
+          if (sample){
+            const cand = node.map(harvestDay);
+            if (cand.filter(x => x.length).length >= 7){ days.push(...cand); return; }
+          }
+        }
+        for(const v of node) scan(v);
+      } else if (typeof node === 'object'){
+        for(const [k,v] of Object.entries(node)){
+          if (/^day\d+$/i.test(k) || /^d\d+$/i.test(k)){ days.push(harvestDay(v)); }
+          else if (/days?|menu|plan|schedule|week/i.test(k)) scan(v);
+          else scan(v);
+        }
       }
     }
-  }
-  // 3) items[]
-  if(Array.isArray(day.items)){
-    for(const it of day.items){
-      if(typeof it==='string') buckets.push(it);
-      else if(it && (it.name||it.title)) buckets.push(it.name||it.title);
-    }
-  }
-  // 4) free-form: collect strings in values
-  if(!buckets.length){
-    for(const [k,v] of Object.entries(day)){
-      if(typeof v==='string' && v.length>2) buckets.push(v);
-    }
-  }
-  return buckets;
-}
 
-function titleForDay(i, raw){
-  // try to find date or explicit label
-  if(raw && (raw.title||raw.label||raw.day)) return (raw.title||raw.label||raw.day);
-  return `Day ${i+1}`;
-}
+    scan(obj);
+    // normalize to 14
+    if (days.length > 14) days.length = 14;
+    if (days.length < 14){
+      // Repeat last known days to reach 14 (display only; does not mutate source data)
+      while(days.length < 14){ days.push(days[days.length-1] || []); }
+    }
+    return days;
+  }
 
-async function main(){
-  const msg = document.getElementById('msg');
-  const grid = document.getElementById('grid');
   try{
-    const ptr = await fetchJSON('index.json');
-    let planPath = ptr.plan_latest || 'pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json';
-    try{
-      var plan = await fetchJSON('../../../' + planPath.replace(/^\/+/,''));
-    }catch(e){
-      // retry with root-relative for GitHub Pages quirks
-      plan = await fetchJSON('/' + planPath.replace(/^\/+/,''));
-    }
-    const days = findDaysShape(plan);
-    if(!days){ throw new Error("Could not locate a day-by-day array in the plan JSON."); }
-    grid.innerHTML = '';
-    days.forEach((day, idx)=>{
-      const meals = extractMeals(day);
-      const el = document.createElement('article');
-      el.className = 'card';
-      el.innerHTML = `
-        <div class="hd"><h3>${titleForDay(idx, day)}</h3><span>${meals.length||''}</span></div>
-        <div class="bd">
-          ${meals.length ? `<ul>${meals.map(m=>`<li>${m}</li>`).join('')}</ul>` : `<div class="note">No meals listed in this entry.</div>`}
-        </div>`;
-      grid.appendChild(el);
+    const ptr = await (await fetch('/pages/apps/carol/index.json', {cache:'no-store'})).json();
+    const planUrl = ptr.plan_latest || '/pages/apps/carol/plans/mealplan-dash-14d-current.json';
+    planName.textContent = planUrl.split('/').pop();
+
+    const res = await fetch(planUrl, {cache:'no-store'});
+    if(!res.ok){ throw new Error('Plan not found: ' + planUrl); }
+    const plan = await res.json();
+    const days = extractDays(plan);
+
+    days.forEach((items, i) => {
+      const node = tmpl.content.cloneNode(true);
+      node.querySelector('h3').textContent = 'Day ' + (i+1);
+      const ul = node.querySelector('.items');
+      if (items.length === 0){
+        const li = document.createElement('li');
+        li.textContent = 'No items found in plan for this day.';
+        ul.appendChild(li);
+      } else {
+        for(const t of items){
+          const li = document.createElement('li');
+          li.textContent = t;
+          ul.appendChild(li);
+        }
+      }
+      grid.appendChild(node);
     });
-    msg.remove();
-    grid.hidden = false;
+
   }catch(err){
-    msg.textContent = "Couldn’t load the plan: " + err.message + " — Check pointer at pages/apps/carol/index.json.";
+    grid.innerHTML = '<div class="card"><div class="bd"><div class="badge">Error</div><p>'+ (err && err.message ? err.message : String(err)) +'</p><p>Check <code>/pages/apps/carol/index.json</code> → <code>plan_latest</code> and that the file exists.</p></div></div>';
   }
-}
-main();
+})();
 </script>
 </body>
 </html>

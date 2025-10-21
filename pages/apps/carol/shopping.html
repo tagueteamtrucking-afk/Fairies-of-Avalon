@@ -3,142 +3,101 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Carol — Shopping List (Two‑Person)</title>
-  <link rel="stylesheet" href="theme.css"/>
-  <style>
-    .list{display:grid; gap:10px}
-    .cat{background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.12); border-radius:12px; overflow:hidden}
-    .cat h3{margin:0; padding:.7rem 1rem; background:rgba(0,0,0,.35); border-bottom:1px solid rgba(255,255,255,.08)}
-    .items{padding:.6rem .9rem}
-    .row{display:flex; align-items:center; gap:10px; padding:.35rem 0; border-bottom:1px dashed rgba(255,255,255,.08)}
-    .row:last-child{border-bottom:none}
-    .qty{margin-left:auto; color:var(--muted)}
-    .toolbar{display:flex; gap:10px; margin:12px 0; flex-wrap:wrap}
-    .toolbar button{padding:.55rem .8rem; border-radius:10px; border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.5); color:var(--text-100)}
-  </style>
+  <title>Carol — Shopping List</title>
+  <link rel="stylesheet" href="/pages/apps/carol/theme.css"/>
+  <style>.qty{opacity:.85} .group{margin:10px 0}</style>
 </head>
 <body>
-  <header class="header">
-    <div class="badge"><span class="dot"></span> Phoenix Pagoda — Carol’s Restaurant</div>
-    <div class="title"><h1>Shopping List (2 people)</h1></div>
-    <p class="sub">DASH‑ish, shellfish‑free, lactose‑light, easy on onions/bell peppers; prefer sunflower seed butter; softer alternatives for hard foods.</p>
-    <nav class="navbar">
-      <a class="secondary" href="menu.html">Menu</a>
-      <a href="shopping.html">Shopping</a>
-    </nav>
+  <header class="header-hero">
+    <div>
+      <div class="kicker">Carol • The Phoenix Pagoda</div>
+      <h1>Shopping List</h1>
+      <div class="subtitle">Quantized for two people • check items as you pack</div>
+    </div>
   </header>
 
-  <main>
-    <div id="msg" class="note">Loading shopping list…</div>
+  <main class="page-wrap">
     <div class="toolbar">
-      <button onclick="checkAll(true)">Check all</button>
-      <button onclick="checkAll(false)">Uncheck all</button>
-      <button onclick="window.print()">Print</button>
+      <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+      <a class="pill" href="/pages/apps/carol/menu.html">🍽️ Back to Menu</a>
     </div>
-    <section id="list" class="list" hidden></section>
+
+    <section id="list"></section>
+    <template id="groupTmpl">
+      <div class="card group">
+        <div class="hd"><h3>Group</h3></div>
+        <div class="bd"><div class="items"></div></div>
+      </div>
+    </template>
   </main>
 
-  <footer>
-    <small class="code">If nothing loads, run the workflow <b>Carol — Refresh Menu &amp; Shopping</b>. Pointer: <b>pages/apps/carol/index.json</b>.</small>
+  <footer class="footer">
+    <div>Rendered from <code>pages/apps/carol/index.json</code> → <code>shopping_latest</code>. If missing, run the "Carol — Refresh Menu & Shopping" workflow.</div>
   </footer>
 
 <script>
-async function fetchJSON(path){
-  const res = await fetch(path, {cache:'no-store'});
-  if(!res.ok) throw new Error(`HTTP ${res.status} for ${path}`);
-  return await res.json();
-}
+(async function(){
+  const list = document.getElementById('list');
+  const tmpl = document.getElementById('groupTmpl');
 
-function normalize(items){
-  // Accepts several shapes and returns { [category]: [ {name, qty, unit} ] }
-  const out = {};
-  const add = (cat, name, qty=null, unit=null)=>{
-    cat = cat || "General";
-    out[cat] ||= [];
-    out[cat].push({name, qty, unit});
-  };
+  try{
+    const ptr = await (await fetch('/pages/apps/carol/index.json', {cache:'no-store'})).json();
+    const url = ptr.shopping_latest || '/pages/apps/carol/plans/shopping-quantized.json';
 
-  if(Array.isArray(items)){
-    for(const it of items){
-      if(typeof it === 'string'){ add("General", it); continue; }
-      if(it){
-        add(it.category || "General", it.name || it.item || it.title || "(item)", it.qty || it.quantity || null, it.unit || null);
+    const res = await fetch(url, {cache:'no-store'});
+    if(!res.ok){ throw new Error('Shopping file not found: ' + url); }
+    const data = await res.json();
+
+    // normalize to { group: [ {name, qty, unit}, ...] }
+    function normalize(d){
+      const out = {};
+      function push(g, item){
+        if(!out[g]) out[g] = [];
+        out[g].push(item);
       }
-    }
-    return out;
-  }
-
-  if(items && typeof items === 'object'){
-    // keys as categories
-    for(const [cat,val] of Object.entries(items)){
-      if(Array.isArray(val)){
-        for(const it of val){
-          if(typeof it==='string'){ add(cat, it); }
-          else if(it){ add(cat, it.name||it.item||it.title||"(item)", it.qty||it.quantity||null, it.unit||null); }
+      if(Array.isArray(d)){
+        for(const it of d){
+          const group = it.group || it.category || 'General';
+          push(group, {name: it.name || it.item || it.title || 'Item', qty: it.qty || it.quantity || 1, unit: it.unit || ''});
         }
-      }else if(val && typeof val==='object'){
-        // object of name: qty
-        for(const [name,q] of Object.entries(val)){
-          if(q && typeof q==='object'){
-            add(cat, name, q.qty||q.quantity||null, q.unit||null);
-          }else{
-            add(cat, name, q, null);
+      } else if (typeof d === 'object'){
+        for(const [g, arr] of Object.entries(d)){
+          if(Array.isArray(arr)){
+            for(const it of arr){
+              push(g, {name: it.name || it.item || it.title || 'Item', qty: it.qty || it.quantity || 1, unit: it.unit || ''});
+            }
           }
         }
       }
+      return out;
     }
-    return out;
-  }
-  return {};
-}
 
-function renderList(map){
-  const list = document.getElementById('list');
-  list.innerHTML = '';
-  for(const [cat, arr] of Object.entries(map)){
-    const sec = document.createElement('section');
-    sec.className = 'cat';
-    const inner = arr.map((it,i)=>{
-      const id = `i_${cat.replace(/\s+/g,'_')}_${i}`;
-      const q = it.qty!=null ? String(it.qty) : "";
-      const u = it.unit ? String(it.unit) : "";
-      const qty = [q,u].filter(Boolean).join(" ");
-      return `<label class="row" for="${id}">
-        <input id="${id}" type="checkbox"/>
-        <span>${it.name}</span>
-        <span class="qty">${qty}</span>
-      </label>`;
-    }).join("");
-    sec.innerHTML = `<h3>${cat}</h3><div class="items">${inner}</div>`;
-    list.appendChild(sec);
-  }
-  document.getElementById('msg').remove();
-  list.hidden = false;
-}
-
-function checkAll(state){
-  document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked = state);
-}
-
-async function main(){
-  const msg = document.getElementById('msg');
-  try{
-    const ptr = await fetchJSON('index.json');
-    let shopPath = ptr.shopping_latest || 'pages/apps/carol/plans/shopping-quantized.json';
-    let obj;
-    try {
-      obj = await fetchJSON('../../../' + shopPath.replace(/^\/+/,''));
-    } catch(e){
-      obj = await fetchJSON('/' + shopPath.replace(/^\/+/,''));
+    const groups = normalize(data);
+    const gNames = Object.keys(groups);
+    if(gNames.length === 0){
+      list.innerHTML = '<div class="card"><div class="bd"><p>No items present. Re-run the extraction workflow.</p></div></div>';
+      return;
     }
-    // obj can be already grouped or a flat array
-    const map = normalize(obj.items || obj.list || obj || []);
-    renderList(map);
+
+    for(const g of gNames){
+      const node = tmpl.content.cloneNode(true);
+      node.querySelector('h3').textContent = g;
+      const wrap = node.querySelector('.items');
+
+      for(const it of groups[g]){
+        const id = 'chk-' + Math.random().toString(36).slice(2);
+        const row = document.createElement('label');
+        row.style.display = 'flex'; row.style.alignItems='center'; row.style.gap='8px'; row.style.padding='6px 0';
+        row.innerHTML = `<input id="${id}" type="checkbox"/> <span>${it.name}</span> <span class="qty">${it.qty||''} ${it.unit||''}</span>`;
+        wrap.appendChild(row);
+      }
+      list.appendChild(node);
+    }
+
   }catch(err){
-    msg.textContent = "Couldn’t load the shopping list: " + err.message + ". Run the workflow “Carol — Refresh Menu & Shopping” to generate it.";
+    list.innerHTML = '<div class="card"><div class="bd"><div class="badge">Error</div><p>'+ (err && err.message ? err.message : String(err)) +'</p></div></div>';
   }
-}
-main();
+})();
 </script>
 </body>
 </html>

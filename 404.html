@@ -16,6 +16,7 @@
 <script>
 (function() {
   var p = location.pathname || '';
+  // If the route forgot the /pages prefix, add it
   if (p.startsWith('/apps/') || p.startsWith('/rooms/')) {
     location.replace('/pages' + p + location.search + location.hash);
   } else {

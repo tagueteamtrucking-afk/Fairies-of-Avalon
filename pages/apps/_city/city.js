@@ -1,5 +1,6 @@
 document.addEventListener('keydown', (e)=>{
   if((e.key==='r' && (e.ctrlKey||e.metaKey)) || e.key==='F5'){
+    // Encourage a fresh reload on city to avoid old SW caches
     if(location.pathname.includes('/pages/apps/_city/')){
       sessionStorage.setItem('forceReload', '1');
     }

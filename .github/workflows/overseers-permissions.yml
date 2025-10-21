@@ -1,0 +1,38 @@
+name: Overseers — Permissions Processor
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'permissions/grants/**'
+permissions:
+  contents: write
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aggregate approvals
+        run: |
+          $out = 'pages/apps/overseers/permissions/state.json'
+          New-Item -ItemType Directory -Force -Path (Split-Path $out) | Out-Null
+          $files = Get-ChildItem -Recurse -File 'permissions/grants' -ErrorAction SilentlyContinue
+          $approvals = @()
+          foreach($f in $files){
+            try{
+              $json = Get-Content $f.FullName -Raw | ConvertFrom-Json -ErrorAction Stop
+              $approvals += $json
+            }catch{}
+          }
+          $state = [ordered]@{ last_updated = '2025-10-21T23:05:17Z'; approvals = $approvals }
+          $state | ConvertTo-Json -Depth 100 | Set-Content -Path $out
+      - name: Commit updates
+        run: |
+          git config user.name "Overseers Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add pages/apps/overseers/permissions/state.json || true
+          git commit -m "Permissions Processor: state update" || echo "Nothing to commit"
+          git push || echo "Nothing to push"

@@ -1,24 +1,31 @@
-name: Overseers — Repo Doctor (report-only)
+name: Overseers — Repo Doctor
 on:
   workflow_dispatch:
 permissions:
-  contents: read
-  actions: read
+  contents: write
 jobs:
-  report:
+  doctor:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Run Repo Doctor
+    defaults:
+      run:
         shell: pwsh
-        run: ./scripts/Repo-Doctor.ps1
-      - name: Upload reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: repo-doctor-report
-          path: |
-            memory-history/repo-usage-report.json
-            memory-history/repo-inventory.json
-            memory-history/repo-refs.json
-            pages/apps/overseers/repo-doctor-report.json
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove '?v=' cache-busters from HTML
+        run: |
+          $files = Get-ChildItem -Recurse -File -Include *.html,*.htm
+          foreach($f in $files){
+            $c = Get-Content $f.FullName -Raw
+            $c2 = $c -replace '\?v=\d+', ''
+            if($c2 -ne $c){ $c2 | Set-Content -Path $f.FullName }
+          }
+      - name: Ensure CNAME exists
+        run: |
+          if(-not (Test-Path 'CNAME')){ 'fairiesofavalon.com' | Set-Content -Path 'CNAME' }
+      - name: Commit fixes
+        run: |
+          git config user.name "Overseers Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A || true
+          git commit -m "Repo Doctor: normalize cache-busters + ensure CNAME" || echo "Nothing to commit"
+          git push || echo "Nothing to push"

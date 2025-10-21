@@ -1,42 +1,31 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Carol — 14‑Day Menu</title>
-  <link rel="preload" as="image" href="/asset/textures/wallpapers/carol-restaurant-interior.jpg">
-  <link rel="preload" as="image" href="/asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg">
-  <link rel="stylesheet" href="./carol.css?v=1" />
+  <link rel="stylesheet" href="./carol.css">
+  <script defer src="./menu.js"></script>
+  <style>
+    :root{ --hero:url('/asset/textures/wallpapers/carol-restaurant-interior.jpg'); }
+  </style>
 </head>
 <body>
-  <div class="backdrop"></div>
   <header class="header">
-    <div class="brand">
-      <div class="dot"></div>
-      <h1>Carol — Phoenix Pagoda</h1>
+    <div class="title">
+      <div class="small">Plan:</div>
+      <div id="planName" class="hilite">loading…</div>
     </div>
     <nav class="nav">
-      <a href="/pages/apps/_city/index.html">🏙️ City</a>
-      <a href="./shopping.html">🛒 Shopping</a>
-      <a class="active" href="./menu.html">🍽️ Menu</a>
+      <a class="btn" href="/pages/apps/_city/index.html">🏙️ City</a>
+      <a class="btn" href="./shopping.html">🛒 Shopping</a>
     </nav>
   </header>
 
-  <main class="content">
-    <div class="plan-banner">
-      <div class="title">14‑Day Plan</div>
-      <div id="planPath" class="note">Detecting plan…</div>
-      <div class="note">Rules: shellfish‑free, light lactose; easy on onions & bell peppers; avoid cumin; prefer sunflower seed butter; hard/very crunchy foods → butter/soft alternative.</div>
-    </div>
-
-    <section id="grid" class="grid" aria-live="polite"></section>
-
-    <p class="footer">
-      If something looks off, open <code>index.json</code> to change the active plan, or run the “Carol — Refresh Menu + Shopping” workflow.
-    </p>
-  </main>
-
-  <script src="./menu.js?v=1"></script>
+  <div id="notice" class="notice" style="display:none"></div>
+  <main id="grid" class="grid" aria-live="polite"></main>
+  <footer>
+    <div class="small">Preferences: sunflower seed butter preferred; hard/crunchy → softer/“butter” forms; shellfish‑free; lactose‑light; avoid cumin; easy on onions & bell peppers.</div>
+  </footer>
 </body>
 </html>

@@ -1,114 +1,53 @@
-
-/* Carol (Phoenix Pagoda) — visual polish */
-:root {
-  --bg: #0b0e14;
-  --paper: rgba(20, 20, 24, 0.75);
-  --ink: #f5f5f7;
-  --ink-dim: #d2d2d6;
-  --accent: #ff5533;
-  --gold: #d8b46a;
+:root{
+  --bg:#0c0f14;
+  --card:#141922;
+  --ink:#e8e8ea;
+  --muted:#a2a8b5;
+  --accent:#d4af37; /* gold */
+  --accent2:#b43b3b; /* deep red */
 }
 
-html, body {
-  margin: 0; padding: 0;
-  background: var(--bg) url('/asset/textures/wallpapers/carol-restaurant-interior.jpg') center / cover fixed no-repeat;
-  color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  min-height: 100%;
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+a{color:var(--accent)}
+.header{
+  display:flex;gap:.5rem;align-items:center;justify-content:space-between;
+  padding:1rem 1.25rem;border-bottom:1px solid #1f2632;
+  background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.0)),
+             center/cover no-repeat var(--hero, url('/asset/textures/wallpapers/carol-restaurant-interior.jpg'));
 }
+.header .title{font-weight:700;letter-spacing:.2px;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.header .nav{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{
+  background:var(--card);border:1px solid #283040;border-radius:.6rem;color:var(--ink);
+  padding:.55rem .8rem;display:inline-flex;gap:.5rem;align-items:center;text-decoration:none;
+  box-shadow:0 6px 20px rgba(0,0,0,.22);
+}
+.btn:hover{border-color:#3a475c}
+.grid{
+  display:grid;gap:1rem;padding:1rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+}
+.card{
+  background:var(--card);border:1px solid #283040;border-radius:.9rem;overflow:hidden;
+}
+.card .head{
+  background:center/cover no-repeat url('/asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg');
+  padding:.75rem 1rem; border-bottom:1px solid #283040; color:#1a1a1a;
+  text-shadow:0 1px 0 rgba(255,255,255,.4); font-weight:800; letter-spacing:.3px;
+}
+.card ul{list-style:none;margin:0;padding:0}
+.card li{padding:.6rem 1rem;border-top:1px solid #1b2330;color:var(--ink)}
+.badge{display:inline-block;font-size:.8rem;padding:.2rem .5rem;border:1px solid var(--accent);border-radius:.35rem;color:var(--accent);margin-left:.3rem}
+.kv{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.85rem;color:var(--muted)}
+footer{padding:1.25rem;color:var(--muted)}
+.notice{padding:.75rem 1rem;margin:1rem;border:1px dashed #3a475c;border-radius:.6rem;background:#0f141c;color:var(--muted)}
+.small{font-size:.9rem;color:var(--muted)}
+.hilite{color:var(--accent)}
 
-.backdrop::before {
-  content: "";
-  position: fixed; inset: 0;
-  background: radial-gradient(1200px 600px at 30% 10%, rgba(255,120,60,0.30), transparent 60%),
-              linear-gradient(to bottom, rgba(8,8,10,0.70), rgba(8,8,10,0.85) 40%, rgba(8,8,10,0.95));
-  pointer-events: none;
-  z-index: 0;
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{border-top:1px solid #1b2330;padding:.6rem .8rem;text-align:left}
+.table th{color:var(--muted);font-weight:600}
+.cat{color:var(--accent);font-weight:700}
+@media (max-width:520px){
+  .grid{grid-template-columns:1fr}
 }
-
-.header {
-  position: sticky; top: 0; z-index: 10;
-  backdrop-filter: blur(10px);
-  background: rgba(10, 10, 12, 0.6);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  display: flex; gap: 12px; align-items: center;
-  padding: 12px 16px;
-}
-
-.header .brand {
-  display:flex; gap:10px; align-items:center;
-}
-
-.brand .dot {
-  width:12px; height:12px; border-radius:50%;
-  background: var(--accent);
-  box-shadow: 0 0 12px 2px rgba(255,85,51,0.65);
-}
-
-.brand h1 {
-  font-size: 16px; margin: 0; letter-spacing: 0.3px; color: var(--ink);
-}
-
-.nav a {
-  color: var(--ink-dim);
-  text-decoration: none; font-size: 14px; padding: 8px 10px; border-radius: 8px;
-}
-.nav a.active, .nav a:hover { color: var(--ink); background: rgba(255,255,255,0.06); }
-
-.content {
-  position: relative; z-index: 1; padding: 20px 16px 40px;
-}
-
-.plan-banner {
-  background: url('/asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg') center / cover no-repeat;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px;
-  padding: 18px; margin: 10px 0 18px 0;
-  color: #3a1a08;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.45);
-}
-
-.plan-banner .title {
-  font-weight: 700; letter-spacing: 0.4px; font-size: 18px;
-}
-
-.grid {
-  display: grid; gap: 12px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.card {
-  background: var(--paper);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-  padding: 12px;
-  transition: transform .15s ease, border-color .15s ease, background .15s ease;
-}
-.card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255,255,255,0.14);
-  background: rgba(28, 28, 34, 0.75);
-}
-.card h3 { margin: 0 0 8px 0; font-size: 15px; }
-.card ul { margin: 0; padding-left: 18px; color: var(--ink-dim); }
-.card li { margin: 6px 0; }
-
-.note { font-size: 13px; color: var(--ink-dim); margin-top: 6px; }
-
-.badge {
-  display:inline-block; padding:2px 8px; border-radius: 12px;
-  background: rgba(216,180,106,0.12); color: var(--gold); font-size: 12px;
-  border: 1px solid rgba(216,180,106,0.35);
-}
-
-.footer {
-  margin-top: 24px; font-size: 12px; color: var(--ink-dim);
-}
-
-.linkbar { display:flex; gap:10px; flex-wrap:wrap; }
-.linkbar a {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
-  color: var(--ink); text-decoration: none; padding: 8px 10px; border-radius: 8px;
-}
-.linkbar a:hover { background: rgba(255,255,255,0.12); }

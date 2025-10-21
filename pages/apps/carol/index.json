@@ -1,8 +1,26 @@
 {
   "active_plan": "plans/twoperson-2wk-unique-20251015T022300Z.json",
-  "fallbacks": [
-    "plans/twoperson-2wk-merged.json",
-    "plans/mealplan-dash-14d-current.json",
-    "plans/mealplan-balanced-20251019T021457Z.json"
-  ]
+  "fallback_plan": "plans/twoperson-2wk-20251014T234049Z.json",
+  "shopping_files": [
+    "plans/shopping-quantized.json",
+    "plans/mealplan-dash-14d-current-shopping.json"
+  ],
+  "images": {
+    "exterior": "/asset/textures/wallpapers/carol-pagoda-exterior.jpg",
+    "interior": "/asset/textures/wallpapers/carol-restaurant-interior.jpg",
+    "menu_bg": "/asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg"
+  },
+  "diet": {
+    "swap_hard_foods_to_butters": true,
+    "prefer_sunflower_seed_butter": true,
+    "shellfish_free": true,
+    "lactose_light": true,
+    "avoid_spices": [
+      "cumin"
+    ],
+    "easy_on": [
+      "onions",
+      "bell peppers"
+    ]
+  }
 }

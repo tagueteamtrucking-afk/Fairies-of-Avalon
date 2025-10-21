@@ -1,134 +1,141 @@
-
 (async () => {
-  const $ = sel => document.querySelector(sel);
-  const grid = $('#grid');
-  const planPathEl = $('#planPath');
+  const base = location.pathname.replace(/\/[^/]*$/, '');
+  async function getJSON(path){
+    const res = await fetch(path, {cache:'no-store'});
+    if(!res.ok) throw new Error(`Fetch failed ${res.status}: ${path}`);
+    return res.json();
+  }
+  function pick(obj, paths){
+    for(const p of paths){
+      try{
+        const v = p.split('.').reduce((o,k)=>o?.[k], obj);
+        if(v !== undefined) return v;
+      }catch{}
+    }
+    return undefined;
+  }
+  function normalizeMealText(t){
+    if(!t) return t;
+    const s = String(t);
+    // Apply diet swaps (simple presentation swap only)
+    return s.replace(/peanut\s*butter/gi, 'sunflower seed butter');
+  }
+  function normalizeDay(dayLike){
+    if(!dayLike) return null;
+    // Try common shapes
+    let b = pick(dayLike, ['breakfast','meals.breakfast','meal.breakfast']);
+    let l = pick(dayLike, ['lunch','meals.lunch','meal.lunch']);
+    let d = pick(dayLike, ['dinner','meals.dinner','meal.dinner']);
+    let s = pick(dayLike, ['snacks','meals.snacks','meal.snacks','snack']);
+    const label = dayLike.day || dayLike.name || dayLike.title;
+    // flatten arrays/strings
+    const asArr = v => v==null ? [] : Array.isArray(v) ? v : [String(v)];
+    return {
+      label,
+      breakfast: asArr(b).map(normalizeMealText),
+      lunch: asArr(l).map(normalizeMealText),
+      dinner: asArr(d).map(normalizeMealText),
+      snacks: asArr(s).map(normalizeMealText),
+      raw: dayLike
+    };
+  }
+  function inferDays(json){
+    if(Array.isArray(json)){
+      // maybe array of days
+      const days = json.map(normalizeDay).filter(Boolean);
+      if(days.length) return days;
+    }
+    if(json && typeof json === 'object'){
+      if(Array.isArray(json.days)) {
+        const days = json.days.map(normalizeDay).filter(Boolean);
+        if(days.length) return days;
+      }
+      if(json.plan && Array.isArray(json.plan.days)){
+        const days = json.plan.days.map(normalizeDay).filter(Boolean);
+        if(days.length) return days;
+      }
+      // object with Day 1..Day 14 keys
+      const dayKeys = Object.keys(json).filter(k => /^day\s*\d+/i.test(k));
+      if(dayKeys.length){
+        const days = dayKeys.sort((a,b)=>{
+          const ai = parseInt(a.replace(/\D/g,''))||0;
+          const bi = parseInt(b.replace(/\D/g,''))||0;
+          return ai-bi;
+        }).map(k => normalizeDay(json[k]));
+        if(days.length) return days;
+      }
+    }
+    return [];
+  }
 
-  const pointerUrl = './index.json?v=' + Date.now();
+  const grid = document.getElementById('grid');
+  const planNameEl = document.getElementById('planName');
+  const noticeEl = document.getElementById('notice');
+
   let pointer;
-  try {
-    const r = await fetch(pointerUrl, {cache: 'no-store'});
-    if (r.ok) pointer = await r.json();
-  } catch (e) {}
-
-  const candidates = [];
-  if (pointer?.active_plan) candidates.push(pointer.active_plan);
-  if (Array.isArray(pointer?.fallbacks)) candidates.push(...pointer.fallbacks);
-  // Extra fallbacks from historical files
-  candidates.push(
-    'plans/twoperson-2wk-unique-20251015T022300Z.json',
-    'plans/mealplan-dash-14d-current.json',
-    'plans/mealplan-balanced-20251019T021457Z.json'
-  );
-
-  let plan = null, planUrl = null;
-  for (const p of candidates) {
-    try {
-      const r = await fetch(p + '?v=' + Date.now(), {cache:'no-store'});
-      if (r.ok) { plan = await r.json(); planUrl = p; break; }
-    } catch(e) {}
-  }
-
-  if (!plan) {
-    planPathEl.textContent = 'No plan JSON found. Expected one of: ' + candidates.join(', ');
-    grid.innerHTML = `<div class="card"><h3>Missing plan</h3>
-    <p>Upload your 14‑day plan JSON to <code>pages/apps/carol/plans/</code> and refresh.</p></div>`;
-    return;
-  }
-  planPathEl.textContent = 'Plan: ' + planUrl;
-
-  // Normalize any structure into an array of 14 "days"
-  function asArray(x) { return Array.isArray(x) ? x : (x ? [x] : []); }
-
-  function detectDays(obj) {
-    if (Array.isArray(obj)) return obj;
-
-    if (obj.days && Array.isArray(obj.days)) return obj.days;
-
-    if (obj.plan?.days && Array.isArray(obj.plan.days)) return obj.plan.days;
-    if (obj.menu?.days && Array.isArray(obj.menu.days)) return obj.menu.days;
-
-    // Keys like "Day 1", "day1", etc.
-    const dayKeys = Object.keys(obj).filter(k => /^day\s*\d+/i.test(k) || /^d\s*\d+$/i.test(k));
-    if (dayKeys.length) {
-      dayKeys.sort((a,b) => {
-        const na = parseInt(a.match(/\d+/)?.[0] ?? '0', 10);
-        const nb = parseInt(b.match(/\d+/)?.[0] ?? '0', 10);
-        return na - nb;
-      });
-      return dayKeys.map(k => obj[k]);
-    }
-    // Some files nest under weeks
-    if (obj.weeks && Array.isArray(obj.weeks)) {
-      return obj.weeks.flatMap(w => w.days || []);
-    }
-    return [];
-  }
-
-  function pickStringsFrom(val) {
-    if (!val) return [];
-    if (typeof val === 'string') return [val];
-    if (Array.isArray(val)) return val.flatMap(pickStringsFrom);
-    if (typeof val === 'object') {
-      // collect likely meal fields
-      const fields = ['breakfast','lunch','dinner','snack','snacks','supper','meal','meals','entree','sides','dessert'];
-      let out = [];
-      for (const key of fields) {
-        if (val[key]) out = out.concat(pickStringsFrom(val[key]));
-      }
-      // Any stringy-ish leaves
-      for (const [k,v] of Object.entries(val)) {
-        if (['title','name','recipe','item'].includes(k) && typeof v === 'string') out.push(v);
-      }
-      return out;
-    }
-    return [];
-  }
-
-  function makeMealsList(dayObj) {
-    let items = [];
-    if (!dayObj) return items;
-    if (Array.isArray(dayObj)) items = pickStringsFrom(dayObj);
-    else if (typeof dayObj === 'object') {
-      items = pickStringsFrom(dayObj);
-    } else if (typeof dayObj === 'string') items = [dayObj];
-    // swaps: peanut/almond butters -> sunflower seed butter annotation
-    items = items.map(x => {
-      if (!x) return x;
-      const lc = x.toLowerCase();
-      if (lc.includes('peanut butter') || lc.includes('almond butter')) {
-        return x.replace(/peanut butter|almond butter/ig, 'sunflower seed butter') + ' <span class="badge">swap</span>';
-      }
-      // "very hard" -> suggest soft alt (note only)
-      if (lc.includes('granola') || lc.includes('hard') || lc.includes('crunchy')) {
-        return x + ' <span class="badge">soft alt ok</span>';
-      }
-      return x;
-    });
-    // de-dupe and trim
-    const seen = new Set(); const ok = [];
-    for (const it of items) {
-      const key = (it||'').toString().toLowerCase().trim();
-      if (key && !seen.has(key)) { seen.add(key); ok.push(it); }
-    }
-    return ok.slice(0, 12); // keep it readable
-  }
-
-  const days = detectDays(plan);
-  if (!days.length) {
-    grid.innerHTML = `<div class="card"><h3>Couldn’t understand the plan file</h3>
-      <p>Showing raw JSON for review:</p>
-      <pre style="white-space: pre-wrap; font-size:12px; color:#ddd;">${JSON.stringify(plan, null, 2)}</pre></div>`;
+  try{
+    pointer = await getJSON('./index.json');
+  }catch(e){
+    noticeEl.style.display='block';
+    noticeEl.textContent = 'Pointer file missing (pages/apps/carol/index.json).';
     return;
   }
 
-  grid.innerHTML = "";
-  days.slice(0,14).forEach((day, i) => {
-    const meals = makeMealsList(day);
-    const li = meals.map(m => `<li>${m}</li>`).join('') || '<li><em>No items detected for this day.</em></li>';
-    const card = document.createElement('article');
+  const candidates = [pointer.active_plan, pointer.fallback_plan].filter(Boolean);
+  let plan, planPath, planJSON;
+  for(const rel of candidates){
+    if(!rel) continue;
+    const path = './' + rel.replace(/^\.?\/?/,''); // ensure relative path
+    try{
+      planJSON = await getJSON(path);
+      planPath = path;
+      plan = inferDays(planJSON);
+      if(plan.length) break;
+    }catch{ /* try next */ }
+  }
+  if(!planPath){
+    noticeEl.style.display='block';
+    noticeEl.textContent = 'No plan file could be loaded. Please ensure the pointer has a valid active_plan path.';
+    return;
+  }
+  planNameEl.textContent = planPath.replace(/^\.\//,'');
+
+  if(!plan.length){
+    // Show raw and explain
+    noticeEl.style.display='block';
+    noticeEl.innerHTML = 'Plan file loaded, but I could not infer meals. Showing raw JSON below for inspection.';
+    const pre = document.createElement('pre');
+    pre.className = 'kv';
+    pre.textContent = JSON.stringify(planJSON,null,2);
+    noticeEl.appendChild(pre);
+    return;
+  }
+
+  // Render cards for up to 14 days
+  plan.slice(0,14).forEach((day, idx) => {
+    const card = document.createElement('section');
     card.className = 'card';
-    card.innerHTML = `<h3>Day ${i+1}</h3><ul>${li}</ul>`;
+    const head = document.createElement('div');
+    head.className = 'head';
+    head.innerHTML = `Day ${idx+1} ${day.label? '<span class="badge">'+day.label+'</span>':''}`;
+    const ul = document.createElement('ul');
+    const add = (label, items) => {
+      if(!items || !items.length) return;
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${label}:</strong> ${items.map(x=>normalizeMealText(x)).join('; ')}`;
+      ul.appendChild(li);
+    };
+    add('Breakfast', day.breakfast);
+    add('Lunch', day.lunch);
+    add('Dinner', day.dinner);
+    add('Snacks', day.snacks);
+    if(!ul.childElementCount){
+      const li = document.createElement('li');
+      li.textContent = 'No meals found for this day.';
+      ul.appendChild(li);
+    }
+    card.appendChild(head);
+    card.appendChild(ul);
     grid.appendChild(card);
   });
 })();

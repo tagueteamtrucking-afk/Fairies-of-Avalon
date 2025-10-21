@@ -1,68 +1,82 @@
-
 (async () => {
-  const $ = s => document.querySelector(s);
-  const status = $('#status');
-  const container = $('#list');
-
-  const candidates = [
-    'plans/shopping-quantized.json',
-    'plans/shopping-quantized-unique.json',
-    'plans/mealplan-dash-14d-current-shopping.json'
-  ];
-
-  let data=null, src=null;
-  for (const p of candidates) {
-    try { const r = await fetch(p + '?v=' + Date.now(), {cache:'no-store'});
-      if (r.ok) { data = await r.json(); src = p; break; }
-    } catch(e){}
+  async function getJSON(path){
+    const res = await fetch(path, {cache:'no-store'});
+    if(!res.ok) throw new Error(`Fetch failed ${res.status}: ${path}`);
+    return res.json();
   }
+  const pointer = await getJSON('./index.json');
+  const candidates = (pointer.shopping_files||[]).map(p => './'+p.replace(/^\.?\/?/,''));
+  const shopSrc = document.getElementById('shopSrc');
+  const noticeEl = document.getElementById('notice');
+  const tbody = document.getElementById('tbody');
 
-  if (!data) {
-    status.textContent = 'No shopping JSON found. Expected one of: ' + candidates.join(', ');
-    container.innerHTML = '<article class="card"><h3>Missing list</h3><p>Run the workflow to generate it.</p></article>';
+  let data, src;
+  for(const c of candidates){
+    try{ data = await getJSON(c); src = c; break; }catch{}
+  }
+  if(!data){
+    noticeEl.style.display='block';
+    noticeEl.innerHTML = 'No shopping file found yet. Please run the workflow “Carol — Refresh Menu + Shopping” to generate <code>plans/shopping-quantized.json</code>.';
+    shopSrc.textContent = 'not found';
     return;
   }
+  shopSrc.textContent = src.replace(/^\.\//,'');
 
-  status.textContent = 'Source: ' + src;
-
-  function categoryize(items) {
-    // Accepts shapes: { items:[{name,qty,unit,category}] } OR {category:[{...}] } OR array
-    let map = {};
-    const add = (cat, it) => {
-      cat = cat || 'General';
-      (map[cat] ||= []).push(it);
-    };
-
-    if (Array.isArray(items)) {
-      items.forEach(it => add(it.category, it));
-    } else if (items?.items && Array.isArray(items.items)) {
-      items.items.forEach(it => add(it.category, it));
-    } else if (typeof items === 'object') {
-      for (const [cat, arr] of Object.entries(items)) {
-        if (Array.isArray(arr)) arr.forEach(it => add(cat, it));
-      }
-    }
-    return map;
+  // Accept various shapes:
+  //  - { categories:[{name:'Produce', items:[{name,qty,unit,notes}]}] }
+  //  - { items:[{category,name,qty,unit,note}] }
+  //  - flat object map: { "Produce":[{...}], "Dairy":[{...}] }
+  let rows = [];
+  if(Array.isArray(data.categories)){
+    data.categories.forEach(cat => {
+      (cat.items||[]).forEach(it => rows.push({
+        category: cat.name||'Other',
+        name: it.name||it.item||'',
+        qty: it.qty||it.quantity||'',
+        unit: it.unit||'',
+        notes: it.notes||it.note||''
+      }));
+    });
+  } else if(Array.isArray(data.items)){
+    data.items.forEach(it => rows.push({
+      category: it.category||'Other',
+      name: it.name||it.item||'',
+      qty: it.qty||it.quantity||'',
+      unit: it.unit||'',
+      notes: it.notes||it.note||''
+    }));
+  } else if (data && typeof data === 'object'){
+    Object.keys(data).forEach(cat => {
+      const list = Array.isArray(data[cat]) ? data[cat] : [];
+      list.forEach(it => rows.push({
+        category: cat,
+        name: it.name||it.item||'',
+        qty: it.qty||it.quantity||'',
+        unit: it.unit||'',
+        notes: it.notes||it.note||''
+      }));
+    });
   }
-
-  const categorized = categoryize(data) || categoryize(data.list) || categoryize(data.shopping);
-  const cats = Object.keys(categorized || {}).sort();
-  if (!cats.length) {
-    container.innerHTML = '<article class="card"><h3>Couldn’t read the list</h3><pre style="white-space: pre-wrap; font-size:12px; color:#ddd;">'+JSON.stringify(data,null,2)+'</pre></article>';
+  if(!rows.length){
+    noticeEl.style.display='block';
+    noticeEl.textContent = 'Shopping JSON loaded but I could not parse any rows.';
     return;
   }
-
-  container.innerHTML = '';
-  cats.forEach(cat => {
-    const items = categorized[cat];
-    const ul = items.map(it => {
-      const name = it.name || it.item || it.title || 'Item';
-      const qty = [it.qty ?? it.quantity, it.unit].filter(Boolean).join(' ');
-      return `<li>${name}${qty ? ' — <span class="note">'+qty+'</span>':''}</li>`
-    }).join('');
-    const card = document.createElement('article');
-    card.className = 'card';
-    card.innerHTML = `<h3>${cat}</h3><ul>${ul}</ul>`;
-    container.appendChild(card);
+  // Apply diet swap for display
+  rows.forEach(r => {
+    if(r.name) r.name = String(r.name).replace(/peanut\s*butter/gi, 'sunflower seed butter');
+    if(r.notes) r.notes = String(r.notes).replace(/peanut\s*butter/gi, 'sunflower seed butter');
   });
+  // render
+  const frag = document.createDocumentFragment();
+  rows.forEach(r => {
+    const tr = document.createElement('tr');
+    const td = (t)=>{const d=document.createElement('td'); d.textContent=t||''; return d;};
+    tr.appendChild(td(r.category));
+    tr.appendChild(td(r.name));
+    tr.appendChild(td([r.qty,r.unit].filter(Boolean).join(' ')));
+    tr.appendChild(td(r.notes||''));
+    frag.appendChild(tr);
+  });
+  tbody.appendChild(frag);
 })();

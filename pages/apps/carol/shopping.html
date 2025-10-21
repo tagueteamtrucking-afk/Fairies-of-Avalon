@@ -1,33 +1,34 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Carol — Shopping List</title>
-  <link rel="stylesheet" href="./carol.css?v=1" />
+  <link rel="stylesheet" href="./carol.css">
+  <script defer src="./shopping.js"></script>
+  <style>:root{ --hero:url('/asset/textures/wallpapers/carol-pagoda-exterior.jpg'); }</style>
 </head>
 <body>
-  <div class="backdrop"></div>
   <header class="header">
-    <div class="brand">
-      <div class="dot"></div>
-      <h1>Carol — Shopping</h1>
+    <div class="title">
+      <div class="small">Shopping source:</div>
+      <div id="shopSrc" class="hilite">loading…</div>
     </div>
     <nav class="nav">
-      <a href="/pages/apps/_city/index.html">🏙️ City</a>
-      <a class="active" href="./shopping.html">🛒 Shopping</a>
-      <a href="./menu.html">🍽️ Menu</a>
+      <a class="btn" href="/pages/apps/_city/index.html">🏙️ City</a>
+      <a class="btn" href="./menu.html">🍽️ Menu</a>
     </nav>
   </header>
-  <main class="content">
-    <div class="plan-banner">
-      <div class="title">Quantized shopping list (2 people, 14 days)</div>
-      <div id="status" class="note">Loading…</div>
-    </div>
-    <section id="list" class="grid"></section>
-    <p class="footer">If this is empty, run the <em>Carol — Refresh Menu + Shopping</em> workflow to generate <code>pages/apps/carol/plans/shopping-quantized.json</code>.</p>
+
+  <div id="notice" class="notice" style="display:none"></div>
+
+  <main style="padding:1rem">
+    <table class="table" id="table">
+      <thead><tr><th>Category</th><th>Item</th><th>Qty</th><th>Notes</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
   </main>
-  <script src="./shopping.js?v=1"></script>
+
+  <footer class="small">If items include peanut butter, display swaps to sunflower seed butter.</footer>
 </body>
 </html>

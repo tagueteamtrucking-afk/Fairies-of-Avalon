@@ -1,33 +1,39 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Avalon • City</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avalon — City</title>
+  <link rel="stylesheet" href="/pages/apps/carol/carol.css">
   <style>
-    :root{--bg:#0b0f14;--ink:#f5f7fb;--muted:#9fb3c8;--tile:rgba(17,22,28,.8);--brd:rgba(255,255,255,.08)}
-    *{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    header{padding:22px;border-bottom:1px solid var(--brd)}
-    h1{margin:0;font-size:clamp(24px,4vw,36px)}
-    .wrap{max-width:1100px;margin:0 auto;padding:20px}
-    .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
-    .card{display:block;text-decoration:none;color:var(--ink);background:var(--tile);border:1px solid var(--brd);border-radius:14px;padding:16px;min-height:120px}
-    .card b{display:block;margin-bottom:6px}
-    .sub{color:var(--muted);font-size:12px}
+    body{background:var(--bg);}
+    .hero{
+      background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.0)),
+                 center/cover no-repeat url('/asset/textures/wallpapers/carol-pagoda-exterior.jpg');
+      min-height:38vh;display:flex;align-items:flex-end;padding:1.25rem;border-bottom:1px solid #1f2632;
+    }
+    .hero h1{margin:0;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+    .grid{display:grid;gap:1rem;padding:1rem;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+    .tile{background:var(--card);border:1px solid #283040;border-radius:.9rem;padding:1rem;text-decoration:none;color:var(--ink)}
+    .tile h3{margin:.2rem 0}
+    .tile .small{color:var(--muted)}
   </style>
 </head>
 <body>
-  <header class="wrap"><h1>Avalon</h1><p class="sub">City → Building → Room → App</p></header>
-  <main class="wrap">
-    <div class="grid">
-      <a class="card" href="/pages/apps/carol/menu.html"><b>Carol — Phoenix Pagoda (Bistro)</b><span class="sub">Menu & Shopping</span></a>
-      <a class="card" href="/pages/apps/jem/evaluate.html"><b>Jem — Dojo</b><span class="sub">Daily plan & feedback</span></a>
-      <a class="card" href="/pages/apps/tracy/index.html"><b>Tracy — Stained‑Glass Cathedral</b><span class="sub">Artboards & skins</span></a>
-      <a class="card" href="/pages/apps/alexandria/voice-dm.html"><b>Alexandria — Gothic Library</b><span class="sub">Voice DM</span></a>
-      <a class="card" href="/pages/apps/stella/guided.html"><b>Stella — Observatory</b><span class="sub">Guided audio</span></a>
-      <a class="card" href="/pages/apps/nina/index.html"><b>Nina — Lab</b><span class="sub">VRM & assets</span></a>
-      <a class="card" href="/pages/rooms/overseers.html"><b>Overseers — Palace</b><span class="sub">Oversight</span></a>
-    </div>
-  </main>
+  <div class="hero">
+    <h1>Fairies of Avalon — City</h1>
+  </div>
+  <section class="grid">
+    <a class="tile" href="/pages/apps/carol/menu.html">
+      <div>🍽️ Carol — Bistro</div>
+      <h3>Menu (14‑day)</h3>
+      <div class="small">Phoenix Pagoda</div>
+    </a>
+    <a class="tile" href="/pages/apps/carol/shopping.html">
+      <div>🛒 Carol — Bistro</div>
+      <h3>Shopping List</h3>
+      <div class="small">For two people</div>
+    </a>
+  </section>
 </body>
 </html>

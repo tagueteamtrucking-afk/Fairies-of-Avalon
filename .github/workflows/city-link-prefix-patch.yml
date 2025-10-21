@@ -1,0 +1,27 @@
+name: City — Link Prefix Patch
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Normalize City/Room links (PowerShell)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $files = Get-ChildItem -Path "pages" -Recurse -Include *.html
+          foreach($f in $files){
+            $t = Get-Content $f.FullName -Raw
+            $t2 = $t -replace "href=['""]\/apps\/","href='/pages/apps/" -replace "href=['""]\/rooms\/","href='/pages/rooms/"
+            if($t2 -ne $t){ $t2 | Set-Content $f.FullName -NoNewline }
+          }
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "City: normalize /apps and /rooms to /pages/apps and /pages/rooms"
+          branch: city/link-prefix-patch
+          title: "City: link prefix patch"
+          body: "Normalize anchors so Plaza → Building → Room stops 404s on Pages."

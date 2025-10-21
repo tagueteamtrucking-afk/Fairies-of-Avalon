@@ -1,0 +1,40 @@
+name: Carol — Refresh Menu & Shopping
+on:
+  workflow_dispatch:
+    inputs:
+      plan_path:
+        description: "Optional plan JSON (blank = use pointer pages/apps/carol/index.json)"
+        required: false
+        default: ""
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Resolve plan & generate shopping (PowerShell)
+        shell: pwsh
+        env:
+          PLAN_PATH: ${{ inputs.plan_path }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          $plan = "${ env:PLAN_PATH }"
+          if (-not $plan) {
+            $ptrPath = "pages/apps/carol/index.json"
+            if (-not (Test-Path $ptrPath)) { throw "Pointer file not found: $ptrPath" }
+            $ptr = Get-Content $ptrPath -Raw | ConvertFrom-Json
+            $plan = $ptr.plan_latest
+            if (-not $plan) { throw "Pointer missing .plan_latest" }
+          }
+          if (-not (Test-Path $plan)) { throw "Plan not found: $plan" }
+          ./scripts/Carol-Extract-Shopping-v3.ps1 -PlanFile $plan
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Carol: refresh shopping from ${{ inputs.plan_path || 'pointer' }}"
+          branch: carol/refresh-20251021T033227Z
+          title: "Carol: refresh menu & shopping"
+          body: |
+            Auto-generated shopping list from plan (using pointer if blank).
+            - Plan: `${{ inputs.plan_path || 'pointer' }}`

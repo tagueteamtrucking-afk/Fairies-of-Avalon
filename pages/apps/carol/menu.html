@@ -6,152 +6,189 @@
   <title>Carol · 14‑Day Menu</title>
   <style>
     :root{
-      --gold:#d4af37;
-      --bg:#110a0a;
-      --ink:#f7f3e8;
-      --accent:#b22222;
-      --glass:rgba(0,0,0,.55);
+      --bg: #1a0e0e;
+      --card: rgba(255,255,255,0.86);
+      --ink: #2b1b1b;
+      --accent: #b62e2e;
+      --gold: #caa75a;
     }
-    html,body{height:100%;margin:0;background:var(--bg) url('/asset/textures/ui/carol-menu-bg.jpg') center/cover fixed no-repeat;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
-    .shade{position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.85));}
-    header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(0,0,0,.8),transparent);backdrop-filter:blur(6px);padding:12px 16px;border-bottom:1px solid rgba(212,175,55,.25)}
-    header h1{margin:0;font-size:20px;letter-spacing:.5px}
-    header .hint{font-size:12px;opacity:.85}
-    .wrap{max-width:1100px;margin:0 auto;padding:16px}
-    .plan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:10px}
-    .day{background:var(--glass);border:1px solid rgba(212,175,55,.35);border-radius:12px;overflow:hidden}
-    .day h3{margin:0;padding:10px 12px;background:linear-gradient(90deg,rgba(178,34,34,.6),rgba(178,34,34,.2));border-bottom:1px solid rgba(212,175,55,.25);font-size:16px}
-    .meal{padding:10px 12px;border-top:1px dashed rgba(212,175,55,.25);font-size:14px;line-height:1.35}
-    .pill{display:inline-block;padding:2px 8px;border:1px solid rgba(212,175,55,.35);border-radius:999px;margin-right:6px;margin-bottom:6px;font-size:12px}
-    .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .btn{appearance:none;border:1px solid rgba(212,175,55,.45);background:rgba(0,0,0,.35);color:var(--ink);padding:8px 10px;border-radius:10px;cursor:pointer}
-    .btn:hover{background:rgba(178,34,34,.25)}
-    .status{font-size:12px;opacity:.9;margin-left:auto}
-    footer{margin:40px 0 16px 0;font-size:12px;opacity:.8;text-align:center}
-    a{color:var(--gold)}
+    html,body{height:100%;margin:0;background:var(--bg) url('/asset/textures/ui/carol-menu-bg.jpg') center/cover fixed no-repeat;color:var(--ink);font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;}
+    header{
+      backdrop-filter:saturate(1.2) blur(2px);
+      background:linear-gradient(90deg, rgba(0,0,0,.55), rgba(0,0,0,.15));
+      color:#fff;padding:16px 20px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:10;
+    }
+    header img{width:44px;height:44px;object-fit:cover;border-radius:8px;border:2px solid var(--gold);box-shadow:0 0 0 2px rgba(0,0,0,.4)}
+    header h1{font-size:1.25rem;margin:0;line-height:1.1}
+    header small{opacity:.9;display:block;font-size:.8rem}
+    .wrap{max-width:1200px;margin:16px auto;padding:12px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+    .day{background:var(--card);border-radius:14px;box-shadow:0 6px 24px rgba(0,0,0,.15);padding:12px 12px 10px;border:1px solid rgba(0,0,0,.08)}
+    .day h3{margin:0 0 8px;font-size:1.05rem;color:#7a1111}
+    .meal{margin:8px 0 6px;}
+    .meal b{display:inline-block;min-width:92px;color:#7a1111}
+    .note{font-size:.8rem;color:#5a4c3a;margin-top:6px}
+    .tag{display:inline-block;background:#2c1a1a;color:#fff;border:1px solid rgba(255,255,255,.25);padding:3px 8px;border-radius:999px;font-size:.72rem;margin-left:auto}
+    .bar{display:flex;gap:8px;align-items:center;margin-left:auto}
+    .src{margin-left:auto;color:#ffd;opacity:.9;font-size:.8rem}
+    .legend{background:rgba(0,0,0,.5);color:#f3e7d2;border-left:3px solid var(--gold);padding:10px 12px;border-radius:12px;margin:12px 0}
+    a.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:10px 14px;border-radius:10px;border:1px solid rgba(0,0,0,.2)}
   </style>
 </head>
 <body>
-  <div class="shade" aria-hidden="true"></div>
-  <header class="wrap">
-    <h1>Carol · 14‑Day Menu</h1>
-    <div class="toolbar">
-      <button class="btn" id="openShopping">🛒 Shopping List</button>
-      <button class="btn" id="openPrefs">⚙️ Preferences</button>
-      <div class="status" id="status">loading…</div>
+  <header>
+    <img src="/asset/textures/rooms/carol-restaurant.jpg" alt="Carol Bistro"/>
+    <div>
+      <h1>Carol · 14‑Day Menu</h1>
+      <small id="srcLabel">Loading plan…</small>
     </div>
-    <div class="hint">Guardrails: DASH‑style · shellfish‑free · light‑lactose · easy on onions & bell peppers · avoid cumin · prefer sunflower seed butter · suggest soft alternatives to very hard foods.</div>
+    <div class="bar">
+      <span class="tag">DASH · lactose‑light · shellfish‑free · sunflower‑butter</span>
+    </div>
   </header>
-
-  <main class="wrap">
-    <div id="grid" class="plan-grid" role="list"></div>
-  </main>
-
-  <footer>Background motif © you · Phoenix Pagoda/Interior art provided by you. This page reads <code>pages/apps/carol/index.json</code> to find the active plan.</footer>
-
+  <div class="wrap">
+    <div class="legend">
+      If you prefer **sunflower seed butter**, Carol auto‑swaps any peanut/nut butters. Very hard/crunchy foods are replaced with softer alternatives (e.g., nut/seed butters) for jaw/teeth comfort.
+      <div style="margin-top:8px">
+        <a class="btn" href="/pages/apps/carol/shopping.html">Open Shopping List</a>
+        &nbsp; <a class="btn" href="/pages/rooms/carol.html">Back to Bistro</a>
+      </div>
+    </div>
+    <div id="grid" class="grid" role="list"></div>
+  </div>
 <script>
-const statusEl = document.getElementById('status');
-const grid = document.getElementById('grid');
-document.getElementById('openShopping').onclick = () => location.href = './shopping.html';
-document.getElementById('openPrefs').onclick = () => location.href = '../preferences.html';
-
-async function fetchJSON(url){
-  const r = await fetch(url, {cache:'no-store'});
-  if(!r.ok) throw new Error(r.status+': '+url);
-  return await r.json();
+const POINTER = "/pages/apps/carol/index.json";
+const DEFAULTS = {
+  plan: "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
+};
+function normalizeText(s){
+  if(!s) return "";
+  // Replace nut butters with sunflower seed butter
+  const repl = [
+    [/\bpeanut\s*butter\b/ig, "sunflower seed butter"],
+    [/\balmond\s*butter\b/ig, "sunflower seed butter"],
+    [/\bcashew\s*butter\b/ig, "sunflower seed butter"],
+    [/\bhard\s+toast\b/ig, "soft bread with butter"]
+  ];
+  let t = String(s);
+  repl.forEach(([re, to])=>{ t = t.replace(re, to); });
+  return t;
 }
-
-function titleize(s){
-  return (s||'').replace(/_/g,' ').replace(/\s+/g,' ').replace(/\b\w/g, m => m.toUpperCase()).trim();
-}
-
-function extractDays(plan){
-  // Try a bunch of common shapes
-  if(Array.isArray(plan.days)) return plan.days;
-  if(plan.plan && Array.isArray(plan.plan.days)) return plan.plan.days;
-  if(Array.isArray(plan.weeks)){
-    // flatten weeks -> days
-    const days=[];
-    plan.weeks.forEach(w=>{
-      if(Array.isArray(w.days)) w.days.forEach(d=>days.push(d));
-    });
-    if(days.length) return days;
-  }
-  if(Array.isArray(plan.menu)) return plan.menu;
-  // Fallback: if it's an object with numeric keys 1..14
-  const keys = Object.keys(plan).filter(k=>/^\d+$/.test(k)).sort((a,b)=>(+a)-(+b));
-  if(keys.length>=7){
-    return keys.map(k=>({day:+k, meals: plan[k]}));
-  }
-  return null;
-}
-
-function extractMeals(day){
-  const out=[];
-  const candidates = day.meals || day.entries || day.items || day.menu || [];
-  if(Array.isArray(candidates)){
-    for(const m of candidates){
-      const name = m.name || m.title || m.meal || m.label || (typeof m==='string'? m : null) || 'Item';
-      const type = m.type || m.slot || m.category || '';
-      out.push({name, type});
+function getMealsFromDay(day){
+  // Try common shapes
+  const out = [];
+  const slots = ["Breakfast","Snack","Snack1","Snack 1","Snack2","Snack 2","Lunch","Dinner","Supper","Dessert","Beverage"];
+  const lc = Object.fromEntries(Object.entries(day||{}).map(([k,v])=>[k.toLowerCase(),v]));
+  function pick(...names){
+    for(const n of names){
+      const v = day[n] ?? day[n.toLowerCase()] ?? lc[n.toLowerCase()];
+      if(v) return v;
     }
-  } else if(typeof candidates==='object'){
-    for(const [k,v] of Object.entries(candidates)){
-      if(Array.isArray(v)) v.forEach(x=> out.push({name: x.name || x.title || x, type:k}));
-      else out.push({name: v.name || v.title || v, type:k});
+    return null;
+  }
+  function add(label, val){
+    if(!val) return;
+    if(Array.isArray(val)) val = val.join(", ");
+    out.push([label, normalizeText(val)]);
+  }
+  add("Breakfast", pick("Breakfast","breakfast","am","morning"));
+  add("Snack", pick("Snack","Snack1","Snack 1","snack","snack1"));
+  add("Lunch", pick("Lunch","lunch","midday","noon"));
+  add("Snack", pick("Snack2","Snack 2","snack2","pm snack"));
+  add("Dinner", pick("Dinner","dinner","pm","evening","supper"));
+  // If generic 'meals' or 'items' exist
+  let extra = pick("meals","items");
+  if(Array.isArray(extra)){
+    extra.forEach((m,i)=> out.push([`Item ${i+1}`, normalizeText(m.name||m.title||m.text||m)]));
+  } else if (extra && typeof extra === "object"){
+    Object.keys(extra).forEach(k=> out.push([k, normalizeText(extra[k])]));
+  }
+  return out.filter(([_,v])=> String(v).trim().length>0);
+}
+function coerceDays(plan){
+  // Try several shapes to produce [{title, items:[ [label, text], ... ]}, ...]
+  if(!plan) return [];
+  const results = [];
+  const pushDay = (idx, dayObj)=>{
+    const meals = getMealsFromDay(dayObj);
+    if(meals.length===0 && typeof dayObj==="string"){
+      results.push({title: `Day ${idx+1}`, items:[["Notes", normalizeText(dayObj)]]});
+    } else {
+      results.push({title: dayObj.title || dayObj.day || `Day ${idx+1}`, items: meals});
+    }
+  };
+  if(Array.isArray(plan.days)){ // {days:[{breakfast:..},...]}
+    plan.days.forEach((d,i)=>pushDay(i,d));
+    return results;
+  }
+  if(Array.isArray(plan.plan)){ // {plan:[...]}
+    plan.plan.forEach((d,i)=>pushDay(i,d));
+    return results;
+  }
+  if(plan.menu && Array.isArray(plan.menu)){ // {menu:[{...}]}
+    plan.menu.forEach((d,i)=>pushDay(i,d));
+    return results;
+  }
+  // Flat keys: day1, day2, ...
+  const dayKeys = Object.keys(plan).filter(k=>/^day\d+$/i.test(k)).sort((a,b)=>{
+    const ai = parseInt(a.replace(/\D/g,''))||0;
+    const bi = parseInt(b.replace(/\D/g,''))||0;
+    return ai-bi;
+  });
+  if(dayKeys.length){
+    dayKeys.forEach((k,i)=> pushDay(i, plan[k]));
+    return results;
+  }
+  // Single-level array?
+  if(Array.isArray(plan)){
+    plan.forEach((d,i)=> pushDay(i,d));
+    return results;
+  }
+  // Heuristic: look for an object property holding an array of ~14 items
+  for(const [k,v] of Object.entries(plan)){
+    if(Array.isArray(v) && v.length>=7){
+      v.forEach((d,i)=> pushDay(i,d));
+      return results;
     }
   }
-  return out;
+  return results;
 }
-
-function renderDay(day, idx){
-  const el = document.createElement('div');
-  el.className = 'day';
-  const dnum = day.day || idx+1;
-  el.innerHTML = `<h3>Day ${dnum}</h3>`;
-  const meals = extractMeals(day);
-  if(meals.length){
-    meals.forEach(m => {
-      const div = document.createElement('div');
-      div.className = 'meal';
-      const type = m.type ? `<span class="pill">${titleize(m.type)}</span> ` : '';
-      div.innerHTML = `${type}${titleize(String(m.name))}`;
-      el.appendChild(div);
-    });
-  } else {
-    const div = document.createElement('div');
-    div.className='meal';
-    div.innerHTML = '<em>Could not auto-parse meals for this day.</em>';
-    el.appendChild(div);
-  }
-  grid.appendChild(el);
+function card(day){
+  const items = day.items.map(([label,text])=> `<div class="meal"><b>${label}:</b> <span>${normalizeText(text)}</span></div>`).join("");
+  return `<article class="day" role="listitem">
+      <h3>${day.title}</h3>
+      ${items || '<div class="note">No meal entries found for this day.</div>'}
+  </article>`;
 }
-
-(async function main(){
+async function loadPlan(){
+  const lbl = document.getElementById('srcLabel');
   try{
-    const idx = await fetchJSON('./index.json');
-    const candidates = [idx.plan_latest, ...(idx.plan_fallbacks||[])].filter(Boolean);
-    let plan, usedUrl=null, lastError=null;
+    const p = await fetch(POINTER).then(r=> r.ok ? r.json() : {plan_latest: DEFAULTS.plan, plan_fallbacks: []});
+    const candidates = [p.plan_latest, ...(p.plan_fallbacks||[]), DEFAULTS.plan];
+    let lastErr;
     for(const url of candidates){
       try{
-        plan = await fetchJSON(url);
-        usedUrl = url;
-        break;
-      }catch(e){ lastError = e; }
+        const res = await fetch(url, {cache:"no-store"});
+        if(!res.ok) throw new Error(res.status + " " + res.statusText);
+        const plan = await res.json();
+        const days = coerceDays(plan);
+        if(days.length){
+          lbl.textContent = `Source: ${url.split('/').slice(-1)[0]} · ${days.length} day entries`;
+          document.getElementById('grid').innerHTML = days.map(card).join("");
+          return;
+        } else {
+          lastErr = new Error("Parsed but found no day entries");
+        }
+      }catch(e){ lastErr = e;}
     }
-    if(!plan) throw lastError || new Error('No plan JSON found');
-    const days = extractDays(plan);
-    if(!days){ throw new Error('Plan format not recognized. Showing raw JSON at bottom.'); }
-    days.slice(0, 14).forEach((d,i)=> renderDay(d,i));
-    statusEl.textContent = 'Source: ' + usedUrl.replace(/^.*pages\//,'');
-  }catch(err){
-    statusEl.textContent = '⚠ ' + (err.message||String(err));
-    const pre = document.createElement('pre');
-    pre.textContent = 'Debug: ' + (err.stack||String(err));
-    pre.style.whiteSpace='pre-wrap'; pre.style.fontSize='12px';
-    document.body.appendChild(pre);
+    lbl.textContent = "Could not load a usable plan (see below).";
+    document.getElementById('grid').innerHTML = `<div class="day"><div class="note">I tried: <code>${candidates.join('</code>, <code>')}</code><br/>Last error: ${String(lastErr)}</div></div>`;
+  }catch(e){
+    lbl.textContent = "Failed to load plan pointer.";
+    document.getElementById('grid').innerHTML = `<div class="day"><div class="note">${String(e)}</div></div>`;
   }
-})(); 
+}
+loadPlan();
 </script>
 </body>
 </html>

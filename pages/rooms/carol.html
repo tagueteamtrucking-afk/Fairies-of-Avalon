@@ -3,40 +3,41 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Avalon · Carol’s Bistro</title>
+  <title>Carol · Bistro</title>
   <style>
-    :root{--gold:#d4af37;--ink:#f7f3e8}
-    html,body{height:100%;margin:0}
-    .bg{position:fixed;inset:0;background:#090606 url('/asset/textures/rooms/carol-restaurant.jpg') center/cover no-repeat;filter:saturate(1.02) brightness(.9)}
-    .veil{position:fixed;inset:0;background:radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.15), rgba(0,0,0,.85))}
-    .wrap{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:28px 16px;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    h1{margin:0 0 8px 0;font-size:28px}
-    .lead{opacity:.9}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:18px}
-    .card{background:rgba(0,0,0,.5);border:1px solid rgba(212,175,55,.35);border-radius:14px;overflow:hidden}
+    :root{--gold:#caa75a;--ink:#1b1512}
+    html,body{margin:0;height:100%;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;background:#0c0a09;color:#fff}
+    .hero{position:relative;height:46vh;min-height:280px;background:url('/asset/textures/rooms/carol-restaurant.jpg') center/cover no-repeat;display:flex;align-items:end}
+    .veil{position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.2));}
+    .title{position:relative;padding:18px 20px;font-size:1.4rem}
+    .wrap{max-width:980px;margin:0 auto;padding:16px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:-52px}
+    .card{background:#150f0c;border:1px solid rgba(255,255,255,.08);border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);overflow:hidden}
     .card img{width:100%;height:140px;object-fit:cover;display:block}
-    .card a{display:block;padding:12px 14px;color:var(--ink);text-decoration:none}
-    .card a:hover{background:rgba(210,32,32,.25)}
-    footer{margin:20px 0 12px 0;font-size:12px;opacity:.8}
+    .card a{display:block;padding:12px 14px;color:#fff;text-decoration:none}
+    .gold{color:var(--gold)}
+    .note{background:#110e0c;border-left:3px solid var(--gold);padding:10px 12px;border-radius:12px;margin:14px 0;color:#e9dcc3}
   </style>
 </head>
 <body>
-  <div class="bg"></div>
-  <div class="veil"></div>
-  <main class="wrap">
-    <h1>Carol’s Bistro</h1>
-    <div class="lead">Menu & shopping tuned to your preferences (DASH‑style, shellfish‑free, light dairy). We prefer sunflower seed butter and swap hard/crunchy items for softer alternatives.</div>
-    <div class="cards">
-      <div class="card">
-        <img src="/asset/textures/ui/carol-menu-bg.jpg" alt="Menu motif"/>
-        <a href="/pages/apps/carol/menu.html">🍽️ Open the 14‑Day Menu</a>
-      </div>
-      <div class="card">
-        <img src="/asset/textures/buildings/phoenix-pagoda.jpg" alt="Bistro exterior"/>
-        <a href="/pages/apps/carol/shopping.html">🛒 See the Shopping List</a>
-      </div>
+  <div class="hero">
+    <div class="veil"></div>
+    <div class="title"><span class="gold">Carol</span> · The Phoenix Pagoda Bistro</div>
+  </div>
+  <div class="wrap">
+    <section class="cards">
+      <article class="card">
+        <img src="/asset/textures/ui/carol-menu-bg.jpg" alt="Menu"/>
+        <a href="/pages/apps/carol/menu.html">Open 14‑Day Menu</a>
+      </article>
+      <article class="card">
+        <img src="/asset/textures/rooms/carol-restaurant.jpg" alt="Shopping"/>
+        <a href="/pages/apps/carol/shopping.html">Open Shopping List</a>
+      </article>
+    </section>
+    <div class="note">
+      Guardrails: DASH‑style, reduced sodium & added sugar; shellfish‑free; lactose‑light; easy on onions & bell peppers; avoid cumin. Prefer <b>sunflower seed butter</b>. Swap very hard foods to softer alternatives.
     </div>
-    <footer>Tip: if the shopping list looks empty, run the “Carol — Pin & Extract (14‑day)” workflow.</footer>
-  </main>
+  </div>
 </body>
 </html>

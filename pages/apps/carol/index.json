@@ -1,5 +1,5 @@
 {
-  "updated": "2025-10-21T01:14:01Z",
+  "updated": "2025-10-21T01:41:38.211646Z",
   "plan_latest": "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
   "plan_fallbacks": [
     "/pages/apps/carol/plans/mealplan-dash-14d-current.json",
@@ -7,5 +7,5 @@
     "/pages/apps/carol/plans/twoperson-2wk-20251009T203748Z.json"
   ],
   "shopping_latest": "/pages/apps/carol/plans/shopping-quantized.json",
-  "notes": "Carol pages will try plan_latest first, then fallbacks in order. Shopping will use shopping_latest if present; otherwise derive client-side from the plan."
+  "notes": "Menu tries plan_latest first; Shopping uses shopping_latest or derives from the plan if missing."
 }

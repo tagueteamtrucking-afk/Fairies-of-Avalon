@@ -3,136 +3,133 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Carol · Shopping List (2 people · 14 days)</title>
+  <title>Carol · Shopping List</title>
   <style>
-    :root{--gold:#d4af37;--ink:#f7f3e8;--glass:rgba(0,0,0,.5);--bg:#0d0a0a}
-    html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    header{position:sticky;top:0;z-index:5;background:linear-gradient(180deg,rgba(0,0,0,.85),transparent);backdrop-filter:blur(6px);padding:12px 16px;border-bottom:1px solid rgba(212,175,55,.25)}
-    h1{margin:0;font-size:20px}
-    .wrap{max-width:1100px;margin:0 auto;padding:16px}
-    .toolbar{display:flex;gap:8px;flex-wrap:wrap}
-    .btn{appearance:none;border:1px solid rgba(212,175,55,.45);background:rgba(0,0,0,.35);color:var(--ink);padding:8px 10px;border-radius:10px;cursor:pointer}
-    .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:12px}
-    section{background:var(--glass);border:1px solid rgba(212,175,55,.35);border-radius:12px;overflow:hidden}
-    section h3{margin:0;padding:8px 12px;background:linear-gradient(90deg,rgba(178,34,34,.6),rgba(178,34,34,.2));border-bottom:1px solid rgba(212,175,55,.25);font-size:16px}
-    ul{list-style:none;margin:0;padding:8px 12px}
-    li{padding:4px 0;border-bottom:1px dashed rgba(212,175,55,.25)}
-    li:last-child{border-bottom:0}
-    .note{font-size:12px;opacity:.9;margin-top:8px}
-    .status{font-size:12px;margin-left:auto}
-    a{color:var(--gold)}
+    :root{
+      --bg: #0e0a0a;
+      --paper: rgba(255,255,255,.92);
+      --gold: #caa75a;
+      --ink: #2b1b1b;
+    }
+    html,body{height:100%;margin:0;background:var(--bg) url('/asset/textures/ui/carol-menu-bg.jpg') center/cover fixed no-repeat;color:var(--ink);font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;}
+    header{background:linear-gradient(90deg, rgba(0,0,0,.55), rgba(0,0,0,.15));color:#fff;padding:16px 20px;display:flex;gap:14px;align-items:center;position:sticky;top:0;z-index:10}
+    header img{width:44px;height:44px;object-fit:cover;border-radius:8px;border:2px solid var(--gold);box-shadow:0 0 0 2px rgba(0,0,0,.4)}
+    header h1{margin:0;font-size:1.25rem}
+    header small{opacity:.9;display:block;font-size:.8rem}
+    .wrap{max-width:980px;margin:16px auto;padding:12px}
+    .group{background:var(--paper);padding:10px 12px;border-radius:12px;margin:10px 0;border:1px solid rgba(0,0,0,.08)}
+    .group h3{margin:0 0 8px;color:#7a1111;font-size:1rem}
+    .item{display:flex;justify-content:space-between;padding:6px 0;border-top:1px dashed rgba(0,0,0,.1)}
+    .item:first-child{border-top:0}
+    .hint{background:rgba(0,0,0,.55);color:#f6ecd7;border-left:3px solid var(--gold);padding:10px 12px;border-radius:12px;margin:12px 0}
+    kbd{background:#111;color:#fff;border-radius:6px;padding:2px 6px}
+    a.btn{display:inline-block;background:#b62e2e;color:#fff;text-decoration:none;padding:10px 14px;border-radius:10px;border:1px solid rgba(0,0,0,.2)}
   </style>
 </head>
 <body>
-  <header class="wrap">
-    <h1>Carol · Shopping List</h1>
-    <div class="toolbar">
-      <button class="btn" id="openMenu">🍽️ Menu</button>
-      <div class="status" id="status">loading…</div>
-    </div>
-  </header>
-  <main class="wrap">
-    <div class="note">Rules: prefer sunflower seed butter; suggest soft alternatives for very hard foods; shellfish‑free; light lactose; limit cumin, onions & bell peppers.</div>
-    <div id="lists" class="list"></div>
-  </main>
-  <script>
-  const statusEl = document.getElementById('status');
-  document.getElementById('openMenu').onclick = () => location.href = './menu.html';
-
-  async function fetchJSON(u){ const r = await fetch(u,{cache:'no-store'}); if(!r.ok) throw new Error(r.status+': '+u); return r.json(); }
-
-  function bucketize(items){
-    // Naive grouping by first word/category hints
-    const buckets = { Produce:[], Dairy:[], Protein:[], Grains:[], Pantry:[], Frozen:[], Spices:[], Other:[] };
-    const hint = (name)=>{
-      const n = name.toLowerCase();
-      if(/milk|yogurt|cheese|butter/.test(n)) return 'Dairy';
-      if(/chicken|turkey|beef|pork|tofu|egg|salmon|tuna|cod|sardine/.test(n)) return 'Protein';
-      if(/rice|pasta|bread|oat|tortilla|quinoa|grain/.test(n)) return 'Grains';
-      if(/carrot|apple|banana|berry|lettuce|spinach|pepper|onion|garlic|tomato|cuke|cucumber|broccoli|greens/.test(n)) return 'Produce';
-      if(/frozen|bag/.test(n)) return 'Frozen';
-      if(/cumin|salt|pepper|spice|herb|powder/.test(n)) return 'Spices';
-      if(/oil|sauce|vinegar|butter|peanut|seed|sunflower|honey|jam|mustard|ketchup|mayonnaise|mayo|broth|stock/.test(n)) return 'Pantry';
-      return 'Other';
-    };
-    for(const it of items){
-      const n = (it.name||'').trim();
-      const unit = it.unit ? ' '+it.unit : '';
-      const qty = (it.qty!=null && it.qty!=='') ? (it.qty+'') : '';
-      const line = (qty?qty+' ':'') + n + unit;
-      buckets[ hint(n) ].push(line);
-    }
-    return buckets;
+<header>
+  <img src="/asset/textures/rooms/carol-restaurant.jpg" alt="Carol Bistro"/>
+  <div>
+    <h1>Carol · Shopping List (2 people · 14 days)</h1>
+    <small id="srcLabel">Loading…</small>
+  </div>
+  <div style="margin-left:auto"><a class="btn" href="/pages/apps/carol/menu.html">Back to Menu</a></div>
+</header>
+<div class="wrap">
+  <div id="list"></div>
+  <div class="hint" id="hint" hidden>
+    I couldn't find a quantified shopping JSON. If your plan file doesn't include ingredients, run the workflow <b>Carol — Pin & Extract (14‑day)</b> to create <code>shopping-quantized.json</code>. Then reload this page.
+  </div>
+</div>
+<script>
+const POINTER="/pages/apps/carol/index.json";
+const DEFAULTS={shopping:"/pages/apps/carol/plans/shopping-quantized.json", plan:"/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"};
+const GROUPS=["Produce","Dairy","Protein","Grains","Pantry","Frozen","Spices","Other"];
+function groupify(items){
+  const map = new Map();
+  GROUPS.forEach(g=>map.set(g, []));
+  const put=(g,it)=>{(map.get(GROUPS.includes(g)?g:"Other")||map.get("Other")).push(it)};
+  for(const it of items){
+    const g=(it.group||it.category||"Other");
+    put(g, it);
   }
-
-  function renderBuckets(buckets){
-    const lists = document.getElementById('lists');
-    lists.innerHTML='';
-    Object.entries(buckets).forEach(([k,arr])=>{
-      if(!arr.length) return;
-      const sec = document.createElement('section');
-      sec.innerHTML = '<h3>'+k+'</h3>';
-      const ul = document.createElement('ul');
-      arr.sort().forEach(line=>{
-        const li=document.createElement('li'); li.textContent=line; ul.appendChild(li);
-      });
-      sec.appendChild(ul);
-      lists.appendChild(sec);
-    });
-  }
-
-  function collectFromPlan(plan){
-    // Traverse for ingredients arrays and collect (best-effort)
-    const items=[];
-    function walk(node){
-      if(!node) return;
-      if(Array.isArray(node)){
-        node.forEach(walk); return;
-      }
-      if(typeof node==='object'){
-        if(Array.isArray(node.ingredients)){
-          node.ingredients.forEach(ing=>{
-            const name = ing.item || ing.name || ing.ingredient || '';
-            const qty = ing.qty ?? ing.quantity ?? ing.amount ?? '';
-            const unit = ing.unit ?? ing.units ?? '';
-            if(name) items.push({name, qty, unit});
-          });
-        }
-        Object.values(node).forEach(walk);
-      }
-    }
-    walk(plan);
-    return items;
-  }
-
-  (async function main(){
-    try{
-      const idx = await fetchJSON('./index.json');
-      // First try a precomputed shopping JSON if present
-      try {
-        const shop = await fetchJSON(idx.shopping_latest);
-        const items = Array.isArray(shop.items)? shop.items : (shop.list || shop.data || []);
-        if(items && items.length){
-          renderBuckets(bucketize(items));
-          statusEl.textContent = 'Source: ' + idx.shopping_latest.replace(/^.*pages\//,'');
+  return map;
+}
+function render(items){
+  const map = groupify(items);
+  const out=[];
+  map.forEach((arr,grp)=>{
+    if(arr.length===0) return;
+    out.push(`<section class="group"><h3>${grp}</h3>`+
+      arr.map(i=>`<div class="item"><span>${i.name}${i.note?` <em>(${i.note})</em>`:""}</span><span>${i.qty||""} ${i.unit||""}</span></div>`).join("")+
+      `</section>`);
+  });
+  return out.join("");
+}
+async function load(){
+  const lbl=document.getElementById('srcLabel');
+  const list=document.getElementById('list');
+  const hint=document.getElementById('hint');
+  try{
+    const p = await fetch(POINTER).then(r=> r.ok ? r.json() : {shopping_latest: DEFAULTS.shopping, plan_latest: DEFAULTS.plan});
+    const urls=[p.shopping_latest, DEFAULTS.shopping];
+    // Try quantified first
+    for(const url of urls){
+      try{
+        const res = await fetch(url,{cache:"no-store"});
+        if(!res.ok) throw new Error(res.status);
+        const data = await res.json();
+        const items = Array.isArray(data.items)?data.items : (Array.isArray(data)?data: (data.shopping||[]));
+        if(items.length){
+          lbl.textContent = "Source: "+url.split('/').slice(-1)[0];
+          list.innerHTML = render(items);
           return;
         }
-      } catch(_) {}
-      // Otherwise derive client-side from plan
-      const candidates = [idx.plan_latest, ...(idx.plan_fallbacks||[])].filter(Boolean);
-      let plan=null, used=null;
-      for(const url of candidates){
-        try{ plan = await fetchJSON(url); used=url; break; }catch{}
-      }
-      if(!plan) throw new Error('No plan JSON available to derive shopping list.');
-      const items = collectFromPlan(plan);
-      if(!items.length) throw new Error('Plan JSON did not expose ingredient lists; run the workflow to extract.');
-      renderBuckets(bucketize(items));
-      statusEl.textContent = 'Derived from: ' + used.replace(/^.*pages\//,'');
-    }catch(err){
-      statusEl.textContent = '⚠ ' + (err.message||String(err));
+      }catch(e){}
     }
-  })();
-  </script>
+    // Derive from plan (best‑effort) — requires ingredients in the plan
+    try{
+      const res = await fetch(p.plan_latest || DEFAULTS.plan);
+      const plan = await res.json();
+      const ingredients = [];
+      const coll = Array.isArray(plan.days)? plan.days : (Array.isArray(plan.plan)? plan.plan : (plan.menu||[]));
+      if(Array.isArray(coll)){
+        for(const d of coll){
+          const poss = d.ingredients||d.Items||d.items||d.Meals||d.meals;
+          if(Array.isArray(poss)){
+            for(const it of poss){
+              if(typeof it==="string"){
+                ingredients.push({name: it, qty:"", unit:"", group:"Other"});
+              }else if(it && typeof it==="object"){
+                ingredients.push({
+                  name: it.name || it.item || it.ingredient || it.title || "Item",
+                  qty: it.qty || it.quantity || "",
+                  unit: it.unit || "",
+                  group: it.group || it.category || "Other",
+                  note: it.note || ""
+                });
+              }
+            }
+          }
+        }
+      }
+      if(ingredients.length){
+        lbl.textContent = "Derived from plan (ingredients in plan)";
+        list.innerHTML = render(ingredients);
+        return;
+      }
+    }catch(e){}
+    // If all fails
+    lbl.textContent = "No quantified list found.";
+    hint.hidden = false;
+    list.innerHTML = `<section class="group"><h3>No items</h3><div class="item"><span>Generate with workflow or ensure ingredients exist in plan JSON.</span><span></span></div></section>`;
+  }catch(e){
+    lbl.textContent = "Error loading.";
+    hint.hidden=false;
+    list.textContent = e;
+  }
+}
+load();
+</script>
 </body>
 </html>

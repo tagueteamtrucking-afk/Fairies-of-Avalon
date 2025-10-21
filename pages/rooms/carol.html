@@ -1,42 +1,42 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Carol — Bistro (Kitchen)</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Avalon · Carol’s Bistro</title>
   <style>
-    :root{--bg:#0a0c10;--fg:#e8ecf1;--tile:#11161d;--tileb:#1b2430;--acc:#6ec1ff;--mut:#a8b3c2}
-    html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-    header{padding:24px 16px;text-align:center;border-bottom:1px solid #202a36}
-    main{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));padding:16px}
-    a.card{display:grid;gap:6px;padding:16px;background:linear-gradient(180deg,var(--tile),var(--tileb));border:1px solid #202a36;border-radius:12px;color:var(--fg);text-decoration:none}
-    a.card:hover{border-color:var(--acc)}
-    .emoji{font-size:28px}
-    .mut{color:var(--mut);font-size:12px}
+    :root{--gold:#d4af37;--ink:#f7f3e8}
+    html,body{height:100%;margin:0}
+    .bg{position:fixed;inset:0;background:#090606 url('/asset/textures/rooms/carol-restaurant.jpg') center/cover no-repeat;filter:saturate(1.02) brightness(.9)}
+    .veil{position:fixed;inset:0;background:radial-gradient(60% 60% at 50% 40%, rgba(0,0,0,.15), rgba(0,0,0,.85))}
+    .wrap{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:28px 16px;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    h1{margin:0 0 8px 0;font-size:28px}
+    .lead{opacity:.9}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:18px}
+    .card{background:rgba(0,0,0,.5);border:1px solid rgba(212,175,55,.35);border-radius:14px;overflow:hidden}
+    .card img{width:100%;height:140px;object-fit:cover;display:block}
+    .card a{display:block;padding:12px 14px;color:var(--ink);text-decoration:none}
+    .card a:hover{background:rgba(210,32,32,.25)}
+    footer{margin:20px 0 12px 0;font-size:12px;opacity:.8}
   </style>
 </head>
 <body>
-  <header>
-    <h1>🍽️ Carol — Bistro (Kitchen)</h1>
-    <p class="mut">Menu, shopping, and preferences.</p>
-  </header>
-  <main>
-    <a class="card" href="/pages/apps/carol/menu.html">
-      <div class="emoji">📋</div>
-      <div><strong>Menu (14‑day)</strong><div class="mut">See the current plan</div></div>
-    </a>
-    <a class="card" href="/pages/apps/carol/shopping.html">
-      <div class="emoji">🛒</div>
-      <div><strong>Shopping</strong><div class="mut">Quantities for two people</div></div>
-    </a>
-    <a class="card" href="/pages/apps/carol/preferences.html">
-      <div class="emoji">⚙️</div>
-      <div><strong>Preferences</strong><div class="mut">Allergies and swaps</div></div>
-    </a>
-    <a class="card" href="/pages/apps/_city/index.html">
-      <div class="emoji">🏰</div>
-      <div><strong>Back to City</strong></div>
-    </a>
+  <div class="bg"></div>
+  <div class="veil"></div>
+  <main class="wrap">
+    <h1>Carol’s Bistro</h1>
+    <div class="lead">Menu & shopping tuned to your preferences (DASH‑style, shellfish‑free, light dairy). We prefer sunflower seed butter and swap hard/crunchy items for softer alternatives.</div>
+    <div class="cards">
+      <div class="card">
+        <img src="/asset/textures/ui/carol-menu-bg.jpg" alt="Menu motif"/>
+        <a href="/pages/apps/carol/menu.html">🍽️ Open the 14‑Day Menu</a>
+      </div>
+      <div class="card">
+        <img src="/asset/textures/buildings/phoenix-pagoda.jpg" alt="Bistro exterior"/>
+        <a href="/pages/apps/carol/shopping.html">🛒 See the Shopping List</a>
+      </div>
+    </div>
+    <footer>Tip: if the shopping list looks empty, run the “Carol — Pin & Extract (14‑day)” workflow.</footer>
   </main>
 </body>
 </html>

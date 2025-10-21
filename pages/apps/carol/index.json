@@ -1,9 +1,11 @@
 {
-  "shopping_extracted": "plans/shopping-extracted.json",
-  "shopping_quantized": "plans/shopping-quantized.json",
-  "preferences": {
-    "spreads_prefer": "sunflower seed butter",
-    "swap_hard_foods": "use butters/smooth alternatives"
-  },
-  "current_plan": "plans/twoperson-2wk-unique-20251015T022300Z.json"
+  "updated": "2025-10-21T01:14:01Z",
+  "plan_latest": "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+  "plan_fallbacks": [
+    "/pages/apps/carol/plans/mealplan-dash-14d-current.json",
+    "/pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json",
+    "/pages/apps/carol/plans/twoperson-2wk-20251009T203748Z.json"
+  ],
+  "shopping_latest": "/pages/apps/carol/plans/shopping-quantized.json",
+  "notes": "Carol pages will try plan_latest first, then fallbacks in order. Shopping will use shopping_latest if present; otherwise derive client-side from the plan."
 }

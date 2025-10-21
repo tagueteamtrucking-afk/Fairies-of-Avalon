@@ -1,36 +1,51 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Avalon City</title>
-<style>
-  :root{ --bg:#0b0f17; --ink:#e8ecf1; --stroke:rgba(255,255,255,0.12); --glass:rgba(255,255,255,0.04); --accent:#9cc1ff;}
-  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  header{padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--stroke);position:sticky;top:0;background:#0b0f17f2;backdrop-filter: blur(6px);}
-  a.btn{color:var(--ink);text-decoration:none;border:1px solid var(--stroke);padding:8px 10px;border-radius:10px;font-weight:600}
-  a.btn:hover{border-color:var(--accent)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;padding:16px}
-  .tile{border:1px solid var(--stroke);background:var(--glass);border-radius:12px;padding:16px}
-  .tile h3{margin:0 0 6px 0}
-  .muted{opacity:.85}
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Avalon · City</title>
+  <style>
+    :root{--ink:#f7f3e8;--glass:rgba(0,0,0,.5);--border:rgba(255,255,255,.15)}
+    html,body{height:100%;margin:0;background:#06070b;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    header{padding:14px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:linear-gradient(180deg,rgba(0,0,0,.8),transparent);backdrop-filter:blur(6px)}
+    h1{margin:0;font-size:22px}
+    .wrap{max-width:1150px;margin:0 auto;padding:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+    .tile{background:var(--glass);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .tile img{width:100%;height:130px;object-fit:cover;display:block}
+    .tile a{display:block;padding:10px 12px;color:var(--ink);text-decoration:none}
+    .tile a:hover{background:rgba(255,255,255,.06)}
+    .muted{opacity:.8;font-size:12px}
+  </style>
 </head>
 <body>
-<header>
-  <a class="btn" href="/">🏠 Home</a>
-  <a class="btn" href="/kill-sw.html">🧹 Fix Cache</a>
-</header>
-<section class="grid">
-  <div class="tile"><h3>📚 Gothic Library</h3><div class="muted">Alexandria — Adventures & Lore</div><a class="btn" href="/pages/apps/alexandria/voice-dm.html">Enter</a></div>
-  <div class="tile"><h3>🎨 Cathedral Studio</h3><div class="muted">Tracy — Artboards & Skins</div><a class="btn" href="/pages/apps/tracy/index.html">Enter</a></div>
-  <div class="tile"><h3>🥋 Dojo</h3><div class="muted">Jem — Daily movement</div><a class="btn" href="/pages/apps/jem/index.html">Enter</a></div>
-  <div class="tile"><h3>🍽️ Bistro</h3><div class="muted">Carol — Menu & Shopping</div><a class="btn" href="/pages/apps/carol/menu.html">Enter</a></div>
-  <div class="tile"><h3>🔭 Observatory</h3><div class="muted">Stella — Guided Audio</div><a class="btn" href="/pages/apps/stella/guided.html">Enter</a></div>
-  <div class="tile"><h3>🧪 Lab</h3><div class="muted">Nina — 3D/VRM</div><a class="btn" href="/pages/apps/nina/index.html">Enter</a></div>
-  <div class="tile"><h3>🗄️ Relay Hall</h3><div class="muted">Charlotte — Workflows</div><a class="btn" href="/pages/apps/charlotte/index.html">Enter</a></div>
-  <div class="tile"><h3>🏦 Vault</h3><div class="muted">Abbey — Finance Tools</div><a class="btn" href="/pages/apps/abbey/index.html">Enter</a></div>
-  <div class="tile"><h3>🏛️ Palace</h3><div class="muted">Overseers — Status</div><a class="btn" href="/pages/apps/overseers/index.html">Enter</a></div>
-  <div class="tile"><h3>🏠 Mansion</h3><div class="muted">Billie — Storyboards (PG‑13)</div><a class="btn" href="/pages/apps/billie/index.html">Enter</a></div>
-</section>
+  <header class="wrap">
+    <h1>Avalon · City</h1>
+    <div class="muted">One building per character. “Castle Town” legacy map removed.</div>
+  </header>
+  <main class="wrap">
+    <div class="grid">
+      <div class="tile">
+        <img src="/asset/textures/buildings/phoenix-pagoda.jpg" alt="Carol’s Bistro">
+        <a href="/pages/rooms/carol.html">Carol · Bistro</a>
+      </div>
+      <div class="tile">
+        <img src="/asset/textures/wallpapers/castle village 01.jpg" alt="Tracy Studio">
+        <a href="/pages/rooms/tracy.html">Tracy · Stained‑Glass Cathedral (Studio)</a>
+      </div>
+      <div class="tile">
+        <img src="/asset/textures/wallpapers/castle village 02.jpg" alt="Jem Dojo">
+        <a href="/pages/rooms/jem.html">Jem · Dojo</a>
+      </div>
+      <div class="tile">
+        <img src="/asset/textures/wallpapers/castle village 03.jpg" alt="Stella Observatory">
+        <a href="/pages/rooms/stella.html">Stella · Observatory</a>
+      </div>
+      <div class="tile">
+        <img src="/asset/textures/wallpapers/castle village 04.jpg" alt="Alexandria Library">
+        <a href="/pages/rooms/alexandria.html">Alexandria · Gothic Library</a>
+      </div>
+    </div>
+  </main>
 </body>
 </html>

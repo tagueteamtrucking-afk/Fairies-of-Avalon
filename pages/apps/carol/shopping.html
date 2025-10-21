@@ -1,151 +1,138 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Carol — Shopping List</title>
-<style>
-  :root{ --bg:#0b0f17; --ink:#e8ecf1; --stroke:rgba(255,255,255,0.12); --glass:rgba(255,255,255,0.04); --accent:#9cc1ff;}
-  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  header{padding:16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--stroke);position:sticky;top:0;background:#0b0f17f2;backdrop-filter: blur(6px);}
-  a.btn{color:var(--ink);text-decoration:none;border:1px solid var(--stroke);padding:8px 10px;border-radius:10px;font-weight:600}
-  a.btn:hover{border-color:var(--accent)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;padding:16px}
-  .card{border:1px solid var(--stroke);background:var(--glass);border-radius:12px;padding:12px}
-  .meta{opacity:.8;font-size:.95rem}
-  .note{padding:10px;border:1px dashed var(--stroke);border-radius:10px;margin:12px}
-  ul{margin:0 0 8px 18px}
-</style>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Carol · Shopping List (2 people · 14 days)</title>
+  <style>
+    :root{--gold:#d4af37;--ink:#f7f3e8;--glass:rgba(0,0,0,.5);--bg:#0d0a0a}
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    header{position:sticky;top:0;z-index:5;background:linear-gradient(180deg,rgba(0,0,0,.85),transparent);backdrop-filter:blur(6px);padding:12px 16px;border-bottom:1px solid rgba(212,175,55,.25)}
+    h1{margin:0;font-size:20px}
+    .wrap{max-width:1100px;margin:0 auto;padding:16px}
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{appearance:none;border:1px solid rgba(212,175,55,.45);background:rgba(0,0,0,.35);color:var(--ink);padding:8px 10px;border-radius:10px;cursor:pointer}
+    .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:12px}
+    section{background:var(--glass);border:1px solid rgba(212,175,55,.35);border-radius:12px;overflow:hidden}
+    section h3{margin:0;padding:8px 12px;background:linear-gradient(90deg,rgba(178,34,34,.6),rgba(178,34,34,.2));border-bottom:1px solid rgba(212,175,55,.25);font-size:16px}
+    ul{list-style:none;margin:0;padding:8px 12px}
+    li{padding:4px 0;border-bottom:1px dashed rgba(212,175,55,.25)}
+    li:last-child{border-bottom:0}
+    .note{font-size:12px;opacity:.9;margin-top:8px}
+    .status{font-size:12px;margin-left:auto}
+    a{color:var(--gold)}
+  </style>
 </head>
 <body>
-<header>
-  <a class="btn" href="/pages/apps/_city/index.html">🏰 City</a>
-  <a class="btn" href="/pages/apps/carol/menu.html">🍽️ Menu</a>
-  <span class="meta" id="srcMeta"></span>
-</header>
-<div id="status" class="note">Looking for shopping list…</div>
-<section id="lists" class="grid" hidden></section>
+  <header class="wrap">
+    <h1>Carol · Shopping List</h1>
+    <div class="toolbar">
+      <button class="btn" id="openMenu">🍽️ Menu</button>
+      <div class="status" id="status">loading…</div>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="note">Rules: prefer sunflower seed butter; suggest soft alternatives for very hard foods; shellfish‑free; light lactose; limit cumin, onions & bell peppers.</div>
+    <div id="lists" class="list"></div>
+  </main>
+  <script>
+  const statusEl = document.getElementById('status');
+  document.getElementById('openMenu').onclick = () => location.href = './menu.html';
 
-<script>
-const statusEl = document.getElementById('status');
-const listsEl = document.getElementById('lists');
-const srcMeta = document.getElementById('srcMeta');
+  async function fetchJSON(u){ const r = await fetch(u,{cache:'no-store'}); if(!r.ok) throw new Error(r.status+': '+u); return r.json(); }
 
-async function loadJSON(url){
-  const r = await fetch(url + '?v=' + Date.now());
-  if(!r.ok) throw new Error('HTTP ' + r.status + ' for ' + url);
-  return r.json();
-}
-
-function groupItems(items){
-  // items: [{name, qty, unit, section?}]
-  const map = new Map();
-  for(const it of items){
-    const key = (it.section||'Other') + '||' + (it.name||it.item||'item').toLowerCase();
-    const prev = map.get(key) || {name: (it.name||it.item||'item'), qty:0, unit: it.unit||'', section: it.section||'Other'};
-    const q = Number(it.qty||it.quantity||0);
-    if(!isNaN(q)) prev.qty += q;
-    map.set(key, prev);
-  }
-  // group by section
-  const bySec = {};
-  for(const v of map.values()){
-    const sec = v.section||'Other';
-    bySec[sec] = bySec[sec] || [];
-    bySec[sec].push(v);
-  }
-  return bySec;
-}
-
-function renderGrouped(grouped){
-  listsEl.innerHTML = '';
-  const secs = Object.keys(grouped).sort();
-  for(const s of secs){
-    const card = document.createElement('article'); card.className='card';
-    const h = document.createElement('h3'); h.textContent = s; card.appendChild(h);
-    const ul = document.createElement('ul');
-    for(const it of grouped[s]){
-      const qty = it.qty ? String(Math.round((it.qty + Number.EPSILON)*100)/100) : '';
-      const unit = it.unit ? (' ' + it.unit) : '';
-      const li = document.createElement('li');
-      li.textContent = (it.name||'item') + (qty? (': ' + qty + unit) : '');
-      ul.appendChild(li);
+  function bucketize(items){
+    // Naive grouping by first word/category hints
+    const buckets = { Produce:[], Dairy:[], Protein:[], Grains:[], Pantry:[], Frozen:[], Spices:[], Other:[] };
+    const hint = (name)=>{
+      const n = name.toLowerCase();
+      if(/milk|yogurt|cheese|butter/.test(n)) return 'Dairy';
+      if(/chicken|turkey|beef|pork|tofu|egg|salmon|tuna|cod|sardine/.test(n)) return 'Protein';
+      if(/rice|pasta|bread|oat|tortilla|quinoa|grain/.test(n)) return 'Grains';
+      if(/carrot|apple|banana|berry|lettuce|spinach|pepper|onion|garlic|tomato|cuke|cucumber|broccoli|greens/.test(n)) return 'Produce';
+      if(/frozen|bag/.test(n)) return 'Frozen';
+      if(/cumin|salt|pepper|spice|herb|powder/.test(n)) return 'Spices';
+      if(/oil|sauce|vinegar|butter|peanut|seed|sunflower|honey|jam|mustard|ketchup|mayonnaise|mayo|broth|stock/.test(n)) return 'Pantry';
+      return 'Other';
+    };
+    for(const it of items){
+      const n = (it.name||'').trim();
+      const unit = it.unit ? ' '+it.unit : '';
+      const qty = (it.qty!=null && it.qty!=='') ? (it.qty+'') : '';
+      const line = (qty?qty+' ':'') + n + unit;
+      buckets[ hint(n) ].push(line);
     }
-    card.appendChild(ul);
-    listsEl.appendChild(card);
+    return buckets;
   }
-  listsEl.hidden = false;
-}
 
-function tryInferFromPlan(plan){
-  // look through days/meals for ingredient arrays
-  let items = [];
-  const scanNode = (node) => {
-    if(!node) return;
-    if(Array.isArray(node)){
-      for(const x of node){ scanNode(x); }
-      return;
-    }
-    if(typeof node === 'object'){
-      // common keys
-      for(const k in node){
-        if(k.toLowerCase().includes('ingredient') || k.toLowerCase()==='shopping'){
-          const v = node[k];
-          if(Array.isArray(v)){
-            for(const it of v){
-              if(typeof it === 'string'){
-                items.push({name: it});
-              } else if(typeof it === 'object') {
-                items.push({
-                  name: it.name || it.item || it.ingredient || 'item',
-                  qty:  it.qty || it.quantity || it.amount || 0,
-                  unit: it.unit || it.units || ''
-                });
-              }
-            }
-          }
-        }
+  function renderBuckets(buckets){
+    const lists = document.getElementById('lists');
+    lists.innerHTML='';
+    Object.entries(buckets).forEach(([k,arr])=>{
+      if(!arr.length) return;
+      const sec = document.createElement('section');
+      sec.innerHTML = '<h3>'+k+'</h3>';
+      const ul = document.createElement('ul');
+      arr.sort().forEach(line=>{
+        const li=document.createElement('li'); li.textContent=line; ul.appendChild(li);
+      });
+      sec.appendChild(ul);
+      lists.appendChild(sec);
+    });
+  }
+
+  function collectFromPlan(plan){
+    // Traverse for ingredients arrays and collect (best-effort)
+    const items=[];
+    function walk(node){
+      if(!node) return;
+      if(Array.isArray(node)){
+        node.forEach(walk); return;
       }
-      for(const k in node){ scanNode(node[k]); }
+      if(typeof node==='object'){
+        if(Array.isArray(node.ingredients)){
+          node.ingredients.forEach(ing=>{
+            const name = ing.item || ing.name || ing.ingredient || '';
+            const qty = ing.qty ?? ing.quantity ?? ing.amount ?? '';
+            const unit = ing.unit ?? ing.units ?? '';
+            if(name) items.push({name, qty, unit});
+          });
+        }
+        Object.values(node).forEach(walk);
+      }
     }
-  };
-  scanNode(plan);
-  return items;
-}
-
-(async () => {
-  try{
-    let idx;
-    try{ idx = await loadJSON('./index.json'); } catch(e){ idx = {}; }
-    const qPath = idx.shopping_quantized || 'plans/shopping-quantized.json';
-    const ePath = idx.shopping_extracted || 'plans/shopping-extracted.json';
-    // Prefer quantized → extracted → infer from plan
-    try {
-      const q = await loadJSON(qPath);
-      srcMeta.textContent = 'Source: ' + qPath;
-      const grouped = groupItems(q.items || q || []);
-      statusEl.remove(); renderGrouped(grouped); return;
-    } catch(_){}
-    try {
-      const q = await loadJSON(ePath);
-      srcMeta.textContent = 'Source: ' + ePath;
-      const grouped = groupItems(q.items || q || []);
-      statusEl.remove(); renderGrouped(grouped); return;
-    } catch(_){}
-    // Fallback: infer from plan
-    const planPath = idx.current_plan || 'plans/twoperson-2wk-unique-20251015T022300Z.json';
-    const plan = await loadJSON(planPath);
-    const items = tryInferFromPlan(plan);
-    if(items.length){
-      srcMeta.textContent = 'Source: inferred from plan (' + planPath + ')';
-      statusEl.remove(); renderGrouped(grouped = groupItems(items)); return;
-    }
-    throw new Error('No shopping files found and could not infer ingredients from plan. Run the "Carol — Extract Shopping" workflow.');
-  }catch(err){
-    statusEl.innerHTML = '⚠️ ' + err.message + '<br><br>' +
-      '→ In Actions, run: <strong>Carol — Set Plan Pointer</strong> then <strong>Carol — Extract Shopping</strong>.';
+    walk(plan);
+    return items;
   }
-})();
-</script>
+
+  (async function main(){
+    try{
+      const idx = await fetchJSON('./index.json');
+      // First try a precomputed shopping JSON if present
+      try {
+        const shop = await fetchJSON(idx.shopping_latest);
+        const items = Array.isArray(shop.items)? shop.items : (shop.list || shop.data || []);
+        if(items && items.length){
+          renderBuckets(bucketize(items));
+          statusEl.textContent = 'Source: ' + idx.shopping_latest.replace(/^.*pages\//,'');
+          return;
+        }
+      } catch(_) {}
+      // Otherwise derive client-side from plan
+      const candidates = [idx.plan_latest, ...(idx.plan_fallbacks||[])].filter(Boolean);
+      let plan=null, used=null;
+      for(const url of candidates){
+        try{ plan = await fetchJSON(url); used=url; break; }catch{}
+      }
+      if(!plan) throw new Error('No plan JSON available to derive shopping list.');
+      const items = collectFromPlan(plan);
+      if(!items.length) throw new Error('Plan JSON did not expose ingredient lists; run the workflow to extract.');
+      renderBuckets(bucketize(items));
+      statusEl.textContent = 'Derived from: ' + used.replace(/^.*pages\//,'');
+    }catch(err){
+      statusEl.textContent = '⚠ ' + (err.message||String(err));
+    }
+  })();
+  </script>
 </body>
 </html>

@@ -13,17 +13,20 @@
   <script type="module">
     async function load(){
       const pointer = await fetch('./index.json',{cache:'no-store'}).then(r=>r.json());
-      const plan = await fetch(pointer.plan,{cache:'no-store'}).then(r=>r.json());
-      document.getElementById('meta').textContent = `For ${plan.meta.people} people · ${plan.meta.days} days · ${plan.meta.style}`;
+      const plan = await fetch(pointer.plan,{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
+      if(!plan){ document.getElementById('meta').textContent='Plan not found. Check path in index.json'; return; }
+      const people = plan?.meta?.people || 2;
+      const days = plan?.meta?.days || (plan.schedule?.length || '—');
+      document.getElementById('meta').textContent = `For ${people} people · ${days} days`;
       const grid = document.getElementById('grid');
-      plan.schedule.forEach(d => {
+      (plan.schedule||[]).forEach(d => {
         const div = document.createElement('div');
         div.className='card';
-        div.innerHTML = `<h3>Day ${d.day}</h3>
-        <div><b>Breakfast:</b> ${d.breakfast.replaceAll('_',' ')}</div>
-        <div><b>Lunch:</b> ${d.lunch.replaceAll('_',' ')}</div>
-        <div><b>Dinner:</b> ${d.dinner.replaceAll('_',' ')}</div>
-        <div><b>Snacks:</b> ${d.snacks.map(s=>s.replaceAll('_',' ')).join(', ')}</div>`;
+        div.innerHTML = `<h3>Day ${d.day || ''}</h3>
+        <div><b>Breakfast:</b> ${String(d.breakfast||'').replaceAll('_',' ')}</div>
+        <div><b>Lunch:</b> ${String(d.lunch||'').replaceAll('_',' ')}</div>
+        <div><b>Dinner:</b> ${String(d.dinner||'').replaceAll('_',' ')}</div>
+        <div><b>Snacks:</b> ${(d.snacks||[]).map(s=>String(s).replaceAll('_',' ')).join(', ')}</div>`;
         grid.appendChild(div);
       });
     }
@@ -34,6 +37,5 @@
   <h1>Carol — 14‑Day Menu (2 people)</h1>
   <p id="meta" class="sub">Loading…</p>
   <div id="grid" class="grid"></div>
-  <p class="sub">Images: <a href="/pages/apps/carol/menu-hero.jpg">Add Image</a> · <a href="/pages/apps/carol/menu-bg.jpg">Add Image</a></p>
 </body>
 </html>

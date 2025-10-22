@@ -124,7 +124,6 @@ function deadEndsFromGit(){
         current = { commit: line.split('|')[0], ts: Number(line.split('|')[1]) };
         continue;
       }
-      // Name-status lines like "D\tpath"
       const m = /^(\w)\t(.+)$/.exec(line);
       if(m && m[1] === 'D'){
         dead.push({ path: m[2], deleted_in: current?.commit, deleted_at: new Date((current?.ts||0)*1000).toISOString() });

@@ -7,7 +7,7 @@ meta:
   notes: >
     v2.5.3 — Green-on-No-Change + Landing Cache-Bust
       - Workflows guard commits: if git status is empty, skip commit; job remains green.
-      - Generate Landing writes CSS and links with ?v=4; home redirects with ?v=4 to bust caches.
+      - Generate Landing writes CSS and links with  home redirects with  to bust caches.
       - Stub detection: if Bridge returns fallback, write deterministic wallpaper hero + tiles.
 
 policies:

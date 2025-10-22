@@ -11,7 +11,7 @@ meta:
     Alexandria DM: worker-backed option later; iPad default uses browser TTS; mic capture planned.
     Stella: on-demand audio engine skeleton planned (NLP/TTS not on schedule—runs as-needed instead of fixed schedule).
     Tracy: art/skin generator pipeline pending; VRM room placement allowed.
-    Site SW cache-buster '?v=' stripped by Repo-Doctor when requested.
+    Site SW cache-buster '' stripped by Repo-Doctor when requested.
 runtime:
   workflows:
     carol_package_map_report: ".github/workflows/carol-package-map-report.yml"

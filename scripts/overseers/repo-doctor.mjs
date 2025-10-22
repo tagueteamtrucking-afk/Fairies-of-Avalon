@@ -29,7 +29,7 @@ function isText(p){
   for (const f of files){
     if (!isText(f)) continue;
     let s = fs.readFileSync(f, 'utf8');
-    const t = s.replace(/\?v=[^"' )]*/g, '');
+    const t = s.replace(/\"' )]*/g, '');
     if (t !== s){
       fs.writeFileSync(f, t);
       changed++;

@@ -61,4 +61,4 @@ telemetry:
     path: "pages/themes/landing.generated.html"
     last_mode: "auto"
     last_status: "ok-or-fallback"
-    cache_bust_hint: "?v=2"
+    cache_bust_hint: ""

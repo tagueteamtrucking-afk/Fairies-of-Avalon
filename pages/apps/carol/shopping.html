@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carol — Shopping List (2 people)</title>
+  <title>Carol — Shopping List</title>
   <style>
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;background:#0b0c10;color:#e8e8e8}
-    header{padding:1rem 1.25rem;border-bottom:1px solid #223241}
+    header{padding:1rem 1.25rem;border-bottom:1px solid #223241;display:flex;align-items:baseline;justify-content:space-between}
     h1{margin:.2rem 0 .4rem;font-size:1.15rem}
     .meta{opacity:.8}
     .wrap{padding:12px}
@@ -17,6 +17,11 @@
     .miss{background:#281a1a;border:1px solid #4a2e2e;color:#f0dede;padding:.6rem;border-radius:8px;margin-top:12px}
     a.btn{display:inline-block;margin-top:.5rem;padding:.45rem .65rem;border:1px solid #32506b;border-radius:8px;text-decoration:none;color:#d9f0ff}
     code{background:#101820;border:1px solid #213140;border-radius:6px;padding:.1rem .25rem}
+    @media print{
+      body{background:#fff;color:#000}
+      header{border-color:#ccc}
+      tr:hover{background:#fff}
+    }
   </style>
   <script type="module">
     function resolveUrl(targetPath, ptrUrl){

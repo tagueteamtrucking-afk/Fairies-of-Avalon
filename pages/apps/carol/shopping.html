@@ -1,4 +1,4 @@
-<!-- pages/apps/carol/shopping.html (drop15) -->
+<!-- pages/apps/carol/shopping.html (drop16) -->
 <!doctype html>
 <html>
 <head>
@@ -10,15 +10,33 @@
 <body>
   <header class="app">
     <h1>Shopping List</h1>
-    <div class="small">Combined like items; converted to standard shopping units where safe.</div>
-    <div id="assumptions" class="small"></div>
+    <div class="small" id="assumptions"></div>
+    <div class="actions">
+      <button id="btnPrint">Print / Save PDF</button>
+      <a class="button" href="./print-shopping.html" target="_blank">Open Print Page</a>
+      <button id="btnToggleUnits" title="Toggle produce units between lbs and original">Toggle Produce Units</button>
+    </div>
   </header>
   <main id="out"></main>
 <script>
+document.getElementById('btnPrint').onclick = ()=>window.print();
+let PRODUCE_IN_LBS = true;
+
 (async function(){
-  const OATS_G_PER_CUP = 81;     // USDA Food Buying Guide
+  const OATS_G_PER_CUP = 81;   // approximation used for shopping conversion
   const TBSP_PER_CUP   = 16;
   const OZ_PER_LB      = 16;
+
+  const TBSP_TO_OZ = {
+    'Cream cheese, lactose‑free': 0.5, // ~2 tbsp per oz
+    'Hummus (no cumin)': 0.5          // ~2 tbsp per oz
+  };
+
+  // Conservative shopping approximations for produce
+  const PRODUCE_APPROX = {
+    piece_lb: 0.33,  // 1 medium fruit ≈ 0.33 lb
+    cup_lb:   0.40   // 1 cup chopped ≈ 0.40 lb
+  };
 
   function el(tag, attrs={}, children=[]){
     const n=document.createElement(tag);
@@ -95,90 +113,76 @@
     return { name, aisle:'Other' };
   }
 
-  function asCups(qty, unit){
-    if(unit==='cup') return qty;
-    if(unit==='tbsp') return qty/16;
-    return null;
-  }
+  function asCups(qty, unit){ if(unit==='cup') return qty; if(unit==='tbsp') return qty/16; return null; }
 
-  function convertForShopping(name, entry){
-    // Dairy liquids: express as cups or quarts
-    const liquidDairy = new Set(['Milk, lactose‑free','Greek yogurt, lactose‑free','Cottage cheese, lactose‑free','Cream cheese, lactose‑free']);
+  function convertForShopping(name, aisle, entry){
     const meats = new Set(['Chicken breast','Chicken breast (cooked/diced)','Salmon fillet','Cod fillet','Ground turkey, lean','Turkey breast, sliced (low‑Na)','Mozzarella, lactose‑free']);
-    const stickMoz = 'Mozzarella, lactose‑free (sticks)';
+    const dairyLiquids = new Set(['Milk, lactose‑free','Greek yogurt, lactose‑free','Cottage cheese, lactose‑free']);
+    const tbspToOz = TBSP_TO_OZ[name];
 
-    // Rolled oats → weight
+    // 1) Special conversions
     if(name==='Rolled oats'){
-      let cups = 0;
-      cups += asCups(entry.qty, entry.unit) || 0;
-      for(const d of entry.details){ cups += asCups(d.amount, d.unit) || 0; }
+      let cups = (asCups(entry.qty, entry.unit) || 0) + entry.details.reduce((s,d)=>s+(asCups(d.amount,d.unit)||0),0);
       const grams = cups * OATS_G_PER_CUP;
-      const oz    = grams / 28.35;
-      if(oz >= OZ_PER_LB){
-        const lb = oz / OZ_PER_LB;
-        return { qty: +lb.toFixed(2), unit: 'lb', note: `≈ ${grams.toFixed(0)} g (${oz.toFixed(1)} oz)` };
-      }
-      return { qty: +oz.toFixed(1), unit: 'oz', note: `≈ ${grams.toFixed(0)} g` };
+      const oz = grams / 28.35;
+      if(oz >= OZ_PER_LB) return { qty:+(oz/OZ_PER_LB).toFixed(2), unit:'lb', note:`≈ ${grams.toFixed(0)} g (${oz.toFixed(1)} oz)` };
+      return { qty:+oz.toFixed(1), unit:'oz', note:`≈ ${grams.toFixed(0)} g` };
     }
 
-    if(name===stickMoz){
-      // 1 stick ≈ 1 oz
-      return { qty: Math.round(entry.qty), unit: 'stick(s) (≈1 oz each)', note:'' };
+    if(tbspToOz){
+      // Cream cheese & Hummus in ounces
+      let oz = 0;
+      if(entry.unit==='tbsp') oz += entry.qty * tbspToOz;
+      for(const d of entry.details){ if(d.unit==='tbsp') oz += d.amount * tbspToOz; }
+      if(entry.unit==='oz') oz += entry.qty;
+      for(const d of entry.details){ if(d.unit==='oz') oz += d.amount; }
+      if(oz) return { qty:+oz.toFixed(1), unit:'oz', note:'' };
     }
 
-    if(liquidDairy.has(name)){
-      let cups = 0;
-      cups += asCups(entry.qty, entry.unit) || 0;
-      for(const d of entry.details){ cups += asCups(d.amount, d.unit) || 0; }
-      if(cups >= 16){
-        const gal = cups / 16;
-        return { qty:+gal.toFixed(2), unit:'gal', note:`(~${cups.toFixed(1)} cups)` };
-      }
-      if(cups >= 4){
-        const qt = cups / 4;
-        return { qty:+qt.toFixed(2), unit:'qt', note:`(~${cups.toFixed(1)} cups)` };
-      }
+    if(dairyLiquids.has(name)){
+      let cups = (asCups(entry.qty, entry.unit) || 0) + entry.details.reduce((s,d)=>s+(asCups(d.amount,d.unit)||0),0);
+      if(cups >= 16) return { qty:+(cups/16).toFixed(2), unit:'gal', note:`(~${cups.toFixed(1)} cups)` };
+      if(cups >= 4)  return { qty:+(cups/4).toFixed(2), unit:'qt',  note:`(~${cups.toFixed(1)} cups)` };
       return { qty:+cups.toFixed(1), unit:'cup', note:'' };
     }
 
     if(meats.has(name)){
-      let oz = 0;
-      if(entry.unit==='oz') oz += entry.qty;
-      for(const d of entry.details){ if(d.unit==='oz') oz += d.amount; }
-      if(oz){
-        if(oz >= OZ_PER_LB) return { qty:+(oz/OZ_PER_LB).toFixed(2), unit:'lb', note:`(${oz.toFixed(0)} oz)` };
-        return { qty:+oz.toFixed(1), unit:'oz', note:'' };
+      let oz = (entry.unit==='oz'? entry.qty : 0) + entry.details.reduce((s,d)=>s+(d.unit==='oz'? d.amount:0),0);
+      if(oz){ return oz >= OZ_PER_LB ? { qty:+(oz/OZ_PER_LB).toFixed(2), unit:'lb', note:`(${oz.toFixed(0)} oz)` } : { qty:+oz.toFixed(1), unit:'oz', note:'' }; }
+    }
+
+    // 2) Produce in lbs (estimate), with toggle
+    if(aisle==='Produce'){
+      // Sum base unit first
+      let lb = 0, descs=[];
+      if(entry.unit==='piece'){ lb += entry.qty * PRODUCE_APPROX.piece_lb; descs.push(`${entry.qty} piece(s)`); }
+      if(entry.unit==='cup'){   lb += entry.qty * PRODUCE_APPROX.cup_lb;   descs.push(`${entry.qty} cup(s)`); }
+      for(const d of entry.details){
+        if(d.unit==='piece'){ lb += d.amount * PRODUCE_APPROX.piece_lb; descs.push(`${d.amount} piece(s)`); }
+        if(d.unit==='cup'){   lb += d.amount * PRODUCE_APPROX.cup_lb;   descs.push(`${d.amount} cup(s)`); }
+      }
+      if(PRODUCE_IN_LBS){
+        return { qty:+lb.toFixed(2), unit:'lb (est)', note: descs.length? `from ${descs.join(' + ')}` : 'estimate' };
+      } else {
+        // show original unit merged best-effort
+        return { qty:+entry.qty.toFixed(2), unit:(entry.unit||'').trim()||'piece', note: entry.details.length? 'contains mixed units' : '' };
       }
     }
 
-    if(name==='Eggs'){
-      // pieces → dozen when helpful
-      let pcs = 0;
-      if(entry.unit==='piece') pcs += entry.qty;
-      for(const d of entry.details){ if(d.unit==='piece') pcs += d.amount; }
-      if(pcs){
-        const doz = Math.floor(pcs/12);
-        const rem = pcs%12;
-        if(doz>0){
-          return { qty: doz, unit: 'dozen', note: rem? '(+'+rem+' eggs)' : '' };
-        }
-        return { qty: Math.round(pcs), unit:'egg(s)', note:'' };
-      }
-    }
-
-    // Default: keep primary unit and mention mixed units
-    return { qty:+entry.qty.toFixed(2), unit:(entry.unit||'').trim(), note: (entry.details && entry.details.length ? 'contains mixed units' : '') };
+    // 3) Default: keep primary unit and mention mixed
+    return { qty:+entry.qty.toFixed(2), unit:(entry.unit||'').trim(), note: entry.details.length? 'contains mixed units' : '' };
   }
 
   const out = document.getElementById('out');
+  const assumptions = document.getElementById('assumptions');
+  assumptions.textContent = 'Produces totals scaled for plan persons. Produce shown in lb (estimated): 1 piece ≈ 0.33 lb; 1 cup chopped ≈ 0.40 lb. Cream cheese & hummus shown in oz.';
+
   try{
     const planPath = await getPlanPath();
     const planRes  = await fetch('../..' + '/' + planPath.replace(/^pages\//,''), { cache:'no-store' });
-    if(!planRes.ok){ out.innerHTML = '<p>Plan not found at <code>'+planPath+'</code>. <a href="#">Add File</a></p>'; return; }
+    if(!planRes.ok){ out.innerHTML = '<p>Plan not found. <a href="#">Add File</a></p>'; return; }
     const plan = await planRes.json();
-
     const personsCount = Array.isArray(plan.persons) ? plan.persons.length : 2;
-    document.getElementById('assumptions').textContent = `Scaled for ${personsCount} person(s). Oats: 81 g/cup. Mozzarella sticks: ≈1 oz each.`;
 
     const map = new Map(); // key -> { name, aisle, qty, unit, details:[] }
     for(const day of (plan.days||[])){
@@ -199,8 +203,6 @@
           const unit = (it.unit||'').trim();
 
           const entry = map.get(key) || { name, aisle, qty:0, unit: unit || '', details:[] };
-          if(entry.unit && unit && entry.unit !== entry.unit){ /* no-op */ }
-          // If same unit or first time, add to qty; else record detail to convert later
           if(entry.unit === unit || !entry.unit){ entry.unit = unit || entry.unit; entry.qty += q*mult; }
           else { entry.details.push({ amount: q*mult, unit }); }
           map.set(key, entry);
@@ -211,9 +213,9 @@
     // Build aisles
     const aisles = {};
     for(const [,entry] of map){
-      const converted = convertForShopping(entry.name, entry);
+      const conv = convertForShopping(entry.name, entry.aisle, entry);
       const a = entry.aisle || 'Other';
-      (aisles[a]||(aisles[a]=[])).push({ name:entry.name, qty:converted.qty, unit:converted.unit, note:converted.note });
+      (aisles[a]||(aisles[a]=[])).push({ name:entry.name, qty:conv.qty, unit:conv.unit, note:conv.note });
     }
 
     // Sort aisles and items
@@ -224,18 +226,32 @@
     });
     sortedAisles.forEach(a=>aisles[a].sort((x,y)=>x.name.localeCompare(y.name)));
 
-    // Render
-    for(const a of sortedAisles){
-      const sec=el('section',{class:'aisle'});
-      sec.appendChild(el('h2',{},[a]));
-      const grid=el('div',{class:'grid'});
-      for(const it of aisles[a]){
-        grid.appendChild(el('div',{},[it.name]));
-        grid.appendChild(el('div',{},[String(it.qty),' ',it.unit,' ', it.note? ('— '+it.note):'']));
+    function render(){
+      out.innerHTML = '';
+      for(const a of sortedAisles){
+        const sec=el('section',{class:'aisle'});
+        sec.appendChild(el('h2',{},[a]));
+        const grid=el('div',{class:'grid'});
+        for(const it of aisles[a]){
+          // If produce and toggle changed, recompute on the fly
+          let row = it;
+          if(a==='Produce'){
+            const key = it.name.toLowerCase();
+            // Recompute using cached entry map
+            const entry = map.get(key);
+            if(entry){ const conv = convertForShopping(entry.name, entry.aisle, entry); row = { name: entry.name, qty: conv.qty, unit: conv.unit, note: conv.note }; }
+          }
+          grid.appendChild(el('div',{},[row.name]));
+          grid.appendChild(el('div',{},[String(row.qty),' ',row.unit,' ', row.note?('— '+row.note):'']));
+        }
+        sec.appendChild(grid);
+        out.appendChild(sec);
       }
-      sec.appendChild(grid);
-      out.appendChild(sec);
     }
+
+    render();
+    document.getElementById('btnToggleUnits').onclick = ()=>{ PRODUCE_IN_LBS = !PRODUCE_IN_LBS; render(); };
+
   }catch(e){
     console.error(e);
     out.innerHTML = '<p class="small">Missing or unreadable plan pointer. <a href="#">Add File</a></p>';

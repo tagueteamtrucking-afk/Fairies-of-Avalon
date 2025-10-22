@@ -1,4 +1,4 @@
-<!-- pages/apps/carol/print-menu.html -->
+<!-- pages/apps/carol/print-menu.html (drop16) -->
 <!doctype html>
 <html>
 <head>
@@ -10,11 +10,15 @@
 </head>
 <body>
   <header class="app">
-    <h1>Carol — 14‑Day Menu</h1>
-    <div class="hint">Print → “Save as PDF”. Each day will be one page.</div>
+    <h1>Carol — 14‑Day Menu (Print)</h1>
+    <div class="hint">Each day renders on its own page. Use your browser’s “Print / Save as PDF”.</div>
+    <div class="actions">
+      <button id="btnPrint">Print / Save PDF</button>
+    </div>
   </header>
   <main id="out"></main>
 <script>
+document.getElementById('btnPrint').onclick = ()=>window.print();
 (async function(){
   function el(tag, attrs={}, children=[]){
     const n=document.createElement(tag);

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All‑File Memory</title>
+<style>
+body{font-family:system-ui;background:#0b0c10;color:#e8e8e8;margin:0}
+header{padding:1rem;border-bottom:1px solid #223241}
+main{padding:12px}
+table{width:100%;border-collapse:collapse}
+th,td{border-bottom:1px solid #223241;padding:.6rem .5rem;text-align:left}
+th{opacity:.8}
+.controls{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0}
+select,input{background:#141b22;color:#e8e8e8;border:1px solid #223241;border-radius:8px;padding:.4rem}
+</style></head>
+<body>
+<header><h1>All‑File Memory</h1></header>
+<main>
+  <div class="controls">
+    <label>Filter area:
+      <select id="area">
+        <option value="">(all)</option>
+        <option>page</option><option>script</option><option>workflow</option>
+        <option>model</option><option>wings</option><option>wallpaper</option><option>other</option>
+      </select>
+    </label>
+    <label>Filter type:
+      <select id="type">
+        <option value="">(all)</option>
+        <option>html</option><option>code</option><option>data</option><option>workflow</option><option>model</option><option>image</option><option>other</option>
+      </select>
+    </label>
+    <label>Search: <input id="q" placeholder="path or purpose"></label>
+  </div>
+  <div id="meta"></div>
+  <table>
+    <thead><tr><th>Path</th><th>Type</th><th>Area</th><th>Size</th><th>Purpose</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</main>
+<script type="module">
+const data = await fetch('./index.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
+const tbody = document.querySelector('tbody');
+const meta = document.getElementById('meta');
+const area = document.getElementById('area');
+const type = document.getElementById('type');
+const q = document.getElementById('q');
+function fmt(n){return (n/1024).toFixed(1)+' KB'}
+function render(){
+  if(!data){ tbody.innerHTML = '<tr><td colspan=5>No memory index yet. Run <b>Overseers - Memory Index</b>.</td></tr>'; return; }
+  meta.innerHTML = `Total ${data.meta.counts.total} files`;
+  const A = area.value, T = type.value, Q = q.value.toLowerCase();
+  const rows = (data.items||[]).filter(it=>
+    (!A || it.area===A) && (!T || it.type===T) && (!Q || it.path.toLowerCase().includes(Q) || (it.purpose||'').toLowerCase().includes(Q))
+  );
+  tbody.innerHTML = '';
+  for(const it of rows){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${it.path}</td><td>${it.type}</td><td>${it.area}</td><td>${fmt(it.size)}</td><td>${it.purpose||''}</td>`;
+    tbody.appendChild(tr);
+  }
+}
+area.onchange = type.onchange = q.oninput = render;
+render();
+</script>
+</body></html>

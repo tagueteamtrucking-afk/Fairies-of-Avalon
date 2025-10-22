@@ -22,34 +22,39 @@
   </style>
   <script type="module">
     const ptr = await fetch('./index.json',{cache:'no-store'}).then(r=>r.json());
-    const planPath = ptr.plan;
-    const plan = await fetch(planPath,{cache:'no-store'}).then(r=>r.json());
-    const people = (plan.persons && plan.persons.length) || 2;
-    document.querySelector('.meta').textContent = `${plan.weeks*7||plan.days?.length||''} days · ${people} people · pattern ${plan.pattern||''}`.trim();
+    const planPath = String(ptr.plan||'').replace(/^\//,'');  // normalize leading slash
+    const plan = await fetch('../..//../'+planPath,{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
+    const people = (plan?.persons && plan.persons.length) || 2;
+    const totalDays = (plan?.weeks? plan.weeks*7 : (plan?.days?.length||''));
+    document.querySelector('.meta').textContent = `${totalDays} days · ${people} people · pattern ${plan?.pattern||''}`.trim();
 
     const grid = document.querySelector('.grid');
-    for (const d of plan.days||[]){
-      const card = document.createElement('div');
-      card.className='card';
-      card.innerHTML = `<h3>${d.day_label||('Day '+(d.index||''))}</h3>`;
-      const evts = (d.events||[]);
-      for(const e of evts){
-        const row = document.createElement('div');
-        row.className='row';
-        const servings = (e.for && /both/i.test(e.for)) ? people : 1; // A/B would be 1
-        row.innerHTML = `
-          <span class="tag">${e.type||'meal'}</span>
-          <span class="time">${e.time_hint||''}</span>
-          <div style="flex:1">
-            <div class="name">${e.name}</div>
-            <div class="nut">~${e.kcal||'?'} kcal · Na ${e.sodium_mg||'?'} mg · sugar ${e.added_sugars_g||'?'} g · fiber ${e.fiber_g||'?'} g</div>
-            <ul class="list">${
-              (e.items||[]).map(it=>`<li>${(servings>1?servings+'× ':'')}${it.quantity} ${it.unit} ${it.ingredient}${it.notes?` <em>(${it.notes})</em>`:''}</li>`).join('')
-            }</ul>
-          </div>`;
-        card.appendChild(row);
+    if(!plan){ grid.innerHTML = '<div class="card">Plan not found. Check pages/apps/carol/index.json</div>'; }
+    else{
+      for (const d of plan.days||[]){
+        const card = document.createElement('div');
+        card.className='card';
+        card.innerHTML = `<h3>${d.day_label||('Day '+(d.index||''))}</h3>`;
+        const evts = (d.events||[]);
+        for(const e of evts){
+          const row = document.createElement('div');
+          row.className='row';
+          const f = String(e.for||'').toLowerCase();
+          const servings = f.includes('both')? people : 1;
+          row.innerHTML = `
+            <span class="tag">${e.type||'meal'}</span>
+            <span class="time">${e.time_hint||''}</span>
+            <div style="flex:1">
+              <div class="name">${e.name}</div>
+              <div class="nut">~${e.kcal||'?'} kcal · Na ${e.sodium_mg||'?'} mg · sugar ${e.added_sugars_g||'?'} g · fiber ${e.fiber_g||'?'} g</div>
+              <ul class="list">${
+                (e.items||[]).map(it=>`<li>${(servings>1?servings+'× ':'')}${it.quantity} ${it.unit} ${it.ingredient}${it.notes?` <em>(${it.notes})</em>`:''}</li>`).join('')
+              }</ul>
+            </div>`;
+          card.appendChild(row);
+        }
+        grid.appendChild(card);
       }
-      grid.appendChild(card);
     }
   </script>
 </head>

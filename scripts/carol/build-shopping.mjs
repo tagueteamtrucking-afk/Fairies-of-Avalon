@@ -12,13 +12,12 @@ function eventServings(e, people){
   if(!e || !e.for) return 1;
   const f = String(e.for).toLowerCase();
   if (f.includes('both')) return people;
-  // allow listing by person id or name fragments
   const hits = ['a','ray','b','blanca'].filter(k => f.includes(k)).length;
   return Math.max(1, Math.min(people, hits || 1));
 }
 
 function aggregateFromPlan(plan, people){
-  const bag = new Map(); // key: item|unit -> qty
+  const bag = new Map();
   let eventsCount = 0;
   for (const d of (plan.days||[])){
     for (const e of (d.events||[])){
@@ -28,6 +27,7 @@ function aggregateFromPlan(plan, people){
         const item = (it.ingredient||it.item||'').trim();
         const unit = (it.unit||'').trim();
         const qty = Number(it.quantity ?? it.qty ?? 0) * factor;
+        if(!item) continue;
         const key = item+'|'+unit;
         bag.set(key, (bag.get(key)||0) + qty);
       }
@@ -35,7 +35,6 @@ function aggregateFromPlan(plan, people){
   }
   const items = Array.from(bag.entries()).map(([k,qty])=>{
     const [item,unit] = k.split('|');
-    // round to 2 decimals
     return { item, qty: Math.round(qty*100)/100, unit: unit || '' };
   }).sort((a,b)=> a.item.localeCompare(b.item));
   return { items, eventsCount };
@@ -43,7 +42,12 @@ function aggregateFromPlan(plan, people){
 
 (function main(){
   const ptr = readJSON(POINTER);
-  const plan = readJSON(ptr.plan);
+  const normalizedPlan = String(ptr.plan||'').replace(/^\//,'');
+  if(!fs.existsSync(normalizedPlan)){
+    console.error('Plan not found at', normalizedPlan, '(from pointer', ptr.plan, ')');
+    process.exit(1);
+  }
+  const plan = readJSON(normalizedPlan);
   const people = (plan.persons && plan.persons.length) || 2;
   const { items, eventsCount } = aggregateFromPlan(plan, people);
   const out = {

@@ -19,7 +19,8 @@
   </style>
   <script type="module">
     const ptr = await fetch('./index.json',{cache:'no-store'}).then(r=>r.json());
-    const p = await fetch(ptr.shopping,{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
+    const shopPath = String(ptr.shopping||'').replace(/^\//,'');
+    const p = await fetch('../..//../'+shopPath,{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
     const meta = document.querySelector('.meta');
     const tbody = document.querySelector('tbody');
     if(!p){

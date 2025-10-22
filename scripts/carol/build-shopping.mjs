@@ -1,103 +1,101 @@
-import fs from 'fs';
-import path from 'path';
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
 
-const PTR_PATH = 'pages/apps/carol/index.json';
-function readJSON(p){ return JSON.parse(fs.readFileSync(p,'utf8')); }
+function norm(s){ return String(s||'').trim().toLowerCase(); }
 
-const NORMALIZE = new Map([
-  ['frozen mixed vegetables','mixed vegetables, frozen'],
-  ['mixed vegetables (frozen)','mixed vegetables, frozen'],
-  ['lactose-free mozzarella','mozzarella, lactose-free'],
-  ['lactose-free cheese stick','mozzarella, lactose-free'],
-  ['lf cream cheese','cream cheese, lactose-free'],
-  ['lf greek yogurt','greek yogurt, lactose-free'],
-  ['lactose-free greek yogurt','greek yogurt, lactose-free'],
-  ['lactose-free milk','milk, lactose-free'],
-  ['hummus (no cumin)','hummus'],
-  ['olive oil spray','olive oil'],
-]);
+const POINTER = 'pages/apps/carol/index.json';
+const OUT     = 'pages/apps/carol/plans/shopping-2p.json';
 
-const TBSP_PER_FL_OZ = 2;
-const TSP_PER_TBSP = 3;
-const TSP_PER_FL_OZ = TBSP_PER_FL_OZ * TSP_PER_TBSP;
-const CUP_OATS_OZ = 3.5;
-const CUP_RICE_COOKED_OZ = 5.0;
-const CUP_FRUIT_OZ = 5.0;
-const SLICE_BREAD_OZ = 1.0;
-const PIECE_FRUIT_LB = { apple:0.33, banana:0.25, pear:0.33, kiwi:0.2, lemon:0.2, tomato:0.33 };
-const PIECE_MISC_LB = { 'baby potatoes':0.1 };
-function normName(n){ n=String(n||'').trim().toLowerCase(); return NORMALIZE.get(n)||n; }
-function add(map,key,val){ map.set(key,(map.get(key)||0)+val); }
-function toShopping(ing, qty, unit){
-  const k = normName(ing);
-  if(unit==='tbsp') return [k, qty / TBSP_PER_FL_OZ, 'fl oz'];
-  if(unit==='tsp')  return [k, qty / TSP_PER_FL_OZ, 'fl oz'];
-  if(unit==='cup'){
-    if(/oats/.test(k)) return [k, qty * CUP_OATS_OZ, 'oz'];
-    if(/rice/.test(k)) return [k, qty * CUP_RICE_COOKED_OZ, 'oz'];
-    if(/berries|pineapple|mango|fruit|grapes|peach|peaches/.test(k)) return [k, qty * CUP_FRUIT_OZ, 'oz'];
-    if(/yogurt|cottage/.test(k)) return [k, qty * 8, 'oz'];
-    if(/vegetables/.test(k)) return [k, qty * 5, 'oz'];
-    return [k, qty * 8, 'fl oz'];
-  }
-  if(unit==='slice' && /bread/.test(k)) return [k, qty * SLICE_BREAD_OZ, 'oz'];
-  if(unit==='leaf') return [k, qty, 'ea'];
-  if(unit==='spray') return [k, qty/10, 'fl oz'];
-  if(unit==='oz') return [k, qty, 'oz'];
-  if(unit==='can') return [k, qty*15, 'oz'];
-  if(unit==='piece'){
-    const base = ing.toLowerCase();
-    if(PIECE_FRUIT_LB[base]) return [k, qty*PIECE_FRUIT_LB[base], 'lb'];
-    if(PIECE_FRUIT_LB[k]) return [k, qty*PIECE_FRUIT_LB[k], 'lb'];
-    if(PIECE_MISC_LB[base]) return [k, qty*PIECE_MISC_LB[base], 'lb'];
-    return [k, qty, 'ea'];
-  }
-  if(unit==='egg' || (unit==='piece' && /egg/.test(k))) return ['eggs', qty, 'ea'];
-  return [k, qty, unit];
+function toKey(ingredient){
+  let k = norm(ingredient);
+  k = k.replace(/\s*\((?:no sodium|no cumin|low-?sodium|canned in juice|drained|frozen|soft|peeled|rinsed|boxed|microwave.*|single burner).*?\)/g,'');
+  k = k.replace(/\s+/g,' ').trim();
+  return k;
 }
 
-function buildFromPlan(plan){
-  const map = new Map();
-  const persons = (plan.persons && plan.persons.length) ? plan.persons.length : 2;
-  for(const d of plan.days){
-    for(const ev of d.events||[]){
-      const mult = (String(ev.for||'Both').toLowerCase()==='both') ? persons : 1;
-      for(const it of ev.items||[]){
-        const [name,val,u] = toShopping(it.ingredient, it.quantity*mult, it.unit);
-        const key = name+'__'+u;
-        add(map, key, val);
+function toStdUnit(u){
+  const m = norm(u);
+  if (['tbsp','tablespoon','tablespoons'].includes(m)) return 'tbsp';
+  if (['tsp','teaspoon','teaspoons'].includes(m)) return 'tsp';
+  if (['cup','cups'].includes(m)) return 'cup';
+  if (['ounce','ounces','oz'].includes(m)) return 'oz';
+  if (['pound','pounds','lb','lbs'].includes(m)) return 'lb';
+  if (['piece','pieces'].includes(m)) return 'piece';
+  if (['spray','sprays'].includes(m)) return 'spray';
+  return m || 'unit';
+}
+
+function asNumber(n){ const x = Number(n); return Number.isFinite(x)? x : 0; }
+
+function add(map, name, qty, unit){
+  const key = toKey(name);
+  const u   = toStdUnit(unit);
+  const k2  = key + '||' + u;
+  map[k2] = (map[k2]||0) + asNumber(qty);
+}
+
+function collapse(map){
+  const out = [];
+  for(const k in map){
+    const [name, unit] = k.split('||');
+    let qty = map[k];
+    // simple oz→lb collapse for > 16oz
+    if (unit === 'oz' && qty >= 16){
+      const addlb = Math.floor(qty/16);
+      const rem   = +(qty % 16).toFixed(2);
+      if (addlb>0) out.push({ item: name, qty: addlb, unit: 'lb' });
+      if (rem>0) out.push({ item: name, qty: rem, unit: 'oz' });
+      continue;
+    }
+    // tbsp→cup
+    if (unit === 'tbsp' && qty >= 16){
+      const addcup = Math.floor(qty/16);
+      const rem    = +(qty % 16).toFixed(2);
+      if (addcup>0) out.push({ item: name, qty: addcup, unit: 'cup' });
+      if (rem>0) out.push({ item: name, qty: rem, unit: 'tbsp' });
+      continue;
+    }
+    // tsp→tbsp
+    if (unit === 'tsp' && qty >= 3){
+      const addtb = Math.floor(qty/3);
+      const rem   = +(qty % 3).toFixed(2);
+      if (addtb>0) out.push({ item: name, qty: addtb, unit: 'tbsp' });
+      if (rem>0) out.push({ item: name, qty: rem, unit: 'tsp' });
+      continue;
+    }
+    out.push({ item: name, qty: +qty.toFixed(2), unit });
+  }
+  // merge identical again
+  const final = {};
+  for(const row of out){
+    const k = row.item + '||' + row.unit;
+    final[k] = (final[k]||0) + row.qty;
+  }
+  return Object.entries(final).map(([k,q])=>{
+    const [item, unit] = k.split('||');
+    return { item, qty: +q.toFixed(2), unit };
+  }).sort((a,b)=> a.item.localeCompare(b.item));
+}
+
+async function main(){
+  if (!await fs.stat(POINTER).catch(()=>null)) throw new Error('index.json missing');
+  const idx = JSON.parse(await fs.readFile(POINTER,'utf8'));
+  const rel = idx.plan_latest;
+  if (!rel) throw new Error('index.json missing "plan_latest"');
+  if (!await fs.stat(rel).catch(()=>null)) throw new Error('plan file not found: '+rel);
+  const plan = JSON.parse(await fs.readFile(rel,'utf8'));
+  const map = {};
+  for(const d of plan.days||[]){
+    for(const e of d.events||[]){
+      for(const it of e.items||[]){
+        add(map, it.ingredient, it.quantity, it.unit);
       }
     }
   }
-  const items = [];
-  for(const [key,val] of map){
-    const [name,u] = key.split('__');
-    const qty = Math.round(val*100)/100;
-    items.push({name, qty, unit:u});
-  }
-  const groups = {};
-  for(const it of items){
-    let g = 'pantry';
-    if(/(apple|banana|pear|grapes|kiwi|mango|tomato|cucumber|lemon|potatoes?)/.test(it.name)) g='produce';
-    if(/(salmon|cod|chicken|turkey|tuna)/.test(it.name)) g='protein';
-    if(/(yogurt|cottage|mozzarella|milk|cream cheese|cheese)/.test(it.name)) g='dairy';
-    if(/(oats|rice|tortilla|bread|panko)/.test(it.name)) g='grains';
-    if(/(vegetables)/.test(it.name)) g='frozen';
-    (groups[g]=groups[g]||[]).push(it);
-  }
-  return { generated_at:new Date().toISOString(), persons, groups };
+  const items = collapse(map);
+  await fs.mkdir(path.dirname(OUT), { recursive:true });
+  await fs.writeFile(OUT, JSON.stringify({ generated_at:new Date().toISOString(), items }, null, 2));
+  console.log('Wrote', OUT, items.length, 'rows');
 }
 
-function main(){
-  const ptr = readJSON(PTR_PATH);
-  const rel = (ptr.plan_latest||'').trim();
-  if(!rel) throw new Error('index.json missing "plan_latest"');
-  const planPath = 'pages/apps/carol/plans/'+rel.split('/').pop();
-  const plan = readJSON(planPath);
-  const out = buildFromPlan(plan);
-  const outPath = 'pages/apps/carol/plans/shopping-2p.json';
-  fs.mkdirSync(path.dirname(outPath), {recursive:true});
-  fs.writeFileSync(outPath, JSON.stringify(out,null,2));
-  console.log('Wrote', outPath);
-}
-main();
+main().catch(e=>{ console.error(e); process.exit(1); });

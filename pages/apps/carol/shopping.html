@@ -1,169 +1,119 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Carol — Shopping List (2 people)</title>
-  <style>
-  :root { --fg:#222; --muted:#666; --bg:#fff; --chip:#eef2f7; }
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;margin:0;background:var(--bg);color:var(--fg)}
-  header{position:sticky;top:0;background:#e9fbf0;border-bottom:1px solid #d8f5e3;padding:12px 16px;z-index:10}
-  header h1{margin:0;font-size:18px}
-  header .actions{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
-  button{padding:8px 12px;border:1px solid #ddd;background:#fff;border-radius:8px;cursor:pointer}
-  main{padding:16px;max-width:980px;margin:auto}
-  .group{border:1px solid #eee;border-radius:12px;margin:14px 0;padding:12px;background:#fff}
-  .group h2{margin:0 0 8px 0}
-  ul{margin:8px 0 0 0;padding-left:18px}
-  li{margin:3px 0}
-  .note{color:var(--muted);font-size:12px;margin-top:6px}
-  @media print{ header,.actions{display:none!important} body{background:#fff} }
-  </style>
-</head>
-<body>
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carol — Shopping List (2 people)</title>
+<style>
+  :root{--pad:16px;--max:900px}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;margin:0;padding:var(--pad);max-width:var(--max);margin-inline:auto;background:#f8f9fb}
+  header{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:12px}
+  h1{font-size:1.25rem;margin:0}
+  .btn{display:inline-block;padding:8px 12px;border:1px solid #ddd;border-radius:8px;text-decoration:none;color:#111;background:#fff}
+  .group{background:#fff;border:1px solid #eee;border-radius:12px;margin:10px 0;padding:12px}
+  .group h2{margin:0 0 8px 0;font-size:1rem}
+  ul{margin:0;padding-left:18px}
+  @media print{header{display:none} body{background:#fff} .group{page-break-inside:avoid}}
+</style>
 <header>
-  <h1>Carol — Shopping List (2 people)</h1>
-  <div class="actions">
-    <button onclick="window.print()">Print List</button>
-    <button id="btnBuild">Build in Browser</button>
+  <h1>Carol — Shopping List</h1>
+  <div>
+    <button class="btn" onclick="window.print()">Print List</button>
+    <button class="btn" id="build">Build in Browser</button>
   </div>
 </header>
-<main id="app">Loading…</main>
-<script>
-const N_PERSONS = 2;
-const NORMALIZE = new Map([
-  ['frozen mixed vegetables','mixed vegetables, frozen'],
-  ['mixed vegetables (frozen)','mixed vegetables, frozen'],
-  ['lactose-free mozzarella','mozzarella, lactose-free'],
-  ['lactose-free cheese stick','mozzarella, lactose-free'],
-  ['lf cream cheese','cream cheese, lactose-free'],
-  ['lf greek yogurt','greek yogurt, lactose-free'],
-  ['lactose-free greek yogurt','greek yogurt, lactose-free'],
-  ['lactose-free milk','milk, lactose-free'],
-  ['hummus (no cumin)','hummus'],
-  ['olive oil spray','olive oil'],
-]);
+<div id="list"></div>
+<script type="module">
+const CAT = {
+  produce:['apple','banana','pear','kiwi','peach','grapes','mango','pineapple','tomato','cucumber','spinach','lettuce','lemon','potatoes','sweet potato','avocado'],
+  protein:['chicken','turkey','salmon','cod','tuna','egg','eggs','ground turkey','lean turkey'],
+  dairy:['yogurt','cottage','mozzarella','cheese','milk','cream cheese'],
+  grains:['oats','rice','tortilla','bread','crackers','panko','granola','rice cakes'],
+  frozen:['frozen','mixed vegetables'],
+  pantry:['olive oil','hummus','peanut butter','flax','chia','cocoa','tomato soup','diced tomatoes','beans']
+};
+function catOf(name){
+  const n=name.toLowerCase();
+  if(n.includes('frozen')) return 'Frozen';
+  if(n.includes('vegetables')) return 'Frozen';
+  if(CAT.produce.some(w=>n.includes(w))) return 'Produce';
+  if(CAT.protein.some(w=>n.includes(w))) return 'Protein';
+  if(CAT.dairy.some(w=>n.includes(w))) return 'Dairy';
+  if(CAT.grains.some(w=>n.includes(w))) return 'Grains';
+  if(CAT.frozen.some(w=>n.includes(w))) return 'Frozen';
+  return 'Pantry';
+}
 function normName(n){
   n = String(n||'').trim().toLowerCase();
-  return NORMALIZE.get(n) || n;
+  n = n.replace(/\s+\(canned in juice.*\)/g,'').replace(/\s+\(in water\)/g,'');
+  n = n.replace(/lactose[-\s]?free/g,'lactose-free');
+  n = n.replace(/mixed vegetables.*|frozen mixed vegetables/g,'mixed vegetables, frozen');
+  n = n.replace(/lf /g,'lactose-free ');
+  n = n.replace(/yogurt.*greek.*/g,'yogurt, greek (lactose-free)');
+  n = n.replace(/cottage cheese.*/g,'cottage cheese (lactose-free)');
+  n = n.replace(/^egg$/,'eggs');
+  return n;
 }
-// lightweight conversions to shopping units
-const TBSP_PER_FL_OZ = 2;
-const TSP_PER_TBSP = 3;
-const TSP_PER_FL_OZ = TBSP_PER_FL_OZ * TSP_PER_TBSP;
-const CUP_OATS_OZ = 3.5; // typical
-const CUP_RICE_COOKED_OZ = 5.0;
-const CUP_FRUIT_OZ = 5.0;
-const SLICE_BREAD_OZ = 1.0;
-const PIECE_FRUIT_LB = {
-  apple:0.33, banana:0.25, pear:0.33, kiwi:0.2, lemon:0.2, tomato:0.33
-};
-const PIECE_MISC_LB = { 'baby potatoes':0.1 };
-const OZ_PER_CHEESE_STICK = 1.0;
-function add(map, key, qty){ map.set(key, (map.get(key)||0)+qty ); }
-function toShopping(ing, qty, unit){
-  const k = normName(ing);
-  // volume to fluid ounces
-  if(unit==='tbsp') return [k, qty / TBSP_PER_FL_OZ, 'fl oz'];
-  if(unit==='tsp')  return [k, qty / TSP_PER_FL_OZ, 'fl oz'];
-  if(unit==='cup'){
-    if(/oats/.test(k)) return [k, qty * CUP_OATS_OZ, 'oz'];
-    if(/rice/.test(k)) return [k, qty * CUP_RICE_COOKED_OZ, 'oz'];
-    if(/berries|pineapple|mango|fruit|grapes|peach|peaches/.test(k)) return [k, qty * CUP_FRUIT_OZ, 'oz'];
-    if(/yogurt|cottage/.test(k)) return [k, qty * 8, 'oz'];
-    if(/vegetables/.test(k)) return [k, qty * 5, 'oz'];
-    return [k, qty * 8, 'fl oz'];
-  }
-  if(unit==='slice' && /bread/.test(k)) return [k, qty * SLICE_BREAD_OZ, 'oz'];
-  if(unit==='leaf') return [k, qty, 'ea'];
-  if(unit==='spray') return [k, qty/10, 'fl oz']; // approx
-  if(unit==='oz') return [k, qty, 'oz'];
-  if(unit==='can') return [k, qty*15, 'oz']; // standard small can ~15oz
-  if(unit==='piece'){
-    if(PIECE_FRUIT_LB[ing.toLowerCase()]) return [k, qty*PIECE_FRUIT_LB[ing.toLowerCase()], 'lb'];
-    if(PIECE_FRUIT_LB[k]) return [k, qty*PIECE_FRUIT_LB[k], 'lb'];
-    if(PIECE_MISC_LB[ing.toLowerCase()]) return [k, qty*PIECE_MISC_LB[ing.toLowerCase()], 'lb'];
-    return [k, qty, 'ea'];
-  }
-  if(unit==='egg' || (unit==='piece' && /egg/.test(k))) return ['eggs', qty, 'ea'];
-  return [k, qty, unit];
-}
-async function tryLoadPrebuilt(){
-  try{
-    const ptr = await (await fetch('./index.json',{cache:'no-store'})).json();
-    if(!ptr.shopping_latest) return null;
-    const url = '../plans/' + ptr.shopping_latest.split('/').pop();
-    const res = await fetch(url, {cache:'no-store'});
-    if(!res.ok) return null;
-    return await res.json();
-  }catch(e){ return null; }
+function asNumber(v){const n=Number(v);return isFinite(n)?n:0}
+function add(map,key,qty,unit){
+  const k = normName(key);
+  const entry = map.get(k) || {name:k, qty:0, unit:unit||''};
+  // if units differ, prefer first seen unit; we only sum like-units here
+  if(entry.unit === (unit||'') || !entry.unit) entry.qty += asNumber(qty);
+  map.set(k, entry);
 }
 async function loadPlan(){
-  const ptr = await (await fetch('./index.json',{cache:'no-store'})).json();
-  const url = '../plans/' + ptr.plan_latest.split('/').pop();
-  const res = await fetch(url, {cache:'no-store'});
-  if(!res.ok) throw new Error('Plan not found');
-  return res.json();
+  const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json());
+  const rel = ptr && ptr.plan_latest;
+  if(!rel) throw new Error('index.json missing "plan_latest"');
+  const plan = await fetch('/'+rel).then(r=>r.json());
+  return plan;
 }
-function buildFromPlan(plan){
+function multiplyFor(forWhom){
+  if(!forWhom) return 1;
+  const f = String(forWhom).toLowerCase();
+  if(f.includes('both')) return 2;
+  return 1;
+}
+function toDisplay(item){
+  let qty = item.qty;
+  let unit = item.unit || '';
+  // normalize some shopping units
+  if(unit==='tbsp' && /hummus|peanut butter|cream cheese/.test(item.name)) { qty = qty * 0.5; unit = 'oz'; } // 1 tbsp ~ 0.5 oz approx
+  if(unit==='cup' && /rolled oats/.test(item.name)) { qty = qty * 2.82; unit = 'oz'; } // 1 cup oats ~ 2.82 oz (~80g)
+  if(unit==='piece' && /banana|apple|pear|kiwi|lemon|avocado|eggs?/.test(item.name)) { unit='count'; }
+  if(unit==='leaf' || unit==='slice' || unit==='spray') { unit='count'; }
+  if(unit==='tsp' && /garlic powder|cinnamon|cocoa|vanilla/.test(item.name)) { unit='tsp'; }
+  return { ...item, qty, unit };
+}
+async function buildInBrowser(){
+  const plan = await loadPlan();
   const map = new Map();
-  const persons = (plan.persons && plan.persons.length) ? plan.persons.length : N_PERSONS;
-  for(const d of plan.days){
-    for(const ev of d.events||[]){
-      const mult = (String(ev.for||'Both').toLowerCase()==='both') ? persons : 1;
-      for(const it of ev.items||[]){
-        const [name,val,u] = toShopping(it.ingredient, it.quantity*mult, it.unit);
-        const key = name+'__'+u;
-        add(map, key, val);
+  for(const day of plan.days){
+    for(const ev of day.events){
+      const mult = multiplyFor(ev.for);
+      for(const it of (ev.items||[])){
+        add(map, it.ingredient, (asNumber(it.quantity)||0)*mult, (it.unit||'').toLowerCase());
       }
     }
   }
-  // collapse close floats
-  const items = [];
-  for(const [key,val] of map){
-    const [name,u] = key.split('__');
-    const qty = Math.round(val*100)/100;
-    items.push({name, qty, unit:u});
-  }
-  // group
-  const groups = {};
+  const items = Array.from(map.values()).map(toDisplay).sort((a,b)=>a.name.localeCompare(b.name));
+  // group and render
+  const groups = new Map();
   for(const it of items){
-    let g = 'pantry';
-    if(/(apple|banana|pear|grapes|kiwi|mango|tomato|cucumber|lemon|potatoes?)/.test(it.name)) g='produce';
-    if(/(salmon|cod|chicken|turkey|tuna)/.test(it.name)) g='protein';
-    if(/(yogurt|cottage|mozzarella|milk|cream cheese|cheese)/.test(it.name)) g='dairy';
-    if(/(oats|rice|tortilla|bread|panko)/.test(it.name)) g='grains';
-    if(/(vegetables)/.test(it.name)) g='frozen';
-    (groups[g]=groups[g]||[]).push(it);
+    const g = catOf(it.name);
+    if(!groups.has(g)) groups.set(g, []);
+    groups.get(g).push(it);
   }
-  return { generated_at:new Date().toISOString(), persons, groups };
+  const list = document.getElementById('list');
+  list.innerHTML='';
+  for(const [g, arr] of groups){
+    const div = document.createElement('section'); div.className='group';
+    div.innerHTML = `<h2>${g}</h2>`;
+    const ul = document.createElement('ul');
+    for(const it of arr){
+      const qty = (Math.round(it.qty*100)/100).toString().replace(/\.0+$/,'');
+      ul.innerHTML += `<li>${it.name} — <strong>${qty} ${it.unit||''}</strong></li>`;
+    }
+    div.appendChild(ul); list.appendChild(div);
+  }
 }
-function render(data){
-  const app=document.getElementById('app');
-  const order=['produce','protein','dairy','grains','frozen','pantry'];
-  app.innerHTML='';
-  for(const g of order){
-    if(!data.groups[g]||!data.groups[g].length) continue;
-    const div=document.createElement('div'); div.className='group';
-    div.innerHTML = `<h2>${g[0].toUpperCase()+g.slice(1)}</h2>`+
-      `<ul>`+data.groups[g].map(i=>`<li>${i.name}: <strong>${i.qty} ${i.unit}</strong></li>`).join('')+`</ul>`;
-    app.appendChild(div);
-  }
-  if(app.innerHTML==='') app.textContent='No items.';
-}
-
-document.getElementById('btnBuild').addEventListener('click', async ()=>{
-  const plan = await loadPlan();
-  render(buildFromPlan(plan));
-});
-
-(async () => {
-  const pre = await tryLoadPrebuilt();
-  if(pre && pre.groups) { render(pre); }
-  else {
-    document.getElementById('btnBuild').click();
-  }
-})();
+document.getElementById('build').addEventListener('click', buildInBrowser);
 </script>
-</body>
 </html>

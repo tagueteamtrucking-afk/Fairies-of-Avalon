@@ -1,34 +1,22 @@
-name: Charlotte — AI Projects Crawler (GitHub sources)
+name: Charlotte - AI Projects Crawler (GitHub sources)
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 11 * * 1'   # weekly, Monday 11:00 UTC
+    - cron: '0 11 * * 1'
 permissions:
   contents: write
 jobs:
   crawl:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: pwsh
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - name: Write crawler script
-        run: |
-          $b64 = @'
-Ly8gc2NyaXB0cy9jaGFybG90dGUvY3Jhd2xlci5tanMKaW1wb3J0IGZzIGZyb20gJ2ZzJzsKaW1wb3J0IHBhdGggZnJvbSAncGF0aCc7Cgpjb25zdCBPVVQgPSBwcm9jZXNzLmVudi5PVVQgfHwgJ3BhZ2VzL2FwcHMvY2hhcmxvdHRlL2NyYXdsZXIvaW5kZXguanNvbic7CmNvbnN0IFFVRVJJRVMgPSBbCiAgJ1RyaXBvU1IgaW46bmFtZSxkZXNjcmlwdGlvbixyZWFkbWUgc3RhcnM6PjEwMCcsCiAgJ0luc3RhbnRNZXNoIGluOm5hbWUsZGVzY3JpcHRpb24scmVhZG1lIHN0YXJzOj4xMDAnLAogICd0aHJlZXN0dWRpbyBpbjpuYW1lLGRlc2NyaXB0aW9uLHJlYWRtZSBzdGFyczo+MTAwJywKICAnc3RhYmxlIGRpZmZ1c2lvbiBhbmRyb2lkIGNsaWVudCBpbjpuYW1lLGRlc2NyaXB0aW9uLHJlYWRtZScsCiAgJ2ZhY2VsZXNzIHZpZGVvIGdlbmVyYXRvciBmZm1wZWcgaW46bmFtZSxkZXNjcmlwdGlvbixyZWFkbWUnLAogICdPcGVuLVNvcmEgdmlkZW8gZ2VuZXJhdGlvbiBpbjpuYW1lLGRlc2NyaXB0aW9uLHJlYWRtZScsCiAgJ01vY2hpIHZpZGVvIGdlbmVyYXRpb24gaW46bmFtZSxkZXNjcmlwdGlvbixyZWFkbWUnLAogICdXYW4yLjIgdGV4dC10by12aWRlbyBpbjpuYW1lLGRlc2NyaXB0aW9uLHJlYWRtZScKXTsKCmNvbnN0IGhlYWRlcnMgPSB7CiAgJ0FjY2VwdCc6ICdhcHBsaWNhdGlvbi92bmQuZ2l0aHViK2pzb24nLAogICdBdXRob3JpemF0aW9uJzogcHJvY2Vzcy5lbnYuR0lUSFVCX1RPS0VOID8gYEJlYXJlciAke3Byb2Nlc3MuZW52LkdJVEhVQl9UT0tFTn1gIDogdW5kZWZpbmVkLAogICdYLUdpdEh1Yi1BcGktVmVyc2lvbic6ICcyMDIyLTExLTI4Jwp9OwoKYXN5bmMgZnVuY3Rpb24gZ2l0aHViU2VhcmNoKHEpewogIGNvbnN0IHVybCA9IGBodHRwczovL2FwaS5naXRodWIuY29tL3NlYXJjaC9yZXBvc2l0b3JpZXM/cT0ke2VuY29kZVVSSUNvbXBvbmVudChxKX0mc29ydD1zdGFycyZvcmRlcj1kZXNjJnBlcl9wYWdlPTEwYDsKICBjb25zdCByZXMgPSBhd2FpdCBmZXRjaCh1cmwsIHsgaGVhZGVycyB9KTsKICBpZighcmVzLm9rKSB0aHJvdyBuZXcgRXJyb3IoJ0dpdEh1YiBzZWFyY2ggZmFpbGVkOiAnK3Jlcy5zdGF0dXMpOwogIGNvbnN0IGRhdGEgPSBhd2FpdCByZXMuanNvbigpOwogIHJldHVybiBkYXRhLml0ZW1zLm1hcChyID0+ICh7CiAgICBuYW1lOiByLmZ1bGxfbmFtZSwKICAgIHVybDogci5odG1sX3VybCwKICAgIGRlc2NyaXB0aW9uOiByLmRlc2NyaXB0aW9uLAogICAgc3RhcnM6IHIuc3RhcmdhemVyc19jb3VudCwKICAgIGxpY2Vuc2U6IHIubGljZW5zZT8uc3BkeF9pZCB8fCByLmxpY2Vuc2U/Lm5hbWUgfHwgbnVsbCwKICAgIHVwZGF0ZWRfYXQ6IHIudXBkYXRlZF9hdCwKICAgIHRvcGljczogci50b3BpY3MgfHwgW10KICB9KSk7Cn0KCmZ1bmN0aW9uIGVuc3VyZURpcihwKXsgZnMubWtkaXJTeW5jKHBhdGguZGlybmFtZShwKSwgeyByZWN1cnNpdmU6dHJ1ZSB9KTsgfQoKKGFzeW5jICgpID0+IHsKICBjb25zdCByZXN1bHRzID0ge307CiAgZm9yIChjb25zdCBxIG9mIFFVRVJJRVMpewogICAgdHJ5ewogICAgICByZXN1bHRzW3FdID0gYXdhaXQgZ2l0aHViU2VhcmNoKHEpOwogICAgfWNhdGNoKGUpewogICAgICByZXN1bHRzW3FdID0gW3sgZXJyb3I6IFN0cmluZyhlKSB9XTsKICAgIH0KICB9CiAgZW5zdXJlRGlyKE9VVCk7CiAgY29uc3QgcGF5bG9hZCA9IHsgZ2VuZXJhdGVkX2F0OiBuZXcgRGF0ZSgpLnRvSVNPU3RyaW5nKCksIHNvdXJjZTogJ0dpdEh1YiBBUEknLCBxdWVyaWVzOiBRVUVSSUVTLCByZXN1bHRzIH07CiAgZnMud3JpdGVGaWxlU3luYyhPVVQsIEpTT04uc3RyaW5naWZ5KHBheWxvYWQsIG51bGwsIDIpKTsKICBjb25zb2xlLmxvZygnQ2hhcmxvdHRlIGNyYXdsZXIgd3JvdGU6JywgT1VUKTsKfSkoKTs=
-'@
-          New-Item -ItemType Directory -Force -Path scripts/charlotte | Out-Null
-          [IO.File]::WriteAllBytes('scripts/charlotte/crawler.mjs',[Convert]::FromBase64String($b64))
-      - name: Run crawler (GitHub API)
+          node-version: 20
+      - name: Run crawler
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          node scripts/charlotte/crawler.mjs
+        run: node scripts/charlotte/crawler.mjs
       - name: Commit results
         run: |
           git config user.name "Charlotte Bot"

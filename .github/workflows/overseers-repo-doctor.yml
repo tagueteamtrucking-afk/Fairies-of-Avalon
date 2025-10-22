@@ -1,4 +1,4 @@
-name: Overseers — Repo Doctor
+name: Overseers - Repo Doctor
 on:
   workflow_dispatch:
 permissions:
@@ -6,22 +6,27 @@ permissions:
 jobs:
   doctor:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: pwsh
     steps:
       - uses: actions/checkout@v4
       - name: Remove '?v=' cache-busters from HTML
         run: |
-          $files = Get-ChildItem -Recurse -File -Include *.html,*.htm
-          foreach($f in $files){
-            $c = Get-Content $f.FullName -Raw
-            $c2 = $c -replace '\?v=\d+', ''
-            if($c2 -ne $c){ $c2 | Set-Content -Path $f.FullName }
-          }
+          ls -R
+          python - << 'PY'
+import os, re, io
+for root, _, files in os.walk('.', topdown=True):
+    for fn in files:
+        if fn.lower().endswith(('.html', '.htm')):
+            p = os.path.join(root, fn)
+            with io.open(p, 'r', encoding='utf-8', errors='ignore') as f:
+                c = f.read()
+            c2 = re.sub(r'\?v=\d+', '', c)
+            if c2 != c:
+                with io.open(p, 'w', encoding='utf-8') as f:
+                    f.write(c2)
+PY
       - name: Ensure CNAME exists
         run: |
-          if(-not (Test-Path 'CNAME')){ 'fairiesofavalon.com' | Set-Content -Path 'CNAME' }
+          if [ ! -f CNAME ]; then echo "fairiesofavalon.com" > CNAME; fi
       - name: Commit fixes
         run: |
           git config user.name "Overseers Bot"

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-22T17:50:03.602Z",
+  "generated_at": "2025-10-22T18:58:59.795Z",
   "files": [
     {
       "path": ".github/workflows/MANIFEST.json",
@@ -115,8 +115,8 @@
     },
     {
       "path": ".github/workflows/charlotte-curated-crawl.yml",
-      "bytes": 714,
-      "sha1": "d0deb5cc87a18c2dd44f3a5728a9b37d260a77e9",
+      "bytes": 897,
+      "sha1": "2e8723a23c0493a4ffeb7c3b7802a2f71cea1750",
       "type": "workflow",
       "purpose": "GitHub Actions"
     },
@@ -185,8 +185,8 @@
     },
     {
       "path": ".github/workflows/overseers-crossrepo-sweep.yml",
-      "bytes": 1507,
-      "sha1": "4568a650273205f2f98399899086b54d0b877a9d",
+      "bytes": 1680,
+      "sha1": "0208ace5e024193175c8c23e1b8258deb586d890",
       "type": "workflow",
       "purpose": "GitHub Actions"
     },
@@ -3334,6 +3334,20 @@
       "purpose": "Site UI"
     },
     {
+      "path": "pages/_lib/role-guard.js",
+      "bytes": 439,
+      "sha1": "300e894e952539b3150c3f4d5199a65f398c4855",
+      "type": "page",
+      "purpose": "Site UI"
+    },
+    {
+      "path": "pages/access.html",
+      "bytes": 1144,
+      "sha1": "9c59cd82a740727e000777ed48ad9f8a1864bc8a",
+      "type": "page",
+      "purpose": "Site UI"
+    },
+    {
       "path": "pages/apps/Index.html",
       "bytes": 1642,
       "sha1": "60322f30fab838404baf4c923b00c04efd9265d8",
@@ -3454,8 +3468,8 @@
     },
     {
       "path": "pages/apps/abbey/index.html",
-      "bytes": 597,
-      "sha1": "b4acfd309b54167bdc15f21d5382101b8ade1212",
+      "bytes": 1065,
+      "sha1": "683c8377cafb5e9d15fe885f2d41db326f11eec9",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -3517,8 +3531,8 @@
     },
     {
       "path": "pages/apps/alexandria/index.html",
-      "bytes": 674,
-      "sha1": "4ff31ce455ef24af18de5429bf9b33c0b73aa807",
+      "bytes": 1090,
+      "sha1": "2e56384c6af889582c73ebb7918884e4421faef2",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -3937,8 +3951,8 @@
     },
     {
       "path": "pages/apps/billie/index.html",
-      "bytes": 609,
-      "sha1": "1d5d2d5788978498458d8001cedc0947e3d52e76",
+      "bytes": 1044,
+      "sha1": "d35bd10fb442d3ecaa63968fa849f51c70ca3cd7",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -3979,15 +3993,15 @@
     },
     {
       "path": "pages/apps/carol/index.html",
-      "bytes": 1267,
-      "sha1": "f072ee5dc534e3f4f3411f6a56b272befaaafbf8",
+      "bytes": 1003,
+      "sha1": "87fe21b2721025fd15a9f134231155759c312dd9",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
     {
       "path": "pages/apps/carol/index.json",
-      "bytes": 355,
-      "sha1": "c7cc74206a16e8ebd947983f2b60d2b815132ab2",
+      "bytes": 196,
+      "sha1": "3c20548e75c9e372ffbdc780700bf82e9a11e38a",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
@@ -4000,8 +4014,8 @@
     },
     {
       "path": "pages/apps/carol/menu.html",
-      "bytes": 2302,
-      "sha1": "e66fcffc259dfbdcafadb083d3277d36f10b0fcc",
+      "bytes": 3669,
+      "sha1": "e7c1b3b28b57d2f7a395ebbb315b31ceea9f85f2",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
@@ -4118,6 +4132,13 @@
       "purpose": "Meals & shopping"
     },
     {
+      "path": "pages/apps/carol/plans/shopping-2p.json",
+      "bytes": 8525,
+      "sha1": "9efc82e23b1f479f84f47f2a022566a2d1212980",
+      "type": "carol",
+      "purpose": "Meals & shopping"
+    },
+    {
       "path": "pages/apps/carol/plans/shopping-extracted.json",
       "bytes": 7702,
       "sha1": "2a5dea9afbb08f9ff721833fcd048fb49686e3ec",
@@ -4224,15 +4245,15 @@
     },
     {
       "path": "pages/apps/carol/print-shopping.html",
-      "bytes": 1023,
-      "sha1": "a07f8de7dbbdbfacfbeec9c747f1e8d2bf6d990f",
+      "bytes": 290,
+      "sha1": "0d43f05007285e71b96f0029917830ec1b95f21c",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
     {
       "path": "pages/apps/carol/print.css",
-      "bytes": 51,
-      "sha1": "5ff137bf4cb26a6ff79c2539ab1df9e4c6287b7e",
+      "bytes": 132,
+      "sha1": "aef18594dbfdc6c39238dace4adea7f591862cda",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
@@ -4259,15 +4280,15 @@
     },
     {
       "path": "pages/apps/carol/shopping.html",
-      "bytes": 1563,
-      "sha1": "f2dd1169ec5144d670d12a36fc1a4231613eddc9",
+      "bytes": 1524,
+      "sha1": "e467e87f401fd7b71bb59f1c584f2a3255f582c7",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
     {
       "path": "pages/apps/carol/shopping.js",
-      "bytes": 9783,
-      "sha1": "ae1cf72d8273337970f74216925ae0f7039c7dde",
+      "bytes": 3316,
+      "sha1": "c2fbda0e21b5a3e86ef86b072efdd9c5e9513506",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
@@ -4307,9 +4328,16 @@
       "purpose": "Site UI"
     },
     {
+      "path": "pages/apps/charlotte/finds.json",
+      "bytes": 1025,
+      "sha1": "ae26221ddcd132b60d1803ef322e3f9c999633a6",
+      "type": "page",
+      "purpose": "Site UI"
+    },
+    {
       "path": "pages/apps/charlotte/index.html",
-      "bytes": 1274,
-      "sha1": "ed3a22123f266ba4d58eb9b0ac11fd0dc60af348",
+      "bytes": 1066,
+      "sha1": "8b6e0924bada2b9c6b3c1768e86a9e92e13ec52a",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -4370,6 +4398,13 @@
       "purpose": "Site UI"
     },
     {
+      "path": "pages/apps/charlotte/sources.json",
+      "bytes": 1400,
+      "sha1": "931d6362f703822744d32e3b10daa149c98cd894",
+      "type": "page",
+      "purpose": "Site UI"
+    },
+    {
       "path": "pages/apps/charlotte/voiceovers/20250918T031302Z-avalon/opening.txt",
       "bytes": 50,
       "sha1": "cc4e89b589bb21b47df976c589a21cc990559dea",
@@ -4392,8 +4427,8 @@
     },
     {
       "path": "pages/apps/clarice/index.html",
-      "bytes": 516,
-      "sha1": "0af0d8dd728f2d833be719b6218e85d50a510ba6",
+      "bytes": 1103,
+      "sha1": "ed5b009a94f061d753cc46d41a61ac84665d35f7",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -4448,8 +4483,8 @@
     },
     {
       "path": "pages/apps/jem/index.html",
-      "bytes": 1131,
-      "sha1": "40e2ab3c29d35c22752b7f8ac03cf6648a405b63",
+      "bytes": 1049,
+      "sha1": "ed3bc3651d3b645348edd8fa262a16d1d06e6e16",
       "type": "jem",
       "purpose": "Fitness"
     },
@@ -4602,8 +4637,8 @@
     },
     {
       "path": "pages/apps/nina/index.html",
-      "bytes": 1254,
-      "sha1": "ca35732388b63b9ba20ab3aed6802f195b0d87fa",
+      "bytes": 1098,
+      "sha1": "532c3c2f224c6b002c45ea7877588b96e08de42c",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -4625,6 +4660,13 @@
       "path": "pages/apps/nina/vrm.html",
       "bytes": 532,
       "sha1": "b9e7c52eb0b69844cbbb97ef379bcb21d184c829",
+      "type": "page",
+      "purpose": "Site UI"
+    },
+    {
+      "path": "pages/apps/odessa/index.html",
+      "bytes": 1003,
+      "sha1": "0d21da3891638cf214baba9c7fec5f0b71d2b9bf",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -4680,7 +4722,7 @@
     {
       "path": "pages/apps/overseers/memory/coverage.json",
       "bytes": 216,
-      "sha1": "b5977d4b8dc5a34ecee7e2fd162aecfa242de550",
+      "sha1": "47b032d6e31b1b4f671218a4200823886adc7eab",
       "type": "overseers",
       "purpose": "Governance & telemetry"
     },
@@ -4693,8 +4735,8 @@
     },
     {
       "path": "pages/apps/overseers/memory/file-index.json",
-      "bytes": 181385,
-      "sha1": "0ecfe89734b797f7982bdb011893ffcab982bcc5",
+      "bytes": 181599,
+      "sha1": "cebb5dea896790e86531712c26070dcc249595b0",
       "type": "overseers",
       "purpose": "Governance & telemetry"
     },
@@ -4819,8 +4861,8 @@
     },
     {
       "path": "pages/apps/sorcha/index.html",
-      "bytes": 654,
-      "sha1": "7a68cbc4a15fc14ea0b2b6da60a1e059256f2e29",
+      "bytes": 1017,
+      "sha1": "f842b5f6676bc696104a71f8383c4271ae71a7fb",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -4903,8 +4945,8 @@
     },
     {
       "path": "pages/apps/stella/index.html",
-      "bytes": 992,
-      "sha1": "33595f1f9c935fd35eff30d6ffabfb9b62f5e84b",
+      "bytes": 1042,
+      "sha1": "ca1d5e47b081ea0b3e7cc02d076d401aae8810fb",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -4973,8 +5015,8 @@
     },
     {
       "path": "pages/apps/themis/index.html",
-      "bytes": 501,
-      "sha1": "2157f45369bcb5fd2befca40e4def49463e1d104",
+      "bytes": 1017,
+      "sha1": "2be2c9146b77225484e68ba7ddd5ad3eb3ea075b",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -5337,8 +5379,8 @@
     },
     {
       "path": "pages/apps/tracy/index.html",
-      "bytes": 1840,
-      "sha1": "2477598ee592acc2f6a6d85a283f1b229493b4e4",
+      "bytes": 1081,
+      "sha1": "f4db7b1e7337ae2fc506066b69c04c4b3e169c63",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -6205,8 +6247,8 @@
     },
     {
       "path": "scripts/carol/build-shopping.mjs",
-      "bytes": 5231,
-      "sha1": "a783f58ddf4aa5d7045cbb38b9e8a5f8b8dbab18",
+      "bytes": 5762,
+      "sha1": "0710f3c616f00e871a0fceeca5af4e5381b16011",
       "type": "script",
       "purpose": ""
     },
@@ -6219,8 +6261,8 @@
     },
     {
       "path": "scripts/charlotte/curated-crawl.mjs",
-      "bytes": 1419,
-      "sha1": "bdfec6d68e0121df54f57a73f743865de9d73cb4",
+      "bytes": 2231,
+      "sha1": "99343bc11a18ce3917ddb25ffb44e736b6bda737",
       "type": "script",
       "purpose": ""
     },
@@ -6282,8 +6324,8 @@
     },
     {
       "path": "scripts/overseers/crossrepo-sweep.mjs",
-      "bytes": 1549,
-      "sha1": "c4cf6fd8ec7b6618ee18306ba354774d48e3a5de",
+      "bytes": 1817,
+      "sha1": "1229af852601381187be3c6e2defb8a19c9c6cf5",
       "type": "script",
       "purpose": ""
     },

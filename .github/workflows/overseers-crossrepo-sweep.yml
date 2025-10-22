@@ -1,9 +1,6 @@
 name: Overseers — Crossrepo Sweep
-
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: "37 5 * * 2"  # weekly, Tue 05:37 UTC
+  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -12,42 +9,48 @@ jobs:
   sweep:
     runs-on: ubuntu-latest
     steps:
-      - name: Guard: required config present
-        if: ${{ !secrets.REPOS_READ_TOKEN || !vars.SECOND_REPO }}
-        run: |
-          echo "::error title=Missing configuration::Set repository secret REPOS_READ_TOKEN and repo variable SECOND_REPO (owner/repo)."
-          exit 1
-
-      - name: Checkout (primary)
+      - name: "Checkout primary"
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - name: Checkout (second repo)
+      - name: "Guard: required config present"
+        env:
+          SECOND_REPO: ${{ vars.SECOND_REPO }}
+          REPOS_READ_TOKEN: ${{ secrets.REPOS_READ_TOKEN }}
+        run: |
+          if [ -z "${REPOS_READ_TOKEN:-}" ] || [ -z "${SECOND_REPO:-}" ]; then
+            echo "::error title=Missing configuration::Set repository secret REPOS_READ_TOKEN and repository variable SECOND_REPO (owner/repo)."
+            exit 1
+          fi
+
+      - name: "Checkout secondary"
         uses: actions/checkout@v4
         with:
           repository: ${{ vars.SECOND_REPO }}
           token: ${{ secrets.REPOS_READ_TOKEN }}
-          path: _external
+          path: __second__
+          fetch-depth: 1
 
-      - name: Use Node 20
+      - name: "Setup Node"
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Crossrepo sweep (generate report)
+      - name: "Crossrepo sweep"
         run: node scripts/overseers/crossrepo-sweep.mjs
         env:
-          SECOND_REPO_PATH: _external
+          SECOND_REPO_PATH: __second__
+          OUTPUT_FILE: runtime/memory/crossrepo.json
 
-      - name: Commit report
+      - name: "Commit memory index"
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/overseers/crossrepo.json || true
+          git add runtime/memory/crossrepo.json || true
           if git diff --cached --quiet; then
-            echo "No changes."
+            echo "No changes to commit."
           else
-            git commit -m "chore(overseers): update crossrepo sweep"
+            git commit -m "Overseers: update crossrepo memory index"
             git push
           fi

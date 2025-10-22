@@ -1,0 +1,13 @@
+
+/* pages/apps/carol/print.css */
+@media print {
+  @page { size: auto; margin: 12mm; }
+  header, .controls { display: none !important; }
+}
+body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; margin: 1.5rem; }
+h1, h2 { margin: 0.2rem 0 0.6rem; }
+section.day { page-break-inside: avoid; border-bottom: 1px solid #ddd; padding: 0.6rem 0; }
+ul { margin: 0.2rem 0 0.4rem 1.2rem; }
+small.meta { color: #666; }
+button.print { padding: 0.5rem 0.8rem; border: 1px solid #ccc; border-radius: 6px; background: #f6f6f6; cursor: pointer; }
+button.print:active { transform: translateY(1px); }

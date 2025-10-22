@@ -1,84 +1,85 @@
 {
   "meta": {
+    "plan_path": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
     "people": 2,
-    "source_plan": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-    "generated_at": "2025-10-22T04:26:15.568Z",
-    "events_count": 98
+    "generated_at": "2025-10-22T05:57:51.000283Z",
+    "events_count": 98,
+    "items_count": 81
   },
   "items": [
     {
       "item": "almonds (slivered)",
-      "qty": 6,
+      "qty": 6.0,
       "unit": "oz"
     },
     {
       "item": "apple",
-      "qty": 4,
+      "qty": 4.0,
       "unit": "piece"
     },
     {
       "item": "avocado",
-      "qty": 5,
+      "qty": 5.0,
       "unit": "piece"
     },
     {
       "item": "baby potatoes",
-      "qty": 24,
+      "qty": 24.0,
       "unit": "piece"
     },
     {
       "item": "banana",
-      "qty": 15,
+      "qty": 15.0,
       "unit": "piece"
     },
     {
       "item": "blueberries",
-      "qty": 2,
+      "qty": 2.0,
       "unit": "cup"
     },
     {
       "item": "brown rice (microwave pouch)",
-      "qty": 10,
+      "qty": 10.0,
       "unit": "cup"
     },
     {
       "item": "butter lettuce",
-      "qty": 36,
+      "qty": 36.0,
       "unit": "leaf"
     },
     {
       "item": "canned chicken",
-      "qty": 2,
+      "qty": 2.0,
       "unit": "can"
     },
     {
       "item": "canned tuna (in water)",
-      "qty": 4,
+      "qty": 4.0,
       "unit": "can"
     },
     {
       "item": "chia seeds",
-      "qty": 17,
+      "qty": 17.0,
       "unit": "tbsp"
     },
     {
       "item": "chicken breast",
-      "qty": 30,
+      "qty": 30.0,
       "unit": "oz"
     },
     {
       "item": "cinnamon",
-      "qty": 4,
+      "qty": 4.0,
       "unit": "tsp"
     },
     {
       "item": "cod fillet",
-      "qty": 40,
+      "qty": 40.0,
       "unit": "oz"
     },
     {
       "item": "cooked chicken breast",
-      "qty": 32,
+      "qty": 32.0,
       "unit": "oz"
     },
     {
@@ -98,7 +99,7 @@
     },
     {
       "item": "egg",
-      "qty": 8,
+      "qty": 8.0,
       "unit": "piece"
     },
     {
@@ -118,17 +119,17 @@
     },
     {
       "item": "frozen mixed vegetables",
-      "qty": 20,
+      "qty": 20.0,
       "unit": "cup"
     },
     {
       "item": "frozen veg medley",
-      "qty": 16,
+      "qty": 16.0,
       "unit": "cup"
     },
     {
       "item": "garlic powder",
-      "qty": 6,
+      "qty": 6.0,
       "unit": "tsp"
     },
     {
@@ -138,67 +139,67 @@
     },
     {
       "item": "grapes",
-      "qty": 6,
+      "qty": 6.0,
       "unit": "cup"
     },
     {
       "item": "ground flaxseed",
-      "qty": 6,
+      "qty": 6.0,
       "unit": "tbsp"
     },
     {
       "item": "honey",
-      "qty": 3,
+      "qty": 3.0,
       "unit": "tsp"
     },
     {
       "item": "hummus (no cumin)",
-      "qty": 24,
+      "qty": 24.0,
       "unit": "tbsp"
     },
     {
       "item": "kiwi",
-      "qty": 8,
+      "qty": 8.0,
       "unit": "piece"
     },
     {
       "item": "lactose-free cheese",
-      "qty": 9,
+      "qty": 9.0,
       "unit": "oz"
     },
     {
       "item": "lactose-free cheese stick",
-      "qty": 2,
+      "qty": 2.0,
       "unit": "piece"
     },
     {
       "item": "lactose-free cottage cheese",
-      "qty": 4,
+      "qty": 4.0,
       "unit": "cup"
     },
     {
       "item": "lactose-free greek yogurt",
-      "qty": 19,
+      "qty": 19.0,
       "unit": "cup"
     },
     {
       "item": "lactose-free milk",
-      "qty": 34,
+      "qty": 34.0,
       "unit": "cup"
     },
     {
       "item": "lactose-free mozzarella",
-      "qty": 8,
+      "qty": 8.0,
       "unit": "oz"
     },
     {
       "item": "lean ground turkey",
-      "qty": 40,
+      "qty": 40.0,
       "unit": "oz"
     },
     {
       "item": "lean turkey",
-      "qty": 20,
+      "qty": 20.0,
       "unit": "oz"
     },
     {
@@ -208,27 +209,27 @@
     },
     {
       "item": "lemon juice",
-      "qty": 10,
+      "qty": 10.0,
       "unit": "tsp"
     },
     {
-      "item": "LF cream cheese",
-      "qty": 2,
+      "item": "lf cream cheese",
+      "qty": 2.0,
       "unit": "tbsp"
     },
     {
-      "item": "LF mayo",
-      "qty": 4,
+      "item": "lf mayo",
+      "qty": 4.0,
       "unit": "tbsp"
     },
     {
       "item": "lime juice",
-      "qty": 2,
+      "qty": 2.0,
       "unit": "tsp"
     },
     {
       "item": "low-sodium beans (canned)",
-      "qty": 2,
+      "qty": 2.0,
       "unit": "cup"
     },
     {
@@ -238,12 +239,12 @@
     },
     {
       "item": "low-sodium crackers",
-      "qty": 24,
+      "qty": 24.0,
       "unit": "piece"
     },
     {
       "item": "low-sodium lentil soup",
-      "qty": 3,
+      "qty": 3.0,
       "unit": "cup"
     },
     {
@@ -258,7 +259,7 @@
     },
     {
       "item": "mango (frozen)",
-      "qty": 3,
+      "qty": 3.0,
       "unit": "cup"
     },
     {
@@ -268,17 +269,17 @@
     },
     {
       "item": "mixed vegetables (frozen)",
-      "qty": 4,
+      "qty": 4.0,
       "unit": "cup"
     },
     {
       "item": "olive oil",
-      "qty": 66,
+      "qty": 66.0,
       "unit": "tsp"
     },
     {
       "item": "olive oil spray",
-      "qty": 12,
+      "qty": 12.0,
       "unit": "spray"
     },
     {
@@ -298,37 +299,37 @@
     },
     {
       "item": "peanut butter",
-      "qty": 19,
+      "qty": 19.0,
       "unit": "tbsp"
     },
     {
       "item": "pear",
-      "qty": 7,
+      "qty": 7.0,
       "unit": "piece"
     },
     {
       "item": "pineapple (canned in juice, drained)",
-      "qty": 3,
+      "qty": 3.0,
       "unit": "cup"
     },
     {
       "item": "pineapple (frozen)",
-      "qty": 2,
+      "qty": 2.0,
       "unit": "cup"
     },
     {
       "item": "relish (low-sugar)",
-      "qty": 2,
+      "qty": 2.0,
       "unit": "tsp"
     },
     {
       "item": "rice cakes",
-      "qty": 8,
+      "qty": 8.0,
       "unit": "piece"
     },
     {
       "item": "ripe pear",
-      "qty": 2,
+      "qty": 2.0,
       "unit": "piece"
     },
     {
@@ -338,32 +339,32 @@
     },
     {
       "item": "rolled oats",
-      "qty": 16,
+      "qty": 16.0,
       "unit": "tbsp"
     },
     {
       "item": "salmon fillet",
-      "qty": 30,
+      "qty": 30.0,
       "unit": "oz"
     },
     {
       "item": "soft pita",
-      "qty": 1,
+      "qty": 1.0,
       "unit": "piece"
     },
     {
       "item": "soft whole-grain bread",
-      "qty": 18,
+      "qty": 18.0,
       "unit": "slice"
     },
     {
       "item": "soft whole-wheat tortilla",
-      "qty": 10,
+      "qty": 10.0,
       "unit": "piece"
     },
     {
       "item": "spinach",
-      "qty": 6,
+      "qty": 6.0,
       "unit": "cup"
     },
     {
@@ -373,17 +374,17 @@
     },
     {
       "item": "sweet potato",
-      "qty": 2,
+      "qty": 2.0,
       "unit": "piece"
     },
     {
       "item": "tomato",
-      "qty": 6,
+      "qty": 6.0,
       "unit": "piece"
     },
     {
       "item": "turkey breast (low-sodium)",
-      "qty": 12,
+      "qty": 12.0,
       "unit": "oz"
     },
     {
@@ -393,22 +394,22 @@
     },
     {
       "item": "unsweetened cocoa",
-      "qty": 9,
+      "qty": 9.0,
       "unit": "tsp"
     },
     {
       "item": "vanilla extract",
-      "qty": 2,
+      "qty": 2.0,
       "unit": "tsp"
     },
     {
       "item": "walnuts (chopped)",
-      "qty": 6,
+      "qty": 6.0,
       "unit": "oz"
     },
     {
       "item": "whole-grain bread",
-      "qty": 2,
+      "qty": 2.0,
       "unit": "slice"
     }
   ]

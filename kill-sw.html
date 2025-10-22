@@ -1,4 +1,16 @@
-<!doctype html><meta charset="utf-8"><title>Kill SW</title><pre id=p>Stopping service workers…</pre><script>
-(async()=>{const regs=await navigator.serviceWorker?.getRegistrations?.()||[];for(const r of regs){try{await r.unregister()}catch{}}
-document.getElementById('p').textContent='All service workers unregistered. Hard-refresh this page.';})();
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Kill Service Worker</title></head>
+<body>
+<h1>Service worker reset</h1>
+<p>If a service worker is installed, this page will unregister it and then reload.</p>
+<script>
+(async()=>{
+  if ('serviceWorker' in navigator){
+    const regs = await navigator.serviceWorker.getRegistrations();
+    for (const r of regs){ try{ await r.unregister(); }catch(e){} }
+  }
+  localStorage.clear(); sessionStorage.clear(); caches && caches.keys && caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)));
+  setTimeout(()=>location.href='/', 800);
+})();
 </script>
+</body></html>

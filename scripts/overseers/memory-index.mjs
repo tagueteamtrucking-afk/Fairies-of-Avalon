@@ -1,59 +1,80 @@
 // scripts/overseers/memory-index.mjs
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 
-const IGNORE = new Set(['.git','node_modules','.DS_Store','dist','out','_site','.vercel','.cache']);
 const ROOT = process.cwd();
 const OUT = 'pages/apps/overseers/memory/index.json';
+const IGNORE_DIRS = new Set(['.git','.github','node_modules','.DS_Store','dist','out','_site','.next','.vercel','.cache']);
 
-function classify(p){
-  const l = p.toLowerCase();
-  if (l.includes('/pages/apps/carol/')) return 'carol';
-  if (l.includes('/pages/apps/charlotte/')) return 'charlotte';
-  if (l.startsWith('.github/workflows/')) return 'workflow';
-  if (l.startsWith('asset/')) return 'asset';
-  if (l.endsWith('.html')) return 'page';
-  if (l.endsWith('.mjs')||l.endsWith('.js')) return 'script';
-  if (l.endsWith('.json')||l.endsWith('.yml')||l.endsWith('.yaml')) return 'data';
+const IMG_EXT = new Set(['.png','.jpg','.jpeg','.webp','.gif','.avif']);
+const VRM_EXT = new Set(['.vrm']);
+
+function walk(dir){
+  const entries = fs.existsSync(dir) ? fs.readdirSync(dir, { withFileTypes:true }) : [];
+  let files = [];
+  for (const e of entries){
+    const abs = path.join(dir, e.name);
+    const rel = path.relative(ROOT, abs).replaceAll('\\','/');
+    if (IGNORE_DIRS.has(e.name)) continue;
+    if (e.isDirectory()){
+      files = files.concat(walk(abs));
+    } else if (e.isFile()){
+      files.push(rel);
+    }
+  }
+  return files;
+}
+function sha1Of(p){
+  try{
+    const b = fs.readFileSync(p);
+    return crypto.createHash('sha1').update(b).digest('hex');
+  }catch{ return null; }
+}
+
+function classify(rel){
+  const lower = rel.toLowerCase();
+  if (lower.startsWith('pages/apps/')){
+    if (lower.includes('/overseers/hub/')) return 'microapp';
+    if (lower.includes('/carol/')) return 'microapp';
+    return 'page';
+  }
+  if (lower.startsWith('.github/workflows/')) return 'workflow';
+  if (lower.startsWith('asset/models')) return 'model';
+  if (lower.startsWith('asset/winged-models') || lower.startsWith('asset/wings')) return 'wings';
+  if (lower.startsWith('asset/textures/wallpapers')) return 'wallpaper';
+  const ext = path.extname(lower);
+  if (ext === '.html') return 'html';
+  if (ext === '.css') return 'style';
+  if (ext === '.js' || ext === '.mjs') return 'script';
+  if (ext === '.json') return 'data';
   return 'other';
 }
 
-function walk(dir){
-  const ents = fs.readdirSync(dir, {withFileTypes:true});
-  let items = [];
-  for (const e of ents){
-    if (IGNORE.has(e.name)) continue;
-    const p = path.join(dir, e.name);
-    const rel = path.relative(ROOT, p).replace(/\\/g,'/');
-    if (e.isDirectory()) items = items.concat(walk(p));
-    else items.push(rel);
-  }
-  return items;
+function countWallpapers(list){
+  return list.filter(f => f.toLowerCase().startsWith('asset/textures/wallpapers') && IMG_EXT.has(path.extname(f).toLowerCase())).length;
 }
 
-function briefPurpose(rel){
-  if (rel === 'pages/apps/carol/menu.html') return 'Menu timeline viewer for plan JSON (printable)';
-  if (rel === 'pages/apps/carol/shopping.html') return 'Shopping list viewer for generated shopping JSON';
-  if (rel === 'pages/apps/carol/index.json') return 'Pointer to plan & shopping files';
-  if (rel.startsWith('scripts/overseers/')) return 'Overseers helper script';
-  if (rel.startsWith('scripts/carol/')) return 'Carol helper script';
-  if (rel.startsWith('.github/workflows/')) return 'GitHub Actions workflow';
-  return '';
+const files = walk('.');
+const index = files.map(rel => ({
+  path: rel,
+  bytes: (fs.existsSync(rel) && fs.statSync(rel).isFile()) ? fs.statSync(rel).size : 0,
+  sha1: sha1Of(rel),
+  type: classify(rel)
+}));
+
+const byType = new Map();
+for (const it of index){
+  byType.set(it.type, (byType.get(it.type)||0) + 1);
 }
 
-function main(){
-  const files = walk(ROOT);
-  const index = files.map(f=>{
-    const st = fs.statSync(f);
-    return {
-      path: f,
-      size: st.size,
-      type: classify(f),
-      purpose: briefPurpose(f)
-    };
-  });
-  fs.mkdirSync(path.dirname(OUT), {recursive:true});
-  fs.writeFileSync(OUT, JSON.stringify({ generated_at: new Date().toISOString(), count:index.length, files:index }, null, 2));
-  console.log(`Memory index written to ${OUT} (${index.length} files)`);
-}
-main();
+const summary = {
+  count: index.length,
+  byType: Object.fromEntries(byType.entries()),
+  wallpapers: countWallpapers(files),
+  generated_at: new Date().toISOString()
+};
+
+fs.mkdirSync(path.dirname(OUT), { recursive:true });
+fs.writeFileSync(OUT, JSON.stringify({ summary, files: index }, null, 2));
+console.log('Wrote', OUT);

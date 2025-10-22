@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Carol • Print Shopping List</title>
+  <link rel="stylesheet" href="/pages/apps/carol/print.css">
+</head>
+<body>
+  <header class="controls">
+    <button class="print" onclick="window.print()">Print / Save PDF</button>
+  </header>
+  <h1>Shopping List</h1>
+  <small class="meta">Quantized for 2 people • Source: current two‑week menu</small>
+  <div id="root">Loading…</div>
+  <script>
+  (async () => {
+    const data = await fetch('/pages/apps/carol/plans/shopping-quantized.json').then(r=>r.json());
+    const root = document.getElementById('root');
+    root.innerHTML = '';
+    const groups = {};
+    for (const it of (data.items||[])){
+      const unit = it.unit || '';
+      const g = groups[unit] || (groups[unit] = []);
+      g.push(it);
+    }
+    const units = Object.keys(groups).sort();
+    for (const unit of units){
+      const sec = document.createElement('section'); sec.className='day';
+      const h2 = document.createElement('h2'); h2.textContent = unit ? unit : 'no unit';
+      sec.appendChild(h2);
+      const ul = document.createElement('ul');
+      for (const it of groups[unit].sort((a,b)=>a.item.localeCompare(b.item))){
+        const li = document.createElement('li');
+        li.textContent = `${it.item} — ${it.qty}${unit ? ' ' + unit : ''}`;
+        ul.appendChild(li);
+      }
+      sec.appendChild(ul);
+      root.appendChild(sec);
+    }
+  })();
+  </script>
+</body>
+</html>

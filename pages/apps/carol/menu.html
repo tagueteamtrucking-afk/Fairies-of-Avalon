@@ -36,10 +36,9 @@
     function resolvePlanUrl(planPath, ptrUrl){
       const s = String(planPath||'').trim();
       if (!s) return null;
-      if (/^https?:\/\//i.test(s)) return s;     // full URL
-      if (s.startsWith('/')) return s;             // absolute from site root
-      if (s.startsWith('pages/')) return '/' + s;  // repo-root relative pointer
-      // otherwise resolve relative to pointer file (pages/apps/carol/)
+      if (/^https?:\/\//i.test(s)) return s;
+      if (s.startsWith('/')) return s;
+      if (s.startsWith('pages/')) return '/' + s;
       return new URL(s, ptrUrl).href;
     }
     const ptrUrl = new URL('./index.json', window.location.href);

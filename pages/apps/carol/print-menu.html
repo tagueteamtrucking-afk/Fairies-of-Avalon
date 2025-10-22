@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Carol • Print Menu</title>
+  <link rel="stylesheet" href="/pages/apps/carol/print.css">
+</head>
+<body>
+  <header class="controls">
+    <button class="print" onclick="window.print()">Print / Save PDF</button>
+  </header>
+  <h1>Two-Week Menu</h1>
+  <small class="meta">Pattern: DASH • Region: US • Events aim: 6–8/day</small>
+  <div id="root">Loading…</div>
+  <script>
+  (async () => {
+    const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json());
+    const planPath = (ptr.plan||'').replace(/^\//,'');
+    const plan = await fetch('/' + planPath).then(r=>r.json());
+    const root = document.getElementById('root');
+    root.innerHTML = '';
+    for (const day of plan.days){
+      const sec = document.createElement('section'); sec.className = 'day';
+      const h2 = document.createElement('h2'); h2.textContent = day.day_label;
+      sec.appendChild(h2);
+      const ul = document.createElement('ul');
+      for (const ev of day.events){
+        const li = document.createElement('li');
+        li.textContent = `${ev.time_hint || ''} — ${ev.name}`;
+        ul.appendChild(li);
+      }
+      sec.appendChild(ul);
+      root.appendChild(sec);
+    }
+  })();
+  </script>
+</body>
+</html>

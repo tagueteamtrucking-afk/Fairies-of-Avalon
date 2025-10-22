@@ -1,8 +1,8 @@
 name: Charlotte - AI Projects Crawler
 on:
   workflow_dispatch:
-schedule:
-  - cron: '0 14 * * 1'   # weekly
+  schedule:
+    - cron: '0 14 * * 1'
 permissions:
   contents: write
 jobs:

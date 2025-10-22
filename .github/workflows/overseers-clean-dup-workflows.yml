@@ -1,4 +1,4 @@
-name: Overseers - Repo Doctor
+name: Overseers - Cleanup Duplicate Manifests Workflows
 on:
   workflow_dispatch:
 permissions:
@@ -11,12 +11,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Run repo doctor
-        run: node scripts/overseers/repo-doctor.mjs
-      - name: Commit
+      - name: Remove duplicate manifest workflows
+        run: node scripts/overseers/cleanup-dup-workflows.mjs
+      - name: Commit cleanup
         run: |
-          git config user.name "Repo Doctor"
+          git config user.name "Overseers Bot"
           git config user.email "actions@users.noreply.github.com"
           git add -A || true
-          git commit -m "Repo Doctor: cache-busters removed; CNAME ensured" || echo "Nothing to commit"
+          git commit -m "Overseers: removed duplicate manifests workflows" || echo "Nothing to commit"
           git push || echo "Nothing to push"

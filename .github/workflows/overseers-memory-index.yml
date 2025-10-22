@@ -2,13 +2,7 @@ name: Overseers - Memory Index
 on:
   workflow_dispatch:
   push:
-    paths:
-      - 'pages/**'
-      - 'scripts/**'
-      - 'asset/**'
-      - '.github/workflows/**'
-  schedule:
-    - cron: '30 3 * * *'
+    branches: [ main ]
 permissions:
   contents: write
 jobs:
@@ -16,17 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Build All-File Memory index
+      - name: Build memory index
         run: node scripts/overseers/memory-index.mjs
       - name: Commit memory index
         run: |
           git config user.name "Overseers Bot"
           git config user.email "actions@users.noreply.github.com"
           git add pages/apps/overseers/memory/index.json || true
-          git commit -m "Overseers: memory index refresh" || echo "Nothing to commit"
+          git commit -m "Overseers: refresh memory index" || echo "Nothing to commit"
           git push || echo "Nothing to push"

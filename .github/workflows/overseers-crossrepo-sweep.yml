@@ -1,39 +1,33 @@
-name: Overseers - Cross-Repo Sweep (second repo)
+name: Overseers - Crossrepo Sweep
 on:
   workflow_dispatch:
 permissions:
   contents: write
 jobs:
   sweep:
+    if: ${{ (secrets.REPOS_READ_TOKEN != '') && (vars.SECOND_REPO != '') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout primary
+        uses: actions/checkout@v4
+      - name: Checkout second repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.SECOND_REPO }}
+          token: ${{ secrets.REPOS_READ_TOKEN }}
+          path: second_repo
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Clone second repo (skips if vars/secrets are missing)
+      - name: Scan second repo and write index
         env:
           SECOND_REPO: ${{ vars.SECOND_REPO }}
-          REPOS_READ_TOKEN: ${{ secrets.REPOS_READ_TOKEN }}
-        run: |
-          if [ -n "${SECOND_REPO}" ] && [ -n "${REPOS_READ_TOKEN}" ]; then
-            git clone https://x-access-token:${REPOS_READ_TOKEN}@github.com/${SECOND_REPO} _second
-          else
-            echo "SECOND_REPO or REPOS_READ_TOKEN missing; skipping clone."
-          fi
-      - name: Sweep second repo (if present)
-        env:
-          INPUT_DIR: _second
-        run: |
-          if [ -d "_second" ]; then
-            node scripts/overseers/repo-sweep.mjs || true
-          else
-            echo "No _second directory; nothing to sweep."
-          fi
-      - name: Commit changes (if any)
+        run: node scripts/overseers/crossrepo-scan.mjs
+      - name: Commit index
         run: |
           git config user.name "Overseers Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add asset/models/models.json asset/wings/manifest.json pages/apps/overseers/progress.json || true
-          git commit -m "Cross-Repo Sweep outputs" || echo "Nothing to commit"
+          git add pages/apps/overseers/crossrepo/second_repo_index.json || true
+          git commit -m "Overseers: crossrepo index from ${{ vars.SECOND_REPO }}" || echo "Nothing to commit"
           git push || echo "Nothing to push"

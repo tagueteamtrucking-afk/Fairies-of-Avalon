@@ -11,16 +11,26 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Clone second repo (requires vars.SECOND_REPO and secrets.REPOS_READ_TOKEN)
-        if: ${{ secrets.REPOS_READ_TOKEN != '' && vars.SECOND_REPO != '' }}
+      - name: Clone second repo (skips if vars/secrets are missing)
+        env:
+          SECOND_REPO: ${{ vars.SECOND_REPO }}
+          REPOS_READ_TOKEN: ${{ secrets.REPOS_READ_TOKEN }}
         run: |
-          git clone https://x-access-token:${{ secrets.REPOS_READ_TOKEN }}@github.com/${{ vars.SECOND_REPO }} _second
-      - name: Run sweep on second repo
-        if: ${{ hashFiles('_second/**') != '' }}
+          if [ -n "${SECOND_REPO}" ] && [ -n "${REPOS_READ_TOKEN}" ]; then
+            git clone https://x-access-token:${REPOS_READ_TOKEN}@github.com/${SECOND_REPO} _second
+          else
+            echo "SECOND_REPO or REPOS_READ_TOKEN missing; skipping clone."
+          fi
+      - name: Run sweep on second repo (skips if no clone)
         env:
           INPUT_DIR: _second
           OUT_FILE_INDEX: memory/second-repo-index.json
-        run: node scripts/overseers/repo-sweep.mjs
+        run: |
+          if [ -d "_second" ]; then
+            node scripts/overseers/repo-sweep.mjs
+          else
+            echo "No _second directory; nothing to sweep."
+          fi
       - name: Commit changes (if any)
         run: |
           git config user.name "Overseers Bot"

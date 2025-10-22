@@ -1,4 +1,4 @@
-name: Charlotte - AI Projects Crawler (GitHub sources)
+name: Charlotte - AI Projects Crawler (GitHub)
 on:
   workflow_dispatch:
   schedule:

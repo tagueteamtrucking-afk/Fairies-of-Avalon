@@ -10,7 +10,7 @@ on:
       - 'importmap.json'
       - 'kill-sw.html'
       - 'index.html'
-      - 'pages/apps/overseers/**'
+      - 'scripts/**'
 permissions:
   contents: read
   pages: write

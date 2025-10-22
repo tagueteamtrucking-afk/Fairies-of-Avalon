@@ -8,7 +8,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: 'repo-sweep'
+  group: repo-sweep
   cancel-in-progress: false
 jobs:
   sweep:

@@ -1,43 +1,29 @@
-
-name: Carol — Refresh Shopping (PR)
+name: Carol - Build Shopping (from plan)
 on:
   workflow_dispatch:
     inputs:
-      planfile:
-        description: "Plan JSON (default is the 14-day unique plan)"
+      plan_path:
+        description: 'Optional: override plan JSON path'
         required: false
-        default: "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
+        default: ''
 permissions:
   contents: write
-  pull-requests: write
-defaults:
-  run:
-    shell: pwsh
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
-      - name: Resolve plan & copy to merged name
+          node-version: 20
+      - name: Build shopping for 2 people
+        env:
+          PLAN_PATH: ${{ github.event.inputs.plan_path }}
+        run: node scripts/carol/build-shopping.mjs
+      - name: Commit shopping list
         run: |
-          $ErrorActionPreference = 'Stop'
-          $plan = "${ github.event.inputs.planfile }"
-          if ([string]::IsNullOrWhiteSpace($plan)) { $plan = "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json" }
-          if (!(Test-Path $plan)) { throw "Plan not found: $plan" }
-          New-Item -ItemType Directory -Force -Path "pages/apps/carol/plans" | Out-Null
-          Copy-Item $plan "pages/apps/carol/plans/twoperson-2wk-merged.json" -Force
-          Write-Host "Merged plan created at pages/apps/carol/plans/twoperson-2wk-merged.json"
-      - name: Run extractor (v3) to produce shopping-quantized.json
-        run: |
-          $ErrorActionPreference = 'Stop'
-          ./scripts/Carol-Extract-Shopping-v3.ps1
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: "Carol: refresh shopping from ${ github.event.inputs.planfile }"
-          title: "Carol: refresh shopping"
-          body: "Auto-generated shopping list from plan `${ github.event.inputs.planfile }`"
-          branch: "carol/shopping-refresh-20251021T075944Z"
+          git config user.name "Carol Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add pages/apps/carol/plans/shopping-quantized.json || true
+          git commit -m "Carol: shopping list (2 people) from plan" || echo "Nothing to commit"
+          git push || echo "Nothing to push"

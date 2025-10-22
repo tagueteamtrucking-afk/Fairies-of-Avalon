@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Build shopping list JSON
+      - name: Build shopping list JSON (2 people)
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
@@ -19,7 +19,7 @@ jobs:
           if (!(Test-Path $ptrPath)) { throw "Pointer not found at $ptrPath" }
           $ptr = Get-Content $ptrPath -Raw | ConvertFrom-Json
           $plan = [string]$ptr.plan
-          if ($plan -match '^/') { $plan = $plan.Substring(1) }  # strip leading / if present
+          if ($plan.StartsWith('/')) { $plan = $plan.Substring(1) }
           if (!(Test-Path $plan)) { throw "Plan not found at $plan" }
           node scripts/carol/build-shopping.mjs --plan "$plan" --people 2
       - name: Commit shopping list

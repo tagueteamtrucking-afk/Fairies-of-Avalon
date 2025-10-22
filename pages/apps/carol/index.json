@@ -1,5 +1,5 @@
 {
-  "updated": "2025-10-22T09:31:07Z",
+  "updated": "2025-10-22T17:34:30Z",
   "region": "US",
   "pattern": "DASH",
   "persons": 2,
@@ -8,9 +8,5 @@
   "pages": {
     "menu": "/pages/apps/carol/menu.html",
     "shopping": "/pages/apps/carol/shopping.html"
-  },
-  "notes": [
-    "Pointer fixed: plan_latest is relative (works in Actions/Node).",
-    "Shopping page uses this pointer; menu ignores persons count."
-  ]
+  }
 }

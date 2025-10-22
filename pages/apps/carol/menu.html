@@ -1,96 +1,41 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Carol — 14‑Day Menu</title>
-  <style>
-    :root{--bg:#0b0c10;--card:#141b22;--ink:#e8e8e8;--muted:#9db0c3;--accent:#8bd3dd}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink)}
-    header{padding:1rem 1.25rem;border-bottom:1px solid #223241;display:flex;gap:.75rem;align-items:center;justify-content:space-between}
-    h1{margin:.2rem 0 .4rem;font-size:1.15rem}
-    .meta{color:var(--muted);font-size:.95rem}
-    .btn{appearance:none;border:1px solid #32506b;background:#0f1820;color:#d9f0ff;border-radius:10px;padding:.45rem .7rem;cursor:pointer}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;padding:12px}
-    .card{background:var(--card);border:1px solid #223241;border-radius:12px;padding:12px}
-    .row{display:flex;gap:.5rem;align-items:flex-start;padding:.35rem .4rem;border-radius:8px}
-    .row + .row{border-top:1px dashed #244}
-    .tag{font-size:.7rem;color:var(--bg);background:var(--accent);border-radius:6px;padding:.1rem .35rem;margin-right:.4rem}
-    .time{font-variant:all-small-caps;color:var(--muted);min-width:84px}
-    .name{font-weight:600}
-    .nut{color:var(--muted);font-size:.85rem}
-    .list{margin:.25rem 0 .5rem .25rem;padding-left:1rem;color:var(--muted)}
-    code{background:#101820;border:1px solid #213140;border-radius:6px;padding:.1rem .25rem}
-    @media print{
-      :root{--bg:#fff;--card:#fff;--ink:#000;--muted:#333;--accent:#000}
-      body{background:#fff;color:#000}
-      header{position:sticky;top:0;background:#fff;border-color:#ccc}
-      .btn{display:none}
-      .grid{gap:0;padding:0}
-      .card{break-inside:avoid;border-color:#ccc;border-radius:0;border-left:none;border-right:none}
-      .row + .row{border-top:1px solid #eee}
-      a{color:#000;text-decoration:none}
-    }
-  </style>
-  <script type="module">
-    function resolvePlanUrl(planPath, ptrUrl){
-      const s = String(planPath||'').trim();
-      if (!s) return null;
-      if (/^https?:\/\//i.test(s)) return s;
-      if (s.startsWith('/')) return s;
-      if (s.startsWith('pages/')) return '/' + s;
-      return new URL(s, ptrUrl).href;
-    }
-    const ptrUrl = new URL('./index.json', window.location.href);
-    const ptr = await fetch(ptrUrl, {cache:'no-store'}).then(r=>r.json()).catch(()=>null);
-    const grid = document.querySelector('.grid');
-    const meta = document.querySelector('.meta');
-    if(!ptr){
-      grid.innerHTML = '<div class="card">Pointer not found. Expected <code>pages/apps/carol/index.json</code>.</div>';
-      throw new Error('missing pointer');
-    }
-    const planUrl = resolvePlanUrl(ptr.plan, ptrUrl);
-    let plan = null;
-    try{ plan = await fetch(planUrl, {cache:'no-store'}).then(r=>r.ok?r.json():null); }catch{}
-    if(!plan){
-      meta.textContent = `Plan not found at ${planUrl}`;
-      grid.innerHTML = `<div class="card">Plan not found at <code>${planUrl}</code>. Check <code>pages/apps/carol/index.json</code>.</div>`;
-    }else{
-      const totalDays = (plan?.weeks? plan.weeks*7 : (plan?.days?.length||''));
-      meta.textContent = `${totalDays} days · pattern ${plan?.pattern||''}`.trim();
-      for (const d of plan.days||[]){
-        const card = document.createElement('div');
-        card.className='card';
-        card.innerHTML = `<h3>${d.day_label||('Day '+(d.index||''))}</h3>`;
-        for(const e of (d.events||[])){
-          const row = document.createElement('div');
-          row.className='row';
-          row.innerHTML = `
-            <span class="tag">${e.type||'meal'}</span>
-            <span class="time">${e.time_hint||''}</span>
-            <div style="flex:1">
-              <div class="name">${e.name}</div>
-              <div class="nut">~${e.kcal||'?'} kcal · Na ${e.sodium_mg||'?'} mg · sugar ${e.added_sugars_g||'?'} g · fiber ${e.fiber_g||'?'} g</div>
-              <ul class="list">${
-                (e.items||[]).map(it=>`<li>${it.quantity} ${it.unit} ${it.ingredient}${it.notes?` <em>(${it.notes})</em>`:''}</li>`).join('')
-              }</ul>
-            </div>`;
-          card.appendChild(row);
-        }
-        grid.appendChild(card);
-      }
-    }
-    document.getElementById('print').addEventListener('click',()=>window.print());
-  </script>
+  <link rel="stylesheet" href="./print.css">
+  <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:16px}.day{border:1px solid #e5e7eb;border-radius:10px;margin:10px 0;padding:10px}.head{display:flex;justify-content:space-between;align-items:center}.title{font-size:1.1rem;font-weight:600}.e{display:flex;gap:.5rem;align-items:center;padding:3px 0}.k{color:#666;font-size:.85rem;margin-left:auto}</style>
 </head>
 <body>
-  <header>
-    <div>
-      <h1>Carol — 14‑Day Menu</h1>
-      <div class="meta">Loading…</div>
-    </div>
-    <button id="print" class="btn" title="Print or Save as PDF">Print / Save PDF</button>
-  </header>
-  <main class="grid"></main>
+  <header class="head"><div class="title">14‑Day Menu (DASH)</div><a href="./shopping.html">Shopping List</a></header>
+  <div id="err" style="display:none;background:#fee;border:1px solid #fbb;padding:10px;border-radius:8px"></div>
+  <div id="days"></div>
+  <script>
+  (async function(){
+    const $err = document.getElementById('err');
+    const $days = document.getElementById('days');
+    async function load(p){ const r=await fetch(p,{cache:'no-store'}); if(!r.ok) throw new Error(p+': '+r.status); return r.json(); }
+    let idx=null;
+    try{ idx = await load('./index.json'); }catch(e){ try{ idx=await load('index.json'); }catch{} }
+    if(!idx){ $err.style.display='block'; $err.textContent='index.json missing'; return; }
+    let rel = idx.plan_latest || idx.plan || '';
+    if(!rel){ $err.style.display='block'; $err.textContent='Plan not found (pointer missing)'; return; }
+    rel = rel.replace(/^\/+/, '');
+    let plan=null;
+    try{ plan = await load('/'+rel); }catch(e){ plan = await load(rel); }
+    if(!plan){ $err.style.display='block'; $err.textContent='Plan not found at '+rel; return; }
+    for(const d of plan.days||[]){
+      const wrap=document.createElement('div'); wrap.className='day';
+      const h=document.createElement('div'); h.className='head'; h.innerHTML = `<div>${d.day_label||('Day '+d.index)}</div>`; wrap.appendChild(h);
+      for(const ev of d.events||[]){
+        const row=document.createElement('div'); row.className='e';
+        row.innerHTML = `<div>${ev.name}</div><div class="k">${ev.kcal||''} kcal</div>`;
+        wrap.appendChild(row);
+      }
+      $days.appendChild(wrap);
+    }
+  })();
+  </script>
 </body>
 </html>

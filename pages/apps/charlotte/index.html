@@ -1,44 +1,27 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Charlotte — AI Projects Crawler</title>
-<style>
-body{font-family:system-ui;background:#0b0c10;color:#e8e8e8;margin:0}
-header{padding:1rem;border-bottom:1px solid #223241}
-main{padding:12px}
-table{width:100%;border-collapse:collapse}
-th,td{border-bottom:1px solid #223241;padding:.6rem .5rem;text-align:left}
-th{opacity:.8}
-a{color:#8bd3dd;text-decoration:none}
-.badge{display:inline-block;background:#203040;border:1px solid #345;padding:.15rem .4rem;border-radius:6px;margin-left:.4rem;font-size:.8rem}
-</style></head>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Charlotte — Finds</title>
+<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:16px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px}li{margin:.25rem 0}</style></head>
 <body>
-<header><h1>Charlotte — AI Projects Crawler <span class="badge">GitHub API</span></h1></header>
-<main>
-  <div id="wrap"></div>
-</main>
-<script type="module">
-const p = await fetch('./crawler/index.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
-const el = document.getElementById('wrap');
-if(!p){ el.innerHTML = '<p>No crawler output yet. Run <b>Charlotte - AI Projects Crawler</b> in Actions.</p>'; }
-else{
-  el.innerHTML = `<p>Generated: ${new Date(p.generated_at).toLocaleString()}</p>`;
-  for(const [q,items] of Object.entries(p.results||{})){
-    const sec = document.createElement('section');
-    sec.innerHTML = `<h3>Query: ${q}</h3>`;
-    const tbl = document.createElement('table');
-    tbl.innerHTML = '<thead><tr><th>Repo</th><th>Stars</th><th>License</th><th>Updated</th></tr></thead><tbody></tbody>';
-    for(const it of items){
-      const tr = document.createElement('tr');
-      if(it.error){ tr.innerHTML = `<td colspan="4">${it.error}</td>`; }
-      else{
-        tr.innerHTML = `<td><a href="${it.url}" target="_blank" rel="noopener">${it.name}</a><div style="opacity:.8">${it.description||''}</div></td>
-                        <td>${it.stars||''}</td><td>${it.license||''}</td><td>${new Date(it.updated_at).toLocaleDateString()}</td>`;
-      }
-      tbl.querySelector('tbody').appendChild(tr);
-    }
-    sec.appendChild(tbl);
-    el.appendChild(sec);
-  }
-}
-</script>
-</body></html>
+  <h1>Charlotte — Useful Apps & Codes</h1>
+  <div id="out" class="card">No data yet. Run the workflow “Charlotte — Curated Crawl”.</div>
+  <script>
+    fetch('./finds.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
+      if(!d) return;
+      const out=document.getElementById('out');
+      out.innerHTML='';
+      d.items.forEach(g=>{
+        const sec=document.createElement('section'); sec.className='card';
+        const h=document.createElement('h3'); h.textContent=g.group; sec.appendChild(h);
+        const ul=document.createElement('ul');
+        g.links.forEach(x=>{
+          const li=document.createElement('li');
+          li.innerHTML = `<a href="${x.url}" target="_blank" rel="noopener">${x.title}</a> — ${x.note||''}`;
+          ul.appendChild(li);
+        });
+        sec.appendChild(ul); out.appendChild(sec);
+      });
+    });
+  </script>
+</body>
+</html>

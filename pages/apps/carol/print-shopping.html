@@ -1,36 +1,27 @@
-<!-- pages/apps/carol/print-shopping.html -->
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Shopping List • Print</title>
+  <meta charset="utf-8">
+  <title>Print — Shopping</title>
   <link rel="stylesheet" href="./print.css">
-  <style>
-    @media screen { .screen-note { margin: 0.75rem 1rem; } }
-  </style>
+  <style>@page{margin:12mm}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}h1{font-size:1.2rem}</style>
 </head>
 <body>
-  <div class="screen-note screen-only">
-    <button onclick="window.print()" class="primary">Print / Save PDF</button>
-    <span class="meta">This page is optimized for printing.</span>
-  </div>
-  <main>
-    <section class="card shopping sheet">
-      <h2>Shopping List (2 people)</h2>
-      <div class="table-wrap">
-        <table id="listTable">
-          <thead><tr><th>Aisle</th><th>Item</th><th>Total</th><th>Notes</th></tr></thead>
-          <tbody id="listBody"></tbody>
-        </table>
-      </div>
-      <div class="print-note">
-        Assumptions: cheese stick = 1 oz; hummus & cream cheese 2 tbsp = 1 oz; rolled oats 1 cup = 2.86 oz;
-        canned beans 1 can ≈ 1.5 cups drained; tomato soup 1 can ≈ 1.25 cups.
-      </div>
-    </section>
-  </main>
-  <script src="./shopping.js" defer></script>
-  <script>window.addEventListener('load', ()=>{ setTimeout(()=>window.print(), 300); });</script>
+  <h1>Shopping List</h1>
+  <div id="list"></div>
+  <script>
+  (async function(){
+    const r = await fetch('./shopping-2p.json',{cache:'no-store'});
+    const data = r.ok ? await r.json() : null;
+    const list = document.getElementById('list');
+    if(!data){ list.textContent = 'No prebuilt list found.'; return; }
+    function row(q,name){ const d=document.createElement('div'); d.textContent = q+' — '+name; return d; }
+    for(const [cat, items] of Object.entries(data.items_by_cat)){
+      const h=document.createElement('h3'); h.textContent=cat; list.appendChild(h);
+      items.forEach(it=> list.appendChild(row(it.qty_display, it.name)));
+    }
+    setTimeout(()=>window.print(), 200);
+  })();
+  </script>
 </body>
 </html>

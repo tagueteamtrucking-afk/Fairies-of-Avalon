@@ -1,21 +1,12 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Abbey — Grand Vault</title>
-<link rel="stylesheet" href="/pages/apps/_shared/ui.css">
-<link rel="stylesheet" href="/pages/apps/_shared/room.css">
-</head><body><div class="wrap">
-<div class="nav">
-  <a class="btn" href="/">Home</a>
-  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
-  <a class="btn" href="/pages/apps/_city/index.html">Grid</a>
-</div>
-<div class="hero"></div>
-<h1>Abbey — Grand Vault</h1>
-<div id="room" class="room"></div>
-<div class="footer">Build: 20251019T232747Z</div>
-<script type="module">
-import { mountRoom } from '/pages/apps/_shared/room.js';
-const items = [{"icon": "📬", "title": "Mail Slot — Import CSV", "href": "/pages/apps/abbey/import.html", "desc": "Bank/CC CSV to ledger."}, {"icon": "📖", "title": "Ledger Book — Reports", "href": "/pages/apps/abbey/ledger.html", "desc": "Totals & trends."}, {"icon": "🧮", "title": "Abacus — Budgets", "href": "/pages/apps/abbey/budget.html", "desc": "Plan scenarios."}];
-mountRoom(document.getElementById('room'), items);
-</script>
-</div></body></html>
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Abbey</title>
+<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:16px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px}</style></head>
+<body>
+  <h1>Abbey — Accounting Hub</h1>
+  <div class="card">
+    <p>Budget scenarios & tax planning dashboards.</p>
+    <p><a href="ADD_FILE">Add File</a> — supply the starter JSON or connect the account to populate this view.</p>
+  </div>
+</body>
+</html>

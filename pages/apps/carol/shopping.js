@@ -1,336 +1,236 @@
-/* pages/apps/carol/shopping.js
-   Client-side aggregator: reads pages/apps/carol/index.json → plan_latest (relative or absolute),
-   fetches the plan JSON, multiplies items for 2 persons, normalizes names, converts to shopping units,
-   and renders grouped table. No top-level await; Safari-friendly.
-*/
 (function(){
-  const Q = (sel, ctx=document)=>ctx.querySelector(sel);
-  const QA = (sel, ctx=document)=>Array.from(ctx.querySelectorAll(sel));
+  const $err = document.getElementById('err');
+  const $list = document.getElementById('list');
+  const $ass = document.getElementById('assumptions');
+  document.getElementById('printBtn').onclick = ()=> window.print();
+  document.getElementById('openPrint').onclick = ()=> window.open('./print-shopping.html','_blank');
 
-  const state = {
-    pointerPath: './index.json', // relative to .../pages/apps/carol/
-    planPath: null,
-    plan: null,
-    totals: new Map(), // key -> { aisle, name, unit, total, notes }
+  const ASSUME = {
+    notes: [
+      "Chicken cooked→raw equivalence uses 0.75 yield; cooked 6 oz ≈ raw 8 oz.",
+      "LF cheese stick ~ 1 oz; counted into mozzarella (LF).",
+      "Oats: 1 cup = 2.86 oz; 1 tbsp = 0.17875 oz.",
+      "Hummus / cream cheese: 2 tbsp ≈ 1 oz.",
+      "Frozen vegetables: 1 cup ≈ 0.33 lb (est). Produce weights vary by size/brand."
+    ],
+    oats: { cup: 2.86, tbsp: 0.17875 }, // to oz
+    hummus_tsp_tbsp_to_oz: 0.5, // per tbsp
+    frozenVegCupToLb: 0.33
   };
 
-  // ---- helpers ----
-  function resolvePath(base, child){
-    if(!child) return null;
-    if(/^https?:\/\//.test(child)) return child;
-    if(child.startsWith('/')) return child; // absolute from site root
-    // strip filename from base and join
-    const baseDir = base.replace(/[^\/]+$/, '');
-    const norm = (baseDir + child).replace(/\/+/g,'/').replace(/\/(?:\.\/)+/g,'/');
-    return norm;
-  }
+  function text(el, s){ el.textContent = s; }
+  async function loadJSON(p){ const r=await fetch(p,{cache:'no-store'}); if(!r.ok) throw new Error(p+': '+r.status); return r.json(); }
+  async function tryLoad(p){ try{ return await loadJSON(p); }catch{ return null; } }
+  function normName(n){ return String(n||'').trim().toLowerCase(); }
+  function plural(n,u){ return (n===1?`${n} ${u}`:`${n} ${u}${u.endsWith('s')?'':'s'}`); }
+  function round(n, p=2){ return Math.round(n*Math.pow(10,p))/Math.pow(10,p); }
 
-  const ALIASES = new Map([
-    ['lactose-free greek yogurt','Yogurt, lactose-free (Greek)'],
-    ['lactose-free cottage cheese','Cottage cheese, lactose-free'],
-    ['lactose-free mozzarella','Mozzarella, lactose-free'],
-    ['lactose-free cheese stick','Mozzarella, lactose-free'],
-    ['lf cheese stick','Mozzarella, lactose-free'],
-    ['lf cream cheese','Cream cheese, lactose-free'],
-    ['hummus (no cumin)','Hummus (no cumin)'],
-    ['frozen mixed vegetables','Mixed vegetables, frozen'],
-    ['mixed vegetables (frozen)','Mixed vegetables, frozen'],
-    ['frozen veg medley','Mixed vegetables, frozen'],
-    ['mango (frozen)','Mango, frozen'],
-    ['frozen mixed berries','Mixed berries, frozen'],
-    ['frozen berries','Mixed berries, frozen'],
-    ['soft whole-wheat tortilla','Tortillas, whole-wheat (soft)'],
-    ['soft whole-grain bread','Bread, whole-grain (soft)'],
-    ['butter lettuce','Lettuce, butter'],
-    ['canned tuna (in water)','Tuna (canned, in water)'],
-    ['canned chicken','Chicken (canned)'],
-    ['brown rice (microwave pouch)','Brown rice (pouch)'],
-    ['low-sodium black beans (rinsed)','Black beans, low-sodium (canned)'],
-    ['low-sodium beans (canned)','Beans, low-sodium (canned)'],
-    ['diced tomatoes (no salt added)','Tomatoes, diced (no-salt)'],
-    ['pineapple (canned in juice, drained)','Pineapple (canned, drained)'],
-    ['lactose-free milk','Milk, lactose-free'],
-    ['olive oil spray','Olive oil spray'],
+  const ALIAS = new Map([
+    ['mixed vegetables (frozen)','mixed vegetables, frozen'],
+    ['frozen mixed vegetables','mixed vegetables, frozen'],
+    ['frozen veg medley','mixed vegetables, frozen'],
+    ['lactose-free mozzarella','mozzarella, lactose-free'],
+    ['lactose-free cheese stick','mozzarella, lactose-free'],
+    ['lf cheese stick','mozzarella, lactose-free'],
+    ['lf greek yogurt','greek yogurt, lactose-free'],
+    ['lactose-free greek yogurt','greek yogurt, lactose-free'],
+    ['lf cottage cheese','cottage cheese, lactose-free'],
+    ['lactose-free cottage cheese','cottage cheese, lactose-free'],
+    ['banana–spinach smoothie (lf)','banana-spinach smoothie (lf)']
   ]);
 
-  const AISLE = new Map([
-    // produce & frozen produce
-    ['Banana','Produce'], ['Apple','Produce'], ['Pear','Produce'], ['Kiwi','Produce'],
-    ['Grapes','Produce'], ['Tomato','Produce'], ['Cucumber','Produce'], ['Spinach','Produce'],
-    ['Lettuce, butter','Produce'], ['Lemon','Produce'], ['Baby potatoes','Produce'],
-    ['Mixed vegetables, frozen','Frozen'], ['Mixed berries, frozen','Frozen'], ['Mango, frozen','Frozen'],
-    // dairy
-    ['Milk, lactose-free','Dairy'], ['Yogurt, lactose-free (Greek)','Dairy'], ['Cottage cheese, lactose-free','Dairy'],
-    ['Mozzarella, lactose-free','Dairy'], ['Cream cheese, lactose-free','Dairy'],
-    // proteins & seafood
-    ['Chicken breast','Meat/Seafood'], ['Chicken (canned)','Canned'], ['Tuna (canned, in water)','Canned'],
-    ['Lean turkey','Meat/Seafood'], ['Cod fillet','Meat/Seafood'], ['Salmon fillet','Meat/Seafood'],
-    ['Egg','Dairy'],
-    // pantry
-    ['Rolled oats','Pantry'], ['Peanut butter','Pantry'], ['Ground flaxseed','Pantry'],
-    ['Hummus (no cumin)','Deli'], ['Olive oil','Pantry'], ['Garlic powder','Pantry'],
-    ['Panko (light)','Pantry'], ['Low-sugar granola','Pantry'], ['Vanilla extract','Pantry'],
-    ['Cinnamon','Pantry'], ['Unsweetened cocoa','Pantry'], ['Lime juice','Pantry'], ['Lemon juice','Pantry'],
-    // breads & grains
-    ['Tortillas, whole-wheat (soft)','Bakery'], ['Bread, whole-grain (soft)','Bakery'], ['Rice cakes','Pantry'],
-    ['Brown rice (pouch)','Pantry'],
-    // canned & soups
-    ['Low-sodium tomato soup','Canned'], ['Beans, low-sodium (canned)','Canned'],
-    ['Black beans, low-sodium (canned)','Canned'],
-    ['Tomatoes, diced (no-salt)','Canned'],
-    ['Pineapple (canned, drained)','Canned'],
+  const TARGET = new Map([
+    ['mixed vegetables, frozen', { unit:'lb' }],
+    ['salmon fillet', { unit:'lb' }],
+    ['cod fillet', { unit:'lb' }],
+    ['chicken breast', { unit:'lb' }],
+    ['lean ground turkey', { unit:'lb' }],
+    ['canned tuna (in water)', { unit:'can' }],
+    ['low-sodium beans (canned)', { unit:'can' }],
+    ['low-sodium tomato soup', { unit:'can' }],
+    ['greek yogurt, lactose-free', { unit:'oz' }],
+    ['cottage cheese, lactose-free', { unit:'oz' }],
+    ['mozzarella, lactose-free', { unit:'oz' }],
+    ['lactose-free milk', { unit:'qt' }],
+    ['rolled oats', { unit:'oz' }],
+    ['hummus (no cumin)', { unit:'oz' }],
+    ['lf mayo', { unit:'oz' }],
+    ['olive oil', { unit:'tbsp' }],
+    ['egg', { unit:'piece' }],
+    ['egg whites', { unit:'cup' }],
+    ['soft whole-wheat tortilla', { unit:'piece' }],
+    ['soft whole-grain bread', { unit:'slice' }],
+    ['butter lettuce', { unit:'head' }], // aggregated later from leaf count
+    ['spinach', { unit:'lb' }],
+    ['tomato', { unit:'lb' }],
+    ['cucumber', { unit:'lb' }],
+    ['grapes', { unit:'lb' }],
+    ['banana', { unit:'lb' }],
+    ['apple', { unit:'lb' }],
+    ['pear', { unit:'lb' }],
+    ['lemon', { unit:'lb' }],
+    ['baby potatoes', { unit:'lb' }],
+    ['avocado', { unit:'lb' }],
+    ['pineapple (canned in juice, drained)', { unit:'can' }],
+    ['mango (frozen)', { unit:'lb' }],
+    ['blueberries', { unit:'lb' }],
+    ['kiwi', { unit:'lb' }],
   ]);
 
-  // conversions: return {unit, amount} in shopping unit
-  const CNV = {
-    // Produce lb (est)
-    'Banana':      (q,u)=>({unit:'lb (est)', amount: q * pieceTo( u, { piece:0.25 })}),
-    'Apple':       (q,u)=>({unit:'lb (est)', amount: q * pieceTo( u, { piece:0.33 })}),
-    'Pear':        (q,u)=>({unit:'lb (est)', amount: q * pieceTo( u, { piece:0.33 })}),
-    'Kiwi':        (q,u)=>({unit:'lb (est)', amount: q * pieceTo( u, { piece:0.18 })}),
-    'Grapes':      (q,u)=>({unit:'lb (est)', amount: q * cupTo(u, { cup:0.33 })}),
-    'Tomato':      (q,u)=>({unit:'lb (est)', amount: q * ( u==='cup' ? 0.5 : pieceTo(u,{piece:0.25}) )}),
-    'Cucumber':    (q,u)=>({unit:'lb (est)', amount: q * ( u==='cup' ? 0.25 : pieceTo(u,{piece:0.45}) )}),
-    'Spinach':     (q,u)=>({unit:'lb (est)', amount: q * cupTo(u, { cup:0.07 })}),
-    'Lettuce, butter': (q,u)=>({unit:'lb (est)', amount: q * pieceTo(u,{ leaf:0.02, piece:0.3 })}),
-    'Lemon':       (q,u)=>({unit:'lb (est)', amount: q * pieceTo(u,{ piece:0.26 })}),
-    'Baby potatoes':(q,u)=>({unit:'lb (est)', amount: q * pieceTo(u,{ piece:0.10 })}),
+  const PIECE_TO_LB = new Map([
+    ['banana', 0.26], ['apple', 0.33], ['pear', 0.33], ['lemon', 0.25], ['kiwi', 0.13], ['avocado', 0.3],
+    ['tomato', 0.25]
+  ]);
 
-    // Frozen produce → lb
-    'Mixed vegetables, frozen': (q,u)=>({unit:'lb', amount: q * ( u==='cup' ? 0.3125 : ozToLb(u) )}),
-    'Mixed berries, frozen':    (q,u)=>({unit:'lb', amount: q * ( u==='cup' ? 0.31    : ozToLb(u) )}),
-    'Mango, frozen':            (q,u)=>({unit:'lb', amount: q * ( u==='cup' ? 0.36    : ozToLb(u) )}),
-
-    // Dairy
-    'Milk, lactose-free':       (q,u)=>toQt(q,u),
-    'Yogurt, lactose-free (Greek)': (q,u)=>toOz(q,u, { cup:8 }),
-    'Cottage cheese, lactose-free': (q,u)=>toOz(q,u, { cup:8 }),
-    'Mozzarella, lactose-free':     (q,u)=>toOz(q,u, { oz:1, piece:1 }), // cheese stick ~ 1 oz
-    'Cream cheese, lactose-free':   (q,u)=>toOz(q,u, { tbsp:0.5 }),
-
-    // Proteins & seafood
-    'Chicken breast':           (q,u)=>toLbOrOz(q,u),
-    'Lean turkey':              (q,u)=>toLbOrOz(q,u),
-    'Cod fillet':               (q,u)=>toLbOrOz(q,u),
-    'Salmon fillet':            (q,u)=>toLbOrOz(q,u),
-    'Egg':                      (q,u)=>({unit:'pcs', amount: q * pieceTo(u,{ piece:1 })}),
-
-    // Pantry
-    'Rolled oats':              (q,u)=>toOz(q,u, { cup:2.86, tbsp:0.17875 }),
-    'Peanut butter':            (q,u)=>toOz(q,u, { tbsp:0.5 }),
-    'Ground flaxseed':          (q,u)=>toOz(q,u, { tbsp:0.3 }), // ~8.5g per tbsp → 0.3 oz
-    'Hummus (no cumin)':        (q,u)=>toOz(q,u, { tbsp:0.5 }),
-    'Olive oil':                (q,u)=>toFloz(q,u, { tsp:(1/6), tbsp:0.5 }),
-    'Garlic powder':            (q,u)=>({unit:'tsp', amount: q * tspTo(u, { tsp:1 })}),
-    'Panko (light)':            (q,u)=>toOz(q,u, { cup:1.7 }),
-    'Low-sugar granola':        (q,u)=>toOz(q,u, { cup:3.5 }), // approx
-    'Vanilla extract':          (q,u)=>toTsp(q,u),
-    'Cinnamon':                 (q,u)=>toTsp(q,u),
-    'Unsweetened cocoa':        (q,u)=>toTsp(q,u),
-    'Lime juice':               (q,u)=>toTsp(q,u),
-    'Lemon juice':              (q,u)=>toTsp(q,u),
-
-    // Bread & grains
-    'Tortillas, whole-wheat (soft)':(q,u)=>({unit:'pcs', amount: q * pieceTo(u,{ piece:1 })}),
-    'Bread, whole-grain (soft)':    (q,u)=>({unit:'slices', amount: q * pieceTo(u,{ slice:1 })}), // approx 20 slices/loaf (see format)
-    'Rice cakes':                    (q,u)=>({unit:'pcs', amount: q * pieceTo(u,{ piece:1 })}),
-    'Brown rice (pouch)':            (q,u)=>({unit:'pouch', amount: q * ( u==='cup' ? 1 : pieceTo(u,{ pouch:1 }) )}),
-
-    // Canned
-    'Low-sodium tomato soup':       (q,u)=>({unit:'cans', amount: q * ( u==='cup' ? (1/1.25) : pieceTo(u,{ can:1 }) )}),
-    'Beans, low-sodium (canned)':   (q,u)=>({unit:'cans', amount: q * ( u==='cup' ? (1/1.5)  : pieceTo(u,{ can:1 }) )}),
-    'Black beans, low-sodium (canned)':(q,u)=>({unit:'cans', amount: q * ( u==='cup' ? (1/1.5)  : pieceTo(u,{ can:1 }) )}),
-    'Tomatoes, diced (no-salt)':    (q,u)=>({unit:'cups', amount: q * cupTo(u,{ cup:1 })}), // leave as cups (choose can sizes later)
-    'Pineapple (canned, drained)':  (q,u)=>toOz(q,u, { cup:5.8 }), // drained cup → oz
-  };
-
-  function ozToLb(u){ return (u==='oz'||u==='ounce'||u==='ounces') ? (1/16) : 0; }
-  function toLbOrOz(q,u){
-    if(u==='oz') return {unit:'lb', amount: q/16};
-    if(u==='lb') return {unit:'lb', amount: q};
-    if(u==='g')  return {unit:'lb', amount: q/453.592};
-    if(u==='cup') return {unit:'lb', amount: (q*8)/16}; // cooked meat ~8 oz per cup (approx)
-    return {unit:'oz', amount: q}; // fallback
-  }
-  function toOz(q,u, map){ const f = (map&&map[u])|| (u==='oz'?1:0); return {unit:'oz', amount: q * f}; }
-  function toFloz(q,u, map){ const f = (map&&map[u])|| (u==='fl oz'?1:0); return {unit:'fl oz', amount: q * f}; }
-  function toTsp(q,u){ return {unit:'tsp', amount: q * tspTo(u,{ tsp:1 })}; }
-  function toQt(q,u){
-    if(u==='cup') return {unit:'qt', amount: q/4};
-    if(u==='qt')  return {unit:'qt', amount: q};
-    if(u==='oz')  return {unit:'qt', amount: q/32};
-    return {unit:'qt', amount: 0};
-  }
-  function pieceTo(u, map){ if(u in map) return map[u]; return 0; }
-  function cupTo(u, map){ if(u in map) return map[u]; return 0; }
-  function tspTo(u, map){ if(u in map) return map[u]; return 0; }
-
-  function aliasName(raw){
-    const key = String(raw||'').trim().toLowerCase();
-    return ALIASES.get(key) || capitalize(raw||'');
-  }
-  function capitalize(s){ return s.replace(/^(.)/, (m)=>m.toUpperCase()); }
-
-  function keyOf(aisle,name){
-    return aisle + '::' + name;
+  function aliasName(name){
+    const k = normName(name);
+    return ALIAS.get(k) || name;
   }
 
-  function addTotal(aisle,name,unit,amount, note=''){
-    if(!amount || !isFinite(amount)) return;
-    const k = keyOf(aisle,name);
-    if(!state.totals.has(k)){
-      state.totals.set(k, { aisle, name, unit, total: 0, notes: new Set() });
+  function toTarget(name, qty, unit){
+    name = aliasName(name);
+    if (normName(name)==='cooked chicken breast'){
+      // Convert cooked->raw eq (divide by 0.75), then to lb
+      const oz = unit==='oz' ? qty : unit==='lb' ? qty*16 : qty; // assume oz if not specified
+      const rawOz = oz / 0.75;
+      return { name:'chicken breast', qty: rawOz/16, unit:'lb' };
     }
-    const t = state.totals.get(k);
-    t.total += amount;
-    if(note) t.notes.add(note);
-  }
-
-  function roundSmart(num, unit){
-    if(unit==='lb' || unit==='lb (est)' || unit==='qt') return Math.round(num*100)/100;
-    if(unit==='oz' || unit==='fl oz') return Math.round(num*10)/10;
-    if(unit==='tsp') return Math.round(num*10)/10;
-    if(unit==='pcs' || unit==='slices' || unit==='pouch' || unit==='cans' || unit==='cups') return Math.ceil(num*100)/100;
-    return Math.round(num*100)/100;
-  }
-
-  function formatWithHints(row){
-    // special formatting hints
-    if(row.name==='Bread, whole-grain (soft)' && row.unit==='slices'){
-      const loaves = Math.ceil(row.total / 20);
-      return `${row.total} slices (≈ ${loaves} loaf${loaves>1?'s':''})`;
+    if (name==='rolled oats'){
+      // cups/tbsp -> oz
+      if (unit==='cup') return { name, qty: qty*ASSUME.oats.cup, unit:'oz' };
+      if (unit==='tbsp') return { name, qty: qty*ASSUME.oats.tbsp, unit:'oz' };
     }
-    if(row.name==='Milk, lactose-free' && row.unit==='qt'){
-      const q = row.total;
-      const gal = Math.floor(q/4);
-      const rem = Math.round((q - gal*4)*100)/100;
-      return (gal?`${gal} gal `:'') + (rem?`${rem} qt`:'') || '0';
+    if (name==='lactose-free milk'){
+      if (unit==='cup') return { name, qty: qty/4, unit:'qt' };
     }
-    if((row.name==='Mozzarella, lactose-free') && row.unit==='oz'){
-      // if mostly sticks, add hint
-      return `${row.total} oz (cheese sticks are ~1 oz each)`;
+    if (name==='hummus (no cumin)' || name==='lf mayo' || /cream cheese/i.test(name)){
+      if (unit==='tbsp') return { name: name.replace(/lf\s+/i,'').replace(/lactose-free\s+/i,''), qty: qty*0.5, unit:'oz' };
     }
-    return `${row.total} ${row.unit}`;
+    if (name==='mixed vegetables, frozen'){
+      if (unit==='cup') return { name, qty: qty*ASSUME.frozenVegCupToLb, unit:'lb' };
+    }
+    if (TARGET.has(name)){
+      const tgt = TARGET.get(name).unit;
+      // Simple conversions
+      if (unit===tgt) return { name, qty, unit:tgt };
+      if ((tgt==='lb') && unit==='oz') return { name, qty: qty/16, unit:'lb' };
+      if ((tgt==='oz') && unit==='cup' && /yogurt|cottage/i.test(name)) return { name, qty: qty*8, unit:'oz' };
+      if ((tgt==='lb') && unit==='piece'){
+        const est = PIECE_TO_LB.get(normName(name)) || 0.3;
+        return { name, qty: qty*est, unit:'lb' };
+      }
+    }
+    // default: pass through
+    return { name, qty, unit };
   }
 
-  async function loadJSON(path){
-    const res = await fetch(path, { cache: 'no-store' });
-    if(!res.ok) throw new Error(`HTTP ${res.status} for ${path}`);
-    return res.json();
+  function pushItem(map, name, qty, unit){
+    const key = name.toLowerCase();
+    const ex = map.get(key);
+    if(!ex) map.set(key, { name, qty, unit });
+    else{
+      if (ex.unit===unit){ ex.qty += qty; }
+      else{
+        // naive normalize: lb vs oz
+        if (ex.unit==='lb' && unit==='oz'){ ex.qty += qty/16; }
+        else if (ex.unit==='oz' && unit==='lb'){ ex.qty += qty*16; ex.unit='oz'; }
+        else { ex.qty += qty; } // best effort
+      }
+    }
   }
 
-  function normalizeUnit(u){
-    if(!u) return '';
-    u = u.toLowerCase().trim();
-    if(u==='piece') return 'piece';
-    if(u==='pieces') return 'piece';
-    if(u==='leaf') return 'leaf';
-    if(u==='slice' || u==='slices') return 'slice';
-    if(u==='tsp' || u==='teaspoon' || u==='teaspoons') return 'tsp';
-    if(u==='tbsp' || u==='tablespoon' || u==='tablespoons') return 'tbsp';
-    if(u==='cup' || u==='cups') return 'cup';
-    if(u==='oz' || u==='ounce' || u==='ounces') return 'oz';
-    if(u==='fl oz' || u==='fluid ounce' || u==='fluid ounces') return 'fl oz';
-    if(u==='can' || u==='cans') return 'can';
-    if(u==='spray' || u==='sprays') return 'spray';
-    if(u==='leaf' || u==='leaves') return 'leaf';
-    if(u==='pouch' || u==='pouches') return 'pouch';
-    return u;
+  function qtyDisplay(q, u){
+    if (u==='lb') return `${round(q,2)} lb`;
+    if (u==='oz') return `${round(q,1)} oz`;
+    if (u==='qt') return `${round(q,2)} qt`;
+    if (u==='can') return `${round(q,2)} cans`;
+    return `${round(q,2)} ${u}`;
   }
 
-  function peopleMultiplier(forField){
-    if(!forField) return 1;
-    const f = String(forField).toLowerCase();
-    if(f==='both') return 2; // multiply for shopping
-    if(f.includes('ray') || f==='a') return 1;
-    if(f.includes('blanca') || f==='b') return 1;
-    return 1;
+  function categorize(name){
+    const n = normName(name);
+    if (/yogurt|cottage|milk|mozzarella/.test(n)) return 'Dairy (LF)';
+    if (/chicken|turkey|salmon|cod|tuna|beans/.test(n)) return 'Proteins';
+    if (/tomato|cucumber|grapes|banana|apple|pear|lemon|potatoes|spinach|avocado|kiwi|blueberries|mango/.test(n)) return 'Produce';
+    if (/mixed vegetables/.test(n)) return 'Frozen';
+    if (/oats|hummus|mayo|olive oil|tortilla|bread|rice|panko|cinnamon|cocoa|chia|flax|crackers|granola/.test(n)) return 'Pantry';
+    return 'Other';
   }
 
-  function computeTotals(plan){
-    const errors = [];
-    for(const day of (plan.days||[])){
-      for(const ev of (day.events||[])){
-        const mult = peopleMultiplier(ev.for);
-        for(const it of (ev.items||[])){
-          const name = aliasName(it.ingredient);
-          const aisle = AISLE.get(name) || 'Other';
-          const unitIn = normalizeUnit(it.unit);
-          const qty = Number(it.quantity||0) * mult;
-          try{
-            const conv = CNV[name];
-            if(conv){
-              const out = conv(qty, unitIn);
-              addTotal(aisle, name, out.unit, out.amount, ev.name);
-            }else{
-              // If we don't know how to convert, aggregate raw units conservatively by unit
-              addTotal(aisle, name, unitIn||'', qty, ev.name);
-            }
-          }catch(e){
-            errors.push(`${name}: ${e.message}`);
-          }
+  async function loadPlan(){
+    // order: prebuilt shopping, else pointer->plan
+    const idx = await loadJSON('./index.json').catch(()=>null) || await loadJSON('index.json').catch(()=>null);
+    if (!idx) throw new Error('index.json not found');
+    const prebuilt = await tryLoad('./shopping-2p.json');
+    if (prebuilt) return { prebuilt };
+    let rel = idx.plan_latest || idx.plan || null;
+    if (!rel) throw new Error('Pointer missing: add plan_latest to pages/apps/carol/index.json');
+    rel = rel.replace(/^\/+/, ''); // strip leading slash
+    const plan = await loadJSON('/'+rel).catch(()=> loadJSON(rel));
+    return { plan };
+  }
+
+  function buildFromPlan(plan){
+    const map = new Map();
+    const persons = 2;
+    for (const day of plan.days||[]){
+      for (const ev of day.events||[]){
+        const mult = (String(ev.for||'').toLowerCase()==='both') ? persons : 1;
+        for (const it of ev.items||[]){
+          const n = it.ingredient;
+          const q = (it.quantity||0) * mult;
+          const u = (it.unit||'').toLowerCase();
+          const t = toTarget(n, q, u);
+          pushItem(map, t.name, t.qty, t.unit);
         }
       }
     }
-    return errors;
-  }
-
-  function render(){
-    // table rows sorted by aisle then name
-    const rows = Array.from(state.totals.values())
-      .map(r=>({ ...r, total: roundSmart(r.total, r.unit), notes: Array.from(r.notes).slice(0,3).join('; ') }))
-      .filter(r=>r.total>0)
-      .sort((a,b)=> (a.aisle.localeCompare(b.aisle) || a.name.localeCompare(b.name)) );
-
-    const tb = Q('#listBody');
-    tb.innerHTML = '';
-    for(const r of rows){
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${r.aisle}</td><td>${r.name}</td><td>${formatWithHints(r)}</td><td class="screen-only"><small class="dim">${r.notes}</small></td>`;
-      tb.appendChild(tr);
+    // leaf→head: ~12 leaves ≈ 1 head (soft lettuce)
+    if (map.has('butter lettuce')){
+      const x = map.get('butter lettuce');
+      if (x.unit==='leaf'){ x.qty = x.qty/12; x.unit='head'; }
     }
+    // remove near-zero noise
+    for (const k of [...map.keys()]){
+      const it = map.get(k);
+      if (it.qty<0.01) map.delete(k);
+    }
+    // group by category
+    const byCat = {};
+    for (const it of map.values()){
+      const cat = categorize(it.name);
+      byCat[cat] = byCat[cat] || [];
+      byCat[cat].push({ name: it.name, qty: it.qty, unit: it.unit, qty_display: qtyDisplay(it.qty, it.unit) });
+    }
+    for (const arr of Object.values(byCat)){
+      arr.sort((a,b)=> a.name.localeCompare(b.name));
+    }
+    return { generated_at: new Date().toISOString(), items_by_cat: byCat, assumptions: ASSUME.notes };
   }
 
-  async function main(){
+  (async function init(){
     try{
-      // Locate pointer under current directory
-      const here = location.pathname.replace(/[^\/]+$/, '');
-      const pointerUrl = resolvePath(here, state.pointerPath);
-      const pointer = await loadJSON(pointerUrl);
-      const planPath = pointer && pointer.plan_latest;
-      if(!planPath){
-        Q('#error').classList.remove('hidden');
-        Q('#error').innerHTML = `Pointer missing <code>plan_latest</code>. <a href="./index.json">Add File</a>`;
-        return;
-      }
-      state.planPath = resolvePath(here, planPath);
-      Q('#planPath').textContent = state.planPath;
-      const plan = await loadJSON(state.planPath);
-      state.plan = plan;
-      if(Q('#pattern')) Q('#pattern').textContent = plan.pattern || '—';
-
-      // compute
-      const errs = computeTotals(plan);
-      render();
-      if(errs.length){
-        const e = Q('#error'); e.classList.remove('hidden');
-        e.innerHTML = 'Some items used conservative units (no conversion rule found). You can refine rules in <code>shopping.js</code>.';
-      }
-    }catch(err){
-      const e = Q('#error');
-      e.classList.remove('hidden');
-      e.textContent = err.message;
+      const loaded = await loadPlan();
+      let data = loaded.prebuilt || buildFromPlan(loaded.plan);
+      // Render
+      const frag = document.createDocumentFragment();
+      Object.entries(data.items_by_cat).forEach(([cat,items])=>{
+        const det = document.createElement('details');
+        det.open = true;
+        const sum = document.createElement('summary'); sum.textContent = cat; det.appendChild(sum);
+        items.forEach(it=>{
+          const row = document.createElement('div'); row.className='row';
+          const q = document.createElement('div'); q.className='qty'; q.textContent = it.qty_display;
+          const n = document.createElement('div'); n.className='name'; n.textContent = it.name;
+          row.appendChild(q); row.appendChild(n); det.appendChild(row);
+        });
+        frag.appendChild(det);
+      });
+      $list.innerHTML = ''; $list.appendChild(frag);
+      $ass.innerHTML = data.assumptions.map(s=>`• ${s}`).join('<br>');
+    }catch(e){
+      $err.style.display='block';
+      $err.textContent = e.message || String(e);
     }
-  }
-
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const printBtn = Q('#printNow');
-    const openBtn = Q('#openPrintPage');
-    if(printBtn) printBtn.addEventListener('click', ()=>window.print());
-    if(openBtn) openBtn.addEventListener('click', ()=>{
-      const url = new URL('./print-shopping.html', location.href);
-      window.open(url.toString(), '_blank');
-    });
-    main();
-  });
+  })();
 })();

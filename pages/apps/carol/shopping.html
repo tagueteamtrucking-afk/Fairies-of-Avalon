@@ -1,46 +1,24 @@
-<!-- pages/apps/carol/shopping.html -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Carol • Shopping List</title>
+  <title>Carol — Shopping List</title>
   <link rel="stylesheet" href="./print.css">
+  <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:16px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}h1{font-size:1.4rem;margin:0}.err{background:#fee;border:1px solid #fbb;padding:10px;border-radius:8px}#units{color:#555;font-size:.9rem}#list{margin-top:10px}details{background:#fff;border:1px solid #e5e7eb;border-radius:10px;margin:8px 0;padding:8px}summary{font-weight:600;cursor:pointer}.row{display:flex;gap:.5rem;align-items:center;padding:4px 0;border-bottom:1px dotted #eee}.row:last-child{border-bottom:none}.qty{min-width:5.5rem;text-align:right;font-variant-numeric:tabular-nums}.name{flex:1}</style>
 </head>
 <body>
   <header>
     <h1>Shopping List</h1>
-    <span class="spacer"></span>
-    <button id="openPrintPage" class="screen-only">Open Print Page</button>
-    <button id="printNow" class="primary screen-only">Print / Save PDF</button>
+    <div>
+      <button id="printBtn">Print</button>
+      <button id="openPrint">Open Print Page</button>
+    </div>
   </header>
-
-  <main>
-    <section class="card">
-      <div class="meta">
-        Plan pointer: <code id="planPath">loading…</code> • For <strong>2 people</strong> • Pattern: <span id="pattern">—</span>
-      </div>
-      <div id="note" class="note" style="margin-top:0.5rem;">
-        Units: Produce in <strong>lb (est)</strong>. Dairy & dips in <strong>oz</strong> or <strong>qt</strong>. Pantry in practical units.
-      </div>
-      <div id="error" class="error hidden"></div>
-    </section>
-
-    <section class="card shopping" style="margin-top:1rem;">
-      <h2>Totals by Aisle</h2>
-      <div class="table-wrap">
-        <table id="listTable">
-          <thead><tr><th>Aisle</th><th>Item</th><th>Total</th><th class="screen-only">Notes</th></tr></thead>
-          <tbody id="listBody"></tbody>
-        </table>
-      </div>
-      <div class="note" style="margin-top:0.75rem">
-        <strong>Assumptions</strong>: cheese stick = 1 oz; hummus & cream cheese 2 tbsp = 1 oz; rolled oats 1 cup = 2.86 oz;
-        canned beans 1 can ≈ 1.5 cups drained; tomato soup 1 can ≈ 1.25 cups. Adjustable in <code>shopping.js</code>.
-      </div>
-    </section>
-  </main>
-
+  <div id="units">Units: produce in <strong>lb</strong> (est), milk in <strong>qt</strong>, yogurt/cottage/mozzarella in <strong>oz</strong>, hummus/cream cheese in <strong>oz</strong>. Assumptions are listed at the bottom.</div>
+  <div id="err" class="err" style="display:none"></div>
+  <div id="list"></div>
+  <section id="assumptions" style="margin-top:12px;color:#555;font-size:.9rem"></section>
   <script src="./shopping.js" defer></script>
 </body>
 </html>

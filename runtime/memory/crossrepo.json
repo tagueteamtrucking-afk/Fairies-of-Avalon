@@ -1,0 +1,4708 @@
+{
+  "generated_at": "2025-10-22T19:09:01.956Z",
+  "primary": {
+    "root": ".",
+    "files": [
+      {
+        "path": ".nojekyll",
+        "bytes": 1,
+        "sha1": "adc83b19e793491b1c6ea0fd8b46cd9f32e592fc"
+      },
+      {
+        "path": "404.html",
+        "bytes": 937,
+        "sha1": "09b5f9bdc957a8d294bb61a1c355393deef3c5e4"
+      },
+      {
+        "path": "CNAME",
+        "bytes": 19,
+        "sha1": "73683cb3f5624fb9076bb65f3b5ec7727d49bb08"
+      },
+      {
+        "path": "Cody's Memory.yaml",
+        "bytes": 1731,
+        "sha1": "498ee9bdfbe737d83226033718bc70a618e2e1e1"
+      },
+      {
+        "path": "Cody's Memory.yml",
+        "bytes": 1334,
+        "sha1": "d0728d2cc0e2d205f335100d279762be5bcf8954"
+      },
+      {
+        "path": "__second__/.nojekyll",
+        "bytes": 1,
+        "sha1": "adc83b19e793491b1c6ea0fd8b46cd9f32e592fc"
+      },
+      {
+        "path": "__second__/asset/css/style.css",
+        "bytes": 4000,
+        "sha1": "3787450eb9792b3b4c6fef09485824df1e57fa08"
+      },
+      {
+        "path": "__second__/asset/js/vrm-room.js",
+        "bytes": 4983,
+        "sha1": "b4e0f8eede90808235eecf1cc74792ca7b88abeb"
+      },
+      {
+        "path": "__second__/asset/models/abbey.vrm",
+        "bytes": 12018708,
+        "sha1": "eb04a427ac4dcc4c67c831926945348e353c4339"
+      },
+      {
+        "path": "__second__/asset/models/alexandria.vrm",
+        "bytes": 12269756,
+        "sha1": "db5dacbb4acb36adde37c9c7d9f555a0e74f6439"
+      },
+      {
+        "path": "__second__/asset/models/billie.vrm",
+        "bytes": 13301520,
+        "sha1": "5decb1286216d12fb33045bcf7940dbbda16521f"
+      },
+      {
+        "path": "__second__/asset/models/carol.vrm",
+        "bytes": 11898172,
+        "sha1": "43bcef5d5e322059681e816127efa208562ed6d0"
+      },
+      {
+        "path": "__second__/asset/models/charlotte.vrm",
+        "bytes": 11740028,
+        "sha1": "c54361ac1a8af7e3587a4fefecf5f3c6a6262aa2"
+      },
+      {
+        "path": "__second__/asset/models/clarice.vrm",
+        "bytes": 12848640,
+        "sha1": "7bd205ce0c630cece5e52f26c42dc9600ed26564"
+      },
+      {
+        "path": "__second__/asset/models/jem.vrm",
+        "bytes": 12475488,
+        "sha1": "77f3fdc7e1e7a9681fff80c927361571b3921cd7"
+      },
+      {
+        "path": "__second__/asset/models/nina.vrm",
+        "bytes": 11272372,
+        "sha1": "818ce809d61f05550a6d1363748b14af23745dd0"
+      },
+      {
+        "path": "__second__/asset/models/odessa.vrm",
+        "bytes": 12378488,
+        "sha1": "59d73f0fd9f7e11f380b73a1b0c93d3876da15a2"
+      },
+      {
+        "path": "__second__/asset/models/reyczar.vrm",
+        "bytes": 11287548,
+        "sha1": "f904ed510de80a674295e03bc63f066626134db4"
+      },
+      {
+        "path": "__second__/asset/models/sorcha.vrm",
+        "bytes": 12620220,
+        "sha1": "065cbd93da74cbdf8a2ff20de95d99d675f25c88"
+      },
+      {
+        "path": "__second__/asset/models/stella.vrm",
+        "bytes": 12012132,
+        "sha1": "e4920aa21fe6b246bce907ead7a206ba13e08ebb"
+      },
+      {
+        "path": "__second__/asset/models/themis.vrm",
+        "bytes": 11647684,
+        "sha1": "156c0470dd217cba37685d32717aa9a9b7d3dedc"
+      },
+      {
+        "path": "__second__/asset/models/tracy.vrm",
+        "bytes": 12321368,
+        "sha1": "779d5c353def4b1d78df8193504226ff72f189ba"
+      },
+      {
+        "path": "__second__/asset/models/whitestar.vrm",
+        "bytes": 11978584,
+        "sha1": "965d748dd503e5f34af7e22f21c0afc46c1bd014"
+      },
+      {
+        "path": "__second__/buildings/_template.html",
+        "bytes": 579,
+        "sha1": "50f016eafaef2fa39724854fce3b5e89d0348077"
+      },
+      {
+        "path": "__second__/buildings/abbey.html",
+        "bytes": 1281,
+        "sha1": "3ada36b224e86099be661c44d8220dabcbbd485c"
+      },
+      {
+        "path": "__second__/buildings/alexandria.html",
+        "bytes": 666,
+        "sha1": "6e2595e8530620137ae026f3d5f070d3773cdb1d"
+      },
+      {
+        "path": "__second__/buildings/billie.html",
+        "bytes": 694,
+        "sha1": "a3a21b7aae493cf298ad20b643bc617212ce4a79"
+      },
+      {
+        "path": "__second__/buildings/carol.html",
+        "bytes": 660,
+        "sha1": "aa303a5d5c09bec7f698deaa8aa4f13e083d977a"
+      },
+      {
+        "path": "__second__/buildings/charlotte.html",
+        "bytes": 683,
+        "sha1": "b6dddf3ec19af73121104d72c22cfc3f43e95899"
+      },
+      {
+        "path": "__second__/buildings/clarice.html",
+        "bytes": 675,
+        "sha1": "76c27d0ea4137426fdeab1a7266bbb010dd51bba"
+      },
+      {
+        "path": "__second__/buildings/dance.html",
+        "bytes": 8840,
+        "sha1": "307f295b3b4a6b4a3a7cb095c527c9aa150a2c18"
+      },
+      {
+        "path": "__second__/buildings/jem.html",
+        "bytes": 636,
+        "sha1": "904c5791ac19b4f49b2526fc940b76f7ac7a69f8"
+      },
+      {
+        "path": "__second__/buildings/nina.html",
+        "bytes": 636,
+        "sha1": "995facca34c3437ea4ee2bb71c864f6565914c82"
+      },
+      {
+        "path": "__second__/buildings/odessa.html",
+        "bytes": 667,
+        "sha1": "796410b60e6f1a7ec44d63685e52db19bcef3dec"
+      },
+      {
+        "path": "__second__/buildings/palace.html",
+        "bytes": 2748,
+        "sha1": "418a976fa4dd114fd985f080c66fc53df41d0cea"
+      },
+      {
+        "path": "__second__/buildings/sorcha.html",
+        "bytes": 679,
+        "sha1": "38cb36ebe6f777546a018e09cec50c6678a89767"
+      },
+      {
+        "path": "__second__/buildings/stella.html",
+        "bytes": 692,
+        "sha1": "464ca7eb8e78f39f12ac4c08f40fec10ce827dd4"
+      },
+      {
+        "path": "__second__/buildings/themis.html",
+        "bytes": 685,
+        "sha1": "6605d53deed0951ae08bba978d9d9d338a38bef8"
+      },
+      {
+        "path": "__second__/buildings/tracy.html",
+        "bytes": 671,
+        "sha1": "7b30cddb8ae55c261967bce582aff51d5a572cb2"
+      },
+      {
+        "path": "__second__/index.html",
+        "bytes": 481,
+        "sha1": "3e32ca26385d4e59dd015440eefe5a9de1759622"
+      },
+      {
+        "path": "__second__/pages/plaza.html",
+        "bytes": 15111,
+        "sha1": "7f711f32cee2b9e03e04d53f4a7c6bceb99100d0"
+      },
+      {
+        "path": "asset/css/style.css",
+        "bytes": 133,
+        "sha1": "acf8a7cb2ad1177b89056f1267e4c72fa9f924c1"
+      },
+      {
+        "path": "asset/models/abbey.vrm",
+        "bytes": 12018708,
+        "sha1": "eb04a427ac4dcc4c67c831926945348e353c4339"
+      },
+      {
+        "path": "asset/models/alexandria.vrm",
+        "bytes": 12269756,
+        "sha1": "db5dacbb4acb36adde37c9c7d9f555a0e74f6439"
+      },
+      {
+        "path": "asset/models/billie.vrm",
+        "bytes": 13301520,
+        "sha1": "5decb1286216d12fb33045bcf7940dbbda16521f"
+      },
+      {
+        "path": "asset/models/carol.vrm",
+        "bytes": 11898172,
+        "sha1": "43bcef5d5e322059681e816127efa208562ed6d0"
+      },
+      {
+        "path": "asset/models/charlotte.vrm",
+        "bytes": 11740028,
+        "sha1": "c54361ac1a8af7e3587a4fefecf5f3c6a6262aa2"
+      },
+      {
+        "path": "asset/models/clarice.vrm",
+        "bytes": 12848640,
+        "sha1": "7bd205ce0c630cece5e52f26c42dc9600ed26564"
+      },
+      {
+        "path": "asset/models/jem.vrm",
+        "bytes": 12475488,
+        "sha1": "77f3fdc7e1e7a9681fff80c927361571b3921cd7"
+      },
+      {
+        "path": "asset/models/models.json",
+        "bytes": 1627,
+        "sha1": "b3bc6953184e0ce5129dd70ce69f0ff588eeef12"
+      },
+      {
+        "path": "asset/models/nina.vrm",
+        "bytes": 11272372,
+        "sha1": "818ce809d61f05550a6d1363748b14af23745dd0"
+      },
+      {
+        "path": "asset/models/odessa.vrm",
+        "bytes": 12378488,
+        "sha1": "59d73f0fd9f7e11f380b73a1b0c93d3876da15a2"
+      },
+      {
+        "path": "asset/models/reyczar.vrm",
+        "bytes": 11931700,
+        "sha1": "482781c00e431416c0a4de1b810e899711586b80"
+      },
+      {
+        "path": "asset/models/sorcha.vrm",
+        "bytes": 12620220,
+        "sha1": "065cbd93da74cbdf8a2ff20de95d99d675f25c88"
+      },
+      {
+        "path": "asset/models/stella.vrm",
+        "bytes": 12012132,
+        "sha1": "e4920aa21fe6b246bce907ead7a206ba13e08ebb"
+      },
+      {
+        "path": "asset/models/themis.vrm",
+        "bytes": 11647684,
+        "sha1": "156c0470dd217cba37685d32717aa9a9b7d3dedc"
+      },
+      {
+        "path": "asset/models/tracy.vrm",
+        "bytes": 12321368,
+        "sha1": "779d5c353def4b1d78df8193504226ff72f189ba"
+      },
+      {
+        "path": "asset/models/whitestar.vrm",
+        "bytes": 12038836,
+        "sha1": "c27b181085482c30ff2ff2d9c5b08e40721185e3"
+      },
+      {
+        "path": "asset/textures/buildings/phoenix-pagoda.jpg",
+        "bytes": 228403,
+        "sha1": "cd7d7eee7e3dafb49653cc08811e9cdad789ae5f"
+      },
+      {
+        "path": "asset/textures/rooms/carol-restaurant.jpg",
+        "bytes": 18979,
+        "sha1": "312feab9b1cff31d903bf0ce1c6daec9afaa86af"
+      },
+      {
+        "path": "asset/textures/ui/carol-menu-bg.jpg",
+        "bytes": 351490,
+        "sha1": "348d8e4db3da45052fb4b7025626497a1fc27b60"
+      },
+      {
+        "path": "asset/textures/wallpapers/carol-interior.jpg",
+        "bytes": 21092,
+        "sha1": "a44104eac0d85fc595420cd2fbadaf080a3b2dae"
+      },
+      {
+        "path": "asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg",
+        "bytes": 371804,
+        "sha1": "22fee0362d6936cb615c4de5968e3b63853623fd"
+      },
+      {
+        "path": "asset/textures/wallpapers/carol-menu-bg.jpg",
+        "bytes": 371804,
+        "sha1": "22fee0362d6936cb615c4de5968e3b63853623fd"
+      },
+      {
+        "path": "asset/textures/wallpapers/carol-pagoda-exterior.jpg",
+        "bytes": 242670,
+        "sha1": "605b098d82d7cd4aed88c239a673c93a284d0048"
+      },
+      {
+        "path": "asset/textures/wallpapers/carol-pagoda.jpg",
+        "bytes": 242670,
+        "sha1": "605b098d82d7cd4aed88c239a673c93a284d0048"
+      },
+      {
+        "path": "asset/textures/wallpapers/carol-restaurant-interior.jpg",
+        "bytes": 21092,
+        "sha1": "a44104eac0d85fc595420cd2fbadaf080a3b2dae"
+      },
+      {
+        "path": "asset/textures/wallpapers/castle village 01.jpg",
+        "bytes": 10719,
+        "sha1": "36ad4c702263b750d82cb405914d87ca029c2dcd"
+      },
+      {
+        "path": "asset/textures/wallpapers/castle village 02.jpg",
+        "bytes": 8347,
+        "sha1": "71b24a74883453f25966d5cf628a5627a7ce2ec2"
+      },
+      {
+        "path": "asset/textures/wallpapers/castle village 03.jpg",
+        "bytes": 8118,
+        "sha1": "34afc9f5903b7d49597bd476feca59532e01fbb3"
+      },
+      {
+        "path": "asset/textures/wallpapers/castle village 04.jpg",
+        "bytes": 8665,
+        "sha1": "89a7986288a9eae4d9bc1b165dfcb312578be755"
+      },
+      {
+        "path": "asset/winged-models/WingedAlexandria.vrm",
+        "bytes": 14303112,
+        "sha1": "599db0cbbac6c08489680de72f7536314c8cc2bc"
+      },
+      {
+        "path": "asset/winged-models/WingedBillie.vrm",
+        "bytes": 16451236,
+        "sha1": "f306b9a3d6e4ef2c87260aa5e23009ef2031c2fd"
+      },
+      {
+        "path": "asset/winged-models/WingedReyCzar.vrm",
+        "bytes": 14324996,
+        "sha1": "4e5cd59bd1f31fcf5220bc9463f4f2d1b0bd356d"
+      },
+      {
+        "path": "asset/winged-models/WingedWhiteStar.vrm",
+        "bytes": 13925688,
+        "sha1": "4439be1ec260cbf3312c53dd21ebf69e490437f8"
+      },
+      {
+        "path": "asset/wings/Wing1415.fbx",
+        "bytes": 2079968,
+        "sha1": "10a8aa28395d05c272d29dc85e252ba3b78ec654"
+      },
+      {
+        "path": "asset/wings/Wing1421.fbx",
+        "bytes": 1918432,
+        "sha1": "1110d09a2225fc324b43cd464bfaed6759bff966"
+      },
+      {
+        "path": "asset/wings/Wing1423.fbx",
+        "bytes": 2,
+        "sha1": "ba8ab5a0280b953aa97435ff8946cbcbb2755a27"
+      },
+      {
+        "path": "asset/wings/Wing1433.fbx",
+        "bytes": 2063792,
+        "sha1": "f2c020789037a361239d8b6e829c6c1f56b3d354"
+      },
+      {
+        "path": "asset/wings/Wing1436.fbx",
+        "bytes": 2,
+        "sha1": "ba8ab5a0280b953aa97435ff8946cbcbb2755a27"
+      },
+      {
+        "path": "asset/wings/Wing1437.fbx",
+        "bytes": 2,
+        "sha1": "ba8ab5a0280b953aa97435ff8946cbcbb2755a27"
+      },
+      {
+        "path": "asset/wings/Wing1438.fbx",
+        "bytes": 2,
+        "sha1": "ba8ab5a0280b953aa97435ff8946cbcbb2755a27"
+      },
+      {
+        "path": "asset/wings/Wing1439.fbx",
+        "bytes": 2319872,
+        "sha1": "ef8b8cc9f42b62a6aa3468c53f148048647e9c56"
+      },
+      {
+        "path": "asset/wings/manifest.json",
+        "bytes": 7437,
+        "sha1": "cdb709ad2559860879b09bc5a476d0adced427c2"
+      },
+      {
+        "path": "asset/wings/textures/wing02.png",
+        "bytes": 370089,
+        "sha1": "189823868920e1ea50b6a7cf563bc800f009c30c"
+      },
+      {
+        "path": "asset/wings/textures/wing02_c.png",
+        "bytes": 48313,
+        "sha1": "e03425d5ce80ae7803ca117ce853dfc7e59a8d25"
+      },
+      {
+        "path": "asset/wings/textures/wing02_e.png",
+        "bytes": 6225,
+        "sha1": "448b006db4b5561957f7674af926f2bee5604395"
+      },
+      {
+        "path": "asset/wings/textures/wing02_nrm.png",
+        "bytes": 93943,
+        "sha1": "65caac2a2be0de17b27c2a7855058f1bde6cc61d"
+      },
+      {
+        "path": "asset/wings/textures/wing03.png",
+        "bytes": 399350,
+        "sha1": "6ee84c3fb13fab6b493807fc3d38ded188d0f766"
+      },
+      {
+        "path": "asset/wings/textures/wing03_c.png",
+        "bytes": 17954,
+        "sha1": "335f645220fc498ef236bce5f7b2342a000d5104"
+      },
+      {
+        "path": "asset/wings/textures/wing03_nrm.png",
+        "bytes": 376766,
+        "sha1": "ca6867bb605a00861c3c79322617bf55357e74b8"
+      },
+      {
+        "path": "asset/wings/textures/wing05.png",
+        "bytes": 67398,
+        "sha1": "ec5b467ddf5f5e22f8a25d0f13d0932ebedcad57"
+      },
+      {
+        "path": "asset/wings/textures/wing05diff.png",
+        "bytes": 23185,
+        "sha1": "ca8c2f6188a26067634d660cd36e8e9325df39ab"
+      },
+      {
+        "path": "asset/wings/textures/wing1415.png",
+        "bytes": 317204,
+        "sha1": "9187b0f2983fe9bbbed80a29ed20c5cb3bbf3f62"
+      },
+      {
+        "path": "asset/wings/textures/wing1415_c.png",
+        "bytes": 34482,
+        "sha1": "1c63a7dcb166ce14f34c99d6f68e3fc2eaa6c1d1"
+      },
+      {
+        "path": "asset/wings/textures/wing1415_nrm.png",
+        "bytes": 86856,
+        "sha1": "b99387b334e43c088ebc6f438fb47ec34fe638f1"
+      },
+      {
+        "path": "asset/wings/textures/wing1417.png",
+        "bytes": 397457,
+        "sha1": "b1a2c41d52f950451827c4b99b880257439158b1"
+      },
+      {
+        "path": "asset/wings/textures/wing1417_c.png",
+        "bytes": 60675,
+        "sha1": "b4d057a862d3dc1c603e928b49ce84043d7f723b"
+      },
+      {
+        "path": "asset/wings/textures/wing1417_nrm.png",
+        "bytes": 108437,
+        "sha1": "6fc01c4392d82b73fad1dfc81b17655dc753b514"
+      },
+      {
+        "path": "asset/wings/textures/wing1419.png",
+        "bytes": 366430,
+        "sha1": "4e6eb94ce701619915b78a08ead816193e7d6d53"
+      },
+      {
+        "path": "asset/wings/textures/wing1419_c.png",
+        "bytes": 12418,
+        "sha1": "9987808d150695e6353c096605353d4683072a95"
+      },
+      {
+        "path": "asset/wings/textures/wing1419_nrm.png",
+        "bytes": 104763,
+        "sha1": "524e9dbffe9924c57080b437247edbb68a1d8c43"
+      },
+      {
+        "path": "asset/wings/textures/wing1420.png",
+        "bytes": 984225,
+        "sha1": "b37d77070848eb60267944171f9c35718e5ac2b5"
+      },
+      {
+        "path": "asset/wings/textures/wing1420_c.png",
+        "bytes": 119877,
+        "sha1": "18f44efa71462e9bc8a0226892ffe4f480aa7ad9"
+      },
+      {
+        "path": "asset/wings/textures/wing1420_jellyfish.png",
+        "bytes": 25741,
+        "sha1": "0d5171911cf28c5769a4ccbb6116e715e8dd2de1"
+      },
+      {
+        "path": "asset/wings/textures/wing1420_nrm.png",
+        "bytes": 255983,
+        "sha1": "6d8f0d06ecd1bbc5ebdb4adecc69f0e3553b4336"
+      },
+      {
+        "path": "asset/wings/textures/wing1421.png",
+        "bytes": 302350,
+        "sha1": "fd18c1c716b11041eb6f2af4e144517a869167cb"
+      },
+      {
+        "path": "asset/wings/textures/wing1421_c.png",
+        "bytes": 38354,
+        "sha1": "4863417ddf24b6ef27502995a3356ebf842d93c9"
+      },
+      {
+        "path": "asset/wings/textures/wing1421_nrm.png",
+        "bytes": 89739,
+        "sha1": "f6adc0fc70f95c01315bdb48d63e76d8385900b7"
+      },
+      {
+        "path": "asset/wings/textures/wing1422(1).png",
+        "bytes": 370089,
+        "sha1": "189823868920e1ea50b6a7cf563bc800f009c30c"
+      },
+      {
+        "path": "asset/wings/textures/wing1422_c(1).png",
+        "bytes": 48313,
+        "sha1": "e03425d5ce80ae7803ca117ce853dfc7e59a8d25"
+      },
+      {
+        "path": "asset/wings/textures/wing1422_e(1).png",
+        "bytes": 6225,
+        "sha1": "448b006db4b5561957f7674af926f2bee5604395"
+      },
+      {
+        "path": "asset/wings/textures/wing1422_nrm(1).png",
+        "bytes": 93943,
+        "sha1": "65caac2a2be0de17b27c2a7855058f1bde6cc61d"
+      },
+      {
+        "path": "asset/wings/textures/wing1423.png",
+        "bytes": 325495,
+        "sha1": "b8d3c143ea02ac0dd62963ee03873be824bcefb1"
+      },
+      {
+        "path": "asset/wings/textures/wing1423_c.png",
+        "bytes": 25368,
+        "sha1": "138397813d539e374a9a8aff1b2a52f1dd179a2c"
+      },
+      {
+        "path": "asset/wings/textures/wing1423_nrm.png",
+        "bytes": 101614,
+        "sha1": "607e1d5bb0064c54798fccec6adc34816a107669"
+      },
+      {
+        "path": "asset/wings/textures/wing1424.png",
+        "bytes": 456713,
+        "sha1": "838f1af57233a17a455ee794601cb62c83668ae4"
+      },
+      {
+        "path": "asset/wings/textures/wing1424_c.png",
+        "bytes": 12432,
+        "sha1": "2efffbacb82e2bee1075121f818e517ebef6d57f"
+      },
+      {
+        "path": "asset/wings/textures/wing1424_nrm.png",
+        "bytes": 120254,
+        "sha1": "0be421922e6afc71ae46196d20f7eb8e790f8a7b"
+      },
+      {
+        "path": "asset/wings/textures/wing1425.png",
+        "bytes": 415037,
+        "sha1": "efd4139f6cd4d377fe6c99953340f4933c8e55f0"
+      },
+      {
+        "path": "asset/wings/textures/wing1425_c.png",
+        "bytes": 16469,
+        "sha1": "7e66a010eaf6c377c9ccff28f10455706a1fa728"
+      },
+      {
+        "path": "asset/wings/textures/wing1425_nrm.png",
+        "bytes": 97185,
+        "sha1": "f7c0d6dbf122eba7313aa4548b35b6dfa685f0dc"
+      },
+      {
+        "path": "asset/wings/textures/wing1426.png",
+        "bytes": 356248,
+        "sha1": "8cbd9d5521eb9bfde650c20eb39bcca0942f2396"
+      },
+      {
+        "path": "asset/wings/textures/wing1426_c.png",
+        "bytes": 25734,
+        "sha1": "9ffce1bf6fdd9328e15870b58ee902123ec07f04"
+      },
+      {
+        "path": "asset/wings/textures/wing1426_nrm.png",
+        "bytes": 89159,
+        "sha1": "04531f34fcccda2bf28e430fbdc0e2b6fe13fa4d"
+      },
+      {
+        "path": "asset/wings/textures/wing1427.png",
+        "bytes": 440239,
+        "sha1": "389c0e511221a40679d5c67ee8aff964ad8bdc39"
+      },
+      {
+        "path": "asset/wings/textures/wing1427_c.png",
+        "bytes": 46170,
+        "sha1": "62531655baa33a45ba78a3b91665f66a672bbc4f"
+      },
+      {
+        "path": "asset/wings/textures/wing1427_nrm.png",
+        "bytes": 107484,
+        "sha1": "1a719a90252514496f2d2084d7a7bd7d03b51622"
+      },
+      {
+        "path": "asset/wings/textures/wing1428.png",
+        "bytes": 396849,
+        "sha1": "b78eb6675e7c8ebd39b14761521f4e85d447f7f0"
+      },
+      {
+        "path": "asset/wings/textures/wing1428_c.png",
+        "bytes": 55998,
+        "sha1": "da4f7037b862a07e2b8056adcc17d4e2b4b7bfb9"
+      },
+      {
+        "path": "asset/wings/textures/wing1428_nrm.png",
+        "bytes": 421356,
+        "sha1": "e53ba10cf505908b6382c96975a24b9621f91f1c"
+      },
+      {
+        "path": "asset/wings/textures/wing1429.png",
+        "bytes": 417253,
+        "sha1": "3e40663515862df32d4b443bfb3073dd378f2398"
+      },
+      {
+        "path": "asset/wings/textures/wing1429_c.png",
+        "bytes": 23749,
+        "sha1": "9576c49de8222f4163f4d8e7155f5946515db2ae"
+      },
+      {
+        "path": "asset/wings/textures/wing1429_nrm.png",
+        "bytes": 102642,
+        "sha1": "5b2fd77a354158db3bd58264e4b637c81b15fcd5"
+      },
+      {
+        "path": "asset/wings/textures/wing1430.png",
+        "bytes": 387816,
+        "sha1": "ed6f56f255689a136c9455e796d15217d65ab348"
+      },
+      {
+        "path": "asset/wings/textures/wing1430_c.png",
+        "bytes": 24835,
+        "sha1": "627245887238bbd1ec794aabb692cd52586bb416"
+      },
+      {
+        "path": "asset/wings/textures/wing1430_nrm.png",
+        "bytes": 105480,
+        "sha1": "653ca810181356c055f98d91676c8e3682c80bc7"
+      },
+      {
+        "path": "asset/wings/textures/wing1431.png",
+        "bytes": 408920,
+        "sha1": "3919be1d370cc01563b9a46da5fd6704b92a9e40"
+      },
+      {
+        "path": "asset/wings/textures/wing1431_c.png",
+        "bytes": 15620,
+        "sha1": "48539b1fb19c8d37ab5ffdec2362b0651ea7281c"
+      },
+      {
+        "path": "asset/wings/textures/wing1431_nrm.png",
+        "bytes": 366432,
+        "sha1": "2505be4a3a4b3d8af2de58873ea7b88885bfc921"
+      },
+      {
+        "path": "asset/wings/textures/wing1432.png",
+        "bytes": 415178,
+        "sha1": "87871df59d850714c2813bffccccad20cedf4439"
+      },
+      {
+        "path": "asset/wings/textures/wing1432_c.png",
+        "bytes": 25198,
+        "sha1": "a1f789e9b8094114abf1c4419561ea70ea263113"
+      },
+      {
+        "path": "asset/wings/textures/wing1432_nrm.png",
+        "bytes": 382335,
+        "sha1": "7deb9689ee98364f5dc759eb5431afd18159da11"
+      },
+      {
+        "path": "asset/wings/textures/wing1433.png",
+        "bytes": 348530,
+        "sha1": "7e35bba127b83b99024da66044ff64817296caa7"
+      },
+      {
+        "path": "asset/wings/textures/wing1433_c.png",
+        "bytes": 6097,
+        "sha1": "bd38f555373c7372c5ff10c1b08f0c15a5a47c88"
+      },
+      {
+        "path": "asset/wings/textures/wing1433_nrm.png",
+        "bytes": 347259,
+        "sha1": "dd5260e404756c3d725c57b92b04a024a0b0d889"
+      },
+      {
+        "path": "asset/wings/textures/wing1434.png",
+        "bytes": 418329,
+        "sha1": "b28f7002b3541f3b7aa6e2f3b13561802d7cd04e"
+      },
+      {
+        "path": "asset/wings/textures/wing1434_c.png",
+        "bytes": 13490,
+        "sha1": "e309ffcc96a60cd922683dc0e3721c3c4c2f00d2"
+      },
+      {
+        "path": "asset/wings/textures/wing1434_nrm.png",
+        "bytes": 374755,
+        "sha1": "96a163c773babf7ee255ba1508ae72d3a83b6b1f"
+      },
+      {
+        "path": "asset/wings/textures/wing1435.png",
+        "bytes": 399350,
+        "sha1": "6ee84c3fb13fab6b493807fc3d38ded188d0f766"
+      },
+      {
+        "path": "asset/wings/textures/wing1435_c.png",
+        "bytes": 17954,
+        "sha1": "335f645220fc498ef236bce5f7b2342a000d5104"
+      },
+      {
+        "path": "asset/wings/textures/wing1435_nrm.png",
+        "bytes": 376766,
+        "sha1": "ca6867bb605a00861c3c79322617bf55357e74b8"
+      },
+      {
+        "path": "asset/wings/textures/wing1436.png",
+        "bytes": 1248727,
+        "sha1": "4cd74a2298164928a263f669e7dffdfafded8670"
+      },
+      {
+        "path": "asset/wings/textures/wing1436_c.png",
+        "bytes": 17942,
+        "sha1": "0194b13e86db6622d63abe9be532b5ab7d6c5dc1"
+      },
+      {
+        "path": "asset/wings/textures/wing1436_nrm.png",
+        "bytes": 326829,
+        "sha1": "d371e1923828cbdbfa13d2eefd3f8a7c64dc9690"
+      },
+      {
+        "path": "asset/wings/textures/wing1437.png",
+        "bytes": 415949,
+        "sha1": "536ec41c694ba59a4e960bbc7afa132a7cfbe69d"
+      },
+      {
+        "path": "asset/wings/textures/wing1437_c.png",
+        "bytes": 8514,
+        "sha1": "6e3bcef2bb0f465c3307c4c9059a4eb970e32d14"
+      },
+      {
+        "path": "asset/wings/textures/wing1437_nrm.png",
+        "bytes": 88078,
+        "sha1": "a0092d76f2b274396fe2e1e779cba42753bcb270"
+      },
+      {
+        "path": "asset/wings/textures/wing1438.png",
+        "bytes": 403679,
+        "sha1": "9002c43315d298dbb0b2b69062f4a424afa19cdc"
+      },
+      {
+        "path": "asset/wings/textures/wing1438_c.png",
+        "bytes": 4293,
+        "sha1": "74c1b62023ac55f45a0d9cff41aef2947f388d94"
+      },
+      {
+        "path": "asset/wings/textures/wing1438_nrm.png",
+        "bytes": 79496,
+        "sha1": "3efc0e4032bade23e00961e296fab9530259bf43"
+      },
+      {
+        "path": "asset/wings/textures/wing1439.png",
+        "bytes": 441939,
+        "sha1": "128034738722f1138b2e410d8d77231282abc5d7"
+      },
+      {
+        "path": "asset/wings/textures/wing1439_c.png",
+        "bytes": 28444,
+        "sha1": "7f92536f197da7b3c1e9ecee059bcad4c2294322"
+      },
+      {
+        "path": "asset/wings/textures/wing1439_nrm.png",
+        "bytes": 364168,
+        "sha1": "827744a5e6c1fa9feb815a7b85c9cd1be6700375"
+      },
+      {
+        "path": "asset/wings/textures/wing162.png",
+        "bytes": 328076,
+        "sha1": "4a8b245ded055c18f34b574540936653db31ace1"
+      },
+      {
+        "path": "asset/wings/wing02.fbx",
+        "bytes": 2615200,
+        "sha1": "8dfa96348479ec154220d6db7a3dcb9ad5581b6b"
+      },
+      {
+        "path": "asset/wings/wing03.fbx",
+        "bytes": 3079104,
+        "sha1": "df1a5db1be4003ee5fa456b3d5aab65a299754ff"
+      },
+      {
+        "path": "asset/wings/wing05.fbx",
+        "bytes": 533164,
+        "sha1": "bc2d8c8c372779ae5772a4fdc1d888414dbeb3be"
+      },
+      {
+        "path": "asset/wings/wing1417.fbx",
+        "bytes": 2866896,
+        "sha1": "3b574022c6e6931a9be7b96c347bb6b217770fd4"
+      },
+      {
+        "path": "asset/wings/wing1419.fbx",
+        "bytes": 1737136,
+        "sha1": "8ed54eb9807bd4aa489c62885bba5d0737bee601"
+      },
+      {
+        "path": "asset/wings/wing1420.fbx",
+        "bytes": 1118448,
+        "sha1": "5fe60d71cda37e143133c4d3292ece9fcb552ad5"
+      },
+      {
+        "path": "asset/wings/wing1422.fbx",
+        "bytes": 2615200,
+        "sha1": "8dfa96348479ec154220d6db7a3dcb9ad5581b6b"
+      },
+      {
+        "path": "asset/wings/wing1424.fbx",
+        "bytes": 2,
+        "sha1": "ba8ab5a0280b953aa97435ff8946cbcbb2755a27"
+      },
+      {
+        "path": "asset/wings/wing1425.fbx",
+        "bytes": 2,
+        "sha1": "ba8ab5a0280b953aa97435ff8946cbcbb2755a27"
+      },
+      {
+        "path": "asset/wings/wing1426.fbx",
+        "bytes": 2,
+        "sha1": "ba8ab5a0280b953aa97435ff8946cbcbb2755a27"
+      },
+      {
+        "path": "asset/wings/wing1427.fbx",
+        "bytes": 1636528,
+        "sha1": "860424944927911d15fb6c90b752372135833c35"
+      },
+      {
+        "path": "asset/wings/wing1428.fbx",
+        "bytes": 2,
+        "sha1": "ba8ab5a0280b953aa97435ff8946cbcbb2755a27"
+      },
+      {
+        "path": "asset/wings/wing1429.fbx",
+        "bytes": 4398288,
+        "sha1": "a952bf28ed88d9804f3c6bf2db362bc38df6386b"
+      },
+      {
+        "path": "asset/wings/wing1430.fbx",
+        "bytes": 2,
+        "sha1": "ba8ab5a0280b953aa97435ff8946cbcbb2755a27"
+      },
+      {
+        "path": "asset/wings/wing1431.fbx",
+        "bytes": 2456624,
+        "sha1": "5bfa21753d2c3183051e95483eebef17b81e0fb5"
+      },
+      {
+        "path": "asset/wings/wing1434.fbx",
+        "bytes": 2721040,
+        "sha1": "3c9f81fa7570575433cf88c48565ce271f3ed213"
+      },
+      {
+        "path": "asset/wings/wing1435.fbx",
+        "bytes": 3079104,
+        "sha1": "df1a5db1be4003ee5fa456b3d5aab65a299754ff"
+      },
+      {
+        "path": "asset/wings/wing162.fbx",
+        "bytes": 275580,
+        "sha1": "d9f57af796799d441e70c52aa7f432b83403cadf"
+      },
+      {
+        "path": "avalon-carol-unique-2.9.4/pages/apps/carol/packages/us.json",
+        "bytes": 3157,
+        "sha1": "3d15837432e11aea17d46505bfd4983b4f321d5b"
+      },
+      {
+        "path": "avalon-carol-unique-2.9.4/pages/apps/carol/plans/index.json",
+        "bytes": 106,
+        "sha1": "82c59e6f4e67d600d70effe472fddcae53dfefcf"
+      },
+      {
+        "path": "avalon-carol-unique-2.9.4/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+        "bytes": 88106,
+        "sha1": "66bbefa1ee830552f5a7ed731dfee6c77d071c82"
+      },
+      {
+        "path": "avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1",
+        "bytes": 7036,
+        "sha1": "c486083f89c80850ae005fc05be3d1d6012edeb6"
+      },
+      {
+        "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html",
+        "bytes": 7794,
+        "sha1": "ee0e6e84b3cb416008b32486a58cb96bbe9deac0"
+      },
+      {
+        "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/packages/us.json",
+        "bytes": 3405,
+        "sha1": "64a55938702da98f424ccbb1a923763db0c8688f"
+      },
+      {
+        "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/index.json",
+        "bytes": 106,
+        "sha1": "48506cbf39ac639e355e210aff6dc3bdb6f12a82"
+      },
+      {
+        "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/twoperson-2wk-unique-20251015T005600Z.json",
+        "bytes": 90325,
+        "sha1": "09e4ae2e375d9b87ef90d1dca526aedaea1dd84b"
+      },
+      {
+        "path": "avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1",
+        "bytes": 6702,
+        "sha1": "376049f8d7871ee66b719c837de2241668343382"
+      },
+      {
+        "path": "city/city-map.svg",
+        "bytes": 2258,
+        "sha1": "a15dc6a46e086203e86c3cf786e7ed274b0d9b31"
+      },
+      {
+        "path": "city/city-registry.json",
+        "bytes": 4809,
+        "sha1": "40ac0856aa790ca2b90f6163f232122e2c8bf765"
+      },
+      {
+        "path": "cloudflare/README-auth.md",
+        "bytes": 1215,
+        "sha1": "eef3059034d87aa04e93b6b1ebf8855b088792f5"
+      },
+      {
+        "path": "cloudflare/README.md",
+        "bytes": 561,
+        "sha1": "f8a31b1ea4d43d021a067f54d55d9d6241b2f551"
+      },
+      {
+        "path": "cloudflare/worker-alexandria.js",
+        "bytes": 3934,
+        "sha1": "76785e3ed6228c7cc0743f6a766e56b2d7e81920"
+      },
+      {
+        "path": "cloudflare/worker-auth.js",
+        "bytes": 4739,
+        "sha1": "de3855b385b3be1dd1c84288ab3f75b9ee083d6e"
+      },
+      {
+        "path": "config/keep-lists/workflows-keep.json",
+        "bytes": 277,
+        "sha1": "873215a97b7879045481ba70a4cc2363b8f809df"
+      },
+      {
+        "path": "config/workflows-keep.json",
+        "bytes": 276,
+        "sha1": "4556ff00e4a5ea3fadab5c1a7fb9bf4ae2ca2a07"
+      },
+      {
+        "path": "config/workflows-rename.json",
+        "bytes": 445,
+        "sha1": "94b12643cbe8cbc0f36ff52ab29a7cadd13403dd"
+      },
+      {
+        "path": "docs/Avalon-Lore-Dossier.md",
+        "bytes": 113,
+        "sha1": "8c116aa25da3d6b74c92c98ac7cffc8f6c7e15aa"
+      },
+      {
+        "path": "docs/Avalon-Visual-Bible.md",
+        "bytes": 7324,
+        "sha1": "ab2f9778c94a44c0cfa6f9258eed021185fd342e"
+      },
+      {
+        "path": "docs/OAuth-Notes.md",
+        "bytes": 268,
+        "sha1": "ee03c915604b4b4d8ebca80dfa77c171ad4c4f45"
+      },
+      {
+        "path": "importmap.json",
+        "bytes": 198,
+        "sha1": "c78a8bcda9ab2c2a4ef6f6e70d5342594a91f38e"
+      },
+      {
+        "path": "index.html",
+        "bytes": 4169,
+        "sha1": "6f34005fc6fc37e502686534879b686d0be0cbdb"
+      },
+      {
+        "path": "kill-sw-boost.html",
+        "bytes": 718,
+        "sha1": "841c70983172b664186c97d48cf4564d75b525ff"
+      },
+      {
+        "path": "kill-sw.html",
+        "bytes": 620,
+        "sha1": "1f957d4e032e4f3c48b89a0ea366a87298d1171a"
+      },
+      {
+        "path": "memory/Cody-Memory.yaml",
+        "bytes": 916,
+        "sha1": "49ae82d562eb6f26cb06957238f5c7f11b869710"
+      },
+      {
+        "path": "memory/Codys-Memory-characters.yaml",
+        "bytes": 4968,
+        "sha1": "33e8d3ce115d5eebb602f62bedfeee32ab67cb02"
+      },
+      {
+        "path": "memory/Codys-Memory-visuals.yaml",
+        "bytes": 4260,
+        "sha1": "4bf2b0bbc73ea04ac7aa38f4d90f78a78131ee7d"
+      },
+      {
+        "path": "memory/deadends.json",
+        "bytes": 92256,
+        "sha1": "1051a5e46ab46fcca579cf766316d8ac9619201a"
+      },
+      {
+        "path": "memory/file-index.json",
+        "bytes": 167878,
+        "sha1": "753fb017e8a9eaa556fb29f4b593f2f5f709cc65"
+      },
+      {
+        "path": "memory-history/20250913T083955Z-Codys-Memory.yaml",
+        "bytes": 21661,
+        "sha1": "fc4b02faa24757e8ad1ce10cd69a557e2260ddfc"
+      },
+      {
+        "path": "memory-history/20250913T085610Z-Codys-Memory.yaml",
+        "bytes": 22003,
+        "sha1": "2073b7d73c0d5ce6dd7a706894e2c14016d481b3"
+      },
+      {
+        "path": "memory-history/20250913T184428Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T185031Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T192026Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T193745Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T195049Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T202952Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T204046Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T205141Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T211642Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T211643Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T212718Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T214031Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T215309Z-Codys-Memory.yaml",
+        "bytes": 16318,
+        "sha1": "f88d9b1873874bb00893d3a8aae0f5f14983a1a3"
+      },
+      {
+        "path": "memory-history/20250913T221734Z-Codys-Memory.yaml",
+        "bytes": 23513,
+        "sha1": "f3b00d088169849053db28621af5eb73e0e7f4be"
+      },
+      {
+        "path": "memory-history/20250913T223028Z-Codys-Memory.yaml",
+        "bytes": 23513,
+        "sha1": "f3b00d088169849053db28621af5eb73e0e7f4be"
+      },
+      {
+        "path": "memory-history/20250913T224153Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250913T224309Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250913T225621Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250913T232626Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250913T234050Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250913T235341Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T031341Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T035014Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T043733Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T045342Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T053153Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T055319Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T064519Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T065740Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T072712Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T074014Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T075306Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T083756Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T085322Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T092949Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T094145Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T095503Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T103142Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T105312Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T112148Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T113932Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T115332Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T115333Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T130223Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T133138Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T135313Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T142946Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T142947Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T144235Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T145545Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T152814Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T154026Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T154027Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T155324Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T163450Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T165329Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T172707Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T174000Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T175316Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T184046Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T185547Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T192153Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T193924Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T195318Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T203016Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T204233Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T205546Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T212618Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T212619Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T213955Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T215327Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T223147Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T225352Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T232647Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T234133Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T234134Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250914T235359Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250915T032853Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250915T035758Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250915T044252Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250915T045601Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250915T053818Z-Codys-Memory.yaml",
+        "bytes": 22534,
+        "sha1": "596d53bbd3948a803cbaa588a729af2c8f70883b"
+      },
+      {
+        "path": "memory-history/20250915T055731Z-Codys-Memory.yaml",
+        "bytes": 34824,
+        "sha1": "70351d275fff57e8ef5a31bc59f911351436f41b"
+      },
+      {
+        "path": "memory-history/20250915T062707Z-Codys-Memory.yaml",
+        "bytes": 12044,
+        "sha1": "6fad1ef6b57d18fc0a6f6e67db1fa0ffa2247d7f"
+      },
+      {
+        "path": "memory-history/20250915T065622Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T065739Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T073229Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T075358Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T084755Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T093811Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T095349Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T104121Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T105410Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T112630Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T114150Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T115456Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T133345Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T135354Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T143531Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T145349Z-Codys-Memory.yaml",
+        "bytes": 3551,
+        "sha1": "f81516c3e41b1393f2a616b3a65ab77caddfb8bd"
+      },
+      {
+        "path": "memory-history/20250915T150856Z-Codys-Memory.yaml",
+        "bytes": 10570,
+        "sha1": "37575027c8874aac1760182ead7e68a96ac16b27"
+      },
+      {
+        "path": "memory-history/20250915T151120Z-Codys-Memory.yaml",
+        "bytes": 10570,
+        "sha1": "37575027c8874aac1760182ead7e68a96ac16b27"
+      },
+      {
+        "path": "memory-history/20250915T152330Z-Codys-Memory.yaml",
+        "bytes": 10570,
+        "sha1": "37575027c8874aac1760182ead7e68a96ac16b27"
+      },
+      {
+        "path": "memory-history/20250915T153523Z-Codys-Memory.yaml",
+        "bytes": 10570,
+        "sha1": "37575027c8874aac1760182ead7e68a96ac16b27"
+      },
+      {
+        "path": "memory-history/20250915T155401Z-Codys-Memory.yaml",
+        "bytes": 10570,
+        "sha1": "37575027c8874aac1760182ead7e68a96ac16b27"
+      },
+      {
+        "path": "memory-history/20250915T160028Z-Codys-Memory.yaml",
+        "bytes": 2119,
+        "sha1": "f15af362f660cf24184fa3bf16d2d55caceb192f"
+      },
+      {
+        "path": "memory-history/20250915T163307Z-Codys-Memory.yaml",
+        "bytes": 7426,
+        "sha1": "074675883726ee2dd56cce0dcd6a6dfedfa2d4ef"
+      },
+      {
+        "path": "memory-history/20250915T164733Z-Codys-Memory.yaml",
+        "bytes": 7426,
+        "sha1": "074675883726ee2dd56cce0dcd6a6dfedfa2d4ef"
+      },
+      {
+        "path": "memory-history/20250915T164734Z-Codys-Memory.yaml",
+        "bytes": 7426,
+        "sha1": "074675883726ee2dd56cce0dcd6a6dfedfa2d4ef"
+      },
+      {
+        "path": "memory-history/20250915T173146Z-Codys-Memory.yaml",
+        "bytes": 7426,
+        "sha1": "074675883726ee2dd56cce0dcd6a6dfedfa2d4ef"
+      },
+      {
+        "path": "memory-history/20250915T173147Z-Codys-Memory.yaml",
+        "bytes": 7426,
+        "sha1": "074675883726ee2dd56cce0dcd6a6dfedfa2d4ef"
+      },
+      {
+        "path": "memory-history/20250915T175348Z-Codys-Memory.yaml",
+        "bytes": 919,
+        "sha1": "6109420bc1bfbf65153a78bd65ae36b1c3a17842"
+      },
+      {
+        "path": "memory-history/20250915T184924Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T184925Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T192414Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T194046Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T195345Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T203329Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T205352Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T212903Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T212904Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T214127Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T215424Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T223318Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T225330Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T232717Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T234059Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250915T235346Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250916T030600Z-Codys-Memory.yaml",
+        "bytes": 597,
+        "sha1": "2dc1b3864e766b2f940bf1636edd087f50304d7b"
+      },
+      {
+        "path": "memory-history/20250916T044014Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T044015Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T045301Z-BROKEN-Codys-Memory.yaml",
+        "bytes": 30374,
+        "sha1": "621014906a41e3e3af9fa7426aceda6ee1d97825"
+      },
+      {
+        "path": "memory-history/20250916T045301Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T051838Z-BROKEN-Codys-Memory.yaml",
+        "bytes": 26927,
+        "sha1": "21d52695d10bff4579e45a9fed331e344b186221"
+      },
+      {
+        "path": "memory-history/20250916T053453Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T053454Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T055206Z-BROKEN-Codys-Memory.yaml",
+        "bytes": 21858,
+        "sha1": "92885c18bd217c9b3e7cd13ef516c89b7820c752"
+      },
+      {
+        "path": "memory-history/20250916T055342Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T055343Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T065214Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T073114Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T073115Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T075350Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T084909Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T093747Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T095343Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T104018Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T105336Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T112630Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T114121Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T115415Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T133641Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T135432Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T144101Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T145326Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T145327Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T153621Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T155352Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T164525Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T164526Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T165831Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T173244Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T175321Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T184839Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T192411Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T194032Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T195354Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T203442Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T205313Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T212837Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T214115Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T214116Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T215405Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T222941Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T224238Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T224239Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T225550Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T232454Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T234039Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250916T235337Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T030528Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T030529Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T034708Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T043946Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T045335Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T053440Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T053441Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T055327Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T065153Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T072949Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T074258Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T075554Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T084658Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T093430Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T095336Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T103915Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T105321Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T105322Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T112627Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T114119Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T115422Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T133436Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T135419Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T143902Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T145408Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T153449Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T155330Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T164515Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T165749Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T173207Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T175310Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T184849Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T192359Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T192400Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T194119Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T194120Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T195332Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T203404Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T205316Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T205317Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T205541Z-Codys-Memory.yaml",
+        "bytes": 20083,
+        "sha1": "412094e40cb81b07690d2884398333fdf0be3d66"
+      },
+      {
+        "path": "memory-history/20250917T205634Z-BROKEN-Codys-Memory.yaml",
+        "bytes": 20083,
+        "sha1": "412094e40cb81b07690d2884398333fdf0be3d66"
+      },
+      {
+        "path": "memory-history/20250917T205748Z-BROKEN-Codys-Memory.yaml",
+        "bytes": 21858,
+        "sha1": "92885c18bd217c9b3e7cd13ef516c89b7820c752"
+      },
+      {
+        "path": "memory-history/20250917T212554Z-Codys-Memory.yaml",
+        "bytes": 996,
+        "sha1": "6654ba2c0d33cfca74acdb248439652ffd1b3fbc"
+      },
+      {
+        "path": "memory-history/20250917T214108Z-Codys-Memory.yaml",
+        "bytes": 4853,
+        "sha1": "e0f0b0d4ac4f53d870dcccc244e8e999d32b77ab"
+      },
+      {
+        "path": "memory-history/20250917T223023Z-Codys-Memory.yaml",
+        "bytes": 448,
+        "sha1": "edc7069630b39f124c17587a726da8dd66e2c224"
+      },
+      {
+        "path": "memory-history/20250917T224146Z-Codys-Memory.yaml",
+        "bytes": 448,
+        "sha1": "edc7069630b39f124c17587a726da8dd66e2c224"
+      },
+      {
+        "path": "memory-history/20250917T224147Z-Codys-Memory.yaml",
+        "bytes": 448,
+        "sha1": "edc7069630b39f124c17587a726da8dd66e2c224"
+      },
+      {
+        "path": "memory-history/20250917T225437Z-Codys-Memory.yaml",
+        "bytes": 448,
+        "sha1": "edc7069630b39f124c17587a726da8dd66e2c224"
+      },
+      {
+        "path": "memory-history/20250917T232747Z-Codys-Memory.yaml",
+        "bytes": 448,
+        "sha1": "edc7069630b39f124c17587a726da8dd66e2c224"
+      },
+      {
+        "path": "memory-history/20250917T234052Z-Codys-Memory.yaml",
+        "bytes": 448,
+        "sha1": "edc7069630b39f124c17587a726da8dd66e2c224"
+      },
+      {
+        "path": "memory-history/20250917T235350Z-Codys-Memory.yaml",
+        "bytes": 2155,
+        "sha1": "20aa2cd53d1f905528f355e72a32704171c82b18"
+      },
+      {
+        "path": "memory-history/20250918T001302Z-BROKEN-Codys-Memory.yaml",
+        "bytes": 11851,
+        "sha1": "a3aa72cd8f14d846b85ee2b13d34877cdd0baff9"
+      },
+      {
+        "path": "memory-history/20250918T005814Z-Codys-Memory.yaml",
+        "bytes": 4682,
+        "sha1": "af0407028fc116e4b8d98b780cc48ee7bcb048fb"
+      },
+      {
+        "path": "memory-history/20250918T012606Z-Codys-Memory.yaml",
+        "bytes": 1866,
+        "sha1": "2d102c461b74fdc26e6061e4ae299b022c2bcd2e"
+      },
+      {
+        "path": "memory-history/20251017T224658Z-Codys-Memory.yaml",
+        "bytes": 2344,
+        "sha1": "5224275ed28658202f39b697fd43fcaf8ba5718a"
+      },
+      {
+        "path": "memory-history/20251021T033227Z-Codys-Memory.yaml",
+        "bytes": 1688,
+        "sha1": "6c4e6782957dd072415b4293ffeb6b8a56c7a193"
+      },
+      {
+        "path": "memory-history/20251021T035452Z-Codys-Memory.yaml",
+        "bytes": 1477,
+        "sha1": "7521e62a09ef2f13601aef76df2e9eefe5bdfff6"
+      },
+      {
+        "path": "memory-history/Codys-Memory-20251021T064919Z.yaml",
+        "bytes": 1342,
+        "sha1": "d851795d6f63a4b06dc8284193c52c275fea4f9d"
+      },
+      {
+        "path": "memory-history/Codys-Memory-ops.yaml",
+        "bytes": 1013,
+        "sha1": "50a359976abde55d8b54fa0204b7a278d9ebd98c"
+      },
+      {
+        "path": "memory-history/Codys-Memory.json",
+        "bytes": 725,
+        "sha1": "b33f441274fc48322e12446345405e61e26a3920"
+      },
+      {
+        "path": "memory-history/Codys-Memory.yaml",
+        "bytes": 812,
+        "sha1": "ac06a993a978d6c5ec949cd6fcd22d073843c4a6"
+      },
+      {
+        "path": "memory-history/repo-index.json",
+        "bytes": 121570,
+        "sha1": "e65239a19122c806065b5e2d887c5ca058164dc4"
+      },
+      {
+        "path": "memory-history/repo-inventory.json",
+        "bytes": 164466,
+        "sha1": "f32cd27b5a4385233bcbafd63254f013ad29bdf2"
+      },
+      {
+        "path": "memory-history/repo-read-index.json",
+        "bytes": 862574,
+        "sha1": "212953edfbd7524f5bd1d48b3d81e6d5f13318f1"
+      },
+      {
+        "path": "memory-history/repo-refs.json",
+        "bytes": 633,
+        "sha1": "ff99049bd717197ca0d012eb421b4a1f34c8d66e"
+      },
+      {
+        "path": "memory-history/repo-usage-report.json",
+        "bytes": 8452,
+        "sha1": "153376c638bd0b6952b697168390a168434ede60"
+      },
+      {
+        "path": "memory-history/retired/odessa/index.html",
+        "bytes": 400,
+        "sha1": "7ce9823fb9f37ac83b170b39b43f782dccb08d32"
+      },
+      {
+        "path": "pages/_city/plaza.html",
+        "bytes": 1950,
+        "sha1": "d783f1afb3c0b034bbbd07f084e58b05608f4b8e"
+      },
+      {
+        "path": "pages/_lib/role-guard.js",
+        "bytes": 439,
+        "sha1": "300e894e952539b3150c3f4d5199a65f398c4855"
+      },
+      {
+        "path": "pages/access.html",
+        "bytes": 1144,
+        "sha1": "9c59cd82a740727e000777ed48ad9f8a1864bc8a"
+      },
+      {
+        "path": "pages/apps/Index.html",
+        "bytes": 1642,
+        "sha1": "60322f30fab838404baf4c923b00c04efd9265d8"
+      },
+      {
+        "path": "pages/apps/_city/buttons-3d.html",
+        "bytes": 3351,
+        "sha1": "17218b67f63df11b93685b5ebc953e7e3b2cf005"
+      },
+      {
+        "path": "pages/apps/_city/city.css",
+        "bytes": 2244,
+        "sha1": "f243c508c2be17c15e9659e1eacfdd2dbf0611aa"
+      },
+      {
+        "path": "pages/apps/_city/city.js",
+        "bytes": 71,
+        "sha1": "01357f52931a05b3815f8e5ce19f5174615e7348"
+      },
+      {
+        "path": "pages/apps/_city/hero.css",
+        "bytes": 56,
+        "sha1": "b6a47b784475357fd8c120e4e24e468389ac7ad7"
+      },
+      {
+        "path": "pages/apps/_city/index.html",
+        "bytes": 1219,
+        "sha1": "9c11a4ff65fa6c114a123ac9ad37e24b3d79c55a"
+      },
+      {
+        "path": "pages/apps/_city/map.js",
+        "bytes": 3357,
+        "sha1": "03166258b6ec37e3fb4953362e570ee850462598"
+      },
+      {
+        "path": "pages/apps/_city/palace.html",
+        "bytes": 1084,
+        "sha1": "8c3daafee1bfde1e686cbef0026be8ce91628465"
+      },
+      {
+        "path": "pages/apps/_city/registry.json",
+        "bytes": 828,
+        "sha1": "15fed8da80edef383c8d65e628637df92ec916b8"
+      },
+      {
+        "path": "pages/apps/_city/repo-index.html",
+        "bytes": 3719,
+        "sha1": "ecc230f09ba01988921dabfd7aa94c048a2d0b2f"
+      },
+      {
+        "path": "pages/apps/_city/theme.css",
+        "bytes": 163,
+        "sha1": "93c4ab80ccf01e3de40c1c9738f378378b9a7445"
+      },
+      {
+        "path": "pages/apps/_shared/room.css",
+        "bytes": 274,
+        "sha1": "7e072c981db54a4e648a871006bba374d0281e12"
+      },
+      {
+        "path": "pages/apps/_shared/room.js",
+        "bytes": 271,
+        "sha1": "cc109c349d4784c794d3650bcf5d98a2d5a0a402"
+      },
+      {
+        "path": "pages/apps/_shared/ui-lite.css",
+        "bytes": 1091,
+        "sha1": "e1bfd959bbf069e31d93038bcb0613d1ef58d08d"
+      },
+      {
+        "path": "pages/apps/_shared/ui.css",
+        "bytes": 1475,
+        "sha1": "65e60a07963ebe84355b41cd4ba7d0e8147d44bb"
+      },
+      {
+        "path": "pages/apps/_ui/tokens.css",
+        "bytes": 206,
+        "sha1": "50afc27901b3684917a419125336d908bebfe45b"
+      },
+      {
+        "path": "pages/apps/abbey/importer.html",
+        "bytes": 1820,
+        "sha1": "366bd332a589a66913c07d1f9c856e0ba75678d9"
+      },
+      {
+        "path": "pages/apps/abbey/index.html",
+        "bytes": 1065,
+        "sha1": "683c8377cafb5e9d15fe885f2d41db326f11eec9"
+      },
+      {
+        "path": "pages/apps/alexandria/app.css",
+        "bytes": 1660,
+        "sha1": "30ebcf8a0f7e78e56545e8eb14e6b15d6fd787dd"
+      },
+      {
+        "path": "pages/apps/alexandria/app.js",
+        "bytes": 1680,
+        "sha1": "9cea0f526844e929146dce1dd1f6a21bd412f77f"
+      },
+      {
+        "path": "pages/apps/alexandria/config.json",
+        "bytes": 46,
+        "sha1": "18d0948a3b389f2def04915d413d14efd0d61167"
+      },
+      {
+        "path": "pages/apps/alexandria/dm/config.json",
+        "bytes": 63,
+        "sha1": "37a00268064543dfcb494195acf0e857571f06fb"
+      },
+      {
+        "path": "pages/apps/alexandria/dm/dm.css",
+        "bytes": 809,
+        "sha1": "61ba26dbca53192217cda989987688e7eb1e55f2"
+      },
+      {
+        "path": "pages/apps/alexandria/dm/dm.html",
+        "bytes": 1228,
+        "sha1": "2340520cae1392a01a3794c6fc4a95567693e23a"
+      },
+      {
+        "path": "pages/apps/alexandria/dm/dm.js",
+        "bytes": 5192,
+        "sha1": "f06467570ce48e425e6a0f1717860f90e2821276"
+      },
+      {
+        "path": "pages/apps/alexandria/dm/play.html",
+        "bytes": 8428,
+        "sha1": "38851849fdf7cfaf441019ccaedfea1191ed34a7"
+      },
+      {
+        "path": "pages/apps/alexandria/index.html",
+        "bytes": 1090,
+        "sha1": "2e56384c6af889582c73ebb7918884e4421faef2"
+      },
+      {
+        "path": "pages/apps/alexandria/maps/index.html",
+        "bytes": 252,
+        "sha1": "adb3f559362a05d355d402c96a5d05ee59f08e7a"
+      },
+      {
+        "path": "pages/apps/alexandria/session-log.html",
+        "bytes": 1537,
+        "sha1": "2457a43203735c564779795df907a008ae77cea7"
+      },
+      {
+        "path": "pages/apps/alexandria/voice-dm.html",
+        "bytes": 1371,
+        "sha1": "b8e1e4aac7e67f379e086e6111051eeb362032db"
+      },
+      {
+        "path": "pages/apps/alexandria/world-rules.html",
+        "bytes": 1248,
+        "sha1": "729f63d055d671b61df60175be7f0a7f6d6b0e7a"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/atlas.json",
+        "bytes": 940,
+        "sha1": "06b02bf56191c87cd85336bfe6ee11147c3b15e6"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/continuity-checklist.json",
+        "bytes": 146,
+        "sha1": "c5650e840b815983cf5abc24776028bbf4f7c570"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/lore-bible.json",
+        "bytes": 399,
+        "sha1": "f1b3c69e6d972647b078d062f17a59e5b702eeef"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/notable-figures.json",
+        "bytes": 318,
+        "sha1": "cec274b500d5921a1bc67af48d85945530c0b5bd"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/npc-codex.json",
+        "bytes": 1497,
+        "sha1": "1e12f2fc6445963a74b98be9555eec27df69889d"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/scene-seeds.json",
+        "bytes": 945,
+        "sha1": "2e7474f7a94edf26011375ccfe4de9d32ad68213"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/seed-20250918T031302Z-avalon.json",
+        "bytes": 229,
+        "sha1": "f6fd48806903b151089a1c3cd2d5b527587e74c3"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/timeline.json",
+        "bytes": 920,
+        "sha1": "3c50a08cc955601543560da5fd4bc93de7596d31"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/atlas.json",
+        "bytes": 940,
+        "sha1": "585037212da43c1c86652f8a0c9481c28d5c141d"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/continuity-checklist.json",
+        "bytes": 146,
+        "sha1": "c5650e840b815983cf5abc24776028bbf4f7c570"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/lore-bible.json",
+        "bytes": 399,
+        "sha1": "2cb798016bc00f1dd888986e762c05ed12792932"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/notable-figures.json",
+        "bytes": 318,
+        "sha1": "225fe78a017b9cd2f13de8522f8c3b317f6f1f4a"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/npc-codex.json",
+        "bytes": 1497,
+        "sha1": "76dce66fdc1903fbdb7099ddca16bd7707c1b0fa"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/scene-seeds.json",
+        "bytes": 945,
+        "sha1": "2e7474f7a94edf26011375ccfe4de9d32ad68213"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/seed-20250918T052002Z-avalon.json",
+        "bytes": 229,
+        "sha1": "337bd1a73593aa6d3b7bb8c87bf9eef174aa601a"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/timeline.json",
+        "bytes": 920,
+        "sha1": "be35518c4691f5d9fc1ae49df39d4e2f70880177"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/atlas.json",
+        "bytes": 940,
+        "sha1": "48e68f69dd04b6a33c3298fe7c1e9eecbb97b8e6"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/continuity-checklist.json",
+        "bytes": 146,
+        "sha1": "c5650e840b815983cf5abc24776028bbf4f7c570"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/lore-bible.json",
+        "bytes": 399,
+        "sha1": "3985597308e093034ffa02cc1184bcd541bc2dfc"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/notable-figures.json",
+        "bytes": 318,
+        "sha1": "cec274b500d5921a1bc67af48d85945530c0b5bd"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/npc-codex.json",
+        "bytes": 1497,
+        "sha1": "85f91ee259f0465640bd698bbca222970b63b5c8"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/scene-seeds.json",
+        "bytes": 945,
+        "sha1": "da4c57491a2424d6039c64c0dea205736eb61fb9"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/seed-20251006T012716Z-avalon.json",
+        "bytes": 229,
+        "sha1": "584d7ecb47d7819ea85877d7be6f4e9c23f0db78"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/timeline.json",
+        "bytes": 920,
+        "sha1": "14c3fa6bea9dca866d56301c9ccd6a4d2fa24ad1"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/atlas.json",
+        "bytes": 940,
+        "sha1": "6f79195375600e6d1ba50c64e8be71eee4c99b38"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/continuity-checklist.json",
+        "bytes": 146,
+        "sha1": "c5650e840b815983cf5abc24776028bbf4f7c570"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/lore-bible.json",
+        "bytes": 399,
+        "sha1": "f40741dac0b07af19a48870bcbf121031e0b9017"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/notable-figures.json",
+        "bytes": 318,
+        "sha1": "d9a7c60fd69c4866c61e93ad6a786bab6bd7073a"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/npc-codex.json",
+        "bytes": 1497,
+        "sha1": "19ad61eb50882ae11a258c5625fd46bc54aba1cc"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/scene-seeds.json",
+        "bytes": 945,
+        "sha1": "2e7474f7a94edf26011375ccfe4de9d32ad68213"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/seed-20251006T014952Z-avalon.json",
+        "bytes": 229,
+        "sha1": "dff52362b032d6fc8dc5acd9221aa2852438cfd4"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/timeline.json",
+        "bytes": 920,
+        "sha1": "e9b888bd9225a5c03636a0c1f1e01ca35871ca60"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/atlas.json",
+        "bytes": 940,
+        "sha1": "b67f535930d8dc368495b7b2b70a7cfc299013ff"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/continuity-checklist.json",
+        "bytes": 146,
+        "sha1": "c5650e840b815983cf5abc24776028bbf4f7c570"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/lore-bible.json",
+        "bytes": 399,
+        "sha1": "c8c9765f6424ad04c6075965da42ac64d50fa8e6"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/notable-figures.json",
+        "bytes": 318,
+        "sha1": "225fe78a017b9cd2f13de8522f8c3b317f6f1f4a"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/npc-codex.json",
+        "bytes": 1497,
+        "sha1": "b467cd42b08cf8fae0dcfc6a16696e125fdcac82"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/scene-seeds.json",
+        "bytes": 945,
+        "sha1": "481643a42111a0d96e64d3da2375071e5e99f815"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/seed-20251006T032652Z-avalon.json",
+        "bytes": 229,
+        "sha1": "8409fd001894cb1f1fb7b87b967c0b7b9d3d58b0"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/timeline.json",
+        "bytes": 920,
+        "sha1": "16182edc4c3ea1431361e86e29642153fa5cf09f"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/atlas.json",
+        "bytes": 940,
+        "sha1": "873087fc13eb925e0440825b957ab735862abd99"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/continuity-checklist.json",
+        "bytes": 146,
+        "sha1": "c5650e840b815983cf5abc24776028bbf4f7c570"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/lore-bible.json",
+        "bytes": 399,
+        "sha1": "68ad5f4fb8c538bc91f62208fd9e73dec7deafcc"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/notable-figures.json",
+        "bytes": 318,
+        "sha1": "4e853c7d3c3c13690d02548dad3ca7b9b67d8da8"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/npc-codex.json",
+        "bytes": 1497,
+        "sha1": "f909115ef3d9af6e36b33e04c0c3be9eb9321ef5"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/scene-seeds.json",
+        "bytes": 945,
+        "sha1": "2236e150119c785561015999923cb36b75c37f20"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/seed-20251006T034428Z-avalon.json",
+        "bytes": 229,
+        "sha1": "e316f1fc1623d355ea58e20ae01e377bfd8c9a1f"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/timeline.json",
+        "bytes": 920,
+        "sha1": "e2f2ee6e64f66620d063718377e43da5b7543032"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/avalon/world.json",
+        "bytes": 5786,
+        "sha1": "1f165e240a6b5af7ad7ea15fb371074868a9096a"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/index.html",
+        "bytes": 249,
+        "sha1": "4b15b5590feede21c2060c1095efe378cd7ebfe7"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/index.json",
+        "bytes": 239,
+        "sha1": "5d7213ade3b242a67a706912189ba7428ff96775"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/latest.txt",
+        "bytes": 24,
+        "sha1": "bad77de395a0f444a1e609ab0e7053bd7d7c4fa0"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/terra/world.json",
+        "bytes": 5928,
+        "sha1": "8766887a04defbeb327825a33845e98e5bd1e29d"
+      },
+      {
+        "path": "pages/apps/alexandria/worlds/world-avalon-prime.json",
+        "bytes": 281,
+        "sha1": "ea8757c7a4c09033b3dcfaf2f987ebe3015670fe"
+      },
+      {
+        "path": "pages/apps/billie/basement.html",
+        "bytes": 2073,
+        "sha1": "eaeba0d51a2ca5e1bc78fc829ee4b232c2fe9a1a"
+      },
+      {
+        "path": "pages/apps/billie/index.html",
+        "bytes": 1044,
+        "sha1": "d35bd10fb442d3ecaa63968fa849f51c70ca3cd7"
+      },
+      {
+        "path": "pages/apps/billie/overview.html",
+        "bytes": 1476,
+        "sha1": "097417a06c4a698c61c3a582c23de44549574650"
+      },
+      {
+        "path": "pages/apps/billie/storyboards.html",
+        "bytes": 2035,
+        "sha1": "f5bd03c7cbc39d01a02fe4302973621984f26d69"
+      },
+      {
+        "path": "pages/apps/buildings.css",
+        "bytes": 1001,
+        "sha1": "6726d3a603fa37bf0d9bf4f64149a00c66394ff3"
+      },
+      {
+        "path": "pages/apps/carol/carol.css",
+        "bytes": 1993,
+        "sha1": "52413f554a57773d6b18c0b391c4b707d18dac34"
+      },
+      {
+        "path": "pages/apps/carol/debug/plan-inspect.json",
+        "bytes": 3,
+        "sha1": "5f36b2ea290645ee34d943220a14b54ee5ea5be5"
+      },
+      {
+        "path": "pages/apps/carol/index.html",
+        "bytes": 1003,
+        "sha1": "87fe21b2721025fd15a9f134231155759c312dd9"
+      },
+      {
+        "path": "pages/apps/carol/index.json",
+        "bytes": 196,
+        "sha1": "3c20548e75c9e372ffbdc780700bf82e9a11e38a"
+      },
+      {
+        "path": "pages/apps/carol/library/evidence.json",
+        "bytes": 450,
+        "sha1": "b7b718154e8d41dec62032d120f7bcc993a00f06"
+      },
+      {
+        "path": "pages/apps/carol/menu.html",
+        "bytes": 3669,
+        "sha1": "e7c1b3b28b57d2f7a395ebbb315b31ceea9f85f2"
+      },
+      {
+        "path": "pages/apps/carol/menu.js",
+        "bytes": 5177,
+        "sha1": "615a9aa24db058a91073e79d7a16fa3c7fc20c58"
+      },
+      {
+        "path": "pages/apps/carol/packages/README.md",
+        "bytes": 1696,
+        "sha1": "fa1529a49687fba33dc88c777b8bedf65b7c8dcd"
+      },
+      {
+        "path": "pages/apps/carol/packages/us.json",
+        "bytes": 4713,
+        "sha1": "1504b878c50671e8fa1059e4a9ef1b6f09357ada"
+      },
+      {
+        "path": "pages/apps/carol/plans/index.json",
+        "bytes": 61,
+        "sha1": "afe1270e1b656d7846b5cb8117b3597f983a1690"
+      },
+      {
+        "path": "pages/apps/carol/plans/mealplan-balanced-20250918T052011Z.json",
+        "bytes": 992,
+        "sha1": "0f47210b6fe9ba9a2fde176192198a3b608872a8"
+      },
+      {
+        "path": "pages/apps/carol/plans/mealplan-balanced-20251006T012724Z.json",
+        "bytes": 992,
+        "sha1": "e0211eeacc5d98717ca60c513d787dfd7240fbde"
+      },
+      {
+        "path": "pages/apps/carol/plans/mealplan-balanced-20251006T015000Z.json",
+        "bytes": 992,
+        "sha1": "f8221f7695efc0a5e43f1618f2dbc99119715d30"
+      },
+      {
+        "path": "pages/apps/carol/plans/mealplan-balanced-20251006T032700Z.json",
+        "bytes": 992,
+        "sha1": "75226e7b4708cddf4e7ef5549e74c4ae63234298"
+      },
+      {
+        "path": "pages/apps/carol/plans/mealplan-balanced-20251006T034437Z.json",
+        "bytes": 992,
+        "sha1": "7d8b57b2221d15fb811b60c481d765b790f4300c"
+      },
+      {
+        "path": "pages/apps/carol/plans/mealplan-balanced-20251019T021457Z.json",
+        "bytes": 6852,
+        "sha1": "3fd91d33683fe6f976881f94e855e1e424a5c81f"
+      },
+      {
+        "path": "pages/apps/carol/plans/mealplan-dash-14d-20251019T030217Z.json",
+        "bytes": 12138,
+        "sha1": "4788c2b0f7de12ab2c1101fd506cdde6260a71eb"
+      },
+      {
+        "path": "pages/apps/carol/plans/mealplan-dash-14d-current-shopping.json",
+        "bytes": 2422,
+        "sha1": "93f52e3e0eb7456d13fd3f6faf9711117cd4d278"
+      },
+      {
+        "path": "pages/apps/carol/plans/mealplan-dash-14d-current.json",
+        "bytes": 64348,
+        "sha1": "3a88762436c70faf5329d2c5ea49694d88cd2837"
+      },
+      {
+        "path": "pages/apps/carol/plans/offline-twoperson-2wk-20251010T013559Z.json",
+        "bytes": 55351,
+        "sha1": "b8b2a0b6d84e9c61a4f7c69c1925ea7aac666b40"
+      },
+      {
+        "path": "pages/apps/carol/plans/packages-missing.json",
+        "bytes": 59,
+        "sha1": "96ab24b27671daacbfbe2012012fbe2b4c14472b"
+      },
+      {
+        "path": "pages/apps/carol/plans/plan-14d-seeded.json",
+        "bytes": 2795,
+        "sha1": "43483f476d532b3e614215b9e2dc2b97aa985f43"
+      },
+      {
+        "path": "pages/apps/carol/plans/shopping-2p.json",
+        "bytes": 8525,
+        "sha1": "9efc82e23b1f479f84f47f2a022566a2d1212980"
+      },
+      {
+        "path": "pages/apps/carol/plans/shopping-extracted.json",
+        "bytes": 7702,
+        "sha1": "2a5dea9afbb08f9ff721833fcd048fb49686e3ec"
+      },
+      {
+        "path": "pages/apps/carol/plans/shopping-quantized.json",
+        "bytes": 7137,
+        "sha1": "d6f1afeb2df2cc449f2c0d48734931d8c990ff5d"
+      },
+      {
+        "path": "pages/apps/carol/plans/twoperson-2wk-20251007T150516Z.json",
+        "bytes": 28811,
+        "sha1": "7ed2d629a9873b36a50cfe166f1ca52b1b3fe1d5"
+      },
+      {
+        "path": "pages/apps/carol/plans/twoperson-2wk-20251009T183226Z.json",
+        "bytes": 29168,
+        "sha1": "2ef2e042b6e2926e5e5dbbe616fdf7760ee55afb"
+      },
+      {
+        "path": "pages/apps/carol/plans/twoperson-2wk-20251009T203748Z.json",
+        "bytes": 65214,
+        "sha1": "103c69ab342bb268d3f75b5bc1d66b97154cdc5d"
+      },
+      {
+        "path": "pages/apps/carol/plans/twoperson-2wk-20251009T211251Z.json",
+        "bytes": 16281,
+        "sha1": "1dde93753536eb5f6296d0cce71cd5c82571e173"
+      },
+      {
+        "path": "pages/apps/carol/plans/twoperson-2wk-20251009T214354Z.json",
+        "bytes": 17482,
+        "sha1": "c667783795cae4d4dedbd4859bf52db67202186e"
+      },
+      {
+        "path": "pages/apps/carol/plans/twoperson-2wk-20251010T011509Z.json",
+        "bytes": 6751,
+        "sha1": "33e58fe23545a959098a260ab029ec9097a76603"
+      },
+      {
+        "path": "pages/apps/carol/plans/twoperson-2wk-20251014T232110Z.json",
+        "bytes": 6160,
+        "sha1": "b60785c74d3ee1c83d03ec0a4593726a96a89993"
+      },
+      {
+        "path": "pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json",
+        "bytes": 80767,
+        "sha1": "3837959b4cb667e270416b7fba4407f589a2c6e4"
+      },
+      {
+        "path": "pages/apps/carol/plans/twoperson-2wk-20251021T234345Z.json",
+        "bytes": 4204,
+        "sha1": "2771eadbf1cd78efe56888f170a53ebd71261d87"
+      },
+      {
+        "path": "pages/apps/carol/plans/twoperson-2wk-merged.json",
+        "bytes": 88106,
+        "sha1": "66bbefa1ee830552f5a7ed731dfee6c77d071c82"
+      },
+      {
+        "path": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+        "bytes": 88106,
+        "sha1": "633c399c803a97f62e89612d848d00be6c98bdf5"
+      },
+      {
+        "path": "pages/apps/carol/preferences.html",
+        "bytes": 2033,
+        "sha1": "4e31d933f74253403b3e8e5f0522b830a7a45608"
+      },
+      {
+        "path": "pages/apps/carol/print-menu.html",
+        "bytes": 3419,
+        "sha1": "4e564ad469d5d95adf3220e5677bdd693971ae18"
+      },
+      {
+        "path": "pages/apps/carol/print-shopping.html",
+        "bytes": 290,
+        "sha1": "0d43f05007285e71b96f0029917830ec1b95f21c"
+      },
+      {
+        "path": "pages/apps/carol/print.css",
+        "bytes": 132,
+        "sha1": "aef18594dbfdc6c39238dace4adea7f591862cda"
+      },
+      {
+        "path": "pages/apps/carol/profile/preferences.json",
+        "bytes": 526,
+        "sha1": "5e9299fde062f70a292167f21816f7f72bdf9b4b"
+      },
+      {
+        "path": "pages/apps/carol/recipes/README.md",
+        "bytes": 337,
+        "sha1": "b96962b213857d0b249f95a7de8d89537245cdf9"
+      },
+      {
+        "path": "pages/apps/carol/recipes/defs.json",
+        "bytes": 8968,
+        "sha1": "973b9cafb9d299484739712bbf121b9cfb20d88a"
+      },
+      {
+        "path": "pages/apps/carol/shopping.html",
+        "bytes": 1524,
+        "sha1": "e467e87f401fd7b71bb59f1c584f2a3255f582c7"
+      },
+      {
+        "path": "pages/apps/carol/shopping.js",
+        "bytes": 3316,
+        "sha1": "c2fbda0e21b5a3e86ef86b072efdd9c5e9513506"
+      },
+      {
+        "path": "pages/apps/carol/templates/mealplan-balanced-14d.json",
+        "bytes": 6706,
+        "sha1": "ed0561f3c840b0417d54a690f1883cfe29919afa"
+      },
+      {
+        "path": "pages/apps/carol/theme.css",
+        "bytes": 2394,
+        "sha1": "b093bd6ba2b15ccb2650ffd0f0eb67e2ee4cca38"
+      },
+      {
+        "path": "pages/apps/carol/videos/index.json",
+        "bytes": 55,
+        "sha1": "5892a6563526d5e88fd58f3d9a021002bbef583a"
+      },
+      {
+        "path": "pages/apps/carol/videos.html",
+        "bytes": 1363,
+        "sha1": "efcd4580a48e54cf3f18f26bff7e53f66a2169e6"
+      },
+      {
+        "path": "pages/apps/charlotte/crawler/index.json",
+        "bytes": 113,
+        "sha1": "e4c6be2620fe8826e07f835765a22502808c7821"
+      },
+      {
+        "path": "pages/apps/charlotte/finds.json",
+        "bytes": 1025,
+        "sha1": "ae26221ddcd132b60d1803ef322e3f9c999633a6"
+      },
+      {
+        "path": "pages/apps/charlotte/index.html",
+        "bytes": 1066,
+        "sha1": "8b6e0924bada2b9c6b3c1768e86a9e92e13ec52a"
+      },
+      {
+        "path": "pages/apps/charlotte/manifest.json",
+        "bytes": 1015,
+        "sha1": "13f82cbf85e83babd03230d9f89cb14f1612345f"
+      },
+      {
+        "path": "pages/apps/charlotte/pipelines/20250918T031302Z-avalon/plan.json",
+        "bytes": 342,
+        "sha1": "e9ea33e0f5fa2b7e40bd736ca8397e96a18f4a43"
+      },
+      {
+        "path": "pages/apps/charlotte/pipelines/20250918T052002Z-avalon/plan.json",
+        "bytes": 382,
+        "sha1": "44c47874bed3c7ad0181798004cc05a2e003324d"
+      },
+      {
+        "path": "pages/apps/charlotte/pipelines/20251006T012716Z-avalon/plan.json",
+        "bytes": 382,
+        "sha1": "e67b5e43226de887964f4785b86be46acb02d99e"
+      },
+      {
+        "path": "pages/apps/charlotte/pipelines/20251006T014952Z-avalon/plan.json",
+        "bytes": 382,
+        "sha1": "31968e848f94b112401c153b284237392236d7d1"
+      },
+      {
+        "path": "pages/apps/charlotte/pipelines/20251006T032652Z-avalon/plan.json",
+        "bytes": 382,
+        "sha1": "99f0ef45763692675a153b1618e0a012cb711de9"
+      },
+      {
+        "path": "pages/apps/charlotte/pipelines/20251006T034428Z-avalon/plan.json",
+        "bytes": 382,
+        "sha1": "b7d852335c4b1cd9666b1bfa58f66a8178ec91fe"
+      },
+      {
+        "path": "pages/apps/charlotte/pipelines/index.json",
+        "bytes": 253,
+        "sha1": "5b3c55370c1e0aa7c5dead8102622ce2e4763b46"
+      },
+      {
+        "path": "pages/apps/charlotte/sources.json",
+        "bytes": 1400,
+        "sha1": "931d6362f703822744d32e3b10daa149c98cd894"
+      },
+      {
+        "path": "pages/apps/charlotte/voiceovers/20250918T031302Z-avalon/opening.txt",
+        "bytes": 50,
+        "sha1": "cc4e89b589bb21b47df976c589a21cc990559dea"
+      },
+      {
+        "path": "pages/apps/charlotte/voiceovers/index.json",
+        "bytes": 54,
+        "sha1": "891e00d06e13e53fa06ed9ab597aa6c0d0c1cf8e"
+      },
+      {
+        "path": "pages/apps/clarice/diagnostics.html",
+        "bytes": 769,
+        "sha1": "5bae8531b5eeff05db3412d6e4f826177f6d89f6"
+      },
+      {
+        "path": "pages/apps/clarice/index.html",
+        "bytes": 1103,
+        "sha1": "ed5b009a94f061d753cc46d41a61ac84665d35f7"
+      },
+      {
+        "path": "pages/apps/clarice/reports/graphics-audit-20251010T000205Z.json",
+        "bytes": 253,
+        "sha1": "1ce5d3a0c08abab54df03837373af19b4c497caf"
+      },
+      {
+        "path": "pages/apps/index.html",
+        "bytes": 1551,
+        "sha1": "5bafdee616eaf88e8a69adc15aeb4a3860dd0caa"
+      },
+      {
+        "path": "pages/apps/jem/dashboard.html",
+        "bytes": 291,
+        "sha1": "68e0a246d0d9b1b5793d6cc478e59f470e2ce4c5"
+      },
+      {
+        "path": "pages/apps/jem/evaluate.html",
+        "bytes": 3711,
+        "sha1": "06dea5fd53e658e56fe9bb484309ec752cc0c310"
+      },
+      {
+        "path": "pages/apps/jem/imports/.gitkeep",
+        "bytes": 1,
+        "sha1": "adc83b19e793491b1c6ea0fd8b46cd9f32e592fc"
+      },
+      {
+        "path": "pages/apps/jem/imports/SamsungHealthExport_Blanca.zip",
+        "bytes": 15764,
+        "sha1": "af0c82b8f61289871c144a93e393ffcd74f5545b"
+      },
+      {
+        "path": "pages/apps/jem/imports/SamsungHealthExport_Ray.zip",
+        "bytes": 2121931,
+        "sha1": "9f9e3f70307d2c50929717ff2ad6d6308c64666b"
+      },
+      {
+        "path": "pages/apps/jem/index.html",
+        "bytes": 1049,
+        "sha1": "ed3bc3651d3b645348edd8fa262a16d1d06e6e16"
+      },
+      {
+        "path": "pages/apps/jem/jem.css",
+        "bytes": 792,
+        "sha1": "f225fcbc96070f680a6407a7846a82412fcc32e3"
+      },
+      {
+        "path": "pages/apps/jem/jem.js",
+        "bytes": 2101,
+        "sha1": "537c4b790a038c155f39d5ef1f856ded0246df30"
+      },
+      {
+        "path": "pages/apps/jem/library/evidence.json",
+        "bytes": 474,
+        "sha1": "32c151a3f98082dadf019326d1701eb41f2b9fad"
+      },
+      {
+        "path": "pages/apps/jem/program-viewer.html",
+        "bytes": 4005,
+        "sha1": "8413dbef13df2b57051d5754c96a4df69529d0f8"
+      },
+      {
+        "path": "pages/apps/jem/programs/biometrics.json",
+        "bytes": 187,
+        "sha1": "a5f7f253c1731004185dd3bf5e6c18acce7c1919"
+      },
+      {
+        "path": "pages/apps/jem/programs/index.html",
+        "bytes": 484,
+        "sha1": "a9a1ef773740dc1076713e34c2e00e30b332c08f"
+      },
+      {
+        "path": "pages/apps/jem/programs/index.json",
+        "bytes": 456,
+        "sha1": "b2d7ad9fc01ea25d573f205197fb38e2cc09d33e"
+      },
+      {
+        "path": "pages/apps/jem/programs/program-recomp-minimal-20250918T052013Z.json",
+        "bytes": 2679,
+        "sha1": "0378ba69b5fc82d108a149ed0acc86c75151784c"
+      },
+      {
+        "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T012726Z.json",
+        "bytes": 2679,
+        "sha1": "ed6444906deed5ad2d3c3ee1194177011143c405"
+      },
+      {
+        "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T015002Z.json",
+        "bytes": 2679,
+        "sha1": "18162efc1d96b04792268f5b86d058d3e0e2c645"
+      },
+      {
+        "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T032701Z.json",
+        "bytes": 2679,
+        "sha1": "16586b3c2cc1e0161fe221137e9e8860d68a33cf"
+      },
+      {
+        "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T034438Z.json",
+        "bytes": 2679,
+        "sha1": "2db8c67481994b82a7362ebcc7e96d805fb91d91"
+      },
+      {
+        "path": "pages/apps/jem/programs/week1-Blanca.json",
+        "bytes": 4889,
+        "sha1": "a3ff4d345b23b1a6b873de35e0cb6b33cdf7ec68"
+      },
+      {
+        "path": "pages/apps/jem/programs/week1-Ray.json",
+        "bytes": 5026,
+        "sha1": "ddbf103c250b2cc4371d8ea1de60ba9e1b74fb80"
+      },
+      {
+        "path": "pages/apps/jem/programs/week1-evaluation-20251010T013134Z.json",
+        "bytes": 4989,
+        "sha1": "3ffb4ae11772ece9beb6343731c076be0c99b1ea"
+      },
+      {
+        "path": "pages/apps/jem/programs/week1-evaluation-20251017T013847Z.json",
+        "bytes": 4849,
+        "sha1": "5397ffce52aa08bfb0b4b9627a3598f7ee4c68a8"
+      },
+      {
+        "path": "pages/apps/jem/viewer-empty-state-patch.html",
+        "bytes": 790,
+        "sha1": "f2c117621ba614f81858a7bf3cea7d7028756b61"
+      },
+      {
+        "path": "pages/apps/jem/viewer.html",
+        "bytes": 12777,
+        "sha1": "d5e095d636c035e8bbd9ed003c13555552734701"
+      },
+      {
+        "path": "pages/apps/jem/week1/index.html",
+        "bytes": 1887,
+        "sha1": "720801a7813794190f7a5cde61a8c628f1bcf9b1"
+      },
+      {
+        "path": "pages/apps/jem/week1/plan.css",
+        "bytes": 1156,
+        "sha1": "be35be03bda7bf13bcb80906acdc388b01cfc720"
+      },
+      {
+        "path": "pages/apps/jem/week1/plan.js",
+        "bytes": 2262,
+        "sha1": "b4976f6dc88e04d4d646a5e5b6f9c9f2c7396d86"
+      },
+      {
+        "path": "pages/apps/nina/index.html",
+        "bytes": 1098,
+        "sha1": "532c3c2f224c6b002c45ea7877588b96e08de42c"
+      },
+      {
+        "path": "pages/apps/nina/viewer.html",
+        "bytes": 2838,
+        "sha1": "2c3e22f326f5057c624b2d80328451584bebefcd"
+      },
+      {
+        "path": "pages/apps/nina/vrm-index.json",
+        "bytes": 2479,
+        "sha1": "f1afabcaa731d2e30fe9179e5c18229aca0db5f2"
+      },
+      {
+        "path": "pages/apps/nina/vrm.html",
+        "bytes": 532,
+        "sha1": "b9e7c52eb0b69844cbbb97ef379bcb21d184c829"
+      },
+      {
+        "path": "pages/apps/odessa/index.html",
+        "bytes": 1003,
+        "sha1": "0d21da3891638cf214baba9c7fec5f0b71d2b9bf"
+      },
+      {
+        "path": "pages/apps/overseers/crossrepo/second_repo_index.json",
+        "bytes": 1298,
+        "sha1": "4155bfae65798f711a30a1ed2059e82d90c67802"
+      },
+      {
+        "path": "pages/apps/overseers/hub/hub.css",
+        "bytes": 819,
+        "sha1": "fe4ca48f0616905130929d247a556e2eb9e9d448"
+      },
+      {
+        "path": "pages/apps/overseers/hub/hub.js",
+        "bytes": 3333,
+        "sha1": "e3ae6c9cc1b62ecf0fae7df5ebe3bd853bfade1f"
+      },
+      {
+        "path": "pages/apps/overseers/hub/hub_util.js",
+        "bytes": 169,
+        "sha1": "a9bec96fa6b5a9af3df312df08c7ccda780d0d89"
+      },
+      {
+        "path": "pages/apps/overseers/hub/index.html",
+        "bytes": 832,
+        "sha1": "b495d8c0e1910345c83a997d0946edf1bdfedf7c"
+      },
+      {
+        "path": "pages/apps/overseers/index.html",
+        "bytes": 469,
+        "sha1": "30f24650671c53086ef26acbdb825777b4c1275b"
+      },
+      {
+        "path": "pages/apps/overseers/memory/all-file-memory.json",
+        "bytes": 215368,
+        "sha1": "26a785b9abe455d753da93e46c3cc6e634d4c5f5"
+      },
+      {
+        "path": "pages/apps/overseers/memory/coverage.json",
+        "bytes": 216,
+        "sha1": "7af37258b9c11834cda01d86754c8c37577710cd"
+      },
+      {
+        "path": "pages/apps/overseers/memory/deletion-candidates.json",
+        "bytes": 68,
+        "sha1": "9aa8638c5f5652a850b54a9a3227146fc6e796ba"
+      },
+      {
+        "path": "pages/apps/overseers/memory/file-index.json",
+        "bytes": 182741,
+        "sha1": "05a1578022ae72e66dd0f6e6470b766b0257f789"
+      },
+      {
+        "path": "pages/apps/overseers/memory/index.html",
+        "bytes": 976,
+        "sha1": "efd0ef0d0684c7cbd4aa545ec5bf076f4324e3bb"
+      },
+      {
+        "path": "pages/apps/overseers/memory/index.json",
+        "bytes": 148707,
+        "sha1": "42fade5e723940e9c5b1fececca218628e3ab534"
+      },
+      {
+        "path": "pages/apps/overseers/memory/report.md",
+        "bytes": 367,
+        "sha1": "cecb9300313b2be632297951f29c1f2a5d834930"
+      },
+      {
+        "path": "pages/apps/overseers/memory/style.css",
+        "bytes": 1065,
+        "sha1": "f58231931c613254a8bb726e87dc9f852b4ca369"
+      },
+      {
+        "path": "pages/apps/overseers/memory/viewer.js",
+        "bytes": 2837,
+        "sha1": "2ed69765108376698ef008f4916a95d5c4099d86"
+      },
+      {
+        "path": "pages/apps/overseers/overview.html",
+        "bytes": 1780,
+        "sha1": "df95acdbea1f6d2d2da65ae6b99c731c85d4ad46"
+      },
+      {
+        "path": "pages/apps/overseers/permissions/state.json",
+        "bytes": 63,
+        "sha1": "a05ec320160568836c65f267cae55eaeb154add8"
+      },
+      {
+        "path": "pages/apps/overseers/progress.json",
+        "bytes": 125,
+        "sha1": "7cf0966182f831c8c9cabe5bdf5b98b95e543fb7"
+      },
+      {
+        "path": "pages/apps/overseers/repo-doctor-report.json",
+        "bytes": 201,
+        "sha1": "16dcd5c61d505df3adb90399c1827d1f08a9188a"
+      },
+      {
+        "path": "pages/apps/overseers/scene-index.json",
+        "bytes": 729,
+        "sha1": "e032805902cebf1147fcb13b818652cca90663ab"
+      },
+      {
+        "path": "pages/apps/overseers/vrm-index.json",
+        "bytes": 5137,
+        "sha1": "31d0aca12977bd93ea434c510356b07fae572ab7"
+      },
+      {
+        "path": "pages/apps/reyczar/index.html",
+        "bytes": 311,
+        "sha1": "9e95869f8b1234630c3980a9ae5a381625e3361a"
+      },
+      {
+        "path": "pages/apps/rooms/rooms.json",
+        "bytes": 1834,
+        "sha1": "76f80657b3a32b15d104126e1639db730ecc1901"
+      },
+      {
+        "path": "pages/apps/shared/auth-gate.js",
+        "bytes": 3597,
+        "sha1": "bce466f6a3dbe56f63b38d8e46897e760604796f"
+      },
+      {
+        "path": "pages/apps/shared/pin-gate.js",
+        "bytes": 3849,
+        "sha1": "289e49d5db58187300d6e7e061e91701cfa33b1d"
+      },
+      {
+        "path": "pages/apps/shared/worker.js",
+        "bytes": 141,
+        "sha1": "7b163d0dd68eb0384dc51cd4cc8f0948bb6929c5"
+      },
+      {
+        "path": "pages/apps/sorcha/coach.html",
+        "bytes": 1294,
+        "sha1": "1ef690a3eea1d87967e0fbb9e0d93823cf221b23"
+      },
+      {
+        "path": "pages/apps/sorcha/index.html",
+        "bytes": 1017,
+        "sha1": "f842b5f6676bc696104a71f8383c4271ae71a7fb"
+      },
+      {
+        "path": "pages/apps/sorcha/storyboards/storyboard-20251019T033626Z.json",
+        "bytes": 1704,
+        "sha1": "345a2722bd59ae0d8320c768121406faed2e8f71"
+      },
+      {
+        "path": "pages/apps/sorcha/storyboards.html",
+        "bytes": 514,
+        "sha1": "40367e5874dfa1639a57fac6d932aeced28eacec"
+      },
+      {
+        "path": "pages/apps/sorcha/uploader.html",
+        "bytes": 1372,
+        "sha1": "3c00653186586fa3d135f47990538e3361ecf3fa"
+      },
+      {
+        "path": "pages/apps/stella/README.md",
+        "bytes": 392,
+        "sha1": "c6e6b7a0f39829e2413befcda5954271af9b77ee"
+      },
+      {
+        "path": "pages/apps/stella/app.css",
+        "bytes": 1660,
+        "sha1": "30ebcf8a0f7e78e56545e8eb14e6b15d6fd787dd"
+      },
+      {
+        "path": "pages/apps/stella/app.js",
+        "bytes": 1683,
+        "sha1": "28e56fac18ede5e03763c8fdd48d8586f2885d65"
+      },
+      {
+        "path": "pages/apps/stella/components/component-map-button.json",
+        "bytes": 924,
+        "sha1": "1f58ed21783f20fc015d23255670d2db712823d0"
+      },
+      {
+        "path": "pages/apps/stella/components/index.json",
+        "bytes": 285,
+        "sha1": "f29b53ab7027250e21e26e9f670322df218c2021"
+      },
+      {
+        "path": "pages/apps/stella/guided/20251009T185549Z-blanca-focus/script.json",
+        "bytes": 2757,
+        "sha1": "2ffe9f143f4ffafabc20e1731f205c822bc28824"
+      },
+      {
+        "path": "pages/apps/stella/guided/20251009T185625Z-blanca-calm/script.json",
+        "bytes": 2968,
+        "sha1": "207c061eda4aedc168199e7f7b6db4ad2403a860"
+      },
+      {
+        "path": "pages/apps/stella/guided.html",
+        "bytes": 3307,
+        "sha1": "b4a6d7f3361a3fa3507b6951e1ce826c68514e81"
+      },
+      {
+        "path": "pages/apps/stella/index.html",
+        "bytes": 1042,
+        "sha1": "ca1d5e47b081ea0b3e7cc02d076d401aae8810fb"
+      },
+      {
+        "path": "pages/apps/stella/library/evidence.json",
+        "bytes": 414,
+        "sha1": "2299f259a6ffb95f611cb3a636d1bd6f75f147b3"
+      },
+      {
+        "path": "pages/apps/stella/play.html",
+        "bytes": 1343,
+        "sha1": "66f3cf6c84c56d6e7053e1095a62f2e6995ddaab"
+      },
+      {
+        "path": "pages/apps/stella/stella.css",
+        "bytes": 1016,
+        "sha1": "7d09962a875e969214b07a2b3fbf4d65f9c8cc61"
+      },
+      {
+        "path": "pages/apps/stella/stella.js",
+        "bytes": 4184,
+        "sha1": "9351691966e1cd7267517b1841ba95ec69edd749"
+      },
+      {
+        "path": "pages/apps/stella/voice.html",
+        "bytes": 4109,
+        "sha1": "d4f883b1174e69edbd0b01fa94c730185a72a067"
+      },
+      {
+        "path": "pages/apps/theme/tokens.css",
+        "bytes": 205,
+        "sha1": "f86cf9993f60fc02e3d5a2b1c7c4d45bf6b9f2cd"
+      },
+      {
+        "path": "pages/apps/theme/tokens.js",
+        "bytes": 364,
+        "sha1": "4ef89a3443ca71954791b3a43d7324bcd5a5a1fa"
+      },
+      {
+        "path": "pages/apps/theme/tokens.json",
+        "bytes": 120,
+        "sha1": "e3e9528d91dfc9a7e0b6cf516b86cbcc17e36a1d"
+      },
+      {
+        "path": "pages/apps/themis/expirations.html",
+        "bytes": 1692,
+        "sha1": "25d0d031794c1aa3b2a7a087a89da6e8af089628"
+      },
+      {
+        "path": "pages/apps/themis/index.html",
+        "bytes": 1017,
+        "sha1": "2be2c9146b77225484e68ba7ddd5ad3eb3ea075b"
+      },
+      {
+        "path": "pages/apps/tracy/3d/index.html",
+        "bytes": 397,
+        "sha1": "04cb833476248f3cc776dd23cc12fbb48d258670"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-1.json",
+        "bytes": 295,
+        "sha1": "ca753aac7a1ab059ae813c188df8952a17bfae04"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-2.json",
+        "bytes": 295,
+        "sha1": "20556a2718f44942bd290afcdb41d5e15bd171be"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-3.json",
+        "bytes": 295,
+        "sha1": "7c1048d76c81490eb338ab76ed496269de653c94"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-4.json",
+        "bytes": 295,
+        "sha1": "bd2cb2e494eaa416172f18987c9969168fe1cc55"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-5.json",
+        "bytes": 295,
+        "sha1": "f647fe5b73772c4d7a63d68c7a0528fecd64ed8f"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-6.json",
+        "bytes": 295,
+        "sha1": "6bc163c23dad4b47b43d0cb1ff600432e40920d4"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-7.json",
+        "bytes": 295,
+        "sha1": "98c2ba5526faa50113edafd6166cdcd9881dba1f"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-8.json",
+        "bytes": 295,
+        "sha1": "381390c2e7beed6cdfa460a745d1b2cd94dbf4fb"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-1.json",
+        "bytes": 295,
+        "sha1": "5938ad360b4aa5959b4100f8b08bd19bfe083c5d"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-2.json",
+        "bytes": 295,
+        "sha1": "7f2feeac4a3173778bb2d404e6e8cb6155304341"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-3.json",
+        "bytes": 295,
+        "sha1": "01e595a3ed9255f829bf5d7203f9df87af6a9c53"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-4.json",
+        "bytes": 295,
+        "sha1": "c52bca27fc313cb207974baf43ea20baa3d646ac"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-5.json",
+        "bytes": 295,
+        "sha1": "17b05b951faffeed2019ec57565ef98c52349d30"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-6.json",
+        "bytes": 295,
+        "sha1": "d217eb7837c7f261e96c2511b99c72153193af4b"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-7.json",
+        "bytes": 295,
+        "sha1": "628a090731a473c5b8fd2048d98028ed0c2b0759"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-8.json",
+        "bytes": 295,
+        "sha1": "249489e26b2c7097d5447f012f022fd73aefb6eb"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-1.json",
+        "bytes": 295,
+        "sha1": "a24c96a9912eb80e9be04f0f41719dad49b86973"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-2.json",
+        "bytes": 295,
+        "sha1": "cd7e827a43f0aaba76da60b18644ef7dd197c7c4"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-3.json",
+        "bytes": 295,
+        "sha1": "fc65eb17274f217df56d0834cf89a1c4773b8788"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-4.json",
+        "bytes": 295,
+        "sha1": "4c07fd50ffe19b21bd1f7cb19362c6448e0cd4ac"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-5.json",
+        "bytes": 295,
+        "sha1": "c4a8069557d529fe2e3a24bb231580ff9dcc981f"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-6.json",
+        "bytes": 295,
+        "sha1": "dceece1994e2377c025f6de18d3af95fd0097805"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-7.json",
+        "bytes": 295,
+        "sha1": "389dadd0d957168956ea67b66dc04ade47ce203f"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-8.json",
+        "bytes": 295,
+        "sha1": "a9abfde14b92852d67ee21441719bbf163f873b9"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-1.json",
+        "bytes": 295,
+        "sha1": "1cc3b9740c5b0e8169bc62cce149e92b67683fc2"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-2.json",
+        "bytes": 295,
+        "sha1": "b2075c64e0ac5862da88072309a17e925fc2b0e4"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-3.json",
+        "bytes": 295,
+        "sha1": "7bd5221484ac1d871944d52e22ffe98536880c3a"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-4.json",
+        "bytes": 295,
+        "sha1": "d6fbaa18d3867309272c86e6691d0ac697307ea3"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-5.json",
+        "bytes": 295,
+        "sha1": "4c5c193c74bed85cb50f8a9cd7c8f71645315aa1"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-6.json",
+        "bytes": 295,
+        "sha1": "259179f832cd8991ef17afebf45d645a109c66c1"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-7.json",
+        "bytes": 295,
+        "sha1": "f077e006cec533e2c8ec343ac0071b7ae3b74cf9"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-8.json",
+        "bytes": 295,
+        "sha1": "6ffa4e7dcbd68014aacfea1698423b0f2b35b4f7"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-1.json",
+        "bytes": 295,
+        "sha1": "cc45858fe8cfae98eacb6d467c35f7798257ce6b"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-2.json",
+        "bytes": 295,
+        "sha1": "40962202ec0c7c978c1d71a1a266f5427b316c59"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-3.json",
+        "bytes": 295,
+        "sha1": "36ad1eb3682eedb7ba5653876d656b4c96606c98"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-4.json",
+        "bytes": 295,
+        "sha1": "43581e710164a47b5260698fc509f414a05fbce9"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-5.json",
+        "bytes": 295,
+        "sha1": "235553af4e7898268ed5f9a66f4a01f6a7891e4f"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-6.json",
+        "bytes": 295,
+        "sha1": "9be87031cf2778aec7b931a470e9b745cbff2a84"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-7.json",
+        "bytes": 295,
+        "sha1": "cfabb8b5173754114fd149e64202e7326d621bba"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-8.json",
+        "bytes": 295,
+        "sha1": "fa6b34ed2221aaacf697bd3a79752adc4b279395"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-1.json",
+        "bytes": 295,
+        "sha1": "a953565d7959cddd85720a474282bea7121da702"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-2.json",
+        "bytes": 295,
+        "sha1": "46f687795897ec8dcec9206c01669305819a684d"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-3.json",
+        "bytes": 295,
+        "sha1": "ce21d0b6ff79140c615b2ae9f1fe2917cd17da4d"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-4.json",
+        "bytes": 295,
+        "sha1": "3d3f3fb20852da55952119c8cd34ff413a2cd85b"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-5.json",
+        "bytes": 295,
+        "sha1": "d06aac5bd6727b209fa900d42bbc31d3133e4921"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-6.json",
+        "bytes": 295,
+        "sha1": "1a1df65b28cbf08da235dd8314176b21f4a0aae9"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-7.json",
+        "bytes": 295,
+        "sha1": "efaf6f4b332b2fa2b6c89cd06e840841c7141abd"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-8.json",
+        "bytes": 295,
+        "sha1": "df0fbcde752b98489c108d26b83ba68b5e15f6a9"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/index.html",
+        "bytes": 425,
+        "sha1": "d4963104b9d4883814e322e20803a53136d8013e"
+      },
+      {
+        "path": "pages/apps/tracy/artboards/index.json",
+        "bytes": 208,
+        "sha1": "c4d371143a6d4fd826b72e576604782b6d3ce379"
+      },
+      {
+        "path": "pages/apps/tracy/index.html",
+        "bytes": 1081,
+        "sha1": "f4db7b1e7337ae2fc506066b69c04c4b3e169c63"
+      },
+      {
+        "path": "pages/apps/tracy/room-preview.html",
+        "bytes": 808,
+        "sha1": "1db39502f9cd61ea3b49198b348ea3b596f83e66"
+      },
+      {
+        "path": "pages/apps/tracy/skin/active.json",
+        "bytes": 67,
+        "sha1": "907730640a24064cf961ebda9d0c3127b4359a59"
+      },
+      {
+        "path": "pages/apps/tracy/skin/skins/castle-town.css",
+        "bytes": 86,
+        "sha1": "eae2ddedc6b15c406b12e32704ad94947242fc7c"
+      },
+      {
+        "path": "pages/apps/tracy/skin/skins/night.css",
+        "bytes": 92,
+        "sha1": "f7deb4271e584687f4b62dad06a38c7d156aba89"
+      },
+      {
+        "path": "pages/apps/tracy/skin/tokens.css",
+        "bytes": 380,
+        "sha1": "53dab1ae1f79954f12041686190d979d849dfd38"
+      },
+      {
+        "path": "pages/apps/tracy/skins/avalon-skin.css",
+        "bytes": 2091,
+        "sha1": "c1302f7914f90776345af8eb791945c7fe0fe656"
+      },
+      {
+        "path": "pages/apps/tracy/wallpaper-index.json",
+        "bytes": 57,
+        "sha1": "a4912f8bfc5840d9695e5fc1f637eb9eb22e1c55"
+      },
+      {
+        "path": "pages/apps/tracy/wallpapers.html",
+        "bytes": 1437,
+        "sha1": "37e63f28d52ca6123a36574711de0f634eb04668"
+      },
+      {
+        "path": "pages/apps/whitestar/index.html",
+        "bytes": 315,
+        "sha1": "22a09cefbe625e52a73a0cb2fde85697c9d2b61e"
+      },
+      {
+        "path": "pages/diagnostics/version-scan.json",
+        "bytes": 423,
+        "sha1": "b96bb727ada43fa15300ecae6daa0c82a3feaa75"
+      },
+      {
+        "path": "pages/index.html",
+        "bytes": 1551,
+        "sha1": "5bafdee616eaf88e8a69adc15aeb4a3860dd0caa"
+      },
+      {
+        "path": "pages/pin-config.html",
+        "bytes": 3694,
+        "sha1": "e1e9b946a7a8441e8485b56203a853ee801e21b8"
+      },
+      {
+        "path": "pages/plaza.html",
+        "bytes": 540,
+        "sha1": "98964059c162064378886d61f81c78697794ad28"
+      },
+      {
+        "path": "pages/rooms/abbey.html",
+        "bytes": 1038,
+        "sha1": "0d4e43e3cf031c00730125d2becc2ad7ba0757b5"
+      },
+      {
+        "path": "pages/rooms/alexandria.html",
+        "bytes": 1069,
+        "sha1": "27f70ce7a3f2c3920df7ff179e4520ae8b29077b"
+      },
+      {
+        "path": "pages/rooms/billie.html",
+        "bytes": 1061,
+        "sha1": "309a8c6e45cf0a79dd0d8cc3c92ef8589f39b123"
+      },
+      {
+        "path": "pages/rooms/carol.html",
+        "bytes": 1764,
+        "sha1": "567a77081b92aa1657611e42582c4d44f36ebb50"
+      },
+      {
+        "path": "pages/rooms/charlotte.html",
+        "bytes": 1058,
+        "sha1": "95ef213355a10ac35d73c09a54e842b8da50e97b"
+      },
+      {
+        "path": "pages/rooms/clarice.html",
+        "bytes": 1062,
+        "sha1": "39ecebf0dfcf11a076ef90ea3f480dfcad625f0c"
+      },
+      {
+        "path": "pages/rooms/index.html",
+        "bytes": 1353,
+        "sha1": "3225be0e2981a28fc080bcd340ad78954f35e9c4"
+      },
+      {
+        "path": "pages/rooms/jem.html",
+        "bytes": 1815,
+        "sha1": "ab25dc2a3d2fd6e9402b5f772b41c5076d0718a1"
+      },
+      {
+        "path": "pages/rooms/nina.html",
+        "bytes": 1039,
+        "sha1": "981828e26cc0df6caf61565add1b611c8444e411"
+      },
+      {
+        "path": "pages/rooms/odessa.html",
+        "bytes": 1033,
+        "sha1": "ceb937b7855859bb7909a69f25168a3dbf7fb363"
+      },
+      {
+        "path": "pages/rooms/overseers.html",
+        "bytes": 1062,
+        "sha1": "aeccf7daac4a7b6cd7d06992951871690f432b2b"
+      },
+      {
+        "path": "pages/rooms/sorcha.html",
+        "bytes": 1049,
+        "sha1": "66a9231be8927c9ee336b84632f7218057ca531d"
+      },
+      {
+        "path": "pages/rooms/stella.html",
+        "bytes": 1043,
+        "sha1": "7df4115c0d45fc09e1d4293bb966965a2fe3ff6c"
+      },
+      {
+        "path": "pages/rooms/themis.html",
+        "bytes": 1043,
+        "sha1": "d49b4e39cfdba8a15de66e7aea2dcd8a065d5719"
+      },
+      {
+        "path": "pages/rooms/tracy.html",
+        "bytes": 1048,
+        "sha1": "b41475672d5d6c72dc9afc666002a09684b64dc0"
+      },
+      {
+        "path": "prompts/court_lab_exterior.txt",
+        "bytes": 100,
+        "sha1": "af3fe31ca1c975421277ae5f3c92d0255616b62e"
+      },
+      {
+        "path": "prompts/court_lab_interior.txt",
+        "bytes": 101,
+        "sha1": "2efb3724254af2d7adcf44934aa5e1e07cf4905a"
+      },
+      {
+        "path": "prompts/dojo_exterior.txt",
+        "bytes": 55,
+        "sha1": "044927c4baebc17f5d6ae51baea1efdd9a1170bd"
+      },
+      {
+        "path": "prompts/dojo_interior.txt",
+        "bytes": 96,
+        "sha1": "e7b9e9ce526111be7c7e7da16ad2beef8a4cc44d"
+      },
+      {
+        "path": "prompts/library_exterior.txt",
+        "bytes": 144,
+        "sha1": "7cde4d235639e112d2be2cd653787098a1dec3ef"
+      },
+      {
+        "path": "prompts/library_interior.txt",
+        "bytes": 206,
+        "sha1": "58ab287c24bdd7e118289111165c6c16e2b1de7c"
+      },
+      {
+        "path": "prompts/mansion_exterior.txt",
+        "bytes": 93,
+        "sha1": "1c5fa115e81cd0e951ad757919fbfa815c89fa00"
+      },
+      {
+        "path": "prompts/mansion_interior.txt",
+        "bytes": 138,
+        "sha1": "6c93b3945d199866b4204b2ca0880b587f720681"
+      },
+      {
+        "path": "prompts/observatory_exterior.txt",
+        "bytes": 71,
+        "sha1": "743108a3a906fb8a9af32e4e85d80caf03dcd936"
+      },
+      {
+        "path": "prompts/observatory_interior.txt",
+        "bytes": 71,
+        "sha1": "a80d9a081cc125e0048b340954c6b6e66a35ef45"
+      },
+      {
+        "path": "prompts/palace_exterior.txt",
+        "bytes": 224,
+        "sha1": "5ca2298df408933986de14185b2bcfbb8cec824e"
+      },
+      {
+        "path": "prompts/relay_hall_exterior.txt",
+        "bytes": 94,
+        "sha1": "4aa4567404fd031a8be66d23e7c081563aeeca79"
+      },
+      {
+        "path": "prompts/relay_hall_interior.txt",
+        "bytes": 98,
+        "sha1": "9284c01ba2ba7c6dc76898e85dc29cc2c1da51d8"
+      },
+      {
+        "path": "prompts/restaurant_exterior.txt",
+        "bytes": 75,
+        "sha1": "49999ef2b2ff552fa86cb47942e37a2110110d46"
+      },
+      {
+        "path": "prompts/restaurant_interior.txt",
+        "bytes": 109,
+        "sha1": "df4212f57364ab6d3311fcc3c7dc69f68c389f81"
+      },
+      {
+        "path": "prompts/studio_exterior.txt",
+        "bytes": 93,
+        "sha1": "6df0acb512bd54e7eef04ee222d1e18c360686a6"
+      },
+      {
+        "path": "prompts/studio_interior.txt",
+        "bytes": 109,
+        "sha1": "260b7c1ae86b74eeca7e484f7c7bd7b7e9dc7869"
+      },
+      {
+        "path": "prompts/vault_exterior.txt",
+        "bytes": 59,
+        "sha1": "a7caeda1f87e333696bfea3f7c9ee8b0c8d7e17f"
+      },
+      {
+        "path": "prompts/vault_interior.txt",
+        "bytes": 78,
+        "sha1": "1063e20191d93675096db33a1372956a22ddb55d"
+      },
+      {
+        "path": "scripts/Abbey-Parse-Transactions.ps1",
+        "bytes": 1250,
+        "sha1": "0c2511ab2baac4d33f727aede4a9ef31cca76c23"
+      },
+      {
+        "path": "scripts/Abbey-Subscriptions-From-Ledger.ps1",
+        "bytes": 1258,
+        "sha1": "3d41596013ef571befb2cffcab482f9a83c12abe"
+      },
+      {
+        "path": "scripts/Agents-LLM.ps1",
+        "bytes": 1853,
+        "sha1": "fe8d81e0595170e4a392c4b984fc4e8540c281a3"
+      },
+      {
+        "path": "scripts/Alexandria-DM-LLM.ps1",
+        "bytes": 2764,
+        "sha1": "8ccf2c211a8556c9c2e6e8a938317ec1a2e92258"
+      },
+      {
+        "path": "scripts/Alexandria-Validate.ps1",
+        "bytes": 814,
+        "sha1": "1a26565a9ca96e5a5200aa7c75923b16fe500834"
+      },
+      {
+        "path": "scripts/Alexandria-World-LLM.ps1",
+        "bytes": 2129,
+        "sha1": "d3b735a7291574ee1eed7c9934e87007d644b894"
+      },
+      {
+        "path": "scripts/AsInt.psm1",
+        "bytes": 1229,
+        "sha1": "5d80cb39b912b0b6327cf28dd8c917626dfabf86"
+      },
+      {
+        "path": "scripts/Carol-Aggregate-FromFile.ps1",
+        "bytes": 4185,
+        "sha1": "e20f8b2e06b59734d7c5ca66ad6cc81139c1b56c"
+      },
+      {
+        "path": "scripts/Carol-Aggregate-Packages-v2.ps1",
+        "bytes": 4497,
+        "sha1": "a3b6bb40b0fd05ecd8728267cbc35ea36d4596fd"
+      },
+      {
+        "path": "scripts/Carol-Aggregate-Packages-v3.ps1",
+        "bytes": 2230,
+        "sha1": "78c8e9b45e231e9accb6ce55abd72dfa1132b06d"
+      },
+      {
+        "path": "scripts/Carol-Aggregate-Packages.ps1",
+        "bytes": 6749,
+        "sha1": "6938abeedb1673525b8b09610d32dd771feb9286"
+      },
+      {
+        "path": "scripts/Carol-Build-Pointer.ps1",
+        "bytes": 1438,
+        "sha1": "56348bdd4dcb288eba716ce7b6ffef6844c90b62"
+      },
+      {
+        "path": "scripts/Carol-Diet-LLM.ps1",
+        "bytes": 2164,
+        "sha1": "227c4876f5542dfbb8eec044b8badfdc2294a958"
+      },
+      {
+        "path": "scripts/Carol-Expand-14d.ps1",
+        "bytes": 2012,
+        "sha1": "f5d8ca5549aeede5bda13064b8ba9aa237037adc"
+      },
+      {
+        "path": "scripts/Carol-Export-PDF.ps1",
+        "bytes": 2929,
+        "sha1": "30de321c5e4e6f284b06a054e9536b0321715ef8"
+      },
+      {
+        "path": "scripts/Carol-Extract-Shopping-v2.ps1",
+        "bytes": 1480,
+        "sha1": "e5ac91383f2af74463fcd22f771c92d5390394be"
+      },
+      {
+        "path": "scripts/Carol-Extract-Shopping-v3.ps1",
+        "bytes": 1538,
+        "sha1": "25fb4e62015c727d1bc87e7736b605e3d33deec8"
+      },
+      {
+        "path": "scripts/Carol-Extract-Shopping.ps1",
+        "bytes": 2647,
+        "sha1": "4790d2286a3b743ee7628f96aecebe7c0a520e3c"
+      },
+      {
+        "path": "scripts/Carol-Full-Refresh.ps1",
+        "bytes": 648,
+        "sha1": "e80861d8e97aa8efe87e789aedc1e3d4de8924da"
+      },
+      {
+        "path": "scripts/Carol-LLM-Plans.ps1",
+        "bytes": 2076,
+        "sha1": "6317e03316b5e69e8fc8bf83995b037af8c538f1"
+      },
+      {
+        "path": "scripts/Carol-Meal-Plan-2or6wk.ps1",
+        "bytes": 4570,
+        "sha1": "1f93d3cb66f34f0acf79069ad84e240c10f05694"
+      },
+      {
+        "path": "scripts/Carol-Meal-Plan-2wk.ps1",
+        "bytes": 2654,
+        "sha1": "a404e2f1d118d45f200567c5410cd4f3ce3b698e"
+      },
+      {
+        "path": "scripts/Carol-Offline-2wk.ps1",
+        "bytes": 2709,
+        "sha1": "c179d048bbaee721ffcbecbf9e5889820407f62d"
+      },
+      {
+        "path": "scripts/Carol-Package-Map-Report.ps1",
+        "bytes": 1785,
+        "sha1": "db717565753aedca7649a4cf1e36f8506880add1"
+      },
+      {
+        "path": "scripts/Carol-Plan-Inspector.ps1",
+        "bytes": 1414,
+        "sha1": "0c50f6e918ed1e99a6985b77535cc9ed150d1f08"
+      },
+      {
+        "path": "scripts/Carol-Plan-Merge.ps1",
+        "bytes": 1965,
+        "sha1": "29bef2177de05ed72b7ba5471cae9f933931e9fb"
+      },
+      {
+        "path": "scripts/Carol-Validate.ps1",
+        "bytes": 1379,
+        "sha1": "3b3f4e81b5fcf6866c9e40ae3ff1a4593542381b"
+      },
+      {
+        "path": "scripts/Charlotte-Build-Link-Registry.ps1",
+        "bytes": 2262,
+        "sha1": "27168c710a5a3ba42dc6259458f1259710569471"
+      },
+      {
+        "path": "scripts/Charlotte-Design-Tokens.ps1",
+        "bytes": 1457,
+        "sha1": "372d56f08c43c3c70a86aa749978b283df3608f2"
+      },
+      {
+        "path": "scripts/Charlotte-Inject-Tokens.ps1",
+        "bytes": 521,
+        "sha1": "3a6c72625321784cba931c4b7bafb5234e43344d"
+      },
+      {
+        "path": "scripts/Charlotte-Site-Manifest.ps1",
+        "bytes": 470,
+        "sha1": "7ad8972681f9839a60fed1a4038a109cf0f43c4d"
+      },
+      {
+        "path": "scripts/Charlotte-TTS-OpenAI.ps1",
+        "bytes": 1911,
+        "sha1": "0fbfb87ade75778c65221ebf3d728fe605f073e1"
+      },
+      {
+        "path": "scripts/Charlotte-TTS.ps1",
+        "bytes": 1859,
+        "sha1": "7649187596a230883463bc5bdeaa36f0ea9d2721"
+      },
+      {
+        "path": "scripts/Clarice-Graphics-Audit.ps1",
+        "bytes": 1222,
+        "sha1": "263ac993f555309eb4e28a68c92783150b2f38e7"
+      },
+      {
+        "path": "scripts/Clarice-Snapshot.ps1",
+        "bytes": 391,
+        "sha1": "4a35ad42144bffe4ac3635a467dbf734b5009429"
+      },
+      {
+        "path": "scripts/FactCheck-LLM.ps1",
+        "bytes": 3334,
+        "sha1": "dae27b420878f7ae0c7d234e3d78301f5650307d"
+      },
+      {
+        "path": "scripts/Hotfix-StripV-And-UnregisterSW.ps1",
+        "bytes": 686,
+        "sha1": "60f8a2a944764cf9cbc7b564235ff7cc132a2d51"
+      },
+      {
+        "path": "scripts/Jem-Import-SamsujgHealth.ps1",
+        "bytes": 2278,
+        "sha1": "af0f8e2ee986092164a86a2a991bad367ccff6f3"
+      },
+      {
+        "path": "scripts/Jem-Import-SamsungHealth.ps1",
+        "bytes": 1846,
+        "sha1": "95d8e6b672b690af654af1c1a7cc628223a990f9"
+      },
+      {
+        "path": "scripts/Jem-Inspect-Programs.ps1",
+        "bytes": 839,
+        "sha1": "8994b40fcccbce58430c09ba124bdcadb72f4de5"
+      },
+      {
+        "path": "scripts/Jem-LLM-Programs.ps1",
+        "bytes": 2116,
+        "sha1": "eb251813aad349223d85818d316ec104216470dd"
+      },
+      {
+        "path": "scripts/Jem-Merge-Progress.ps1",
+        "bytes": 1354,
+        "sha1": "93ef9589020f16778e4f58107ad219a464876b66"
+      },
+      {
+        "path": "scripts/Jem-Normalize-Week1.ps1",
+        "bytes": 5789,
+        "sha1": "49b33c7b8d38d1f64a1d069b91f3d845bcd0056c"
+      },
+      {
+        "path": "scripts/Jem-Pack-Imports.ps1",
+        "bytes": 1138,
+        "sha1": "6fb27dc10a09562b130a8d598a63f8966078dbef"
+      },
+      {
+        "path": "scripts/Jem-Progression-Engine.ps1",
+        "bytes": 2552,
+        "sha1": "3547ce8007bd5f670e76adcbc5a5ff39f975e25c"
+      },
+      {
+        "path": "scripts/Jem-Rescue-Intake.ps1",
+        "bytes": 1879,
+        "sha1": "40307c6de2fb556fb3580b4561ffcf7f8be07a0b"
+      },
+      {
+        "path": "scripts/Jem-Training-LLM.ps1",
+        "bytes": 2392,
+        "sha1": "b2ace0a5b0bab0569960f4b3c2dce42d2be688b9"
+      },
+      {
+        "path": "scripts/Jem-Validate.ps1",
+        "bytes": 810,
+        "sha1": "3877f30edcf3afe0c57c3fafaf2ac661101b8b77"
+      },
+      {
+        "path": "scripts/Jem-Week1-Evaluation.ps1",
+        "bytes": 1733,
+        "sha1": "4418ddd262ee18bedf4850dc3d5a392d20c9f124"
+      },
+      {
+        "path": "scripts/Jem-Week1-Plan.ps1",
+        "bytes": 5490,
+        "sha1": "90f710d46261b08d7214d68fd76b13499c024f72"
+      },
+      {
+        "path": "scripts/LLM-Bridge.ps1",
+        "bytes": 2128,
+        "sha1": "61b85b71cc7e5141d519f8c9c1b451bfbeb25ab8"
+      },
+      {
+        "path": "scripts/Nina-Generate-Rooms.ps1",
+        "bytes": 2032,
+        "sha1": "842a3d3ae35c525b4621e305ec270462f2e43f8a"
+      },
+      {
+        "path": "scripts/Nina-Scene-Index.ps1",
+        "bytes": 849,
+        "sha1": "9475e11eccfd82af1b0e259ca6ad57d326b1e1e4"
+      },
+      {
+        "path": "scripts/Nina-VRM-Index.ps1",
+        "bytes": 817,
+        "sha1": "6b99c8a5a7562c1463c310ecab71408d103a69f6"
+      },
+      {
+        "path": "scripts/Nina-VRM-Sanity.ps1",
+        "bytes": 853,
+        "sha1": "dc184d8c60ba3267aef25ab4123f6a3114928a7f"
+      },
+      {
+        "path": "scripts/Repo-Doctor.ps1",
+        "bytes": 3205,
+        "sha1": "ec08a38e292c3023e55c838fe62293ace7eedabb"
+      },
+      {
+        "path": "scripts/Repo-Index.ps1",
+        "bytes": 871,
+        "sha1": "db3101e01dff4f38abe10b9f43e6812427ff0941"
+      },
+      {
+        "path": "scripts/Repo-Inventory.ps1",
+        "bytes": 822,
+        "sha1": "d1e66f9dc70ab0f6397a5ef431009706694a76fa"
+      },
+      {
+        "path": "scripts/Repo-Read-All.ps1",
+        "bytes": 1312,
+        "sha1": "e9d595fa8c983c7ad5126b6df9c3a4ab6bfef38b"
+      },
+      {
+        "path": "scripts/Repo-Refs-Graph.ps1",
+        "bytes": 1867,
+        "sha1": "35e99b62adf9fd6eaba9474c9abfddb459be46a8"
+      },
+      {
+        "path": "scripts/Repo-Sweeper-Used-Files.ps1",
+        "bytes": 1427,
+        "sha1": "174866232e00e965668b0f2064b07cd1ae10ea05"
+      },
+      {
+        "path": "scripts/Repo-Sweeper-Workflows.ps1",
+        "bytes": 1489,
+        "sha1": "0dce2b6472765bbc6a807c9a381787fba820fd0c"
+      },
+      {
+        "path": "scripts/Repo-Usage-Report.ps1",
+        "bytes": 1822,
+        "sha1": "81d54658470a0a8e8919498bfbfcd4cf0d7e6c89"
+      },
+      {
+        "path": "scripts/Root-Index-Hotfix.ps1",
+        "bytes": 3157,
+        "sha1": "377d589085fbcfddc01e51374f02b2ca5a14e2a7"
+      },
+      {
+        "path": "scripts/Run-All.ps1",
+        "bytes": 1460,
+        "sha1": "6651094a06b2dbc81bc6b2027ff67967c5c0e576"
+      },
+      {
+        "path": "scripts/Site-Doctor.ps1",
+        "bytes": 2320,
+        "sha1": "e9f338bd1fc376a6b7c8d54c77e03d3b86a134c2"
+      },
+      {
+        "path": "scripts/Stella-Guided-LLM.ps1",
+        "bytes": 2189,
+        "sha1": "28e897e89660290e2a7dbd1c884daeadebb9b372"
+      },
+      {
+        "path": "scripts/Stella-LLM-Components.ps1",
+        "bytes": 2280,
+        "sha1": "4fd1883648cb17f24564e5f6d75b03f728f2df4d"
+      },
+      {
+        "path": "scripts/Stella-Schedule-LLM.ps1",
+        "bytes": 2986,
+        "sha1": "2cd4e270557a93bc16829da406bbb5726bc13b65"
+      },
+      {
+        "path": "scripts/Stella-Validate.ps1",
+        "bytes": 552,
+        "sha1": "3bf1e957c7d17140f2a87537702d3f84b1a4255a"
+      },
+      {
+        "path": "scripts/Tracy-Apply-Skin.ps1",
+        "bytes": 330,
+        "sha1": "8372b3f78adf08add357854d11b5a297a70f7b18"
+      },
+      {
+        "path": "scripts/Tracy-Optimize-Images.ps1",
+        "bytes": 730,
+        "sha1": "2ef804e2e53e5f536eadda65c8be397c46d68291"
+      },
+      {
+        "path": "scripts/Tracy-Skin-From-Wallpapers.ps1",
+        "bytes": 3876,
+        "sha1": "015377d7e313561681baf919ad7d72f5cf1d96e0"
+      },
+      {
+        "path": "scripts/Tracy-Wallpaper-Index.ps1",
+        "bytes": 723,
+        "sha1": "8e351a66ba9706166574b5886f84cfaee1d2d768"
+      },
+      {
+        "path": "scripts/VersionParam-Sweeper.ps1",
+        "bytes": 954,
+        "sha1": "23da84e5a61ae000d51c6dca28b69f7193f06513"
+      },
+      {
+        "path": "scripts/Workflows-Sweeper.ps1",
+        "bytes": 905,
+        "sha1": "48da63c8c9b212372a07d946273a9d94ce5a6540"
+      },
+      {
+        "path": "scripts/carol/build-shopping.mjs",
+        "bytes": 5762,
+        "sha1": "0710f3c616f00e871a0fceeca5af4e5381b16011"
+      },
+      {
+        "path": "scripts/charlotte/crawler.mjs",
+        "bytes": 3596,
+        "sha1": "5d17c208013823d776a1acc981f9386fdcf781de"
+      },
+      {
+        "path": "scripts/charlotte/curated-crawl.mjs",
+        "bytes": 2231,
+        "sha1": "99343bc11a18ce3917ddb25ffb44e736b6bda737"
+      },
+      {
+        "path": "scripts/nina-3d-index.ps1",
+        "bytes": 404,
+        "sha1": "6557f6a99a9b3dee622a77e4a9d3caa59f1b5280"
+      },
+      {
+        "path": "scripts/overseers/alexandria-build-all.ps1",
+        "bytes": 2985,
+        "sha1": "0261d84d54283ff6d762a16540a678c37056bf52"
+      },
+      {
+        "path": "scripts/overseers/alexandria-suite.ps1",
+        "bytes": 1863,
+        "sha1": "ee74ea4018ef41b5c4d91bc64ec270e7c315c3aa"
+      },
+      {
+        "path": "scripts/overseers/carol-meal-plan.ps1",
+        "bytes": 1377,
+        "sha1": "4e974789a27db4eb385cee3357d3f31800f6d368"
+      },
+      {
+        "path": "scripts/overseers/charlotte-pipeline-plan.ps1",
+        "bytes": 991,
+        "sha1": "a8b80fb4f8694d3cf42d8b544c8430b6c5e01a83"
+      },
+      {
+        "path": "scripts/overseers/charlotte-tts-azure.ps1",
+        "bytes": 2171,
+        "sha1": "9bedaa9eec228102c2998eaa0afaaebf517a6797"
+      },
+      {
+        "path": "scripts/overseers/cleanup-dup-workflows.mjs",
+        "bytes": 946,
+        "sha1": "7eefa1c7cd213964877ac6fa51a9b851626cd3f7"
+      },
+      {
+        "path": "scripts/overseers/crossrepo-scan.mjs",
+        "bytes": 1376,
+        "sha1": "2df345263135d3c11f3266be8c337eab833a1f1d"
+      },
+      {
+        "path": "scripts/overseers/crossrepo-sweep.mjs",
+        "bytes": 1817,
+        "sha1": "1229af852601381187be3c6e2defb8a19c9c6cf5"
+      },
+      {
+        "path": "scripts/overseers/jem-program-plan.ps1",
+        "bytes": 1508,
+        "sha1": "6388d50a2ec21ab123b6390a131c961e38822414"
+      },
+      {
+        "path": "scripts/overseers/memory-index.mjs",
+        "bytes": 4060,
+        "sha1": "4746d26aa17ee18fdef1431ed36afd61cabc8b35"
+      },
+      {
+        "path": "scripts/overseers/nina-3d-index.ps1",
+        "bytes": 1903,
+        "sha1": "e707f232d2330ac5ede9e81eef1cdf9b6c07a9dd"
+      },
+      {
+        "path": "scripts/overseers/overseers-llm-bridge.ps1",
+        "bytes": 3451,
+        "sha1": "7bf990345cb5a75f5b2f2d0716e7cdd31efaf2ff"
+      },
+      {
+        "path": "scripts/overseers/repo-doctor.mjs",
+        "bytes": 1078,
+        "sha1": "4e6a9b52c0ec258d4721dd09897d581452c2c034"
+      },
+      {
+        "path": "scripts/overseers/repo-sweep.mjs",
+        "bytes": 2942,
+        "sha1": "ee7925508e65f6c7c0ad1de85b82624085f572c1"
+      },
+      {
+        "path": "scripts/overseers/tracy-artboard.ps1",
+        "bytes": 1373,
+        "sha1": "ba8e885ed1638f6c95533ae110749dfc43c8bf58"
+      },
+      {
+        "path": "scripts/tracy-artboard.ps1",
+        "bytes": 502,
+        "sha1": "8c819aa834180ef7649c150b80c5772346c1dbaf"
+      },
+      {
+        "path": "ui/ui-kit.css",
+        "bytes": 629,
+        "sha1": "ad1b9847626be28b8cc3801dddab170a1625967c"
+      },
+      {
+        "path": "version.txt",
+        "bytes": 36,
+        "sha1": "ae16f7d687f3522474c569d0568644e7316c1b8a"
+      },
+      {
+        "path": "workers/stella-voice-worker.js",
+        "bytes": 3501,
+        "sha1": "59c8aa14b0b7f659ece3fe02edbbebb794110035"
+      }
+    ]
+  },
+  "secondary": {
+    "root": "__second__",
+    "files": [
+      {
+        "path": ".nojekyll",
+        "bytes": 1,
+        "sha1": "adc83b19e793491b1c6ea0fd8b46cd9f32e592fc"
+      },
+      {
+        "path": "asset/css/style.css",
+        "bytes": 4000,
+        "sha1": "3787450eb9792b3b4c6fef09485824df1e57fa08"
+      },
+      {
+        "path": "asset/js/vrm-room.js",
+        "bytes": 4983,
+        "sha1": "b4e0f8eede90808235eecf1cc74792ca7b88abeb"
+      },
+      {
+        "path": "asset/models/abbey.vrm",
+        "bytes": 12018708,
+        "sha1": "eb04a427ac4dcc4c67c831926945348e353c4339"
+      },
+      {
+        "path": "asset/models/alexandria.vrm",
+        "bytes": 12269756,
+        "sha1": "db5dacbb4acb36adde37c9c7d9f555a0e74f6439"
+      },
+      {
+        "path": "asset/models/billie.vrm",
+        "bytes": 13301520,
+        "sha1": "5decb1286216d12fb33045bcf7940dbbda16521f"
+      },
+      {
+        "path": "asset/models/carol.vrm",
+        "bytes": 11898172,
+        "sha1": "43bcef5d5e322059681e816127efa208562ed6d0"
+      },
+      {
+        "path": "asset/models/charlotte.vrm",
+        "bytes": 11740028,
+        "sha1": "c54361ac1a8af7e3587a4fefecf5f3c6a6262aa2"
+      },
+      {
+        "path": "asset/models/clarice.vrm",
+        "bytes": 12848640,
+        "sha1": "7bd205ce0c630cece5e52f26c42dc9600ed26564"
+      },
+      {
+        "path": "asset/models/jem.vrm",
+        "bytes": 12475488,
+        "sha1": "77f3fdc7e1e7a9681fff80c927361571b3921cd7"
+      },
+      {
+        "path": "asset/models/nina.vrm",
+        "bytes": 11272372,
+        "sha1": "818ce809d61f05550a6d1363748b14af23745dd0"
+      },
+      {
+        "path": "asset/models/odessa.vrm",
+        "bytes": 12378488,
+        "sha1": "59d73f0fd9f7e11f380b73a1b0c93d3876da15a2"
+      },
+      {
+        "path": "asset/models/reyczar.vrm",
+        "bytes": 11287548,
+        "sha1": "f904ed510de80a674295e03bc63f066626134db4"
+      },
+      {
+        "path": "asset/models/sorcha.vrm",
+        "bytes": 12620220,
+        "sha1": "065cbd93da74cbdf8a2ff20de95d99d675f25c88"
+      },
+      {
+        "path": "asset/models/stella.vrm",
+        "bytes": 12012132,
+        "sha1": "e4920aa21fe6b246bce907ead7a206ba13e08ebb"
+      },
+      {
+        "path": "asset/models/themis.vrm",
+        "bytes": 11647684,
+        "sha1": "156c0470dd217cba37685d32717aa9a9b7d3dedc"
+      },
+      {
+        "path": "asset/models/tracy.vrm",
+        "bytes": 12321368,
+        "sha1": "779d5c353def4b1d78df8193504226ff72f189ba"
+      },
+      {
+        "path": "asset/models/whitestar.vrm",
+        "bytes": 11978584,
+        "sha1": "965d748dd503e5f34af7e22f21c0afc46c1bd014"
+      },
+      {
+        "path": "buildings/_template.html",
+        "bytes": 579,
+        "sha1": "50f016eafaef2fa39724854fce3b5e89d0348077"
+      },
+      {
+        "path": "buildings/abbey.html",
+        "bytes": 1281,
+        "sha1": "3ada36b224e86099be661c44d8220dabcbbd485c"
+      },
+      {
+        "path": "buildings/alexandria.html",
+        "bytes": 666,
+        "sha1": "6e2595e8530620137ae026f3d5f070d3773cdb1d"
+      },
+      {
+        "path": "buildings/billie.html",
+        "bytes": 694,
+        "sha1": "a3a21b7aae493cf298ad20b643bc617212ce4a79"
+      },
+      {
+        "path": "buildings/carol.html",
+        "bytes": 660,
+        "sha1": "aa303a5d5c09bec7f698deaa8aa4f13e083d977a"
+      },
+      {
+        "path": "buildings/charlotte.html",
+        "bytes": 683,
+        "sha1": "b6dddf3ec19af73121104d72c22cfc3f43e95899"
+      },
+      {
+        "path": "buildings/clarice.html",
+        "bytes": 675,
+        "sha1": "76c27d0ea4137426fdeab1a7266bbb010dd51bba"
+      },
+      {
+        "path": "buildings/dance.html",
+        "bytes": 8840,
+        "sha1": "307f295b3b4a6b4a3a7cb095c527c9aa150a2c18"
+      },
+      {
+        "path": "buildings/jem.html",
+        "bytes": 636,
+        "sha1": "904c5791ac19b4f49b2526fc940b76f7ac7a69f8"
+      },
+      {
+        "path": "buildings/nina.html",
+        "bytes": 636,
+        "sha1": "995facca34c3437ea4ee2bb71c864f6565914c82"
+      },
+      {
+        "path": "buildings/odessa.html",
+        "bytes": 667,
+        "sha1": "796410b60e6f1a7ec44d63685e52db19bcef3dec"
+      },
+      {
+        "path": "buildings/palace.html",
+        "bytes": 2748,
+        "sha1": "418a976fa4dd114fd985f080c66fc53df41d0cea"
+      },
+      {
+        "path": "buildings/sorcha.html",
+        "bytes": 679,
+        "sha1": "38cb36ebe6f777546a018e09cec50c6678a89767"
+      },
+      {
+        "path": "buildings/stella.html",
+        "bytes": 692,
+        "sha1": "464ca7eb8e78f39f12ac4c08f40fec10ce827dd4"
+      },
+      {
+        "path": "buildings/themis.html",
+        "bytes": 685,
+        "sha1": "6605d53deed0951ae08bba978d9d9d338a38bef8"
+      },
+      {
+        "path": "buildings/tracy.html",
+        "bytes": 671,
+        "sha1": "7b30cddb8ae55c261967bce582aff51d5a572cb2"
+      },
+      {
+        "path": "index.html",
+        "bytes": 481,
+        "sha1": "3e32ca26385d4e59dd015440eefe5a9de1759622"
+      },
+      {
+        "path": "pages/plaza.html",
+        "bytes": 15111,
+        "sha1": "7f711f32cee2b9e03e04d53f4a7c6bceb99100d0"
+      }
+    ]
+  }
+}

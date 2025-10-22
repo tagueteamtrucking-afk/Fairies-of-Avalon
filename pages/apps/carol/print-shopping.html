@@ -10,32 +10,69 @@
     <button class="print" onclick="window.print()">Print / Save PDF</button>
   </header>
   <h1>Shopping List</h1>
-  <small class="meta">Quantized for 2 people • Source: current two‑week menu</small>
+  <small class="meta">From current two‑week menu</small>
   <div id="root">Loading…</div>
   <script>
+  function aisleOf(name){
+    const s = name.toLowerCase();
+    const has = t => s.includes(t);
+    if (has('yogurt') || has('milk') || has('cottage') || has('mozzarella') || has('cheese')) return 'Dairy & Alternatives';
+    if (has('banana') || has('apple') || has('pear') || has('peach') || has('kiwi') || has('grape') || has('mango') || has('avocado') || has('lemon') || has('lime') || has('tomato') || has('cucumber') || has('spinach') || has('potato')) return 'Produce';
+    if (has('oats') || has('rice cake') || has('tortilla') || has('bread') || has('brown rice') || has('panko')) return 'Grains & Bakery';
+    if (has('chicken') || has('turkey') || has('cod') || has('salmon') || has('egg') || has('tuna')) return 'Protein';
+    if (has('frozen') || has('veg medley') || has('mixed vegetables')) return 'Frozen';
+    if (has('canned') || has('can ') || has('(can')) return 'Canned & Shelf';
+    if (has('soup') || has('beans') || has('diced tomatoes') || has('relish')) return 'Canned & Shelf';
+    if (has('olive oil') || has('peanut butter') || has('hummus') || has('flax') || has('chia') || has('cocoa') || has('cinnamon') || has('vanilla') || has('garlic powder') || has('honey')) return 'Pantry & Condiments';
+    return 'Other';
+  }
+  function key(item){ return (item.ingredient||item.item||'').trim().toLowerCase(); }
+  function normUnit(u){ return (u||'').trim().toLowerCase(); }
   (async () => {
-    const data = await fetch('/pages/apps/carol/plans/shopping-quantized.json').then(r=>r.json());
-    const root = document.getElementById('root');
-    root.innerHTML = '';
-    const groups = {};
-    for (const it of (data.items||[])){
-      const unit = it.unit || '';
-      const g = groups[unit] || (groups[unit] = []);
-      g.push(it);
-    }
-    const units = Object.keys(groups).sort();
-    for (const unit of units){
-      const sec = document.createElement('section'); sec.className='day';
-      const h2 = document.createElement('h2'); h2.textContent = unit ? unit : 'no unit';
-      sec.appendChild(h2);
-      const ul = document.createElement('ul');
-      for (const it of groups[unit].sort((a,b)=>a.item.localeCompare(b.item))){
-        const li = document.createElement('li');
-        li.textContent = `${it.item} — ${it.qty}${unit ? ' ' + unit : ''}`;
-        ul.appendChild(li);
+    const mount = document.getElementById('root');
+    try{
+      const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json());
+      if (!ptr || !ptr.plan){
+        mount.innerHTML = '<p><a href="/pages/apps/carol/index.json">Add File</a>: set plan path</p>';
+        return;
       }
-      sec.appendChild(ul);
-      root.appendChild(sec);
+      const plan = await fetch('/' + ptr.plan.replace(/^\//,'')).then(r=>r.json());
+      const tally = new Map();
+      for (const day of (plan.days||[])){
+        for (const ev of (day.events||[])){
+          for (const it of (ev.items||[])){
+            const k = key(it) + '|' + normUnit(it.unit);
+            const aisle = aisleOf(it.ingredient||it.item||'');
+            const cur = tally.get(k) || { item: (it.ingredient||it.item||'').trim(), qty: 0, unit: normUnit(it.unit), aisle };
+            cur.qty += Number(it.quantity||0);
+            tally.set(k, cur);
+          }
+        }
+      }
+      const groups = {};
+      for (const v of tally.values()){
+        (groups[v.aisle||'Other'] = groups[v.aisle||'Other'] || []).push(v);
+      }
+      const aisles = Object.keys(groups).sort();
+      mount.innerHTML = '';
+      for (const a of aisles){
+        const sec = document.createElement('section'); sec.className = 'day';
+        const h2 = document.createElement('h2'); h2.textContent = a; sec.appendChild(h2);
+        const ul = document.createElement('ul');
+        for (const it of groups[a].sort((x,y)=>x.item.localeCompare(y.item))){
+          const unit = it.unit ? ' ' + it.unit : '';
+          const li = document.createElement('li');
+          li.textContent = `${it.item} — ${Math.round((it.qty + Number.EPSILON)*100)/100}${unit}`;
+          ul.appendChild(li);
+        }
+        sec.appendChild(ul);
+        mount.appendChild(sec);
+      }
+      if (!aisles.length){
+        mount.innerHTML = 'No items found.';
+      }
+    }catch(e){
+      mount.textContent = 'Error building shopping list.';
     }
   })();
   </script>

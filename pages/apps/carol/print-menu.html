@@ -9,28 +9,36 @@
   <header class="controls">
     <button class="print" onclick="window.print()">Print / Save PDF</button>
   </header>
-  <h1>Two-Week Menu</h1>
-  <small class="meta">Pattern: DASH • Region: US • Events aim: 6–8/day</small>
+  <h1>Two‑Week Menu</h1>
+  <small class="meta">Pattern: DASH • Region: US • Target: 6–8 eating events/day</small>
   <div id="root">Loading…</div>
   <script>
   (async () => {
-    const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json());
-    const planPath = (ptr.plan||'').replace(/^\//,'');
-    const plan = await fetch('/' + planPath).then(r=>r.json());
-    const root = document.getElementById('root');
-    root.innerHTML = '';
-    for (const day of plan.days){
-      const sec = document.createElement('section'); sec.className = 'day';
-      const h2 = document.createElement('h2'); h2.textContent = day.day_label;
-      sec.appendChild(h2);
-      const ul = document.createElement('ul');
-      for (const ev of day.events){
-        const li = document.createElement('li');
-        li.textContent = `${ev.time_hint || ''} — ${ev.name}`;
-        ul.appendChild(li);
+    try {
+      const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json());
+      if (!ptr || !ptr.plan) {
+        document.getElementById('root').innerHTML = '<p><a href="/pages/apps/carol/index.json">Add File</a>: missing plan path.</p>';
+        return;
       }
-      sec.appendChild(ul);
-      root.appendChild(sec);
+      const planPath = ('/'+ptr.plan).replace(/\/+/g,'/');
+      const plan = await fetch(planPath).then(r=>r.json());
+      const root = document.getElementById('root'); root.innerHTML = '';
+      for (const day of plan.days || []){
+        const sec = document.createElement('section'); sec.className = 'day';
+        const h2 = document.createElement('h2'); h2.textContent = day.day_label || ('Day ' + (day.index||''));
+        sec.appendChild(h2);
+        const ul = document.createElement('ul');
+        for (const ev of day.events || []){
+          const li = document.createElement('li');
+          const when = ev.time_hint ? (ev.time_hint + ' — ') : '';
+          li.textContent = when + ev.name;
+          ul.appendChild(li);
+        }
+        sec.appendChild(ul);
+        root.appendChild(sec);
+      }
+    } catch (e){
+      document.getElementById('root').textContent = 'Error loading plan.';
     }
   })();
   </script>

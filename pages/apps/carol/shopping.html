@@ -1,74 +1,87 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carol — Shopping List</title>
+  <meta charset="utf-8">
+  <title>Carol • Shopping List</title>
+  <link rel="stylesheet" href="/pages/apps/carol/print.css">
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;background:#0b0c10;color:#e8e8e8}
-    header{padding:1rem 1.25rem;border-bottom:1px solid #223241;display:flex;align-items:baseline;justify-content:space-between}
-    h1{margin:.2rem 0 .4rem;font-size:1.15rem}
-    .meta{opacity:.8}
-    .wrap{padding:12px}
-    table{width:100%;border-collapse:collapse}
-    th,td{border-bottom:1px solid #223241;padding:.6rem .5rem;text-align:left}
-    th{opacity:.8}
-    tr:hover{background:#121a22}
-    .miss{background:#281a1a;border:1px solid #4a2e2e;color:#f0dede;padding:.6rem;border-radius:8px;margin-top:12px}
-    a.btn{display:inline-block;margin-top:.5rem;padding:.45rem .65rem;border:1px solid #32506b;border-radius:8px;text-decoration:none;color:#d9f0ff}
-    code{background:#101820;border:1px solid #213140;border-radius:6px;padding:.1rem .25rem}
-    @media print{
-      body{background:#fff;color:#000}
-      header{border-color:#ccc}
-      tr:hover{background:#fff}
-    }
+    .group { border: 1px solid #eee; border-radius: 8px; padding: 8px 10px; margin: 10px 0; }
+    .group h2 { margin: 0 0 6px; }
+    .empty { padding: 10px; background: #fff7d6; border: 1px solid #ffe58f; border-radius: 8px; }
   </style>
-  <script type="module">
-    function resolveUrl(targetPath, ptrUrl){
-      const s = String(targetPath||'').trim();
-      if (!s) return null;
-      if (/^https?:\/\//i.test(s)) return s;
-      if (s.startsWith('/')) return s;
-      if (s.startsWith('pages/')) return '/' + s;
-      return new URL(s, ptrUrl).href;
-    }
-    const ptrUrl = new URL('./index.json', window.location.href);
-    const ptr = await fetch(ptrUrl, {cache:'no-store'}).then(r=>r.json()).catch(()=>null);
-    const meta = document.querySelector('.meta');
-    const tbody = document.querySelector('tbody');
-    if(!ptr){
-      document.querySelector('.wrap').innerHTML = '<div class="miss">Pointer not found. Expected <code>pages/apps/carol/index.json</code>.</div>';
-    }else{
-      const listUrl = resolveUrl(ptr.shopping, ptrUrl);
-      let p = null;
-      try{ p = await fetch(listUrl, {cache:'no-store'}).then(r=>r.ok?r.json():null) }catch{}
-      if(!p){
-        document.querySelector('.wrap').innerHTML = `
-          <div class="miss">
-            Shopping list not found at <code>${listUrl}</code>.<br>
-            <div>Run the GitHub Action: <b>Carol - Generate Shopping List (from current plan)</b>.</div>
-          </div>`;
-      }else{
-        meta.textContent = \`For \${p.meta?.people||2} people · generated \${new Date(p.meta?.generated_at||Date.now()).toLocaleString()}\`;
-        for(const it of (p.items||[])){
-          const tr = document.createElement('tr');
-          tr.innerHTML = \`<td>\${it.item}</td><td>\${it.qty}</td><td>\${it.unit||''}</td>\`;
-          tbody.appendChild(tr);
-        }
-      }
-    }
-  </script>
 </head>
 <body>
-  <header>
-    <h1>Carol — Shopping List</h1>
-    <div class="meta">Loading…</div>
+  <header class="controls">
+    <button class="print" onclick="window.print()">Print / Save PDF</button>
   </header>
-  <div class="wrap">
-    <table>
-      <thead><tr><th>Item</th><th>Qty</th><th>Unit</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </div>
+  <h1>Shopping List</h1>
+  <small class="meta">Built from the current two‑week menu</small>
+  <div id="root">Loading…</div>
+  <script>
+  function aisleOf(name){
+    const s = name.toLowerCase();
+    const has = t => s.includes(t);
+    if (has('yogurt') || has('milk') || has('cottage') || has('mozzarella') || has('cheese')) return 'Dairy & Alternatives';
+    if (has('banana') || has('apple') || has('pear') || has('peach') || has('kiwi') || has('grape') || has('mango') || has('avocado') || has('lemon') || has('lime') || has('tomato') || has('cucumber') || has('spinach') || has('potato')) return 'Produce';
+    if (has('oats') || has('rice cake') || has('tortilla') || has('bread') || has('brown rice') || has('panko')) return 'Grains & Bakery';
+    if (has('chicken') || has('turkey') || has('cod') || has('salmon') || has('egg') || has('tuna')) return 'Protein';
+    if (has('frozen') || has('veg medley') || has('mixed vegetables')) return 'Frozen';
+    if (has('canned') || has('can ') || has('(can')) return 'Canned & Shelf';
+    if (has('soup') || has('beans') || has('diced tomatoes') || has('relish')) return 'Canned & Shelf';
+    if (has('olive oil') || has('peanut butter') || has('hummus') || has('flax') || has('chia') || has('cocoa') || has('cinnamon') || has('vanilla') || has('garlic powder') || has('honey')) return 'Pantry & Condiments';
+    return 'Other';
+  }
+  function key(item){ return (item.ingredient||item.item||'').trim().toLowerCase(); }
+  function normUnit(u){ return (u||'').trim().toLowerCase(); }
+  (async () => {
+    const mount = document.getElementById('root');
+    try{
+      const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json());
+      if (!ptr || !ptr.plan){
+        mount.innerHTML = '<div class="empty"><strong>Plan not set.</strong> <a href="/pages/apps/carol/index.json">Add File</a></div>';
+        return;
+      }
+      const plan = await fetch('/' + ptr.plan.replace(/^\//,'')).then(r=>r.json());
+      const tally = new Map(); // key: ingredient|unit -> {item, qty, unit, aisle}
+      for (const day of (plan.days||[])){
+        for (const ev of (day.events||[])){
+          for (const it of (ev.items||[])){
+            const k = key(it) + '|' + normUnit(it.unit);
+            const aisle = aisleOf(it.ingredient||it.item||'');
+            const cur = tally.get(k) || { item: (it.ingredient||it.item||'').trim(), qty: 0, unit: normUnit(it.unit), aisle };
+            cur.qty += Number(it.quantity||0);
+            tally.set(k, cur);
+          }
+        }
+      }
+      // bucket by aisle
+      const buckets = {};
+      for (const v of tally.values()){
+        const a = v.aisle || 'Other';
+        (buckets[a] = buckets[a] || []).push(v);
+      }
+      const aisles = Object.keys(buckets).sort();
+      mount.innerHTML = '';
+      for (const a of aisles){
+        const wrap = document.createElement('div'); wrap.className = 'group';
+        const h2 = document.createElement('h2'); h2.textContent = a; wrap.appendChild(h2);
+        const ul = document.createElement('ul');
+        for (const it of buckets[a].sort((x,y)=>x.item.localeCompare(y.item))){
+          const unit = it.unit ? ' ' + it.unit : '';
+          const li = document.createElement('li');
+          li.textContent = `${it.item} — ${Math.round((it.qty + Number.EPSILON)*100)/100}${unit}`;
+          ul.appendChild(li);
+        }
+        wrap.appendChild(ul);
+        mount.appendChild(wrap);
+      }
+      if (!aisles.length){
+        mount.innerHTML = '<div class="empty">No items found in plan.</div>';
+      }
+    }catch(e){
+      mount.textContent = 'Error building shopping list.';
+    }
+  })();
+  </script>
 </body>
 </html>

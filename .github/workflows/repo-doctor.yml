@@ -6,30 +6,40 @@ permissions:
   contents: write
   pull-requests: write
 
-defaults:
-  run:
-    shell: bash
+concurrency:
+  group: repo-doctor-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   doctor:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
-      - uses: actions/setup-node@v4
-        with: { node-version: '20' }
-      - name: Validate Carol pointer and build shopping
+      - name: "Checkout"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: "Setup Node"
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: "Validate Carol pointer and build shopping"
+        shell: bash
         run: |
-          set -e
+          set -euo pipefail
           if [ ! -f "pages/apps/carol/index.json" ]; then
             echo "::error title=Missing Carol pointer::pages/apps/carol/index.json not found"; exit 1
           fi
-          node -e "const p=require('node:path');const fs=require('node:fs');const J=JSON.parse(fs.readFileSync('pages/apps/carol/index.json','utf8'));if(!J.plan_latest||!fs.existsSync(J.plan_latest)){console.error('::error title=Plan missing::index.json plan_latest missing or file not found ->',J.plan_latest);process.exit(1);}"
+          node -e "import fs from 'node:fs'; import path from 'node:path'; const J=JSON.parse(fs.readFileSync('pages/apps/carol/index.json','utf8')); if(!J.plan_latest||!fs.existsSync(J.plan_latest)){console.error('::error title=Plan missing::index.json plan_latest missing or file not found ->',J.plan_latest); process.exit(1);}"
           if [ -f "scripts/carol/build-shopping.mjs" ]; then
             node scripts/carol/build-shopping.mjs
           fi
-      - name: Commit to PR branch
+
+      - name: "Commit to PR branch"
+        shell: bash
         run: |
+          set -euo pipefail
           BR="autobot/repo-doctor-${GITHUB_RUN_ID}"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name  "github-actions[bot]"
@@ -37,7 +47,8 @@ jobs:
           git add pages/apps/carol/plans/shopping-2p.json || true
           git commit -m "chore(repo-doctor): validate Carol & build shopping" || echo "Nothing to commit."
           git push origin "$BR" || echo "Branch exists or no changes."
-      - name: Open PR
+
+      - name: "Open PR"
         uses: actions/github-script@v7
         with:
           script: |

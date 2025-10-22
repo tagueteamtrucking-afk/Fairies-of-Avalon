@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-22T16:41:35.285Z",
+  "generated_at": "2025-10-22T16:46:11.365Z",
   "files": [
     {
       "path": ".github/workflows/MANIFEST.json",
@@ -4671,9 +4671,23 @@
       "purpose": "Governance & telemetry"
     },
     {
+      "path": "pages/apps/overseers/memory/coverage.json",
+      "bytes": 216,
+      "sha1": "f6b6a65c84794cfa4f0cec0cef9aca410f365007",
+      "type": "overseers",
+      "purpose": "Governance & telemetry"
+    },
+    {
       "path": "pages/apps/overseers/memory/deletion-candidates.json",
       "bytes": 68,
       "sha1": "9aa8638c5f5652a850b54a9a3227146fc6e796ba",
+      "type": "overseers",
+      "purpose": "Governance & telemetry"
+    },
+    {
+      "path": "pages/apps/overseers/memory/file-index.json",
+      "bytes": 180569,
+      "sha1": "48108aaea5c4b16c85a554c1c334ea4b2a7e7238",
       "type": "overseers",
       "purpose": "Governance & telemetry"
     },

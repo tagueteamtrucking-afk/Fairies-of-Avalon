@@ -1,144 +1,155 @@
-// scripts/carol/build-shopping.mjs
-// Node 20, ESM. No 'param', no PowerShell. Pure JS.
 import fs from 'node:fs';
-import fsp from 'node:fs/promises';
 import path from 'node:path';
 
-const ROOT = process.cwd();
-const IDX = path.join(ROOT, 'pages/apps/carol/index.json');
+const POINTER = 'pages/apps/carol/index.json';
+const DEFAULT_OUT = 'pages/apps/carol/plans/shopping-2p.json';
 
-function loadJSON(p){ return JSON.parse(fs.readFileSync(p, 'utf8')); }
+function ensureDir(p){ fs.mkdirSync(path.dirname(p), { recursive:true }); }
 
-function normName(n){ return String(n||'').trim().toLowerCase(); }
+function readJSON(p){
+  return JSON.parse(fs.readFileSync(p, 'utf8'));
+}
 
-const ALIAS = new Map([
-  ['mixed vegetables (frozen)','mixed vegetables, frozen'],
+// Basic normalizer mapping
+const NAME_ALIASES = new Map([
   ['frozen mixed vegetables','mixed vegetables, frozen'],
+  ['mixed vegetables (frozen)','mixed vegetables, frozen'],
   ['frozen veg medley','mixed vegetables, frozen'],
-  ['lactose-free mozzarella','mozzarella, lactose-free'],
-  ['lactose-free cheese stick','mozzarella, lactose-free'],
-  ['lf cheese stick','mozzarella, lactose-free'],
-  ['lf greek yogurt','greek yogurt, lactose-free'],
   ['lactose-free greek yogurt','greek yogurt, lactose-free'],
-  ['lf cottage cheese','cottage cheese, lactose-free'],
   ['lactose-free cottage cheese','cottage cheese, lactose-free'],
+  ['lactose-free milk','milk, lactose-free'],
+  ['soft whole-grain bread','whole-grain bread, soft'],
+  ['soft whole-wheat tortilla','whole-wheat tortillas, soft'],
+  ['lactose-free mozzarella','mozzarella, lactose-free'],
+  ['hummus (no cumin)','hummus']
 ]);
 
-const OATS = { cup: 2.86, tbsp: 0.17875 };
-const FROZEN_CUP_TO_LB = 0.33;
+// Unit conversion helpers (approximate for shopping convenience; tweak if needed)
+const TBSP_PER_OZ = 2;           // peanut butter, hummus (by volume)
+const TSP_PER_FL_OZ = 6;         // oil
+const CUP_PER_QUART = 4;
+const OZ_PER_CUP_YOGURT = 8;
+const OZ_PER_CUP_COTTAGE = 8;
+const OZ_PER_CUP_OATS = 3.5;     // rolled oats typical pack weight per cup
+const OZ_PER_TBSP_OATS = OZ_PER_CUP_OATS/16;
 
-function alias(n){ const k=normName(n); return ALIAS.get(k) || n; }
+// Produce per-piece approx weight in lb (tunable)
+const PRODUCE_LB = {
+  'apple': 0.33,
+  'banana': 0.26,
+  'pear': 0.33,
+  'lemon': 0.25,
+  'kiwi': 0.18,
+  'tomato': 0.30,
+  'cucumber': 0.55,
+  'avocado': 0.44,
+  'potato': 0.25,
+  'grapes(cup)': 0.33 // 1 cup grapes ~ 150g
+};
 
-function toTarget(name, qty, unit){
-  name = alias(name);
-  if (normName(name)==='cooked chicken breast'){
-    const oz = unit==='oz' ? qty : unit==='lb' ? qty*16 : qty;
-    const rawOz = oz / 0.75; // cooked->raw eq
-    return { name:'chicken breast', qty: rawOz/16, unit:'lb' };
-  }
-  if (name==='rolled oats'){
-    if (unit==='cup') return { name, qty: qty*OATS.cup, unit:'oz' };
-    if (unit==='tbsp') return { name, qty: qty*OATS.tbsp, unit:'oz' };
-  }
-  if (name==='mixed vegetables, frozen' && unit==='cup'){
-    return { name, qty: qty*FROZEN_CUP_TO_LB, unit:'lb' };
-  }
-  if (/yogurt|cottage/i.test(name) && unit==='cup'){
-    return { name, qty: qty*8, unit:'oz' };
-  }
-  if (/hummus|cream cheese|mayo/i.test(name) && unit==='tbsp'){
-    return { name, qty: qty*0.5, unit:'oz' };
-  }
-  if (unit==='oz' && ['salmon fillet','cod fillet','chicken breast','lean ground turkey'].includes(name)){
-    return { name, qty: qty/16, unit:'lb' };
-  }
-  return { name, qty, unit };
+function normName(n){
+  const k = String(n||'').trim().toLowerCase();
+  return NAME_ALIASES.get(k) || k;
 }
 
-function push(map, name, qty, unit){
-  const k = normName(name);
-  const ex = map.get(k);
-  if (!ex) map.set(k, { name, qty, unit });
-  else{
-    if (ex.unit===unit) ex.qty += qty;
-    else if (ex.unit==='lb' && unit==='oz') ex.qty += qty/16;
-    else if (ex.unit==='oz' && unit==='lb'){ ex.qty = ex.qty*16 + qty*16; ex.unit = 'oz'; }
-    else ex.qty += qty;
-  }
+function push(map, name, unit, qty){
+  const key = name+'__'+(unit||'');
+  const prev = map.get(key) || { name, unit, qty:0 };
+  prev.qty += qty;
+  map.set(key, prev);
 }
 
-function qtyDisplay(q, u){
-  const r = (n,p=2)=> Math.round(n*10**p)/10**p;
-  if (u==='lb') return `${r(q,2)} lb`;
-  if (u==='oz') return `${r(q,1)} oz`;
-  if (u==='qt') return `${r(q,2)} qt`;
-  if (u==='can') return `${r(q,2)} cans`;
-  return `${r(q,2)} ${u}`;
-}
+function aggregate(plan){
+  const m = new Map();
+  const cookedToRawMultiplier = 4/3; // 0.75 cooked yield
 
-function categorize(name){
-  const n = normName(name);
-  if (/yogurt|cottage|milk|mozzarella/.test(n)) return 'Dairy (LF)';
-  if (/chicken|turkey|salmon|cod|tuna|beans/.test(n)) return 'Proteins';
-  if (/tomato|cucumber|grapes|banana|apple|pear|lemon|potatoes|spinach|avocado|kiwi|blueberries|mango/.test(n)) return 'Produce';
-  if (/mixed vegetables/.test(n)) return 'Frozen';
-  if (/oats|hummus|mayo|olive oil|tortilla|bread|rice|panko|cinnamon|cocoa|chia|flax|crackers|granola/.test(n)) return 'Pantry';
-  return 'Other';
-}
+  for(const d of plan.days){
+    for(const ev of d.events||[]){
+      for(const it of ev.items||[]){
+        let name = normName(it.ingredient);
+        let unit = (it.unit||'').toLowerCase();
+        let qty = Number(it.quantity||0);
 
-async function main(){
-  const idx = loadJSON(IDX);
-  let rel = idx.plan_latest || idx.plan;
-  if (!rel) throw new Error('index.json missing "plan_latest"');
-  rel = rel.replace(/^\/+/, '');
-  const PLAN = path.join(ROOT, rel);
-  const plan = loadJSON(PLAN);
+        // Dairy conversions
+        if(name.includes('greek yogurt')){ // cups -> oz
+          if(unit==='cup'||unit==='cups'){ push(m, name, 'oz', qty*OZ_PER_CUP_YOGURT); continue; }
+        }
+        if(name.includes('cottage cheese')){
+          if(unit==='cup'||unit==='cups'){ push(m, name, 'oz', qty*OZ_PER_CUP_COTTAGE); continue; }
+        }
+        if(name.includes('milk')){ // cups -> quarts
+          if(unit==='cup'||unit==='cups'){ push(m, name, 'qt', qty/CUP_PER_QUART); continue; }
+        }
+        if(name.includes('mozzarella')){ /* keep oz as-is */ }
+        if(name==='hummus'){ // tbsp -> oz (2 tbsp = 1 oz)
+          if(unit==='tbsp'){ push(m, name, 'oz', qty/TBSP_PER_OZ); continue; }
+        }
+        if(name==='peanut butter'){
+          if(unit==='tbsp'){ push(m, name, 'oz', qty/TBSP_PER_OZ); continue; }
+        }
 
-  const persons = 2;
-  const map = new Map();
-  for (const day of plan.days||[]){
-    for (const ev of day.events||[]){
-      const mult = (String(ev.for||'').toLowerCase()==='both') ? persons : 1;
-      for (const it of ev.items||[]){
-        const t = toTarget(it.ingredient, (it.quantity||0)*mult, (it.unit||'').toLowerCase());
-        push(map, t.name, t.qty, t.unit);
+        // Oats
+        if(name==='rolled oats'){
+          if(unit==='cup'||unit==='cups'){ push(m, name, 'oz', qty*OZ_PER_CUP_OATS); continue; }
+          if(unit==='tbsp'){ push(m, name, 'oz', qty*OZ_PER_TBSP_OATS); continue; }
+        }
+
+        // Oils
+        if(name==='olive oil'){
+          if(unit==='tsp'){ push(m, name, 'fl oz', qty/TSP_PER_FL_OZ); continue; }
+        }
+
+        // Proteins cooked -> raw pounds
+        if(/chicken breast|turkey|salmon|cod|lean turkey|chicken/i.test(name)){
+          if(unit==='oz'){ push(m, name, 'lb (raw)', (qty*cookedToRawMultiplier)/16); continue; }
+          if(unit==='piece'){ /* ignore; rarely used */ }
+        }
+
+        // Produce pieces -> lb
+        if(unit==='piece'){
+          const base = Object.keys(PRODUCE_LB).find(k=>name.includes(k));
+          if(base){ push(m, name, 'lb', qty*PRODUCE_LB[base]); continue; }
+        }
+        if(unit==='cup' && name.includes('grapes')){
+          push(m, name, 'lb', qty*PRODUCE_LB['grapes(cup)']); continue;
+        }
+
+        // Default: keep as given
+        push(m, name, unit, qty);
       }
     }
   }
 
-  // Butter lettuce leaves -> heads (~12 leaves/head)
-  const bl = map.get('butter lettuce');
-  if (bl && bl.unit==='leaf'){ bl.qty = bl.qty/12; bl.unit='head'; }
-
-  // prune tiny noise
-  for (const [k,v] of map){
-    if (v.qty < 0.01) map.delete(k);
+  // Merge like items with same unit already handled; now sort into categories
+  const categories = [
+    { name:'Dairy', test:n=>/yogurt|cottage|milk|mozzarella|cheese/i.test(n) },
+    { name:'Proteins', test:n=>/chicken|turkey|tuna|salmon|cod|egg/i.test(n) },
+    { name:'Produce', test:n=>/apple|banana|pear|grapes|tomato|cucumber|avocado|spinach|lettuce|potato|kiwi|peach|mango|lemon/i.test(n) },
+    { name:'Frozen', test:n=>/mixed vegetables, frozen/i.test(n) },
+    { name:'Pantry', test:n=>true }
+  ];
+  const doc = { generated_at: new Date().toISOString(), categories: categories.map(c=>({name:c.name,items:[]})) };
+  for(const v of m.values()){
+    const cat = doc.categories.find(c=>c.name!=='Pantry' && categories.find(b=>b.name===c.name).test(v.name)) || doc.categories.find(c=>c.name==='Pantry');
+    const qty = Math.round(v.qty*100)/100;
+    const unit = v.unit || '';
+    cat.items.push({ name:v.name, qty, unit });
   }
-
-  const byCat = {};
-  for (const v of map.values()){
-    const cat = categorize(v.name);
-    byCat[cat] = byCat[cat] || [];
-    byCat[cat].push({ name: v.name, qty: v.qty, unit: v.unit, qty_display: qtyDisplay(v.qty, v.unit) });
-  }
-  for (const arr of Object.values(byCat)) arr.sort((a,b)=> a.name.localeCompare(b.name));
-
-  const out = {
-    generated_at: new Date().toISOString(),
-    assumptions: [
-      "Chicken cooked→raw equivalence uses 0.75 yield; cooked 6 oz ≈ raw 8 oz.",
-      "LF cheese stick ~ 1 oz; merged under mozzarella (LF).",
-      "Oats: 1 cup = 2.86 oz; 1 tbsp = 0.17875 oz.",
-      "Hummus / cream cheese: 2 tbsp ≈ 1 oz.",
-      "Frozen vegetables: 1 cup ≈ 0.33 lb (estimate)."
-    ],
-    items_by_cat: byCat
-  };
-
-  const OUT = path.join(ROOT, 'pages/apps/carol/plans/shopping-2p.json');
-  fs.mkdirSync(path.dirname(OUT), { recursive:true });
-  await fsp.writeFile(OUT, JSON.stringify(out, null, 2));
-  console.log('Built', OUT);
+  doc.categories.forEach(c=> c.items.sort((a,b)=> a.name.localeCompare(b.name)) );
+  return doc;
 }
 
-main().catch(e=>{ console.error(e); process.exit(1); });
+function main(){
+  if(!fs.existsSync(POINTER)) throw new Error('index.json missing');
+  const ix = readJSON(POINTER);
+  if(!ix.plan_latest) throw new Error('index.json missing "plan_latest"');
+  const planPath = ix.plan_latest;
+  if(!fs.existsSync(planPath)) throw new Error('Plan not found at '+planPath);
+  const plan = readJSON(planPath);
+  const out = aggregate(plan);
+  ensureDir(DEFAULT_OUT);
+  fs.writeFileSync(DEFAULT_OUT, JSON.stringify(out, null, 2));
+  console.log('Wrote shopping list to', DEFAULT_OUT);
+}
+
+main();

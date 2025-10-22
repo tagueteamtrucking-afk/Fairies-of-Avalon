@@ -1,0 +1,31 @@
+<!doctype html>
+<html><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Access Setup</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:#0b0b10;color:#f2f4f8;margin:0}
+  main{max-width:700px;margin:0 auto;padding:24px}
+  input,button{padding:10px;border-radius:8px;border:1px solid #1b1b26;background:#12121a;color:#f2f4f8}
+  .row{display:flex;gap:8px;align-items:center}
+  .mut{color:#aab2c0}
+</style>
+<main>
+  <h1>Access Setup</h1>
+  <p class="mut">Enter PIN to set your role. 1775 → dev (Ray), 4406 → user (Blanca).</p>
+  <div class="row">
+    <input id="pin" placeholder="Enter PIN" inputmode="numeric" />
+    <button onclick="setRole()">Set</button>
+  </div>
+  <p id="out" class="mut"></p>
+</main>
+<script>
+function setRole(){
+  const v = (document.getElementById('pin').value||'').trim();
+  let role = '';
+  if(v==='1775') role='dev';
+  else if(v==='4406') role='user';
+  else role='user';
+  localStorage.setItem('avalon.role', role);
+  document.getElementById('out').textContent = 'Role set to '+role+'.';
+}
+</script>
+</html>

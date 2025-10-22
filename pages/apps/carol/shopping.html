@@ -1,24 +1,35 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Carol — Shopping List</title>
-  <link rel="stylesheet" href="./print.css">
-  <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:16px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}h1{font-size:1.4rem;margin:0}.err{background:#fee;border:1px solid #fbb;padding:10px;border-radius:8px}#units{color:#555;font-size:.9rem}#list{margin-top:10px}details{background:#fff;border:1px solid #e5e7eb;border-radius:10px;margin:8px 0;padding:8px}summary{font-weight:600;cursor:pointer}.row{display:flex;gap:.5rem;align-items:center;padding:4px 0;border-bottom:1px dotted #eee}.row:last-child{border-bottom:none}.qty{min-width:5.5rem;text-align:right;font-variant-numeric:tabular-nums}.name{flex:1}</style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Carol • Shopping List</title>
+<link rel="stylesheet" href="print.css" media="print"/>
+<style>
+  :root{--bg:#0b0b10;--card:#12121a;--ink:#f2f4f8;--mut:#aab2c0;--chip:#232332;--line:#1b1b26}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+  header{padding:16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,11,16,.9);backdrop-filter:blur(6px);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  header h1{margin:0;font-size:18px}
+  button{background:#2a2a3b;color:white;border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer}
+  main{padding:16px;display:grid;gap:16px}
+  .group{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .group h2{margin:0;padding:10px 12px;border-bottom:1px solid var(--line);font-size:15px}
+  .group ul{list-style:none;margin:0;padding:10px 12px;display:grid;gap:6px}
+  .mut{color:var(--mut);font-size:12px}
+  @media print{
+    header{display:none}
+    body{background:white;color:black}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Shopping List</h1>
-    <div>
-      <button id="printBtn">Print</button>
-      <button id="openPrint">Open Print Page</button>
-    </div>
-  </header>
-  <div id="units">Units: produce in <strong>lb</strong> (est), milk in <strong>qt</strong>, yogurt/cottage/mozzarella in <strong>oz</strong>, hummus/cream cheese in <strong>oz</strong>. Assumptions are listed at the bottom.</div>
-  <div id="err" class="err" style="display:none"></div>
-  <div id="list"></div>
-  <section id="assumptions" style="margin-top:12px;color:#555;font-size:.9rem"></section>
-  <script src="./shopping.js" defer></script>
+<header>
+  <h1>Shopping List</h1>
+  <button onclick="window.print()">Print</button>
+  <button id="build">Build in Browser</button>
+  <span class="mut" id="status"></span>
+</header>
+<main id="root"></main>
+<script src="shopping.js"></script>
 </body>
 </html>

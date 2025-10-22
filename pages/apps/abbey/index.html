@@ -1,12 +1,23 @@
 <!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Abbey</title>
-<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:16px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px}</style></head>
+<html><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Abbey – Accounting & Budgeting</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:#0b0b10;color:#f2f4f8;margin:0}
+  main{max-width:900px;margin:0 auto;padding:24px}
+  h1{font-size:22px;margin:0 0 8px}
+  .box{background:#12121a;border:1px solid #1b1b26;border-radius:12px;padding:16px}
+  .mut{color:#aab2c0}
+  .cta a{display:inline-block;margin:8px 8px 0 0;padding:8px 12px;border:1px solid #1b1b26;border-radius:8px;color:#8fd1ff;text-decoration:none}
+</style>
 <body>
-  <h1>Abbey — Accounting Hub</h1>
-  <div class="card">
-    <p>Budget scenarios & tax planning dashboards.</p>
-    <p><a href="ADD_FILE">Add File</a> — supply the starter JSON or connect the account to populate this view.</p>
+<main>
+  <h1>Abbey – Accounting & Budgeting</h1>
+  <div class="box">
+    <p class="mut">Add Export: pages/apps/abbey/quickbooks/export.csv; Add budgets: pages/apps/abbey/budgets/*.json</p>
+    <div class="cta">
+      <a href="#" onclick="alert('Add File');return false;">Add File</a>
+      <a href="#" onclick="alert('Connect Account');return false;">Connect Account</a>
+    </div>
   </div>
-</body>
-</html>
+</main>
+</body></html>

@@ -1,27 +1,23 @@
 <!doctype html>
-<html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Charlotte — Finds</title>
-<style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:16px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px}li{margin:.25rem 0}</style></head>
+<html><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Charlotte – Curated Sources</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:#0b0b10;color:#f2f4f8;margin:0}
+  main{max-width:900px;margin:0 auto;padding:24px}
+  h1{font-size:22px;margin:0 0 8px}
+  .box{background:#12121a;border:1px solid #1b1b26;border-radius:12px;padding:16px}
+  .mut{color:#aab2c0}
+  .cta a{display:inline-block;margin:8px 8px 0 0;padding:8px 12px;border:1px solid #1b1b26;border-radius:8px;color:#8fd1ff;text-decoration:none}
+</style>
 <body>
-  <h1>Charlotte — Useful Apps & Codes</h1>
-  <div id="out" class="card">No data yet. Run the workflow “Charlotte — Curated Crawl”.</div>
-  <script>
-    fetch('./finds.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
-      if(!d) return;
-      const out=document.getElementById('out');
-      out.innerHTML='';
-      d.items.forEach(g=>{
-        const sec=document.createElement('section'); sec.className='card';
-        const h=document.createElement('h3'); h.textContent=g.group; sec.appendChild(h);
-        const ul=document.createElement('ul');
-        g.links.forEach(x=>{
-          const li=document.createElement('li');
-          li.innerHTML = `<a href="${x.url}" target="_blank" rel="noopener">${x.title}</a> — ${x.note||''}`;
-          ul.appendChild(li);
-        });
-        sec.appendChild(ul); out.appendChild(sec);
-      });
-    });
-  </script>
-</body>
-</html>
+<main>
+  <h1>Charlotte – Curated Sources</h1>
+  <div class="box">
+    <p class="mut">Run the workflow “Charlotte — Curated Crawl”. Add/modify seeds: pages/apps/charlotte/sources.json</p>
+    <div class="cta">
+      <a href="#" onclick="alert('Add File');return false;">Add File</a>
+      <a href="#" onclick="alert('Connect Account');return false;">Connect Account</a>
+    </div>
+  </div>
+</main>
+</body></html>

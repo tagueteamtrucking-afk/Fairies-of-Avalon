@@ -1,21 +1,23 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carol — Restaurant</title>
-<link rel="stylesheet" href="/pages/apps/_shared/ui.css">
-<link rel="stylesheet" href="/pages/apps/_shared/room.css">
-</head><body><div class="wrap">
-<div class="nav">
-  <a class="btn" href="/">Home</a>
-  <a class="btn" href="/pages/apps/_city/castle-town.html">🗺️ Castle‑Town</a>
-  <a class="btn" href="/pages/apps/_city/index.html">Grid</a>
-</div>
-<div class="hero"></div>
-<h1>Carol — Restaurant</h1>
-<div id="room" class="room"></div>
-<div class="footer">Build: 20251019T232747Z</div>
-<script type="module">
-import { mountRoom } from '/pages/apps/_shared/room.js';
-const items = [{"icon": "📝", "title": "Menu Board — 14‑day Menu", "href": "/pages/apps/carol/menu.html", "desc": "2‑person plan, cookbook, nutrition."}, {"icon": "🧺", "title": "Pantry Shelf — Shopping List", "href": "/pages/apps/carol/shopping.html", "desc": "Quantized 2‑person list."}, {"icon": "🔔", "title": "Bell — Meal Alarms (.ics)", "href": "/pages/apps/carol/menu.html#ics", "desc": "Import alarms to calendar."}];
-mountRoom(document.getElementById('room'), items);
-</script>
-</div></body></html>
+<!doctype html>
+<html><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Carol – Kitchen</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:#0b0b10;color:#f2f4f8;margin:0}
+  main{max-width:900px;margin:0 auto;padding:24px}
+  h1{font-size:22px;margin:0 0 8px}
+  .box{background:#12121a;border:1px solid #1b1b26;border-radius:12px;padding:16px}
+  .mut{color:#aab2c0}
+  .cta a{display:inline-block;margin:8px 8px 0 0;padding:8px 12px;border:1px solid #1b1b26;border-radius:8px;color:#8fd1ff;text-decoration:none}
+</style>
+<body>
+<main>
+  <h1>Carol – Kitchen</h1>
+  <div class="box">
+    <p class="mut">Use menu & shopping pages. Pointer: pages/apps/carol/index.json.</p>
+    <div class="cta">
+      <a href="#" onclick="alert('Add File');return false;">Add File</a>
+      <a href="#" onclick="alert('Connect Account');return false;">Connect Account</a>
+    </div>
+  </div>
+</main>
+</body></html>

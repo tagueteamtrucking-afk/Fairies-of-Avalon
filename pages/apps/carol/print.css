@@ -1,1 +1,5 @@
-@media print{.page-break{page-break-before:always}}
+@media print{
+  @page { size: A4; margin: 12mm; }
+  .day{ page-break-after: always; }
+  .day:last-child{ page-break-after: auto; }
+}

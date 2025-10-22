@@ -1,42 +1,25 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tracy — Stained Glass Cathedral</title>
-  <style>
-    :root{--bg:#0a0c10;--fg:#e8ecf1;--tile:#11161d;--tileb:#1b2430;--acc:#6ec1ff;--mut:#a8b3c2}
-    html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-    header{padding:24px 16px;text-align:center;border-bottom:1px solid #202a36}
-    main{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));padding:16px}
-    a.card{display:grid;gap:6px;padding:16px;background:linear-gradient(180deg,var(--tile),var(--tileb));border:1px solid #202a36;border-radius:12px;color:var(--fg);text-decoration:none}
-    a.card:hover{border-color:var(--acc)}
-    .emoji{font-size:28px}
-    .mut{color:var(--mut);font-size:12px}
-  </style>
-</head>
+<html><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Tracy – Art & Assets</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:#0b0b10;color:#f2f4f8;margin:0}
+  main{max-width:900px;margin:0 auto;padding:24px}
+  h1{font-size:22px;margin:0 0 8px}
+  .box{background:#12121a;border:1px solid #1b1b26;border-radius:12px;padding:16px}
+  .mut{color:#aab2c0}
+  .cta a{display:inline-block;margin:8px 8px 0 0;padding:8px 12px;border:1px solid #1b1b26;border-radius:8px;color:#8fd1ff;text-decoration:none}
+</style>
 <body>
-  <header>
-    <h1>🪟 Tracy — Stained Glass Cathedral</h1>
-    <p class="mut">Art boards, 3D props, and theme skins.</p>
-  </header>
-  <main>
-    <a class="card" href="/pages/apps/tracy/artboards/index.html">
-      <div class="emoji">🖌️</div>
-      <div><strong>Easel</strong><div class="mut">Plan / preview 2D art & story panels</div></div>
-    </a>
-    <a class="card" href="/pages/apps/tracy/3d/index.html">
-      <div class="emoji">🗿</div>
-      <div><strong>Clay Bust</strong><div class="mut">3D props & previews</div></div>
-    </a>
-    <a class="card" href="/pages/apps/tracy/wallpapers.html">
-      <div class="emoji">🎨</div>
-      <div><strong>Palette</strong><div class="mut">Wallpapers & skins</div></div>
-    </a>
-    <a class="card" href="/pages/apps/_city/index.html">
-      <div class="emoji">🏰</div>
-      <div><strong>Back to City</strong></div>
-    </a>
-  </main>
-</body>
-</html>
+<main>
+  <h1>Tracy – Art & Assets</h1>
+  <div class="box">
+    <p class="mut">Add Images: asset/textures/wallpapers/*.jpg
+Add Models: asset/wings/* and asset/models/*
+Add “3d_asset_shop.json” to list props.</p>
+    <div class="cta">
+      <a href="#" onclick="alert('Add File');return false;">Add File</a>
+      <a href="#" onclick="alert('Connect Account');return false;">Connect Account</a>
+    </div>
+  </div>
+</main>
+</body></html>

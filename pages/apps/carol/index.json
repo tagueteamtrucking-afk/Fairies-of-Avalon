@@ -1,12 +1,5 @@
 {
-  "updated": "2025-10-22T17:34:30Z",
-  "region": "US",
-  "pattern": "DASH",
-  "persons": 2,
   "plan_latest": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
   "shopping_latest": "pages/apps/carol/plans/shopping-2p.json",
-  "pages": {
-    "menu": "/pages/apps/carol/menu.html",
-    "shopping": "/pages/apps/carol/shopping.html"
-  }
+  "updated": "2025-10-22T18:47:34.665376Z"
 }

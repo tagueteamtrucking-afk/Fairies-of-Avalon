@@ -1,27 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Print — Shopping</title>
-  <link rel="stylesheet" href="./print.css">
-  <style>@page{margin:12mm}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}h1{font-size:1.2rem}</style>
-</head>
-<body>
-  <h1>Shopping List</h1>
-  <div id="list"></div>
-  <script>
-  (async function(){
-    const r = await fetch('./shopping-2p.json',{cache:'no-store'});
-    const data = r.ok ? await r.json() : null;
-    const list = document.getElementById('list');
-    if(!data){ list.textContent = 'No prebuilt list found.'; return; }
-    function row(q,name){ const d=document.createElement('div'); d.textContent = q+' — '+name; return d; }
-    for(const [cat, items] of Object.entries(data.items_by_cat)){
-      const h=document.createElement('h3'); h.textContent=cat; list.appendChild(h);
-      items.forEach(it=> list.appendChild(row(it.qty_display, it.name)));
-    }
-    setTimeout(()=>window.print(), 200);
-  })();
-  </script>
-</body>
-</html>
+<!doctype html><meta charset="utf-8">
+<title>Print • Shopping List</title>
+<link rel="stylesheet" href="print.css" media="print"/>
+<script>
+  window.onload = ()=> window.print();
+</script>
+<body>Open the main shopping page and use the Print button if this page was opened directly.</body>

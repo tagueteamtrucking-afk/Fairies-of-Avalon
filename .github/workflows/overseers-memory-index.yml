@@ -4,7 +4,7 @@ name: Overseers - Memory Index
 on:
   workflow_dispatch:
   schedule:
-    - cron: '37 5 * * 1'   # weekly (Mon 05:37 UTC)
+    - cron: '37 5 * * 1'   # weekly Monday
 
 permissions:
   contents: write
@@ -17,6 +17,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          lfs: true
 
       - name: Setup Node
         uses: actions/setup-node@v4

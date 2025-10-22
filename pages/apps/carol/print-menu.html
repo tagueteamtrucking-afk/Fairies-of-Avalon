@@ -1,59 +1,92 @@
-<!-- pages/apps/carol/print-menu.html (drop16) -->
-<!doctype html>
-<html>
+<!-- pages/apps/carol/print-menu.html -->
+<!doctype html><html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carol — 14‑Day Menu (Print)</title>
-  <link rel="stylesheet" href="./print.css" />
-  <style>.hint{font-size:.9rem;color:#666;margin:.25rem 0 1rem}</style>
+  <meta charset="utf-8"/>
+  <title>Carol • Print Menu (One Day per Page)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="./print.css"/>
+  <script>
+  async function loadPointer(){
+    const candidates = [
+      '/pages/apps/carol/index.json',
+      './index.json',
+      '../carol/index.json'
+    ];
+    for(const url of candidates){
+      try{
+        const res = await fetch(url, { cache: 'no-store' });
+        if(res.ok){ return await res.json(); }
+      }catch{}
+    }
+    throw new Error('Pointer index.json not found. Add File: pages/apps/carol/index.json');
+  }
+  async function loadPlan(pathOrObj){
+    if(typeof pathOrObj === 'string'){
+      const res = await fetch(pathOrObj, { cache:'no-store' });
+      if(!res.ok) throw new Error('Plan JSON not found at '+pathOrObj);
+      return res.json();
+    }
+    return pathOrObj;
+  }
+  function renderDay(d){
+    const wrap = document.createElement('section');
+    wrap.className = 'day';
+    const h = document.createElement('h2');
+    h.textContent = d.day_label || ('Day ' + d.index);
+    wrap.appendChild(h);
+    (d.events||[]).forEach(ev=>{
+      const e = document.createElement('div');
+      e.className = 'event no-break';
+      const title = document.createElement('div');
+      title.innerHTML = '<strong>'+ev.name+'</strong>';
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+      meta.textContent = [ev.type, ev.time_hint, ev.for].filter(Boolean).join(' • ');
+      e.appendChild(title);
+      e.appendChild(meta);
+      if(ev.items && ev.items.length){
+        const ul = document.createElement('ul');
+        ev.items.forEach(it=>{
+          const li = document.createElement('li');
+          const qty = (it.quantity!==undefined && it.unit) ? ` (${it.quantity} ${it.unit})` : '';
+          li.textContent = `${it.ingredient}${qty}${it.notes? ' — '+it.notes:''}`;
+          ul.appendChild(li);
+        });
+        e.appendChild(ul);
+      }
+      if(ev.instructions && ev.instructions.length){
+        const ul = document.createElement('ul');
+        ev.instructions.forEach(t=>{
+          const li = document.createElement('li'); li.textContent = t; ul.appendChild(li);
+        });
+        e.appendChild(ul);
+      }
+      wrap.appendChild(e);
+    });
+    return wrap;
+  }
+  async function main(){
+    const status = document.getElementById('status');
+    try{
+      const pointer = await loadPointer();
+      const planPath = pointer.plan_latest || pointer.pointer || pointer.plan || '/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json';
+      const plan = await loadPlan(planPath);
+      status.textContent = `${plan.weeks*7||14} days • Pattern: ${plan.pattern} • Region: ${plan.region}`;
+      const list = document.getElementById('days');
+      (plan.days||[]).forEach(d=> list.appendChild(renderDay(d)));
+    }catch(e){
+      status.textContent = e.message;
+    }
+  }
+  window.addEventListener('DOMContentLoaded', main);
+  </script>
 </head>
 <body>
-  <header class="app">
-    <h1>Carol — 14‑Day Menu (Print)</h1>
-    <div class="hint">Each day renders on its own page. Use your browser’s “Print / Save as PDF”.</div>
-    <div class="actions">
-      <button id="btnPrint">Print / Save PDF</button>
-    </div>
+  <header class="controls">
+    <button onclick="window.print()">Print / Save PDF</button>
+    <a href="./menu.html" title="Back to Menu">Back to Menu</a>
+    <span id="status" style="margin-left:auto;color:#555"></span>
   </header>
-  <main id="out"></main>
-<script>
-document.getElementById('btnPrint').onclick = ()=>window.print();
-(async function(){
-  function el(tag, attrs={}, children=[]){
-    const n=document.createElement(tag);
-    for(const [k,v] of Object.entries(attrs)){ if(k==='class') n.className=v; else n.setAttribute(k,v); }
-    for(const c of [].concat(children)){ n.appendChild(typeof c==='string'? document.createTextNode(c) : c); }
-    return n;
-  }
-  async function getPlanPath(){
-    const idxRes = await fetch('./index.json', { cache:'no-store' });
-    if(!idxRes.ok) throw new Error('index.json not found');
-    const idx = await idxRes.json();
-    if(!idx.plan) throw new Error('index.json missing "plan"');
-    return idx.plan.startsWith('/') ? idx.plan.replace(/^\//,'') : idx.plan;
-  }
-  const planPath = await getPlanPath();
-  const planRes  = await fetch('../..' + '/' + planPath.replace(/^pages\//,''), { cache:'no-store' });
-  if(!planRes.ok){ document.getElementById('out').innerHTML = '<p>Plan not found at <code>'+planPath+'</code>. <a href="#">Add File</a></p>'; return; }
-  const plan = await planRes.json();
-  const out = document.getElementById('out');
-  (plan.days||[]).forEach(day=>{
-    const sec=el('section',{class:'day'});
-    sec.appendChild(el('h2',{},['Day ', String(day.index)]));
-    (day.events||[]).forEach(evt=>{
-      const e=el('div',{class:'event'});
-      e.appendChild(el('div',{class:'meta'},[(evt.time_hint||'').replace(/-/g,' '),' • ',(evt.type||'')]));
-      e.appendChild(el('div',{class:'title'},[evt.name||'']));
-      const items=(evt.items||[]).map(it=>`${it.ingredient} — ${it.quantity} ${it.unit}`);
-      if(items.length){ const ul=el('ul'); items.forEach(t=>ul.appendChild(el('li',{},[t]))); e.appendChild(ul); }
-      const inst=evt.instructions||[];
-      if(inst.length){ const ol=el('ol'); inst.forEach(t=>ol.appendChild(el('li',{},[t]))); e.appendChild(ol); }
-      sec.appendChild(e);
-    });
-    out.appendChild(sec);
-  });
-})();
-</script>
+  <main class="container" id="days"></main>
 </body>
 </html>

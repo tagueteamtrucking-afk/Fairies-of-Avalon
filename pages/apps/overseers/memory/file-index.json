@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-22T16:46:11.365Z",
+  "generated_at": "2025-10-22T17:49:35.629Z",
   "files": [
     {
       "path": ".github/workflows/MANIFEST.json",
@@ -3447,8 +3447,8 @@
     },
     {
       "path": "pages/apps/abbey/index.html",
-      "bytes": 1211,
-      "sha1": "89183114818b2bfdaea5106b8c28bf2e4111e263",
+      "bytes": 597,
+      "sha1": "b4acfd309b54167bdc15f21d5382101b8ade1212",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -3510,8 +3510,8 @@
     },
     {
       "path": "pages/apps/alexandria/index.html",
-      "bytes": 1847,
-      "sha1": "fcec492594c025df8f109e59b5144019ffd05586",
+      "bytes": 674,
+      "sha1": "4ff31ce455ef24af18de5429bf9b33c0b73aa807",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -3930,8 +3930,8 @@
     },
     {
       "path": "pages/apps/billie/index.html",
-      "bytes": 1408,
-      "sha1": "655d75717c8f395ec18f4daf76bde862daf622ea",
+      "bytes": 609,
+      "sha1": "1d5d2d5788978498458d8001cedc0947e3d52e76",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -3979,8 +3979,8 @@
     },
     {
       "path": "pages/apps/carol/index.json",
-      "bytes": 511,
-      "sha1": "8cf275dd3f06cd67a3bb182abf3e94e8d7f1b346",
+      "bytes": 355,
+      "sha1": "c7cc74206a16e8ebd947983f2b60d2b815132ab2",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
@@ -3993,8 +3993,8 @@
     },
     {
       "path": "pages/apps/carol/menu.html",
-      "bytes": 4714,
-      "sha1": "fb4fe1559a2cced7414f2ba7144481cf0c487f23",
+      "bytes": 2302,
+      "sha1": "e66fcffc259dfbdcafadb083d3277d36f10b0fcc",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
@@ -4217,15 +4217,15 @@
     },
     {
       "path": "pages/apps/carol/print-shopping.html",
-      "bytes": 1294,
-      "sha1": "e1058a6edf2be5c2fcb35497a230c028f4fdd531",
+      "bytes": 1023,
+      "sha1": "a07f8de7dbbdbfacfbeec9c747f1e8d2bf6d990f",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
     {
       "path": "pages/apps/carol/print.css",
-      "bytes": 2440,
-      "sha1": "78179db25c31a953d2bc731b01438570528ddb32",
+      "bytes": 51,
+      "sha1": "5ff137bf4cb26a6ff79c2539ab1df9e4c6287b7e",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
@@ -4252,15 +4252,15 @@
     },
     {
       "path": "pages/apps/carol/shopping.html",
-      "bytes": 1745,
-      "sha1": "1cd02c3ff6858efe838d35d53c4ca5aca57c2b6a",
+      "bytes": 1563,
+      "sha1": "f2dd1169ec5144d670d12a36fc1a4231613eddc9",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
     {
       "path": "pages/apps/carol/shopping.js",
-      "bytes": 15663,
-      "sha1": "bbba0ac1787d4b2c649637a229d069645804a58f",
+      "bytes": 9783,
+      "sha1": "ae1cf72d8273337970f74216925ae0f7039c7dde",
       "type": "carol",
       "purpose": "Meals & shopping"
     },
@@ -4301,8 +4301,8 @@
     },
     {
       "path": "pages/apps/charlotte/index.html",
-      "bytes": 2083,
-      "sha1": "686f35ba2018c7777b7fb72937caa8d3dce9897c",
+      "bytes": 1274,
+      "sha1": "ed3a22123f266ba4d58eb9b0ac11fd0dc60af348",
       "type": "page",
       "purpose": "Site UI"
     },
@@ -4673,7 +4673,7 @@
     {
       "path": "pages/apps/overseers/memory/coverage.json",
       "bytes": 216,
-      "sha1": "f6b6a65c84794cfa4f0cec0cef9aca410f365007",
+      "sha1": "b6ffbf3cc164f8d3a11eca338f267f74f0457b2f",
       "type": "overseers",
       "purpose": "Governance & telemetry"
     },
@@ -4686,8 +4686,8 @@
     },
     {
       "path": "pages/apps/overseers/memory/file-index.json",
-      "bytes": 180569,
-      "sha1": "48108aaea5c4b16c85a554c1c334ea4b2a7e7238",
+      "bytes": 181012,
+      "sha1": "4c0056ee213987a7a9b65403d30e6aabb6763c68",
       "type": "overseers",
       "purpose": "Governance & telemetry"
     },
@@ -6198,8 +6198,8 @@
     },
     {
       "path": "scripts/carol/build-shopping.mjs",
-      "bytes": 10419,
-      "sha1": "444afda7ded1fd0ccced537326e53b303c69f68a",
+      "bytes": 5231,
+      "sha1": "a783f58ddf4aa5d7045cbb38b9e8a5f8b8dbab18",
       "type": "script",
       "purpose": ""
     },
@@ -6207,6 +6207,13 @@
       "path": "scripts/charlotte/crawler.mjs",
       "bytes": 3596,
       "sha1": "5d17c208013823d776a1acc981f9386fdcf781de",
+      "type": "script",
+      "purpose": ""
+    },
+    {
+      "path": "scripts/charlotte/curated-crawl.mjs",
+      "bytes": 1419,
+      "sha1": "bdfec6d68e0121df54f57a73f743865de9d73cb4",
       "type": "script",
       "purpose": ""
     },
@@ -6263,6 +6270,13 @@
       "path": "scripts/overseers/crossrepo-scan.mjs",
       "bytes": 1376,
       "sha1": "2df345263135d3c11f3266be8c337eab833a1f1d",
+      "type": "script",
+      "purpose": ""
+    },
+    {
+      "path": "scripts/overseers/crossrepo-sweep.mjs",
+      "bytes": 1549,
+      "sha1": "c4cf6fd8ec7b6618ee18306ba354774d48e3a5de",
       "type": "script",
       "purpose": ""
     },

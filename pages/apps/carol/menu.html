@@ -3,87 +3,61 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Carol — 14‑Day Menu (2 people)</title>
+  <title>Carol — 14‑Day Timeline (2 people)</title>
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;background:#0b0c10;color:#e8e8e8;padding:1rem}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem}
-    .card{background:#162029;border:1px solid #2b3a47;border-radius:10px;padding:1rem}
-    .sub{opacity:.8}
-    .muted{opacity:.7}
+    :root{--bg:#0b0c10;--card:#141b22;--ink:#e8e8e8;--muted:#9db0c3;--accent:#8bd3dd}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;background:var(--bg);color:var(--ink)}
+    header{padding:1rem 1.25rem;border-bottom:1px solid #223241}
+    h1{margin:.2rem 0 .4rem;font-size:1.15rem}
+    .meta{color:var(--muted);font-size:.95rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;padding:12px}
+    .card{background:var(--card);border:1px solid #223241;border-radius:12px;padding:12px}
+    .row{display:flex;gap:.5rem;align-items:flex-start;padding:.35rem .4rem;border-radius:8px}
+    .row + .row{border-top:1px dashed #244}
+    .tag{font-size:.7rem;color:var(--bg);background:var(--accent);border-radius:6px;padding:.1rem .35rem;margin-right:.4rem}
+    .time{font-variant:all-small-caps;color:var(--muted);min-width:84px}
+    .name{font-weight:600}
+    .nut{color:var(--muted);font-size:.85rem}
+    .list{margin:.25rem 0 .5rem .25rem;padding-left:1rem;color:var(--muted)}
   </style>
   <script type="module">
-    function nameOf(v){
-      if (!v) return null;
-      if (typeof v === 'string') return v;
-      if (Array.isArray(v)) return v.map(nameOf).filter(Boolean).join(', ');
-      if (typeof v === 'object') return v.name || v.title || v.label || v.id || JSON.stringify(v);
-      return String(v);
-    }
-    function findDays(plan){
-      if (Array.isArray(plan.schedule)) return plan.schedule;
-      if (Array.isArray(plan.days)) return plan.days;
-      if (Array.isArray(plan.menu)) return plan.menu;
-      if (Array.isArray(plan.plan)) return plan.plan;
-      // fallback: look for top-level array with 7-21 items where entries have meal-like keys
-      for (const [k,v] of Object.entries(plan)){
-        if (Array.isArray(v) && v.length>=7 && v.length<=21){
-          const hasMeals = v.some(d => typeof d==='object' && (('breakfast'in d)||('lunch'in d)||('dinner'in d)||('snacks'in d)||('meals'in d)));
-          if (hasMeals) return v;
-        }
-      }
-      return [];
-    }
-    function mealsFromDay(d){
-      if (!d) return {breakfast:null,lunch:null,dinner:null,snacks:[]};
-      if (d.meals && typeof d.meals==='object'){
-        return {
-          breakfast: nameOf(d.meals.breakfast || d.meals.b),
-          lunch:     nameOf(d.meals.lunch     || d.meals.l),
-          dinner:    nameOf(d.meals.dinner    || d.meals.d),
-          snacks:    [].concat(d.meals.snacks||d.meals.s||[]).map(nameOf).filter(Boolean)
-        };
-      }
-      return {
-        breakfast: nameOf(d.breakfast || d.b),
-        lunch:     nameOf(d.lunch     || d.l),
-        dinner:    nameOf(d.dinner    || d.d),
-        snacks:    [].concat(d.snacks || d.s || []).map(nameOf).filter(Boolean)
-      };
-    }
-    async function load(){
-      const pointer = await fetch('./index.json',{cache:'no-store'}).then(r=>r.json());
-      const plan = await fetch(pointer.plan,{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
-      const metaEl = document.getElementById('meta');
-      const grid = document.getElementById('grid');
-      if(!plan){ metaEl.innerHTML='Plan not found. <span class="muted">Check path in pages/apps/carol/index.json</span>'; return; }
-      const days = findDays(plan);
-      const daysCount = days.length || plan?.meta?.days || '—';
-      const people = plan?.meta?.people || 2;
-      metaEl.textContent = `For ${people} people · ${daysCount} days`;
+    const ptr = await fetch('./index.json',{cache:'no-store'}).then(r=>r.json());
+    const planPath = ptr.plan;
+    const plan = await fetch(planPath,{cache:'no-store'}).then(r=>r.json());
+    const people = (plan.persons && plan.persons.length) || 2;
+    document.querySelector('.meta').textContent = `${plan.weeks*7||plan.days?.length||''} days · ${people} people · pattern ${plan.pattern||''}`.trim();
 
-      if(!days.length){
-        grid.innerHTML = '<div class="card">No days array found. If you share the plan JSON, we will adapt the parser.</div>';
-        return;
+    const grid = document.querySelector('.grid');
+    for (const d of plan.days||[]){
+      const card = document.createElement('div');
+      card.className='card';
+      card.innerHTML = `<h3>${d.day_label||('Day '+(d.index||''))}</h3>`;
+      const evts = (d.events||[]);
+      for(const e of evts){
+        const row = document.createElement('div');
+        row.className='row';
+        const servings = (e.for && /both/i.test(e.for)) ? people : 1; // A/B would be 1
+        row.innerHTML = `
+          <span class="tag">${e.type||'meal'}</span>
+          <span class="time">${e.time_hint||''}</span>
+          <div style="flex:1">
+            <div class="name">${e.name}</div>
+            <div class="nut">~${e.kcal||'?'} kcal · Na ${e.sodium_mg||'?'} mg · sugar ${e.added_sugars_g||'?'} g · fiber ${e.fiber_g||'?'} g</div>
+            <ul class="list">${
+              (e.items||[]).map(it=>`<li>${(servings>1?servings+'× ':'')}${it.quantity} ${it.unit} ${it.ingredient}${it.notes?` <em>(${it.notes})</em>`:''}</li>`).join('')
+            }</ul>
+          </div>`;
+        card.appendChild(row);
       }
-      let i=0;
-      for(const d of days){
-        const m = mealsFromDay(d);
-        const div = document.createElement('div');
-        div.className='card';
-        div.innerHTML = `<h3>Day ${d.day || (++i)}</h3>
-          <div><b>Breakfast:</b> ${m.breakfast || '—'}</div>
-          <div><b>Lunch:</b> ${m.lunch || '—'}</div>
-          <div><b>Dinner:</b> ${m.dinner || '—'}</div>
-          <div><b>Snacks:</b> ${(m.snacks||[]).join(', ') || '—'}</div>`;
-        grid.appendChild(div);
-      }
+      grid.appendChild(card);
     }
-    load();
   </script>
 </head>
 <body>
-  <h1>Carol — 14‑Day Menu (2 people)</h1>
-  <p id="meta" class="sub">Loading…</p>
-  <div id="grid" class="grid"></div>
+  <header>
+    <h1>Carol — 14‑Day Timeline (2 people)</h1>
+    <div class="meta">Loading…</div>
+  </header>
+  <main class="grid"></main>
 </body>
 </html>

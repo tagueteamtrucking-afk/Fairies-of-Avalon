@@ -1,19 +1,4 @@
-<!doctype html>
-<html><head><meta charset="utf-8"><title>Kill SW</title></head>
-<body>
-<h1>Kill Service Worker</h1>
-<p>If the site looks stale after a deploy, open this once to unregister all service workers and clear caches.</p>
-<script>
-(async () => {
-  if ('serviceWorker' in navigator) {
-    const regs = await navigator.serviceWorker.getRegistrations();
-    for (const r of regs) { try { await r.unregister(); } catch(e){} }
-  }
-  if ('caches' in window) {
-    const keys = await caches.keys();
-    await Promise.all(keys.map(k => caches.delete(k)));
-  }
-  location.href = '/';
-})();
+<!doctype html><meta charset="utf-8"><title>Kill SW</title><pre id=p>Stopping service workers…</pre><script>
+(async()=>{const regs=await navigator.serviceWorker?.getRegistrations?.()||[];for(const r of regs){try{await r.unregister()}catch{}}
+document.getElementById('p').textContent='All service workers unregistered. Hard-refresh this page.';})();
 </script>
-</body></html>

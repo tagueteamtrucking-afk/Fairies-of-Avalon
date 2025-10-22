@@ -1,51 +1,44 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Charlotte — AI Projects Crawler</title>
-  <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;margin:0;background:#0b0c10;color:#e8e8e8;padding:1rem}
-    h1{margin:0 0 .5rem 0}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem}
-    .card{background:#162029;border:1px solid #2b3a47;border-radius:10px;padding:1rem}
-    .sub{opacity:.8;font-size:.9rem}
-    a{color:#8ec6ff}
-  </style>
-  <script type="module">
-    async function load(){
-      const res = await fetch('./crawler/index.json', {cache:'no-store'}).catch(()=>null);
-      const root = document.getElementById('root');
-      if(!res || !res.ok){ root.innerHTML='<p><b>No snapshot yet.</b> Run the "Charlotte — AI Projects Crawler" workflow.</p>'; return; }
-      const data = await res.json();
-      document.getElementById('meta').textContent = `Generated: ${data.generated_at} via ${data.source}`;
-      const grid = document.getElementById('grid');
-      Object.entries(data.results).forEach(([q, items])=>{
-        const sec = document.createElement('div');
-        sec.className='card';
-        sec.innerHTML = `<div><b>Query:</b> ${q}</div>`;
-        const ul = document.createElement('ul');
-        (items||[]).slice(0,8).forEach(it=>{
-          const li = document.createElement('li');
-          if(it.error){ li.textContent = it.error; }
-          else{
-            li.innerHTML = `<a href="${it.url}" target="_blank">${it.name}</a> — ⭐ ${it.stars} — ${it.license||'license?'}`;
-          }
-          ul.appendChild(li);
-        });
-        sec.appendChild(ul);
-        grid.appendChild(sec);
-      });
-    }
-    load();
-  </script>
-</head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charlotte — AI Projects Crawler</title>
+<style>
+body{font-family:system-ui;background:#0b0c10;color:#e8e8e8;margin:0}
+header{padding:1rem;border-bottom:1px solid #223241}
+main{padding:12px}
+table{width:100%;border-collapse:collapse}
+th,td{border-bottom:1px solid #223241;padding:.6rem .5rem;text-align:left}
+th{opacity:.8}
+a{color:#8bd3dd;text-decoration:none}
+.badge{display:inline-block;background:#203040;border:1px solid #345;padding:.15rem .4rem;border-radius:6px;margin-left:.4rem;font-size:.8rem}
+</style></head>
 <body>
-  <h1>Charlotte — AI Projects Crawler</h1>
-  <p id="meta" class="sub">Loading…</p>
-  <div id="root">
-    <div id="grid" class="grid"></div>
-  </div>
-  <p class="sub">Source: GitHub API only (ToS-friendly). We can add more sources via approved APIs later.</p>
-</body>
-</html>
+<header><h1>Charlotte — AI Projects Crawler <span class="badge">GitHub API</span></h1></header>
+<main>
+  <div id="wrap"></div>
+</main>
+<script type="module">
+const p = await fetch('./crawler/index.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
+const el = document.getElementById('wrap');
+if(!p){ el.innerHTML = '<p>No crawler output yet. Run <b>Charlotte - AI Projects Crawler</b> in Actions.</p>'; }
+else{
+  el.innerHTML = `<p>Generated: ${new Date(p.generated_at).toLocaleString()}</p>`;
+  for(const [q,items] of Object.entries(p.results||{})){
+    const sec = document.createElement('section');
+    sec.innerHTML = `<h3>Query: ${q}</h3>`;
+    const tbl = document.createElement('table');
+    tbl.innerHTML = '<thead><tr><th>Repo</th><th>Stars</th><th>License</th><th>Updated</th></tr></thead><tbody></tbody>';
+    for(const it of items){
+      const tr = document.createElement('tr');
+      if(it.error){ tr.innerHTML = `<td colspan="4">${it.error}</td>`; }
+      else{
+        tr.innerHTML = `<td><a href="${it.url}" target="_blank" rel="noopener">${it.name}</a><div style="opacity:.8">${it.description||''}</div></td>
+                        <td>${it.stars||''}</td><td>${it.license||''}</td><td>${new Date(it.updated_at).toLocaleDateString()}</td>`;
+      }
+      tbl.querySelector('tbody').appendChild(tr);
+    }
+    sec.appendChild(tbl);
+    el.appendChild(sec);
+  }
+}
+</script>
+</body></html>

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-22T17:49:35.629Z",
+  "generated_at": "2025-10-22T17:50:03.602Z",
   "files": [
     {
       "path": ".github/workflows/MANIFEST.json",
@@ -114,6 +114,13 @@
       "purpose": "GitHub Actions"
     },
     {
+      "path": ".github/workflows/charlotte-curated-crawl.yml",
+      "bytes": 714,
+      "sha1": "d0deb5cc87a18c2dd44f3a5728a9b37d260a77e9",
+      "type": "workflow",
+      "purpose": "GitHub Actions"
+    },
+    {
       "path": ".github/workflows/charlotte-link-registry.yml",
       "bytes": 741,
       "sha1": "4e5de4442b52d58e1a540d893d31f1bca706bb02",
@@ -178,8 +185,8 @@
     },
     {
       "path": ".github/workflows/overseers-crossrepo-sweep.yml",
-      "bytes": 1505,
-      "sha1": "1cc664385b193a206a4462566b9d6811d830fc24",
+      "bytes": 1507,
+      "sha1": "4568a650273205f2f98399899086b54d0b877a9d",
       "type": "workflow",
       "purpose": "GitHub Actions"
     },
@@ -4673,7 +4680,7 @@
     {
       "path": "pages/apps/overseers/memory/coverage.json",
       "bytes": 216,
-      "sha1": "b6ffbf3cc164f8d3a11eca338f267f74f0457b2f",
+      "sha1": "b5977d4b8dc5a34ecee7e2fd162aecfa242de550",
       "type": "overseers",
       "purpose": "Governance & telemetry"
     },
@@ -4686,8 +4693,8 @@
     },
     {
       "path": "pages/apps/overseers/memory/file-index.json",
-      "bytes": 181012,
-      "sha1": "4c0056ee213987a7a9b65403d30e6aabb6763c68",
+      "bytes": 181385,
+      "sha1": "0ecfe89734b797f7982bdb011893ffcab982bcc5",
       "type": "overseers",
       "purpose": "Governance & telemetry"
     },

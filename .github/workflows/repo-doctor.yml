@@ -1,0 +1,56 @@
+name: Overseers - Repo Doctor
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  doctor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Validate Carol pointer and build shopping
+        run: |
+          set -e
+          if [ ! -f "pages/apps/carol/index.json" ]; then
+            echo "::error title=Missing Carol pointer::pages/apps/carol/index.json not found"; exit 1
+          fi
+          node -e "const p=require('node:path');const fs=require('node:fs');const J=JSON.parse(fs.readFileSync('pages/apps/carol/index.json','utf8'));if(!J.plan_latest||!fs.existsSync(J.plan_latest)){console.error('::error title=Plan missing::index.json plan_latest missing or file not found ->',J.plan_latest);process.exit(1);}"
+          if [ -f "scripts/carol/build-shopping.mjs" ]; then
+            node scripts/carol/build-shopping.mjs
+          fi
+      - name: Commit to PR branch
+        run: |
+          BR="autobot/repo-doctor-${GITHUB_RUN_ID}"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name  "github-actions[bot]"
+          git checkout -b "$BR" || git checkout "$BR"
+          git add pages/apps/carol/plans/shopping-2p.json || true
+          git commit -m "chore(repo-doctor): validate Carol & build shopping" || echo "Nothing to commit."
+          git push origin "$BR" || echo "Branch exists or no changes."
+      - name: Open PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo  = context.repo.repo;
+            const head  = `autobot/repo-doctor-${process.env.GITHUB_RUN_ID}`;
+            try {
+              const { data: pr } = await github.rest.pulls.create({
+                owner, repo, head, base: 'main',
+                title: 'Overseers: Repo Doctor (Carol & Shopping)',
+                body: 'Automated check + build.'
+              });
+              core.notice(`PR created: ${pr.html_url}`);
+            } catch (e) {
+              core.warning(`PR create skipped or exists: ${e.message}`);
+            }

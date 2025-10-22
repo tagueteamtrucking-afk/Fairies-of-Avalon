@@ -1,31 +1,56 @@
-name: Overseers - Repo Sweep (files index + WPI + manifests)
+name: Overseers - Memory Sweep
 on:
   workflow_dispatch:
-  push:
-    branches: [ main, master ]
-    paths-ignore:
-      - '.github/workflows/**'
+
 permissions:
   contents: write
-concurrency:
-  group: repo-sweep
-  cancel-in-progress: false
+  pull-requests: write
+
+defaults:
+  run:
+    shell: bash
+
 jobs:
   sweep:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Run sweep
-        run: node scripts/overseers/repo-sweep.mjs
-      - name: Commit changes (if any)
+          node-version: '20'
+
+      - name: Build in-repo memory index
         run: |
-          git config user.name "Overseers Bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add memory/file-index.json memory/deadends.json asset/models/models.json asset/wings/manifest.json pages/apps/overseers/progress.json || true
-          git commit -m "Repo Sweep: files index + WPI + manifests + deadends" || echo "Nothing to commit"
-          git push || echo "Nothing to push"
+          node scripts/overseers/memory-index.mjs --root . --out pages/apps/overseers/memory-index.json
+
+      - name: Commit to PR branch
+        run: |
+          BR="autobot/memory-sweep-${GITHUB_RUN_ID}"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name  "github-actions[bot]"
+          git checkout -b "$BR" || git checkout "$BR"
+          git add pages/apps/overseers/memory-index.json
+          git commit -m "chore(overseers): update Memory Index" || echo "Nothing to commit."
+          git push origin "$BR" || echo "Branch exists or no changes."
+
+      - name: Open PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo  = context.repo.repo;
+            const head  = `autobot/memory-sweep-${process.env.GITHUB_RUN_ID}`;
+            try {
+              const { data: pr } = await github.rest.pulls.create({
+                owner, repo, head, base: 'main',
+                title: 'Overseers: Memory Index',
+                body: `Automated update from run ${context.runId}`
+              });
+              core.notice(`PR created: ${pr.html_url}`);
+            } catch (e) {
+              core.warning(`PR create skipped or exists: ${e.message}`);
+            }

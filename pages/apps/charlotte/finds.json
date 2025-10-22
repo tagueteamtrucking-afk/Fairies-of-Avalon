@@ -1,0 +1,40 @@
+{
+  "generated_at": "2025-10-22T18:01:45.574Z",
+  "items": [
+    {
+      "group": "Open-source creative app starters",
+      "links": [
+        {
+          "title": "Stable Studio (web UI)",
+          "url": "https://github.com/Stability-AI/StableStudio",
+          "note": "OSS image app foundation"
+        },
+        {
+          "title": "InvokeAI",
+          "url": "https://github.com/invoke-ai/InvokeAI",
+          "note": "Local image gen workflow app"
+        }
+      ]
+    },
+    {
+      "group": "3D / Mesh tools (for Nina & Tracy)",
+      "links": [
+        {
+          "title": "Open Source 3D Editor (three.js based)",
+          "url": "https://github.com/mrdoob/three.js/tree/dev/editor",
+          "note": "Three.js editor"
+        }
+      ]
+    },
+    {
+      "group": "Video (faceless / automated)",
+      "links": [
+        {
+          "title": "OpenShot Video Editor",
+          "url": "https://github.com/OpenShot/openshot-qt",
+          "note": "Video editor; pipeline base"
+        }
+      ]
+    }
+  ]
+}

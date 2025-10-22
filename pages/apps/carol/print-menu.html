@@ -1,46 +1,80 @@
+<!-- pages/apps/carol/print-menu.html -->
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Carol • Print Menu</title>
-  <link rel="stylesheet" href="/pages/apps/carol/print.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carol — 14‑Day Menu (Print)</title>
+  <link rel="stylesheet" href="./print.css" />
+  <style>
+    .hint { font-size:.9rem; color:#666; margin:.25rem 0 1rem; }
+    .pill { display:inline-block; padding:.1rem .4rem; border-radius:.35rem; background:#eef; border:1px solid #dde; font-size:.8rem; }
+  </style>
 </head>
 <body>
-  <header class="controls">
-    <button class="print" onclick="window.print()">Print / Save PDF</button>
+  <header class="app">
+    <h1>Carol — 14‑Day Menu</h1>
+    <div class="hint">Print → “Save as PDF”. Each day will be one page.</div>
   </header>
-  <h1>Two‑Week Menu</h1>
-  <small class="meta">Pattern: DASH • Region: US • Target: 6–8 eating events/day</small>
-  <div id="root">Loading…</div>
-  <script>
-  (async () => {
+  <main id="out"></main>
+
+<script>
+(async function(){
+  async function getPlanPath(){
     try {
-      const ptr = await fetch('/pages/apps/carol/index.json').then(r=>r.json());
-      if (!ptr || !ptr.plan) {
-        document.getElementById('root').innerHTML = '<p><a href="/pages/apps/carol/index.json">Add File</a>: missing plan path.</p>';
-        return;
-      }
-      const planPath = ('/'+ptr.plan).replace(/\/+/g,'/');
-      const plan = await fetch(planPath).then(r=>r.json());
-      const root = document.getElementById('root'); root.innerHTML = '';
-      for (const day of plan.days || []){
-        const sec = document.createElement('section'); sec.className = 'day';
-        const h2 = document.createElement('h2'); h2.textContent = day.day_label || ('Day ' + (day.index||''));
-        sec.appendChild(h2);
-        const ul = document.createElement('ul');
-        for (const ev of day.events || []){
-          const li = document.createElement('li');
-          const when = ev.time_hint ? (ev.time_hint + ' — ') : '';
-          li.textContent = when + ev.name;
-          ul.appendChild(li);
-        }
-        sec.appendChild(ul);
-        root.appendChild(sec);
-      }
-    } catch (e){
-      document.getElementById('root').textContent = 'Error loading plan.';
+      const idxRes = await fetch('./index.json', { cache:'no-store' });
+      if(!idxRes.ok) throw new Error('index.json not found');
+      const idx = await idxRes.json();
+      if(!idx.plan) throw new Error('index.json missing "plan"');
+      return idx.plan.startsWith('/') ? idx.plan.replace(/^\//,'') : idx.plan;
+    } catch (e) {
+      const m = document.createElement('div');
+      m.innerHTML = '<p><strong>index.json missing.</strong> <a href="#">Add File</a></p>';
+      document.getElementById('out').appendChild(m);
+      throw e;
     }
-  })();
-  </script>
+  }
+
+  function el(tag, attrs={}, children=[]){
+    const n = document.createElement(tag);
+    for(const [k,v] of Object.entries(attrs)){
+      if(k==='class') n.className = v;
+      else n.setAttribute(k,v);
+    }
+    for(const c of [].concat(children)){ if(typeof c==='string') n.appendChild(document.createTextNode(c)); else if(c) n.appendChild(c); }
+    return n;
+  }
+
+  const planPath = await getPlanPath();
+  const planRes  = await fetch('../..' + '/' + planPath.replace(/^pages\//,''), { cache:'no-store' });
+  if(!planRes.ok){ document.getElementById('out').innerHTML = '<p>Plan not found at <code>'+planPath+'</code>. <a href="#">Add File</a></p>'; return; }
+  const plan = await planRes.json();
+
+  const out = document.getElementById('out');
+  (plan.days || []).forEach(day => {
+    const sec = el('section', { class:'day' });
+    sec.appendChild(el('h2',{},['Day ', String(day.index)]));
+    (day.events||[]).forEach(evt => {
+      const e = el('div',{class:'event'});
+      e.appendChild(el('div',{class:'meta'},[(evt.time_hint||'').replace(/-/g,' '), ' • ', (evt.type||'')]));
+      e.appendChild(el('div',{class:'title'},[evt.name||'']));
+      const items = (evt.items||[]).map(it => `${it.ingredient} — ${it.quantity} ${it.unit}`);
+      if(items.length){
+        const ul = el('ul');
+        items.forEach(t => ul.appendChild(el('li',{},[t])));
+        e.appendChild(ul);
+      }
+      const inst = evt.instructions||[];
+      if(inst.length){
+        const ol = el('ol');
+        inst.forEach(t => ol.appendChild(el('li',{},[t])));
+        e.appendChild(ol);
+      }
+      sec.appendChild(e);
+    });
+    out.appendChild(sec);
+  });
+})();
+</script>
 </body>
 </html>

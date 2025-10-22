@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_at": "2025-10-22T03:56:13.600Z",
+    "generated_at": "2025-10-22T04:27:33.733Z",
     "counts": {
       "total": 893,
       "byType": {
-        "data": 200,
-        "workflow": 294,
+        "data": 201,
+        "workflow": 293,
         "other": 175,
         "html": 85,
         "model": 19,
@@ -13,12 +13,12 @@
         "code": 26
       },
       "byArea": {
-        "workflow": 47,
+        "workflow": 46,
         "other": 315,
         "model": 16,
         "wallpaper": 10,
         "wings": 108,
-        "page": 304,
+        "page": 305,
         "script": 93
       }
     }
@@ -92,14 +92,6 @@
       "path": ".github/workflows/carol-inspect-plan.yml",
       "size": 1860,
       "sha1": "f1e1380ff687c7dd8cd791c35e7617f6cc2234b8",
-      "area": "workflow",
-      "type": "workflow",
-      "purpose": ""
-    },
-    {
-      "path": ".github/workflows/carol-lock-pointer.yml",
-      "size": 1086,
-      "sha1": "3fab9051f9ccd3f453fac1c8d3ddd818b5a20590",
       "area": "workflow",
       "type": "workflow",
       "purpose": ""
@@ -2634,8 +2626,8 @@
     },
     {
       "path": "memory-history/20250915T160028Z-Codys-Memory.yaml",
-      "size": 2123,
-      "sha1": "37563ff198b04b7d797656a92f7a2ce518f48454",
+      "size": 2119,
+      "sha1": "f15af362f660cf24184fa3bf16d2d55caceb192f",
       "area": "other",
       "type": "workflow",
       "purpose": ""
@@ -2682,8 +2674,8 @@
     },
     {
       "path": "memory-history/20250915T175348Z-Codys-Memory.yaml",
-      "size": 928,
-      "sha1": "2125c90414922c65ef60f94275e29395cd29adf9",
+      "size": 919,
+      "sha1": "6109420bc1bfbf65153a78bd65ae36b1c3a17842",
       "area": "other",
       "type": "workflow",
       "purpose": ""
@@ -3674,8 +3666,8 @@
     },
     {
       "path": "memory-history/20251017T224658Z-Codys-Memory.yaml",
-      "size": 2347,
-      "sha1": "35f97d8475727418efda78de5e3268238fa74f40",
+      "size": 2344,
+      "sha1": "5224275ed28658202f39b697fd43fcaf8ba5718a",
       "area": "other",
       "type": "workflow",
       "purpose": ""
@@ -3746,8 +3738,8 @@
     },
     {
       "path": "memory-history/repo-read-index.json",
-      "size": 862643,
-      "sha1": "758ab7a2bdb4b993376fedba6bdd6be6eabaf265",
+      "size": 862574,
+      "sha1": "212953edfbd7524f5bd1d48b3d81e6d5f13318f1",
       "area": "other",
       "type": "data",
       "purpose": ""
@@ -4730,8 +4722,8 @@
     },
     {
       "path": "pages/apps/carol/plans/shopping-quantized.json",
-      "size": 4866,
-      "sha1": "bc101f4dff08f3bc7946282cd5faeff978675ba8",
+      "size": 6987,
+      "sha1": "422fb1af452fbc8a42fffea50f7a68e621906d86",
       "area": "page",
       "type": "data",
       "purpose": "Aggregated shopping list (2 people)"
@@ -5326,6 +5318,14 @@
       "sha1": "f500039ad4e32079c3873d23f4053ef3346b9c44",
       "area": "page",
       "type": "html",
+      "purpose": ""
+    },
+    {
+      "path": "pages/apps/overseers/memory/index.json",
+      "size": 195531,
+      "sha1": "410700c8e0356f299f42fad1ba7debc731ace57e",
+      "area": "page",
+      "type": "data",
       "purpose": ""
     },
     {
@@ -6098,8 +6098,8 @@
     },
     {
       "path": "pages/diagnostics/version-scan.json",
-      "size": 426,
-      "sha1": "59faca85ec13af3287d5dd5c45faf62900464487",
+      "size": 423,
+      "sha1": "b96bb727ada43fa15300ecae6daa0c82a3feaa75",
       "area": "page",
       "type": "data",
       "purpose": ""
@@ -7114,8 +7114,8 @@
     },
     {
       "path": "scripts/overseers/repo-doctor.mjs",
-      "size": 1083,
-      "sha1": "c72b5149cffdb1c3630da12932695e83164f776c",
+      "size": 1078,
+      "sha1": "4e6a9b52c0ec258d4721dd09897d581452c2c034",
       "area": "script",
       "type": "code",
       "purpose": ""

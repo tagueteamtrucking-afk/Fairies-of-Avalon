@@ -1,35 +1,36 @@
 <!-- pages/apps/carol/print-shopping.html -->
-<!doctype html><html lang="en">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>Carol • Print Shopping List</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="./print.css"/>
+  <title>Shopping List • Print</title>
+  <link rel="stylesheet" href="./print.css">
   <style>
-    .group{ break-inside: avoid; page-break-inside: avoid; }
+    @media screen { .screen-note { margin: 0.75rem 1rem; } }
   </style>
-  <script>
-  async function loadPointer(){
-    const cand=['/pages/apps/carol/index.json','./index.json','../carol/index.json'];
-    for(const u of cand){ try{ const r=await fetch(u,{cache:'no-store'}); if(r.ok) return r.json(); }catch{} }
-    throw new Error('Pointer index.json not found.');
-  }
-  async function loadPlan(p){ const r=await fetch(p,{cache:'no-store'}); if(!r.ok) throw new Error('Plan not found '+p); return r.json(); }
-  async function main(){
-    const pointer = await loadPointer();
-    const planPath = pointer.plan_latest || pointer.pointer || pointer.plan || '/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json';
-    const r = await fetch('./shopping.html'); // reuse code by importing functions? keep simple: re-run small aggregate path
-    if(!r.ok){ document.getElementById('hdr').textContent='Open shopping.html first.'; return; }
-    document.getElementById('hdr').textContent = 'Shopping List • Ready to print';
-    window.print();
-  }
-  window.addEventListener('DOMContentLoaded', main);
-  </script>
 </head>
 <body>
-  <header class="controls"><button onclick="window.print()">Print / Save PDF</button><span id="hdr" style="margin-left:12px;color:#555">Loading…</span></header>
-  <main class="container">
-    <p>Tip: Use <em>shopping.html</em> for interactive view; use this page for a clean print.</p>
+  <div class="screen-note screen-only">
+    <button onclick="window.print()" class="primary">Print / Save PDF</button>
+    <span class="meta">This page is optimized for printing.</span>
+  </div>
+  <main>
+    <section class="card shopping sheet">
+      <h2>Shopping List (2 people)</h2>
+      <div class="table-wrap">
+        <table id="listTable">
+          <thead><tr><th>Aisle</th><th>Item</th><th>Total</th><th>Notes</th></tr></thead>
+          <tbody id="listBody"></tbody>
+        </table>
+      </div>
+      <div class="print-note">
+        Assumptions: cheese stick = 1 oz; hummus & cream cheese 2 tbsp = 1 oz; rolled oats 1 cup = 2.86 oz;
+        canned beans 1 can ≈ 1.5 cups drained; tomato soup 1 can ≈ 1.25 cups.
+      </div>
+    </section>
   </main>
+  <script src="./shopping.js" defer></script>
+  <script>window.addEventListener('load', ()=>{ setTimeout(()=>window.print(), 300); });</script>
 </body>
 </html>

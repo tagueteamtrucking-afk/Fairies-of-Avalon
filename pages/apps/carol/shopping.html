@@ -1,271 +1,46 @@
 <!-- pages/apps/carol/shopping.html -->
-<!doctype html><html lang="en">
+<!doctype html>
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>Carol • Shopping List (2 people)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="./print.css"/>
-  <style>
-    .group{ border:1px solid #e5e5e5; border-radius:8px; padding:12px; margin:12px 0; background:#fff; }
-    .group h3{ margin:0 0 8px; }
-    table{ width:100%; border-collapse:collapse; }
-    th,td{ border-bottom:1px solid #eee; padding:6px 8px; text-align:left; vertical-align:top; }
-    th{ font-weight:600; background:#fafafa; }
-    .meta{ color:#666; font-size:12px; }
-    .pill{ font-size:12px; padding:2px 6px; border:1px solid #ddd; border-radius:999px; }
-    @media print{
-      .controls{ display:none!important; }
-      th,td{ border-color:#ddd; }
-    }
-  </style>
-  <script>
-  const SYNONYMS = new Map([
-    // dairy/cheese
-    [/^lactose[- ]?free mozzarella$/i, 'Mozzarella, lactose-free'],
-    [/^lactose[- ]?free cheese( stick)?$/i, 'Mozzarella, lactose-free'],
-    [/^lf mozzarella$/i, 'Mozzarella, lactose-free'],
-    // hummus
-    [/^hummus( \(no cumin\))?$/i, 'Hummus (no cumin)'],
-    [/^hummus \(no cumin\)$/i, 'Hummus (no cumin)'],
-    // frozen veg
-    [/^(mixed vegetables|frozen mixed vegetables|mixed vegetables \(frozen\)|frozen veg medley)$/i, 'Mixed vegetables, frozen'],
-    // yogurt
-    [/^lactose[- ]?free greek yogurt$/i, 'Greek yogurt, lactose-free'],
-    // milk
-    [/^lactose[- ]?free milk$/i, 'Milk, lactose-free'],
-    // cottage
-    [/^lactose[- ]?free cottage cheese$/i, 'Cottage cheese, lactose-free'],
-    // bread/tortilla normalization
-    [/^soft whole[- ]?grain bread$/i, 'Whole-grain bread (soft)'],
-    [/^soft whole[- ]?wheat tortilla$/i, 'Whole-wheat tortilla (soft)']
-  ]);
-
-  const CATS = [
-    ['Produce', [/apple|banana|pear|peach|grapes?|kiwi|tomato|cucumber|spinach|lettuce|lemon|lime|mango|pineapple|carrots?|potatoes?|avocado/i]],
-    ['Seafood', [/salmon|cod/i]],
-    ['Meat & Poultry', [/chicken|turkey/i]],
-    ['Dairy & Eggs', [/yogurt|milk|cottage|mozzarella|cheese|egg/i]],
-    ['Frozen', [/frozen|Mixed vegetables, frozen/i]],
-    ['Grains & Bread', [/oats?|rice(?! cooker)|tortilla|bread|panko/i]],
-    ['Pantry', [/hummus|peanut butter|olive oil|flax|chia|cocoa|vanilla|garlic powder|beans|tomato soup|diced tomatoes|relish/i]],
-    ['Other', [/./i]],
-  ];
-
-  // produce piece -> lb (est) weights
-  const PRODUCE_LB_EST = {
-    apple: 0.33, banana: 0.25, pear: 0.33, peach: 0.33, kiwi: 0.15, tomato: 0.25,
-    cucumber: 0.50, lemon: 0.25, lime: 0.15, grapes_cup: 0.33,
-    mango_cup: 0.35, pineapple_cup: 0.35, berries_cup: 0.35, carrots_cup: 0.33,
-    potatoes_piece: 0.18, avocado: 0.33
-  };
-
-  // density helpers (approx for shopping)
-  const OZ_PER_TBSP = 0.5;             // semi-solids (PB, hummus, cream cheese by weight approx)
-  const G_PER_CUP_OATS = 81;           // rolled oats
-  const OZ_PER_CUP_MILK = 8;           // dairy liquids
-  const OZ_PER_CUP_YOGURT = 8;         // yogurt (weight-ish for shopping)
-  const OZ_PER_CUP_COTTAGE = 8;        // cottage cheese
-
-  function normalizeName(s){
-    if(!s) return s;
-    for(const [re,name] of SYNONYMS){
-      if(re.test(s)) return name;
-    }
-    return s.replace(/\s+/g,' ').trim();
-  }
-
-  function isProduce(name){ return /apple|banana|pear|peach|grapes?|kiwi|tomato|cucumber|spinach|lettuce|lemon|lime|mango|pineapple|carrots?|potatoes?|avocado/i.test(name); }
-
-  function add(map, name, qty, unit){
-    const key = normalizeName(name);
-    const cur = map.get(key) || { name:key, qty:0, unit:null, notes:[], sources:[] };
-    cur.qty += qty;
-    cur.unit = cur.unit || unit;
-    map.set(key, cur);
-  }
-
-  function toShopping(name, quantity, unit, notes){
-    name = normalizeName(name);
-    let q = quantity || 0;
-    let u = (unit||'').toLowerCase();
-
-    // Produce: standardize to lb (est)
-    if(isProduce(name)){
-      if(/cup/.test(u)){
-        // cup-based produce (berries, grapes, mango, pineapple, carrots)
-        let est = 0.35;
-        if(/grape/.test(name)) est = PRODUCE_LB_EST.grapes_cup;
-        else if(/mango/.test(name)) est = PRODUCE_LB_EST.mango_cup;
-        else if(/pineapple/.test(name)) est = PRODUCE_LB_EST.pineapple_cup;
-        else if(/berr/.test(name)) est = PRODUCE_LB_EST.berries_cup;
-        else if(/carrot/.test(name)) est = PRODUCE_LB_EST.carrots_cup;
-        return [name, q*est, 'lb (est)'];
-      }
-      if(/piece|leaf/.test(u)){
-        let est = 0.33;
-        if(/banana/.test(name)) est = PRODUCE_LB_EST.banana;
-        else if(/apple/.test(name)) est = PRODUCE_LB_EST.apple;
-        else if(/pear/.test(name)) est = PRODUCE_LB_EST.pear;
-        else if(/peach/.test(name)) est = PRODUCE_LB_EST.peach;
-        else if(/kiwi/.test(name)) est = PRODUCE_LB_EST.kiwi;
-        else if(/cucumber/.test(name)) est = PRODUCE_LB_EST.cucumber;
-        else if(/tomato/.test(name)) est = PRODUCE_LB_EST.tomato;
-        else if(/lemon/.test(name)) est = PRODUCE_LB_EST.lemon;
-        else if(/lime/.test(name)) est = PRODUCE_LB_EST.lime;
-        else if(/potato/.test(name)) est = PRODUCE_LB_EST.potatoes_piece;
-        else if(/avocado/.test(name)) est = PRODUCE_LB_EST.avocado;
-        return [name, q*est, 'lb (est)'];
-      }
-      // already lb (keep), default fallback
-      return [name, q, u||'lb (est)'];
-    }
-
-    // Dairy: preferred shopping units
-    if(/cream cheese|hummus/i.test(name)){
-      if(/tbsp/.test(u)) return [name, q*OZ_PER_TBSP, 'oz']; // 2 tbsp ~= 1 oz
-      return [name, q, u||'oz'];
-    }
-    if(/yogurt/i.test(name)){
-      if(/cup/.test(u)) return [name, q*OZ_PER_CUP_YOGURT, 'oz'];
-    }
-    if(/cottage/i.test(name)){
-      if(/cup/.test(u)) return [name, q*OZ_PER_CUP_COTTAGE, 'oz'];
-    }
-    if(/milk/i.test(name)){
-      if(/cup/.test(u)) return [name, q*OZ_PER_CUP_MILK/32, 'qt']; // 32 oz per quart
-    }
-
-    // Oats
-    if(/rolled oats/i.test(name)){
-      if(/cup/.test(u)){
-        const g = q*G_PER_CUP_OATS;
-        const oz = g/28.35;
-        return [name, oz, 'oz']; // show oz (and subtotal in lb later)
-      }
-    }
-
-    // default: return as-is
-    return [name, q, u||''];
-  }
-
-  async function loadPointer(){
-    const candidates = [
-      '/pages/apps/carol/index.json',
-      './index.json',
-      '../carol/index.json'
-    ];
-    for(const url of candidates){
-      try{
-        const res = await fetch(url, { cache:'no-store' });
-        if(res.ok) return await res.json();
-      }catch{}
-    }
-    throw new Error('Pointer index.json not found. Add File: pages/apps/carol/index.json');
-  }
-  async function loadPlan(pathOrObj){
-    if(typeof pathOrObj === 'string'){
-      const res = await fetch(pathOrObj, { cache:'no-store' });
-      if(!res.ok) throw new Error('Plan JSON not found at '+pathOrObj);
-      return res.json();
-    }
-    return pathOrObj;
-  }
-
-  function aggregate(plan){
-    const map = new Map();
-    (plan.days||[]).forEach(d=>{
-      (d.events||[]).forEach(ev=>{
-        (ev.items||[]).forEach(it=>{
-          const [n, q, u] = toShopping(it.ingredient, it.quantity, it.unit, it.notes);
-          const key = normalizeName(n) + '::' + (u||'');
-          const row = map.get(key) || { name: normalizeName(n), qty: 0, unit: u||'', samples: [] };
-          row.qty += (q||0);
-          row.samples.push({ q: it.quantity, u: it.unit, notes: it.notes||'' });
-          map.set(key, row);
-        });
-      });
-    });
-    return Array.from(map.values());
-  }
-
-  function categorize(rows){
-    const groups = CATS.map(([name])=>({ name, rows:[] }));
-    rows.forEach(r=>{
-      const target = CATS.find(([,res])=> res.some(re=> re.test(r.name))) || CATS[CATS.length-1];
-      groups.find(g=>g.name===target[0]).rows.push(r);
-    });
-    // sort by name
-    groups.forEach(g=> g.rows.sort((a,b)=> a.name.localeCompare(b.name)));
-    return groups.filter(g=>g.rows.length);
-  }
-
-  function fmtQty(row){
-    const u = (row.unit||'').toLowerCase();
-    if(u==='oz' && row.qty>=16){
-      const lb = row.qty/16;
-      return `${row.qty.toFixed(0)} oz (${lb.toFixed(2)} lb)`;
-    }
-    if(u==='lb (est)'){
-      return `${row.qty.toFixed(2)} lb (est)`;
-    }
-    if(u==='qt'){
-      return `${row.qty.toFixed(2)} qt`;
-    }
-    // default
-    return row.qty % 1 === 0 ? `${row.qty}` : row.qty.toFixed(2) + (u? ' '+u:'');
-  }
-
-  function render(groups){
-    const target = document.getElementById('out');
-    target.innerHTML='';
-    groups.forEach(g=>{
-      const box = document.createElement('section'); box.className='group';
-      box.innerHTML = `<h3>${g.name}</h3>`;
-      const tbl = document.createElement('table');
-      tbl.innerHTML = '<thead><tr><th>Item</th><th>Amount</th><th class="meta">Notes</th></tr></thead>';
-      const tb = document.createElement('tbody');
-      g.rows.forEach(r=>{
-        const tr = document.createElement('tr');
-        const notes = r.samples.length ? r.samples.map(s=>{
-          const q = (s.q!==undefined && s.u) ? `${s.q} ${s.u}` : '';
-          return q + (s.notes? ' — '+s.notes : '');
-        }).slice(0,3).join('; ') : '';
-        tr.innerHTML = `<td>${r.name}</td><td>${fmtQty(r)}</td><td class="meta">${notes}</td>`;
-        tb.appendChild(tr);
-      });
-      tbl.appendChild(tb); box.appendChild(tbl); target.appendChild(box);
-    });
-  }
-
-  async function main(){
-    const pointer = await loadPointer();
-    const planPath = pointer.plan_latest || pointer.pointer || pointer.plan || '/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json';
-    const plan = await loadPlan(planPath);
-    document.getElementById('hdr').textContent = `Shopping list • ${plan.weeks*7||14} days • 2 people`;
-    const rows = aggregate(plan);
-    const groups = categorize(rows);
-    render(groups);
-  }
-
-  window.addEventListener('DOMContentLoaded', ()=>{
-    document.getElementById('doPrint').addEventListener('click', ()=> window.print());
-    document.getElementById('openPrint').addEventListener('click', ()=> location.href='./print-shopping.html');
-    main().catch(err=>{
-      document.getElementById('hdr').textContent = err.message;
-    });
-  });
-  </script>
+  <title>Carol • Shopping List</title>
+  <link rel="stylesheet" href="./print.css">
 </head>
 <body>
-  <header class="controls">
-    <button id="doPrint">Print / Save PDF</button>
-    <button id="openPrint">Open Print Page</button>
-    <a class="pill" href="./print-menu.html">Print Menu (1 day per page)</a>
-    <span id="hdr" style="margin-left:auto;color:#555">Loading…</span>
+  <header>
+    <h1>Shopping List</h1>
+    <span class="spacer"></span>
+    <button id="openPrintPage" class="screen-only">Open Print Page</button>
+    <button id="printNow" class="primary screen-only">Print / Save PDF</button>
   </header>
-  <main class="container">
-    <div id="out"></div>
-    <p class="meta">Notes: Produce weights in <strong>lb (est)</strong>. Cream cheese &amp; hummus in <strong>oz</strong>. Milk/yogurt/cottage standardized for shopping. Oats shown in oz with lb equivalence when large.</p>
+
+  <main>
+    <section class="card">
+      <div class="meta">
+        Plan pointer: <code id="planPath">loading…</code> • For <strong>2 people</strong> • Pattern: <span id="pattern">—</span>
+      </div>
+      <div id="note" class="note" style="margin-top:0.5rem;">
+        Units: Produce in <strong>lb (est)</strong>. Dairy & dips in <strong>oz</strong> or <strong>qt</strong>. Pantry in practical units.
+      </div>
+      <div id="error" class="error hidden"></div>
+    </section>
+
+    <section class="card shopping" style="margin-top:1rem;">
+      <h2>Totals by Aisle</h2>
+      <div class="table-wrap">
+        <table id="listTable">
+          <thead><tr><th>Aisle</th><th>Item</th><th>Total</th><th class="screen-only">Notes</th></tr></thead>
+          <tbody id="listBody"></tbody>
+        </table>
+      </div>
+      <div class="note" style="margin-top:0.75rem">
+        <strong>Assumptions</strong>: cheese stick = 1 oz; hummus & cream cheese 2 tbsp = 1 oz; rolled oats 1 cup = 2.86 oz;
+        canned beans 1 can ≈ 1.5 cups drained; tomato soup 1 can ≈ 1.25 cups. Adjustable in <code>shopping.js</code>.
+      </div>
+    </section>
   </main>
+
+  <script src="./shopping.js" defer></script>
 </body>
 </html>

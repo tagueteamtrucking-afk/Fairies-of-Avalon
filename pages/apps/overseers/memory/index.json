@@ -14,7 +14,7 @@
       "microapp": 52
     },
     "wallpapers": 10,
-    "generated_at": "2025-10-22T06:33:57.200Z"
+    "generated_at": "2025-10-22T07:27:36.556Z"
   },
   "files": [
     {
@@ -3343,20 +3343,20 @@
     },
     {
       "path": "pages/apps/carol/print-menu.html",
-      "bytes": 1700,
-      "sha1": "c9bf588763c7511b4a8afbb6e194db64589c68bb",
+      "bytes": 2993,
+      "sha1": "338e20b7b6e87adbdc22372a935fc5beaec6a47f",
       "type": "microapp"
     },
     {
       "path": "pages/apps/carol/print-shopping.html",
-      "bytes": 3799,
-      "sha1": "552c10dae7fea483151ab8eaa43f4de2b75e6ca6",
+      "bytes": 9290,
+      "sha1": "5364a33f0327c64e0b7caedeb39959d5eb736b12",
       "type": "microapp"
     },
     {
       "path": "pages/apps/carol/print.css",
-      "bytes": 771,
-      "sha1": "083cdc225a87bc944f63e6092dd532c3d4c99ee8",
+      "bytes": 1363,
+      "sha1": "d706f5badc3e5169d0ba449f72303b691e5fe52d",
       "type": "microapp"
     },
     {
@@ -3379,8 +3379,8 @@
     },
     {
       "path": "pages/apps/carol/shopping.html",
-      "bytes": 4211,
-      "sha1": "818b71172207249ea7b9bc268230b9a09d7dd657",
+      "bytes": 11163,
+      "sha1": "5b584db2800c495363b557400765beba03b6251a",
       "type": "microapp"
     },
     {
@@ -3740,7 +3740,7 @@
     {
       "path": "pages/apps/overseers/memory/index.json",
       "bytes": 148705,
-      "sha1": "dafed2e9adb1a64312735fbdf6f41bde3dc05fdd",
+      "sha1": "31d545769b444369296542b2f02393a80c38cb90",
       "type": "page"
     },
     {

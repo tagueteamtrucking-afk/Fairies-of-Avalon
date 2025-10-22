@@ -8,20 +8,14 @@ on:
       - 'asset/wings/**'
       - 'asset/textures/wallpapers/**'
       - 'scripts/overseers/repo-sweep.mjs'
-
 permissions:
   contents: write
-
 concurrency:
   group: overseers-manifests
   cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: pwsh
     steps:
       - uses: actions/checkout@v4
         with:

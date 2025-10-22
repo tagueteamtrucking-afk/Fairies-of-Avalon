@@ -1,11 +1,6 @@
 name: Carol - Generate Shopping List (from current plan)
 on:
   workflow_dispatch:
-    inputs:
-      people:
-        description: "People (default 2)"
-        required: false
-        default: "2"
 permissions:
   contents: write
 jobs:
@@ -16,14 +11,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Generate shopping JSON
-        env:
-          PEOPLE: ${{ github.event.inputs.people }}
+      - name: Build shopping list (2 people from embedded items)
         run: node scripts/carol/build-shopping.mjs
-      - name: Commit shopping & coverage
+      - name: Commit list
         run: |
           git config user.name "Carol Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add pages/apps/carol/plans/shopping-quantized.json pages/apps/carol/plans/coverage.json || true
-          git commit -m "Carol: shopping list (people=${{ github.event.inputs.people || 2 }})" || echo "Nothing to commit"
+          git add pages/apps/carol/plans/shopping-quantized.json || true
+          git commit -m "Carol: shopping list (2p) from embedded plan items" || echo "Nothing to commit"
           git push || echo "Nothing to push"

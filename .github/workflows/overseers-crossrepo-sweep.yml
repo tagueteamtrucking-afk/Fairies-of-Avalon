@@ -21,13 +21,12 @@ jobs:
           else
             echo "SECOND_REPO or REPOS_READ_TOKEN missing; skipping clone."
           fi
-      - name: Run sweep on second repo (skips if no clone)
+      - name: Sweep second repo (if present)
         env:
           INPUT_DIR: _second
-          OUT_FILE_INDEX: memory/second-repo-index.json
         run: |
           if [ -d "_second" ]; then
-            node scripts/overseers/repo-sweep.mjs
+            node scripts/overseers/repo-sweep.mjs || true
           else
             echo "No _second directory; nothing to sweep."
           fi
@@ -35,6 +34,6 @@ jobs:
         run: |
           git config user.name "Overseers Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add memory/second-repo-index.json pages/apps/overseers/progress.json || true
-          git commit -m "Cross-Repo Sweep: second repo files index" || echo "Nothing to commit"
+          git add asset/models/models.json asset/wings/manifest.json pages/apps/overseers/progress.json || true
+          git commit -m "Cross-Repo Sweep outputs" || echo "Nothing to commit"
           git push || echo "Nothing to push"

@@ -1,8 +1,8 @@
-name: Charlotte - AI Projects Crawler (GitHub)
+name: Charlotte - AI Projects Crawler
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 11 * * 1'
+schedule:
+  - cron: '0 14 * * 1'   # weekly
 permissions:
   contents: write
 jobs:
@@ -13,14 +13,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Run crawler
+      - name: Run crawler (GitHub API)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/charlotte/crawler.mjs
-      - name: Commit results
+      - name: Commit crawler output
         run: |
           git config user.name "Charlotte Bot"
           git config user.email "actions@users.noreply.github.com"
           git add pages/apps/charlotte/crawler/index.json || true
-          git commit -m "Charlotte crawler: AI repos snapshot" || echo "Nothing to commit"
+          git commit -m "Charlotte: crawler refresh" || echo "Nothing to commit"
           git push || echo "Nothing to push"

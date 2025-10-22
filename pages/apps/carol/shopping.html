@@ -16,25 +16,40 @@
     tr:hover{background:#121a22}
     .miss{background:#281a1a;border:1px solid #4a2e2e;color:#f0dede;padding:.6rem;border-radius:8px;margin-top:12px}
     a.btn{display:inline-block;margin-top:.5rem;padding:.45rem .65rem;border:1px solid #32506b;border-radius:8px;text-decoration:none;color:#d9f0ff}
+    code{background:#101820;border:1px solid #213140;border-radius:6px;padding:.1rem .25rem}
   </style>
   <script type="module">
-    const ptr = await fetch('./index.json',{cache:'no-store'}).then(r=>r.json());
-    const shopPath = String(ptr.shopping||'').replace(/^\//,'');
-    const p = await fetch('../..//../'+shopPath,{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
+    function resolveUrl(targetPath, ptrUrl){
+      const s = String(targetPath||'').trim();
+      if (!s) return null;
+      if (/^https?:\/\//i.test(s)) return s;
+      if (s.startsWith('/')) return s;
+      if (s.startsWith('pages/')) return '/' + s;
+      return new URL(s, ptrUrl).href;
+    }
+    const ptrUrl = new URL('./index.json', window.location.href);
+    const ptr = await fetch(ptrUrl, {cache:'no-store'}).then(r=>r.json()).catch(()=>null);
     const meta = document.querySelector('.meta');
     const tbody = document.querySelector('tbody');
-    if(!p){
-      document.querySelector('.wrap').innerHTML = `
-        <div class="miss">
-          Shopping list not found at <code>${ptr.shopping}</code>.
-          <div>Run the GitHub Action: <b>Carol - Generate Shopping List (from current plan)</b>.</div>
-        </div>`;
+    if(!ptr){
+      document.querySelector('.wrap').innerHTML = '<div class="miss">Pointer not found. Expected <code>pages/apps/carol/index.json</code>.</div>';
     }else{
-      meta.textContent = `For ${p.meta?.people||2} people · generated ${new Date(p.meta?.generated_at||Date.now()).toLocaleString()}`;
-      for(const it of (p.items||[])){
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${it.item}</td><td>${it.qty}</td><td>${it.unit||''}</td>`;
-        tbody.appendChild(tr);
+      const listUrl = resolveUrl(ptr.shopping, ptrUrl);
+      let p = null;
+      try{ p = await fetch(listUrl, {cache:'no-store'}).then(r=>r.ok?r.json():null) }catch{}
+      if(!p){
+        document.querySelector('.wrap').innerHTML = `
+          <div class="miss">
+            Shopping list not found at <code>${listUrl}</code>.<br>
+            <div>Run the GitHub Action: <b>Carol - Generate Shopping List (from current plan)</b>.</div>
+          </div>`;
+      }else{
+        meta.textContent = \`For \${p.meta?.people||2} people · generated \${new Date(p.meta?.generated_at||Date.now()).toLocaleString()}\`;
+        for(const it of (p.items||[])){
+          const tr = document.createElement('tr');
+          tr.innerHTML = \`<td>\${it.item}</td><td>\${it.qty}</td><td>\${it.unit||''}</td>\`;
+          tbody.appendChild(tr);
+        }
       }
     }
   </script>

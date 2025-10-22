@@ -1,33 +1,49 @@
 name: Overseers - Crossrepo Sweep
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Ref of SECOND_REPO (branch or tag); default main'
+        required: false
+        default: 'main'
 permissions:
   contents: write
 jobs:
   sweep:
-    if: ${{ (secrets.REPOS_READ_TOKEN != '') && (vars.SECOND_REPO != '') }}
     runs-on: ubuntu-latest
+    env:
+      SECOND_REPO: ${{ vars.SECOND_REPO }}
+      REPOS_READ_TOKEN: ${{ secrets.REPOS_READ_TOKEN }}
+      REF: ${{ github.event.inputs.ref || 'main' }}
     steps:
+      - name: Guard: ensure SECOND_REPO and REPOS_READ_TOKEN exist
+        shell: bash
+        run: |
+          if [ -z "${SECOND_REPO}" ] || [ -z "${REPOS_READ_TOKEN}" ]; then
+            echo "::error title=Missing configuration::Set repository variable 'SECOND_REPO' (owner/repo) and secret 'REPOS_READ_TOKEN' (repo read scope)."
+            exit 1
+          fi
       - name: Checkout primary
         uses: actions/checkout@v4
       - name: Checkout second repo
         uses: actions/checkout@v4
         with:
-          repository: ${{ vars.SECOND_REPO }}
-          token: ${{ secrets.REPOS_READ_TOKEN }}
+          repository: ${{ env.SECOND_REPO }}
+          token: ${{ env.REPOS_READ_TOKEN }}
           path: second_repo
+          ref: ${{ env.REF }}
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: Scan second repo and write index
         env:
-          SECOND_REPO: ${{ vars.SECOND_REPO }}
+          SECOND_REPO: ${{ env.SECOND_REPO }}
         run: node scripts/overseers/crossrepo-scan.mjs
       - name: Commit index
         run: |
           git config user.name "Overseers Bot"
           git config user.email "actions@users.noreply.github.com"
           git add pages/apps/overseers/crossrepo/second_repo_index.json || true
-          git commit -m "Overseers: crossrepo index from ${{ vars.SECOND_REPO }}" || echo "Nothing to commit"
+          git commit -m "Overseers: crossrepo index from ${SECOND_REPO}" || echo "Nothing to commit"
           git push || echo "Nothing to push"

@@ -11,24 +11,27 @@ const OUT    = getArg('--out','pages/apps/overseers/all-files.json');
 
 const IGNORE_DIRS = new Set(['.git','node_modules','.DS_Store','dist','out','_site','.next','.vercel','.cache']);
 
-function* walkSync(dir){
+async function *walk(dir){
   const entries = await fs.readdir(dir, { withFileTypes:true });
-  for(const e of entries){
+  for (const e of entries){
     if (IGNORE_DIRS.has(e.name)) continue;
     const p = path.join(dir, e.name);
-    if (e.isDirectory()) yield* walkSync(p);
-    else if (e.isFile()) yield p;
+    if (e.isDirectory()) {
+      for await (const sub of walk(p)) yield sub;
+    } else if (e.isFile()) {
+      yield p;
+    }
   }
 }
 
 function extType(p){
   const e = path.extname(p).toLowerCase();
-  if(['.vrm'].includes(e)) return 'model';
-  if(['.png','.jpg','.jpeg','.webp','.gif','.avif'].includes(e)) return 'image';
-  if(['.css'].includes(e)) return 'style';
-  if(['.html','.htm'].includes(e)) return 'html';
-  if(['.js','.mjs','.cjs',' .ts'].includes(e)) return 'script';
-  if(['.yml','.yaml','.json'].includes(e)) return 'data';
+  if (e === '.vrm') return 'model';
+  if (['.png','.jpg','.jpeg','.webp','.gif','.avif'].includes(e)) return 'image';
+  if (e === '.css') return 'style';
+  if (['.html','.htm'].includes(e)) return 'html';
+  if (['.js','.mjs','.cjs','.ts'].includes(e)) return 'script';
+  if (['.yml','.yaml','.json'].includes(e)) return 'data';
   return 'other';
 }
 
@@ -42,16 +45,14 @@ async function fileInfo(root, rel){
 
 async function gather(root){
   const list = [];
-  for await (const p of walkSync(root)){
+  for await (const p of walk(root)){
     const rel = path.relative(root, p);
     list.push(await fileInfo(root, rel));
   }
   return list;
 }
 
-const outDir = path.dirname(OUT);
-await fs.mkdir(outDir, { recursive:true });
-
+await fs.mkdir(path.dirname(OUT), { recursive:true });
 const mainList = await gather(MAIN);
 const payload = {
   generated_at: new Date().toISOString(),

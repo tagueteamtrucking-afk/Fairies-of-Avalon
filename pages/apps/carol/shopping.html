@@ -9,27 +9,27 @@
     table{border-collapse:collapse;width:100%}
     th,td{border:1px solid #2b3a47;padding:.5rem;text-align:left}
     .sub{opacity:.8}
-    .ok{color:#9be99b}.warn{color:#ffec9b}.err{color:#ff9b9b}
+    .warn{background:#3a1f1f;border:1px solid #6b2e2e;padding:.75rem;border-radius:8px;margin:.5rem 0}
+    a{color:#8ec6ff}
   </style>
   <script type="module">
     async function load(){
-      const pointer = await fetch('./index.json',{cache:'no-store'}).then(r=>r.json());
-      const data = await fetch(pointer.shopping,{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
-      const coverage = await fetch('./plans/coverage.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
-      if(!data){ document.getElementById('meta').textContent='No shopping file yet. Run the "Carol — Generate Shopping List" workflow.'; return; }
-      document.getElementById('meta').textContent = `For ${data.meta.people} people`;
+      const ptr = await fetch('./index.json',{cache:'no-store'}).then(r=>r.json());
+      const res = await fetch(ptr.shopping,{cache:'no-store'});
+      const root = document.getElementById('root');
+      if(!res.ok){ root.innerHTML='<p class="warn"><b>No shopping list yet.</b> Run the "Carol — Build Shopping" workflow.</p>'; return; }
+      const data = await res.json();
+      if(data.status && data.status !== 'ok' && !data.items){
+        root.innerHTML = `<div class="warn"><b>Shopping not ready:</b> ${data.message || data.status}. ${data.hint || ''} ${data.how_to || ''}</div>`;
+        return;
+      }
+      document.getElementById('meta').textContent = `For ${data.meta?.people || 2} people`;
       const tbody = document.getElementById('tbody');
-      data.items.forEach(it=>{
+      (data.items||[]).forEach(it=>{
         const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${it.item}</td><td>${it.qty}</td><td>${it.unit}</td>`;
+        tr.innerHTML = `<td>${it.item}</td><td>${it.qty}</td><td>${it.unit||''}</td>`;
         tbody.appendChild(tr);
       });
-      const cov = document.getElementById('coverage');
-      if(coverage){
-        let cls = coverage.missing?.length ? 'warn' : 'ok';
-        cov.className = cls;
-        cov.textContent = coverage.missing?.length ? `${coverage.missing.length} recipe(s) need defs. See pages/apps/carol/recipes/defs.json.` : 'All recipes covered.';
-      }
     }
     load();
   </script>
@@ -37,10 +37,11 @@
 <body>
   <h1>Carol — Shopping List</h1>
   <p id="meta" class="sub">Loading…</p>
-  <p id="coverage" class="sub"></p>
-  <table>
-    <thead><tr><th>Item</th><th>Qty</th><th>Unit</th></tr></thead>
-    <tbody id="tbody"></tbody>
-  </table>
+  <div id="root">
+    <table>
+      <thead><tr><th>Item</th><th>Qty</th><th>Unit</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
 </body>
 </html>

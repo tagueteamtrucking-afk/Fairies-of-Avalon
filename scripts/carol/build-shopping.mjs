@@ -1,84 +1,90 @@
 // scripts/carol/build-shopping.mjs
-// Generates shopping-quantized.json for the plan pointed by pages/apps/carol/index.json
-// Strategy: if plan contains full ingredients, use them; otherwise use defs.json mapping per 2 servings.
-// Missing recipes will be listed in pages/apps/carol/plans/coverage.json
-
 import fs from 'fs';
-import path from 'path';
 
 const POINTER_PATH = 'pages/apps/carol/index.json';
-const DEFAULT_PLAN = '/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json';
 const OUT_SHOPPING = 'pages/apps/carol/plans/shopping-quantized.json';
 const OUT_COVERAGE = 'pages/apps/carol/plans/coverage.json';
 const DEFS_PATH = 'pages/apps/carol/recipes/defs.json';
 
-function readJSON(p){
-  return JSON.parse(fs.readFileSync(p, 'utf8'));
-}
-function ensureDir(p){ fs.mkdirSync(path.dirname(p), { recursive:true }); }
-function slugify(s){
-  return s.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+function readJSON(p){ return JSON.parse(fs.readFileSync(p, 'utf8')); }
+function ensureDir(p){ fs.mkdirSync(require('path').dirname(p), { recursive:true }); }
+function slugify(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,''); }
+function nameOf(v){ if (!v) return null; if (typeof v==='string') return v; if (Array.isArray(v)) return v.map(nameOf).filter(Boolean).join(', '); if (typeof v==='object') return v.name||v.title||v.label||v.id||null; return String(v); }
+
+function findDays(plan){
+  if (Array.isArray(plan.schedule)) return plan.schedule;
+  if (Array.isArray(plan.days)) return plan.days;
+  if (Array.isArray(plan.menu)) return plan.menu;
+  if (Array.isArray(plan.plan)) return plan.plan;
+  for (const [k,v] of Object.entries(plan)){
+    if (Array.isArray(v) && v.length>=7 && v.length<=21){
+      const hasMeals = v.some(d => typeof d==='object' && (('breakfast'in d)||('lunch'in d)||('dinner'in d)||(d.meals)));
+      if (hasMeals) return v;
+    }
+  }
+  return [];
 }
 
-function collectFromPlan(plan){
-  const names = [];
-  const sched = plan.schedule || [];
-  for (const d of sched){
-    if (d.breakfast) names.push(d.breakfast);
-    if (d.lunch) names.push(d.lunch);
-    if (d.dinner) names.push(d.dinner);
-    if (Array.isArray(d.snacks)) names.push(...d.snacks);
+function collectNames(plan){
+  const days = findDays(plan);
+  const out = [];
+  for (const d of days){
+    const meals = d.meals || d;
+    const B = nameOf(meals.breakfast || meals.b); if (B) out.push(B);
+    const L = nameOf(meals.lunch     || meals.l); if (L) out.push(L);
+    const D = nameOf(meals.dinner    || meals.d); if (D) out.push(D);
+    const S = meals.snacks || meals.s || []; const SA = Array.isArray(S) ? S : [S];
+    for (const s of SA){ const n = nameOf(s); if (n) out.push(n); }
   }
-  return names;
+  return out;
 }
 
 function aggregate(items){
-  const out = {};
+  const out = new Map();
   for (const it of items){
-    const key = it.item + '|' + it.unit;
-    out[key] = (out[key] || 0) + Number(it.qty || 0);
+    const key = (it.item||'') + '|' + (it.unit||'');
+    out.set(key, (out.get(key)||0) + Number(it.qty||0));
   }
-  return Object.entries(out).map(([k,qty])=>{
+  return Array.from(out.entries()).map(([k,qty])=>{
     const [item,unit] = k.split('|');
     return { item, qty: Math.round(qty*100)/100, unit };
   }).sort((a,b)=> a.item.localeCompare(b.item));
 }
 
 (function main(){
-  const pointer = fs.existsSync(POINTER_PATH) ? readJSON(POINTER_PATH) : { plan: DEFAULT_PLAN };
-  const planPath = pointer.plan || DEFAULT_PLAN;
+  const pointer = readJSON(POINTER_PATH);
+  const planPath = pointer.plan;
   const plan = readJSON(planPath);
   const people = Number(process.env.PEOPLE || plan?.meta?.people || 2);
 
-  const names = collectFromPlan(plan);
-  const normalized = names.map(n => ({ raw: n, key: slugify(n) }));
+  const names = collectNames(plan).map(r => ({ raw:r, key: slugify(r) }));
 
-  let items = [];
+  const items = [];
   const missing = [];
 
-  // Case A: plan.recipes contains ingredients
-  const recipesInPlan = plan.recipes || plan.RECIPES || null;
-  if (recipesInPlan){
-    for (const {raw, key} of normalized){
-      const r = recipesInPlan[raw] || recipesInPlan[key] || null;
+  // Prefer embedded plan.recipes if present
+  const embedded = plan.recipes || plan.recipeBook || null;
+  if (embedded){
+    for (const {raw,key} of names){
+      const r = embedded[raw] || embedded[key];
       if (!r){ missing.push({ recipe: raw, reason: 'not found in plan.recipes' }); continue; }
       for (const ing of r){
-        const unit = ing.unit || ing.u || 'g';
-        const qty = Number(ing.qty || ing.q || 0) * (people / (plan.meta?.people || 2));
-        items.push({ item: ing.item || ing.name, unit, qty });
+        items.push({
+          item: ing.item || ing.name,
+          unit: ing.unit || 'g',
+          qty: Number(ing.qty || 0) * (people / (plan.meta?.people || 2))
+        });
       }
     }
   } else {
-    // Case B: use defs.json (per_servings=2)
+    // Use defs.json mapping only for exact known patterns (no guessing)
     let defs = null;
     try{ defs = readJSON(DEFS_PATH); }catch{ defs = null; }
     const perServ = Number(defs?.per_servings || 2);
     const scale = people / perServ;
-
     const recipes = defs?.recipes || {};
     const aliases = defs?.aliases || {};
-
-    for (const {raw, key} of normalized){
+    for (const {raw,key} of names){
       const mapKey = aliases[key] || key;
       const r = recipes[mapKey];
       if (!r){ missing.push({ recipe: raw, key, reason: 'no mapping in defs.json' }); continue; }
@@ -93,8 +99,8 @@ function aggregate(items){
     items: aggregate(items)
   };
   const coverage = {
-    total_recipes: normalized.length,
-    matched: normalized.length - missing.length,
+    total_recipes: names.length,
+    matched: names.length - missing.length,
     missing,
     note: missing.length ? "Add missing recipes at pages/apps/carol/recipes/defs.json" : "All recipes covered."
   };

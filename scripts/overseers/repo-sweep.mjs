@@ -86,7 +86,6 @@ function buildModels(files){
     let wings = false;
     if (lower.startsWith('asset/models/with-wings') || lower.startsWith('asset/winged-models')) wings = true;
     else if (lower.startsWith('asset/models/') && !lower.includes('/with-wings/') && !lower.includes('/wingless/')){
-      // legacy rule: wingless unless name ends with _wings or -wings
       wings = /(_wings|-wings)\.vrm$/i.test(lower);
     }
     list.push({ path: f, preWinged: wings });

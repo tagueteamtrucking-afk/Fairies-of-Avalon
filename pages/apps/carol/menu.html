@@ -9,26 +9,74 @@
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem}
     .card{background:#162029;border:1px solid #2b3a47;border-radius:10px;padding:1rem}
     .sub{opacity:.8}
+    .muted{opacity:.7}
   </style>
   <script type="module">
+    function nameOf(v){
+      if (!v) return null;
+      if (typeof v === 'string') return v;
+      if (Array.isArray(v)) return v.map(nameOf).filter(Boolean).join(', ');
+      if (typeof v === 'object') return v.name || v.title || v.label || v.id || JSON.stringify(v);
+      return String(v);
+    }
+    function findDays(plan){
+      if (Array.isArray(plan.schedule)) return plan.schedule;
+      if (Array.isArray(plan.days)) return plan.days;
+      if (Array.isArray(plan.menu)) return plan.menu;
+      if (Array.isArray(plan.plan)) return plan.plan;
+      // fallback: look for top-level array with 7-21 items where entries have meal-like keys
+      for (const [k,v] of Object.entries(plan)){
+        if (Array.isArray(v) && v.length>=7 && v.length<=21){
+          const hasMeals = v.some(d => typeof d==='object' && (('breakfast'in d)||('lunch'in d)||('dinner'in d)||('snacks'in d)||('meals'in d)));
+          if (hasMeals) return v;
+        }
+      }
+      return [];
+    }
+    function mealsFromDay(d){
+      if (!d) return {breakfast:null,lunch:null,dinner:null,snacks:[]};
+      if (d.meals && typeof d.meals==='object'){
+        return {
+          breakfast: nameOf(d.meals.breakfast || d.meals.b),
+          lunch:     nameOf(d.meals.lunch     || d.meals.l),
+          dinner:    nameOf(d.meals.dinner    || d.meals.d),
+          snacks:    [].concat(d.meals.snacks||d.meals.s||[]).map(nameOf).filter(Boolean)
+        };
+      }
+      return {
+        breakfast: nameOf(d.breakfast || d.b),
+        lunch:     nameOf(d.lunch     || d.l),
+        dinner:    nameOf(d.dinner    || d.d),
+        snacks:    [].concat(d.snacks || d.s || []).map(nameOf).filter(Boolean)
+      };
+    }
     async function load(){
       const pointer = await fetch('./index.json',{cache:'no-store'}).then(r=>r.json());
       const plan = await fetch(pointer.plan,{cache:'no-store'}).then(r=>r.json()).catch(()=>null);
-      if(!plan){ document.getElementById('meta').textContent='Plan not found. Check path in index.json'; return; }
-      const people = plan?.meta?.people || 2;
-      const days = plan?.meta?.days || (plan.schedule?.length || '—');
-      document.getElementById('meta').textContent = `For ${people} people · ${days} days`;
+      const metaEl = document.getElementById('meta');
       const grid = document.getElementById('grid');
-      (plan.schedule||[]).forEach(d => {
+      if(!plan){ metaEl.innerHTML='Plan not found. <span class="muted">Check path in pages/apps/carol/index.json</span>'; return; }
+      const days = findDays(plan);
+      const daysCount = days.length || plan?.meta?.days || '—';
+      const people = plan?.meta?.people || 2;
+      metaEl.textContent = `For ${people} people · ${daysCount} days`;
+
+      if(!days.length){
+        grid.innerHTML = '<div class="card">No days array found. If you share the plan JSON, we will adapt the parser.</div>';
+        return;
+      }
+      let i=0;
+      for(const d of days){
+        const m = mealsFromDay(d);
         const div = document.createElement('div');
         div.className='card';
-        div.innerHTML = `<h3>Day ${d.day || ''}</h3>
-        <div><b>Breakfast:</b> ${String(d.breakfast||'').replaceAll('_',' ')}</div>
-        <div><b>Lunch:</b> ${String(d.lunch||'').replaceAll('_',' ')}</div>
-        <div><b>Dinner:</b> ${String(d.dinner||'').replaceAll('_',' ')}</div>
-        <div><b>Snacks:</b> ${(d.snacks||[]).map(s=>String(s).replaceAll('_',' ')).join(', ')}</div>`;
+        div.innerHTML = `<h3>Day ${d.day || (++i)}</h3>
+          <div><b>Breakfast:</b> ${m.breakfast || '—'}</div>
+          <div><b>Lunch:</b> ${m.lunch || '—'}</div>
+          <div><b>Dinner:</b> ${m.dinner || '—'}</div>
+          <div><b>Snacks:</b> ${(m.snacks||[]).join(', ') || '—'}</div>`;
         grid.appendChild(div);
-      });
+      }
     }
     load();
   </script>

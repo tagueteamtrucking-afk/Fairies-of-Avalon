@@ -1,5 +1,6 @@
 // scripts/charlotte/crawler.mjs
 import fs from 'fs';
+import path from 'path';
 
 const OUT = 'pages/apps/charlotte/crawler/index.json';
 const QUERIES = [
@@ -33,7 +34,7 @@ async function githubSearch(q){
   }));
 }
 
-function ensureDir(p){ fs.mkdirSync(require('path').dirname(p), { recursive:true }); }
+function ensureDir(p){ fs.mkdirSync(path.dirname(p), { recursive:true }); }
 
 (async () => {
   const results = {};

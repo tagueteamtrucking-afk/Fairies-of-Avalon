@@ -1,4 +1,4 @@
-/* pages/apps/carol/print.css */
+/* pages/apps/carol/print.css (drop15) */
 :root {
   --fg: #111;
   --muted: #555;
@@ -7,44 +7,20 @@
   --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 }
 * { box-sizing: border-box; }
-
-html, body {
-  font-family: var(--font);
-  color: var(--fg);
-  background: #fff;
-  margin: 0;
-  padding: 0;
-}
-
-header.app {
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-main {
-  padding: 1rem 1.25rem;
-}
-
+html, body { font-family: var(--font); color: var(--fg); background: #fff; margin:0; padding:0; }
+header.app { padding: 1rem 1.25rem; border-bottom: 1px solid var(--rule); }
+main { padding: 1rem 1.25rem; }
 h1, h2, h3 { margin: 0 0 .35rem 0; }
 h1 { font-size: 1.35rem; }
 h2 { font-size: 1.1rem; color: var(--accent); }
 h3 { font-size: 1rem; color: var(--muted); }
-
-.day {
-  display: block;
-  padding: .75rem 0 1rem 0;
-  border-bottom: 1px dashed var(--rule);
-}
-
-.event {
-  margin: .35rem 0;
-  padding-left: .5rem;
-  border-left: 3px solid var(--rule);
-}
-
+.day { display:block; padding:.75rem 0 1rem; border-bottom:1px dashed var(--rule); }
+.event { margin:.35rem 0; padding-left:.5rem; border-left:3px solid var(--rule); }
 .event .meta { color: var(--muted); font-size: .9rem; }
-
-/* print: force 1 day per page */
+.keyline { border-top:1px solid var(--rule); margin:.5rem 0; }
+.badge { display:inline-block; padding:.1rem .4rem; border-radius:.35rem; background:#eef; border:1px solid #dde; font-size:.8rem; }
+.small { font-size:.85rem; color:#666; }
+.grid { display:grid; grid-template-columns: 1fr auto; gap:.25rem .75rem; align-items: baseline; }
 @media print {
   @page { size: letter portrait; margin: 0.5in; }
   html, body { width: 8.5in; margin: 0; background: #fff; color: #000; }
@@ -56,8 +32,5 @@ h3 { font-size: 1rem; color: var(--muted); }
     break-after: page !important;
     border: none;
   }
-  .day:last-child {
-    page-break-after: auto !important;
-    break-after: auto !important;
-  }
+  .day:last-child { page-break-after: auto !important; break-after: auto !important; }
 }

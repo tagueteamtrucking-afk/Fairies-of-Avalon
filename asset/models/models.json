@@ -1,27 +1,81 @@
 {
-  "byAvatar": {},
-  "prewinged": [
-    "asset/winged-models/WingedAlexandria.vrm",
-    "asset/winged-models/WingedBillie.vrm",
-    "asset/winged-models/WingedReyCzar.vrm",
-    "asset/winged-models/WingedWhiteStar.vrm"
-  ],
-  "generated": "2025-09-18T01:18:11.1423355Z",
-  "wingless": [
-    "asset/models/abbey.vrm",
-    "asset/models/alexandria.vrm",
-    "asset/models/billie.vrm",
-    "asset/models/carol.vrm",
-    "asset/models/charlotte.vrm",
-    "asset/models/clarice.vrm",
-    "asset/models/jem.vrm",
-    "asset/models/nina.vrm",
-    "asset/models/odessa.vrm",
-    "asset/models/reyczar.vrm",
-    "asset/models/sorcha.vrm",
-    "asset/models/stella.vrm",
-    "asset/models/themis.vrm",
-    "asset/models/tracy.vrm",
-    "asset/models/whitestar.vrm"
+  "generated_at": "2025-10-22T00:59:31.901Z",
+  "models": [
+    {
+      "path": "asset/models/abbey.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/alexandria.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/billie.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/carol.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/charlotte.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/clarice.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/jem.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/nina.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/odessa.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/reyczar.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/sorcha.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/stella.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/themis.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/tracy.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/models/whitestar.vrm",
+      "preWinged": false
+    },
+    {
+      "path": "asset/winged-models/WingedAlexandria.vrm",
+      "preWinged": true
+    },
+    {
+      "path": "asset/winged-models/WingedBillie.vrm",
+      "preWinged": true
+    },
+    {
+      "path": "asset/winged-models/WingedReyCzar.vrm",
+      "preWinged": true
+    },
+    {
+      "path": "asset/winged-models/WingedWhiteStar.vrm",
+      "preWinged": true
+    }
   ]
 }

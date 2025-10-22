@@ -1,0 +1,2490 @@
+{
+  "generated_at": "2025-10-22T00:59:31.970Z",
+  "deleted": [
+    {
+      "path": "pages/apps/_city/castle-town.html",
+      "deleted_in": "0ad44a4986401a993998badc16c7308be9044c8f",
+      "deleted_at": "2025-10-21T00:28:37.000Z"
+    },
+    {
+      "path": "pages/apps/_city/city-index-patch.html",
+      "deleted_in": "0ad44a4986401a993998badc16c7308be9044c8f",
+      "deleted_at": "2025-10-21T00:28:37.000Z"
+    },
+    {
+      "path": ".github/workflows/00-sanity.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/abbey-parse-subscriptions.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/abbey.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-config.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-dm.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-world.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/avalon-fact-check.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/avalon-run-all.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/billie.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-2or6week.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-2week.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-aggregate-2p-v2.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-aggregate-2p.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-aggregate-fromfile-2p.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-aggregate-packages.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-build-pointer.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-diet.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-export-pdf.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-extract-and-report.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-extract-v2-and-report.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-llm.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-offline-2wk.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-package-map-report.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-refresh-2p.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-refresh-v3-2p.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-reindex.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-seed-and-refresh-2p.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/charlotte-build-link-registry.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/charlotte-design-tokens.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/charlotte-inject-ui-tokens.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/charlotte-site-manifest.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/charlotte-tts-azure.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/charlotte-tts-openai.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/charlotte.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/city-visual-pass.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/clarice-graphics-audit.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/clarice-snapshot.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/clarice.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/diagnostics-openai.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/hotfix-stripv.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-build-week2-from-progress.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-import-samsung.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-import-shealth.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-index-programs.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-inspect-programs.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-llm.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-merge-progress.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-normalize-week1.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-pack-imports.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-rescue-intake.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-training.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-week1-eval.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-week1-generate-fallback.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-week1-generate.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/llm-bridge.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/nina-3d.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/nina-build-scene-index.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/nina-generate-rooms.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/nina-vrm-index.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/nina-vrm-sanity.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/nina.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/odessa.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-ai-core.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-asset-audit.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-importmap-check.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-llm-bridge.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-memory-snapshot.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-repo-doctor.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/pages-deploy.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/queue-full-roster.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/read.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/repo-inventory.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/repo-sweeper-workflows.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/repo-sweeper.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/repo-usage-archive.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/repo-usage-report.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/rey-czar.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/run-overseers-queue.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/site-doctor.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/sorcha.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/start-site-polish.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/stella-guided.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/stella-llm.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/stella-schedule.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/stella.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/themis.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/tracy-apply-skin.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/tracy-artboard.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/tracy-optimize-images.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/tracy-skin-from-wallpapers.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/tracy-skin.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/tracy-wallpaper-index.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/tracy.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": ".github/workflows/white-star.yml",
+      "deleted_in": "9f7d6405018aea90cae70bf3967c79a40c3a2948",
+      "deleted_at": "2025-10-19T00:19:38.000Z"
+    },
+    {
+      "path": "memory-history/Cody's Memory.yml",
+      "deleted_in": "3e64b3c68d7d0955b2f4bc74f36ea81b1d735778",
+      "deleted_at": "2025-10-18T06:10:29.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/.gitkeep",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/Blanca-intake.json",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/Ray-intake (1).json",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/SamsungHealthExport_Ray.zip",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.health.device_profile.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.health.floors_climbed.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.health.food_info.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.health.height.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.health.sleep_stage.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.health.user_profile.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.health.weight.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.activity.day_summary.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.activity.goal.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.alerted_heart_rate.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.badge.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.best_records.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.breathing.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.calories_burned.details.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.exercise.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.exercise.weather.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.food_frequent.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.food_goal.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.goal_history.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.insight.message_notification.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.permission.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.preferences.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.report.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.rewards.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.service_preferences.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.sleep.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.sleep_data.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.social.service_status.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.stand_day_summary.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.step_daily_trend.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.stress.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.stress.histogram.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.tracker.floors_day_summary.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.tracker.heart_rate.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.tracker.oxygen_saturation.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.tracker.pedometer_day_summary.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/com.samsung.shealth.tracker.pedometer_step_count.20251015201837.csv",
+      "deleted_in": "f80bbcb051176d6b293d9c6a4e46569eebd64f7a",
+      "deleted_at": "2025-10-17T22:27:57.000Z"
+    },
+    {
+      "path": "pages/apps/jem/imports/SamsungHealthExport-Ray.zip",
+      "deleted_in": "002c1edd8bb8a8dbef5f99b29dc12e4d04518ce0",
+      "deleted_at": "2025-10-17T22:26:50.000Z"
+    },
+    {
+      "path": "asset/wings/.gitkeep",
+      "deleted_in": "faf315120985c01d05c699ead4ea1e15916db5b0",
+      "deleted_at": "2025-10-06T03:37:11.000Z"
+    },
+    {
+      "path": "pages/apps/index.html",
+      "deleted_in": "b18d169cc72a2133fa9f3ee8c15be887c0a87286",
+      "deleted_at": "2025-10-06T03:36:25.000Z"
+    },
+    {
+      "path": "pages/index.html",
+      "deleted_in": "2ab52145dfb105761f87e5f596a85e4aa950e428",
+      "deleted_at": "2025-10-06T03:36:07.000Z"
+    },
+    {
+      "path": "LICENSE.txt",
+      "deleted_in": "71c4e191d10bc2c950d6bd532edaaab14a274de8",
+      "deleted_at": "2025-10-06T02:50:47.000Z"
+    },
+    {
+      "path": "Cody's Memory.yml",
+      "deleted_in": "ebaab246d19edb476e41cee2f31aa9913e18fe7a",
+      "deleted_at": "2025-10-06T02:48:29.000Z"
+    },
+    {
+      "path": "docs/README-ALL.md",
+      "deleted_in": "2a28fa4fc4e67565d70e66a86df739c1ed0d6b12",
+      "deleted_at": "2025-10-06T02:47:59.000Z"
+    },
+    {
+      "path": "docs/README-PAGES-BOOTSTRAP.md",
+      "deleted_in": "2a28fa4fc4e67565d70e66a86df739c1ed0d6b12",
+      "deleted_at": "2025-10-06T02:47:59.000Z"
+    },
+    {
+      "path": "docs/README-PLAN.md",
+      "deleted_in": "2a28fa4fc4e67565d70e66a86df739c1ed0d6b12",
+      "deleted_at": "2025-10-06T02:47:59.000Z"
+    },
+    {
+      "path": ".github/workflows/.gitkeep",
+      "deleted_in": "475bac69398fe3981af9028df6ca5f3b98439341",
+      "deleted_at": "2025-09-18T02:37:53.000Z"
+    },
+    {
+      "path": "asset/wings/textures/.gitkeep",
+      "deleted_in": "c9453256deea17edb9b2f55e08c2237a21ca1a70",
+      "deleted_at": "2025-09-18T02:18:26.000Z"
+    },
+    {
+      "path": "asset/winged-models/.gitkeep",
+      "deleted_in": "76556520619b4d7abd31e26c241ce0fac9364aa0",
+      "deleted_at": "2025-09-18T02:17:53.000Z"
+    },
+    {
+      "path": "asset/textures/.gitkeep",
+      "deleted_in": "8cb6ccb04f82c609ed80bb490e860b22f729545e",
+      "deleted_at": "2025-09-18T02:17:28.000Z"
+    },
+    {
+      "path": "permissions/grants/README.md",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T044053Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T044219Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T044306Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T044406Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T044656Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T044757Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T044836Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T045235Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T050507Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T051226Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T051314Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T051430Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T051545Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T052636Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T053108Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T053449Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T053549Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T060102Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T060357Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T060520Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T060821Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T061146Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T081859Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T082039Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T082207Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T082330Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T082501Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T082611Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T082742Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T082840Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T082942Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T085308Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T085511Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T183458Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T183645Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T183902Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T184252Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T185549Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T210506Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T210623Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T211048Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T214239Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T214440Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250913T215050Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250915T054631Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250915T054745Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250915T054836Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250915T054951Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250915T055055Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250915T055243Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/processed/20250915T061933Z-exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "permissions/requests/exampl.request.yml",
+      "deleted_in": "2050f21bb30e59beafb4ad2758f37516574786fa",
+      "deleted_at": "2025-09-18T02:16:53.000Z"
+    },
+    {
+      "path": "processed/20250913T184848Z-asset_audit.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250913T184848Z-importmap_check.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250913T184848Z-scaffold-fairies.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250913T184849Z-memory_snapshot.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250913T211502Z-asset_audit.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250913T211502Z-importmap_check.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250913T211502Z-memory_snapshot.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250913T211502Z-scaffold-fairies.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250913T215629Z-scaffold-live.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250915T063627Z-build-manifests.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250915T063627Z-create-microapps.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250915T151633Z-build-manifests.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "processed/20250915T151633Z-create-microapps.request.yml",
+      "deleted_in": "4c941319b332831d6f4601fbe25cbd5b05ed2467",
+      "deleted_at": "2025-09-18T02:16:34.000Z"
+    },
+    {
+      "path": "requests/20250913T184848Z-asset_audit.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250913T184848Z-importmap_check.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250913T184848Z-scaffold-fairies.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250913T184849Z-memory_snapshot.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250913T211502Z-asset_audit.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250913T211502Z-importmap_check.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250913T211502Z-memory_snapshot.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250913T211502Z-scaffold-fairies.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250913T215629Z-scaffold-live.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250915T063627Z-build-manifests.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250915T063627Z-create-microapps.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250915T151633Z-build-manifests.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "requests/20250915T151633Z-create-microapps.request.yml",
+      "deleted_in": "4e526133438c4f4782e22731404dd7787d670c5f",
+      "deleted_at": "2025-09-18T02:16:22.000Z"
+    },
+    {
+      "path": "scripts/overseers/abbey-budget.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-atlas.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-author-handoff.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-build-all.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-choices-prepare.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-continuity-check.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-export-bundle.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-export.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-lore-bible.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-notable-figures.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-npc-codex.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-suite.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-timeline.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/alexandria-worldseed.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/billie-ledger.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/build-manifests.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/build-wallpapers-manifest.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/carol-meal-plan.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/carol-mealplan.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/charlotte-pipeline-plan.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/charlotte-translate.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/clarice-integrity.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/clean-repo.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/count-assets.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/create-microapps.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/generate-landing.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/helpers.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/jem-program-plan.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/jem-workout.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/llm-bridge.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/nina-3d-index.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/normalize-memory.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/odessa-grants.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/process-permissions.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/process-queue.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/sorcha-posts.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/stella-sessions.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/themis-expirations.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/tracy-artboard.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/tracy-catalog.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/validate-importmap.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "scripts/overseers/validate-yaml.ps1",
+      "deleted_in": "6ea645f03c68696dff4ab92f255890be7f7b9b88",
+      "deleted_at": "2025-09-18T02:16:11.000Z"
+    },
+    {
+      "path": "repo-structure.json",
+      "deleted_in": "2b1c54493dcdff254d6c442890d7cc4f11b2a3fb",
+      "deleted_at": "2025-09-18T02:15:56.000Z"
+    },
+    {
+      "path": "index.html",
+      "deleted_in": "ca043a3b7f84dd5a170b3c31021ec9122c8a0815",
+      "deleted_at": "2025-09-18T02:15:40.000Z"
+    },
+    {
+      "path": "pages/app.css",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/abbey/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/abbey/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/atlas.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/author.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/bible.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/campaigns.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/codex.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/dice.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/exports.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/knowledge/README-Choices.md",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/knowledge/atlas-taxonomy.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/knowledge/bible-taxonomy.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/knowledge/choices.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/knowledge/choices.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/knowledge/dnd5e-srd-notes.md",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/knowledge/isekai.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/knowledge/npc-taxonomy.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/knowledge/timeline-taxonomy.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/knowledge/worldbuilding-checklist.md",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/library.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/live.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/question-intake.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/studio.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/timeline.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/.gitkeep",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/atlas/avalon-seed.atlas.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/atlas/index.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/atlas/latest.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/bibles/avalon-seed.lore.md",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/bibles/index.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/npcs/avalon-seed.npcs.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/npcs/index.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/npcs/latest.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/pipelines/pipeline-20250916035103-avalon-seed.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/pipelines/translations/Scenes-20250916035103-avalon-seed.es.md",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/pipelines/tts/scene-1.ssml",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/seed-20250916035103-avalon-seed.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/seed-20250916040749-avalon-seed.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/timelines/avalon-seed.timeline.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/timelines/index.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/billie/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/billie/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/carol/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/carol/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/mealplan-balanced-20250918T011400Z.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/carol/plans/mealplan-balanced-20250918T013613Z.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/charlotte/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/charlotte/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/clarice/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/clarice/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/jem/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/jem/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/nina/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/nina/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/odessa/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/odessa/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/assistants.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/capabilities.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/console.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/console.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/hub/hub.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/hub/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/hub/vrm-demo.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/hub/vrm-demo.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/permissions/state.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/progress.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/abbey.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/alexandria.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/billie.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/carol.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/charlotte.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/clarice.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/jem.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/nina.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/odessa.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/reyczar.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/sorcha.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/stella.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/themis.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/tracy.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/scaffolds/whitestar.plan.txt",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/vrm-index.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/wallpapers.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/overseers/yaml-report.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/reyczar/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/reyczar/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/shared/stt-web.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/shared/theme.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/shared/tts-web.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/shared/vrm-viewer.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/sorcha/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/sorcha/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/stella/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/stella/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/themis/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/themis/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/tracy/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/tracy/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/whitestar/app.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/apps/whitestar/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/importmaps.json",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/index.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/manifest.webmanifest",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/sw.js",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/themes/landing.generated.css",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "pages/themes/landing.generated.html",
+      "deleted_in": "f2ce52fef30f35deadddf765393492216262f195",
+      "deleted_at": "2025-09-18T02:15:22.000Z"
+    },
+    {
+      "path": "SAFE-CLEANUP-INSTRUCTIONS.md",
+      "deleted_in": "813732e677bb568213cf7a38e6a676689bbb2432",
+      "deleted_at": "2025-09-18T02:15:06.000Z"
+    },
+    {
+      "path": "README-NPC-Codex-Pack.md",
+      "deleted_in": "e146b74e0eccf7b34d33b0fb8d0490751ef0bc7c",
+      "deleted_at": "2025-09-18T02:14:44.000Z"
+    },
+    {
+      "path": "README-LANDING-FIX.md",
+      "deleted_in": "31f904663da30ad6116b0cefb1295aa6a2589299",
+      "deleted_at": "2025-09-18T02:14:26.000Z"
+    },
+    {
+      "path": "README-COOP-HELPERS.md",
+      "deleted_in": "ae3b14479cd7a6727755a395a5298eeb6a8c2c40",
+      "deleted_at": "2025-09-18T02:14:13.000Z"
+    },
+    {
+      "path": "docs/README-ALEXANDRIA-BUILD.md",
+      "deleted_in": "c184c533e7bd181dc4cce6f9ed9be47b46544711",
+      "deleted_at": "2025-09-18T02:14:00.000Z"
+    },
+    {
+      "path": "docs/README-COOP-HELPERS.md",
+      "deleted_in": "c184c533e7bd181dc4cce6f9ed9be47b46544711",
+      "deleted_at": "2025-09-18T02:14:00.000Z"
+    },
+    {
+      "path": "docs/README-FIXES-HEALTH.md",
+      "deleted_in": "c184c533e7bd181dc4cce6f9ed9be47b46544711",
+      "deleted_at": "2025-09-18T02:14:00.000Z"
+    },
+    {
+      "path": "docs/README-RUN-ALL.md",
+      "deleted_in": "c184c533e7bd181dc4cce6f9ed9be47b46544711",
+      "deleted_at": "2025-09-18T02:14:00.000Z"
+    },
+    {
+      "path": "README-Atlas-Pack.md",
+      "deleted_in": "38ba97b27166aa3149ee3e3ab9bf18fc8b90cbbe",
+      "deleted_at": "2025-09-18T02:13:30.000Z"
+    },
+    {
+      "path": "README-ALEXANDRIA-HELPERS.md",
+      "deleted_in": "847438a722ddd7b50440a61f4623fd940687f5e4",
+      "deleted_at": "2025-09-18T02:13:15.000Z"
+    },
+    {
+      "path": ".github/workflows/abbey-budget.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-atlas.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-build-all.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-choices.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-export.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-helpers.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-lore-bible.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-npc-codex.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-timeline.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-worldseed.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/avalon-helpers-all.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/avalon-run-all.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/billie-ledger.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-meal-suite.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/carol-mealplan.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/charlotte-pipelines.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/charlotte-translate.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/clarice-integrity.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/deploy-pages.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-program-suite.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/jem-workout.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/nina-3d-suite.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/odessa-grants.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-asset-audit.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-create-microapps.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-generate-landing.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-importmap-check.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-manifest.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-memory-snapshot.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-permissions.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-yaml-gate.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/queue-full-roster.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/queue-phase-1.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/queue-scaffold-live.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/run-overssers-queue.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/sorcha-posts.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/stella-sessions.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/themis-expirations.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/tracy-art-suite.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/tracy-catalog.yml",
+      "deleted_in": "7bf3c0203ab25906a0bda263047cfd0fc73feae2",
+      "deleted_at": "2025-09-18T02:12:38.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-helpers.yml",
+      "deleted_in": "a953a34d017ac06b6de4eeb35c73ad9e76c6d8b8",
+      "deleted_at": "2025-09-18T01:55:36.000Z"
+    },
+    {
+      "path": ".github/workflows/alexandria-build-all.yml",
+      "deleted_in": "005f50b3851e35e15ccd622e5291f7ff5631c9c2",
+      "deleted_at": "2025-09-18T01:55:15.000Z"
+    },
+    {
+      "path": "README-Timeline-Pack.md",
+      "deleted_in": "a5c0b345a9a265907d985d999245649ebdee7a45",
+      "deleted_at": "2025-09-18T01:52:22.000Z"
+    },
+    {
+      "path": ".github/workflows/overseers-ai-core.yml",
+      "deleted_in": "0158fbe86602a941e7f2d046f915246444c539ef",
+      "deleted_at": "2025-09-15T06:19:47.000Z"
+    },
+    {
+      "path": ".github/workflows/llm-bridge.yml",
+      "deleted_in": "ab275140183eba16d0b0b82fce6c250a6185cda8",
+      "deleted_at": "2025-09-15T06:19:01.000Z"
+    },
+    {
+      "path": "asset/models-with-wings/.gitkeep",
+      "deleted_in": "86330fbca4137e45aed0ceb03cc82e2e914c3ad6",
+      "deleted_at": "2025-09-13T05:11:50.000Z"
+    },
+    {
+      "path": ".github/workflows/seed-permissions.yml",
+      "deleted_in": "b0a521d53d323ca88abfa537082f8d744c2b4b2c",
+      "deleted_at": "2025-09-13T04:00:29.000Z"
+    },
+    {
+      "path": ".github/workflows/run-overseers-queue.yml",
+      "deleted_in": "e2402b74b35d72d5ebc67f6cbbfac4fae599544f",
+      "deleted_at": "2025-09-13T04:00:09.000Z"
+    },
+    {
+      "path": ".github/workflows/queue-full-roster.yml",
+      "deleted_in": "1d67ccd714253fb364d00a3eb1f28fa4b369b26f",
+      "deleted_at": "2025-09-13T03:59:48.000Z"
+    },
+    {
+      "path": ".github/ai/rey-czar.ps1",
+      "deleted_in": "e3059fd1f81aa4debc02e76a2259b9277a51befe",
+      "deleted_at": "2025-09-13T03:59:18.000Z"
+    },
+    {
+      "path": ".github/ai/white-star.ps1",
+      "deleted_in": "e3059fd1f81aa4debc02e76a2259b9277a51befe",
+      "deleted_at": "2025-09-13T03:59:18.000Z"
+    },
+    {
+      "path": "pages/wings-importer.js",
+      "deleted_in": "7bf0eed74879c44558b65cce99f45a94bc0964da",
+      "deleted_at": "2025-09-13T03:53:11.000Z"
+    },
+    {
+      "path": "pages/wings-importer.html",
+      "deleted_in": "4c9254477bf945ca18023f025c8ea93f4daf9b8f",
+      "deleted_at": "2025-09-13T03:52:52.000Z"
+    },
+    {
+      "path": "pages/app.js",
+      "deleted_in": "5644dd130e6846caeebd7097874d106def5df050",
+      "deleted_at": "2025-09-13T03:52:28.000Z"
+    },
+    {
+      "path": "pages/CNAME",
+      "deleted_in": "c80e857c82bfacb436d182e28e25a908cf37678c",
+      "deleted_at": "2025-09-13T03:49:40.000Z"
+    },
+    {
+      "path": "apps/overseers/.gitkeep",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/ai/queue-runner.ps1",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/ai/rey-czar.ps1",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/ai/seed-permissions.ps1",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/ai/seed-queue.ps1",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/ai/white-star.ps1",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/.gitkeep",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913000826_001_rey_czar.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913000826_002_white_star.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913000827_016_models_manifest.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913000827_017_wings_manifest.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913000827_20250912-185557-R1.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913000827_20250912-185557-R2.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913000827_20250912-185557-R3.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913000827_20250912-202151-R1.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913000827_20250912-202152-R2.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913000827_20250912-202152-R3.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913005109_001_perm_request_rey_czar.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913005109_002_perm_request_white_star.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913005109_003_perm_grant_rey_czar.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/20250913005109_004_perm_grant_white_star.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000826_003_clarice.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000826_004_charlotte.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000826_005_nina.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000826_006_alexandria.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000826_007_tracy.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000826_008_carol_li.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000826_009_jem_nassim.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000826_010_stella.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000826_011_sorcha.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000826_012_odessa.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000826_013_billie.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000827_014_themis.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/log/fail_20250913000827_015_abbey.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/out/.gitkeep",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/out/queue-runner.summary.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/out/rey-czar.queue.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/out/white-star.report.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/permissions/profiles.json",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "apps/overseers/queue/.gitkeep",
+      "deleted_in": "6228b003aaa434304d44f847c7213e8ddaa76d20",
+      "deleted_at": "2025-09-13T03:48:37.000Z"
+    },
+    {
+      "path": "docs/Overseers-BRIEF.md",
+      "deleted_in": "dede7834138aff82f2203aa2f889a92f6f470e0f",
+      "deleted_at": "2025-09-13T03:47:00.000Z"
+    },
+    {
+      "path": "pages/apps/overssers.js",
+      "deleted_in": "b63a16fe2f0d9a0b7ac4789cb314a41273ad61d7",
+      "deleted_at": "2025-09-13T03:40:54.000Z"
+    },
+    {
+      "path": "pages/apps/overseers.html",
+      "deleted_in": "65f4032f7e138dd09b8b8910175c5d2a9f320855",
+      "deleted_at": "2025-09-13T03:39:29.000Z"
+    },
+    {
+      "path": "asset/textures/wallpapers/castel village 02.jpg",
+      "deleted_in": "7bbb4d7a924f72aedc0a8db058d01f0dd94c3d49",
+      "deleted_at": "2025-09-13T01:08:17.000Z"
+    },
+    {
+      "path": "asset/models/avatars/.gitkeep",
+      "deleted_in": "8d10b2dd4b93a5a14435d15c75c8aa847d0ccd1f",
+      "deleted_at": "2025-09-12T22:45:00.000Z"
+    },
+    {
+      "path": ".github/workflows/.keep",
+      "deleted_in": "a5da0754fefd7c90e68810b54bf99541d3d87233",
+      "deleted_at": "2025-09-12T11:05:03.000Z"
+    }
+  ]
+}

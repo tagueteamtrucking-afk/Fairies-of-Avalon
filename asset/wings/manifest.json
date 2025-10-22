@@ -1,219 +1,351 @@
 {
-  "wings": {
-    "1426": {
+  "generated_at": "2025-10-22T00:59:31.901Z",
+  "wings": [
+    {
+      "id": "wing02",
       "textures": {
-        "base": "asset/wings/textures/wing1426.png",
-        "color": "asset/wings/textures/wing1426_c.png",
-        "normal": "asset/wings/textures/wing1426_nrm.png"
-      },
-      "mesh": "asset/wings/wing1426.fbx"
+        "albedo": [
+          "asset/wings/textures/wing02.png",
+          "asset/wings/textures/wing02_c.png",
+          "asset/wings/wing02.fbx"
+        ],
+        "emissive": [
+          "asset/wings/textures/wing02_e.png"
+        ],
+        "normal": [
+          "asset/wings/textures/wing02_nrm.png"
+        ]
+      }
     },
-    "1415": {
+    {
+      "id": "wing03",
       "textures": {
-        "base": "asset/wings/textures/wing1415.png",
-        "color": "asset/wings/textures/wing1415_c.png",
-        "normal": "asset/wings/textures/wing1415_nrm.png"
-      },
-      "mesh": "asset/wings/Wing1415.fbx"
+        "albedo": [
+          "asset/wings/textures/wing03.png",
+          "asset/wings/textures/wing03_c.png",
+          "asset/wings/wing03.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing03_nrm.png"
+        ]
+      }
     },
-    "1422": {
+    {
+      "id": "wing05",
       "textures": {
-        "base": "asset/wings/textures/wing1422(1).png",
-        "emissive": "asset/wings/textures/wing1422_e(1).png",
-        "color": "asset/wings/textures/wing1422_c(1).png",
-        "normal": "asset/wings/textures/wing1422_nrm(1).png"
-      },
-      "mesh": "asset/wings/wing1422.fbx"
+        "albedo": [
+          "asset/wings/textures/wing05.png",
+          "asset/wings/textures/wing05diff.png",
+          "asset/wings/wing05.fbx"
+        ]
+      }
     },
-    "02": {
+    {
+      "id": "wing1415",
       "textures": {
-        "base": "asset/wings/textures/wing02.png",
-        "emissive": "asset/wings/textures/wing02_e.png",
-        "color": "asset/wings/textures/wing02_c.png",
-        "normal": "asset/wings/textures/wing02_nrm.png"
-      },
-      "mesh": "asset/wings/wing02.fbx"
+        "albedo": [
+          "asset/wings/Wing1415.fbx",
+          "asset/wings/textures/wing1415.png",
+          "asset/wings/textures/wing1415_c.png"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1415_nrm.png"
+        ]
+      }
     },
-    "1433": {
+    {
+      "id": "wing1417",
       "textures": {
-        "base": "asset/wings/textures/wing1433.png",
-        "color": "asset/wings/textures/wing1433_c.png",
-        "normal": "asset/wings/textures/wing1433_nrm.png"
-      },
-      "mesh": "asset/wings/Wing1433.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1417.png",
+          "asset/wings/textures/wing1417_c.png",
+          "asset/wings/wing1417.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1417_nrm.png"
+        ]
+      }
     },
-    "1434": {
+    {
+      "id": "wing1419",
       "textures": {
-        "base": "asset/wings/textures/wing1434.png",
-        "color": "asset/wings/textures/wing1434_c.png",
-        "normal": "asset/wings/textures/wing1434_nrm.png"
-      },
-      "mesh": "asset/wings/wing1434.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1419.png",
+          "asset/wings/textures/wing1419_c.png",
+          "asset/wings/wing1419.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1419_nrm.png"
+        ]
+      }
     },
-    "162": {
+    {
+      "id": "wing1420",
       "textures": {
-        "base": "asset/wings/textures/wing162.png"
-      },
-      "mesh": "asset/wings/wing162.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1420.png",
+          "asset/wings/textures/wing1420_c.png",
+          "asset/wings/textures/wing1420_jellyfish.png",
+          "asset/wings/wing1420.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1420_nrm.png"
+        ]
+      }
     },
-    "1437": {
+    {
+      "id": "wing1421",
       "textures": {
-        "base": "asset/wings/textures/wing1437.png",
-        "color": "asset/wings/textures/wing1437_c.png",
-        "normal": "asset/wings/textures/wing1437_nrm.png"
-      },
-      "mesh": "asset/wings/Wing1437.fbx"
+        "albedo": [
+          "asset/wings/Wing1421.fbx",
+          "asset/wings/textures/wing1421.png",
+          "asset/wings/textures/wing1421_c.png"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1421_nrm.png"
+        ]
+      }
     },
-    "1438": {
+    {
+      "id": "wing1422",
       "textures": {
-        "base": "asset/wings/textures/wing1438.png",
-        "color": "asset/wings/textures/wing1438_c.png",
-        "normal": "asset/wings/textures/wing1438_nrm.png"
-      },
-      "mesh": "asset/wings/Wing1438.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1422(1).png",
+          "asset/wings/textures/wing1422_c(1).png",
+          "asset/wings/textures/wing1422_e(1).png",
+          "asset/wings/textures/wing1422_nrm(1).png",
+          "asset/wings/wing1422.fbx"
+        ]
+      }
     },
-    "1420": {
+    {
+      "id": "wing1423",
       "textures": {
-        "base": "asset/wings/textures/wing1420.png",
-        "color": "asset/wings/textures/wing1420_c.png",
-        "normal": "asset/wings/textures/wing1420_nrm.png"
-      },
-      "mesh": "asset/wings/wing1420.fbx"
+        "albedo": [
+          "asset/wings/Wing1423.fbx",
+          "asset/wings/textures/wing1423.png",
+          "asset/wings/textures/wing1423_c.png"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1423_nrm.png"
+        ]
+      }
     },
-    "1431": {
+    {
+      "id": "wing1424",
       "textures": {
-        "base": "asset/wings/textures/wing1431.png",
-        "color": "asset/wings/textures/wing1431_c.png",
-        "normal": "asset/wings/textures/wing1431_nrm.png"
-      },
-      "mesh": "asset/wings/wing1431.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1424.png",
+          "asset/wings/textures/wing1424_c.png",
+          "asset/wings/wing1424.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1424_nrm.png"
+        ]
+      }
     },
-    "1430": {
+    {
+      "id": "wing1425",
       "textures": {
-        "base": "asset/wings/textures/wing1430.png",
-        "color": "asset/wings/textures/wing1430_c.png",
-        "normal": "asset/wings/textures/wing1430_nrm.png"
-      },
-      "mesh": "asset/wings/wing1430.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1425.png",
+          "asset/wings/textures/wing1425_c.png",
+          "asset/wings/wing1425.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1425_nrm.png"
+        ]
+      }
     },
-    "1436": {
+    {
+      "id": "wing1426",
       "textures": {
-        "base": "asset/wings/textures/wing1436.png",
-        "color": "asset/wings/textures/wing1436_c.png",
-        "normal": "asset/wings/textures/wing1436_nrm.png"
-      },
-      "mesh": "asset/wings/Wing1436.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1426.png",
+          "asset/wings/textures/wing1426_c.png",
+          "asset/wings/wing1426.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1426_nrm.png"
+        ]
+      }
     },
-    "1423": {
+    {
+      "id": "wing1427",
       "textures": {
-        "base": "asset/wings/textures/wing1423.png",
-        "color": "asset/wings/textures/wing1423_c.png",
-        "normal": "asset/wings/textures/wing1423_nrm.png"
-      },
-      "mesh": "asset/wings/Wing1423.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1427.png",
+          "asset/wings/textures/wing1427_c.png",
+          "asset/wings/wing1427.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1427_nrm.png"
+        ]
+      }
     },
-    "03": {
+    {
+      "id": "wing1428",
       "textures": {
-        "base": "asset/wings/textures/wing03.png",
-        "color": "asset/wings/textures/wing03_c.png",
-        "normal": "asset/wings/textures/wing03_nrm.png"
-      },
-      "mesh": "asset/wings/wing03.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1428.png",
+          "asset/wings/textures/wing1428_c.png",
+          "asset/wings/wing1428.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1428_nrm.png"
+        ]
+      }
     },
-    "1439": {
+    {
+      "id": "wing1429",
       "textures": {
-        "base": "asset/wings/textures/wing1439.png",
-        "color": "asset/wings/textures/wing1439_c.png",
-        "normal": "asset/wings/textures/wing1439_nrm.png"
-      },
-      "mesh": "asset/wings/Wing1439.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1429.png",
+          "asset/wings/textures/wing1429_c.png",
+          "asset/wings/wing1429.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1429_nrm.png"
+        ]
+      }
     },
-    "1419": {
+    {
+      "id": "wing1430",
       "textures": {
-        "base": "asset/wings/textures/wing1419.png",
-        "color": "asset/wings/textures/wing1419_c.png",
-        "normal": "asset/wings/textures/wing1419_nrm.png"
-      },
-      "mesh": "asset/wings/wing1419.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1430.png",
+          "asset/wings/textures/wing1430_c.png",
+          "asset/wings/wing1430.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1430_nrm.png"
+        ]
+      }
     },
-    "1432": {
+    {
+      "id": "wing1431",
       "textures": {
-        "base": "asset/wings/textures/wing1432.png",
-        "color": "asset/wings/textures/wing1432_c.png",
-        "normal": "asset/wings/textures/wing1432_nrm.png"
-      },
-      "mesh": null
+        "albedo": [
+          "asset/wings/textures/wing1431.png",
+          "asset/wings/textures/wing1431_c.png",
+          "asset/wings/wing1431.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1431_nrm.png"
+        ]
+      }
     },
-    "1425": {
+    {
+      "id": "wing1432",
       "textures": {
-        "base": "asset/wings/textures/wing1425.png",
-        "color": "asset/wings/textures/wing1425_c.png",
-        "normal": "asset/wings/textures/wing1425_nrm.png"
-      },
-      "mesh": "asset/wings/wing1425.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1432.png",
+          "asset/wings/textures/wing1432_c.png"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1432_nrm.png"
+        ]
+      }
     },
-    "1421": {
+    {
+      "id": "wing1433",
       "textures": {
-        "base": "asset/wings/textures/wing1421.png",
-        "color": "asset/wings/textures/wing1421_c.png",
-        "normal": "asset/wings/textures/wing1421_nrm.png"
-      },
-      "mesh": "asset/wings/Wing1421.fbx"
+        "albedo": [
+          "asset/wings/Wing1433.fbx",
+          "asset/wings/textures/wing1433.png",
+          "asset/wings/textures/wing1433_c.png"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1433_nrm.png"
+        ]
+      }
     },
-    "1435": {
+    {
+      "id": "wing1434",
       "textures": {
-        "base": "asset/wings/textures/wing1435.png",
-        "color": "asset/wings/textures/wing1435_c.png",
-        "normal": "asset/wings/textures/wing1435_nrm.png"
-      },
-      "mesh": "asset/wings/wing1435.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1434.png",
+          "asset/wings/textures/wing1434_c.png",
+          "asset/wings/wing1434.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1434_nrm.png"
+        ]
+      }
     },
-    "1424": {
+    {
+      "id": "wing1435",
       "textures": {
-        "base": "asset/wings/textures/wing1424.png",
-        "color": "asset/wings/textures/wing1424_c.png",
-        "normal": "asset/wings/textures/wing1424_nrm.png"
-      },
-      "mesh": "asset/wings/wing1424.fbx"
+        "albedo": [
+          "asset/wings/textures/wing1435.png",
+          "asset/wings/textures/wing1435_c.png",
+          "asset/wings/wing1435.fbx"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1435_nrm.png"
+        ]
+      }
     },
-    "1428": {
+    {
+      "id": "wing1436",
       "textures": {
-        "base": "asset/wings/textures/wing1428.png",
-        "color": "asset/wings/textures/wing1428_c.png",
-        "normal": "asset/wings/textures/wing1428_nrm.png"
-      },
-      "mesh": "asset/wings/wing1428.fbx"
+        "albedo": [
+          "asset/wings/Wing1436.fbx",
+          "asset/wings/textures/wing1436.png",
+          "asset/wings/textures/wing1436_c.png"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1436_nrm.png"
+        ]
+      }
     },
-    "1427": {
+    {
+      "id": "wing1437",
       "textures": {
-        "base": "asset/wings/textures/wing1427.png",
-        "color": "asset/wings/textures/wing1427_c.png",
-        "normal": "asset/wings/textures/wing1427_nrm.png"
-      },
-      "mesh": "asset/wings/wing1427.fbx"
+        "albedo": [
+          "asset/wings/Wing1437.fbx",
+          "asset/wings/textures/wing1437.png",
+          "asset/wings/textures/wing1437_c.png"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1437_nrm.png"
+        ]
+      }
     },
-    "1417": {
+    {
+      "id": "wing1438",
       "textures": {
-        "base": "asset/wings/textures/wing1417.png",
-        "color": "asset/wings/textures/wing1417_c.png",
-        "normal": "asset/wings/textures/wing1417_nrm.png"
-      },
-      "mesh": "asset/wings/wing1417.fbx"
+        "albedo": [
+          "asset/wings/Wing1438.fbx",
+          "asset/wings/textures/wing1438.png",
+          "asset/wings/textures/wing1438_c.png"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1438_nrm.png"
+        ]
+      }
     },
-    "1429": {
+    {
+      "id": "wing1439",
       "textures": {
-        "base": "asset/wings/textures/wing1429.png",
-        "color": "asset/wings/textures/wing1429_c.png",
-        "normal": "asset/wings/textures/wing1429_nrm.png"
-      },
-      "mesh": "asset/wings/wing1429.fbx"
+        "albedo": [
+          "asset/wings/Wing1439.fbx",
+          "asset/wings/textures/wing1439.png",
+          "asset/wings/textures/wing1439_c.png"
+        ],
+        "normal": [
+          "asset/wings/textures/wing1439_nrm.png"
+        ]
+      }
     },
-    "05": {
+    {
+      "id": "wing162",
       "textures": {
-        "base": "asset/wings/textures/wing05.png"
-      },
-      "mesh": "asset/wings/wing05.fbx"
+        "albedo": [
+          "asset/wings/textures/wing162.png",
+          "asset/wings/wing162.fbx"
+        ]
+      }
     }
-  },
-  "generated": "2025-09-18T01:18:11.2972667Z"
+  ]
 }

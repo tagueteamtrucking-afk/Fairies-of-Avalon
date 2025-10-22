@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-22T05:35:31.398Z",
+  "generated_at": "2025-10-22T05:48:33.197Z",
   "count": 894,
   "files": [
     {
@@ -148,7 +148,7 @@
     },
     {
       "path": ".github/workflows/overseers-crossrepo-sweep.yml",
-      "size": 1145,
+      "size": 1752,
       "type": "workflow",
       "purpose": "GitHub Actions workflow"
     },

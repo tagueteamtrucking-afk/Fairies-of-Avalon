@@ -1,89 +1,85 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Carol • 14‑Day Menu</title>
-<link rel="stylesheet" href="print.css" media="print"/>
-<style>
-  :root{--bg:#0b0b10;--card:#12121a;--ink:#f2f4f8;--mut:#aab2c0;--chip:#232332;--line:#1b1b26;}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
-  header{padding:20px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,11,16,.9);backdrop-filter:blur(6px)}
-  header h1{margin:0;font-size:20px}
-  #status{color:var(--mut);font-size:12px;margin-top:4px}
-  main{padding:16px;display:grid;gap:16px}
-  .day{border:1px solid var(--line);background:var(--card);border-radius:12px;overflow:hidden}
-  .day h2{margin:0;padding:12px 12px;border-bottom:1px solid var(--line);font-size:16px}
-  .events{display:grid;gap:8px;padding:12px}
-  .ev{border:1px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:6px;background:#0E0E16}
-  .name{font-weight:600}
-  .meta{display:flex;gap:8px;flex-wrap:wrap}
-  .chip{background:var(--chip);padding:4px 8px;border-radius:999px;font-size:12px;color:var(--mut)}
-  .items{color:var(--mut);font-size:13px}
-  .items ul{margin:6px 0 0 16px;padding:0}
-  .note{font-size:12px;color:var(--mut)}
-  .print-hint{font-size:12px;color:var(--mut);padding:6px 12px;border-top:1px dashed var(--line)}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Carol — 14‑Day Menu</title>
+  <link rel="stylesheet" href="print.css">
+  <style>
+  :root { --fg:#222; --muted:#666; --bg:#fff; --chip:#eef2f7; }
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;margin:0;background:var(--bg);color:var(--fg)}
+  header{position:sticky;top:0;background:#fffddc;border-bottom:1px solid #eee;padding:12px 16px;z-index:10}
+  header h1{margin:0;font-size:18px}
+  header .actions{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+  button{padding:8px 12px;border:1px solid #ddd;background:#fff;border-radius:8px;cursor:pointer}
+  main{padding:16px;max-width:980px;margin:auto}
+  .day{border:1px solid #eee;border-radius:12px;margin:14px 0;padding:12px;background:#fff}
+  .day h2{margin:0 0 8px 0}
+  .event{padding:10px;border:1px solid #f1f1f1;border-radius:10px;margin:8px 0;background:#fafcff}
+  .meta{font-size:12px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+  .kcal{background:var(--chip);padding:2px 8px;border-radius:999px}
+  .items{margin:8px 0 0 0;padding-left:18px}
+  .items li{margin:2px 0}
   @media print{
-    header{display:none}
-    main{padding:0}
-    .day{page-break-after: always;}
-    .day:last-child{page-break-after: auto;}
-    body{background:white;color:black}
+    header,.actions{display:none!important}
+    .day{break-after:page;page-break-after:always}
+    .day:last-child{break-after:auto;page-break-after:auto}
+    body{background:#fff}
   }
-</style>
+  </style>
 </head>
 <body>
   <header>
-    <h1>Carol • 14‑Day Menu</h1>
-    <div id="status">Loading plan…</div>
+    <h1>Carol — 14‑Day Menu</h1>
+    <div class="actions">
+      <button onclick="window.print()">Print Menu</button>
+      <a href="../shopping.html"><button>Open Shopping List</button></a>
+    </div>
   </header>
-  <main id="root"></main>
+  <main id="app">Loading…</main>
+
 <script>
-(async function(){
-  const status = document.getElementById('status');
-  async function fetchJSON(rel){
-    const tried = [];
-    const tryFetch = async (p)=>{
-      try{
-        const r = await fetch(p); tried.push(p);
-        if(r.ok) return await r.json();
-      }catch(e){}
-      return null;
-    };
-    return await tryFetch(rel) || await tryFetch('./'+rel) || null;
-  }
-
-  const ix = await fetchJSON('index.json');
-  if(!ix || !ix.plan_latest){
-    status.textContent = 'Pointer missing: pages/apps/carol/index.json needs "plan_latest"';
-    return;
-  }
-  const plan = await fetchJSON(ix.plan_latest);
-  if(!plan){
-    status.textContent = 'Plan not found at '+ix.plan_latest;
-    return;
-  }
-  status.textContent = `${plan.weeks} weeks • pattern ${plan.pattern} • region ${plan.region}`;
-
-  const root = document.getElementById('root');
-  for(const day of plan.days){
-    const sec = document.createElement('section'); sec.className='day';
-    sec.innerHTML = `<h2>${day.day_label}</h2><div class="events"></div><div class="print-hint">Print: this page will render exactly one day per paper page.</div>`;
-    const list = sec.querySelector('.events');
-    for(const ev of day.events){
-      const li = document.createElement('div'); li.className = 'ev';
-      const chips = [
-        ev.type, ev.time_hint, (ev.kcal?`≈ ${ev.kcal} kcal`:'')
-      ].filter(Boolean).map(x=>`<span class="chip">${x}</span>`).join('');
-      const items = (ev.items||[]).map(it=>`${it.quantity} ${it.unit||''} ${it.ingredient}`.trim()).join('</li><li>');
-      li.innerHTML = `
-        <div class="name">${ev.name}</div>
-        <div class="meta">${chips}</div>
-        ${items?`<div class="items"><ul><li>${items}</li></ul></div>`:''}
-      `;
-      list.appendChild(li);
-    }
-    root.appendChild(sec);
+async function loadPlanPtr(){
+  const res = await fetch('./index.json', {cache:'no-store'});
+  if(!res.ok) throw new Error('index.json not found');
+  return res.json();
+}
+function kcalChip(ev){ return ev.kcal ? `<span class="kcal">≈${ev.kcal} kcal</span>` : '' }
+function evMeta(ev){
+  const bits = [];
+  if(ev.type) bits.push(ev.type);
+  if(ev.time_hint) bits.push(ev.time_hint);
+  if(typeof ev.kcal === 'number') bits.push(`≈${ev.kcal} kcal`);
+  return bits.join(' · ');
+}
+function li(i){
+  const note = i.notes && i.notes.trim() ? ` — <em>${i.notes}</em>` : '';
+  return `<li>${i.ingredient}: <strong>${i.quantity} ${i.unit}</strong>${note}</li>`;
+}
+(async () => {
+  try{
+    const ptr = await loadPlanPtr();
+    const planURL = '../plans/' + ptr.plan_latest.split('/').pop();
+    const res = await fetch(planURL, {cache:'no-store'});
+    if(!res.ok){ throw new Error('Plan not found at ' + planURL); }
+    const plan = await res.json();
+    const app = document.getElementById('app');
+    app.innerHTML = '';
+    plan.days.forEach(day => {
+      const div = document.createElement('div');
+      div.className = 'day';
+      const evs = day.events.map(ev => `
+        <div class="event">
+          <strong>${ev.name}</strong>
+          <div class="meta">${evMeta(ev)}</div>
+          ${ev.items && ev.items.length ? `<ul class="items">${ev.items.map(li).join('')}</ul>` : ''}
+          ${ev.instructions && ev.instructions.length ? `<details><summary>Instructions</summary><ul class="items">${ev.instructions.map(s=>`<li>${s}</li>`).join('')}</ul></details>` : ''}
+        </div>`).join('');
+      div.innerHTML = `<h2>${day.day_label}</h2>${evs}`;
+      app.appendChild(div);
+    });
+  }catch(e){
+    document.getElementById('app').textContent = e.message;
   }
 })();
 </script>

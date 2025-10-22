@@ -1,11 +1,11 @@
 {
   "summary": {
-    "count": 840,
+    "count": 842,
     "byType": {
       "other": 123,
       "html": 6,
       "cname": 1,
-      "data": 265,
+      "data": 267,
       "style": 2,
       "model": 16,
       "wallpaper": 10,
@@ -14,7 +14,7 @@
       "page": 20,
       "microapp": 283
     },
-    "generated_at": "2025-10-22T00:59:31.899Z"
+    "generated_at": "2025-10-22T01:48:45.232Z"
   },
   "files": [
     {
@@ -110,8 +110,8 @@
     },
     {
       "path": "asset/models/models.json",
-      "bytes": 762,
-      "sha1": "26ada60890238948dee7197a53390fdf3fa3d782",
+      "bytes": 1627,
+      "sha1": "cb71f2e32986cdcb583e4fdb0e4092ee575d6874",
       "type": "model",
       "purpose": "VRM model"
     },
@@ -348,8 +348,8 @@
     },
     {
       "path": "asset/wings/manifest.json",
-      "bytes": 6880,
-      "sha1": "1ad6d5d46bbc3076a3f50d23eb342676ab288644",
+      "bytes": 8297,
+      "sha1": "48990154cd3efe4c46004cce9f4c64c90587e0a0",
       "type": "wings",
       "purpose": "Wings model/texture"
     },
@@ -1216,8 +1216,8 @@
     },
     {
       "path": "kill-sw.html",
-      "bytes": 610,
-      "sha1": "ecf61c068e8989b8b8e0f17c3cdcd230a39098af",
+      "bytes": 614,
+      "sha1": "9ede0be1c9c5317eaf49ba599c59dde4046d28d7",
       "type": "html",
       "purpose": ""
     },
@@ -1239,6 +1239,20 @@
       "path": "memory/Codys-Memory-visuals.yaml",
       "bytes": 4260,
       "sha1": "4bf2b0bbc73ea04ac7aa38f4d90f78a78131ee7d",
+      "type": "data",
+      "purpose": ""
+    },
+    {
+      "path": "memory/deadends.json",
+      "bytes": 92256,
+      "sha1": "2f4d2d4e2e8b395d70400cc63be6a23c3be30022",
+      "type": "data",
+      "purpose": ""
+    },
+    {
+      "path": "memory/file-index.json",
+      "bytes": 167529,
+      "sha1": "0076b53dbdf5ba068eac37433a0b824e04cac8d1",
       "type": "data",
       "purpose": ""
     },
@@ -3666,8 +3680,8 @@
     },
     {
       "path": "pages/apps/carol/menu.html",
-      "bytes": 1925,
-      "sha1": "e65271b4286fdae1ab6c6abcba36097d591331f7",
+      "bytes": 3841,
+      "sha1": "f5a2daccbb29b7f8b319944c8ca29e9a091a6706",
       "type": "microapp",
       "purpose": ""
     },
@@ -3904,8 +3918,8 @@
     },
     {
       "path": "pages/apps/carol/shopping.html",
-      "bytes": 2044,
-      "sha1": "ad56894d430556c30de05942855f05a5bf61d5e1",
+      "bytes": 1941,
+      "sha1": "b123f4cedf1ec2f487d814fa89379e1873c50b90",
       "type": "microapp",
       "purpose": ""
     },
@@ -3953,8 +3967,8 @@
     },
     {
       "path": "pages/apps/charlotte/index.html",
-      "bytes": 2038,
-      "sha1": "61e1efd9752c8111d6f888363da6fd89d4e3acdb",
+      "bytes": 2148,
+      "sha1": "c10b0016a012521573f3df37e5e20955a4e8d67d",
       "type": "microapp",
       "purpose": ""
     },
@@ -4296,8 +4310,8 @@
     },
     {
       "path": "pages/apps/overseers/hub/index.html",
-      "bytes": 1212,
-      "sha1": "432733421fa72590bd678bc21f6be93ad89cfc9e",
+      "bytes": 1914,
+      "sha1": "00c52271dfcd3282765d0b72e1618d5f53b7432b",
       "type": "microapp",
       "purpose": "Overseers Hub UI"
     },
@@ -4317,15 +4331,15 @@
     },
     {
       "path": "pages/apps/overseers/permissions/state.json",
-      "bytes": 143,
-      "sha1": "c9edd236748771e6e274b11a5d7c8cb187aac711",
+      "bytes": 63,
+      "sha1": "a05ec320160568836c65f267cae55eaeb154add8",
       "type": "microapp",
       "purpose": "Permissions state"
     },
     {
       "path": "pages/apps/overseers/progress.json",
       "bytes": 148,
-      "sha1": "02e65c8271ca7cbaf2d09f47fca2f4e80c19892c",
+      "sha1": "5bc7674e3fc5a39c0f37030d888e79745ab0e372",
       "type": "microapp",
       "purpose": "Telemetry (WPI, counters)"
     },
@@ -5780,15 +5794,15 @@
     },
     {
       "path": "scripts/carol/build-shopping.mjs",
-      "bytes": 3920,
-      "sha1": "2f503f7565ddfcb6f9e6aa852da3573303009a51",
+      "bytes": 4385,
+      "sha1": "4e261fdac225bb26e3ffe3236b521137788c6f9e",
       "type": "script",
       "purpose": ""
     },
     {
       "path": "scripts/charlotte/crawler.mjs",
-      "bytes": 1731,
-      "sha1": "dca11d9b2f05f36f65d594be3338b19427f9ad01",
+      "bytes": 1745,
+      "sha1": "4012dc9601f02eeac4621f9abe8982bb0c78c526",
       "type": "script",
       "purpose": ""
     },
@@ -5857,8 +5871,8 @@
     },
     {
       "path": "scripts/overseers/repo-sweep.mjs",
-      "bytes": 7005,
-      "sha1": "bf4ffb6415af35704a2499a23be6772bca63088d",
+      "bytes": 6935,
+      "sha1": "bba672c73ec49574b65a36b1f264b44f812ad8e4",
       "type": "script",
       "purpose": ""
     },

@@ -10,28 +10,30 @@ concurrency:
   group: memory-sweep-${{ github.ref }}
   cancel-in-progress: true
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   sweep:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout"
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: "Setup Node"
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: "Build in-repo memory index"
-        shell: bash
+      - name: Build in-repo memory index
         run: |
           set -euo pipefail
           node scripts/overseers/memory-index.mjs --root . --out pages/apps/overseers/memory-index.json
 
-      - name: "Commit to PR branch"
-        shell: bash
+      - name: Commit to PR branch
         run: |
           set -euo pipefail
           BR="autobot/memory-sweep-${GITHUB_RUN_ID}"
@@ -42,7 +44,7 @@ jobs:
           git commit -m "chore(overseers): update Memory Index" || echo "Nothing to commit."
           git push origin "$BR" || echo "Branch exists or no changes."
 
-      - name: "Open PR"
+      - name: Open PR
         uses: actions/github-script@v7
         with:
           script: |

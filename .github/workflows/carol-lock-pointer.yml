@@ -1,53 +1,40 @@
-name: Carol — Lock Pointer (14-day plan)
-
+name: Overseers - Manifests + WPI
 on:
   workflow_dispatch:
-    inputs:
-      plan_path:
-        description: "Plan JSON path (default: 14-day unique)"
-        required: true
-        default: "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
-      backup_path:
-        description: "Backup plan JSON path"
-        required: true
-        default: "pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json"
-      people:
-        description: "Number of people"
-        required: true
-        default: "2"
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'asset/models/**'
+      - 'asset/wings/**'
+      - 'asset/textures/wallpapers/**'
+      - 'scripts/overseers/repo-sweep.mjs'
 
 permissions:
   contents: write
 
+concurrency:
+  group: overseers-manifests
+  cancel-in-progress: false
+
 jobs:
-  lock-pointer:
+  build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: pwsh
     steps:
       - uses: actions/checkout@v4
-
-      - name: Write Carol pointer file
-        shell: pwsh
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build manifests + WPI
+        run: node scripts/overseers/repo-sweep.mjs
+      - name: Commit changes (if any)
         run: |
-          $pointer = @{
-            people  = [int]( '${{ github.event.inputs.people }}' )
-            pointer = '/' + '${{ github.event.inputs.plan_path }}'.TrimStart('/')
-            backup  = '/' + '${{ github.event.inputs.backup_path }}'.TrimStart('/')
-            notes   = @(
-              'Prefer sunflower seed butter when a spread is used.',
-              'Swap very hard/crunchy items for soft/butter alternatives.',
-              'Shellfish-free; lactose-light; easy on onions & bell peppers; avoid cumin.'
-            )
-          } | ConvertTo-Json -Depth 5
-
-          $outPath = 'pages/apps/carol/index.json'
-          New-Item -Type Directory -Force -Path (Split-Path $outPath) | Out-Null
-          Set-Content -LiteralPath $outPath -Value $pointer -Encoding UTF8
-
-      - name: Commit pointer
-        shell: pwsh
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pages/apps/carol/index.json
-          git commit -m "Carol: lock pointer to ${{ github.event.inputs.plan_path }} (people=${{ github.event.inputs.people }})" || echo "No changes"
-          git push
+          git config user.name "Overseers Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add asset/models/models.json asset/wings/manifest.json pages/apps/overseers/progress.json || true
+          git commit -m "Overseers: manifests + WPI" || echo "Nothing to commit"
+          git push || echo "Nothing to push"

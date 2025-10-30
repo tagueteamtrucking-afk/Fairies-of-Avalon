@@ -1,12 +1,12 @@
 ﻿{
   "totals": {
+    "files": 1025,
     "used": 0,
-    "files": 1018,
-    "orphans": 88,
-    "scripts": 88
+    "scripts": 89,
+    "orphans": 89
   },
   "used": [],
-  "updated": "2025-10-30T20:57:05Z",
+  "updated": "2025-10-30T23:36:04Z",
   "orphans": [
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Abbey-Parse-Transactions.ps1",
@@ -86,6 +86,7 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Tracy-Wallpaper-Index.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/VersionParam-Sweeper.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Workflows-Sweeper.ps1",
+    "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/windows/Check-Env.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/alexandria-build-all.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/alexandria-suite.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/carol-meal-plan.ps1",

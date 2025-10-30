@@ -1,6 +1,5 @@
 {
   "imports": {
-    "shoelace/": "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/dist/",
-    "fflate": "https://cdn.jsdelivr.net/npm/fflate@0.8.2/esm/browser.js"
+    "lit": "https://cdn.jsdelivr.net/npm/lit@3.2.0/index.js"
   }
 }

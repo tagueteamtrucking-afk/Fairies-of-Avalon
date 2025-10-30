@@ -1,15 +1,1 @@
-<!doctype html><meta charset="utf-8"><title>Charlotte — Highlights</title><link rel="stylesheet" href="../_shared/ui.css">
-<h1>Charlotte — Highlights</h1><section id="apps" class="grid"></section>
-<script type="module">
-const APPS=document.getElementById('apps');
-const SRC=[
-  {title:'Shoelace',url:'https://shoelace.style',imports:{'shoelace/':'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/dist/'}},
-  {title:'fflate',url:'https://github.com/101arrowz/fflate',imports:{'fflate':'https://cdn.jsdelivr.net/npm/fflate@0.8.2/esm/browser.js'}},
-  {title:'lit',url:'https://lit.dev',imports:{'lit':'https://cdn.jsdelivr.net/npm/lit@3.2.0/index.js'}}
-];
-APPS.innerHTML = SRC.map(s=>`<div class=card><b>${s.title}</b><div><a class=btn href='${s.url}' target=_blank>Open</a> <button class=btn onclick='install(${JSON.stringify(s.imports)})'>Install</button></div></div>`).join('');
-window.install = async (imports)=>{
-  const r = await fetch('/api/importmap-install',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({imports})}).catch(()=>null);
-  if (!r || !r.ok) alert('Connect Account: Deploy Importmap Installer Worker and map /api/importmap-install'); else alert('Check Pull Requests');
-};
-</script>
+<!doctype html><meta charset=utf-8><title>Highlights</title><link rel=stylesheet href=../_shared/ui.css><button class=btn onclick='installAll()'>Install All</button><script>async function installAll(){alert('Deploy worker and map /api/importmap-install, then this installs all.');}</script>

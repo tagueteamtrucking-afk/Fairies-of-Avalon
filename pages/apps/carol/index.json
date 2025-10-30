@@ -1,3 +1,5 @@
 {
-  "status": "ok"
+  "status": "ok",
+  "plan_latest": "plans/mealplan-balanced-14d.json",
+  "updated": "2025-10-30T06:55:23.768781Z"
 }

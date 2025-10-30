@@ -1,5 +1,12 @@
 ﻿{
-  "updated": "2025-10-30T03:43:16Z",
+  "totals": {
+    "used": 0,
+    "files": 1018,
+    "orphans": 88,
+    "scripts": 88
+  },
+  "used": [],
+  "updated": "2025-10-30T20:57:05Z",
   "orphans": [
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Abbey-Parse-Transactions.ps1",
@@ -89,12 +96,5 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/overseers-llm-bridge.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/tracy-artboard.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1"
-  ],
-  "totals": {
-    "scripts": 88,
-    "orphans": 88,
-    "used": 0,
-    "files": 955
-  },
-  "used": []
+  ]
 }

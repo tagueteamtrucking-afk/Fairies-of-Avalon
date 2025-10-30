@@ -1,13 +1,1 @@
-<!doctype html><meta charset="utf-8"><title>Tracy — Skin Switcher</title>
-<link id="avalon-skin" rel="stylesheet" href="./avalon-default.css">
-<link rel="stylesheet" href="../_shared/ui.css">
-<style>.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}.card{border:1px solid #333;border-radius:12px;padding:12px}</style>
-<h1>Tracy — Skin Switcher</h1>
-<div class="grid">
-  <button class="card" data-skin="avalon-default.css">Avalon Default</button>
-  <button class="card" data-skin="cathedral-gold.css">Cathedral Gold</button>
-  <button class="card" data-skin="night-abyss.css">Night Abyss</button>
-</div>
-<script type="module">
-const link=document.getElementById('avalon-skin'); document.querySelectorAll('[data-skin]').forEach(b=>b.onclick=()=>{link.href='./'+b.dataset.skin; localStorage.setItem('avalon-skin',link.href);}); const saved=localStorage.getItem('avalon-skin'); if(saved) link.href=saved;
-</script>
+<!doctype html><link id=avalon-skin rel=stylesheet href=./avalon-default.css><link rel=stylesheet href=../_shared/ui.css><h1>Tracy — Skin Switcher</h1><button class=btn data-skin=avalon-default.css>Default</button><script type=module>const l=document.getElementById('avalon-skin');document.querySelectorAll('[data-skin]').forEach(b=>b.onclick=()=>{l.href='./'+b.dataset.skin;localStorage.setItem('avalon-skin',l.href)});const s=localStorage.getItem('avalon-skin');if(s)l.href=s;</script>

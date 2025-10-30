@@ -1,0 +1,19 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Stella — Edge TTS</title>
+<link rel="stylesheet" href="../_shared/ui-lite.css">
+<style>body{background:#0b0b0f;color:#eee;font-family:system-ui;margin:24px}.btn{padding:8px 12px;border:1px solid #444;border-radius:10px;background:#111;color:#eee;cursor:pointer}</style>
+<h1>Stella — Edge TTS</h1>
+<p>Enter text and synthesize via the Edge TTS Worker (no client secrets).</p>
+<textarea id="t" style="width:100%;height:120px"></textarea><br>
+<button id="go" class="btn">🎤 Synthesize</button>
+<audio id="a" controls style="display:block;margin-top:12px"></audio>
+<script type="module">
+const WORKER_URL = '/cloudflare-tts-worker'; // TODO: replace with your deployed route
+go.onclick = async ()=>{
+  if (WORKER_URL.startsWith('/cloudflare-tts-worker')) return alert('Connect Account: set WORKER_URL to your worker URL.');
+  const r = await fetch(WORKER_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({text: t.value||'Hello from Stella'})});
+  if (!r.ok){ alert('Proxy error '+r.status); return; }
+  a.src = URL.createObjectURL(await r.blob());
+};
+</script>

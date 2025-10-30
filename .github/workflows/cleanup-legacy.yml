@@ -1,0 +1,43 @@
+name: Cleanup Legacy (Avalon only)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run cleanup
+        run: |
+          node scripts/overseers/cleanup-legacy.mjs
+
+      - name: Create cleanup PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Cleanup: remove legacy Castle-Town duplicates, zero-byte wings, thin memory-history"
+          title: "Cleanup legacy files (Avalon only)"
+          body: "Removes root /city duplicates, zero-byte wings, duplicate Index.html, thins memory-history to earliest/latest per request."
+          add-paths: |
+            city/city-map.svg
+            city/city-registry.json
+            pages/apps/Index.html
+            asset/wings/Wing1423.fbx
+            asset/wings/wing1424.fbx
+            asset/wings/wing1425.fbx
+            asset/wings/wing1426.fbx
+            asset/wings/wing1428.fbx
+            asset/wings/wing1430.fbx
+            asset/wings/Wing1436.fbx
+            asset/wings/Wing1437.fbx
+            asset/wings/Wing1438.fbx
+            home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/memory-history/*

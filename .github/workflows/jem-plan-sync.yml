@@ -32,6 +32,7 @@ jobs:
             unzip -q "$z" -d "$TMP/extracted"
           done
           echo "EXTRACTED_DIR=$TMP/extracted" >> $GITHUB_ENV
+          echo "WHO=Ray,Blanca" >> $GITHUB_ENV
 
       - name: Setup Node
         uses: actions/setup-node@v4

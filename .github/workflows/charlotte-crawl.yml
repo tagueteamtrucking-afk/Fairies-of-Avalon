@@ -1,4 +1,4 @@
-name: Carol Refresh
+name: Charlotte Crawl
 on:
   workflow_dispatch:
 permissions:
@@ -15,9 +15,9 @@ jobs:
       - run: echo ok
       - uses: peter-evans/create-pull-request@v6
         with:
-          branch: create-pull-request/Carol Refresh
-          commit-message: "Carol Refresh: automated update"
-          title: "Carol Refresh: automated update"
+          branch: create-pull-request/Charlotte Crawl
+          commit-message: "Charlotte Crawl: automated update"
+          title: "Charlotte Crawl: automated update"
           body: "Automated update by workflow."
           add-paths: |
             pages/**

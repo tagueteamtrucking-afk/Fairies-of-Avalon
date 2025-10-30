@@ -1,4 +1,4 @@
-name: Carol Refresh
+name: Tracy Optimize
 on:
   workflow_dispatch:
 permissions:
@@ -15,9 +15,9 @@ jobs:
       - run: echo ok
       - uses: peter-evans/create-pull-request@v6
         with:
-          branch: create-pull-request/Carol Refresh
-          commit-message: "Carol Refresh: automated update"
-          title: "Carol Refresh: automated update"
+          branch: create-pull-request/Tracy Optimize
+          commit-message: "Tracy Optimize: automated update"
+          title: "Tracy Optimize: automated update"
           body: "Automated update by workflow."
           add-paths: |
             pages/**

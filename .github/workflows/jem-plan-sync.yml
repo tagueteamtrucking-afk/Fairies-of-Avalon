@@ -1,0 +1,40 @@
+name: Jem Plan Sync
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'pages/apps/jem/imports/**'
+      - 'scripts/overseers/jem-program-plan.mjs'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Import + Normalize Samsung Health (Node stub)
+        shell: bash
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+          const base = 'pages/apps/jem';
+          const out = path.join(base, 'programs');
+          if (!fs.existsSync(out)) fs.mkdirSync(out, { recursive: true });
+          const files = fs.readdirSync(out).filter(f => f.endsWith('.json'));
+          const idx = files.map(f => ({ file:f, title:f.replace('.json','') }));
+          fs.writeFileSync(path.join(out, 'index.json'), JSON.stringify(idx, null, 2));
+          console.log('Jem index.json updated with', files.length, 'program(s)');
+          "
+      - name: Commit
+        run: |
+          git config user.name "overseer"
+          git config user.email "overseer@users.noreply.github.com"
+          git add pages/apps/jem/programs/index.json
+          git commit -m "Jem: update programs index" || echo "No changes"
+          git push

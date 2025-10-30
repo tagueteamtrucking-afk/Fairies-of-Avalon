@@ -1,0 +1,3 @@
+/* Jewel Garden variant */
+:root{--accent:#0f7b6c;--bg:#f7fff9;--ink:#1a1a1a}
+body{background:var(--bg);color:var(--ink)} a{color:var(--accent)}

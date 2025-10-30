@@ -1,0 +1,19 @@
+name: Importmap Merge
+on: { workflow_dispatch: {} }
+permissions: { contents: write, pull-requests: write }
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: node scripts/overseers/importmap-merge.mjs
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          branch: create-pull-request/importmap-merge-${{ github.run_id }}
+          commit-message: importmap: merge additions
+          title: importmap: merge additions
+          body: Automated importmap merge.
+          add-paths: |
+            importmap.json

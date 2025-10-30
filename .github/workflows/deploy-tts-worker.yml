@@ -1,6 +1,6 @@
 name: Deploy TTS Worker
-on:
-  workflow_dispatch:
+on: { workflow_dispatch: {} }
+permissions: { contents: read }
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -10,4 +10,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy cloudflare/worker-tts.js --name avalon-tts
+          command: deploy --config wrangler.toml

@@ -5,19 +5,20 @@ permissions:
   contents: write
   pull-requests: write
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: echo ok
+      - run: node scripts/carol/build-shopping.mjs
       - uses: peter-evans/create-pull-request@v6
         with:
-          branch: create-pull-request/Carol Refresh
-          commit-message: "Carol Refresh: automated update"
-          title: "Carol Refresh: automated update"
+          branch: "create-pull-request/carol-refresh-${{ github.run_id }}"
+          commit-message: "Carol: update shopping from latest plan"
+          title: "Carol: update shopping from latest plan"
           body: "Automated update by workflow."
           add-paths: |
-            pages/**
+            pages/apps/carol/plans/shopping-quantized.json
+            pages/apps/carol/plans/plan-report.json

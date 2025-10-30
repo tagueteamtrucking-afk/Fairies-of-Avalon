@@ -1,0 +1,211 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Billie — Faceless Reel Builder</title>
+<link rel="stylesheet" href="../_shared/ui-lite.css">
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #eee; background:#0b0b0f;}
+  .row { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap;}
+  .col { flex:1; min-width:320px;}
+  canvas { width: 360px; height: 640px; background:#000; border-radius:16px; display:block; }
+  textarea { width:100%; height:160px; }
+  .btn { padding:8px 12px; border-radius:10px; border:1px solid #444; background:#111; color:#eee; cursor:pointer; text-decoration:none;}
+  .grid { display:grid; gap:8px; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); }
+  .wall { border:1px solid #333; border-radius:10px; overflow:hidden; cursor:pointer; }
+  .wall img { width:100%; height:100px; object-fit:cover; display:block; }
+  .active { outline:2px solid #88f; }
+  label { display:block; margin:6px 0; }
+</style>
+<div class="row">
+  <div class="col">
+    <h2>Canvas</h2>
+    <canvas id="c" width="360" height="640"></canvas>
+    <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
+      <button id="play" class="btn">▶ Preview</button>
+      <button id="rec" class="btn">⏺ Record</button>
+      <a id="dl" class="btn" download="billie-reel.webm" style="display:none">⬇ Download</a>
+      <label class="btn" style="display:inline-flex; align-items:center; gap:8px;">
+        📹 Use Video… <input id="vidin" type="file" accept="video/*" style="display:none">
+      </label>
+    </div>
+    <video id="vid" playsinline muted style="display:none"></video>
+  </div>
+  <div class="col">
+    <h2>Scenes & Captions</h2>
+    <textarea id="script" placeholder="One line per scene…
+• Automate bills, auto-invest the surplus
+• Use the 50/30/20 rule (but smarter)
+• Build 3 cashflow pillars before luxury
+• One hour a week: audit subscriptions"></textarea>
+    <div style="margin-top:8px;display:flex;gap:12px;flex-wrap:wrap;">
+      <label>Duration per scene (s): <input id="dur" type="number" value="3" min="1" max="15" class="btn" style="width:64px"></label>
+      <label>Caption position: 
+        <select id="capPos" class="btn">
+          <option value="bottom" selected>Bottom</option>
+          <option value="middle">Middle</option>
+          <option value="top">Top</option>
+        </select>
+      </label>
+    </div>
+    <h2>Backgrounds</h2>
+    <p style="opacity:.7">Click to choose (or upload a video above):</p>
+    <div id="walls" class="grid"></div>
+  </div>
+</div>
+<script type="module">
+const W = 360, H = 640;
+const c = document.getElementById('c'); const g = c.getContext('2d');
+const playBtn = document.getElementById('play');
+const recBtn  = document.getElementById('rec');
+const dl      = document.getElementById('dl');
+const script  = document.getElementById('script');
+const durEl   = document.getElementById('dur');
+const wallsEl = document.getElementById('walls');
+const capPos  = document.getElementById('capPos');
+const vid     = document.getElementById('vid');
+const vidin   = document.getElementById('vidin');
+
+const backgrounds = [
+  '/asset/textures/wallpapers/carol-menu-bg.jpg',
+  '/asset/textures/wallpapers/carol-pagoda.jpg',
+  '/asset/textures/wallpapers/castle village 01.jpg',
+  '/asset/textures/wallpapers/castle village 02.jpg',
+  '/asset/textures/wallpapers/castle village 03.jpg',
+  '/asset/textures/wallpapers/castle village 04.jpg',
+  '/asset/textures/buildings/phoenix-pagoda.jpg'
+];
+
+let bgIdx = 0;
+let bgImg = new Image(); bgImg.crossOrigin = 'anonymous';
+let useVideo = false;
+
+function setBG(i) {
+  useVideo = false;
+  bgIdx = i; bgImg = new Image(); bgImg.crossOrigin='anonymous';
+  bgImg.src = backgrounds[i];
+  [...wallsEl.children].forEach((el,ix)=>el.classList.toggle('active', ix===i));
+}
+function layoutWalls(){
+  wallsEl.innerHTML = backgrounds.map((src,i)=>`<div class="wall${i===bgIdx?' active':''}"><img src="${src}"><div style="padding:6px">${src.split('/').pop()}</div></div>`).join('');
+  [...wallsEl.children].forEach((el,ix)=>el.onclick = ()=> setBG(ix));
+}
+layoutWalls(); setBG(0);
+
+vidin.addEventListener('change', async (e)=>{
+  const file = e.target.files[0];
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  vid.src = url;
+  try {
+    await vid.play(); vid.pause();
+    useVideo = true;
+  } catch (err) {
+    alert('Could not load video in-browser. Try a shorter MP4/WebM.');
+  }
+});
+
+function lines() {
+  return script.value.split('\n').map(s=>s.trim()).filter(Boolean);
+}
+
+function drawBG(t, total){
+  if (useVideo && vid.readyState >= 2){
+    // draw current video frame scaled to cover
+    const r = Math.max(W/vid.videoWidth, H/vid.videoHeight);
+    const w = vid.videoWidth*r, h = vid.videoHeight*r;
+    g.drawImage(vid, (W-w)/2, (H-h)/2, w, h);
+    g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(0,0,W,H);
+    return;
+  }
+  const p = (t/total);
+  const pan = Math.sin(p*Math.PI) * 20;
+  if (bgImg.complete && bgImg.naturalWidth){
+    const r = Math.max(W/bgImg.width, H/bgImg.height);
+    const w = bgImg.width*r, h = bgImg.height*r;
+    g.drawImage(bgImg, (W-w)/2 + pan, (H-h)/2, w, h);
+    g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(0,0,W,H);
+  } else {
+    g.fillStyle = '#000'; g.fillRect(0,0,W,H);
+  }
+}
+
+function drawCaption(line){
+  const fontSize = 26;
+  g.font = `700 ${fontSize}px system-ui, sans-serif`;
+  g.fillStyle = '#fff';
+  g.textAlign = 'center';
+  const wrap = wrapText(line, W*0.8, fontSize);
+  let y = H*0.72;
+  if (capPos.value==='middle') y = H*0.5;
+  if (capPos.value==='top') y = H*0.28;
+  wrap.forEach((ln,i)=> g.fillText(ln, W/2, y + i*(fontSize+6)) );
+  // footer tag
+  g.font = '12px system-ui, sans-serif';
+  g.fillStyle = 'rgba(255,255,255,.85)';
+  g.fillText('@Billie • Fairies of Avalon', W/2, H-20);
+}
+function wrapText(text, maxWidth, size){
+  const words = text.split(' ');
+  const lines=[]; let cur='';
+  for (const w of words){
+    const test = cur?cur+' '+w:w;
+    if (g.measureText(test).width > maxWidth) { lines.push(cur); cur = w; }
+    else cur = test;
+  }
+  if (cur) lines.push(cur);
+  return lines.slice(0,3);
+}
+
+let playing=false, recording=false, mediaRec, chunks=[];
+playBtn.onclick = async ()=>{
+  playing = !playing;
+  playBtn.textContent = playing ? '⏸ Pause' : '▶ Preview';
+  if (playing) run(false); 
+};
+recBtn.onclick = async ()=>{
+  if (!recording){
+    recording = true; recBtn.textContent='⏸ Stop';
+    chunks=[];
+    const stream = c.captureStream(30);
+    mediaRec = new MediaRecorder(stream, { mimeType:'video/webm;codecs=vp9' });
+    mediaRec.ondataavailable = e => chunks.push(e.data);
+    mediaRec.onstop = ()=>{
+      const blob = new Blob(chunks, {type:'video/webm'});
+      dl.href = URL.createObjectURL(blob);
+      dl.style.display='inline-block';
+    };
+    mediaRec.start();
+    run(true);
+  } else {
+    recording = false; recBtn.textContent='⏺ Record';
+    mediaRec && mediaRec.stop();
+  }
+};
+
+async function run(forceLoop){
+  const L = lines(); if (!L.length){ playing=false; return; }
+  const sec = Math.max(1, Math.min(15, Number(durEl.value||3)));
+  const per = sec * 1000;
+  const total = per * L.length;
+
+  if (useVideo){
+    try { await vid.play(); } catch(e){}
+  }
+
+  let start = performance.now();
+  const loop = (now)=>{
+    if (!playing && !recording && !forceLoop) { try{vid.pause()}catch{} return; }
+    const elapsed = (now - start) % total;
+    const scene = Math.floor(elapsed / per);
+    const inScene = elapsed - scene*per;
+
+    drawBG(inScene, per);
+    drawCaption(L[scene]);
+
+    if (recording){
+      if (!playing) playing = true;
+    }
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+}
+</script>

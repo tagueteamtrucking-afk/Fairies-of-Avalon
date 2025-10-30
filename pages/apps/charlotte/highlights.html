@@ -1,0 +1,119 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Charlotte — App Highlights</title>
+<link rel="stylesheet" href="../_shared/ui-lite.css">
+<style>
+  body{background:#0b0b0f;color:#e8e8ee;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:24px;}
+  header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+  h1{margin:0;font-size:24px;}
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));}
+  .card{border:1px solid #2a2a30;border-radius:14px;padding:14px;background:#101018;}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid #3a3a44;margin-right:6px;font-size:12px}
+  a.btn{padding:6px 10px;border:1px solid #3a3a44;border-radius:10px;color:#e8e8ee;text-decoration:none;background:#12121a}
+  .muted{opacity:.75}
+  details{margin-top:8px}
+</style>
+<header>
+  <h1>Charlotte — App Highlights</h1>
+  <nav>
+    <a class="btn" href="../charlotte/index.html">Crawler</a>
+    <a class="btn" href="../../overseers/overview.html">Overseers</a>
+  </nav>
+</header>
+
+<p class="muted">This page aggregates Charlotte’s recent crawler results and renders a concise list of candidate libraries/apps with short summaries and recommendations. Click any card to expand raw notes.</p>
+
+<section id="apps" class="grid"></section>
+
+<script type="module">
+const APPS = document.getElementById('apps');
+async function getIndex(){
+  try{
+    const r = await fetch('../charlotte/crawler/index.json', {cache:'no-store'});
+    if (!r.ok) return [];
+    return await r.json();
+  }catch(e){ return []; }
+}
+async function getJson(url){
+  try{ const r = await fetch(url, {cache:'no-store'}); if (!r.ok) return null; return await r.json(); }
+  catch(e){ return null; }
+}
+
+/**
+ * Heuristic summarizer for an entry (domain, title, description, tags).
+ * We avoid placeholders by rendering raw text when fields are missing.
+ */
+function summarize(entry){
+  const url = entry.url || entry.link || entry.homepage || '';
+  const domain = url ? new URL(url).hostname.replace(/^www\./,'') : (entry.domain||'unknown');
+  const title = entry.title || entry.name || domain;
+  const desc  = entry.description || entry.summary || entry.about || '';
+  const tags  = entry.tags || entry.keywords || [];
+  // Recommendation: prefer ESM/no-build libs for Pages
+  const rec = /web component|esm|importmap|vanilla|no build|pure js|cdn/i.test([desc, ...(tags||[])].join(' '))
+    ? '✅ Good fit for Pages (ESM/no-build)'
+    : '⚠️ Verify build requirements';
+  return {domain, title, desc, tags, url, rec};
+}
+
+function card(app){
+  const tags = (app.tags||[]).slice(0,6).map(t=>`<span class="pill">${t}</span>`).join(' ');
+  const link = app.url ? `<a class="btn" href="${app.url}" target="_blank" rel="noopener">Open</a>` : '';
+  const addImport = app.url ? `<a class="btn" href="../overseers/hub/index.html">Add to importmap</a>` : '';
+
+  return `
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;gap:8px;align-items:center;">
+      <div>
+        <div style="font-weight:700">${app.title}</div>
+        <div class="muted" style="font-size:12px">${app.domain}</div>
+      </div>
+      <div style="display:flex;gap:6px">${link}${addImport}</div>
+    </div>
+    <p style="margin:8px 0">${app.desc||''}</p>
+    <div>${tags}</div>
+    <div class="muted" style="margin-top:6px">${app.rec}</div>
+    <details>
+      <summary>Raw</summary>
+      <pre style="white-space:pre-wrap; font-size:12px">${escapeHTML(JSON.stringify(app.raw,null,2))}</pre>
+    </details>
+  </div>`;
+}
+function escapeHTML(s){ return s.replace(/[&<>]/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+(async function(){
+  const idx = await getIndex(); // e.g., ["results-2025-10-29...json", ...]
+  if (!Array.isArray(idx) || !idx.length){
+    APPS.innerHTML = '<div class="card">No crawler index. Open Crawler and generate results.</div>';
+    return;
+  }
+  // Load last 7 result files
+  const files = idx.slice(-7);
+  const all = [];
+  for (const f of files){
+    const url = `../charlotte/crawler/results/${f}`;
+    const dataset = await getJson(url);
+    if (!dataset) continue;
+    // Accept arrays of entries or objects with entries
+    const entries = Array.isArray(dataset) ? dataset
+      : (Array.isArray(dataset.entries) ? dataset.entries : []);
+    for (const e of entries){
+      const s = summarize(e);
+      s.raw = e;
+      all.push(s);
+    }
+  }
+  if (!all.length){
+    APPS.innerHTML = '<div class="card">No entries found in crawler results.</div>';
+    return;
+  }
+  // Simple dedupe by domain+title
+  const seen = new Set();
+  const dedup = [];
+  for (const a of all){
+    const key = (a.domain + '|' + a.title).toLowerCase();
+    if (!seen.has(key)){ seen.add(key); dedup.push(a); }
+  }
+  APPS.innerHTML = dedup.map(card).join('\n');
+})();
+</script>

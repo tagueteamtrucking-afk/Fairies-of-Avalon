@@ -6,35 +6,46 @@ on:
       - 'pages/apps/jem/imports/**'
       - 'scripts/overseers/jem-program-plan.mjs'
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
+      - name: Ensure unzip is available
+        run: sudo apt-get update && sudo apt-get install -y unzip
+
+      - name: Extract Samsung Health exports
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="pages/apps/jem/imports"
+          TMP="$(mktemp -d)"
+          mkdir -p "$TMP/extracted"
+          shopt -s nullglob
+          for z in "$BASE"/*.zip; do
+            echo "Extracting $z"
+            unzip -q "$z" -d "$TMP/extracted"
+          done
+          echo "EXTRACTED_DIR=$TMP/extracted" >> $GITHUB_ENV
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Import + Normalize Samsung Health (Node stub)
-        shell: bash
-        run: |
-          node -e "
-          const fs = require('fs');
-          const path = require('path');
-          const base = 'pages/apps/jem';
-          const out = path.join(base, 'programs');
-          if (!fs.existsSync(out)) fs.mkdirSync(out, { recursive: true });
-          const files = fs.readdirSync(out).filter(f => f.endsWith('.json'));
-          const idx = files.map(f => ({ file:f, title:f.replace('.json','') }));
-          fs.writeFileSync(path.join(out, 'index.json'), JSON.stringify(idx, null, 2));
-          console.log('Jem index.json updated with', files.length, 'program(s)');
-          "
-      - name: Commit
-        run: |
-          git config user.name "overseer"
-          git config user.email "overseer@users.noreply.github.com"
-          git add pages/apps/jem/programs/index.json
-          git commit -m "Jem: update programs index" || echo "No changes"
-          git push
+      - name: Run parser
+        run: node scripts/overseers/jem-program-plan.mjs
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Jem: update programs (parser)"
+          title: "Jem: update programs (parser)"
+          body: "Automated plan/index refresh from Samsung Health exports."
+          add-paths: |
+            pages/apps/jem/programs/*

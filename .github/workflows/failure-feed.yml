@@ -3,6 +3,9 @@ on:
   workflow_run:
     workflows: ['*']
     types: [completed]
+permissions:
+  actions: read
+  issues: write
 jobs:
   feed:
     if: ${{ github.event.workflow_run.conclusion != 'success' }}
@@ -15,11 +18,11 @@ jobs:
             const owner = context.repo.owner, repo = context.repo.repo;
             const title = 'Build Failures Feed';
             const line = `- ${run.name} → *${run.status}/${run.conclusion}* (${run.html_url}) at ${run.updated_at}`;
-            const { data: issues } = await github.rest.issues.listForRepo({owner, repo, state: 'open', labels: 'overseer'});
+            const { data: issues } = await github.rest.issues.listForRepo({owner, repo, state: 'open'});
             const existing = issues.find(i => i.title === title);
             if (existing) {
               const body = (existing.body || '') + '\n' + line;
               await github.rest.issues.update({owner, repo, issue_number: existing.number, body});
             } else {
-              await github.rest.issues.create({owner, repo, title, body: line, labels: ['overseer']});
+              await github.rest.issues.create({owner, repo, title, body: line});
             }

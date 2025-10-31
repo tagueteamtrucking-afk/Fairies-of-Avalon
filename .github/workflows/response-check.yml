@@ -13,7 +13,6 @@ jobs:
       - name: Curl each URL
         run: |
           set -e
-          ts=$(date -Iseconds)
           mkdir -p response-check
           for u in ${{ inputs.urls }}; do
             fn=$(echo "$u" | sed 's#https\?://##; s#[^a-zA-Z0-9._-]#_#g')

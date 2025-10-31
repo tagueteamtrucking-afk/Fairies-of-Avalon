@@ -4758,16 +4758,18 @@
     "path": "reports/clarity/catalog.json",
     "sha256": "e898b5ee28fa402b2a17abf0b204f47238c7a017e31961bc019839b45b0e7bc0",
     "bytes": 177094
+    "sha256": "68e2230f5d0f4eab1df1302c5672570918ad7259e58ebe23daeb5b29ad2a019e",
+    "bytes": 177413
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "beb0d54ae5bbf0369e583f8e5b1d9a60577e64990f1ffe55854d69d3d3488dbc",
-    "bytes": 3363421
+    "sha256": "e06564f8352d22ddb9e987767c83c6ee65ecf8a50a51f5cfaa8f2d45e6e655d5",
+    "bytes": 3364677
   },
   {
     "path": "reports/clarity/pages-map.json",
-    "sha256": "07843647c434c45bcc190d99fdbc602e954dd242eac3fe4e14c24969681c54c8",
-    "bytes": 39106
+    "sha256": "2f1cacd434e71bae734d1e591c44a09f8383cfcae2f8a9b0ebbdc5f91184290c",
+    "bytes": 39338
   },
   {
     "path": "reports/clarity/workers-map.json",

@@ -1133,6 +1133,16 @@
     "preview": "meta:\n  project: Avalon\n  file_name: \"Cody's Memory.yaml\"\n  version: \"3.1.1\"\n  last_updated: \"2025-10-21T23:43:45Z\"\n  author: \"Cody (GPT-5 Pro)\"\n  notes: >\n    Consolidated memory + fixed base64-embedded scripts for sweeps (no quoting bugs)\n    + Charlotte crawler (GitHub-only) + Carol 14-day plan (2 people).\n\ncody_rules_ref: \"Retain from v3.1.0; unchanged in spirit. Packaging remains two ZIPs for iPad.\"\n\nruntime:\n  workflows:\n    deploy_pages: \".github/workflows/deploy-pages.yml\"\n    overseers_memory_sweep: \".github/workflows/overseers-memory-sweep.yml\"\n    overseers_crossrepo_sweep: \".github/workflows/overseers-crossrepo-sweep.yml\"\n    overseers_manifests: \".github/workflows/overseers-manifests.yml\"\n    overseers_permissions: \".github/workflows/overseers-permissions.yml\"\n    overseers_repo_doctor: \".github/workflows/overseers-repo-doctor.yml\"\n    charlotte_crawler: \".github/workflows/charlotte-crawler.yml\"\n  pointers:\n    carol_latest_plan: \"/pages/apps/carol/plans/twoperson-2wk-20251021T234345Z.json\"\n    carol_shopping: \"/pages/apps/carol/plans/shopping-quantized.json\"\n\naudit_log:\n  - { ts: \"2025-10-21T23:43:45Z\", actor: \"assistant\", action: \"mem.replace\", target: \"Cody's Memory.yaml\", result: \"ok\",\n      notes: \"v3.1.1 — fix quoting in workflows (no ''fs''), add Charlotte crawler, add Carol 14-day plan.\" }\n"
   },
   {
+    "path": "artifacts/campaign/README.txt",
+    "sha256": "9e68e6817c1eefa33fe77cad19801ca11e8985fb95488c4027f6d22cad1b8a77",
+    "bytes": 33,
+    "purpose": "other",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "Campaign kit 2025-10-31 06:38:21\n"
+  },
+  {
     "path": "asset/css/style.css",
     "sha256": "5f12cfe8120b0751d0f55d56307a1a4558ed481127521c862bf1899a91cebb0c",
     "bytes": 133,
@@ -7139,6 +7149,16 @@
     "preview": "<!doctype html><meta charset='utf-8'><title>Carol — Phoenix Restaurant</title><link rel='stylesheet' href='../../assets/css/avalon.css'><main class='wrap'><h2>🍜 Carol — Phoenix Style Restaurant</h2><p>Macros/micros, allergens, reminders, videos, ratings, and plan edits.</p></main>"
   },
   {
+    "path": "pages/apps/carol/plan-report.json",
+    "sha256": "8f5c3018a7e8131fcf6e9aa2ba4a0c085d0c7adfb3d107fd201c00a86cccf916",
+    "bytes": 88,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\n  \"generated\": \"2025-10-31T05:04:28.175Z\",\n  \"notes\": [\n    \"Placeholder report\"\n  ]\n}"
+  },
+  {
     "path": "pages/apps/carol/plans/index.json",
     "sha256": "7a1fbfcc4d2c06161cd87aff018b7ee4c366dea9cc048351433cfd24293b6025",
     "bytes": 61,
@@ -7499,6 +7519,16 @@
     "links": [],
     "refs": [],
     "preview": "{\n  \"per_servings\": 2,\n  \"aliases\": {\n    \"oatmeal_berries\": \"breakfast_oatmeal_berries\",\n    \"yogurt_bowl\": \"breakfast_yogurt_bowl\",\n    \"green_smoothie\": \"breakfast_smoothie\",\n    \"quinoa_chickpea_bowl\": \"lunch_quinoa_chickpea_bowl\",\n    \"turkey_avocado_sandwich\": \"lunch_turkey_avocado_sandwich\",\n    \"lentil_soup\": \"lunch_lentil_soup\",\n    \"chicken_salad\": \"lunch_chicken_salad_greens\",\n    \"baked_salmon\": \"dinner_baked_salmon\",\n    \"chicken_stir_fry\": \"dinner_chicken_stir_fry\",\n    \"pasta_turkey_meatballs\": \"dinner_pasta_turkey_meatballs\",\n    \"coconut_tofu_stew\": \"dinner_coconut_tofu_stew\",\n    \"apple_sunbutter\": \"snack_apple_sunbutter\",\n    \"nuts\": \"snack_nuts\",\n    \"hummus_carrots\": \"snack_hummus_carrots\",\n    \"banana\": \"snack_banana\",\n    \"yogurt\": \"snack_yogurt\",\n    \"berries\": \"snack_berries\",\n    \"carrots\": \"snack_carrots\"\n  },\n  \"recipes\": {\n    \"breakfast_oatmeal_berries\": [\n      {\n        \"item\": \"rolled oats\",\n        \"unit\": \"g\",\n        \"qty\": 160\n      },\n      {\n        \"item\": \"almond milk (unsweetened)\",\n        \"unit\": \"ml\",\n        \"qty\": 500\n      },\n      {\n        \"item\": \"mixed berries\",\n        \"unit\": \"g\",\n        \"qty\": 150\n      },\n      {\n        \"item\": \"ground flaxseed\",\n        \"unit\": \"g\",\n        \"qty\": 14\n      },\n      {\n        \"item\": \"cinnamon\",\n        \"unit\": \"g\",\n        \"qty\": 2\n      }\n    ],\n    \"breakfast_yogurt_bowl\": [\n      {\n        \"item\": \"lactose-free yogurt\",\n        \"unit\": \"g\",\n        \"qty\": 300\n      },\n      {\n        \"item\": \"banana\",\n        \"unit\": \"count\",\n        \"qty\": 2"
+  },
+  {
+    "path": "pages/apps/carol/shopping-quantized.json",
+    "sha256": "33e9ed446623f2f7b28214833fa8786297433aebbf86006cfd3f5b334f584076",
+    "bytes": 60,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\n  \"generated\": \"2025-10-31T05:04:28.107Z\",\n  \"items\": []\n}"
   },
   {
     "path": "pages/apps/carol/shopping.html",
@@ -7937,6 +7967,16 @@
     "links": [],
     "refs": [],
     "preview": "<!doctype html><meta charset='utf-8'><title>Jem — Dashboard</title><body style='font-family:system-ui;background:#0b0f17;color:#e5e7eb'><h1>Jem — Programs & Biometrics</h1><p>Upload Samsung Health ZIP to <code>pages/apps/jem/imports/</code>, run import workflow, then refresh.</p></body>"
+  },
+  {
+    "path": "pages/apps/jem/data/plan-latest.json",
+    "sha256": "3167f9e3957e5f6f745fc0a1937e0b83d4c1047677e159fbcadd527a0cc6c3b5",
+    "bytes": 28,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\"generated\":\"18965870776\"}\n"
   },
   {
     "path": "pages/apps/jem/dragon-dojo.html",
@@ -10283,8 +10323,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "c21c3b66f8fd7632086f02c5e208e81e75d129166ddd69edda56b52df155fc9b",
-    "bytes": 176783,
+    "sha256": "7d8fa99cb4fce53a0a57edeb07b7db6a79334c73a4061aec2dc3d10b141408c9",
+    "bytes": 177413,
     "purpose": "other",
     "imports": [],
     "links": [],
@@ -10293,8 +10333,8 @@
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "d6dfe4ece69f42f6e886e283340ce32d79692f6f9fd36e483981e67bb2cbbc5b",
-    "bytes": 3356703,
+    "sha256": "e06564f8352d22ddb9e987767c83c6ee65ecf8a50a51f5cfaa8f2d45e6e655d5",
+    "bytes": 3364677,
     "purpose": "other",
     "imports": [],
     "links": [],
@@ -10303,8 +10343,8 @@
   },
   {
     "path": "reports/clarity/pages-map.json",
-    "sha256": "07843647c434c45bcc190d99fdbc602e954dd242eac3fe4e14c24969681c54c8",
-    "bytes": 39106,
+    "sha256": "2f1cacd434e71bae734d1e591c44a09f8383cfcae2f8a9b0ebbdc5f91184290c",
+    "bytes": 39338,
     "purpose": "other",
     "imports": [],
     "links": [],

@@ -1,0 +1,50 @@
+name: Crown of Clarity — Content Scan (purpose + linkage)
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Analyze repo content
+        run: node scripts/clarity/analyze.mjs
+
+      - name: Upload content analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: clarity-content
+          path: |
+            reports/clarity/files-index.json
+            reports/clarity/workflows-map.json
+            reports/clarity/pages-map.json
+            reports/clarity/workers-map.json
+
+      - name: PR — Commit content analysis
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "clarity(content): update content analysis"
+          title: "clarity(content): update content analysis"
+          branch: "ci/clarity-content-${{ github.run_id }}"
+          base: "${{ github.ref_name }}"
+          add-paths: |
+            reports/clarity/files-index.json
+            reports/clarity/workflows-map.json
+            reports/clarity/pages-map.json
+            reports/clarity/workers-map.json

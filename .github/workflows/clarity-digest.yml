@@ -1,0 +1,64 @@
+name: Crown of Clarity — Digest (issues)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  issues: write
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Repo Digest Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const owner = context.repo.owner, repo = context.repo.repo;
+            let arr = null;
+            try { arr = JSON.parse(fs.readFileSync('reports/clarity/catalog.json','utf8')); } catch (e) {}
+            const files = Array.isArray(arr) ? arr : (arr && arr.files ? arr.files : []);
+            const total = files.length;
+            const size = files.reduce((a,b)=>a+(b.bytes||0),0);
+            const mb = (size/1048576).toFixed(2);
+            const body = `## Crown of Clarity — Repo Digest
+Generated: ${new Date().toISOString()}
+
+- Total files: **${total}**
+- Total size: **${mb} MB**
+- Catalog: reports/clarity/catalog.json`;
+            const title = 'Crown of Clarity — Repo Digest';
+            const issues = (await github.rest.issues.listForRepo({owner, repo, state:'open'})).data;
+            const existing = issues.find(i => i.title === title);
+            if (existing) {
+              await github.rest.issues.update({owner, repo, issue_number: existing.number, body});
+            } else {
+              await github.rest.issues.create({owner, repo, title, body});
+            }
+
+      - name: Workflow Map Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const owner = context.repo.owner, repo = context.repo.repo;
+            let map = [];
+            try { map = JSON.parse(fs.readFileSync('reports/clarity/workflows-map.json','utf8')); } catch(e) {}
+            const lines = map.map(w => `- **${w.name}** → on: ${w.triggers.join(', ')} → file: ${w.path}`).join('\n');
+            const body = `## Workflow Map
+Generated: ${new Date().toISOString()}
+
+${lines || 'No data yet'}`;
+            const title = 'Crown of Clarity — Workflow Map';
+            const issues = (await github.rest.issues.listForRepo({owner, repo, state:'open'})).data;
+            const existing = issues.find(i => i.title === title);
+            if (existing) {
+              await github.rest.issues.update({owner, repo, issue_number: existing.number, body});
+            } else {
+              await github.rest.issues.create({owner, repo, title, body});
+            }

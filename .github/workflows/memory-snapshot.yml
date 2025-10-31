@@ -1,0 +1,20 @@
+name: Memory Snapshot
+on:
+  workflow_dispatch: {}
+jobs:
+  snap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure memory exists
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f "Cody's Memory.yaml" ]; then
+            echo "meta:\n  project: Avalon\n  version: '1.7.6'\n  last_updated: '2025-10-31T00:46:26'" > "Cody's Memory.yaml"
+          fi
+      - name: Upload memory
+        uses: actions/upload-artifact@v4
+        with:
+          name: codys-memory
+          path: "Cody's Memory.yaml"

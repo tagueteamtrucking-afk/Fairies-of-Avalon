@@ -1,11 +1,9 @@
 name: Deploy Worker - importmap installer
-on: { workflow_dispatch: {} }
+on:
+  workflow_dispatch: {}
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Deploy Worker (wrangler)

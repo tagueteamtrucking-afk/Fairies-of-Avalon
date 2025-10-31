@@ -1,4 +1,4 @@
-name: Deploy Worker - stella voice
+name: Deploy Worker - billie social
 on:
   workflow_dispatch: {}
 jobs:
@@ -6,10 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Publish TTS Worker
+      - name: Deploy Billie Social Worker
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: >
-            wrangler deploy cloudflare/worker-tts.js --name=stella-voice
+            wrangler deploy cloudflare/worker-billie-social.js --name=billie-social

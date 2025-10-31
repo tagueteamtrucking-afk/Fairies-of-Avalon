@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       lookback_hours:
-        description: 'How many hours back to inspect'
-        default: '48'
+        description: 'Hours back to inspect'
         required: true
+        default: '48'
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -14,9 +14,10 @@ jobs:
       contents: read
       issues: write
     steps:
-      - uses: actions/checkout@v4
-      - id: gather
-        name: Gather data via GitHub API
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Gather data via GitHub API
+        id: gather
         uses: actions/github-script@v7
         with:
           script: |
@@ -34,25 +35,31 @@ jobs:
               lines.push(`- **${wf.name}** (${wf.path}) → ` + (latest ? `*${latest.status}/${latest.conclusion}* ${latest.html_url}` : 'no runs in window') + `; runs=${runs.length}`);
             }
             const md = [`## Actions Audit (last ${hours}h)`, `Since: ${since}`, '', ...lines].join('\n');
-            core.setOutput('markdown', md);
+            core.setOutput('markdown', md)
       - name: Save report
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p audit
-          printf "%s
-" "${{ steps.gather.outputs.markdown }}" > audit/actions-audit.md
-      - uses: actions/upload-artifact@v4
+          cat > audit/actions-audit.md << 'EOF'
+          ${{ steps.gather.outputs.markdown }}
+          EOF
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
         with:
           name: actions-audit
           path: audit/actions-audit.md
-      - name: Create or update issue
+          if-no-files-found: error
+      - name: Create/Update issue with results
         uses: actions/github-script@v7
         with:
           script: |
-            const owner = context.repo.owner, repo = context.repo.repo;
+            const owner = context.repo.owner;
+            const repo  = context.repo.repo;
             const md = `${{ toJSON(steps.gather.outputs.markdown) }}`.slice(1,-1);
             const title = 'Actions Audit Report';
-            const { data: issues } = await github.rest.issues.listForRepo({owner, repo, state: 'open', labels: 'overseer'});
-            const existing = issues.find(i => i.title === title);
+            const { data } = await github.rest.issues.listForRepo({owner, repo, state: 'open', labels: 'overseer'});
+            const existing = data.find(i => i.title === title);
             if (existing) {
               await github.rest.issues.update({owner, repo, issue_number: existing.number, body: md});
             } else {

@@ -1,0 +1,25 @@
+name: Nina Guard (YAML + importmap sanity)
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: {}
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Yamllint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          config_file: .yamllint.yml
+        continue-on-error: true
+      - name: Validate importmap.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f importmap.json ]; then
+            node -e "JSON.parse(require('fs').readFileSync('importmap.json','utf8'))"
+            echo "importmap.json valid JSON."
+          else
+            echo "importmap.json not found (ok if not yet created)."
+          fi

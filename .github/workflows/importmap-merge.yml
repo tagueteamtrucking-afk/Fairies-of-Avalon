@@ -1,3 +1,39 @@
-name: Importmap Merge
-on: {workflow_dispatch: {}}
-jobs:{d:{runs-on: ubuntu-latest, steps:[{uses: actions/checkout@v4}]}}
+name: Importmap Merge (PR-first)
+on:
+  workflow_dispatch:
+    inputs:
+      imports_json:
+        description: 'JSON object: keys become importmap.json "imports" entries'
+        required: true
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Write incoming JSON to file
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s\n' '${{ inputs.imports_json }}' > _merge.json
+      - name: Merge into importmap.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f importmap.json ]; then echo '{}' > importmap.json; fi
+          node - <<'NODE'
+          const fs = require('fs');
+          const target = JSON.parse(fs.readFileSync('importmap.json','utf8'));
+          const add = JSON.parse(fs.readFileSync('_merge.json','utf8'));
+          target.imports = Object.assign({}, target.imports || {}, add);
+          fs.writeFileSync('importmap.json', JSON.stringify(target, null, 2) + '\n');
+          NODE
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'importmap: merge additions'
+          title: 'importmap: merge additions'
+          body: |
+            Automated merge into importmap.json.
+          branch: ci/importmap-merge-${{ github.run_id }}
+          base: ${{ github.ref_name }}

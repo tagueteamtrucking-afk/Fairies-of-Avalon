@@ -4735,6 +4735,11 @@
     "bytes": 78
   },
   {
+    "path": "reports/clarity/catalog.json",
+    "sha256": "926ddb3d670c6fba7408eff3c0a693d70fc1557631f54fe8690b95db9db792f7",
+    "bytes": 175996
+  },
+  {
     "path": "runtime/memory/crossrepo.json",
     "sha256": "4c72ac8e7fa6266750fb2b3db345c7d34d1ee62a51966bf7178b9ad0fc7f14e5",
     "bytes": 150432

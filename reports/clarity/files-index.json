@@ -7970,13 +7970,13 @@
   },
   {
     "path": "pages/apps/jem/data/plan-latest.json",
-    "sha256": "3167f9e3957e5f6f745fc0a1937e0b83d4c1047677e159fbcadd527a0cc6c3b5",
+    "sha256": "3cecf89c052ba390ca85f9cec0eac7dcfc5f2b6521b3ebcf8e56b2d796cac288",
     "bytes": 28,
     "purpose": "app-page",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "{\"generated\":\"18965870776\"}\n"
+    "preview": "{\"generated\":\"18987542141\"}\n"
   },
   {
     "path": "pages/apps/jem/dragon-dojo.html",
@@ -10323,7 +10323,7 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "7d8fa99cb4fce53a0a57edeb07b7db6a79334c73a4061aec2dc3d10b141408c9",
+    "sha256": "bdb6f4b48ffd73eb8e9b2872ec0ab95685b5a54fd03305f260d8e4bb7e8f90d4",
     "bytes": 177413,
     "purpose": "other",
     "imports": [],
@@ -10333,7 +10333,7 @@
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "e06564f8352d22ddb9e987767c83c6ee65ecf8a50a51f5cfaa8f2d45e6e655d5",
+    "sha256": "f5aba8e4ea17fd175fa4d51bf3e76782acc72ad9465f809df3f665e268659a36",
     "bytes": 3364677,
     "purpose": "other",
     "imports": [],

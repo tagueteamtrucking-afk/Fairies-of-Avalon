@@ -1,4 +1,5 @@
 name = "avalon-importmap-install"
-main = "cloudflare/worker-importmap-install.js"
-compatibility_date = "2025-10-31"
-routes = [{ pattern = "fairiesofavalon.com/api/importmap-install*", zone_name = "fairiesofavalon.com" }]
+    main = "cloudflare/worker-importmap-install.js"
+    compatibility_date = "2025-10-31"
+    routes = [{ pattern = "fairiesofavalon.com/api/importmap-install*", zone_name = "fairiesofavalon.com" }]
+    

@@ -4756,12 +4756,12 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "68e2230f5d0f4eab1df1302c5672570918ad7259e58ebe23daeb5b29ad2a019e",
+    "sha256": "7d8fa99cb4fce53a0a57edeb07b7db6a79334c73a4061aec2dc3d10b141408c9",
     "bytes": 177413
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "e06564f8352d22ddb9e987767c83c6ee65ecf8a50a51f5cfaa8f2d45e6e655d5",
+    "sha256": "f5aba8e4ea17fd175fa4d51bf3e76782acc72ad9465f809df3f665e268659a36",
     "bytes": 3364677
   },
   {

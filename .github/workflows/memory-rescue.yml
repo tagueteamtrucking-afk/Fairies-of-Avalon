@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Relocate memory if under .github/workflows/
+      - name: Relocate
         run: |
           set -euo pipefail
           if [ -f ".github/workflows/Cody's Memory.yaml" ]; then

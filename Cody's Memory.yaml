@@ -1,45 +1,38 @@
 meta:
   project: Avalon
   file_name: "Cody's Memory.yaml"
-  version: "2.2.1"
-  last_updated: "2025-09-18"
-  author: "Cody (GPT-5 Pro)"
-  notes: >
-    Complete pack v4. Adds ROOT homepage index.html with wallpaper hero + CTAs.
-    Run-All includes Alexandria + Tracy + Nina + Charlotte + Carol + Jem.
-    Optional LLM Bridge (OpenAI) and TTS (Azure). Robust numeric handling via As-Int.
-
-rules:
-  - Never repeat Object[]→Int32: declare [object] params, coerce via As-Int.
-  - No call operator (&) or splatting in Actions; use `pwsh -File`.
-  - Ask clarifying questions until ≥95% confident; record obstacles and fixes here.
-  - Keep assets intact; write generated content to pages/apps/** only.
-  - Put all secrets in Actions (server-side). No secrets in client JS.
-
-workflows:
-  - .github/workflows/00-sanity.yml
-  - .github/workflows/avalon-run-all.yml
-  - .github/workflows/overseers-llm-bridge.yml (optional; requires OPENAI_API_KEY)
-  - .github/workflows/charlotte-tts-azure.yml (optional; requires AZURE_TTS_KEY, AZURE_TTS_REGION)
-
-secrets_expected:
-  - OPENAI_API_KEY: for LLM Bridge (Chat Completions family).
-  - AZURE_TTS_KEY, AZURE_TTS_REGION: Speech TTS REST (cognitiveservices/v1).
-
-generated_paths:
-  - pages/apps/alexandria/worlds/**
-  - pages/apps/tracy/artboards/**
-  - pages/apps/overseers/vrm-index.json
-  - pages/apps/charlotte/pipelines/**
-  - pages/apps/charlotte/voiceovers/** (when TTS run)
-  - pages/apps/carol/plans/**
-  - pages/apps/jem/programs/**
-
-microapps:
-  - pages/apps/index.html
-  - pages/apps/alexandria/index.html
-  - pages/apps/alexandria/app.css
-  - pages/apps/alexandria/app.js
-
-homepage:
-  index.html: "Wallpaper hero from asset/textures/wallpapers/*.jpg; CTAs to microapps and Actions"
+  version: "1.7.6"
+  last_updated: "2025-10-31T00:46:26"
+design_direction:
+  theme: "Bright, cheerful, magical, fanciful Avalon"
+  note: "Do NOT default to dark theme."
+roster:
+  overseers: ["Rey Czar","White Star"]
+  assistants:
+    - name: Abbey
+      role: Finance & accounting (Gmail + QuickBooks)
+    - name: Alexandria
+      role: World-building DM (LLM prompts + narrative memory)
+    - name: Billie
+      role: Social + monetization (merged Sorcha + Odessa)
+    - name: Charlotte
+      role: Relay + compliance/expirations (merged Themis)
+    - name: Jem
+      role: Fitness plans & dashboards
+    - name: Nina
+      role: Tech/3D Lab + Keeper of the Code (merged Clarice)
+    - name: Stella
+      role: Voice & sound therapy (TTS)
+packaging_rules:
+  ipad:
+    - "Content ZIP: everything except .github/workflows/"
+    - "Workflows ZIP: only workflow files at zip root"
+  pc: "Single ZIP ok"
+secrets_and_env:
+  actions_secrets:
+    - CLOUDFLARE_ACCOUNT_ID
+    - CLOUDFLARE_API_TOKEN
+  worker_env_examples:
+    importmap_install: [GITHUB_OWNER, GITHUB_REPO, GITHUB_TOKEN]
+    tracy_skin_llm: [LLM_ENDPOINT, LLM_API_KEY, LLM_MODEL]
+    stella_voice: [TTS_API_KEY]

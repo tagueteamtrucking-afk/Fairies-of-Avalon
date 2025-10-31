@@ -4736,8 +4736,28 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "926ddb3d670c6fba7408eff3c0a693d70fc1557631f54fe8690b95db9db792f7",
-    "bytes": 175996
+    "sha256": "7f42be55e1887f0cb6c76e4ef8e8bfc46babdc138fa0af0b28e5a85e900951bd",
+    "bytes": 176151
+  },
+  {
+    "path": "reports/clarity/files-index.json",
+    "sha256": "d6dfe4ece69f42f6e886e283340ce32d79692f6f9fd36e483981e67bb2cbbc5b",
+    "bytes": 3356703
+  },
+  {
+    "path": "reports/clarity/pages-map.json",
+    "sha256": "07843647c434c45bcc190d99fdbc602e954dd242eac3fe4e14c24969681c54c8",
+    "bytes": 39106
+  },
+  {
+    "path": "reports/clarity/workers-map.json",
+    "sha256": "e4535929ee9537dc886009021261c5293d3609bae8761a4ee6880c9b28d4f097",
+    "bytes": 487
+  },
+  {
+    "path": "reports/clarity/workflows-map.json",
+    "sha256": "c3d997d9618e926638e175c438427e4543964de11eca571009fa2f540dc70ff6",
+    "bytes": 19110
   },
   {
     "path": "runtime/memory/crossrepo.json",

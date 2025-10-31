@@ -571,6 +571,10 @@
     ]
   },
   {
+    "path": "pages/apps/carol/plan-report.json",
+    "links": []
+  },
+  {
     "path": "pages/apps/carol/plans/index.json",
     "links": []
   },
@@ -715,6 +719,10 @@
   },
   {
     "path": "pages/apps/carol/recipes/defs.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/shopping-quantized.json",
     "links": []
   },
   {
@@ -895,6 +903,10 @@
   },
   {
     "path": "pages/apps/jem/dashboard.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/data/plan-latest.json",
     "links": []
   },
   {

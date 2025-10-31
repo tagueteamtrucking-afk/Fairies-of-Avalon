@@ -1,0 +1,4 @@
+name = "avalon-hello"
+main = "cloudflare/worker-hello.js"
+compatibility_date = "2025-10-31"
+routes = [{ pattern = "fairiesofavalon.com/api/hello*", zone_name = "fairiesofavalon.com" }]

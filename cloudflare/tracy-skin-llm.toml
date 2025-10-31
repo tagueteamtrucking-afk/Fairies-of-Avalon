@@ -1,0 +1,4 @@
+name = "tracy-skin-llm"
+main = "cloudflare/worker-tracy-skin-llm.js"
+compatibility_date = "2025-10-31"
+routes = [{ pattern = "fairiesofavalon.com/api/skin-llm*", zone_name = "fairiesofavalon.com" }]

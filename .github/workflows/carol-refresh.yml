@@ -1,24 +1,23 @@
-name: Carol Refresh
-on:
-  workflow_dispatch:
-permissions:
-  contents: write
-  pull-requests: write
+name: Carol Refresh (shopping & report)
+on: { workflow_dispatch: {} }
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Build shopping data
+        run: |
+          node scripts/carol/build-shopping.mjs
+      - uses: actions/upload-artifact@v4
         with:
-          node-version: '20'
-      - run: node scripts/carol/build-shopping.mjs
-      - uses: peter-evans/create-pull-request@v6
+          name: carol-shopping
+          path: |
+            pages/apps/carol/shopping-quantized.json
+            pages/apps/carol/plan-report.json
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v6
         with:
-          branch: "create-pull-request/carol-refresh-${{ github.run_id }}"
-          commit-message: "Carol: update shopping from latest plan"
-          title: "Carol: update shopping from latest plan"
-          body: "Automated update by workflow."
-          add-paths: |
-            pages/apps/carol/plans/shopping-quantized.json
-            pages/apps/carol/plans/plan-report.json
+          commit-message: 'carol: refresh shopping & report'
+          title: 'carol: refresh shopping & report'
+          branch: ci/carol-refresh-${{ github.run_id }}
+          base: ${{ github.ref_name }}

@@ -1,4 +1,4 @@
-name: Deploy Worker - importmap installer (fixed)
+name: Deploy Worker - tracy skin llm
 on: { workflow_dispatch: {} }
 jobs:
   deploy:
@@ -9,9 +9,9 @@ jobs:
         run: |
           test -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" || (echo "Missing CLOUDFLARE_API_TOKEN" && exit 1)
           test -n "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" || (echo "Missing CLOUDFLARE_ACCOUNT_ID" && exit 1)
-      - name: Deploy (TOML routes)
+      - name: Deploy (skin llm)
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: wrangler deploy --config cloudflare/avalon-importmap-install.toml --verbose
+          command: wrangler deploy --config cloudflare/tracy-skin-llm.toml --verbose

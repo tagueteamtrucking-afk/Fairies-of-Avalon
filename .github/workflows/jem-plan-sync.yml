@@ -1,23 +1,28 @@
 name: Jem Plan Sync
 on:
   workflow_dispatch:
-permissions:
-  contents: write
-  pull-requests: write
+    inputs:
+      sample_data:
+        description: 'Optional JSON of health metrics'
+        required: false
+        default: ''
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Build plan JSON
+        run: |
+          mkdir -p pages/apps/jem/data
+          node scripts/jem/plan-sync.mjs '${{ inputs.sample_data }}'
+      - uses: actions/upload-artifact@v4
         with:
-          node-version: '20'
-      - run: echo ok
-      - uses: peter-evans/create-pull-request@v6
+          name: jem-plan
+          path: pages/apps/jem/data/plan-latest.json
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v6
         with:
-          branch: create-pull-request/Jem Plan Sync
-          commit-message: "Jem Plan Sync: automated update"
-          title: "Jem Plan Sync: automated update"
-          body: "Automated update by workflow."
-          add-paths: |
-            pages/**
+          commit-message: 'jem: update plan-latest.json'
+          title: 'jem: update plan-latest.json'
+          branch: ci/jem-plan-${{ github.run_id }}
+          base: ${{ github.ref_name }}

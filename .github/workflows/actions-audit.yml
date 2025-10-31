@@ -32,10 +32,17 @@ jobs:
               const runsResp = await github.rest.actions.listWorkflowRuns({owner, repo, workflow_id: wf.id, per_page: 10, created: `>=${since}`});
               const runs = runsResp.data.workflow_runs || [];
               const latest = runs[0];
-              lines.push(`- **${wf.name}** (${wf.path}) → ` + (latest ? `*${latest.status}/${latest.conclusion}* ${latest.html_url}` : 'no runs in window') + `; runs=${runs.length}`);
+              lines.push(`- **${wf.name}** (${wf.path}) → ` +
+                (latest ? `*${latest.status}/${latest.conclusion}* ${latest.html_url}` : 'no runs in window') +
+                `; runs=${runs.length}`);
             }
-            const md = [`## Actions Audit (last ${hours}h)`, `Since: ${since}`, '', ...lines].join('\n');
-            core.setOutput('markdown', md)
+            const md = [
+              `## Actions Audit (last ${hours}h)`,
+              `Since: ${since}`,
+              '',
+              ...lines
+            ].join('\n');
+            core.setOutput('markdown', md);
       - name: Save report
         shell: bash
         run: |

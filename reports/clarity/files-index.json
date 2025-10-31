@@ -10283,7 +10283,7 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "c21c3b66f8fd7632086f02c5e208e81e75d129166ddd69edda56b52df155fc9b",
+    "sha256": "84543617da46ef31b51da3c77b234d6ffd8968e5b9c43a4000de246908559bd2",
     "bytes": 176783,
     "purpose": "other",
     "imports": [],
@@ -10293,8 +10293,8 @@
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "d6dfe4ece69f42f6e886e283340ce32d79692f6f9fd36e483981e67bb2cbbc5b",
-    "bytes": 3356703,
+    "sha256": "beb0d54ae5bbf0369e583f8e5b1d9a60577e64990f1ffe55854d69d3d3488dbc",
+    "bytes": 3363421,
     "purpose": "other",
     "imports": [],
     "links": [],

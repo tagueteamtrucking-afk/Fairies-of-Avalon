@@ -6,6 +6,9 @@ on:
         description: 'Optional JSON of health metrics'
         required: false
         default: ''
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   build:
     runs-on: ubuntu-latest

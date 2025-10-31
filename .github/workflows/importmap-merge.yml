@@ -5,17 +5,22 @@ on:
       imports_json:
         description: 'JSON object: keys become importmap.json "imports" entries'
         required: true
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   merge:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Write incoming JSON to file
         shell: bash
         run: |
           set -euo pipefail
           printf '%s\n' '${{ inputs.imports_json }}' > _merge.json
+
       - name: Merge into importmap.json
         shell: bash
         run: |
@@ -28,6 +33,7 @@ jobs:
           target.imports = Object.assign({}, target.imports || {}, add);
           fs.writeFileSync('importmap.json', JSON.stringify(target, null, 2) + '\n');
           NODE
+
       - name: Create PR
         uses: peter-evans/create-pull-request@v6
         with:

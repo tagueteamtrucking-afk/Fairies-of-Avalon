@@ -35,6 +35,11 @@
     "bytes": 1140
   },
   {
+    "path": ".github/workflows/auto-approve-and-merge.yml",
+    "sha256": "afe7456cf824240f0c41a64aea65660afb9d2abb66598cb85f6711fedebea956",
+    "bytes": 673
+  },
+  {
     "path": ".github/workflows/carol-build-shopping-direct.yml",
     "sha256": "020b45e10af39c88087e289c63caa1241c530008b9706943f254fe013fc86033",
     "bytes": 1665
@@ -258,6 +263,11 @@
     "path": ".github/workflows/jem-plan-sync.yml",
     "sha256": "b322665a8f2d1cc60146032511970e43bd4653cfbe7a208eeba1f3b5528aaf22",
     "bytes": 884
+  },
+  {
+    "path": ".github/workflows/label-bot-prs.yml",
+    "sha256": "b9b31f179f5b72acc525c5c5f2943decc76f967192cea924a6ebae6641082ce5",
+    "bytes": 834
   },
   {
     "path": ".github/workflows/llm-bootstrap-nightly.yml",
@@ -1253,6 +1263,11 @@
     "path": "asset/wings/wing162.fbx",
     "sha256": "79f6098030e1d86a3530e650bf5726bcebd5064c7158c850a791c166691d8066",
     "bytes": 275580
+  },
+  {
+    "path": "assets/css/avalon-dashboard.css",
+    "sha256": "bdf0f1156eefeee78856ddd1df55b6c1585984e9901e74d373b30d72ab5aeb2b",
+    "bytes": 785
   },
   {
     "path": "assets/css/avalon.css",
@@ -3280,6 +3295,11 @@
     "bytes": 1993
   },
   {
+    "path": "pages/apps/carol/dashboard.html",
+    "sha256": "c7677edc1355c53ba4a26273edf5b11703e82ceeb52c2d869dfea60fb323cfed",
+    "bytes": 2168
+  },
+  {
     "path": "pages/apps/carol/debug/plan-inspect.json",
     "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
     "bytes": 3
@@ -3701,8 +3721,8 @@
   },
   {
     "path": "pages/apps/jem/dashboard.html",
-    "sha256": "edb5c97e39be6c562e0f63f38a63bac6dc5f28c64594e2f2497834a233acef4a",
-    "bytes": 291
+    "sha256": "da43f0ef81e5fd7be4e3bcabc07be9d6ca2e2d47b612d53eaea55e3a6b71789e",
+    "bytes": 1644
   },
   {
     "path": "pages/apps/jem/data/plan-latest.json",
@@ -4756,12 +4776,12 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "ac205ed4b246d922d816a6d10aa78a1ee3e1d6c0b130c1c937e4a44aee1c773d",
-    "bytes": 177515
+    "sha256": "bdb6f4b48ffd73eb8e9b2872ec0ab95685b5a54fd03305f260d8e4bb7e8f90d4",
+    "bytes": 177413
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "f5aba8e4ea17fd175fa4d51bf3e76782acc72ad9465f809df3f665e268659a36",
+    "sha256": "254196d3319271539c83ea656116a9c08eac812b9d861387c5b4b1b1373ea0ba",
     "bytes": 3364677
   },
   {

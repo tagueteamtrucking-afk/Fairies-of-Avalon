@@ -1,0 +1,1774 @@
+[
+  {
+    "path": "404.html",
+    "links": [
+      "/pages/apps/_city/index.html"
+    ]
+  },
+  {
+    "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html",
+    "links": [
+      "data:text/plain;charset=utf-8,"
+    ]
+  },
+  {
+    "path": "index.html",
+    "links": [
+      "assets/css/avalon.css",
+      "pages/_city/index.html",
+      "pages/apps/alexandria/index.html",
+      "pages/apps/jem/index.html",
+      "pages/apps/tracy/skins/generator.html",
+      "pages/apps/carol/index.html",
+      "pages/apps/charlotte/highlights.html",
+      "pages/apps/stella/index.html"
+    ]
+  },
+  {
+    "path": "kill-sw-boost.html",
+    "links": []
+  },
+  {
+    "path": "kill-sw.html",
+    "links": [
+      "/"
+    ]
+  },
+  {
+    "path": "memory-history/retired/odessa/index.html",
+    "links": [
+      "/pages/plaza.html"
+    ]
+  },
+  {
+    "path": "pages/_city/city.css",
+    "links": []
+  },
+  {
+    "path": "pages/_city/index.html",
+    "links": [
+      "../../assets/css/avalon.css",
+      "../alexandria/index.html",
+      "../tracy/skins/generator.html",
+      "../jem/index.html",
+      "../carol/index.html",
+      "../stella/index.html",
+      "../charlotte/highlights.html",
+      "../../index.html"
+    ]
+  },
+  {
+    "path": "pages/_city/plaza.html",
+    "links": [
+      "../carol/index.html",
+      "../jem/week1/index.html",
+      "../alexandria/index.html",
+      "../tracy/index.html",
+      "../charlotte/index.html",
+      "../nina/index.html",
+      "../abbey/index.html",
+      "../billie/index.html",
+      "../stella/index.html"
+    ]
+  },
+  {
+    "path": "pages/access.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/Index.html",
+    "links": [
+      "/pages/apps/alexandria/dm/play.html",
+      "/pages/apps/alexandria/worlds/",
+      "/pages/apps/stella/guided.html",
+      "/pages/apps/jem/dashboard.html",
+      "/pages/apps/carol/",
+      "/pages/apps/charlotte/",
+      "/pages/apps/nina/",
+      "/pages/apps/clarice/"
+    ]
+  },
+  {
+    "path": "pages/apps/_city/buttons-3d.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_city/city.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_city/city.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_city/hero.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_city/index.html",
+    "links": [
+      "/pages/apps/carol/menu.html"
+    ]
+  },
+  {
+    "path": "pages/apps/_city/map.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_city/palace.html",
+    "links": [
+      "/pages/apps/_shared/ui.css",
+      "/pages/apps/_shared/room.css",
+      "/",
+      "/pages/apps/_city/castle-town.html",
+      "/pages/apps/_city/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/_city/registry.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_city/repo-index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_city/theme.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_shared/room.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_shared/room.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_shared/ui-lite.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_shared/ui.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_ui/tokens.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/abbey/importer.html",
+    "links": [
+      "/pages/apps/abbey/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/abbey/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/abbey/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/app.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/app.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/author.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/alexandria/bestiary.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/alexandria/cities.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/alexandria/config.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/dm.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/alexandria/dm/config.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/dm/dm.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/dm/dm.html",
+    "links": [
+      "dm.css"
+    ]
+  },
+  {
+    "path": "pages/apps/alexandria/dm/dm.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/dm/play.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/maps/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/multiverse.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/alexandria/session-log.html",
+    "links": [
+      "/pages/apps/alexandria/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/alexandria/voice-dm.html",
+    "links": [
+      "/pages/apps/alexandria/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/alexandria/world-rules.html",
+    "links": [
+      "/pages/apps/alexandria/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/atlas.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/continuity-checklist.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/lore-bible.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/notable-figures.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/npc-codex.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/scene-seeds.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/seed-20250918T031302Z-avalon.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/timeline.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/atlas.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/continuity-checklist.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/lore-bible.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/notable-figures.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/npc-codex.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/scene-seeds.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/seed-20250918T052002Z-avalon.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/timeline.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/atlas.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/continuity-checklist.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/lore-bible.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/notable-figures.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/npc-codex.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/scene-seeds.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/seed-20251006T012716Z-avalon.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/timeline.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/atlas.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/continuity-checklist.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/lore-bible.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/notable-figures.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/npc-codex.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/scene-seeds.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/seed-20251006T014952Z-avalon.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/timeline.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/atlas.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/continuity-checklist.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/lore-bible.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/notable-figures.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/npc-codex.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/scene-seeds.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/seed-20251006T032652Z-avalon.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/timeline.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/atlas.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/continuity-checklist.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/lore-bible.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/notable-figures.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/npc-codex.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/scene-seeds.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/seed-20251006T034428Z-avalon.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/timeline.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/avalon/world.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/latest.txt",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/terra/world.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/world-avalon-prime.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/billie/basement.html",
+    "links": [
+      "/pages/apps/_shared/ui-lite.css",
+      "/pages/apps/_city/castle-town.html",
+      "/pages/apps/billie/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/billie/faceless.html",
+    "links": [
+      "../_shared/ui-lite.css"
+    ]
+  },
+  {
+    "path": "pages/apps/billie/ffmpeg.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/billie/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/billie/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/billie/overview.html",
+    "links": [
+      "../theme/tokens.css",
+      "storyboards.html",
+      "index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/billie/storyboards.html",
+    "links": [
+      "../theme/tokens.css"
+    ]
+  },
+  {
+    "path": "pages/apps/buildings.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/carol.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/debug/plan-inspect.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/index.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/carol/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/library/evidence.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/menu.html",
+    "links": [
+      "/pages/apps/carol/shopping.html"
+    ]
+  },
+  {
+    "path": "pages/apps/carol/menu.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/packages/README.md",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/packages/us.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/phoenix.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/carol/plans/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-14d.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20250918T052011Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20251006T012724Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20251006T015000Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20251006T032700Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20251006T034437Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20251019T021457Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-dash-14d-20251019T030217Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-dash-14d-current-shopping.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-dash-14d-current.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/offline-twoperson-2wk-20251010T013559Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/packages-missing.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/plan-14d-seeded.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/shopping-2p.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/shopping-extracted.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/shopping-quantized.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251007T150516Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251009T183226Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251009T203748Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251009T211251Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251009T214354Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251010T011509Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251014T232110Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251021T234345Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-merged.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/preferences.html",
+    "links": [
+      "data:application/json;charset=utf-8,"
+    ]
+  },
+  {
+    "path": "pages/apps/carol/print-menu.html",
+    "links": [
+      "./print.css",
+      "./menu.html"
+    ]
+  },
+  {
+    "path": "pages/apps/carol/print-shopping.html",
+    "links": [
+      "print.css"
+    ]
+  },
+  {
+    "path": "pages/apps/carol/print.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/profile/preferences.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/recipes/README.md",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/recipes/defs.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/shopping.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/shopping.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/templates/mealplan-balanced-14d.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/theme.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/videos.html",
+    "links": [
+      "${v.url}"
+    ]
+  },
+  {
+    "path": "pages/apps/carol/videos/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/carol/videos/recorder.html",
+    "links": [
+      "../../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/index.html",
+    "links": [
+      "https://github.com/public-apis/public-apis",
+      "https://github.com/vinta/awesome-python",
+      "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+      "https://github.com/f/awesome-chatgpt-prompts",
+      "https://github.com/open-webui/open-webui",
+      "https://github.com/microsoft/Web-Dev-For-Beginners",
+      "https://github.com/comfyanonymous/ComfyUI",
+      "https://github.com/jaywcjlove/awesome-mac",
+      "https://github.com/fighting41love/funNLP",
+      "https://github.com/hacksider/Deep-Live-Cam",
+      "https://github.com/Shubhamsaboo/awesome-llm-apps",
+      "https://github.com/abi/screenshot-to-code",
+      "https://github.com/josephmisiti/awesome-machine-learning",
+      "https://github.com/xtekky/gpt4free",
+      "https://github.com/OpenHands/OpenHands"
+    ]
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-23T06-46-15-090Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-24T06-45-00-142Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-25T06-41-59-492Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-26T06-43-58-883Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-27T06-50-09-387Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-28T06-48-01-712Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-29T06-48-16-907Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-30T06-46-38-249Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-31T06-46-53-876Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/finds.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/highlights.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/manifest.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20250918T031302Z-avalon/plan.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20250918T052002Z-avalon/plan.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20251006T012716Z-avalon/plan.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20251006T014952Z-avalon/plan.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20251006T032652Z-avalon/plan.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20251006T034428Z-avalon/plan.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/sources.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/voiceovers/20250918T031302Z-avalon/opening.txt",
+    "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/voiceovers/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/clarice/diagnostics.html",
+    "links": [
+      "/pages/apps/clarice/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/clarice/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/clarice/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/clarice/reports/graphics-audit-20251010T000205Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/index.html",
+    "links": [
+      "/pages/plaza.html"
+    ]
+  },
+  {
+    "path": "pages/apps/jem/dashboard.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/dragon-dojo.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/jem/evaluate.html",
+    "links": [
+      "/pages/apps/_city/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/jem/imports/.gitkeep",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/imports/SamsungHealthExport_Blanca.zip",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/imports/SamsungHealthExport_Ray.zip",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/jem.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/jem.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/library/evidence.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/program-viewer.html",
+    "links": [
+      "/pages/apps/_shared/ui-lite.css",
+      "/pages/apps/_city/castle-town.html",
+      "/pages/apps/jem/evaluate.html"
+    ]
+  },
+  {
+    "path": "pages/apps/jem/programs/biometrics.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/programs/index.html",
+    "links": [
+      "/pages/apps/jem/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/jem/programs/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/programs/program-recomp-minimal-20250918T052013Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T012726Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T015002Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T032701Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T034438Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/programs/week1-Blanca.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/programs/week1-Ray.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/programs/week1-evaluation-20251010T013134Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/programs/week1-evaluation-20251017T013847Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/viewer-empty-state-patch.html",
+    "links": [
+      "/pages/apps/jem/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/jem/viewer.html",
+    "links": [
+      "/pages/apps/jem/programs/",
+      "data:application/json;charset=utf-8,"
+    ]
+  },
+  {
+    "path": "pages/apps/jem/week1/index.html",
+    "links": [
+      "plan.css"
+    ]
+  },
+  {
+    "path": "pages/apps/jem/week1/plan.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/jem/week1/plan.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/nina/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/nina/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/nina/viewer.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/nina/vrm-index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/nina/vrm.html",
+    "links": [
+      "/pages/apps/nina/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/nina/webxr.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/odessa/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/odessa/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/crossrepo/second_repo_index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/hub/hub.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/hub/hub.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/hub/hub_util.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/hub/index.html",
+    "links": [
+      "/pages/apps/carol/menu.html",
+      "/pages/apps/carol/shopping.html",
+      "/pages/apps/charlotte/",
+      "/pages/apps/overseers/memory/"
+    ]
+  },
+  {
+    "path": "pages/apps/overseers/importmap-additions.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/market.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/overseers/memory/all-file-memory.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/memory/coverage.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/memory/deletion-candidates.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/memory/file-index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/memory/index.html",
+    "links": [
+      "./style.css"
+    ]
+  },
+  {
+    "path": "pages/apps/overseers/memory/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/memory/report.md",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/memory/style.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/memory/viewer.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/overview.html",
+    "links": [
+      "/pages/apps/_city/index.html",
+      "https://github.com/OWNER/REPO/actions"
+    ]
+  },
+  {
+    "path": "pages/apps/overseers/permissions/state.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/progress.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/releases.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/overseers/repo-doctor-report.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/scene-index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/overseers/treasury.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/overseers/vrm-index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/reyczar/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/reyczar/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/rooms/rooms.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/shared/auth-gate.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/shared/pin-gate.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/shared/worker.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/sorcha/coach.html",
+    "links": [
+      "/pages/apps/sorcha/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/sorcha/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/sorcha/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/sorcha/storyboards.html",
+    "links": [
+      "/pages/apps/sorcha/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/sorcha/storyboards/storyboard-20251019T033626Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/sorcha/uploader.html",
+    "links": [
+      "/pages/apps/sorcha/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/stella/README.md",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/app.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/app.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/components/component-map-button.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/components/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/edge-tts.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/guided.html",
+    "links": [
+      "/pages/apps/_city/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/stella/guided/20251009T185549Z-blanca-focus/script.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/guided/20251009T185625Z-blanca-calm/script.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/index.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/stella/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/library/evidence.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/play.html",
+    "links": [
+      "stella.css"
+    ]
+  },
+  {
+    "path": "pages/apps/stella/stella.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/stella.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/stella/voice.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/theme/tokens.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/theme/tokens.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/theme/tokens.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/themis/expirations.html",
+    "links": [
+      "/pages/apps/themis/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/themis/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/themis/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/2d/index.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/tracy/3d/index.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-1.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-2.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-3.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-4.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-5.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-6.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-7.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-8.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-1.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-2.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-3.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-4.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-5.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-6.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-7.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-8.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-1.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-2.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-3.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-4.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-5.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-6.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-7.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-8.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-1.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-2.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-3.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-4.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-5.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-6.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-7.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-8.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-1.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-2.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-3.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-4.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-5.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-6.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-7.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-8.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-1.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-2.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-3.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-4.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-5.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-6.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-7.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-8.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/artboards/index.html",
+    "links": [
+      "/pages/apps/_ui/tokens.css"
+    ]
+  },
+  {
+    "path": "pages/apps/tracy/artboards/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/campaign.html",
+    "links": [
+      "../../assets/css/avalon.css"
+    ]
+  },
+  {
+    "path": "pages/apps/tracy/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/room-preview.html",
+    "links": [
+      "/pages/apps/tracy/skin/tokens.css",
+      "/pages/apps/tracy/skin/skins/castle-town.css",
+      "/pages/apps/tracy/skin/skins/"
+    ]
+  },
+  {
+    "path": "pages/apps/tracy/skin/active.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skin/skins/castle-town.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skin/skins/night.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skin/tokens.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skins/avalon-crystal-morning.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skins/avalon-default.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skins/avalon-jewel-garden.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skins/avalon-skin.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skins/avalon-sunlit.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skins/cathedral-gold.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skins/generator.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skins/index.html",
+    "links": [
+      "avalon-sunlit.css"
+    ]
+  },
+  {
+    "path": "pages/apps/tracy/skins/night-abyss.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/wallpaper-index.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/wallpapers.html",
+    "links": [
+      "/pages/apps/_city/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/whitestar/index.html",
+    "links": []
+  },
+  {
+    "path": "pages/apps/whitestar/index.json",
+    "links": []
+  },
+  {
+    "path": "pages/index.html",
+    "links": [
+      "/pages/plaza.html"
+    ]
+  },
+  {
+    "path": "pages/pin-config.html",
+    "links": [
+      "/pages/apps/_city/index.html"
+    ]
+  },
+  {
+    "path": "pages/plaza.html",
+    "links": []
+  },
+  {
+    "path": "pages/rooms/abbey.html",
+    "links": [
+      "../apps/abbey/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/alexandria.html",
+    "links": [
+      "../apps/alexandria/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/billie.html",
+    "links": [
+      "../apps/billie/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/carol.html",
+    "links": [
+      "../apps/carol/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/charlotte.html",
+    "links": [
+      "../apps/charlotte/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/clarice.html",
+    "links": [
+      "../apps/clarice/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/index.html",
+    "links": [
+      "/pages/apps/buildings.css",
+      "/pages/apps/tracy/skins/avalon-skin.css",
+      "/pages/rooms/alexandria.html",
+      "/pages/rooms/charlotte.html",
+      "/pages/rooms/nina.html",
+      "/pages/rooms/tracy.html",
+      "/pages/rooms/carol.html",
+      "/pages/rooms/jem.html",
+      "/pages/rooms/stella.html",
+      "/pages/rooms/clarice.html",
+      "/pages/rooms/sorcha.html",
+      "/pages/rooms/odessa.html",
+      "/pages/rooms/billie.html",
+      "/pages/rooms/themis.html",
+      "/pages/rooms/abbey.html",
+      "/pages/rooms/overseers.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/jem.html",
+    "links": [
+      "../apps/jem/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/nina.html",
+    "links": [
+      "../apps/nina/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/odessa.html",
+    "links": [
+      "../apps/odessa/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/overseers.html",
+    "links": [
+      "../apps/overseers/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/reyczar.html",
+    "links": [
+      "../apps/reyczar/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/sorcha.html",
+    "links": [
+      "../apps/sorcha/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/stella.html",
+    "links": [
+      "../apps/stella/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/themis.html",
+    "links": [
+      "../apps/themis/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/tracy.html",
+    "links": [
+      "../apps/tracy/index.html"
+    ]
+  },
+  {
+    "path": "pages/rooms/whitestar.html",
+    "links": [
+      "../apps/whitestar/index.html"
+    ]
+  }
+]

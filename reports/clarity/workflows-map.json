@@ -40,6 +40,16 @@
     ]
   },
   {
+    "path": ".github/workflows/auto-approve-and-merge.yml",
+    "name": "Auto-approve and merge labeled PRs",
+    "triggers": [
+      "pull_request",
+      "types",
+      "labeled",
+      "synchronize"
+    ]
+  },
+  {
     "path": ".github/workflows/carol-build-shopping-direct.yml",
     "name": "Carol — Refresh Shopping (direct commit)",
     "triggers": [
@@ -517,6 +527,17 @@
       "required",
       "false",
       "default"
+    ]
+  },
+  {
+    "path": ".github/workflows/label-bot-prs.yml",
+    "name": "Label bot PRs for automerge",
+    "triggers": [
+      "pull_request",
+      "types",
+      "opened",
+      "reopened",
+      "synchronize"
     ]
   },
   {

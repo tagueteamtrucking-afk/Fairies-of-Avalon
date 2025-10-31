@@ -70,6 +70,16 @@
     "preview": "name: Actions Audit (on push)\non:\n  push:\n    branches:\n      - main\npermissions:\n  contents: read\n  actions: read\n  issues: write\njobs:\n  audit:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n      - name: Update Audit Issue\n        uses: actions/github-script@v7\n        with:\n          script: |\n            const owner = context.repo.owner, repo = context.repo.repo;\n            const { data } = await github.rest.actions.listRepoWorkflows({owner, repo, per_page: 200});\n            const lines = (data.workflows||[]).map(w => `- ${w.name} (${w.path})`).join('\\n');\n            const body = `## Actions Audit (push)\\n\\n${lines}`;\n            const title = 'Actions Audit Report';\n            const { data: issues } = await github.rest.issues.listForRepo({owner, repo, state: 'open'});\n            const existing = issues.find(i => i.title === title);\n            if (existing) {\n              await github.rest.issues.update({owner, repo, issue_number: existing.number, body});\n            } else {\n              await github.rest.issues.create({owner, repo, title, body});\n            }\n"
   },
   {
+    "path": ".github/workflows/auto-approve-and-merge.yml",
+    "sha256": "afe7456cf824240f0c41a64aea65660afb9d2abb66598cb85f6711fedebea956",
+    "bytes": 673,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: Auto-approve and merge labeled PRs\non:\n  pull_request:\n    types: [labeled, synchronize]\npermissions:\n  contents: write\n  pull-requests: write\njobs:\n  approve-and-merge:\n    if: contains(github.event.pull_request.labels.*.name, 'automerge')\n    runs-on: ubuntu-latest\n    steps:\n      - name: Auto-approve\n        uses: hmarr/auto-approve-action@v3\n        with:\n          github-token: ${{ secrets.GITHUB_TOKEN }}\n      - name: Enable auto-merge\n        uses: peter-evans/enable-pull-request-automerge@v3\n        with:\n          token: ${{ secrets.GITHUB_TOKEN }}\n          pull-request-number: ${{ github.event.pull_request.number }}\n          merge-method: squash\n"
+  },
+  {
     "path": ".github/workflows/carol-build-shopping-direct.yml",
     "sha256": "020b45e10af39c88087e289c63caa1241c530008b9706943f254fe013fc86033",
     "bytes": 1665,
@@ -520,6 +530,16 @@
     "links": [],
     "refs": [],
     "preview": "name: Jem Plan Sync\non:\n  workflow_dispatch:\n    inputs:\n      sample_data:\n        description: 'Optional JSON of health metrics'\n        required: false\n        default: ''\npermissions:\n  contents: write\n  pull-requests: write\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Build plan JSON\n        run: |\n          mkdir -p pages/apps/jem/data\n          node scripts/jem/plan-sync.mjs '${{ inputs.sample_data }}'\n      - uses: actions/upload-artifact@v4\n        with:\n          name: jem-plan\n          path: pages/apps/jem/data/plan-latest.json\n      - name: Create PR\n        uses: peter-evans/create-pull-request@v6\n        with:\n          commit-message: 'jem: update plan-latest.json'\n          title: 'jem: update plan-latest.json'\n          branch: ci/jem-plan-${{ github.run_id }}\n          base: ${{ github.ref_name }}\n"
+  },
+  {
+    "path": ".github/workflows/label-bot-prs.yml",
+    "sha256": "b9b31f179f5b72acc525c5c5f2943decc76f967192cea924a6ebae6641082ce5",
+    "bytes": 834,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: Label bot PRs for automerge\non:\n  pull_request:\n    types: [opened, reopened, synchronize]\npermissions:\n  pull-requests: write\njobs:\n  label:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Add 'automerge' label to bot PRs (Clarity, Carol Refresh, Jem Assessment)\n        uses: actions/github-script@v7\n        with:\n          script: |\n            const pr = context.payload.pull_request;\n            const owner = context.repo.owner, repo = context.repo.repo;\n            const isBot = (pr.user && /\\[bot\\]$/.test(pr.user.login));\n            const goodTitle = /^(clarity\\b|carol: refresh shopping & report\\b|jem: (assessment|update)\\b)/i.test(pr.title);\n            if (isBot && goodTitle) {\n              await github.rest.issues.addLabels({ owner, repo, issue_number: pr.number, labels: ['automerge'] });\n            }\n"
   },
   {
     "path": ".github/workflows/llm-bootstrap-nightly.yml",
@@ -2561,6 +2581,16 @@
     "links": [],
     "refs": [],
     "preview": ""
+  },
+  {
+    "path": "assets/css/avalon-dashboard.css",
+    "sha256": "bdf0f1156eefeee78856ddd1df55b6c1585984e9901e74d373b30d72ab5aeb2b",
+    "bytes": 785,
+    "purpose": "style",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": ":root{--bg:#0b0c10;--ink:#e8e8e8;--muted:#9db0c3;--card:#141b22;--line:#223241;--accent:#8bd3dd}\n*{box-sizing:border-box}html,body{margin:0}\nbody{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,Segoe UI,Roboto,Arial,sans-serif}\n.wrap{max-width:1100px;margin:0 auto;padding:16px}\n.av-head{border-bottom:1px solid var(--line);padding:12px 0}.sub{color:var(--muted)}\n.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}\n.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}\n.table{width:100%;border-collapse:collapse}.table th,.table td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}\n.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}.muted{color:var(--muted)}\n"
   },
   {
     "path": "assets/css/avalon.css",
@@ -7047,6 +7077,20 @@
     "preview": ":root {\n  --bg-dark: #0e0f11;\n  --card: #15171b;\n  --ink: #e9e9ec;\n  --muted: #b4b8c2;\n  --accent: #e6b85c;\n  --accent-2: #7ec8a1;\n}\n\n* { box-sizing: border-box; }\nhtml, body { margin: 0; padding: 0; background: var(--bg-dark); color: var(--ink); font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }\n\n.header {\n  position: relative;\n  min-height: 42vh;\n  display: grid;\n  place-items: end start;\n  padding: 1.25rem;\n  background-size: cover;\n  background-position: center;\n  border-bottom: 1px solid #22252b;\n}\n\n.header .title {\n  backdrop-filter: blur(2px);\n  background: color-mix(in srgb, #000 60%, transparent);\n  padding: .75rem 1rem;\n  border-radius: 10px;\n  border: 1px solid #2b2f37;\n  color: var(--ink);\n}\n\n.main {\n  padding: 1rem;\n  max-width: 1100px;\n  margin: 0 auto;\n}\n\n.grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));\n  gap: 12px;\n}\n\n.card {\n  background: var(--card);\n  border: 1px solid #242832;\n  border-radius: 12px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n}\n\n.card .top {\n  padding: .75rem 1rem;\n  border-bottom: 1px dashed #2a2f39;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}"
   },
   {
+    "path": "pages/apps/carol/dashboard.html",
+    "sha256": "c7677edc1355c53ba4a26273edf5b11703e82ceeb52c2d869dfea60fb323cfed",
+    "bytes": 2168,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "refs": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "preview": "<!doctype html><html lang=\"en\"><head>\n<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Carol — Nutrition Dashboard</title>\n<link rel=\"stylesheet\" href=\"../../assets/css/avalon-dashboard.css\">\n</head><body>\n<header class=\"av-head\"><div class=\"wrap\">\n  <h1>🍎 Carol — Nutrition Dashboard</h1>\n  <p class=\"sub\">Live view of plan & shopping. Source of truth: <code>pages/apps/carol/</code> JSON files.</p>\n</div></header>\n<main class=\"wrap grid\">\n  <section class=\"card\">\n    <h2>Plan Report</h2>\n    <pre id=\"planReport\" class=\"mono muted\">Loading plan-report.json…</pre>\n  </section>\n  <section class=\"card\">\n    <h2>Shopping (Quantized)</h2>\n    <table id=\"shop\" class=\"table\"><thead><tr><th>Item</th><th>Qty</th><th>Notes</th></tr></thead><tbody></tbody></table>\n    <div id=\"shopEmpty\" class=\"muted\" hidden>shopping-quantized.json was empty.</div>\n  </section>\n  <section class=\"card\">\n    <h2>Preferences</h2>\n    <pre id=\"prefs\" class=\"mono muted\">Loading preferences.json…</pre>\n  </section>\n</main>\n\n<script type=\"module\">\nasync function loadJSON(p){ try{ const r=await fetch(p+'?t='+Date.now(),{cache:'no-store'}); if(!r.ok) throw new Error(r.status); return await r.json(); }catch(e){ return null; } }\n\nconst rep = await loadJSON('../carol/plan-report.json');\ndocument.getElementById('planReport').textContent = rep ? JSON.stringify(rep,null,2) : 'plan-report.json not found. Run “Carol Refresh (shopping & report)”.';\n\nconst shop = await loadJSON('../carol/shopping-quantized.json');\nconst tbody = document.querySelector('#shop tbody');\nif (shop && Array.isArray(shop.items) && shop.items.length){\n  tbody.innerHTML = shop.items.slice(0,500).map(x=>`<tr><td>${(x.name||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}</td><td>${x.qty||''}</td><td>${x.notes||''}</td></tr>`).join('');\n}else{\n  document.getElementById('shopEmpty').hidden = false;\n}\n\nconst prefs = await loadJSON('../carol/profile/preferences.json');\ndocument.getElementById('prefs').textContent = prefs ? JSON.stringify(prefs,null,2) : 'preferences.json not found. Open Phoenix to save.';\n</script>\n</body></html>\n"
+  },
+  {
     "path": "pages/apps/carol/debug/plan-inspect.json",
     "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
     "bytes": 3,
@@ -7960,23 +8004,27 @@
   },
   {
     "path": "pages/apps/jem/dashboard.html",
-    "sha256": "edb5c97e39be6c562e0f63f38a63bac6dc5f28c64594e2f2497834a233acef4a",
-    "bytes": 291,
+    "sha256": "da43f0ef81e5fd7be4e3bcabc07be9d6ca2e2d47b612d53eaea55e3a6b71789e",
+    "bytes": 1644,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><meta charset='utf-8'><title>Jem — Dashboard</title><body style='font-family:system-ui;background:#0b0f17;color:#e5e7eb'><h1>Jem — Programs & Biometrics</h1><p>Upload Samsung Health ZIP to <code>pages/apps/jem/imports/</code>, run import workflow, then refresh.</p></body>"
+    "links": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "refs": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "preview": "<!doctype html><html lang=\"en\"><head>\n<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Jem — Golden Dragon Dojo</title>\n<link rel=\"stylesheet\" href=\"../../assets/css/avalon-dashboard.css\">\n</head><body>\n<header class=\"av-head\"><div class=\"wrap\">\n  <h1>🐉 Jem — Golden Dragon Dojo</h1>\n  <p class=\"sub\">Live plan snapshots for training. Source: <code>pages/apps/jem/data/plan-latest.json</code></p>\n</div></header>\n<main class=\"wrap grid\">\n  <section class=\"card\">\n    <h2>Current Plan</h2>\n    <pre id=\"plan\" class=\"mono muted\">Loading plan-latest.json…</pre>\n  </section>\n  <section class=\"card\">\n    <h2>Exercise Log (Local)</h2>\n    <div class=\"muted\">Logs saved locally by your browser from the Dojo UI.</div>\n    <table class=\"table\"><thead><tr><th>Exercise</th><th>Sets x Reps</th><th>RPE</th><th>Time</th></tr></thead><tbody id=\"logBody\"></tbody></table>\n  </section>\n</main>\n<script type=\"module\">\nasync function loadJSON(p){ try{ const r=await fetch(p+'?t='+Date.now(),{cache:'no-store'}); if(!r.ok) throw new Error(r.status); return await r.json(); }catch(e){ return null; } }\nconst plan = await loadJSON('../jem/data/plan-latest.json');\ndocument.getElementById('plan').textContent = plan ? JSON.stringify(plan,null,2) : 'plan-latest.json not found. Run “Jem Assessment Import”.';\nconst logs = JSON.parse(localStorage.getItem('jem_log')||'[]');\ndocument.getElementById('logBody').innerHTML = logs.map(x=>`<tr><td>${x.ex||x.ex||''}</td><td>${x.sr||''}</td><td>${x.rpe||''}</td><td>${(x.at||'').replace('T',' ').replace('Z','')}</td></tr>`).join('');\n</script>\n</body></html>\n"
   },
   {
     "path": "pages/apps/jem/data/plan-latest.json",
-    "sha256": "3167f9e3957e5f6f745fc0a1937e0b83d4c1047677e159fbcadd527a0cc6c3b5",
+    "sha256": "3cecf89c052ba390ca85f9cec0eac7dcfc5f2b6521b3ebcf8e56b2d796cac288",
     "bytes": 28,
     "purpose": "app-page",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "{\"generated\":\"18965870776\"}\n"
+    "preview": "{\"generated\":\"18987542141\"}\n"
   },
   {
     "path": "pages/apps/jem/dragon-dojo.html",
@@ -10323,17 +10371,17 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "d1f9f70eac44612ffd406de7018a070bcbf99caa42c67b651b9f44ca98fb0a2e",
-    "bytes": 177413,
+    "sha256": "3d84a5691b126847ccec2acd59a9fbe8709da68e0fe8e883490c0cc748aef5ec",
+    "bytes": 178052,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "[\n  {\n    \"path\": \".github/cleanup/sweeper-manifest.json\",\n    \"sha256\": \"cef7e4630d04f87eccc06a42b9547140d8a6cfa2056832abb1dc1626f9a04b59\",\n    \"bytes\": 118\n  },\n  {\n    \"path\": \".github/cleanup/workflows-to-review.json\",\n    \"sha256\": \"4dbe1b5a8951b4db58f924173d6f9656b63b009143d50de55cc60181fdd9e143\",\n    \"bytes\": 1014\n  },\n  {\n    \"path\": \".github/workflows/MANIFEST.json\",\n    \"sha256\": \"a0c9b6ac359814e15512e71b37897ccd2ee3a74fc75fa7422d31977eae8aba03\",\n    \"bytes\": 1344\n  },\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"sha256\": \"5ad3343375ab2b6c6a6af8f1627ec4c125f6423ca2c21a10c3ee921719a669d6\",\n    \"bytes\": 2915\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"sha256\": \"705197397c418cf7efd4e39d55922f8dc4a7c604e1887ef83e05d3919f642cf0\",\n    \"bytes\": 959\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"sha256\": \"b9c3cffea875f666a5661bd07ee3f2853809e4e8328efad45f1f61e55f94cb87\",\n    \"bytes\": 3350\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"sha256\": \"e5f899bf6e1a24271930c4f3d486f9d721e14c70a7f618807d1293c5dc7e90ca\",\n    \"bytes\": 1140\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"sha256\": \"020b45e10af39c88087e289c63caa1241c530008b9706943f254fe013fc86033\",\n    \"bytes\": 1665\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping.yml\",\n    \"sha256\": \"41df3f63e5e025f4746f9314f8f92934fbd4cf69daa6d0c741dcd989fd32f49f\",\n    \"bytes\": 894\n  },\n  {\n    \"path\": \".github/workflows/carol-ensure-plan.yml\",\n    \"sha256\": \"b64d196147a82b62ce5995c4d5d5c350d79f009db539a5f81790817792d5c384\",\n    \"bytes\": 1145\n  },\n  {\n    \"path\": \".github/workflows/carol-extract-from-plan.yml\",\n    \"sha256\": \"cd3fdbe8b0fff6778a2c4c4d275a27881e72949b3b484dcc8c94177c683a24f8\",\n    \"bytes\": 1322\n  },\n  {\n    \"path\": \".github/workflows/carol-generate-shopping.yml\",\n    \"sha256\": \"f96ae893ce8ba8cce7ef5883975db06ad96d4b35f5d267dbbefa3435fef0eb1a\",\n    \"bytes\": 1215"
+    "preview": "[\n  {\n    \"path\": \".github/cleanup/sweeper-manifest.json\",\n    \"sha256\": \"cef7e4630d04f87eccc06a42b9547140d8a6cfa2056832abb1dc1626f9a04b59\",\n    \"bytes\": 118\n  },\n  {\n    \"path\": \".github/cleanup/workflows-to-review.json\",\n    \"sha256\": \"4dbe1b5a8951b4db58f924173d6f9656b63b009143d50de55cc60181fdd9e143\",\n    \"bytes\": 1014\n  },\n  {\n    \"path\": \".github/workflows/MANIFEST.json\",\n    \"sha256\": \"a0c9b6ac359814e15512e71b37897ccd2ee3a74fc75fa7422d31977eae8aba03\",\n    \"bytes\": 1344\n  },\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"sha256\": \"5ad3343375ab2b6c6a6af8f1627ec4c125f6423ca2c21a10c3ee921719a669d6\",\n    \"bytes\": 2915\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"sha256\": \"705197397c418cf7efd4e39d55922f8dc4a7c604e1887ef83e05d3919f642cf0\",\n    \"bytes\": 959\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"sha256\": \"b9c3cffea875f666a5661bd07ee3f2853809e4e8328efad45f1f61e55f94cb87\",\n    \"bytes\": 3350\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"sha256\": \"e5f899bf6e1a24271930c4f3d486f9d721e14c70a7f618807d1293c5dc7e90ca\",\n    \"bytes\": 1140\n  },\n  {\n    \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n    \"sha256\": \"afe7456cf824240f0c41a64aea65660afb9d2abb66598cb85f6711fedebea956\",\n    \"bytes\": 673\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"sha256\": \"020b45e10af39c88087e289c63caa1241c530008b9706943f254fe013fc86033\",\n    \"bytes\": 1665\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping.yml\",\n    \"sha256\": \"41df3f63e5e025f4746f9314f8f92934fbd4cf69daa6d0c741dcd989fd32f49f\",\n    \"bytes\": 894\n  },\n  {\n    \"path\": \".github/workflows/carol-ensure-plan.yml\",\n    \"sha256\": \"b64d196147a82b62ce5995c4d5d5c350d79f009db539a5f81790817792d5c384\",\n    \"bytes\": 1145\n  },\n  {\n    \"path\": \".github/workflows/carol-extract-from-plan.yml\",\n    \"sha256\": \"cd3fdbe8b0fff6778a2c4c4d275a27881e72949b3b484dcc8c94177c683a24f8\",\n    \"bytes\": 1322"
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "f5aba8e4ea17fd175fa4d51bf3e76782acc72ad9465f809df3f665e268659a36",
+    "sha256": "254196d3319271539c83ea656116a9c08eac812b9d861387c5b4b1b1373ea0ba",
     "bytes": 3364677,
     "purpose": "other",
     "imports": [],

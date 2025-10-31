@@ -1,0 +1,44 @@
+name: Crown of Clarity — Sweeper Proposal (non-destructive)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build proposal from analysis (duplicates only; unreferenced placeholder)
+        run: |
+          mkdir -p reports/clarity
+          git ls-files -z | xargs -0 -I{} sha256sum "{}" > _all.sha
+          sort _all.sha > _all.sorted.sha
+          awk '{print $1}' _all.sorted.sha | uniq -d > _dups.sha
+          echo '{"duplicates":[' > reports/clarity/sweeper-proposal.json
+          first=1
+          while read -r H; do
+            files=$(grep "^${H} " _all.sorted.sha | awk '{print $2}' | jq -R -s 'split("\n")|map(select(length>0))')
+            if [ $first -eq 0 ]; then echo ',' >> reports/clarity/sweeper-proposal.json; fi
+            echo "{\"sha256\":\"${H}\",\"files\":${files}}" >> reports/clarity/sweeper-proposal.json
+            first=0
+          done < _dups.sha
+          echo '],"unreferenced":[]}' >> reports/clarity/sweeper-proposal.json
+
+      - name: Upload proposal
+        uses: actions/upload-artifact@v4
+        with:
+          name: clarity-sweeper-proposal
+          path: reports/clarity/sweeper-proposal.json
+
+      - name: PR — add proposal JSON
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "clarity(sweeper): add proposal (duplicates + unreferenced placeholder)"
+          title: "clarity(sweeper): add proposal"
+          branch: "ci/clarity-sweeper-${{ github.run_id }}"
+          base: "${{ github.ref_name }}"
+          add-paths: |
+            reports/clarity/sweeper-proposal.json

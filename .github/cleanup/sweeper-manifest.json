@@ -1,0 +1,7 @@
+
+{
+  "delete": [
+    // Example: ".github/workflows/old-temp.yml",
+    // Example: "pages/unused/some-old.html"
+  ]
+}

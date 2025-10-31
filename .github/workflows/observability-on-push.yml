@@ -1,0 +1,103 @@
+name: Observability (catalog + crawl + actions) on push
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  issues: write
+  pull-requests: write
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y jq wget
+
+      - name: Build File Catalog (path, size, sha256)
+        run: |
+          git ls-files -z | xargs -0 -I{} bash -lc 'printf "%s\t%s\n" "$(stat -c %s "{}")" "{}"' > _sizes.tsv
+          git ls-files -z | xargs -0 -I{} bash -lc 'sha256sum "{}"' > _sha.tsv
+          awk '{print $2"\t"$1}' _sha.tsv | sort > _sha.sorted
+          sort _sizes.tsv > _sizes.sorted
+          join -t $'\t' -1 1 -2 1 _sha.sorted _sizes.sorted > _join.tsv
+          jq -Rn -f- <<'JQ' > reports_catalog.json
+            [inputs | split("\n")[] | select(length>0) | split("\t")] as $rows
+            | $rows | map({ path: .[0], sha256: .[1], bytes: (.[2]|tonumber) })
+            | { generated: "NOW", files: . }
+          JQ
+        env:
+          NOW: "2025-10-31T18:08:16"
+
+      - name: Small site crawl (1 level)
+        run: |
+          mkdir -p site_snapshot
+          wget --quiet --page-requisites --adjust-extension --level=1 --no-parent --directory-prefix=site_snapshot https://fairiesofavalon.com || true
+
+      - name: Actions Digest (list workflows + latest run if any)
+        id: digest
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const owner = context.repo.owner, repo = context.repo.repo;
+            const workflows = (await github.rest.actions.listRepoWorkflows({owner, repo, per_page:200})).data.workflows || [];
+            const out = [];
+            for (const wf of workflows) {
+              const runs = (await github.rest.actions.listWorkflowRuns({owner, repo, workflow_id: wf.id, per_page:1})).data.workflow_runs || [];
+              const latest = runs[0] ? {
+                status: runs[0].status, conclusion: runs[0].conclusion, url: runs[0].html_url, updated_at: runs[0].updated_at
+              } : null;
+              out.push({name: wf.name, path: wf.path, state: wf.state, latest});
+            }
+            fs.writeFileSync('actions_digest.json', JSON.stringify({generated: new Date().toISOString(), workflows: out}, null, 2));
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: observability-pack
+          path: |
+            reports_catalog.json
+            actions_digest.json
+            site_snapshot
+
+      - name: Open/Update Issue — Live Actions Digest
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const owner = context.repo.owner, repo = context.repo.repo;
+            const j = JSON.parse(fs.readFileSync('actions_digest.json','utf8'));
+            const lines = j.workflows.map(w => `- **${w.name}** (${w.path}) → ${w.latest ? `*${w.latest.status}/${w.latest.conclusion}* ${w.latest.url}` : 'no runs'}`).join('\n');
+            const body = `## Live Actions Digest\nGenerated: ${new Date().toISOString()}\n\n${lines}`;
+            const title = 'Live Actions Digest';
+            const issues = (await github.rest.issues.listForRepo({owner, repo, state:'open'})).data;
+            const existing = issues.find(i => i.title === title);
+            if (existing) {
+              await github.rest.issues.update({owner, repo, issue_number: existing.number, body});
+            } else {
+              await github.rest.issues.create({owner, repo, title, body});
+            }
+
+      - name: Move generated catalog into repo and PR
+        run: |
+          mkdir -p reports
+          mv reports_catalog.json reports/catalog.json
+        shell: bash
+
+      - name: Create PR for catalog
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "observability: update file catalog (path/sha256/size)"
+          title: "observability: update file catalog"
+          branch: "ci/observability-catalog-${{ github.run_id }}"
+          base: "${{ github.ref_name }}"
+          add-paths: |
+            reports/catalog.json

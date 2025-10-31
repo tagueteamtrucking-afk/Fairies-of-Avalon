@@ -1,69 +1,50 @@
-name: Overseers - Repo Doctor
+
+name: Repo Doctor (read-only reports)
 on:
-  workflow_dispatch:
-
+  workflow_dispatch: {}
 permissions:
-  contents: write
-  pull-requests: write
-
-concurrency:
-  group: repo-doctor-${{ github.ref }}
-  cancel-in-progress: true
-
-defaults:
-  run:
-    shell: bash
-
+  contents: read
+  actions: read
+  issues: write
 jobs:
-  doctor:
+  audit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Validate Carol pointer and build shopping
+      - name: Ensure Node & tools
         run: |
-          set -euo pipefail
-          if [ ! -f "pages/apps/carol/index.json" ]; then
-            echo "::error title=Missing Carol pointer::pages/apps/carol/index.json not found"; exit 1
-          fi
-          node -e "import fs from 'node:fs'; const J=JSON.parse(fs.readFileSync('pages/apps/carol/index.json','utf8')); if(!J.plan_latest||!fs.existsSync(J.plan_latest)){console.error('::error title=Plan missing::index.json plan_latest missing or file not found ->',J.plan_latest); process.exit(1);}"
-          if [ -f "scripts/carol/build-shopping.mjs" ]; then
-            node scripts/carol/build-shopping.mjs
-          fi
+          node --version || sudo apt-get update -y && sudo apt-get install -y nodejs npm
+          npm --version || true
 
-      - name: Commit to PR branch
+      - name: Run doctor
         run: |
-          set -euo pipefail
-          BR="autobot/repo-doctor-${GITHUB_RUN_ID}"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config user.name  "github-actions[bot]"
-          git checkout -b "$BR" || git checkout "$BR"
-          git add pages/apps/carol/plans/shopping-2p.json || true
-          git commit -m "chore(repo-doctor): validate Carol & build shopping" || echo "Nothing to commit."
-          git push origin "$BR" || echo "Branch exists or no changes."
+          node scripts/overseers/repo-doctor.mjs
 
-      - name: Open PR
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: repo-doctor
+          path: |
+            reports/repo-doctor/summary.md
+            reports/repo-doctor/duplicates.json
+            reports/repo-doctor/large-files.json
+            reports/repo-doctor/orphaned-pages.json
+            reports/repo-doctor/dead-workflows.json
+            reports/repo-doctor/bare-specifiers.json
+
+      - name: Open/Update Repo Doctor issue
         uses: actions/github-script@v7
         with:
           script: |
-            const owner = context.repo.owner;
-            const repo  = context.repo.repo;
-            const head  = `autobot/repo-doctor-${process.env.GITHUB_RUN_ID}`;
-            try {
-              const { data: pr } = await github.rest.pulls.create({
-                owner, repo, head, base: 'main',
-                title: 'Overseers: Repo Doctor (Carol & Shopping)',
-                body: 'Automated check + build.'
-              });
-              core.notice(`PR created: ${pr.html_url}`);
-            } catch (e) {
-              core.warning(`PR create skipped or exists: ${e.message}`);
+            const fs = require('fs');
+            const owner = context.repo.owner, repo = context.repo.repo;
+            const md = fs.readFileSync('reports/repo-doctor/summary.md', 'utf8');
+            const title = 'Repo Doctor — Cleanup Report';
+            const { data: issues } = await github.rest.issues.listForRepo({owner, repo, state:'open'});
+            const existing = issues.find(i => i.title === title);
+            if (existing) {
+              await github.rest.issues.update({owner, repo, issue_number: existing.number, body: md});
+            } else {
+              await github.rest.issues.create({owner, repo, title, body: md, labels: ['overseer']});
             }

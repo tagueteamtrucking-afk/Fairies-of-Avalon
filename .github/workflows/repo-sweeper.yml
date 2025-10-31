@@ -1,0 +1,42 @@
+
+name: Repo Sweeper (PR-based cleanup)
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read manifest
+        id: manifest
+        run: |
+          test -f ".github/cleanup/sweeper-manifest.json"
+          echo "paths=$(cat .github/cleanup/sweeper-manifest.json | jq -r '.delete[]?' | paste -sd ' ' -)" >> $GITHUB_OUTPUT
+
+      - name: Delete files (staging)
+        if: steps.manifest.outputs.paths != ''
+        run: |
+          set -e
+          for p in ${{ steps.manifest.outputs.paths }}; do
+            if [ -f "$p" ]; then
+              git rm -f "$p"
+            else
+              echo "skip (not found): $p"
+            fi
+          done
+
+      - name: Create PR
+        if: steps.manifest.outputs.paths != ''
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: repo sweep (delete unused files)"
+          title: "chore: repo sweep (delete unused files)"
+          body: |
+            Automated sweep based on .github/cleanup/sweeper-manifest.json.
+            Please review the diff carefully before merging.
+          branch: ci/repo-sweep-${{ github.run_id }}
+          base: ${{ github.ref_name }}

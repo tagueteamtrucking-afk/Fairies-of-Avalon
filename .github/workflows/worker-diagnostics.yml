@@ -1,0 +1,21 @@
+name: Worker Diagnostics (tree + sanity checks)
+on:
+  workflow_dispatch:
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Show repo tree and TOMLs
+        run: |
+          echo '--- repo root ---' && ls -la
+          echo '--- cloudflare dir ---' && ls -la cloudflare || true
+          for f in cloudflare/hello.toml cloudflare/avalon-importmap-install.toml cloudflare/worker-market.toml; do
+            echo "--- $f ---"; test -f "$f" && sed -n '1,120p' "$f" || echo "missing: $f";
+          done
+      - name: Validate entrypoint files
+        run: |
+          test -f cloudflare/worker-hello.js || (echo 'Missing cloudflare/worker-hello.js' && exit 1)
+          test -f cloudflare/worker-importmap-install.js || (echo 'Missing cloudflare/worker-importmap-install.js' && exit 1)
+          test -f cloudflare/worker-market.js || (echo 'Missing cloudflare/worker-market.js' && exit 1)

@@ -8,24 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Move memory file if mislocated
+      - name: Relocate
         run: |
           set -euo pipefail
           if [ -f ".github/workflows/Cody's Memory.yaml" ]; then
-            mkdir -p tmp-mem
-            cp ".github/workflows/Cody's Memory.yaml" "tmp-mem/Cody's Memory.yaml"
-          else
-            echo "No misplaced memory file found."
+            mkdir -p _memfix
+            cp ".github/workflows/Cody's Memory.yaml" "_memfix/Cody's Memory.yaml"
           fi
-      - name: Create PR (if moved)
-        if: ${{ hashFiles('tmp-mem/**') != '' }}
+      - name: Create PR
+        if: ${{ hashFiles('_memfix/**') != '' }}
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "fix: move Cody's Memory.yaml to repo root"
           title: "fix: move Cody's Memory.yaml to repo root"
-          body: "File was incorrectly placed under .github/workflows/. This PR relocates it to the repository root."
           branch: ci/memory-rescue-${{ github.run_id }}
+          base: ${{ github.ref_name }}
           add-paths: |
-            tmp-mem/Cody's Memory.yaml
-        env:
-          PULL_REQUEST_PATHS: "tmp-mem/Cody's Memory.yaml"
+            _memfix/Cody's Memory.yaml

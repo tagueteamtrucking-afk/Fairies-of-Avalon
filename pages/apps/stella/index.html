@@ -1,1 +1,16 @@
-<!doctype html><h1>Stella — App</h1><script type='module'>fetch('./index.json')</script>
+<!doctype html><meta charset="utf-8"><title>Stella — Voice</title>
+<link rel="stylesheet" href="../../assets/css/avalon.css">
+<main class="wrap">
+  <h2>🔊 Stella — Voice</h2>
+  <textarea id="t" rows="4" class="box" placeholder="Type something cheerful..."></textarea>
+  <button id="s">Speak</button>
+  <script type="module">
+  document.getElementById('s').onclick = async () => {
+    const text = document.getElementById('t').value.trim();
+    if(!text) return;
+    const r = await fetch('/api/voice', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({text})});
+    const j = await r.json().catch(_=>({}));
+    alert('TTS request sent. (Connect Worker to hear audio.)');
+  };
+  </script>
+</main>

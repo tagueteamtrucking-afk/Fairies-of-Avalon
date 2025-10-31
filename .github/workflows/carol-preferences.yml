@@ -1,0 +1,20 @@
+name: Carol Preferences Snapshot
+on: { workflow_dispatch: {} }
+permissions: { contents: write, pull-requests: write }
+jobs:
+  snap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Save prefs (placeholder)
+        run: |
+          mkdir -p pages/apps/carol/profile
+          echo '{"prefs":"placeholder"}' > pages/apps/carol/profile/preferences.json
+      - uses: actions/upload-artifact@v4
+        with: { name: carol-prefs, path: pages/apps/carol/profile/preferences.json }
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'carol: snapshot preferences'
+          title: 'carol: snapshot preferences'
+          branch: ci/carol-prefs-${{ github.run_id }}
+          base: ${{ github.ref_name }}

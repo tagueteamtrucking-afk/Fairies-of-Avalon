@@ -1,5 +1,4 @@
 name = "avalon-market"
-    main = "cloudflare/worker-market.js"
-    compatibility_date = "2025-10-31"
-    routes = [{ pattern = "fairiesofavalon.com/api/market/*", zone_name = "fairiesofavalon.com" }]
-    
+main = "cloudflare/worker-market.js"
+compatibility_date = "2025-10-31"
+routes = [{ pattern = "fairiesofavalon.com/api/market/*", zone_name = "fairiesofavalon.com" }]

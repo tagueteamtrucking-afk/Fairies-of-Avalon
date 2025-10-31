@@ -1,6 +1,7 @@
-// Cloudflare Worker: Importmap Installer
-// ENV required: GITHUB_OWNER, GITHUB_REPO, GITHUB_TOKEN (repo scope)
-// Receives JSON { imports: {...} } and opens a PR updating importmap.json.
 export default { async fetch(req, env) {
-  return new Response('Add GitHub token in Worker env and implement PR flow.', {status:200});
+  if (req.method !== 'POST') return new Response('POST required', { status: 405 });
+  const { imports } = await req.json();
+  if (!imports || typeof imports !== 'object') return new Response('Invalid payload', { status: 400 });
+  // TODO: Use env.GITHUB_* to open PR updating importmap.json
+  return new Response(JSON.stringify({ok:true}), { headers: {'content-type':'application/json'} });
 }}

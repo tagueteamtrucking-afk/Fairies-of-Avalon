@@ -1,20 +1,21 @@
 name: Wrangler WhoAmI (debug)
-    on: { workflow_dispatch: {} }
-    jobs:
-      whoami:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - name: wrangler --version
-            uses: cloudflare/wrangler-action@v3
-            with:
-              apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-              accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-              command: --version
-          - name: wrangler whoami
-            uses: cloudflare/wrangler-action@v3
-            with:
-              apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-              accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-              command: whoami
-    
+on:
+  workflow_dispatch:
+jobs:
+  whoami:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: wrangler --version
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: --version
+      - name: wrangler whoami
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: whoami

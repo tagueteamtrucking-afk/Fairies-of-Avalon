@@ -1,25 +1,29 @@
 name: Worker Diagnostics (tree + sanity checks)
-    on: { workflow_dispatch: {} }
-    jobs:
-      diag:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - name: Show tree & TOMLs
-            run: |
-              echo '--- repo root ---' && ls -la
-              echo '--- cloudflare dir ---' && ls -la cloudflare || true
-              echo '--- hello.toml ---' && sed -n '1,120p' cloudflare/hello.toml || true
-              echo '--- importmap-install.toml ---' && sed -n '1,120p' cloudflare/avalon-importmap-install.toml || true
-              echo '--- market.toml ---' && sed -n '1,120p' cloudflare/worker-market.toml || true
-          - name: Validate entrypoint files
-            run: |
-              test -f cloudflare/worker-hello.js || (echo 'Missing cloudflare/worker-hello.js' && exit 1)
-              test -f cloudflare/worker-importmap-install.js || (echo 'Missing cloudflare/worker-importmap-install.js' && exit 1)
-              test -f cloudflare/worker-market.js || (echo 'Missing cloudflare/worker-market.js' && exit 1)
-          - name: Dry-run deploy commands (no execute)
-            run: |
-              echo "wrangler-action will run with: deploy --config cloudflare/hello.toml"
-              echo "wrangler-action will run with: deploy --config cloudflare/avalon-importmap-install.toml"
-              echo "wrangler-action will run with: deploy --config cloudflare/worker-market.toml"
-    
+on:
+  workflow_dispatch:
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show repo tree and TOMLs
+        run: |
+          echo '--- repo root ---' && ls -la
+          echo '--- cloudflare dir ---' && ls -la cloudflare || true
+          echo '--- hello.toml ---' && sed -n '1,120p' cloudflare/hello.toml || true
+          echo '--- importmap-install.toml ---' && sed -n '1,120p' cloudflare/avalon-importmap-install.toml || true
+          echo '--- market.toml ---' && sed -n '1,120p' cloudflare/worker-market.toml || true
+
+      - name: Validate entrypoint files
+        run: |
+          test -f cloudflare/worker-hello.js || (echo 'Missing cloudflare/worker-hello.js' && exit 1)
+          test -f cloudflare/worker-importmap-install.js || (echo 'Missing cloudflare/worker-importmap-install.js' && exit 1)
+          test -f cloudflare/worker-market.js || (echo 'Missing cloudflare/worker-market.js' && exit 1)
+
+      - name: Dry-run deploy commands (echo only)
+        run: |
+          echo "wrangler-action will run: deploy --config cloudflare/hello.toml"
+          echo "wrangler-action will run: deploy --config cloudflare/avalon-importmap-install.toml"
+          echo "wrangler-action will run: deploy --config cloudflare/worker-market.toml"

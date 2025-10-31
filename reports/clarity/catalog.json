@@ -1,0 +1,5297 @@
+[
+  {
+    "path": ".github/cleanup/sweeper-manifest.json",
+    "sha256": "cef7e4630d04f87eccc06a42b9547140d8a6cfa2056832abb1dc1626f9a04b59",
+    "bytes": 118
+  },
+  {
+    "path": ".github/cleanup/workflows-to-review.json",
+    "sha256": "4dbe1b5a8951b4db58f924173d6f9656b63b009143d50de55cc60181fdd9e143",
+    "bytes": 1014
+  },
+  {
+    "path": ".github/workflows/MANIFEST.json",
+    "sha256": "a0c9b6ac359814e15512e71b37897ccd2ee3a74fc75fa7422d31977eae8aba03",
+    "bytes": 1344
+  },
+  {
+    "path": ".github/workflows/actions-audit.yml",
+    "sha256": "5ad3343375ab2b6c6a6af8f1627ec4c125f6423ca2c21a10c3ee921719a669d6",
+    "bytes": 2915
+  },
+  {
+    "path": ".github/workflows/alexandria-dm-setup.yml",
+    "sha256": "705197397c418cf7efd4e39d55922f8dc4a7c604e1887ef83e05d3919f642cf0",
+    "bytes": 959
+  },
+  {
+    "path": ".github/workflows/alexandria-voice-dm.yml",
+    "sha256": "b9c3cffea875f666a5661bd07ee3f2853809e4e8328efad45f1f61e55f94cb87",
+    "bytes": 3350
+  },
+  {
+    "path": ".github/workflows/audit-on-push.yml",
+    "sha256": "e5f899bf6e1a24271930c4f3d486f9d721e14c70a7f618807d1293c5dc7e90ca",
+    "bytes": 1140
+  },
+  {
+    "path": ".github/workflows/carol-build-shopping-direct.yml",
+    "sha256": "020b45e10af39c88087e289c63caa1241c530008b9706943f254fe013fc86033",
+    "bytes": 1665
+  },
+  {
+    "path": ".github/workflows/carol-build-shopping.yml",
+    "sha256": "41df3f63e5e025f4746f9314f8f92934fbd4cf69daa6d0c741dcd989fd32f49f",
+    "bytes": 894
+  },
+  {
+    "path": ".github/workflows/carol-ensure-plan.yml",
+    "sha256": "b64d196147a82b62ce5995c4d5d5c350d79f009db539a5f81790817792d5c384",
+    "bytes": 1145
+  },
+  {
+    "path": ".github/workflows/carol-extract-from-plan.yml",
+    "sha256": "cd3fdbe8b0fff6778a2c4c4d275a27881e72949b3b484dcc8c94177c683a24f8",
+    "bytes": 1322
+  },
+  {
+    "path": ".github/workflows/carol-generate-shopping.yml",
+    "sha256": "f96ae893ce8ba8cce7ef5883975db06ad96d4b35f5d267dbbefa3435fef0eb1a",
+    "bytes": 1215
+  },
+  {
+    "path": ".github/workflows/carol-inspect-plan.yml",
+    "sha256": "5aa679c4dae97623ff64dd0700d72c72d52bbe7b74ef1f737f1d17fd012aadae",
+    "bytes": 1860
+  },
+  {
+    "path": ".github/workflows/carol-pin-and-extract.yml",
+    "sha256": "0a9daea8a900ad39bad07d6a6e2192d1e707e7a306c73ca6976a7e5c676930e0",
+    "bytes": 1573
+  },
+  {
+    "path": ".github/workflows/carol-pointer-set.yml",
+    "sha256": "3d109b079db6345583788bf79c5bee0f86727a0b3d2490edc9a0f7bcb401e875",
+    "bytes": 1578
+  },
+  {
+    "path": ".github/workflows/carol-preferences.yml",
+    "sha256": "456ed2cd5a7893ace488fd80c8dadf25df30d0128e0d858d575fdb74d71507cd",
+    "bytes": 772
+  },
+  {
+    "path": ".github/workflows/carol-refresh-from-pointer.yml",
+    "sha256": "3de57c51f208c2fc1b324cc03b08677933fca672f39720b729e2a595022cefdf",
+    "bytes": 2012
+  },
+  {
+    "path": ".github/workflows/carol-refresh-menu-shopping.yml",
+    "sha256": "df82381012211ad80884cc20206a6f96c82e1e6c2407914695963542d0da40bf",
+    "bytes": 2047
+  },
+  {
+    "path": ".github/workflows/carol-refresh.yml",
+    "sha256": "aac0921b5c6f606a13a4a48ac3d8522054755a6b3463ba3bf203ccd9d71be543",
+    "bytes": 806
+  },
+  {
+    "path": ".github/workflows/carol-verify-plan.yml",
+    "sha256": "1047c529481d4f0451863af56f88441a38b0783ee2e5a23702efc0c325b85026",
+    "bytes": 633
+  },
+  {
+    "path": ".github/workflows/charlotte-crawl.yml",
+    "sha256": "82c13b9ff9fe3ad5c138e6807a888ab2018ea752a0813c54552aa1afaec829d8",
+    "bytes": 610
+  },
+  {
+    "path": ".github/workflows/charlotte-crawler.yml",
+    "sha256": "8f70022fe932fb64535a1aad126990d020e195b68655cc8cb72b93ee02ffbd15",
+    "bytes": 1037
+  },
+  {
+    "path": ".github/workflows/charlotte-curated-crawl.yml",
+    "sha256": "4fe933473f9a4ca39a281e90442ec8e79ae1a8a81c3e3bb7bc9b09c26639e677",
+    "bytes": 828
+  },
+  {
+    "path": ".github/workflows/charlotte-link-registry.yml",
+    "sha256": "4e314dd92f335f722b6d04631df4ebedae0d6b38c61b6bf32612188ca09f6c0e",
+    "bytes": 741
+  },
+  {
+    "path": ".github/workflows/city-link-prefix-patch.yml",
+    "sha256": "42959bcc0fa5e28ee82b65da7f16ef9bc672779d72b6ac436b4ac6596b602850",
+    "bytes": 1156
+  },
+  {
+    "path": ".github/workflows/city-publish-hotfix.yml",
+    "sha256": "e2c16c45c7cc6b377de5b76ad0a37bf5dfe27f34447fd54772d4113e68d600da",
+    "bytes": 938
+  },
+  {
+    "path": ".github/workflows/city-remove-castle-town.yml",
+    "sha256": "0eb800afeb6fde0e21ad2779788ed1a872824e5d12c7306d21366a97a3e83398",
+    "bytes": 703
+  },
+  {
+    "path": ".github/workflows/city-visual.yml",
+    "sha256": "dc558e69d041b52256c3f044e1daeabdcc8a348988dd9794fab60dada120cd0a",
+    "bytes": 1111
+  },
+  {
+    "path": ".github/workflows/clarity-content.yml-",
+    "sha256": "646629f39b70e724abf3844331541687745fa480dbc9ad15b6fba79ac1137d74",
+    "bytes": 1378
+  },
+  {
+    "path": ".github/workflows/clarity-core.yml",
+    "sha256": "999233c15d5a7d157b39638e5183b33e29e4482332c63a2f2cae60d959b88bf5",
+    "bytes": 3463
+  },
+  {
+    "path": ".github/workflows/clarity-digest.yml",
+    "sha256": "acf9b8f27d48d9a07da7a96867c833b0e88a462a05af5a1749dafb937fcb48a9",
+    "bytes": 1633
+  },
+  {
+    "path": ".github/workflows/clarity-observe-on-push.yml",
+    "sha256": "e86a7829762dfcf83cb038cc0d1e0ca29ac3258f33c58186e4bf17b876b446f5",
+    "bytes": 3600
+  },
+  {
+    "path": ".github/workflows/clarity-on-push.yml",
+    "sha256": "a57d8fd82137cec085f2e7e0cf9c6c68582ee17bb6002e846855046b632805ab",
+    "bytes": 3823
+  },
+  {
+    "path": ".github/workflows/clarity-sweeper-proposal.yml",
+    "sha256": "35f8017f4070170a0ec175ed6e041b262a0e559b7410d29548d112d10015dadf",
+    "bytes": 1728
+  },
+  {
+    "path": ".github/workflows/cleanup-legacy.yml",
+    "sha256": "4a1e7a05f2a6a409b6f6d033220510f55b4afa72e014cffd3efb60bfa461749a",
+    "bytes": 606
+  },
+  {
+    "path": ".github/workflows/deploy-billie-social.yml",
+    "sha256": "fe6e0c4cb885c392cbdc482b729259f1bdae408ee7ece99e1b24969cc9efb0ff",
+    "bytes": 471
+  },
+  {
+    "path": ".github/workflows/deploy-cloudflare-worker.yml",
+    "sha256": "70a2cef863dbe4b7d5c3fbe6a2a4b746dcce5e08bf3eca6fb28ad64ff720e2db",
+    "bytes": 1188
+  },
+  {
+    "path": ".github/workflows/deploy-hello-v4.yml",
+    "sha256": "61827f14d9eafa9d70e6b4f09cabafef4595fd0a9eabe10dd2de630a6afd6ea8",
+    "bytes": 584
+  },
+  {
+    "path": ".github/workflows/deploy-hello.yml",
+    "sha256": "be146416e563d336d36c9d70742ce5902cbae34746838947de4e5d70a5ee4a33",
+    "bytes": 428
+  },
+  {
+    "path": ".github/workflows/deploy-importmap-installer-v4.yml",
+    "sha256": "adbb786e3d68dfaf7e495f874964463c8f3e93735dbce6151d76e95e30bb8f47",
+    "bytes": 631
+  },
+  {
+    "path": ".github/workflows/deploy-importmap-installer.yml",
+    "sha256": "79ec176a53582643de6723bdb93895c2b1ef23823963726f89aadf541ac4291d",
+    "bytes": 467
+  },
+  {
+    "path": ".github/workflows/deploy-market-v4.yml",
+    "sha256": "5a39743e0ec04920ceceeee30c22cd169d02cdd2740db137df2f711651589e42",
+    "bytes": 594
+  },
+  {
+    "path": ".github/workflows/deploy-market.yml",
+    "sha256": "94cbadecc7475be9856d1fafa512140dbd81ee628bdaffc0a8d0de42aaabcd24",
+    "bytes": 437
+  },
+  {
+    "path": ".github/workflows/deploy-pages.yml",
+    "sha256": "f5fc5dd230cdd3da44863baeb2d3328c58681e334da6b541cb31d3d6af805bbc",
+    "bytes": 632
+  },
+  {
+    "path": ".github/workflows/deploy-stella-voice.yml",
+    "sha256": "ce91f04e8c47850c58ba661b9f9803adfe44da4768d50b6becbac5796f59b261",
+    "bytes": 450
+  },
+  {
+    "path": ".github/workflows/deploy-tracy-llm-skin.yml",
+    "sha256": "3e087519e5fe9ce0a0c31698757dfa21e32b3dac239d7d14ef355ad0a8676623",
+    "bytes": 432
+  },
+  {
+    "path": ".github/workflows/deploy-tracy-skin-llm.yml",
+    "sha256": "945e9122069d84198051291cffb1b5bfcc3728d71b21dc42da83c3ce803c03c1",
+    "bytes": 445
+  },
+  {
+    "path": ".github/workflows/deploy-tts-worker.yml",
+    "sha256": "e1108e8dbd15d26eeb2d410fb0a29a8d7fa1003a17ae6897935f372bfa641a7f",
+    "bytes": 395
+  },
+  {
+    "path": ".github/workflows/failure-feed.yml",
+    "sha256": "98774c49bb13f7c050eee630684f47f565b48935fccb7b3398655f8617940793",
+    "bytes": 1154
+  },
+  {
+    "path": ".github/workflows/importmap-merge.yml",
+    "sha256": "e53f68909dceb44c89a8d3b4c02b3fc470a8c96727b98fb15589fdbc3e795ea6",
+    "bytes": 1450
+  },
+  {
+    "path": ".github/workflows/jem-assessment.yml",
+    "sha256": "06ffff0c43ea5f7227742d8eaefa96b37fca9638267c3d70140a0a6f81fd6f8a",
+    "bytes": 790
+  },
+  {
+    "path": ".github/workflows/jem-plan-sync.yml",
+    "sha256": "b322665a8f2d1cc60146032511970e43bd4653cfbe7a208eeba1f3b5528aaf22",
+    "bytes": 884
+  },
+  {
+    "path": ".github/workflows/llm-bootstrap-nightly.yml",
+    "sha256": "48009d46abb441573afa6cea057e846e37440b62b5935fbe3511c5f1a2feb7b6",
+    "bytes": 760
+  },
+  {
+    "path": ".github/workflows/llm-bootstrap.yml",
+    "sha256": "22e4d34ef875d072c4b14a19717bae34c9f35a98fb273a0ed02eb3cd38e90c2a",
+    "bytes": 4147
+  },
+  {
+    "path": ".github/workflows/memory-rescue.yml",
+    "sha256": "8e4c5237214e9f9b10d1ed1d43b7f0dfc97c6e15e2f186aae0e47fd116243860",
+    "bytes": 890
+  },
+  {
+    "path": ".github/workflows/memory-snapshot.yml",
+    "sha256": "3164f8f782080b8b72fe3eb5eab6e64e1f9c481024ae328451d89c918716c892",
+    "bytes": 573
+  },
+  {
+    "path": ".github/workflows/nina-city-tiles.yml",
+    "sha256": "9960c24e3df670df1e422401db140d0df6adeee3bae52c87dd7040b583348e07",
+    "bytes": 1646
+  },
+  {
+    "path": ".github/workflows/nina-guard.yml",
+    "sha256": "7a07ebf1212f45b2d205551e3884c592611655c4b82775791ce504a5705e89c4",
+    "bytes": 715
+  },
+  {
+    "path": ".github/workflows/observability-on-push.yml",
+    "sha256": "a2c59133a903f7c32e2b8833919930882620509d05de7278cd8d96227eb46021",
+    "bytes": 4319
+  },
+  {
+    "path": ".github/workflows/overseers-clean-dup-workflows.yml",
+    "sha256": "be7682e8b347a9430d2ed803743a004cf7c4db3e7162fc062d0fe01399c59490",
+    "bytes": 723
+  },
+  {
+    "path": ".github/workflows/overseers-crossrepo-sweep.yml",
+    "sha256": "daa049ada3a13494d3e15a45c2e1f4ddc3c3bfc9eebf1607ac306d5569015851",
+    "bytes": 2749
+  },
+  {
+    "path": ".github/workflows/overseers-manifests.yml",
+    "sha256": "0f164c8ce4371943b93badf4b0e06faf2b9bf75e144f5cda8bb3bb3dd9fe537b",
+    "bytes": 1038
+  },
+  {
+    "path": ".github/workflows/overseers-memory-index.yml",
+    "sha256": "9ede669bbd209b8a51925a020316e9f35a8b992c79d14c2c169025d47b791926",
+    "bytes": 1026
+  },
+  {
+    "path": ".github/workflows/overseers-memory-sweep.yml",
+    "sha256": "69e669b6772f7f27a912475d3968a25dec1d005a7ca4322e166f5affe3cfdc01",
+    "bytes": 1915
+  },
+  {
+    "path": ".github/workflows/overseers-permissions.yml",
+    "sha256": "9129d1c14fd0703c09a35a0d8e627b4fab599b3244b8276aa4c790e72fd187b2",
+    "bytes": 1327
+  },
+  {
+    "path": ".github/workflows/overseers-repo-doctor.yml",
+    "sha256": "c57352e3f2e515856d5cce752f6a9dd857c436acfc79ee8c0b69e45c0a019609",
+    "bytes": 658
+  },
+  {
+    "path": ".github/workflows/overseers-repo-sweeper.yml",
+    "sha256": "955bd735dc6e2e043ed1ee7440ec1a976989fa945e950b8d75c565f5a2649b5b",
+    "bytes": 741
+  },
+  {
+    "path": ".github/workflows/package-content.yml",
+    "sha256": "147961624300e8fb6302b3074a8bc8bb54651b59b1b7f7e3f4fbebb642b7c434",
+    "bytes": 415
+  },
+  {
+    "path": ".github/workflows/package-workflows.yml",
+    "sha256": "4e4ad07d02d12be3d9c29d26c6c67c8f6a8429c0cb75b6713386643178b88e94",
+    "bytes": 812
+  },
+  {
+    "path": ".github/workflows/repo-doctor.yml",
+    "sha256": "3f71b2c9b244ed68286401e59d2fdb10038695eeb3498d0ea139411a11072906",
+    "bytes": 1714
+  },
+  {
+    "path": ".github/workflows/repo-read-index.yml",
+    "sha256": "b193d653e68b1cb498c257e59b0c105b210fae2e81477dc3c054e390bb446a04",
+    "bytes": 2500
+  },
+  {
+    "path": ".github/workflows/repo-read.yml",
+    "sha256": "3c815aab5e7e3165a529972ad57efe972c38dccfe5fb40cbdae5627bdd3418a5",
+    "bytes": 768
+  },
+  {
+    "path": ".github/workflows/repo-retire-odessa.yml",
+    "sha256": "530c1a3400e9f57afb58dd4e529b890e9688bc3bd5d2bc2f5f0c539fcfe93ed8",
+    "bytes": 904
+  },
+  {
+    "path": ".github/workflows/repo-sweeper-report.yml",
+    "sha256": "ff79da1756a53d6350b580edb3b61bcfe86bd4caa681b7b71d07c58f7737ff08",
+    "bytes": 674
+  },
+  {
+    "path": ".github/workflows/repo-sweeper.yml",
+    "sha256": "d1951be1f7c6ba5b37ed6e1cc1dfc861885167c18a1a4b89ea28b72ebf80efc6",
+    "bytes": 1292
+  },
+  {
+    "path": ".github/workflows/repo-workflows-standardize.yml",
+    "sha256": "0496feff2eb1617c49d524350ec9aa7beb3885fe9b3be9fa8364e28988026f8d",
+    "bytes": 2028
+  },
+  {
+    "path": ".github/workflows/response-check.yml",
+    "sha256": "56e1cba9b8f38783211f20759665899601f54d5c4383294fa523d5a6b515e9e9",
+    "bytes": 970
+  },
+  {
+    "path": ".github/workflows/retire-old-hello.yml",
+    "sha256": "647fa465575c64a10ebc5c6821c5c42b18620f30acac6d0774a305e4a9302b7d",
+    "bytes": 1012
+  },
+  {
+    "path": ".github/workflows/root-fix-404.yml",
+    "sha256": "bc368a06a2f92ed8538df2ceca5bab53e248b73e1acad2e2226556ff606f0009",
+    "bytes": 2732
+  },
+  {
+    "path": ".github/workflows/root-launcher-hotfix.yml",
+    "sha256": "ef23f37a82d21c31ae94871e703acabb497361c77f361ce8a9ac1048acbbe152",
+    "bytes": 3901
+  },
+  {
+    "path": ".github/workflows/site-cache-bust.yml",
+    "sha256": "eb8f20f8cee1fd703c12276e4efcfff4e771caada10df57598026cf07b9ceb49",
+    "bytes": 530
+  },
+  {
+    "path": ".github/workflows/site-deploy-only.yml",
+    "sha256": "d4e44d41a969e33a0bbfbcfb31ce30de4181f7a9b003027e118435ba04894f3d",
+    "bytes": 588
+  },
+  {
+    "path": ".github/workflows/site-fix-and-deploy.yml",
+    "sha256": "b50975f02f9aa710ad3d280065e117bdb0993708378a0affeff8d29b65a54c3e",
+    "bytes": 11302
+  },
+  {
+    "path": ".github/workflows/site-fix-links.yml",
+    "sha256": "a22bf2e982ac160560287ec0cdebe9b63d6b0305fb7036c62bd3a756e641fb43",
+    "bytes": 1058
+  },
+  {
+    "path": ".github/workflows/site-hotfix-404.yml",
+    "sha256": "c5009ca8c15d0662933f0e45a05b1ce11de7ee6f4d389d554ceedbe99ae3f654",
+    "bytes": 6613
+  },
+  {
+    "path": ".github/workflows/site-route-corrector.yml",
+    "sha256": "3153512f03ffc92074c584b756c5b7e20b366950314ee9bb1f88ac39123e402c",
+    "bytes": 931
+  },
+  {
+    "path": ".github/workflows/sorcha-storyboard.yml",
+    "sha256": "5dcb03c83dbc064c5bef7dda376d120d9a188a932a6c7ba222eaa3eb8d10f065",
+    "bytes": 2332
+  },
+  {
+    "path": ".github/workflows/tracy-campaign-release.yml",
+    "sha256": "d77e03f7b662687c1c748f1316ab506bc4be31961f59584a38534a8ff75331ff",
+    "bytes": 720
+  },
+  {
+    "path": ".github/workflows/tracy-optimize.yml",
+    "sha256": "f14d89d15b287ef92ad8860c3d58f59c397143c2c9c0a5e33a707ebcc83c6619",
+    "bytes": 606
+  },
+  {
+    "path": ".github/workflows/tracy-pack-art.yml",
+    "sha256": "b5489b0e19e016bc1b54b78d34c993119343e149b86c115305d2e1fc4ff1737d",
+    "bytes": 712
+  },
+  {
+    "path": ".github/workflows/tracy-skin-ui.yml",
+    "sha256": "137e88e51c2f78a16a0f9616585dea4020e7fd46857a5aa2f061017b4e436635",
+    "bytes": 1592
+  },
+  {
+    "path": ".github/workflows/tracy-wallpaper-theme.yml",
+    "sha256": "fd858c9a7dac8b432601819114acf3900fde46bac1fd93723606a0496bd0cbae",
+    "bytes": 1096
+  },
+  {
+    "path": ".github/workflows/treasury-build-release.yml",
+    "sha256": "e3eb6774d62c8f54bdab445b128ddfa9fac6b5f2de7bbcb01930131a56bd497e",
+    "bytes": 739
+  },
+  {
+    "path": ".github/workflows/treasury-qa.yml",
+    "sha256": "209a152886fb8f12670723bc3894fa7276d917cdcaefd67ba6e03eec85336251",
+    "bytes": 221
+  },
+  {
+    "path": ".github/workflows/worker-diagnostics.yml",
+    "sha256": "87d34bfda0dc4604504c298bc000f4a00a55d426b77faeb25978618d4af16629",
+    "bytes": 959
+  },
+  {
+    "path": ".github/workflows/wrangler-whoami.yml",
+    "sha256": "ee868e654b603d9cbabdcf4e32a2e9e9fcf12dd473179637dba910c5091c0a60",
+    "bytes": 628
+  },
+  {
+    "path": ".nojekyll",
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "bytes": 1
+  },
+  {
+    "path": ".yamllint.yml",
+    "sha256": "f1335a279b681ba56e792c20a22dc17d81e122b740501d57f825f07c88b79747",
+    "bytes": 65
+  },
+  {
+    "path": "404.html",
+    "sha256": "0ca56c0d29d268136cfa2d575b0d7b56da4c1dc21a37d85b7dc5b30ac6984a44",
+    "bytes": 937
+  },
+  {
+    "path": "Avalon-NodeParser-Content-20251030-051652/docs/BUILD-PATH.md",
+    "sha256": "d06a51245e64b053678b44bc8835ebb0908bb756ae4f1a62b293da855d2d7a04",
+    "bytes": 64
+  },
+  {
+    "path": "Avalon-NodeParser-Content-20251030-051652/docs/CHARACTERS.md",
+    "sha256": "7da9060449159636453cbc76be2aeb6b22e338893702838a8e4ed5e20702d00d",
+    "bytes": 72
+  },
+  {
+    "path": "Avalon-NodeParser-Content-20251030-051652/docs/COSMIC-PROMPT.md",
+    "sha256": "d38ff9e7bbcbeb94571e1c0435cec9cac778568bb9d792350224b972c94236d6",
+    "bytes": 61
+  },
+  {
+    "path": "Avalon-NodeParser-Content-20251030-051652/docs/RULES.md",
+    "sha256": "2d47b5c45ddb16ca321480500a86f4f753bdcd120fb776a305de6f9a9b3e594d",
+    "bytes": 72
+  },
+  {
+    "path": "Avalon-NodeParser-Content-20251030-051652/docs/SECURITY-NOTES.md",
+    "sha256": "7adc97ee5fd4eba7aaad5fb98faf17561f3afc73a73a82c8c697445ead3c69a9",
+    "bytes": 133
+  },
+  {
+    "path": "Avalon-NodeParser-Content-20251030-051652/scripts/overseers/jem-program-plan.mjs",
+    "sha256": "a0a06da45ee67d8950ddbeff3266c37e727ab1979539623dd35210a2d5e6cb05",
+    "bytes": 5400
+  },
+  {
+    "path": "CNAME",
+    "sha256": "a0dca46c1c3c690e49251cc7c7dcd6faee1dc19e59c5cd28044b44f87ffd0625",
+    "bytes": 19
+  },
+  {
+    "path": "Cody's Memory.yaml",
+    "sha256": "ac538a30fa0a2106056c872ed75838dcb7548a007ca514601f6689a9f6138f2a",
+    "bytes": 77
+  },
+  {
+    "path": "Cody's Memory.yml",
+    "sha256": "62ae796d514c903e6454ef2cdc0adea7403ba2f30591f1cd3b32af6fa3cf6946",
+    "bytes": 1334
+  },
+  {
+    "path": "asset/css/style.css",
+    "sha256": "5f12cfe8120b0751d0f55d56307a1a4558ed481127521c862bf1899a91cebb0c",
+    "bytes": 133
+  },
+  {
+    "path": "asset/models/abbey.vrm",
+    "sha256": "33fe8eb21aa45a3b196c99a7d77508977af67763e077979ed8c73591c042287d",
+    "bytes": 12018708
+  },
+  {
+    "path": "asset/models/alexandria.vrm",
+    "sha256": "e18f7ee62cb2aa64b6cba31ca76dabeb05e9a52febe19124bad99012678e1f4f",
+    "bytes": 12269756
+  },
+  {
+    "path": "asset/models/billie.vrm",
+    "sha256": "4c352001d19ecad9d3b7bac5e3acaf8bfc9e164d3732f69434bc34d79a6323e3",
+    "bytes": 13301520
+  },
+  {
+    "path": "asset/models/carol.vrm",
+    "sha256": "63682588e258846e541d3e1126625fa973c2df8d2a78b0df73b19b24206fd1d7",
+    "bytes": 11898172
+  },
+  {
+    "path": "asset/models/charlotte.vrm",
+    "sha256": "33738299315314be1c6ab7ca2c7bab00e3a64a3580b96823e3faff19c2c20e54",
+    "bytes": 11740028
+  },
+  {
+    "path": "asset/models/clarice.vrm",
+    "sha256": "0ed880defe374af30205a649517a3e83f709bc5851c935fe0a551431a64201b2",
+    "bytes": 12848640
+  },
+  {
+    "path": "asset/models/jem.vrm",
+    "sha256": "22bbc5517d605b46b5135d392c49b91becf7c48d55cd0046b00dc86820701d5a",
+    "bytes": 12475488
+  },
+  {
+    "path": "asset/models/models.json",
+    "sha256": "a274bb392cc6d86cd72d92e20d1780aa0abc954100631a9f6bcee0fe09dc25df",
+    "bytes": 1627
+  },
+  {
+    "path": "asset/models/nina.vrm",
+    "sha256": "cb390a35f68de6d0e7144c1dea0d55653b3efd7f312be175ddf048768b46a2aa",
+    "bytes": 11272372
+  },
+  {
+    "path": "asset/models/odessa.vrm",
+    "sha256": "0207b3074ebc462ce82180e1eff26bd9c3ab9cdbdf364d78c367b8c4efa74207",
+    "bytes": 12378488
+  },
+  {
+    "path": "asset/models/reyczar.vrm",
+    "sha256": "30a36fda865026e9fbb1b555154761eb4fefc1e87c8ce003668bb5427f29fdf8",
+    "bytes": 11931700
+  },
+  {
+    "path": "asset/models/sorcha.vrm",
+    "sha256": "463a4172ce2d11e402f01b0e58b541003fe35cc901f6adff92f5b6c73b16567d",
+    "bytes": 12620220
+  },
+  {
+    "path": "asset/models/stella.vrm",
+    "sha256": "1dff716ada4788673f62f605e701c8f838b06b3c05498ed9549a1d251056b30d",
+    "bytes": 12012132
+  },
+  {
+    "path": "asset/models/themis.vrm",
+    "sha256": "c60b52389f069177afded91c0967e380439349d87edd846c40fad728433b4a4c",
+    "bytes": 11647684
+  },
+  {
+    "path": "asset/models/tracy.vrm",
+    "sha256": "9eb3a018154a157fabae0dfe21d4498c33f791a315bc87b69b9c6d635f21e884",
+    "bytes": 12321368
+  },
+  {
+    "path": "asset/models/whitestar.vrm",
+    "sha256": "a21c9e01837733e83342a038c8a03a686ef281d5d0b8a92efca790ea08e9f6df",
+    "bytes": 12038836
+  },
+  {
+    "path": "asset/textures/buildings/phoenix-pagoda.jpg",
+    "sha256": "9b1cca8a29841ae236a115e75e5b358c3c6b2dadc1a6d29ba821f76c45d819ea",
+    "bytes": 228403
+  },
+  {
+    "path": "asset/textures/rooms/carol-restaurant.jpg",
+    "sha256": "67144bfe08e16c3e3feeb19771094aced10b81b844fc02c6238310fbd3a71cfc",
+    "bytes": 18979
+  },
+  {
+    "path": "asset/textures/ui/carol-menu-bg.jpg",
+    "sha256": "202803d2700c661ef73c6c9dbbcf91835222107a9ef2f221917644a48c3539fb",
+    "bytes": 351490
+  },
+  {
+    "path": "asset/textures/wallpapers/carol-interior.jpg",
+    "sha256": "7a5ebc73c5b7edf2fc02e83e7dddd8b72161ee5d784eb46a04c9aa3ca6e57326",
+    "bytes": 21092
+  },
+  {
+    "path": "asset/textures/wallpapers/carol-menu-bg-gold-crane.jpg",
+    "sha256": "4cb1822eab95c0cfc0c193d00454c9cdc3400cd7d690f4a63481f2196d4c5f35",
+    "bytes": 371804
+  },
+  {
+    "path": "asset/textures/wallpapers/carol-menu-bg.jpg",
+    "sha256": "4cb1822eab95c0cfc0c193d00454c9cdc3400cd7d690f4a63481f2196d4c5f35",
+    "bytes": 371804
+  },
+  {
+    "path": "asset/textures/wallpapers/carol-pagoda-exterior.jpg",
+    "sha256": "bae47ceb381c7c578ed74be82ae9fc0469886431d11e09fd0e6fab1e401c7bc9",
+    "bytes": 242670
+  },
+  {
+    "path": "asset/textures/wallpapers/carol-pagoda.jpg",
+    "sha256": "bae47ceb381c7c578ed74be82ae9fc0469886431d11e09fd0e6fab1e401c7bc9",
+    "bytes": 242670
+  },
+  {
+    "path": "asset/textures/wallpapers/carol-restaurant-interior.jpg",
+    "sha256": "7a5ebc73c5b7edf2fc02e83e7dddd8b72161ee5d784eb46a04c9aa3ca6e57326",
+    "bytes": 21092
+  },
+  {
+    "path": "asset/textures/wallpapers/castle village 01.jpg",
+    "sha256": "6d34b913ce7ab2077d218795c899fc60b855c516e6ae1836d8b205a393ec1e10",
+    "bytes": 10719
+  },
+  {
+    "path": "asset/textures/wallpapers/castle village 02.jpg",
+    "sha256": "26525b9884322410a032af1c8e3a0c3ed2d1fb5b08ce2f15870d3216c9d8bf29",
+    "bytes": 8347
+  },
+  {
+    "path": "asset/textures/wallpapers/castle village 03.jpg",
+    "sha256": "f13a0670dd236d2a869425482fd83f4fb763a1d127921cd15ce4babcd2f5001c",
+    "bytes": 8118
+  },
+  {
+    "path": "asset/textures/wallpapers/castle village 04.jpg",
+    "sha256": "12cb6b9636f1641a8507acd887a3470c3e8b6b0de8c5657f6c35ac7cc3d4eee6",
+    "bytes": 8665
+  },
+  {
+    "path": "asset/winged-models/WingedAlexandria.vrm",
+    "sha256": "7420a76c462a7c07b818d5db7f44fc8849026242152698c23e5594c6a4f135c7",
+    "bytes": 14303112
+  },
+  {
+    "path": "asset/winged-models/WingedBillie.vrm",
+    "sha256": "d562464e92333c1f3891a839ab3932f1b89c3bfee438e67445b93289488db032",
+    "bytes": 16451236
+  },
+  {
+    "path": "asset/winged-models/WingedReyCzar.vrm",
+    "sha256": "6a8c859213bff8ebe2511e018cfc8c2d653b070bc5e5b900d27c9332edea0934",
+    "bytes": 14324996
+  },
+  {
+    "path": "asset/winged-models/WingedWhiteStar.vrm",
+    "sha256": "74dcc1c0c7ec32fc3ce0a370e26029d754c83842a7acd96107c6f5736f18b3a0",
+    "bytes": 13925688
+  },
+  {
+    "path": "asset/wings/Wing1415.fbx",
+    "sha256": "42d03d1084b301c6488115bb4f57dd700a9c1b14409418d0c2c3dedb752303a8",
+    "bytes": 2079968
+  },
+  {
+    "path": "asset/wings/Wing1421.fbx",
+    "sha256": "468bf6306169126a420eb04983f8178fb3baf132fb5fa1624ba874b37fa200cd",
+    "bytes": 1918432
+  },
+  {
+    "path": "asset/wings/Wing1423.fbx",
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "bytes": 2
+  },
+  {
+    "path": "asset/wings/Wing1433.fbx",
+    "sha256": "8ce0cd6bf3b244ea62f70a42418fd8a40c70e9670caa86c03a76471009e050c2",
+    "bytes": 2063792
+  },
+  {
+    "path": "asset/wings/Wing1436.fbx",
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "bytes": 2
+  },
+  {
+    "path": "asset/wings/Wing1437.fbx",
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "bytes": 2
+  },
+  {
+    "path": "asset/wings/Wing1438.fbx",
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "bytes": 2
+  },
+  {
+    "path": "asset/wings/Wing1439.fbx",
+    "sha256": "45423d73fe0099fca6f53eecc3548bdc94687d0b4afc828d13fda0984ef102a7",
+    "bytes": 2319872
+  },
+  {
+    "path": "asset/wings/manifest.json",
+    "sha256": "9e60ecae7205128689f59eda17c50724cfb94f2eb71ebbc3939f6239710d6781",
+    "bytes": 7437
+  },
+  {
+    "path": "asset/wings/textures/wing02.png",
+    "sha256": "01536136c50a34d68c7ee2fb29efbe467c784cf28d7e8f1ee021f888d0577f00",
+    "bytes": 370089
+  },
+  {
+    "path": "asset/wings/textures/wing02_c.png",
+    "sha256": "ea2e6ce9a2942251a70b6e7368040465372df097ed80e7bfde69f8a1e2e2443c",
+    "bytes": 48313
+  },
+  {
+    "path": "asset/wings/textures/wing02_e.png",
+    "sha256": "c00e73ec1bd9b29a42a8485114a18b74c99c7ef1a1ac0331938ee8183c2c5eae",
+    "bytes": 6225
+  },
+  {
+    "path": "asset/wings/textures/wing02_nrm.png",
+    "sha256": "39bb4a97625c9909e0820a2a0855d42114e93debb2435fb0f9c62058ea1c59f1",
+    "bytes": 93943
+  },
+  {
+    "path": "asset/wings/textures/wing03.png",
+    "sha256": "55afa24dd3637d0fdb46da740bdc678c58a8b42e8cbaac55b5d4a476f26fc686",
+    "bytes": 399350
+  },
+  {
+    "path": "asset/wings/textures/wing03_c.png",
+    "sha256": "a6e64da648dbd46a5b0f5fce3dd7d726f7321cb2b5db3a8ec85389f107438378",
+    "bytes": 17954
+  },
+  {
+    "path": "asset/wings/textures/wing03_nrm.png",
+    "sha256": "f8469603dad5aafb8a8731e491c244b2665be1e2941d96329a2b3b465a281bcf",
+    "bytes": 376766
+  },
+  {
+    "path": "asset/wings/textures/wing05.png",
+    "sha256": "98a1a8cb4841f22146e4be75374e094f0e5193b68d08830fd3834c833618976f",
+    "bytes": 67398
+  },
+  {
+    "path": "asset/wings/textures/wing05diff.png",
+    "sha256": "08e2f1d19973d469b3092a377fb452a64cf7900e279dab069b3bcc5ae6c132ba",
+    "bytes": 23185
+  },
+  {
+    "path": "asset/wings/textures/wing1415.png",
+    "sha256": "764af3a3c2a3e4fc80824732f912f55154c234d99de1464c13e60376c9aca773",
+    "bytes": 317204
+  },
+  {
+    "path": "asset/wings/textures/wing1415_c.png",
+    "sha256": "da17e611ba27bcbc0c8aa1547ee6c409c36fd7286b532f26b88b298627a8e9f1",
+    "bytes": 34482
+  },
+  {
+    "path": "asset/wings/textures/wing1415_nrm.png",
+    "sha256": "e5f9d88e48a58850ee54e2a316e3f219add60f0e35c13105bdfb334183407323",
+    "bytes": 86856
+  },
+  {
+    "path": "asset/wings/textures/wing1417.png",
+    "sha256": "7e85cd7c7f7a485f7ebc7a7ca474caea5853432ba366d081799ccaaf652dc2dd",
+    "bytes": 397457
+  },
+  {
+    "path": "asset/wings/textures/wing1417_c.png",
+    "sha256": "e12c09c14737fce875f90820262e95704810422fe4e589bb5d2806f64a6d232d",
+    "bytes": 60675
+  },
+  {
+    "path": "asset/wings/textures/wing1417_nrm.png",
+    "sha256": "41327050cd71f06526fef32f317cfd07346f90d64b9e5ee18e8fbd3624a53466",
+    "bytes": 108437
+  },
+  {
+    "path": "asset/wings/textures/wing1419.png",
+    "sha256": "8bdc83fdd5401f4480f2045f514d5c58dbe15915e7ac074122ac82583f8530fd",
+    "bytes": 366430
+  },
+  {
+    "path": "asset/wings/textures/wing1419_c.png",
+    "sha256": "9d0e663c6ae46e95a67363f584d764331250bd14b89459e15c8dd4194425b5f2",
+    "bytes": 12418
+  },
+  {
+    "path": "asset/wings/textures/wing1419_nrm.png",
+    "sha256": "fc564a8f3d6d4bf43546737980b14282a00567a5047bc5613ae7fd9f119a8eee",
+    "bytes": 104763
+  },
+  {
+    "path": "asset/wings/textures/wing1420.png",
+    "sha256": "86367b541c8de2d104133bf62489465bc6712c97b851bb56b0d2946db9c7c38a",
+    "bytes": 984225
+  },
+  {
+    "path": "asset/wings/textures/wing1420_c.png",
+    "sha256": "78a20b74984e0b2c37a9721f7f0f5aaacd4ca17319c34257acf21ad95cfc397f",
+    "bytes": 119877
+  },
+  {
+    "path": "asset/wings/textures/wing1420_jellyfish.png",
+    "sha256": "6ef62f51057d47b57e8161f3004b85d0e46fc4a3947ef4033120e1b9f016f24d",
+    "bytes": 25741
+  },
+  {
+    "path": "asset/wings/textures/wing1420_nrm.png",
+    "sha256": "e9f19d69743221612b7ca40ec54d65fbe12fe178f5964f280853043a898fd80b",
+    "bytes": 255983
+  },
+  {
+    "path": "asset/wings/textures/wing1421.png",
+    "sha256": "911a7d2a73354c708b2d09c31c2ad27c182fb84dc7302bdd6984f21cdda98d83",
+    "bytes": 302350
+  },
+  {
+    "path": "asset/wings/textures/wing1421_c.png",
+    "sha256": "0758e44e7330d16f98bf178d78c1ea7b5e3de3e2dcb59b61e1520a8d557f1f5e",
+    "bytes": 38354
+  },
+  {
+    "path": "asset/wings/textures/wing1421_nrm.png",
+    "sha256": "c9fc7acdca0308f7833a2957b099bf51bb716d20af1e89638491cef08fc4a7c2",
+    "bytes": 89739
+  },
+  {
+    "path": "asset/wings/textures/wing1422(1).png",
+    "sha256": "01536136c50a34d68c7ee2fb29efbe467c784cf28d7e8f1ee021f888d0577f00",
+    "bytes": 370089
+  },
+  {
+    "path": "asset/wings/textures/wing1422_c(1).png",
+    "sha256": "ea2e6ce9a2942251a70b6e7368040465372df097ed80e7bfde69f8a1e2e2443c",
+    "bytes": 48313
+  },
+  {
+    "path": "asset/wings/textures/wing1422_e(1).png",
+    "sha256": "c00e73ec1bd9b29a42a8485114a18b74c99c7ef1a1ac0331938ee8183c2c5eae",
+    "bytes": 6225
+  },
+  {
+    "path": "asset/wings/textures/wing1422_nrm(1).png",
+    "sha256": "39bb4a97625c9909e0820a2a0855d42114e93debb2435fb0f9c62058ea1c59f1",
+    "bytes": 93943
+  },
+  {
+    "path": "asset/wings/textures/wing1423.png",
+    "sha256": "c5189ac1f1022a065a482565f1dbec549abb27f8a6d857a44cfe877d38be9bf0",
+    "bytes": 325495
+  },
+  {
+    "path": "asset/wings/textures/wing1423_c.png",
+    "sha256": "b35c6c0a3bcf62758f1758d33eb083c60dd630b4ac929755f3e96d36d7b53eb3",
+    "bytes": 25368
+  },
+  {
+    "path": "asset/wings/textures/wing1423_nrm.png",
+    "sha256": "19747ad20e75efc5e832c509fde0be2ea835d29595c27b46dad3351cb4edea4e",
+    "bytes": 101614
+  },
+  {
+    "path": "asset/wings/textures/wing1424.png",
+    "sha256": "6fc15406dfa850424f895adbbe25c565c364b963f7a15884a3160bb140e1bffa",
+    "bytes": 456713
+  },
+  {
+    "path": "asset/wings/textures/wing1424_c.png",
+    "sha256": "576b64718e4bfb0b59216c8e966a049f28185fce1507ba718577c615ad908e4e",
+    "bytes": 12432
+  },
+  {
+    "path": "asset/wings/textures/wing1424_nrm.png",
+    "sha256": "b8c0ecc93a23b9ee4406db3e35e740b99feab5f4b96632f8b42f45ba430b4a76",
+    "bytes": 120254
+  },
+  {
+    "path": "asset/wings/textures/wing1425.png",
+    "sha256": "1fecbcb7ba0fe74239194359270a09f8b0856ccbeef68eb0f300d321982adfd6",
+    "bytes": 415037
+  },
+  {
+    "path": "asset/wings/textures/wing1425_c.png",
+    "sha256": "b8e69527784d4c6f3d5b82cee8cce36b381b0d41d69f8c5b369498e01dd8b9ab",
+    "bytes": 16469
+  },
+  {
+    "path": "asset/wings/textures/wing1425_nrm.png",
+    "sha256": "2db67cdf1585dc9f32d139298f60e42f9eb6cb0a1f18268a8784896fc2e4a032",
+    "bytes": 97185
+  },
+  {
+    "path": "asset/wings/textures/wing1426.png",
+    "sha256": "527ce68d43c18e271629a7dd27c63352fa8d774e6f8b233910ccfc81e8598512",
+    "bytes": 356248
+  },
+  {
+    "path": "asset/wings/textures/wing1426_c.png",
+    "sha256": "c46f13c4fe684a4493fba1d3ced5716a427d3c97ea33815e0d28dabef8fee193",
+    "bytes": 25734
+  },
+  {
+    "path": "asset/wings/textures/wing1426_nrm.png",
+    "sha256": "efb7a5124dd4742d4ab366a0929fd51eb2841d9990701bc6806e45da6a38021b",
+    "bytes": 89159
+  },
+  {
+    "path": "asset/wings/textures/wing1427.png",
+    "sha256": "b46e2cad4fda66feb91418cbb87a4464b33e576b5a49c1ef831e9f40737fa55b",
+    "bytes": 440239
+  },
+  {
+    "path": "asset/wings/textures/wing1427_c.png",
+    "sha256": "494cd9d58fad8c8f1c5370b375bd9c11dc1c6c88a3b25faf42d5c8773f837663",
+    "bytes": 46170
+  },
+  {
+    "path": "asset/wings/textures/wing1427_nrm.png",
+    "sha256": "7e2608700285ec0dcb04d42ccb6896a2c284b322166c2f5c65e57f4f40065f9f",
+    "bytes": 107484
+  },
+  {
+    "path": "asset/wings/textures/wing1428.png",
+    "sha256": "54745a447680422ea5870993d83cca01a7d20e411d1c67c55485f30173068937",
+    "bytes": 396849
+  },
+  {
+    "path": "asset/wings/textures/wing1428_c.png",
+    "sha256": "2fdeac5c96f28ee384e564f7583e878a6f5e4376358d3c0cb03a811cb970fa1d",
+    "bytes": 55998
+  },
+  {
+    "path": "asset/wings/textures/wing1428_nrm.png",
+    "sha256": "dc4cf6c77284ea785a990fef597455f18a66048cada7f6961202ebddee07d2ce",
+    "bytes": 421356
+  },
+  {
+    "path": "asset/wings/textures/wing1429.png",
+    "sha256": "7f46e50340a5dd734386989950bedc4dffa2aaad4abf1541a5d9abdcfa3e3297",
+    "bytes": 417253
+  },
+  {
+    "path": "asset/wings/textures/wing1429_c.png",
+    "sha256": "254d4d293e99546629405b46afd67abaf3588ae75eaa22f09d582f93cd37771e",
+    "bytes": 23749
+  },
+  {
+    "path": "asset/wings/textures/wing1429_nrm.png",
+    "sha256": "6fe84442f45325469982c22fcfccff51a9f70e7e84fe1a1ddee7c671d989549f",
+    "bytes": 102642
+  },
+  {
+    "path": "asset/wings/textures/wing1430.png",
+    "sha256": "7e54fdec71460f423132753accb9d3801bc906f12474fe451198628c9b84d44d",
+    "bytes": 387816
+  },
+  {
+    "path": "asset/wings/textures/wing1430_c.png",
+    "sha256": "6add25adf401f0807863196523db722a4239a128b87e63a3d4204f3dd9d31e76",
+    "bytes": 24835
+  },
+  {
+    "path": "asset/wings/textures/wing1430_nrm.png",
+    "sha256": "386c413a8f3064803ee921c4fddf02106821602a13c836fbcf1de296af4048cf",
+    "bytes": 105480
+  },
+  {
+    "path": "asset/wings/textures/wing1431.png",
+    "sha256": "c156420ee49c00c12eba19546e21dc76cb2b607fa594a2048a477eac44675942",
+    "bytes": 408920
+  },
+  {
+    "path": "asset/wings/textures/wing1431_c.png",
+    "sha256": "98f4e8002ce998ffe3fb98117158429dea9f74cfab24b7c7452be59d5e1bb44f",
+    "bytes": 15620
+  },
+  {
+    "path": "asset/wings/textures/wing1431_nrm.png",
+    "sha256": "61e979cbacbf8a07117a01aa6f4dc1144aa4095f98352ac06bd046cb9299104f",
+    "bytes": 366432
+  },
+  {
+    "path": "asset/wings/textures/wing1432.png",
+    "sha256": "5cd73ce20eff3c1f06f1f6ab52db5d3b6ddb0440905fb0087e2a6a0ea2bab4f1",
+    "bytes": 415178
+  },
+  {
+    "path": "asset/wings/textures/wing1432_c.png",
+    "sha256": "e621a2428b07accb00aad229d6783a038ec061b199d8a86d71ea55b12aff782b",
+    "bytes": 25198
+  },
+  {
+    "path": "asset/wings/textures/wing1432_nrm.png",
+    "sha256": "2afaaab40577b387ee943fcef4fb32199c8f6480f94acc2c9fc62f64d7979a22",
+    "bytes": 382335
+  },
+  {
+    "path": "asset/wings/textures/wing1433.png",
+    "sha256": "db37ab0ea94393e69d5b2cefda9e3b4e71b587a7b1a8453a5b303f5bcf8b9c6a",
+    "bytes": 348530
+  },
+  {
+    "path": "asset/wings/textures/wing1433_c.png",
+    "sha256": "76f6041e431322d5b00e603e2271ab51ae734fcfc904dc13dbe7a42917a4a36e",
+    "bytes": 6097
+  },
+  {
+    "path": "asset/wings/textures/wing1433_nrm.png",
+    "sha256": "859919d5ebaac84bb047a5598018f6d2d5b67bd591025d57fabcd4d79144ad5c",
+    "bytes": 347259
+  },
+  {
+    "path": "asset/wings/textures/wing1434.png",
+    "sha256": "a07883a5b8a952764ce59beb00d5ac5234708d24fdd48c905f2842ccb3d4f14d",
+    "bytes": 418329
+  },
+  {
+    "path": "asset/wings/textures/wing1434_c.png",
+    "sha256": "cd5cc3ffeba0112df7fb891c96a164605cd22e4c44882f1ac6380e1988511d12",
+    "bytes": 13490
+  },
+  {
+    "path": "asset/wings/textures/wing1434_nrm.png",
+    "sha256": "f8f23f6e4fbd3212920758dccd0e4c8749974fca088745c0620a91003db80c21",
+    "bytes": 374755
+  },
+  {
+    "path": "asset/wings/textures/wing1435.png",
+    "sha256": "55afa24dd3637d0fdb46da740bdc678c58a8b42e8cbaac55b5d4a476f26fc686",
+    "bytes": 399350
+  },
+  {
+    "path": "asset/wings/textures/wing1435_c.png",
+    "sha256": "a6e64da648dbd46a5b0f5fce3dd7d726f7321cb2b5db3a8ec85389f107438378",
+    "bytes": 17954
+  },
+  {
+    "path": "asset/wings/textures/wing1435_nrm.png",
+    "sha256": "f8469603dad5aafb8a8731e491c244b2665be1e2941d96329a2b3b465a281bcf",
+    "bytes": 376766
+  },
+  {
+    "path": "asset/wings/textures/wing1436.png",
+    "sha256": "60105f98b9bc974bc54fdc5c1eda97f7ee3eee5c90b7dd01fb3fe70c6a198fd2",
+    "bytes": 1248727
+  },
+  {
+    "path": "asset/wings/textures/wing1436_c.png",
+    "sha256": "d3fd1acaa6029a57c3eb66120ba5bebb095569bf39a5cb3f5bbe205476a3b86f",
+    "bytes": 17942
+  },
+  {
+    "path": "asset/wings/textures/wing1436_nrm.png",
+    "sha256": "cdc40d50968b6edbd84dbdd3565adf824b55d0e088899af054207ab8a4862325",
+    "bytes": 326829
+  },
+  {
+    "path": "asset/wings/textures/wing1437.png",
+    "sha256": "ba935123fc648fe27a508e5a95846277a60e891d3bbf3696ee1a3ad65b5be3a5",
+    "bytes": 415949
+  },
+  {
+    "path": "asset/wings/textures/wing1437_c.png",
+    "sha256": "2cba62164a3000ac7880a65b7e7b7801d78b961d2ffc0cbc300270aa8fa5fbf1",
+    "bytes": 8514
+  },
+  {
+    "path": "asset/wings/textures/wing1437_nrm.png",
+    "sha256": "35d9e348b7120289026090597efd82fd55ece7486380f7ac830605254053abda",
+    "bytes": 88078
+  },
+  {
+    "path": "asset/wings/textures/wing1438.png",
+    "sha256": "ec646d992dd236260c4696ec28004a93d0e2512fe0a6ff3a00dc9af8ce5c5037",
+    "bytes": 403679
+  },
+  {
+    "path": "asset/wings/textures/wing1438_c.png",
+    "sha256": "249296f986a03c005809a0f0faede560cf5e51fdb553e8cf3e5d1d7b8d88e706",
+    "bytes": 4293
+  },
+  {
+    "path": "asset/wings/textures/wing1438_nrm.png",
+    "sha256": "235d6c48096898d39ceb6caa7c906ea7a8e67594d92fd417b14c9aaa588d1157",
+    "bytes": 79496
+  },
+  {
+    "path": "asset/wings/textures/wing1439.png",
+    "sha256": "3353cb6b05b4593c1ae7979e3b8831e50e1afa6942b6864124976c3cdc1f050f",
+    "bytes": 441939
+  },
+  {
+    "path": "asset/wings/textures/wing1439_c.png",
+    "sha256": "5a2739747208a8b3fe537dd955249d4afb503d4cdd10d249f5f1371f15ba55b9",
+    "bytes": 28444
+  },
+  {
+    "path": "asset/wings/textures/wing1439_nrm.png",
+    "sha256": "dcad7fb77b53c42d37e6b2a86acffbbed464b65f5063a83256589d2abb8fa6df",
+    "bytes": 364168
+  },
+  {
+    "path": "asset/wings/textures/wing162.png",
+    "sha256": "fe87ef99e38121a9903d386eceff7191b4c8ec3101fc8b0a07b4d58726cfba1b",
+    "bytes": 328076
+  },
+  {
+    "path": "asset/wings/wing02.fbx",
+    "sha256": "cba4ea4cef5194495ac3b98c2e034042d71a144eaee111558b4d7c6114f0680e",
+    "bytes": 2615200
+  },
+  {
+    "path": "asset/wings/wing03.fbx",
+    "sha256": "c6a2fff4ec26163adf2504fed53fe041aaccbd216b58536a19083d1bcebe9a5f",
+    "bytes": 3079104
+  },
+  {
+    "path": "asset/wings/wing05.fbx",
+    "sha256": "5d6218e1792098fc87d268c4139fc9c7f8fd526f091da8a9028331d24ef047ff",
+    "bytes": 533164
+  },
+  {
+    "path": "asset/wings/wing1417.fbx",
+    "sha256": "c5d16332c54b9404ea9d43fd08cbb3ab638259dfd9f533043c044619d5efbd2e",
+    "bytes": 2866896
+  },
+  {
+    "path": "asset/wings/wing1419.fbx",
+    "sha256": "ad8e6f310837c423dbf7866e7d81ed7ea25be972acceaf54460688402aaa068c",
+    "bytes": 1737136
+  },
+  {
+    "path": "asset/wings/wing1420.fbx",
+    "sha256": "539e7a033e48fd166856d299af484e24ef7609de12e754002360faa0d082e674",
+    "bytes": 1118448
+  },
+  {
+    "path": "asset/wings/wing1422.fbx",
+    "sha256": "cba4ea4cef5194495ac3b98c2e034042d71a144eaee111558b4d7c6114f0680e",
+    "bytes": 2615200
+  },
+  {
+    "path": "asset/wings/wing1424.fbx",
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "bytes": 2
+  },
+  {
+    "path": "asset/wings/wing1425.fbx",
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "bytes": 2
+  },
+  {
+    "path": "asset/wings/wing1426.fbx",
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "bytes": 2
+  },
+  {
+    "path": "asset/wings/wing1427.fbx",
+    "sha256": "6d367c3da4c593d6a6bfe7d2bdc798432a09355b97f9a45306229e65b0ca2cc2",
+    "bytes": 1636528
+  },
+  {
+    "path": "asset/wings/wing1428.fbx",
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "bytes": 2
+  },
+  {
+    "path": "asset/wings/wing1429.fbx",
+    "sha256": "26f0ebe05c797e30647f6ab796fdb94a5be62d76cab060e4f7e18ae470ebea25",
+    "bytes": 4398288
+  },
+  {
+    "path": "asset/wings/wing1430.fbx",
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "bytes": 2
+  },
+  {
+    "path": "asset/wings/wing1431.fbx",
+    "sha256": "57e092d46745476419b2fb35fdff71583ed8285556bfe2490c2d4f28ce718afe",
+    "bytes": 2456624
+  },
+  {
+    "path": "asset/wings/wing1434.fbx",
+    "sha256": "a1510b1faf2af738f4320d1aa0975deba944c62f0571fb9cc8d8983853dfc29a",
+    "bytes": 2721040
+  },
+  {
+    "path": "asset/wings/wing1435.fbx",
+    "sha256": "c6a2fff4ec26163adf2504fed53fe041aaccbd216b58536a19083d1bcebe9a5f",
+    "bytes": 3079104
+  },
+  {
+    "path": "asset/wings/wing162.fbx",
+    "sha256": "79f6098030e1d86a3530e650bf5726bcebd5064c7158c850a791c166691d8066",
+    "bytes": 275580
+  },
+  {
+    "path": "assets/css/avalon.css",
+    "sha256": "e12614e77120510f5d22eba12f47e6be690c0251b9a76e8295bf48b40964e531",
+    "bytes": 427
+  },
+  {
+    "path": "assets/img/placeholder.svg",
+    "sha256": "367ed4d983926c2edc9c3c65b0df441268a3d5effa3ff2328be94d932f0fed3e",
+    "bytes": 424
+  },
+  {
+    "path": "avalon-carol-unique-2.9.4/pages/apps/carol/packages/us.json",
+    "sha256": "ababd773728e89548c6710c7aec9f09b4f38ca5057cbc79536d2d686ae76308a",
+    "bytes": 3157
+  },
+  {
+    "path": "avalon-carol-unique-2.9.4/pages/apps/carol/plans/index.json",
+    "sha256": "981de125e673eb329649c52f098d9694ff5b9cc6313e350f0bf541c81707cd18",
+    "bytes": 106
+  },
+  {
+    "path": "avalon-carol-unique-2.9.4/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+    "sha256": "a4befb56933c19f9aff0a1b18a049e0d14745738e2faf83aef7cd3c52d02a110",
+    "bytes": 88106
+  },
+  {
+    "path": "avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1",
+    "sha256": "2ff1b1b30e9df82d84feec7bb3db7e10312091fbd9143a943e3b79bf14c3c2b4",
+    "bytes": 7036
+  },
+  {
+    "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html",
+    "sha256": "268ef33faa65bdaba929fbfee81a680207e80df75a9e853f672d97cb10d80a59",
+    "bytes": 7794
+  },
+  {
+    "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/packages/us.json",
+    "sha256": "d8b1acbbcaf7c02ff19bfe6079e72be687269a75197998d7ebb25d6ed130c7c6",
+    "bytes": 3405
+  },
+  {
+    "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/index.json",
+    "sha256": "1b8c666c39a8e6e194401da23a469ae6374d9e66749b66cd926a8c9baec33c39",
+    "bytes": 106
+  },
+  {
+    "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/twoperson-2wk-unique-20251015T005600Z.json",
+    "sha256": "200436be3a4077130cc0445338d3757733bcb817c8b0a14ba14d26737a8d131e",
+    "bytes": 90325
+  },
+  {
+    "path": "avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1",
+    "sha256": "082c4cc3607ce240e035a80aec70a775b7cdacc60d933892255e5059817d9f49",
+    "bytes": 6702
+  },
+  {
+    "path": "city/city-map.svg",
+    "sha256": "9f458f4dc67c559ab661d656e679b0307c31833de7088c049ecc9eac17e31957",
+    "bytes": 2258
+  },
+  {
+    "path": "city/city-registry.json",
+    "sha256": "6e8005b132f21736f8aff9e49e150e0538312cb240fdbdde0de882ff8c862c05",
+    "bytes": 4809
+  },
+  {
+    "path": "cloudflare/README-auth.md",
+    "sha256": "c40684d74410f1c2eedf11d0d6414cb7cbc5372b0801bd880e5526c7f7a70d70",
+    "bytes": 1215
+  },
+  {
+    "path": "cloudflare/README.md",
+    "sha256": "c2d761c763eeb01339d9572759c9511214d38f44d5db88564acc8d68f035c9b8",
+    "bytes": 561
+  },
+  {
+    "path": "cloudflare/avalon-importmap-install.toml",
+    "sha256": "aed5807cee0a59431256371135ba5e2f68bc87b470ffa02917d7756e66e41d35",
+    "bytes": 221
+  },
+  {
+    "path": "cloudflare/hello.toml",
+    "sha256": "f8878853680796df70da13393c4415d5931e7dfa7002abec1f5d0e3fad872738",
+    "bytes": 185
+  },
+  {
+    "path": "cloudflare/tracy-skin-llm.toml",
+    "sha256": "db3932e2bb96571a5f843eb2d696c6cc4a552c5945164eb40e4e30889d2628ef",
+    "bytes": 199
+  },
+  {
+    "path": "cloudflare/worker-alexandria.js",
+    "sha256": "45cbbcabbb0ce0f3c6584e889efb9da2938a66b2fde0ef69a3e8c92b71f97ca8",
+    "bytes": 3934
+  },
+  {
+    "path": "cloudflare/worker-auth.js",
+    "sha256": "0bb00367f665ddf894638ffe4c4b8ffe6881693963671f8cf221f5d77e4c018f",
+    "bytes": 4739
+  },
+  {
+    "path": "cloudflare/worker-billie-social.js",
+    "sha256": "f9cd7e90e1fe22dfd84d8bdb7d27f76d6c75241c95d6d2572ed03cfcb5aabfb2",
+    "bytes": 333
+  },
+  {
+    "path": "cloudflare/worker-hello.js",
+    "sha256": "a471afb015281bfbde65a7c6cf9f5e995af970459a880f7ca4a83dcb44f48d4f",
+    "bytes": 97
+  },
+  {
+    "path": "cloudflare/worker-importmap-install.js",
+    "sha256": "39d95a675dc2c1bbecfb8ea28704b2402e482777d75de305ead5effdb68016fe",
+    "bytes": 207
+  },
+  {
+    "path": "cloudflare/worker-market.js",
+    "sha256": "8f2b1df2cde60804ef4b0fecc8c31121acdccda2e5b781d599fbadbd74f6f08c",
+    "bytes": 132
+  },
+  {
+    "path": "cloudflare/worker-market.toml",
+    "sha256": "58e8926220797f6255b260680a623baf391c62782ec1097dfb32978f5fb07c82",
+    "bytes": 189
+  },
+  {
+    "path": "cloudflare/worker-skin-llm.js",
+    "sha256": "c5f2725c7508d9fa466e92bfb3aa8483476747a62c44e29e7ba9325e0d899471",
+    "bytes": 207
+  },
+  {
+    "path": "cloudflare/worker-tracy-skin-llm.js",
+    "sha256": "34690aee0ac1be786ea101dd29a200699af9e0c0f16e1dec357d4ab81fcea4cb",
+    "bytes": 366
+  },
+  {
+    "path": "cloudflare/worker-tts.js",
+    "sha256": "95fddf34b4ece29ef79350bf8b5d3144c12365c01e570b3fdb0363b52eb78676",
+    "bytes": 330
+  },
+  {
+    "path": "config/keep-lists/workflows-keep.json",
+    "sha256": "aec57c70a2e88822d761b3a3f5a5d58545106c70ccd830c2426d88c4da10e792",
+    "bytes": 277
+  },
+  {
+    "path": "config/workflows-keep.json",
+    "sha256": "fbc28cdf18e015de33531f0b19152617bdb8280cb9c43edad6846dd0f7ad83b2",
+    "bytes": 276
+  },
+  {
+    "path": "config/workflows-rename.json",
+    "sha256": "2253e76fc4821e2e1b4c27adcc037c5bacd72eba02524b00c709a8b5d1cb6a2f",
+    "bytes": 445
+  },
+  {
+    "path": "deploy-importmap-installer.yml",
+    "sha256": "784440010fa8d47db750cfaf2d53eb19af7d36c7a68e2c2a71bbae641f744beb",
+    "bytes": 415
+  },
+  {
+    "path": "docs/Avalon-Lore-Dossier.md",
+    "sha256": "2b21e488ab857266537e89af1fba9efa67ff2a5e2e90bfcd6bb1709d399f3b39",
+    "bytes": 113
+  },
+  {
+    "path": "docs/Avalon-Visual-Bible.md",
+    "sha256": "f0b909f317cc2f0fa0e1201538cce1c3100b0c1930ce77ba7a98d7f1e0a07624",
+    "bytes": 7324
+  },
+  {
+    "path": "docs/BUILD-PATH.md",
+    "sha256": "9fdc10d6f32a322fecdb006d6b720600715b81a06bc2ffa37913b6ce908430f4",
+    "bytes": 13
+  },
+  {
+    "path": "docs/CHARACTERS.md",
+    "sha256": "5219fc31f39333d9b1a9326a3c9a4a732b9a767d91ea86db748b2390c8d73a1c",
+    "bytes": 13
+  },
+  {
+    "path": "docs/COSMIC-PROMPT.md",
+    "sha256": "d31bc533173432a594ba62229a40072afaea61483e6feab5ff01d2a2f70e17a0",
+    "bytes": 16
+  },
+  {
+    "path": "docs/OAuth-Notes.md",
+    "sha256": "239cc38842ee59050b4ee99c57ac55e919817a76631ad9b3eb71d28fefcc634b",
+    "bytes": 268
+  },
+  {
+    "path": "docs/RULES.md",
+    "sha256": "92a72564ea653f5273f00dc3c665c96956cf79fe0daf18ccfa01e81524533b7b",
+    "bytes": 8
+  },
+  {
+    "path": "docs/SECURITY-NOTES.md",
+    "sha256": "31d1baa0c1961375ac65a73820611b2ac9e922650ecc272672970c7b605067c6",
+    "bytes": 22
+  },
+  {
+    "path": "importmap.json",
+    "sha256": "99621adad95d7d893bddac9bd6be0b08c0933838c60cc8beaa6e5b442d555bd4",
+    "bytes": 286
+  },
+  {
+    "path": "index.html",
+    "sha256": "47d011a53c5fa361434cba2897ec46a053d66d0e1051ce2395f0016b8c868162",
+    "bytes": 1706
+  },
+  {
+    "path": "kill-sw-boost.html",
+    "sha256": "6fd1fbac797e64d1c01f696585ef66df845d6937a0f55a4c978fdf0a54c77e61",
+    "bytes": 718
+  },
+  {
+    "path": "kill-sw.html",
+    "sha256": "35d6f08a089cb7cc146451ed19d0825c0f70c78d6a17979537eebba3602a6677",
+    "bytes": 620
+  },
+  {
+    "path": "memory-history/20250913T083955Z-Codys-Memory.yaml",
+    "sha256": "b72f4b3895e3073717335a35c8754d27446a6ec1f73151ace153b816c1915719",
+    "bytes": 21661
+  },
+  {
+    "path": "memory-history/20250913T085610Z-Codys-Memory.yaml",
+    "sha256": "831f1dd752dee1b6261147508db25183e8396d2e669644f9392620ea81e08786",
+    "bytes": 22003
+  },
+  {
+    "path": "memory-history/20250913T184428Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T185031Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T192026Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T193745Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T195049Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T202952Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T204046Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T205141Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T211642Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T211643Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T212718Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T214031Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T215309Z-Codys-Memory.yaml",
+    "sha256": "60c8dce72d8b3430290dfeea92585c9873dc5976592dd60d86d3d5eed90384e2",
+    "bytes": 16318
+  },
+  {
+    "path": "memory-history/20250913T221734Z-Codys-Memory.yaml",
+    "sha256": "37d880b6a4c753940d789364e09f51eb35a37edd0b997463cf44f3e16ab5f923",
+    "bytes": 23513
+  },
+  {
+    "path": "memory-history/20250913T223028Z-Codys-Memory.yaml",
+    "sha256": "37d880b6a4c753940d789364e09f51eb35a37edd0b997463cf44f3e16ab5f923",
+    "bytes": 23513
+  },
+  {
+    "path": "memory-history/20250913T224153Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250913T224309Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250913T225621Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250913T232626Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250913T234050Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250913T235341Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T031341Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T035014Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T043733Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T045342Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T053153Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T055319Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T064519Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T065740Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T072712Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T074014Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T075306Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T083756Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T085322Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T092949Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T094145Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T095503Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T103142Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T105312Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T112148Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T113932Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T115332Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T115333Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T130223Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T133138Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T135313Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T142946Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T142947Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T144235Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T145545Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T152814Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T154026Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T154027Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T155324Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T163450Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T165329Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T172707Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T174000Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T175316Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T184046Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T185547Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T192153Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T193924Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T195318Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T203016Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T204233Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T205546Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T212618Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T212619Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T213955Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T215327Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T223147Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T225352Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T232647Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T234133Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T234134Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250914T235359Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250915T032853Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250915T035758Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250915T044252Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250915T045601Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250915T053818Z-Codys-Memory.yaml",
+    "sha256": "cd1fc56298ce197786d2a665de5f5b56638945f59a702a8330995ab20d81f6a1",
+    "bytes": 22534
+  },
+  {
+    "path": "memory-history/20250915T055731Z-Codys-Memory.yaml",
+    "sha256": "d4eae5f8ddce04b6459749b9ad20f81efcad930e48b71b16d13b516adf173106",
+    "bytes": 34824
+  },
+  {
+    "path": "memory-history/20250915T062707Z-Codys-Memory.yaml",
+    "sha256": "10eca79533ffe4796e82463fb83e06a854b6daafcc9d4c1ca2bffc9fee0a0895",
+    "bytes": 12044
+  },
+  {
+    "path": "memory-history/20250915T065622Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T065739Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T073229Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T075358Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T084755Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T093811Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T095349Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T104121Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T105410Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T112630Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T114150Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T115456Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T133345Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T135354Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T143531Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T145349Z-Codys-Memory.yaml",
+    "sha256": "525cca24ee3eb68f59df07b87cda22b2ade31b720ac8aeaacdd3462e69b16ae9",
+    "bytes": 3551
+  },
+  {
+    "path": "memory-history/20250915T150856Z-Codys-Memory.yaml",
+    "sha256": "a0232da3d944b402637ac755418b1a159b8b7d67129baffda8194eecca779536",
+    "bytes": 10570
+  },
+  {
+    "path": "memory-history/20250915T151120Z-Codys-Memory.yaml",
+    "sha256": "a0232da3d944b402637ac755418b1a159b8b7d67129baffda8194eecca779536",
+    "bytes": 10570
+  },
+  {
+    "path": "memory-history/20250915T152330Z-Codys-Memory.yaml",
+    "sha256": "a0232da3d944b402637ac755418b1a159b8b7d67129baffda8194eecca779536",
+    "bytes": 10570
+  },
+  {
+    "path": "memory-history/20250915T153523Z-Codys-Memory.yaml",
+    "sha256": "a0232da3d944b402637ac755418b1a159b8b7d67129baffda8194eecca779536",
+    "bytes": 10570
+  },
+  {
+    "path": "memory-history/20250915T155401Z-Codys-Memory.yaml",
+    "sha256": "a0232da3d944b402637ac755418b1a159b8b7d67129baffda8194eecca779536",
+    "bytes": 10570
+  },
+  {
+    "path": "memory-history/20250915T160028Z-Codys-Memory.yaml",
+    "sha256": "14735a6a66c59989abce3258e58d6f14eb975123b0b66b4d1892dcf9034d01ae",
+    "bytes": 2119
+  },
+  {
+    "path": "memory-history/20250915T163307Z-Codys-Memory.yaml",
+    "sha256": "e0f7daccc6103d2245ca4ebb82bda474403e21af01d39a57cca59f3898f3a06a",
+    "bytes": 7426
+  },
+  {
+    "path": "memory-history/20250915T164733Z-Codys-Memory.yaml",
+    "sha256": "e0f7daccc6103d2245ca4ebb82bda474403e21af01d39a57cca59f3898f3a06a",
+    "bytes": 7426
+  },
+  {
+    "path": "memory-history/20250915T164734Z-Codys-Memory.yaml",
+    "sha256": "e0f7daccc6103d2245ca4ebb82bda474403e21af01d39a57cca59f3898f3a06a",
+    "bytes": 7426
+  },
+  {
+    "path": "memory-history/20250915T173146Z-Codys-Memory.yaml",
+    "sha256": "e0f7daccc6103d2245ca4ebb82bda474403e21af01d39a57cca59f3898f3a06a",
+    "bytes": 7426
+  },
+  {
+    "path": "memory-history/20250915T173147Z-Codys-Memory.yaml",
+    "sha256": "e0f7daccc6103d2245ca4ebb82bda474403e21af01d39a57cca59f3898f3a06a",
+    "bytes": 7426
+  },
+  {
+    "path": "memory-history/20250915T175348Z-Codys-Memory.yaml",
+    "sha256": "f34001f0d930c651803c3928a124d2c8d2557750821d163aeae2f520aca4aadb",
+    "bytes": 919
+  },
+  {
+    "path": "memory-history/20250915T184924Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T184925Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T192414Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T194046Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T195345Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T203329Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T205352Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T212903Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T212904Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T214127Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T215424Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T223318Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T225330Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T232717Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T234059Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250915T235346Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250916T030600Z-Codys-Memory.yaml",
+    "sha256": "e71846468ff46bd7d01b5e815f8336384cc97df9a70cade893264867cba1a537",
+    "bytes": 597
+  },
+  {
+    "path": "memory-history/20250916T044014Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T044015Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T045301Z-BROKEN-Codys-Memory.yaml",
+    "sha256": "c36813f4b402b35469cc62fdcf579af014822d83f425660515a4718b1f303c35",
+    "bytes": 30374
+  },
+  {
+    "path": "memory-history/20250916T045301Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T051838Z-BROKEN-Codys-Memory.yaml",
+    "sha256": "a1aac2f628ba7dad80fad853ad4d6ac0e99b162fec0dc538c18493144494a2dd",
+    "bytes": 26927
+  },
+  {
+    "path": "memory-history/20250916T053453Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T053454Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T055206Z-BROKEN-Codys-Memory.yaml",
+    "sha256": "08bac272c537d6f64bde60ecefd376a350307b111dae226885e70279132b28ad",
+    "bytes": 21858
+  },
+  {
+    "path": "memory-history/20250916T055342Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T055343Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T065214Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T073114Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T073115Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T075350Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T084909Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T093747Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T095343Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T104018Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T105336Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T112630Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T114121Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T115415Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T133641Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T135432Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T144101Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T145326Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T145327Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T153621Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T155352Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T164525Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T164526Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T165831Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T173244Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T175321Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T184839Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T192411Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T194032Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T195354Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T203442Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T205313Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T212837Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T214115Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T214116Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T215405Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T222941Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T224238Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T224239Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T225550Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T232454Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T234039Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250916T235337Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T030528Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T030529Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T034708Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T043946Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T045335Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T053440Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T053441Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T055327Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T065153Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T072949Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T074258Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T075554Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T084658Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T093430Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T095336Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T103915Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T105321Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T105322Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T112627Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T114119Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T115422Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T133436Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T135419Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T143902Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T145408Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T153449Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T155330Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T164515Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T165749Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T173207Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T175310Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T184849Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T192359Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T192400Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T194119Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T194120Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T195332Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T203404Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T205316Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T205317Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T205541Z-Codys-Memory.yaml",
+    "sha256": "e6ce10efb816ca90e21d88bbefd545e874b8a3c3c555860cc86f0285f1c1280a",
+    "bytes": 20083
+  },
+  {
+    "path": "memory-history/20250917T205634Z-BROKEN-Codys-Memory.yaml",
+    "sha256": "e6ce10efb816ca90e21d88bbefd545e874b8a3c3c555860cc86f0285f1c1280a",
+    "bytes": 20083
+  },
+  {
+    "path": "memory-history/20250917T205748Z-BROKEN-Codys-Memory.yaml",
+    "sha256": "08bac272c537d6f64bde60ecefd376a350307b111dae226885e70279132b28ad",
+    "bytes": 21858
+  },
+  {
+    "path": "memory-history/20250917T212554Z-Codys-Memory.yaml",
+    "sha256": "08dfe9b76439705405bef9be69ddbf1c2ce3ad80c4108ce9d1c085efc28bbfca",
+    "bytes": 996
+  },
+  {
+    "path": "memory-history/20250917T214108Z-Codys-Memory.yaml",
+    "sha256": "569f8f095f46a82e1f2c5c01e8f3aad0908d8ccc4dcc53dc33f8a6c08788203f",
+    "bytes": 4853
+  },
+  {
+    "path": "memory-history/20250917T223023Z-Codys-Memory.yaml",
+    "sha256": "9e40716f4bf22e61363b023f4354c0785c866eda6fdaa0309d28a933d82e1fc9",
+    "bytes": 448
+  },
+  {
+    "path": "memory-history/20250917T224146Z-Codys-Memory.yaml",
+    "sha256": "9e40716f4bf22e61363b023f4354c0785c866eda6fdaa0309d28a933d82e1fc9",
+    "bytes": 448
+  },
+  {
+    "path": "memory-history/20250917T224147Z-Codys-Memory.yaml",
+    "sha256": "9e40716f4bf22e61363b023f4354c0785c866eda6fdaa0309d28a933d82e1fc9",
+    "bytes": 448
+  },
+  {
+    "path": "memory-history/20250917T225437Z-Codys-Memory.yaml",
+    "sha256": "9e40716f4bf22e61363b023f4354c0785c866eda6fdaa0309d28a933d82e1fc9",
+    "bytes": 448
+  },
+  {
+    "path": "memory-history/20250917T232747Z-Codys-Memory.yaml",
+    "sha256": "9e40716f4bf22e61363b023f4354c0785c866eda6fdaa0309d28a933d82e1fc9",
+    "bytes": 448
+  },
+  {
+    "path": "memory-history/20250917T234052Z-Codys-Memory.yaml",
+    "sha256": "9e40716f4bf22e61363b023f4354c0785c866eda6fdaa0309d28a933d82e1fc9",
+    "bytes": 448
+  },
+  {
+    "path": "memory-history/20250917T235350Z-Codys-Memory.yaml",
+    "sha256": "435486b7d2609cbdfc1738aa0f56ef17c76444e8fcc23e15ea97b4332d59cb3f",
+    "bytes": 2155
+  },
+  {
+    "path": "memory-history/20250918T001302Z-BROKEN-Codys-Memory.yaml",
+    "sha256": "bb660751cdef0d45c109f5b86abd5b5c84ccc8accb07afa11c2e5c8d430d9338",
+    "bytes": 11851
+  },
+  {
+    "path": "memory-history/20250918T005814Z-Codys-Memory.yaml",
+    "sha256": "e9fa29911fe2348849c804ddd3d5dddb1f8fc7695539580b3360b298e61acb0c",
+    "bytes": 4682
+  },
+  {
+    "path": "memory-history/20250918T012606Z-Codys-Memory.yaml",
+    "sha256": "894696aa6ab0e94e2707174fd259b37e93d206979206a63138f4adee6a88d126",
+    "bytes": 1866
+  },
+  {
+    "path": "memory-history/20251017T224658Z-Codys-Memory.yaml",
+    "sha256": "8af5a88656b34625071e28e9e6bad6a84aca1e9d3b637b97ba3dff85abb6e5b1",
+    "bytes": 2344
+  },
+  {
+    "path": "memory-history/20251021T033227Z-Codys-Memory.yaml",
+    "sha256": "b4d28f3545e488c3e648fcb34363fb1f160e755056b7343409ffc4e7bd8dbcbd",
+    "bytes": 1688
+  },
+  {
+    "path": "memory-history/20251021T035452Z-Codys-Memory.yaml",
+    "sha256": "d9fc186a92073d39f45e52be86bfcb06121b1ce4dac86b88830f419deb56da78",
+    "bytes": 1477
+  },
+  {
+    "path": "memory-history/Codys-Memory-20251021T064919Z.yaml",
+    "sha256": "046dd369e35e08f83c614b4f4615971aca8c69ce1992f80fe40be299380065dd",
+    "bytes": 1342
+  },
+  {
+    "path": "memory-history/Codys-Memory-ops.yaml",
+    "sha256": "d05f77ff0a9d03c69eb5a7b0ba7f178ff2bb26cfecd217875f28fd84200dd715",
+    "bytes": 1013
+  },
+  {
+    "path": "memory-history/Codys-Memory.json",
+    "sha256": "984826c5bfbf88cca7e3b3773fcadc44875c5736a30f2f65090175e2da681224",
+    "bytes": 725
+  },
+  {
+    "path": "memory-history/Codys-Memory.yaml",
+    "sha256": "8b931629f308dcba3584aa5ed1cc7cee23066e2618adc1bd230453c159a87862",
+    "bytes": 812
+  },
+  {
+    "path": "memory-history/repo-index.json",
+    "sha256": "d0e7b524f3211236b0335148a5b2dd81ca719a12d3f778cd2cad438d9e0e7ef3",
+    "bytes": 121570
+  },
+  {
+    "path": "memory-history/repo-inventory.json",
+    "sha256": "b997ed5e241b2c0039a4fa3b7d2d8471b20d4f54c62fc833eaafb89bd79b0273",
+    "bytes": 190360
+  },
+  {
+    "path": "memory-history/repo-read-index.json",
+    "sha256": "40f06aa860a7fb01d7c142ec1b638ee6a94a366498c1819ba59d66481d9bdb92",
+    "bytes": 862574
+  },
+  {
+    "path": "memory-history/repo-refs.json",
+    "sha256": "6e75787fca4eda62f9b1e560b74fe1f927030469baba05630777087e8980ed88",
+    "bytes": 633
+  },
+  {
+    "path": "memory-history/repo-usage-report.json",
+    "sha256": "a3b1cd9576bf193f98fd7b702138b109b4ab38a5b964521b4ea76ca0a44445fd",
+    "bytes": 8544
+  },
+  {
+    "path": "memory-history/retired/odessa/index.html",
+    "sha256": "e96380eedde6dbbb7eac177f49b3ffac98671eaad3a7eb28fab52b4e1007c8e9",
+    "bytes": 400
+  },
+  {
+    "path": "memory/Cody-Memory.yaml",
+    "sha256": "21d2a37d49794802ce04e44a0db158ef656c91f2e74c936a4befd42912abf11f",
+    "bytes": 916
+  },
+  {
+    "path": "memory/Codys-Memory-characters.yaml",
+    "sha256": "0d90eb039ac5f4f9bfda765d89de8a01eb29029bf3f0a2402c1525392b0cac3b",
+    "bytes": 4968
+  },
+  {
+    "path": "memory/Codys-Memory-visuals.yaml",
+    "sha256": "6d63d90426123d559d0c8c012e6c3488ee70d65d20bad3ead36b4a4d8ac6c0ba",
+    "bytes": 4260
+  },
+  {
+    "path": "memory/deadends.json",
+    "sha256": "846d6ed10b28e76593d9f956f411290e88c7b311fe6f1f71241d4ead7d5d3ef9",
+    "bytes": 92256
+  },
+  {
+    "path": "memory/file-index.json",
+    "sha256": "c181b8fa3e84a85faeb863799ffe2e234ac7ff826d2dcf79dccfaa455d107b7a",
+    "bytes": 167878
+  },
+  {
+    "path": "pages/_city/city.css",
+    "sha256": "50687762f007777e09a35dfc5bdbd32426402989518e0a4be8c5f0945c93663a",
+    "bytes": 92
+  },
+  {
+    "path": "pages/_city/index.html",
+    "sha256": "d59e5f549fdc665f843a3eea494c36318ea135893d5c11ba93a1f02e4f44c541",
+    "bytes": 1262
+  },
+  {
+    "path": "pages/_city/plaza.html",
+    "sha256": "729558d7e7c52e54ce14f8ee9fe4fb31abb915c17d2bc3c368f6c474fd491b81",
+    "bytes": 1950
+  },
+  {
+    "path": "pages/_lib/role-guard.js",
+    "sha256": "4d56f667c4560e3b9706d8a6314981822e1c5a0f7384a1a8b1022ebb8ddc3b47",
+    "bytes": 439
+  },
+  {
+    "path": "pages/access.html",
+    "sha256": "bcce5b52f672ee0e9f7150c11a2d6d237690377c1bb4694ad27f2c5c424d9e91",
+    "bytes": 1144
+  },
+  {
+    "path": "pages/apps/Index.html",
+    "sha256": "86a9af7899e7c2142ce5edc5b59d521af80ed46e4d64607082b6402f40d72b51",
+    "bytes": 1642
+  },
+  {
+    "path": "pages/apps/_city/buttons-3d.html",
+    "sha256": "a63aa5dafdc9e413ceed7fca9023e659964ed9d7bc637d5eb16f372302db50b0",
+    "bytes": 3351
+  },
+  {
+    "path": "pages/apps/_city/city.css",
+    "sha256": "467c0d01ac645fad2add0f4ee1ec4f002a2b37ee77807806b265a2a95b54cb48",
+    "bytes": 2244
+  },
+  {
+    "path": "pages/apps/_city/city.js",
+    "sha256": "e2674764f3926c34767b65ba93e4817fb35380e1dc6156370ed6a424f0aa0c60",
+    "bytes": 71
+  },
+  {
+    "path": "pages/apps/_city/hero.css",
+    "sha256": "f4fcb5ea04c3cf3bca3fd5590068c253af901183e7dc1a5c65f6e22a75031964",
+    "bytes": 56
+  },
+  {
+    "path": "pages/apps/_city/index.html",
+    "sha256": "529aad492feddf6ede0ee8f78aa8161cfe85648491453084bd846cd3a07179e6",
+    "bytes": 1219
+  },
+  {
+    "path": "pages/apps/_city/map.js",
+    "sha256": "139e1b9547c4f0065da43e0f726352d0926c414e9d7b807402a623d6e0762da7",
+    "bytes": 3357
+  },
+  {
+    "path": "pages/apps/_city/palace.html",
+    "sha256": "f539e067797720cf19dedf740c9673585f3cfb26a5840e970be9f6aff0d48a32",
+    "bytes": 1084
+  },
+  {
+    "path": "pages/apps/_city/registry.json",
+    "sha256": "184b3b3baa0d941134c6945f5848ac44b3403aa0e34487e2fa5c11b206e5c750",
+    "bytes": 828
+  },
+  {
+    "path": "pages/apps/_city/repo-index.html",
+    "sha256": "6ce8a46208058be6426ad0e9a915c545e31ce93f9cc3a018345543c5dda319a1",
+    "bytes": 3719
+  },
+  {
+    "path": "pages/apps/_city/theme.css",
+    "sha256": "ea2ac0de7a37bba209f7bae8ab4a9267e7b839f476b7564a958784ef96b90b2f",
+    "bytes": 163
+  },
+  {
+    "path": "pages/apps/_shared/room.css",
+    "sha256": "5352d79a27b3943ab5dcaefd7dcb3a81c3f3c2ab21c3d6516b50660c3b208d77",
+    "bytes": 274
+  },
+  {
+    "path": "pages/apps/_shared/room.js",
+    "sha256": "6e97f5af331bee173a8952c9a9c83b115837fc633304a0f03a3c48c2c6458fe4",
+    "bytes": 271
+  },
+  {
+    "path": "pages/apps/_shared/ui-lite.css",
+    "sha256": "dcded999e96eadaffe21ecd71036f482f6de015151411286ab9e5f607cb115ab",
+    "bytes": 1091
+  },
+  {
+    "path": "pages/apps/_shared/ui.css",
+    "sha256": "fbf231861c1d59d2176237e5edc94225b0928c049b422d34894adaea41489ad3",
+    "bytes": 264
+  },
+  {
+    "path": "pages/apps/_ui/tokens.css",
+    "sha256": "99f8f752f70c285ad3efc6544676627b1bb656d900cc48574cf2811afc0d0782",
+    "bytes": 206
+  },
+  {
+    "path": "pages/apps/abbey/importer.html",
+    "sha256": "a047101d0c838bfbf3b3b3f77932551818904c3f4000ae931a1234fa19049e83",
+    "bytes": 1820
+  },
+  {
+    "path": "pages/apps/abbey/index.html",
+    "sha256": "0dc3e1fafe04e5084b71700369dd03f49076480a983b5ee672d3a6c6f7f93b57",
+    "bytes": 89
+  },
+  {
+    "path": "pages/apps/abbey/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/alexandria/app.css",
+    "sha256": "763543123a1712f67c6bc14bd611763d4e79d2e14aba4d2c523a701a3cf092c4",
+    "bytes": 1660
+  },
+  {
+    "path": "pages/apps/alexandria/app.js",
+    "sha256": "1ecfa07ed776d46c6924f003947f3db461c216bb2a11f04ad4b2c62119b91a33",
+    "bytes": 1680
+  },
+  {
+    "path": "pages/apps/alexandria/author.html",
+    "sha256": "cb2637f516dff9b90e4a8d4d8d1f731e66a3a7a91e19427e8279a79642fd2b95",
+    "bytes": 268
+  },
+  {
+    "path": "pages/apps/alexandria/bestiary.html",
+    "sha256": "44d987dd17bcb1f1be8d54587501d8a703ebafc332e7dada1df4a82b6d3c6cd9",
+    "bytes": 252
+  },
+  {
+    "path": "pages/apps/alexandria/cities.html",
+    "sha256": "dd1ae2ba7920fbe440fb9925ad619163162f92980b0a69d8becb6157285c4077",
+    "bytes": 302
+  },
+  {
+    "path": "pages/apps/alexandria/config.json",
+    "sha256": "68690f96ff3b1cc8bfbbcd170f811a0cd1001e9885de235bac789e6502520cb9",
+    "bytes": 46
+  },
+  {
+    "path": "pages/apps/alexandria/dm.html",
+    "sha256": "15303519ce7eff5803bf7cd2d311341e2a5e81fb0e5d9a412f1385ae0c56b1f3",
+    "bytes": 219
+  },
+  {
+    "path": "pages/apps/alexandria/dm/config.json",
+    "sha256": "e73c46ed001d088de5bce1bc50fbf92169874b65f8d9fba4f18b90c7d976bd3e",
+    "bytes": 63
+  },
+  {
+    "path": "pages/apps/alexandria/dm/dm.css",
+    "sha256": "875d2f74e78b0b1812e274b9d5db3b85dae4e9a0922cc86319b44a2c418da300",
+    "bytes": 809
+  },
+  {
+    "path": "pages/apps/alexandria/dm/dm.html",
+    "sha256": "14e4f55a31d82f09739606b6a12d55111ca0bd949ac9a7b427ca48333eba287b",
+    "bytes": 1228
+  },
+  {
+    "path": "pages/apps/alexandria/dm/dm.js",
+    "sha256": "8830988698d7fba9be128a368dbb99a2cd5e604a69fee5ad85eca5fc308dc657",
+    "bytes": 5192
+  },
+  {
+    "path": "pages/apps/alexandria/dm/play.html",
+    "sha256": "b8a996344331343ae8b252398f7b599b45277cf04bf8a68b4178f68e62f9df4b",
+    "bytes": 8428
+  },
+  {
+    "path": "pages/apps/alexandria/index.html",
+    "sha256": "cac7a82ca2b76c1c678195cd453384bdf29bd5144ac384fe8ae40d2689ff0534",
+    "bytes": 195
+  },
+  {
+    "path": "pages/apps/alexandria/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/alexandria/maps/index.html",
+    "sha256": "9f9e960ecc6c341525c0f539a5a2793585a53e6c64cf3fe825bc9ab0ab99c4f5",
+    "bytes": 252
+  },
+  {
+    "path": "pages/apps/alexandria/multiverse.html",
+    "sha256": "552c04a29f4e3a91feabdafaa05764d2b04a3515e37e2a163211f9a8c478e63c",
+    "bytes": 342
+  },
+  {
+    "path": "pages/apps/alexandria/session-log.html",
+    "sha256": "35a2513955bec0e881ffcb4d8dd0e076ec308df16c535cc2377935e9358c9079",
+    "bytes": 1537
+  },
+  {
+    "path": "pages/apps/alexandria/voice-dm.html",
+    "sha256": "08d2ea200a92d5ccc8692ae7cc141d24676fadb2d4825d9ed14b51e61591bba4",
+    "bytes": 1371
+  },
+  {
+    "path": "pages/apps/alexandria/world-rules.html",
+    "sha256": "afae2b3c6b2ae435075a4c08b7cb80079ada2a55b1427346c3be2c50a89cf333",
+    "bytes": 1248
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/atlas.json",
+    "sha256": "e426f922c67297bf8fd36e336cd2b08bdc9b7d75d916716048219121e46cb7c0",
+    "bytes": 940
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/continuity-checklist.json",
+    "sha256": "83372571755566c3537fc51f60974af11b165664139f07db959251e8ce07e4f8",
+    "bytes": 146
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/lore-bible.json",
+    "sha256": "629e7c2d9c319c6d7d672b258c3df5a36ec121eb6f43e6139b520ee4b374d1a2",
+    "bytes": 399
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/notable-figures.json",
+    "sha256": "20e0753d01dce0e7700a9ed8a1b3a754a7569d610ecd2593a746daf4df1c84ee",
+    "bytes": 318
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/npc-codex.json",
+    "sha256": "7f34f5e5e80110a4fa99be40bbaaf2457efa6dc67dc65216b11c34f1b6f7e6d8",
+    "bytes": 1497
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/scene-seeds.json",
+    "sha256": "9bfcdd6dcc3f5049f657fa73c0efa40278324dba6acadc2817b615f16eb96c84",
+    "bytes": 945
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/seed-20250918T031302Z-avalon.json",
+    "sha256": "af1ee870a55e3104bcace946397eb0ea9d2dad2898cf56375f95051f91d0be92",
+    "bytes": 229
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T031302Z-avalon/timeline.json",
+    "sha256": "6cba41d947fa0abc1c76b951f0c4d6ed4e0471bd347f3e464468c7b3afbe212e",
+    "bytes": 920
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/atlas.json",
+    "sha256": "5dc3038844b0916e8b4d26b8eefd7e12fcf169b131efb9cca01c11d3f55856b5",
+    "bytes": 940
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/continuity-checklist.json",
+    "sha256": "83372571755566c3537fc51f60974af11b165664139f07db959251e8ce07e4f8",
+    "bytes": 146
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/lore-bible.json",
+    "sha256": "02783628a163ac46041c9faa2304906c887308944a2cedb73ad95fd35d3e187b",
+    "bytes": 399
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/notable-figures.json",
+    "sha256": "9408b43ea566501610cd9c620faa334bc834da93bdc1290958eddda7008561b6",
+    "bytes": 318
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/npc-codex.json",
+    "sha256": "2de6bbcddb632e70a9290e8063339727140f6a4d94eefd0d36fd38d65852d1b3",
+    "bytes": 1497
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/scene-seeds.json",
+    "sha256": "9bfcdd6dcc3f5049f657fa73c0efa40278324dba6acadc2817b615f16eb96c84",
+    "bytes": 945
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/seed-20250918T052002Z-avalon.json",
+    "sha256": "10e2a22e4ee3a161e3c6d1aeec89257f9ce0e92f642e8d90aef426aefb215471",
+    "bytes": 229
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/timeline.json",
+    "sha256": "bfe20c876de54bee1710d4e3cbc677d6c069d93ede7e6ae958deee89e502e343",
+    "bytes": 920
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/atlas.json",
+    "sha256": "0fd67ef478cf943cd4d866166495c8c1b3798dd530d29ea78d147cb7d5fb165a",
+    "bytes": 940
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/continuity-checklist.json",
+    "sha256": "83372571755566c3537fc51f60974af11b165664139f07db959251e8ce07e4f8",
+    "bytes": 146
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/lore-bible.json",
+    "sha256": "deef5e0080b4795250eefcc9432b1ef567b7d2c1d9ed622d18e7953e53eba404",
+    "bytes": 399
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/notable-figures.json",
+    "sha256": "20e0753d01dce0e7700a9ed8a1b3a754a7569d610ecd2593a746daf4df1c84ee",
+    "bytes": 318
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/npc-codex.json",
+    "sha256": "da7e88fb801481f062334efe3d6b086c62d19e282b93cd59364b8bc636570a36",
+    "bytes": 1497
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/scene-seeds.json",
+    "sha256": "0b167a4069319a35c40c701afb64a60c1ab5a0c45bf2577c49f7ddbe63b3f9a8",
+    "bytes": 945
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/seed-20251006T012716Z-avalon.json",
+    "sha256": "27835000c73800a07ab8d8d58d7c34511e57e5a23faebc4f771d1581767380c6",
+    "bytes": 229
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/timeline.json",
+    "sha256": "f1dde8193a559467997c669c447b7240113331aadd6dce1deffaa60c41d517a8",
+    "bytes": 920
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/atlas.json",
+    "sha256": "16c2091164c1a12cbc43260c914a577a5087c7669c6e0dd28acb4620e10b42eb",
+    "bytes": 940
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/continuity-checklist.json",
+    "sha256": "83372571755566c3537fc51f60974af11b165664139f07db959251e8ce07e4f8",
+    "bytes": 146
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/lore-bible.json",
+    "sha256": "d6bf105e4593a3342b63a8bfeb2bb8bc5528682b8ca2b5cc0e6c313a83fb895e",
+    "bytes": 399
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/notable-figures.json",
+    "sha256": "ce3dcdf5dfd37b3f431f6d2745609d2698088b86091017b48b5273265bec5eeb",
+    "bytes": 318
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/npc-codex.json",
+    "sha256": "db8c97cfe1d47dda4b38a2f00c7caf008d27677930f648fcdbb8061e77aaf776",
+    "bytes": 1497
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/scene-seeds.json",
+    "sha256": "9bfcdd6dcc3f5049f657fa73c0efa40278324dba6acadc2817b615f16eb96c84",
+    "bytes": 945
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/seed-20251006T014952Z-avalon.json",
+    "sha256": "b93f3eb6c6dbb2729261f46943c7fe7649e5354b1475b95953766c8c4807e6c0",
+    "bytes": 229
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/timeline.json",
+    "sha256": "b8bb302f4fc22cfc1f575f3ae46e917379c3f4391e0d5b136e176b30838fe336",
+    "bytes": 920
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/atlas.json",
+    "sha256": "dbab4f70b4344da2c93e4aa8f8f179af2d497cbe8cdddc26868bf0c9bd531d87",
+    "bytes": 940
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/continuity-checklist.json",
+    "sha256": "83372571755566c3537fc51f60974af11b165664139f07db959251e8ce07e4f8",
+    "bytes": 146
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/lore-bible.json",
+    "sha256": "c5ba5e985cd9d128462a3e1c1e095350c6c51be799d87d4c1020a39b4fbdc6a9",
+    "bytes": 399
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/notable-figures.json",
+    "sha256": "9408b43ea566501610cd9c620faa334bc834da93bdc1290958eddda7008561b6",
+    "bytes": 318
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/npc-codex.json",
+    "sha256": "43ac7ce4dc214a3a48110f134541d55e78d45a9b805e46162dce964c5635f4c4",
+    "bytes": 1497
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/scene-seeds.json",
+    "sha256": "94660216491505286f2d11f4b95dfde567249abc465a547dbe37d775d068ec81",
+    "bytes": 945
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/seed-20251006T032652Z-avalon.json",
+    "sha256": "aaf156339a7cc02c0a0c589e1a0f2acf62bf9d7959bbc5005c94f53ae7d480e7",
+    "bytes": 229
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/timeline.json",
+    "sha256": "c6d33e11d89f64518f1439e0b3f60eda11bf4cb94a79bab8d6a8b19a441ee481",
+    "bytes": 920
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/atlas.json",
+    "sha256": "5c2e45a0450f420e0d27fd02eac29ef03790f563163ed525e1eb97f0700cb0e9",
+    "bytes": 940
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/continuity-checklist.json",
+    "sha256": "83372571755566c3537fc51f60974af11b165664139f07db959251e8ce07e4f8",
+    "bytes": 146
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/lore-bible.json",
+    "sha256": "bc6a23032982026b88a8f17c624b4286a04682ac289adeffb2830c22e4f95383",
+    "bytes": 399
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/notable-figures.json",
+    "sha256": "ec284e49abf6cc4d923b3c4c1269a98022a74295713a775ce28eff405955da02",
+    "bytes": 318
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/npc-codex.json",
+    "sha256": "ce12828194c95ada64b5669394bb14b74313f4bb8792b9c825e7769f6436bea3",
+    "bytes": 1497
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/scene-seeds.json",
+    "sha256": "1f221714c846bb114ae4a6cf19ebdb1516e0f5e8b7683ec0df85c2f5ebf4b6d6",
+    "bytes": 945
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/seed-20251006T034428Z-avalon.json",
+    "sha256": "a904e80d79a2ede5ca0db68aebf037f70cea290579613e672468141a589e9477",
+    "bytes": 229
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/timeline.json",
+    "sha256": "9649890b6107d67f96c013f053d16500347c43b66ab714be36225043bb0a624c",
+    "bytes": 920
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/avalon/world.json",
+    "sha256": "67c304a7ab64762ec726c86a10fff9e1e6ee3d341618862a7d570fa9b4822b4c",
+    "bytes": 5786
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/index.html",
+    "sha256": "aabef0f49a159093cd02220fe11278f6f8beb9baf2aea608e55714ebdf301d08",
+    "bytes": 249
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/index.json",
+    "sha256": "e793fc3871a4ababe7a1028a8d044b19633c6e09bef610b75560ce0f7636cd35",
+    "bytes": 239
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/latest.txt",
+    "sha256": "59979df51117b422f28edf3c95bb9bd1b13a6480c5da79a5354b8f9386efeea1",
+    "bytes": 24
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/terra/world.json",
+    "sha256": "97c72cf93bc46f7e39d48150a42e2685bf58e71150a10822a387d73d4909f4bf",
+    "bytes": 5928
+  },
+  {
+    "path": "pages/apps/alexandria/worlds/world-avalon-prime.json",
+    "sha256": "1f9085a1f1de39d0c9abf7886c6d0034168d6a648b13bde45b92d3b8b148dc7d",
+    "bytes": 281
+  },
+  {
+    "path": "pages/apps/billie/basement.html",
+    "sha256": "12a6d146e0f34575200b0d965e274146c2bce787c5c02c840288acf9ea1ba57b",
+    "bytes": 2073
+  },
+  {
+    "path": "pages/apps/billie/faceless.html",
+    "sha256": "00213456ef5708d06a4923fc7227f230f5df97ede2b10cc0d524851d5620793d",
+    "bytes": 7695
+  },
+  {
+    "path": "pages/apps/billie/ffmpeg.html",
+    "sha256": "33683ac5a628ab7157e499b8615385b54103acb201e75c8ea5a50e67e57b2f04",
+    "bytes": 37
+  },
+  {
+    "path": "pages/apps/billie/index.html",
+    "sha256": "ad04786b6ec67f0406fe8d5982a7bcb10413c3b448285a2779750e01e51f142d",
+    "bytes": 90
+  },
+  {
+    "path": "pages/apps/billie/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/billie/overview.html",
+    "sha256": "310b6b1df081e4571b18ade8ff2291f382718caa512527721f658f619e8ee98e",
+    "bytes": 1476
+  },
+  {
+    "path": "pages/apps/billie/storyboards.html",
+    "sha256": "90e20e16bdb0b28f36e5431e31bbc456ddbbf0172cf676a78f37be0b3bb871cb",
+    "bytes": 2035
+  },
+  {
+    "path": "pages/apps/buildings.css",
+    "sha256": "179c07bb86f59e45b7ed365209b8a56ee73556bd5a1b8a84875972a45f26a6b6",
+    "bytes": 1001
+  },
+  {
+    "path": "pages/apps/carol/carol.css",
+    "sha256": "4255cf0367bccc8e6cbc545126f4e47b25c4473d3c9528d30478b039c138cea7",
+    "bytes": 1993
+  },
+  {
+    "path": "pages/apps/carol/debug/plan-inspect.json",
+    "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "bytes": 3
+  },
+  {
+    "path": "pages/apps/carol/index.html",
+    "sha256": "ea73071b91ba80ec3558b5420dd34fcb4eda7a5ddca567efa66652484435ae0c",
+    "bytes": 466
+  },
+  {
+    "path": "pages/apps/carol/index.json",
+    "sha256": "5a6b18d969eec3f547f347e9171f6e0c800c8dd23512502849669195bc280353",
+    "bytes": 117
+  },
+  {
+    "path": "pages/apps/carol/library/evidence.json",
+    "sha256": "6a23b28b79969ffa9aef1a41019ff9783a73db3e1a5ed6f7448eae28a8607026",
+    "bytes": 450
+  },
+  {
+    "path": "pages/apps/carol/menu.html",
+    "sha256": "3ffdec23f088935f286d7c53d38b11868833339d2b86c4dad916f86463a09703",
+    "bytes": 2440
+  },
+  {
+    "path": "pages/apps/carol/menu.js",
+    "sha256": "8db5d2ba00090d1400306dbb5f8dde4fefda8121ae211464fa2ecf03ab6bf15d",
+    "bytes": 5177
+  },
+  {
+    "path": "pages/apps/carol/packages/README.md",
+    "sha256": "6c879c804f4bfbc84eb21403487edd43daf687628c3b1dace203bc2dd1105e39",
+    "bytes": 1696
+  },
+  {
+    "path": "pages/apps/carol/packages/us.json",
+    "sha256": "142ac62661097f51c04b51aae749f08743963b0c9bc46b61870392bafee49fc7",
+    "bytes": 4713
+  },
+  {
+    "path": "pages/apps/carol/phoenix.html",
+    "sha256": "69689cb43820bd5dd05a0774a6c233e55314761c4f8404632cd1305dd56288c5",
+    "bytes": 288
+  },
+  {
+    "path": "pages/apps/carol/plans/index.json",
+    "sha256": "7a1fbfcc4d2c06161cd87aff018b7ee4c366dea9cc048351433cfd24293b6025",
+    "bytes": 61
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-14d.json",
+    "sha256": "bf871bf28f4c956d1af173aed352452a78deb7001d4c27759aa999320ddaca7a",
+    "bytes": 1575
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20250918T052011Z.json",
+    "sha256": "6d3b5cae9c5acc636a0bf1a6a8a4e619439930595af835853424ff51c55f19d9",
+    "bytes": 992
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20251006T012724Z.json",
+    "sha256": "3a7402bdf1fa057e2b58ebed19990729721d102f64c08ab5481787bc326d8896",
+    "bytes": 992
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20251006T015000Z.json",
+    "sha256": "1c4c874b14f35169a870c703580bc3b103b591d89beabf8c6100ea03d16cd56d",
+    "bytes": 992
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20251006T032700Z.json",
+    "sha256": "4d33af8a9374c99fbd5a117dd95a8f76f0efb5662fc660de71ba262fa5465220",
+    "bytes": 992
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20251006T034437Z.json",
+    "sha256": "2536b11a962725794cb0f7e265c96fa41600c3bfd3699c649c89ecbadf989cf8",
+    "bytes": 992
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-balanced-20251019T021457Z.json",
+    "sha256": "bb851698d34d1c1ae12c09d4c7105918dce02f29628c3a0341dd5a8249e04f4b",
+    "bytes": 6852
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-dash-14d-20251019T030217Z.json",
+    "sha256": "ae4bb959628d5ffd39feb053736178d3745fe5f15814e466fd1024d6b813466a",
+    "bytes": 12138
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-dash-14d-current-shopping.json",
+    "sha256": "f008252a76869dea6eaa3ddfb2b90b4bed642a74d36d71ace7cb070ae0ca4025",
+    "bytes": 2422
+  },
+  {
+    "path": "pages/apps/carol/plans/mealplan-dash-14d-current.json",
+    "sha256": "a0bea96a63712098676960fff774119bd259a1830e0ad557d80ad17761523f9e",
+    "bytes": 64348
+  },
+  {
+    "path": "pages/apps/carol/plans/offline-twoperson-2wk-20251010T013559Z.json",
+    "sha256": "5f91323ee9fafe7550b295aacce2cd167338a44df379f8778e4ec493450191fe",
+    "bytes": 55351
+  },
+  {
+    "path": "pages/apps/carol/plans/packages-missing.json",
+    "sha256": "9439ba37430782069369f1265281f2e25a2dbc35a5200d116ac64fefdb9faa9c",
+    "bytes": 59
+  },
+  {
+    "path": "pages/apps/carol/plans/plan-14d-seeded.json",
+    "sha256": "834cca65268d47536e3afa23b37b921d53160ec2bb45b71b533f3472898632fb",
+    "bytes": 2795
+  },
+  {
+    "path": "pages/apps/carol/plans/shopping-2p.json",
+    "sha256": "640841113338ed7e94cd44941f85393388bd47ffd746455592f5c86c63a24813",
+    "bytes": 6985
+  },
+  {
+    "path": "pages/apps/carol/plans/shopping-extracted.json",
+    "sha256": "d8ee85f0a6cb9fcb571fbd94201fd9c69ff35c08651f4e58b8b17e73a3b7f961",
+    "bytes": 7702
+  },
+  {
+    "path": "pages/apps/carol/plans/shopping-quantized.json",
+    "sha256": "127cd14d296e1497d23e3ada35a9c564f6232e071f24668ccc0f4c45488d1431",
+    "bytes": 7137
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251007T150516Z.json",
+    "sha256": "c87bc933f6632a24aadea0764f4dd89d71c65f727c4ce0e17f07ed0f91570f5c",
+    "bytes": 28811
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251009T183226Z.json",
+    "sha256": "ef9cc231c9bfe7c727c37f456e476e2e05cc29797fce2b7a38c867f35e4bf9a4",
+    "bytes": 29168
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251009T203748Z.json",
+    "sha256": "9f2bc529cb53fcfa1e8043d12e021c306815e9874c5e3e0e6ba2a0fc8e99895c",
+    "bytes": 65214
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251009T211251Z.json",
+    "sha256": "3cfeabe18a1e047e124e4b8a31dae661b04e3017d98eddf7fad8d23a1cf2447f",
+    "bytes": 16281
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251009T214354Z.json",
+    "sha256": "67400f1cea5f95811442aeb5cf142591c90749339698e3a5fec4327e3fa1e372",
+    "bytes": 17482
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251010T011509Z.json",
+    "sha256": "9a8066dd62abe35004241d112fe91a59b7fb4930df0655febdae9b309a5872a5",
+    "bytes": 6751
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251014T232110Z.json",
+    "sha256": "d37b9467fe5b503219245ec8b2d8a41063faf1b7c5c8934d9367c0847c300a2f",
+    "bytes": 6160
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251014T234049Z.json",
+    "sha256": "8ec8e151db70171bdf008a9ce424d1d11219784bf4403916e8f1cb55b468e8a6",
+    "bytes": 80767
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-20251021T234345Z.json",
+    "sha256": "788109fa4e8ddd5fce37986cb770fb504383883938996c277c033144bbc4ca3b",
+    "bytes": 4204
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-merged.json",
+    "sha256": "a4befb56933c19f9aff0a1b18a049e0d14745738e2faf83aef7cd3c52d02a110",
+    "bytes": 88106
+  },
+  {
+    "path": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+    "sha256": "b43c85a93978d9febfaadc6aebbbfa52700fd2188563666e8f16d4ab5304e642",
+    "bytes": 88106
+  },
+  {
+    "path": "pages/apps/carol/preferences.html",
+    "sha256": "0fbb7bca3717133c8b5358c372fab4466127c296afac4dd875bcd833bf687d26",
+    "bytes": 2033
+  },
+  {
+    "path": "pages/apps/carol/print-menu.html",
+    "sha256": "9fa0b5f22de80733f1a435f5221a6bb79ea6362dae1b91948207c3be206c5ff0",
+    "bytes": 3419
+  },
+  {
+    "path": "pages/apps/carol/print-shopping.html",
+    "sha256": "a99ca40d87f46251a1941bcf14d0e46e289adaf6b4f83e9b4c25aa0f620f398c",
+    "bytes": 290
+  },
+  {
+    "path": "pages/apps/carol/print.css",
+    "sha256": "86c4f395ae027989f9f5b462bf870efa3d21607648b58a6ed06d2c2844d6df19",
+    "bytes": 123
+  },
+  {
+    "path": "pages/apps/carol/profile/preferences.json",
+    "sha256": "9f49f135a8607939b448f5bcf234248263d07a677acd5a2ef83b1b2b2a7a10a3",
+    "bytes": 526
+  },
+  {
+    "path": "pages/apps/carol/recipes/README.md",
+    "sha256": "9f8ee5418c5a177ab7920cd357a32300dcef6b2cd0145198b42705415e3a0b08",
+    "bytes": 337
+  },
+  {
+    "path": "pages/apps/carol/recipes/defs.json",
+    "sha256": "3673dfdbd469dc9a2a043c1c115e8492c782c7968d29ae8ebd6513d7e9514d5a",
+    "bytes": 8968
+  },
+  {
+    "path": "pages/apps/carol/shopping.html",
+    "sha256": "b45b253708c422149fd798162b89f85b7ad85b6e0e0cbc745ed80e535c1cd9ee",
+    "bytes": 5401
+  },
+  {
+    "path": "pages/apps/carol/shopping.js",
+    "sha256": "1535380d4df8e37bf628cbdffba86b858c979353fdbc37fb780512291e110ae3",
+    "bytes": 3316
+  },
+  {
+    "path": "pages/apps/carol/templates/mealplan-balanced-14d.json",
+    "sha256": "bf871bf28f4c956d1af173aed352452a78deb7001d4c27759aa999320ddaca7a",
+    "bytes": 1575
+  },
+  {
+    "path": "pages/apps/carol/theme.css",
+    "sha256": "f19a3e36c46da3373b5777e6550d82dab1e1ce71219017ae1830949ed8e23cad",
+    "bytes": 2394
+  },
+  {
+    "path": "pages/apps/carol/videos.html",
+    "sha256": "91ba4301dc1f25fbdff21b16ea47ac1f04d0bae70b0baf29891de22ba642c59a",
+    "bytes": 1363
+  },
+  {
+    "path": "pages/apps/carol/videos/index.json",
+    "sha256": "52ebeea5d8fba46f5711f38708c8c5515d5b8a812a3bb351e2be52f1550abc49",
+    "bytes": 55
+  },
+  {
+    "path": "pages/apps/carol/videos/recorder.html",
+    "sha256": "98859bdecf1afb0456ac3db6fa4333dcba476eb265383ccb82a40816c6546de1",
+    "bytes": 320
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/index.html",
+    "sha256": "bc3b7437132b3c507c30c5f129660a1b2c82adf6f7f715e6e715fbd1f0449d7a",
+    "bytes": 18946
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/index.json",
+    "sha256": "21a7336ac2610c03c80013ac9a396cac7a32d9d509daefb835589c8b0cbc6c98",
+    "bytes": 113
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-23T06-46-15-090Z.json",
+    "sha256": "58edc85d4ede996d182c1e4e21c8be4644b0f7c93646623a597ad6e23a999155",
+    "bytes": 22347
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-24T06-45-00-142Z.json",
+    "sha256": "4034e112fc7656e38ad782991d96632836b8a84268e197311e58b039d6a58da3",
+    "bytes": 22341
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-25T06-41-59-492Z.json",
+    "sha256": "799579426f94ad70010d9ba454614b44004374dd90107e28b3c35f7e0a48aaa4",
+    "bytes": 22341
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-26T06-43-58-883Z.json",
+    "sha256": "817b40b7d701861b3e6b89125c1ab7aa387ef8af679c45ed71449ed7455ccccc",
+    "bytes": 22341
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-27T06-50-09-387Z.json",
+    "sha256": "93c8d2f835587bf7c8a310fc17902adeef08ee63c527390ac50b09aefa5a6969",
+    "bytes": 22341
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-28T06-48-01-712Z.json",
+    "sha256": "e004fbc30173922552e0931ebf60988d6eaa0819b12c47a8718803b8efcff290",
+    "bytes": 22755
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-29T06-48-16-907Z.json",
+    "sha256": "4760972526bcc784935f6122daa3f8c4b721add0af0681e124cca8eab7f6c6d2",
+    "bytes": 22341
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-30T06-46-38-249Z.json",
+    "sha256": "2210e90e20e646ecf652dbfd3b7dfed55ef10d9a920560e5670e3d0ddf38506b",
+    "bytes": 22341
+  },
+  {
+    "path": "pages/apps/charlotte/crawler/results/results-2025-10-31T06-46-53-876Z.json",
+    "sha256": "2073bc53ac23a889bc7ba165898565c2557d6f852c7e9a19042f809dd7e8d9b7",
+    "bytes": 22341
+  },
+  {
+    "path": "pages/apps/charlotte/finds.json",
+    "sha256": "e5360b4106fffef5fbb360e32fb9945da320a85a64b2af10cacc69836fb0a179",
+    "bytes": 1025
+  },
+  {
+    "path": "pages/apps/charlotte/highlights.html",
+    "sha256": "0e4ac4686c97dc4c8e231ca1c62cd9d254d15240c5e3b31b3ca66e3a0fd8069d",
+    "bytes": 367
+  },
+  {
+    "path": "pages/apps/charlotte/index.html",
+    "sha256": "4333074cdf27ef451ca1d2b42c922d2806bab91584ad5e99c72fbe163b9765f8",
+    "bytes": 93
+  },
+  {
+    "path": "pages/apps/charlotte/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/charlotte/manifest.json",
+    "sha256": "d4c17716be58dbfb6ed5a9d1d897fcebb062b267a012c8a33660f26af7d7454c",
+    "bytes": 1015
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20250918T031302Z-avalon/plan.json",
+    "sha256": "92a9a4c92b1a7150350efd3a88d2c5752eae0d578cbae8348dbd525f3260295f",
+    "bytes": 342
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20250918T052002Z-avalon/plan.json",
+    "sha256": "56e9f813f888e307de0e8f97e88f4f63b1bfe1b6c7076a2746977d405c0c8870",
+    "bytes": 382
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20251006T012716Z-avalon/plan.json",
+    "sha256": "912ecad3f14f25ac7a01200fb4096b3db6d06ed88ade92b02a3be4a1aaff7bcd",
+    "bytes": 382
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20251006T014952Z-avalon/plan.json",
+    "sha256": "aa689a64ddc1f977d7c30e875581c8ce953cf8b122e3d504616d8edb8993bbf9",
+    "bytes": 382
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20251006T032652Z-avalon/plan.json",
+    "sha256": "abad4764c620e4573acfe13ad3e902e3f9c9921d157972f59639b022131830d4",
+    "bytes": 382
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/20251006T034428Z-avalon/plan.json",
+    "sha256": "cafc2398e5517d1965469ef4bdcfc9d03dcf9bc069a37c0873496c72eeb72222",
+    "bytes": 382
+  },
+  {
+    "path": "pages/apps/charlotte/pipelines/index.json",
+    "sha256": "755f2c9c2b07d6cd4511095a62697f4c7d960693585cb9b2c76f3cadd3197d8f",
+    "bytes": 253
+  },
+  {
+    "path": "pages/apps/charlotte/sources.json",
+    "sha256": "7304fd39bc72cf4f7efb1bfb8cb300129ff02c140483cfabf157a9f5aacd2721",
+    "bytes": 1400
+  },
+  {
+    "path": "pages/apps/charlotte/voiceovers/20250918T031302Z-avalon/opening.txt",
+    "sha256": "c697513d12b8a2d086b4f734239b733bd1bdb64585e3c2e694b59182c187abe4",
+    "bytes": 50
+  },
+  {
+    "path": "pages/apps/charlotte/voiceovers/index.json",
+    "sha256": "50d4be31faf935a02c89121585c1f24c9ac36e1f3d490d9c728957be87375a6c",
+    "bytes": 54
+  },
+  {
+    "path": "pages/apps/clarice/diagnostics.html",
+    "sha256": "5c93272d856964a8be1d313ccb665d1b114a45529f720c927aad54113e446d98",
+    "bytes": 769
+  },
+  {
+    "path": "pages/apps/clarice/index.html",
+    "sha256": "84e5cd3cce7f3ed4668bb04057d1e482493005a745fc31f9106d39c1701966cf",
+    "bytes": 91
+  },
+  {
+    "path": "pages/apps/clarice/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/clarice/reports/graphics-audit-20251010T000205Z.json",
+    "sha256": "4c110a8e183d20a2d1e1acaa3daca734023edf7d654b5a47da974b2b89e89e9f",
+    "bytes": 253
+  },
+  {
+    "path": "pages/apps/index.html",
+    "sha256": "e85282222fb239de961090703f6d7c365eadb3b01063f0e17023bcb1842d2900",
+    "bytes": 1551
+  },
+  {
+    "path": "pages/apps/jem/dashboard.html",
+    "sha256": "edb5c97e39be6c562e0f63f38a63bac6dc5f28c64594e2f2497834a233acef4a",
+    "bytes": 291
+  },
+  {
+    "path": "pages/apps/jem/dragon-dojo.html",
+    "sha256": "244dc53854a4ae681bc7fc0890554b2cbe70ac2f48433b8d583883945318c423",
+    "bytes": 254
+  },
+  {
+    "path": "pages/apps/jem/evaluate.html",
+    "sha256": "969070402a1f45fbbf8bee864e3d86fc377d757e6f47eb0a5f43b7631be24b52",
+    "bytes": 3711
+  },
+  {
+    "path": "pages/apps/jem/imports/.gitkeep",
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "bytes": 1
+  },
+  {
+    "path": "pages/apps/jem/imports/SamsungHealthExport_Blanca.zip",
+    "sha256": "157a3ac358748348f273677b9550a66093860e27cedd3491952e9937789f0148",
+    "bytes": 15764
+  },
+  {
+    "path": "pages/apps/jem/imports/SamsungHealthExport_Ray.zip",
+    "sha256": "e8b8335fe0e37d5ce5c67302fc22db578ba8ec5f62f59ea656d9314731d66bc7",
+    "bytes": 2121931
+  },
+  {
+    "path": "pages/apps/jem/index.html",
+    "sha256": "133bf61806701d2761d6bd9574b524e25c6a8320c8030045f8b5c808fbbbfd6e",
+    "bytes": 172
+  },
+  {
+    "path": "pages/apps/jem/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/jem/jem.css",
+    "sha256": "895d869c1a305b817c511255b23107ce59f09eed461058897f35468a7f24fc38",
+    "bytes": 792
+  },
+  {
+    "path": "pages/apps/jem/jem.js",
+    "sha256": "f5d3357393b6e9067967fa98dab183402c379679232de2975cd891a8485579ef",
+    "bytes": 2101
+  },
+  {
+    "path": "pages/apps/jem/library/evidence.json",
+    "sha256": "64c3adf26700ddcb98b206940c8971e2dac0aa39641197f26c93036835e5f48f",
+    "bytes": 474
+  },
+  {
+    "path": "pages/apps/jem/program-viewer.html",
+    "sha256": "66d6560caf0ea1ce6b745d7701887c7ac252c3909f1f43bec4c7b5bec42fcec7",
+    "bytes": 4005
+  },
+  {
+    "path": "pages/apps/jem/programs/biometrics.json",
+    "sha256": "980fa373d56a72b117d9f9e495bfed4f08c31f37c14e73bdab554467e9b4f7cd",
+    "bytes": 187
+  },
+  {
+    "path": "pages/apps/jem/programs/index.html",
+    "sha256": "27456ef02b9f17961d59d49eff57b8a5a51d0c33dc4d6f49972f7aa378544e1f",
+    "bytes": 484
+  },
+  {
+    "path": "pages/apps/jem/programs/index.json",
+    "sha256": "644f1c576725cba200a84b68555c1485c0b6d41c5d13a9778a621fd5d6932da5",
+    "bytes": 456
+  },
+  {
+    "path": "pages/apps/jem/programs/program-recomp-minimal-20250918T052013Z.json",
+    "sha256": "b8ef907aac63ef8d356b9c467eb0627a677c4bc7d7e4e50132b601d711fd6df2",
+    "bytes": 2679
+  },
+  {
+    "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T012726Z.json",
+    "sha256": "3fa8bd07e0e6c1b2e04cf7cc4c712b096e26ff58122c3eec939e426150e35eec",
+    "bytes": 2679
+  },
+  {
+    "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T015002Z.json",
+    "sha256": "da657f4ec34080ecdfe00532c094de7f3aa0175c2fc74f6ba728d957075bd590",
+    "bytes": 2679
+  },
+  {
+    "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T032701Z.json",
+    "sha256": "5cd1c89c514e6db4c2a48a007e73ef665f36787e16f396ad0dadc65e6fb9d226",
+    "bytes": 2679
+  },
+  {
+    "path": "pages/apps/jem/programs/program-recomp-minimal-20251006T034438Z.json",
+    "sha256": "f95e218db4bc7821e835a49552018a869eaccbef61d0d76463d2b469a3510da8",
+    "bytes": 2679
+  },
+  {
+    "path": "pages/apps/jem/programs/week1-Blanca.json",
+    "sha256": "41540b20c3415f6510881a6b7faac8623fd321c2059f91629e2aa3f2da2112c8",
+    "bytes": 4889
+  },
+  {
+    "path": "pages/apps/jem/programs/week1-Ray.json",
+    "sha256": "30be7e25d185a4bbc77e7a4622c8aa03c1b4e8103d1a1284dd5a6f0d54b2cbb7",
+    "bytes": 5026
+  },
+  {
+    "path": "pages/apps/jem/programs/week1-evaluation-20251010T013134Z.json",
+    "sha256": "e4f350274c216b8f12499f010833e9455844b36cdf683c7f3003a8b87e6e6823",
+    "bytes": 4989
+  },
+  {
+    "path": "pages/apps/jem/programs/week1-evaluation-20251017T013847Z.json",
+    "sha256": "7d7a37a9ea31d1605729b47f16f1cfc556345fdc1e75eee2e869995a3acc5258",
+    "bytes": 4849
+  },
+  {
+    "path": "pages/apps/jem/viewer-empty-state-patch.html",
+    "sha256": "e80ea969c589f4a1a03ed041aabe11ad42f986ce17127058ac9c16cc72787e53",
+    "bytes": 790
+  },
+  {
+    "path": "pages/apps/jem/viewer.html",
+    "sha256": "b115999316780688d5674dcb7814fbab2b6eee19cde62d0a5f1c39869c480373",
+    "bytes": 12777
+  },
+  {
+    "path": "pages/apps/jem/week1/index.html",
+    "sha256": "c9f532cd14dbf445268bef2e5cfbf1e44a3316945551ac244f779e38e0769ec9",
+    "bytes": 1887
+  },
+  {
+    "path": "pages/apps/jem/week1/plan.css",
+    "sha256": "e41d3994d38b82b60f41eb2f810064215e5e9b6b1d0dc78b5b17beecd79eb8ba",
+    "bytes": 1156
+  },
+  {
+    "path": "pages/apps/jem/week1/plan.js",
+    "sha256": "dcf1a32ad73b3eba5cce0973274510a5f9311f018c0c57ca784f739959b3e624",
+    "bytes": 2262
+  },
+  {
+    "path": "pages/apps/nina/index.html",
+    "sha256": "fb0719a85247880dd6d72ab99da8d9408ee3d4dda9753fca262ff513d1113298",
+    "bytes": 88
+  },
+  {
+    "path": "pages/apps/nina/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/nina/viewer.html",
+    "sha256": "8ba56597ed1b4155b809b882faa364d9791dbde8dd688399c6993a5733e7bd21",
+    "bytes": 2838
+  },
+  {
+    "path": "pages/apps/nina/vrm-index.json",
+    "sha256": "790a1a0a8a332981747b32b83cebbeff4809a7eeac4a9e394b772775c6a14ef6",
+    "bytes": 2479
+  },
+  {
+    "path": "pages/apps/nina/vrm.html",
+    "sha256": "1226e067291510c234d48be9e437707d06a3bebe3b192d3fd99881051db2239e",
+    "bytes": 532
+  },
+  {
+    "path": "pages/apps/nina/webxr.html",
+    "sha256": "e4a5e7a084eb9b2fa2ae09c2a53e241a61847bd6dd21637bc4fcc3605110be6e",
+    "bytes": 29
+  },
+  {
+    "path": "pages/apps/odessa/index.html",
+    "sha256": "3b5187885501c2aaec8a35fc140be0795f8618d88e1c7723ed192bac3a306c4c",
+    "bytes": 90
+  },
+  {
+    "path": "pages/apps/odessa/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/overseers/crossrepo/second_repo_index.json",
+    "sha256": "0c635263188a6acd4d58dbb7d322876532ed0f4760cf39e11233b3b1b0959c60",
+    "bytes": 1298
+  },
+  {
+    "path": "pages/apps/overseers/hub/hub.css",
+    "sha256": "11fd8a4baa3934264c6bb863e173dc9b2f488f97b8c9f95060879c16cb2efef8",
+    "bytes": 819
+  },
+  {
+    "path": "pages/apps/overseers/hub/hub.js",
+    "sha256": "aec229664be53e8d4a7c527509e6eb2dfdbc7b67623e9c8794629c2b06d4d563",
+    "bytes": 3333
+  },
+  {
+    "path": "pages/apps/overseers/hub/hub_util.js",
+    "sha256": "c787b0b2b5acea96d68c273eea65800161518bf19a6cc6baa855ddf3844c2236",
+    "bytes": 169
+  },
+  {
+    "path": "pages/apps/overseers/hub/index.html",
+    "sha256": "ddc0b0a63cb946c62b2da751d44c331978d69e103116092ece59d6b0f2d6a55a",
+    "bytes": 832
+  },
+  {
+    "path": "pages/apps/overseers/importmap-additions.json",
+    "sha256": "d4d4a31ef71ba14346944afc6a6955efc2212d3fecd05e8bf904a4141fa077a1",
+    "bytes": 83
+  },
+  {
+    "path": "pages/apps/overseers/index.html",
+    "sha256": "362c89ca5389a11d6204a0c0ba2b37a0851b58969c055c57aaba24ac6ba3245c",
+    "bytes": 93
+  },
+  {
+    "path": "pages/apps/overseers/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/overseers/market.html",
+    "sha256": "3e437ccce6bc0cf20ab27972fce297d939108fb4d1e4ed0b85f0f6b09bb4c87f",
+    "bytes": 252
+  },
+  {
+    "path": "pages/apps/overseers/memory/all-file-memory.json",
+    "sha256": "ef28950e56f5f52e0130fe78b02a04c3f699ab6b917a2a0d0b06ff8f8e2d0577",
+    "bytes": 215368
+  },
+  {
+    "path": "pages/apps/overseers/memory/coverage.json",
+    "sha256": "971de2e47fe3f383922b0b94a64cc2932d36e0bc0dd4c56363323773ca3073e1",
+    "bytes": 216
+  },
+  {
+    "path": "pages/apps/overseers/memory/deletion-candidates.json",
+    "sha256": "0f51129a4dd349ffb47c960e6968da9cbb0795460eeec85690dba82d0779937a",
+    "bytes": 68
+  },
+  {
+    "path": "pages/apps/overseers/memory/file-index.json",
+    "sha256": "3088e768660a99d16825442206610bd16f51d34213732b34f1ca18f589c6137a",
+    "bytes": 182741
+  },
+  {
+    "path": "pages/apps/overseers/memory/index.html",
+    "sha256": "3ba67784495a2a31e1bc8b38b0b2adc5ad6613e036df9a5677ab398a8ff58835",
+    "bytes": 976
+  },
+  {
+    "path": "pages/apps/overseers/memory/index.json",
+    "sha256": "f686485c20f22293a1b9c02b17821ba0317c60e633a8baaa7acb833ed1ecb296",
+    "bytes": 148707
+  },
+  {
+    "path": "pages/apps/overseers/memory/report.md",
+    "sha256": "9fd660d313bdea22036d5783a2882cfc94ff68130697025e055e4dd383cbf9f5",
+    "bytes": 367
+  },
+  {
+    "path": "pages/apps/overseers/memory/style.css",
+    "sha256": "8aec391590d5f265849f3fb143711801d49c4fc4369a9c382fba27a6e4ad50d4",
+    "bytes": 1065
+  },
+  {
+    "path": "pages/apps/overseers/memory/viewer.js",
+    "sha256": "f053dbc3fa7a23c0c54c99381c5c7e93080db3428e0536f4bb74f32c71786d41",
+    "bytes": 2837
+  },
+  {
+    "path": "pages/apps/overseers/overview.html",
+    "sha256": "d0932b48f616a8c1c489930bd6d4937f6bde97d37ec093a3af65e31daffc01c0",
+    "bytes": 1780
+  },
+  {
+    "path": "pages/apps/overseers/permissions/state.json",
+    "sha256": "1007e4cd010ed7cda87c4efc2e80537919246e351a186e074ad0085ca13e2630",
+    "bytes": 63
+  },
+  {
+    "path": "pages/apps/overseers/progress.json",
+    "sha256": "6ce54797d8acad2265425a00db00cbef431e9af6eba72ce3580cb47e73f378bc",
+    "bytes": 125
+  },
+  {
+    "path": "pages/apps/overseers/releases.html",
+    "sha256": "5e2bccad20eb5142775679d337ab7e4f79a814449564c2c783943465c8ae06cc",
+    "bytes": 224
+  },
+  {
+    "path": "pages/apps/overseers/repo-doctor-report.json",
+    "sha256": "476ed378656c3bb60c3278c6fc69344b429a5e3d9c0b29fd04b51c6345d4d909",
+    "bytes": 201
+  },
+  {
+    "path": "pages/apps/overseers/scene-index.json",
+    "sha256": "d9b8b18a47aae8b045e413874996f7b7cef3b132c8d3ece7c5f1afd4f49886a1",
+    "bytes": 729
+  },
+  {
+    "path": "pages/apps/overseers/treasury.html",
+    "sha256": "ec9fab111939c5d5cedb4f531244eed8519311c9477bb70cfaf033e900616578",
+    "bytes": 293
+  },
+  {
+    "path": "pages/apps/overseers/vrm-index.json",
+    "sha256": "b8730d662e1c9fbdcbb3c4458081fda0d724c48c4203cd8388c890545deedb29",
+    "bytes": 5137
+  },
+  {
+    "path": "pages/apps/reyczar/index.html",
+    "sha256": "adbd54e7c950dfdb9d6105d3b86e85794ec5a3cdad10dbfb2e286ad131ecb798",
+    "bytes": 91
+  },
+  {
+    "path": "pages/apps/reyczar/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/rooms/rooms.json",
+    "sha256": "465c81b873fde083c9cb3325303138cf3ac0f1b9ef2d31aa68d97d8aca5d912a",
+    "bytes": 1834
+  },
+  {
+    "path": "pages/apps/shared/auth-gate.js",
+    "sha256": "44924797c99dc531c39dfe7719a37d22b56d17e0889fc3ee0d51f326a961f877",
+    "bytes": 3597
+  },
+  {
+    "path": "pages/apps/shared/pin-gate.js",
+    "sha256": "cf5b30034c2b1da87b606b91d14edd4babe92ea1abb19e833c0340af7bace4ee",
+    "bytes": 3849
+  },
+  {
+    "path": "pages/apps/shared/worker.js",
+    "sha256": "9c9dad0c69c4da0092e2b5093e1ba897f94291d9a2fa92043c764dce6dca18fd",
+    "bytes": 141
+  },
+  {
+    "path": "pages/apps/sorcha/coach.html",
+    "sha256": "9c085b4836e274399a0efc1f0b7d719528271d024e14cbe9e04399f74b8de17c",
+    "bytes": 1294
+  },
+  {
+    "path": "pages/apps/sorcha/index.html",
+    "sha256": "bd2c9f9260740f1e048093894b2ae52d38a57e2ddb6b0861ffa172971fecc339",
+    "bytes": 90
+  },
+  {
+    "path": "pages/apps/sorcha/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/sorcha/storyboards.html",
+    "sha256": "972a10175392b6bce162df1226226a255300ad55fb1830d33d03f4174dc3708c",
+    "bytes": 514
+  },
+  {
+    "path": "pages/apps/sorcha/storyboards/storyboard-20251019T033626Z.json",
+    "sha256": "583905f89fe07ff1453fd71fcfc724b1d98a029cd6a70b03a7b0a1a15b98f164",
+    "bytes": 1704
+  },
+  {
+    "path": "pages/apps/sorcha/uploader.html",
+    "sha256": "91f194e598173a440220699c42e5ab78ebbba2742df3d88972ee6fd47505fa6c",
+    "bytes": 1372
+  },
+  {
+    "path": "pages/apps/stella/README.md",
+    "sha256": "0bdec2172a997f514bdca8ec4b9920de84398c0b19945016645d4a9451fc4510",
+    "bytes": 392
+  },
+  {
+    "path": "pages/apps/stella/app.css",
+    "sha256": "763543123a1712f67c6bc14bd611763d4e79d2e14aba4d2c523a701a3cf092c4",
+    "bytes": 1660
+  },
+  {
+    "path": "pages/apps/stella/app.js",
+    "sha256": "28dec15d8a73d1fe8fbf2abcaa33f24fef263bb85c54c8cab811b7f7330cfa90",
+    "bytes": 1683
+  },
+  {
+    "path": "pages/apps/stella/components/component-map-button.json",
+    "sha256": "9da4c814077c116bc1b1ca872b394371405d655e7297f7c6f61fcf7508a6e815",
+    "bytes": 924
+  },
+  {
+    "path": "pages/apps/stella/components/index.json",
+    "sha256": "6fd5068336001db956bb6b97ea58a922e6b44cf7373b7322e4693a6bfa04cec9",
+    "bytes": 285
+  },
+  {
+    "path": "pages/apps/stella/edge-tts.html",
+    "sha256": "4f39a80795d13db0b6409da5972dfcc110171f330258fce00e2493807d42f344",
+    "bytes": 32
+  },
+  {
+    "path": "pages/apps/stella/guided.html",
+    "sha256": "306513250a371e05c23bed43c5fbfaa23eed5ee95905e0415d206858e745da59",
+    "bytes": 3307
+  },
+  {
+    "path": "pages/apps/stella/guided/20251009T185549Z-blanca-focus/script.json",
+    "sha256": "cc13eabc58362e4e0c1a84c375a79917f725736a561608f3b791240ce5a07adb",
+    "bytes": 2757
+  },
+  {
+    "path": "pages/apps/stella/guided/20251009T185625Z-blanca-calm/script.json",
+    "sha256": "44b3bb69324cbf34af45e313f301dddfe019c6580a865260b57c6c2fa5d69147",
+    "bytes": 2968
+  },
+  {
+    "path": "pages/apps/stella/index.html",
+    "sha256": "e1c3cdc3e5d35657bb79416b2099285447b464f9e92fb772251fd79c82929a80",
+    "bytes": 735
+  },
+  {
+    "path": "pages/apps/stella/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/stella/library/evidence.json",
+    "sha256": "28622bb595955af840cdcb3d9ba2ff6f03082c2ded538acfffc300615b7be89a",
+    "bytes": 414
+  },
+  {
+    "path": "pages/apps/stella/play.html",
+    "sha256": "7d7e74e3d365bd288b8e2e0a03b1ac63381410dbeda7195f30d3201fe0f319b2",
+    "bytes": 1343
+  },
+  {
+    "path": "pages/apps/stella/stella.css",
+    "sha256": "c3df595bea9e701610efbf0a9b04979e025f5f0de69b87a70eb9d130d748d094",
+    "bytes": 1016
+  },
+  {
+    "path": "pages/apps/stella/stella.js",
+    "sha256": "f29df077b1ae1eb5ad377cd4f38d064aec7b6170fcc325b3a6464fb7af200c81",
+    "bytes": 4184
+  },
+  {
+    "path": "pages/apps/stella/voice.html",
+    "sha256": "fdfcbcd59b9724c2388404b4d889bffd3a005d7f3cd4cd0e0af5360fcc00276b",
+    "bytes": 4109
+  },
+  {
+    "path": "pages/apps/theme/tokens.css",
+    "sha256": "b9ada73b45488adc472f6048f24fc684fe62e7ee7faaea433a99d32d7dc9975d",
+    "bytes": 205
+  },
+  {
+    "path": "pages/apps/theme/tokens.js",
+    "sha256": "7b8ecab64050ef059285f1998da683fbd93df356acac846ccc7a2e4c77b982df",
+    "bytes": 364
+  },
+  {
+    "path": "pages/apps/theme/tokens.json",
+    "sha256": "2283aa2a4a96ff010e7e58a3021574ef1fb67637985452526f9cfb75ba7294ed",
+    "bytes": 120
+  },
+  {
+    "path": "pages/apps/themis/expirations.html",
+    "sha256": "b88e90b407f72cab185512d37fb667dc038ffa70c161a3666379fbedc3cc4253",
+    "bytes": 1692
+  },
+  {
+    "path": "pages/apps/themis/index.html",
+    "sha256": "3c4cfac27b7d706b52a6d2c27f8b2696a460d3e8650e5d28f8e2920cf6493f88",
+    "bytes": 90
+  },
+  {
+    "path": "pages/apps/themis/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/tracy/2d/index.html",
+    "sha256": "a44121d67e5bea8999e26b733df960878c1a1f12acb59ed618a746f6ea313c48",
+    "bytes": 248
+  },
+  {
+    "path": "pages/apps/tracy/3d/index.html",
+    "sha256": "18f0c9bf235ebc02a6748dcc0fd6739a71d595cae2fce29df113e4ed26a802c4",
+    "bytes": 227
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-1.json",
+    "sha256": "25e4177e79700d8ba316f0c31b06482347195b17159db71ffc982c657e3a7cbc",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-2.json",
+    "sha256": "b96ca8ee584702e7014132a3f359ca76c31f1ef895ea5a4c03e56898ade2532f",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-3.json",
+    "sha256": "2edc0e7a3e9703595f2de0a9f0e04798c52d5d4c73a52be9553454a37b8d9b99",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-4.json",
+    "sha256": "4581ab4f273e8b0c451da37c2e79f01c6cd2a00e48d1853b05a50088c257ac2a",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-5.json",
+    "sha256": "f1f4790a2edf17b650a09a0ced3a06f4d0fbf90480c4564cf0cb1eca15bb452d",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-6.json",
+    "sha256": "e8b432c4352500593e7d6217543e5fcb044b97ea24d3e4e3591ca31609a1fa96",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-7.json",
+    "sha256": "0504de6951cd4062d2a62c49fa0336a401dfb670cd5cfeab07cc74c85aad5728",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T031302Z-avalon/artboard-8.json",
+    "sha256": "fb09b1bc1174f801fcde99f69dcd645ef1fbfedc94abe17ee2dc9d6fa9650fce",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-1.json",
+    "sha256": "cd5b3ea97aab878930e3b6bc46b028d61a31553a6ce10232b5340fb0f0638391",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-2.json",
+    "sha256": "efb316f0ad94f7d10d0bc1ef1a669354659cb984b4dbb5c3463a3c1df17d3f09",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-3.json",
+    "sha256": "7e84889df52576ebc8f43a02222fc1020d81bdbeedeb293b82a7f271fa8abe00",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-4.json",
+    "sha256": "cdf85a2fefe9e098c89856a975927f1ac65750da87dfe8caad48625de9e54bac",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-5.json",
+    "sha256": "7acd12dbac9a20e6febf549b3ed9c9af57f8f5cb6443d9184f921bb05aef4972",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-6.json",
+    "sha256": "dfb9b46f1b82a31611ea8bafb0267f807357dd043701f15a1761cfb542c3d262",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-7.json",
+    "sha256": "603675a692bb7212bbcb32ad1820bb3fe32936acd5ad18d0450b7262717a9a28",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20250918T052002Z-avalon/artboard-8.json",
+    "sha256": "c4a1d3888e9f5dbc30ce1c84067ad8e9607d95e523005a35db675bcf267f711c",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-1.json",
+    "sha256": "d9e38df83684041b9374c248188ef824ad77ac0d33478f5d343906a56a4e47d9",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-2.json",
+    "sha256": "12188f220f86856b97e7afa5496549c7a3c0202d8818bb6e2ea2d7e2830be624",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-3.json",
+    "sha256": "b5940496fbacc130074ac7c90a696a56c56eeeae2248207b731974c8fe543c0e",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-4.json",
+    "sha256": "6926ab92b46c46897a7e1c652fe2a400da34894448c99bebf663ed35cc572884",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-5.json",
+    "sha256": "d485636ed91e03c93fe22fe07a0310143c0904960c9a383da7578dd5584c5470",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-6.json",
+    "sha256": "4285d829dd6f88e14b1f28125363b6dd5be193a61c0b68f0aeedc761a0e8b18c",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-7.json",
+    "sha256": "03297628c234bacb618b6dc1a88cf701003eb0ad34b96c9139f6d0f0d4e0b836",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T012716Z-avalon/artboard-8.json",
+    "sha256": "25ada0bbd18f1dab02890e2d472bfe4f5d2b845e6c6d3d761f0c42c46cafe726",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-1.json",
+    "sha256": "a667bb655c4939971077636fe3e5ded47411e2e8cbeec7dbedb2f6cd79cc8c59",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-2.json",
+    "sha256": "3656e3b939bad438914f957780510703703abaa601ed1afaef0ffe6df0b8a3fc",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-3.json",
+    "sha256": "9a567d2cc0487a6831e968555299e2f6a3899fb7fcfa2e68ee2332de81cee71a",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-4.json",
+    "sha256": "16a4dbc5af5b23e7fda9ffe560426b7fc10201d60d1972318ef7d11452fd75e6",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-5.json",
+    "sha256": "4dfadb891424520d5c381109db95aaae86ff4d90380472616e0a1e03725344a4",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-6.json",
+    "sha256": "b590c096fb8cc1798460a4584de1031a4fc6692711cf91211be1886ef21dbe9f",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-7.json",
+    "sha256": "bda62c55975653961de9d6a4e8ede42eaedd2e992182b62b37e653f551adfd46",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T014952Z-avalon/artboard-8.json",
+    "sha256": "c7321d5d05bec83d33c937453eac4039160d5cf894d45b5b0b06d78ef8f5a883",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-1.json",
+    "sha256": "e2d299ead659a3c4d013dfe546be0eab89c426d5f76db5a81eadfa356ac61af2",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-2.json",
+    "sha256": "133433df8056891d208171ee3f2609c3d2d7b808427ec671477d6a3b31614174",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-3.json",
+    "sha256": "418ffa6db4868b7129e63ae24d956db828b3b226a9b053d14ec4d77268d5f609",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-4.json",
+    "sha256": "f5647cabd75db2748a20dd633b6cb947b1d3d05549480bd4ac4db19b11107a22",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-5.json",
+    "sha256": "1a124519153019b2a6f1231b384f58a1fb8af38db34fd8d62aa8b24ea730222a",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-6.json",
+    "sha256": "3ed4c2283e0f95934487ae09f702f8cda19acf25e6635a4fe258b88ee65a93b0",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-7.json",
+    "sha256": "6d9e184264e9366e1f899119e1139fb97e53387818a431be594fc8a81eae66a7",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T032652Z-avalon/artboard-8.json",
+    "sha256": "fe4a07309c3e46a3c969b4253fca7723a123071bd6ff8d7e5ec9c26124bf7508",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-1.json",
+    "sha256": "2b02f12b35432527ffc858987d712bee526dc8b455396091af03f10ae43cf891",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-2.json",
+    "sha256": "93466cae0e7481663817c45804c6253465d6b94b4135feb9ea0b3518ac674bf4",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-3.json",
+    "sha256": "5fe334ae9be15841022af925c48bf02516215c42f162cd6ca86f19bd4ef7aa48",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-4.json",
+    "sha256": "c5d401c0c755fe94b4e11df44546b90461c191d3f080417f7773a64dd95e1742",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-5.json",
+    "sha256": "6c8070ad99608082bd5b20388e38dc9cf0c5c34374ccae68154eaf219ad4c6a4",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-6.json",
+    "sha256": "5363a95357083a164613953ff3ea0a9d738004e3b64d980368bf38fd32c9f947",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-7.json",
+    "sha256": "0106bbc015e0e591966d15c36b57cc849287163c359f9de8d8f5cee3a3bc3d15",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/20251006T034428Z-avalon/artboard-8.json",
+    "sha256": "5709883534ab1dfe356a071d5741f2394b7832370d8161647fd7bd8ab8470019",
+    "bytes": 295
+  },
+  {
+    "path": "pages/apps/tracy/artboards/index.html",
+    "sha256": "a5697cf4e985b1d3fcc9567a743f8232febec06491f05284d7f55b778f893706",
+    "bytes": 425
+  },
+  {
+    "path": "pages/apps/tracy/artboards/index.json",
+    "sha256": "34e1134456d4fb505f8876b91a34b88f4cdad8cd94a660977c256d4fc69d2ebd",
+    "bytes": 208
+  },
+  {
+    "path": "pages/apps/tracy/campaign.html",
+    "sha256": "9ac11cde9bac20268a25d88647f3ecd37af9909751c3e8c8c7c340eac50dd838",
+    "bytes": 230
+  },
+  {
+    "path": "pages/apps/tracy/index.html",
+    "sha256": "3d6d8944d8a138b6bd7c792f1ccda7dba130f8ac0cbd1bfb6354ff357c0814d9",
+    "bytes": 89
+  },
+  {
+    "path": "pages/apps/tracy/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/apps/tracy/room-preview.html",
+    "sha256": "8c146344f10b1c2a7225b1dd9fca704765aeee1b8e82c4fa765efe5caef1db12",
+    "bytes": 808
+  },
+  {
+    "path": "pages/apps/tracy/skin/active.json",
+    "sha256": "a02a14542cbbcebc072793402fee8481bf15a6181e47723175183e1a775d5be1",
+    "bytes": 67
+  },
+  {
+    "path": "pages/apps/tracy/skin/skins/castle-town.css",
+    "sha256": "489f23729e768424b4cdd8eb235239ebd0244ce4766d9da9088ccd798664fa0b",
+    "bytes": 86
+  },
+  {
+    "path": "pages/apps/tracy/skin/skins/night.css",
+    "sha256": "6f1e962a6c21dfb012830d6bf2d89498499363569c3f0702d3aa46bb382f72f7",
+    "bytes": 92
+  },
+  {
+    "path": "pages/apps/tracy/skin/tokens.css",
+    "sha256": "ec20cf281b9750ac0910617ef58b9ac3aa2fbe069b6b46e17392b30b073083ec",
+    "bytes": 380
+  },
+  {
+    "path": "pages/apps/tracy/skins/avalon-crystal-morning.css",
+    "sha256": "f8f023d9003f88d65f2164912505608b04cbfb6e347191c0e00b64ff02a1adf2",
+    "bytes": 147
+  },
+  {
+    "path": "pages/apps/tracy/skins/avalon-default.css",
+    "sha256": "d8b5525ab01beeef94be99257ce56a8cc266180242648909ec8fa5a344fc066e",
+    "bytes": 211
+  },
+  {
+    "path": "pages/apps/tracy/skins/avalon-jewel-garden.css",
+    "sha256": "48fb84273fa4db1d7c44c0f3b8b72b57032d7b34a98bd934e0e832828d117736",
+    "bytes": 144
+  },
+  {
+    "path": "pages/apps/tracy/skins/avalon-skin.css",
+    "sha256": "9157bad121bd1a1f46fb77700fed37a9fe7e4c5c670040cf66eb4705db5653b6",
+    "bytes": 2091
+  },
+  {
+    "path": "pages/apps/tracy/skins/avalon-sunlit.css",
+    "sha256": "8958381085bef74357c4c8d19763527be410770e6ab31475f2f7d3b87340665b",
+    "bytes": 140
+  },
+  {
+    "path": "pages/apps/tracy/skins/cathedral-gold.css",
+    "sha256": "4a8c952e4b5dc77098d0df6ef963b15e8b4294e78b7ad754b294422362c8af88",
+    "bytes": 249
+  },
+  {
+    "path": "pages/apps/tracy/skins/generator.html",
+    "sha256": "7ee72230fa4d3caf483c2b66cb8b27ed5e2b09f725ea2e780a45530c23e85c33",
+    "bytes": 617
+  },
+  {
+    "path": "pages/apps/tracy/skins/index.html",
+    "sha256": "c76ec25d5ee7777349a36aad79f5fe0895529aa62e0d4def4553f8fe3e204e89",
+    "bytes": 398
+  },
+  {
+    "path": "pages/apps/tracy/skins/night-abyss.css",
+    "sha256": "1092c074d516cc910f3c8f567c3d4ac2fad5a306466726487e34c63cdcbd4ca6",
+    "bytes": 214
+  },
+  {
+    "path": "pages/apps/tracy/wallpaper-index.json",
+    "sha256": "a9a29a4f8a383728d1ad36ef9f08cf5fb2083a24724039e6fb50d0ecb15c7d92",
+    "bytes": 57
+  },
+  {
+    "path": "pages/apps/tracy/wallpapers.html",
+    "sha256": "5819f13b8f6b841e64393f4928b073579058cfb0c8ea3cb81b21e181a424b3bf",
+    "bytes": 1437
+  },
+  {
+    "path": "pages/apps/whitestar/index.html",
+    "sha256": "7fb0a8f2a1898cac9c0d530ac03610281f28a2c04bbc7ca7545661ab179746a5",
+    "bytes": 93
+  },
+  {
+    "path": "pages/apps/whitestar/index.json",
+    "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
+    "bytes": 20
+  },
+  {
+    "path": "pages/diagnostics/version-scan.json",
+    "sha256": "b2fdbc44415b26a35d9c871b633cd80c5f00e9dba97097535e8426d36e32de16",
+    "bytes": 423
+  },
+  {
+    "path": "pages/index.html",
+    "sha256": "e85282222fb239de961090703f6d7c365eadb3b01063f0e17023bcb1842d2900",
+    "bytes": 1551
+  },
+  {
+    "path": "pages/pin-config.html",
+    "sha256": "afd180af12cbf8661c74456d2314410f70fc4faeb6710ab45b96944e52c9d862",
+    "bytes": 3694
+  },
+  {
+    "path": "pages/plaza.html",
+    "sha256": "ebf9251a190d47bedb3948f2fa67771c28d0e0f10b2a21b20e6fefd3a9a18252",
+    "bytes": 29
+  },
+  {
+    "path": "pages/rooms/abbey.html",
+    "sha256": "66f61a3cd990e62ac88af3aecf47f96d273f5223b0b98f23b24062e1eca2e148",
+    "bytes": 82
+  },
+  {
+    "path": "pages/rooms/alexandria.html",
+    "sha256": "b832458e09f65bb5b80f5bccaea1fe43d0a77418d5ff76ed238c1a13ce022fba",
+    "bytes": 92
+  },
+  {
+    "path": "pages/rooms/billie.html",
+    "sha256": "f7001158781494517f4306dc66dce9b99ad364302f70e6e8c856fad1763bf1a0",
+    "bytes": 84
+  },
+  {
+    "path": "pages/rooms/carol.html",
+    "sha256": "1547099096b9d76f33dc129b14f5af5aad01a408031bb0d751633c87e2822417",
+    "bytes": 82
+  },
+  {
+    "path": "pages/rooms/charlotte.html",
+    "sha256": "f1b5045469326234e27f4d7cb630b05ecb6d67f31091bdcf34e8c3cf105efda0",
+    "bytes": 90
+  },
+  {
+    "path": "pages/rooms/clarice.html",
+    "sha256": "8bed2ea224a10768e0c303da935c16018a8218723ae66973b5324d434862f006",
+    "bytes": 86
+  },
+  {
+    "path": "pages/rooms/index.html",
+    "sha256": "ae7b26994afca2c5f4c55ff5ef2b3abbf087752c0e2a445de785ba8056d9ef6d",
+    "bytes": 1353
+  },
+  {
+    "path": "pages/rooms/jem.html",
+    "sha256": "ef6f074aa13113c260f6346090fff327b9a8f56debf08e58235d80ddc83b470d",
+    "bytes": 78
+  },
+  {
+    "path": "pages/rooms/nina.html",
+    "sha256": "702138016060ebda0ddfc1de42dcb9675feac4ba8fafedee4dc0c089b9a47d5a",
+    "bytes": 80
+  },
+  {
+    "path": "pages/rooms/odessa.html",
+    "sha256": "d2ebaf5538d90ced2ca29d88045e0e4f25cce467d34c6807b89317186a687397",
+    "bytes": 84
+  },
+  {
+    "path": "pages/rooms/overseers.html",
+    "sha256": "b5399b2338ac022823244b361f8ce83c423275285a08ac2b1d6b4824d972524d",
+    "bytes": 90
+  },
+  {
+    "path": "pages/rooms/reyczar.html",
+    "sha256": "453181d3a682c20d619998f5a93aacc5a6678f1254578bc95c5f2b8f47fa10bf",
+    "bytes": 86
+  },
+  {
+    "path": "pages/rooms/sorcha.html",
+    "sha256": "2c98f51f2623775f704c2b8aee55f6ebf197732684df8c8c9cda21557654dd37",
+    "bytes": 84
+  },
+  {
+    "path": "pages/rooms/stella.html",
+    "sha256": "732d29cb129267dcb8108a01016393f8e9342e4aa37caa1e644d181db60e5405",
+    "bytes": 84
+  },
+  {
+    "path": "pages/rooms/themis.html",
+    "sha256": "e1c4a8b6409294b134580e431e975136b0f24b5b8fa053e66a98f7146ad4efd9",
+    "bytes": 84
+  },
+  {
+    "path": "pages/rooms/tracy.html",
+    "sha256": "d3d90153ab4734e1ce12f1970899a2dc1e6d7961781f61012222897eeb6b906d",
+    "bytes": 82
+  },
+  {
+    "path": "pages/rooms/whitestar.html",
+    "sha256": "54b79c6c120b159bd6b02d2d0ba5410ba2010089f23f7b0b071ce9fc13365aa9",
+    "bytes": 90
+  },
+  {
+    "path": "prompts/court_lab_exterior.txt",
+    "sha256": "705f3811feeb250b31669583ea142bd06e752cd9338589b53c8e3b4719ca99c2",
+    "bytes": 100
+  },
+  {
+    "path": "prompts/court_lab_interior.txt",
+    "sha256": "c314f0eeee610b58b46607e4be2a0c9cbafbdeb8493e536c087be6fb9c524e25",
+    "bytes": 101
+  },
+  {
+    "path": "prompts/dojo_exterior.txt",
+    "sha256": "3dfd4d235809e1b8a159ed9ecbf21ffc56f75ac2f64307e2c87fba2dffa04516",
+    "bytes": 55
+  },
+  {
+    "path": "prompts/dojo_interior.txt",
+    "sha256": "bbe7dbcece207fc83b208c97328910fa4ec2742c4947c1bf8606b86aafa971b6",
+    "bytes": 96
+  },
+  {
+    "path": "prompts/library_exterior.txt",
+    "sha256": "42f4e3a21bb4168a124b621589e99c72b6c0e6718fc0060ba13a6fc52de93f97",
+    "bytes": 144
+  },
+  {
+    "path": "prompts/library_interior.txt",
+    "sha256": "dd0c2d025c1cec0dedd1ec0a6e74b2eaff4875a9449bf3bbbf0f5a37541a0873",
+    "bytes": 206
+  },
+  {
+    "path": "prompts/mansion_exterior.txt",
+    "sha256": "fe608ff0b964c0af0cac5dcc275dbb16651de0d3a9875a358bcf97f026c7c81b",
+    "bytes": 93
+  },
+  {
+    "path": "prompts/mansion_interior.txt",
+    "sha256": "1fed3df1886c7eb503fd257cb5c671306d9f21713d4cd62e6634ac31694eb147",
+    "bytes": 138
+  },
+  {
+    "path": "prompts/observatory_exterior.txt",
+    "sha256": "3688a89b23c1b481c8780da9c89fe7df72b6362016c70e64baf118c44c23b9b5",
+    "bytes": 71
+  },
+  {
+    "path": "prompts/observatory_interior.txt",
+    "sha256": "691330267d262f1410896acffc720b621ab0d2f209525cc79ad6ce695832f404",
+    "bytes": 71
+  },
+  {
+    "path": "prompts/palace_exterior.txt",
+    "sha256": "4f201a4ac70c0b47783e9066230a62f2a2a41768bef36e9a56763ee4fddc8913",
+    "bytes": 224
+  },
+  {
+    "path": "prompts/relay_hall_exterior.txt",
+    "sha256": "7ce0da1faa7a6cceaa8fe1cc2bad0120324bfd1e9cad7ea26ec9e74cec04cdf3",
+    "bytes": 94
+  },
+  {
+    "path": "prompts/relay_hall_interior.txt",
+    "sha256": "fa304f0522c56a94f3bdb0468f9205abd90e56b19c3c089ab65f4dc80594a85a",
+    "bytes": 98
+  },
+  {
+    "path": "prompts/restaurant_exterior.txt",
+    "sha256": "49d355e58e95a803e6155458c7b1cb2c6ea45dc043f4fe94dc3b938e2d65a658",
+    "bytes": 75
+  },
+  {
+    "path": "prompts/restaurant_interior.txt",
+    "sha256": "b82ad860e25cdb10aef1c47dd02875ad2d24970906e19bba34c31d8bb482a3c1",
+    "bytes": 109
+  },
+  {
+    "path": "prompts/studio_exterior.txt",
+    "sha256": "5f0c34450a7de2f01612fc042727774c44bdfac4454ab957e19eb254c31504b1",
+    "bytes": 93
+  },
+  {
+    "path": "prompts/studio_interior.txt",
+    "sha256": "4562193901d9f85256a9635faf4390545ef6cd4d91b20c52189afec39a2962f3",
+    "bytes": 109
+  },
+  {
+    "path": "prompts/vault_exterior.txt",
+    "sha256": "e17755a63ec8d52990c58a03712ae53eada8eed62e51399d2951adf57aa509d0",
+    "bytes": 59
+  },
+  {
+    "path": "prompts/vault_interior.txt",
+    "sha256": "ba71c205809dafcb16e629fb8d40d53730bff9568abc9d3154d75f645b135a0e",
+    "bytes": 78
+  },
+  {
+    "path": "runtime/memory/crossrepo.json",
+    "sha256": "4c72ac8e7fa6266750fb2b3db345c7d34d1ee62a51966bf7178b9ad0fc7f14e5",
+    "bytes": 150432
+  },
+  {
+    "path": "scripts/Abbey-Parse-Transactions.ps1",
+    "sha256": "ec377dfc2c7ce260ad21204ceddb3c87474f775c036553186e1170e5caca9727",
+    "bytes": 1250
+  },
+  {
+    "path": "scripts/Abbey-Subscriptions-From-Ledger.ps1",
+    "sha256": "b447e4110060856adb0dc7f21a4c2193b7b61ad8b4b38ad417f8152eb2975e83",
+    "bytes": 1258
+  },
+  {
+    "path": "scripts/Agents-LLM.ps1",
+    "sha256": "066d0eeb47e983cc021e87d15e5b02eba4a6366012a55cccfdb64f2300c0261b",
+    "bytes": 1853
+  },
+  {
+    "path": "scripts/Alexandria-DM-LLM.ps1",
+    "sha256": "906b1f784ffcadd1d1e1ae86697640dd3f719ed48f2c8b72c77fdd546c2062b5",
+    "bytes": 2764
+  },
+  {
+    "path": "scripts/Alexandria-Validate.ps1",
+    "sha256": "5cf766c77603fe937da3ee6e633b7795ee67d2ac41b833daa26b31999a8c7f61",
+    "bytes": 814
+  },
+  {
+    "path": "scripts/Alexandria-World-LLM.ps1",
+    "sha256": "e6fe9e22e5ed6a30d6937c95c0c2bf9da51739b088a02395fa376c566cd7d105",
+    "bytes": 2129
+  },
+  {
+    "path": "scripts/AsInt.psm1",
+    "sha256": "a053a65d80705f6785e2c3eae1f8cdb8e2a0923287c65a84a668ec26fd61c22e",
+    "bytes": 1229
+  },
+  {
+    "path": "scripts/Carol-Aggregate-FromFile.ps1",
+    "sha256": "f352c8c3709e6cd967401c9d0dcab237d856d86910db7625f3e461909d709461",
+    "bytes": 4185
+  },
+  {
+    "path": "scripts/Carol-Aggregate-Packages-v2.ps1",
+    "sha256": "63183842367ec088e76199d72902cd37b27183fba75d02fd22262644e586b8d0",
+    "bytes": 4497
+  },
+  {
+    "path": "scripts/Carol-Aggregate-Packages-v3.ps1",
+    "sha256": "4260397bd7352d22d85637f666a43126b191a7421addccb886da588afc76bf6d",
+    "bytes": 2230
+  },
+  {
+    "path": "scripts/Carol-Aggregate-Packages.ps1",
+    "sha256": "22692042539ebf3cd3207212e9156945745940be4e9cbb97c8bbbfa1f314adb2",
+    "bytes": 6749
+  },
+  {
+    "path": "scripts/Carol-Build-Pointer.ps1",
+    "sha256": "8d3d290264b407e4584f3267b2dc9fabc2fe5c7afbc6065cd12bb4c212222781",
+    "bytes": 1438
+  },
+  {
+    "path": "scripts/Carol-Diet-LLM.ps1",
+    "sha256": "7d0c2a9a60a3623589bdff31283b6cd1f5b59d71f298a94ece59c165d92f0f84",
+    "bytes": 2164
+  },
+  {
+    "path": "scripts/Carol-Expand-14d.ps1",
+    "sha256": "daf414ed7c7a9f8838b5282a449f81d65215ee96e9969deaa7b52c818ef33cc7",
+    "bytes": 2012
+  },
+  {
+    "path": "scripts/Carol-Export-PDF.ps1",
+    "sha256": "85861eecaa15a41a766fb2a1c8650b31ac1f541f54ba44ca5047fa193bf31a26",
+    "bytes": 2929
+  },
+  {
+    "path": "scripts/Carol-Extract-Shopping-v2.ps1",
+    "sha256": "ac2dff82bf8f59b0cbb796f2951aca594360ffad6411d3b28612b7b230403afc",
+    "bytes": 1480
+  },
+  {
+    "path": "scripts/Carol-Extract-Shopping-v3.ps1",
+    "sha256": "c78a77d5a7074773c5e3abf6c1dbbb2b51d59dd65d0ccc975b8c1f22ab7838d3",
+    "bytes": 1538
+  },
+  {
+    "path": "scripts/Carol-Extract-Shopping.ps1",
+    "sha256": "b677bf701fb85f1195aa9676d847ffcf01255ba3957534d620f56db711b1c6c9",
+    "bytes": 2647
+  },
+  {
+    "path": "scripts/Carol-Full-Refresh.ps1",
+    "sha256": "c6fa61750252cd518d53ed43e56deca360ffb460a30ab733a67ce17eed5b2116",
+    "bytes": 648
+  },
+  {
+    "path": "scripts/Carol-LLM-Plans.ps1",
+    "sha256": "7f07f986ce98ccf54757033ebb8a00eb0ea5c6d5d02229139d46e03a39cf4e22",
+    "bytes": 2076
+  },
+  {
+    "path": "scripts/Carol-Meal-Plan-2or6wk.ps1",
+    "sha256": "a41515f474d4fb39b0821e2fa74e81d1b0d69a2d8ac2b0370c81a485bbc5997b",
+    "bytes": 4570
+  },
+  {
+    "path": "scripts/Carol-Meal-Plan-2wk.ps1",
+    "sha256": "b7edf7f02d05424b52974371bd1dfea60d8778cabf76c9ef637c0a9a335a08a2",
+    "bytes": 2654
+  },
+  {
+    "path": "scripts/Carol-Offline-2wk.ps1",
+    "sha256": "455aac61edb077a72071408f95e530cd4d6740d459f3e60686a22f977ebcc69a",
+    "bytes": 2709
+  },
+  {
+    "path": "scripts/Carol-Package-Map-Report.ps1",
+    "sha256": "4088307aeef72ebf6d0a51bb8a2827a4125699eaa4faa2d64b9292f8ab5a6cac",
+    "bytes": 1785
+  },
+  {
+    "path": "scripts/Carol-Plan-Inspector.ps1",
+    "sha256": "59a07dbc6de903d181fef51f10ec23d34dbc7eb90831879fb550639243094511",
+    "bytes": 1414
+  },
+  {
+    "path": "scripts/Carol-Plan-Merge.ps1",
+    "sha256": "c5633cb4258a0a46596b9825a2b5fba0e3be5fc01b59b5349614fcc4c4b4c055",
+    "bytes": 1965
+  },
+  {
+    "path": "scripts/Carol-Validate.ps1",
+    "sha256": "22b95bf66aae0f4e736fc94fe109f35b2440aa65ed376b3d005935905efe50dc",
+    "bytes": 1379
+  },
+  {
+    "path": "scripts/Charlotte-Build-Link-Registry.ps1",
+    "sha256": "dd7c80ba0a5889dfc69662ee411e51a922ee576d8475cc84759777b885d89c46",
+    "bytes": 2262
+  },
+  {
+    "path": "scripts/Charlotte-Design-Tokens.ps1",
+    "sha256": "661671eb6b2f0b1992c71c0e38794217b535f705660b060ee86a9360fd7bce89",
+    "bytes": 1457
+  },
+  {
+    "path": "scripts/Charlotte-Inject-Tokens.ps1",
+    "sha256": "58d3b89522080088dd619b7accbdec7962f69f3714099362b4d31108f7c9b556",
+    "bytes": 521
+  },
+  {
+    "path": "scripts/Charlotte-Site-Manifest.ps1",
+    "sha256": "db109233937282535bdcbc67156ceacc2f4f848cc346abd94b1229b8ff677407",
+    "bytes": 470
+  },
+  {
+    "path": "scripts/Charlotte-TTS-OpenAI.ps1",
+    "sha256": "2e8a9a191d70f28b353dda867b682e243b7e2435bb5eba41f12134e28cf08309",
+    "bytes": 1911
+  },
+  {
+    "path": "scripts/Charlotte-TTS.ps1",
+    "sha256": "ccc423ede9521d5a075a53e2400a33c9575e28c2b5b77ea76a28b8d6891fd64f",
+    "bytes": 1859
+  },
+  {
+    "path": "scripts/Clarice-Graphics-Audit.ps1",
+    "sha256": "f49cba5fbba9493817a6c2bea29bc4da191e97c9520271a3eb761b3d76519b25",
+    "bytes": 1222
+  },
+  {
+    "path": "scripts/Clarice-Snapshot.ps1",
+    "sha256": "fb124082b86df22224da13b7a5bc20cbe728b68c2ee88612df75dcd46d7b81e3",
+    "bytes": 391
+  },
+  {
+    "path": "scripts/FactCheck-LLM.ps1",
+    "sha256": "1881fb4a0b24364fc1cacc6b56dfcebf9eab53c4ca5d1fac74d30873f078c13e",
+    "bytes": 3334
+  },
+  {
+    "path": "scripts/Hotfix-StripV-And-UnregisterSW.ps1",
+    "sha256": "3e66d95276d02c03c5ea51ba56ac5cfcef9d1b3e4a1f698a4dfb8e18f541b050",
+    "bytes": 686
+  },
+  {
+    "path": "scripts/Jem-Import-SamsujgHealth.ps1",
+    "sha256": "c3ab7d1d1bc04bcadef32f11a9fe7cc1d2ad6fae3f9da16d9c5a1212e4884f4f",
+    "bytes": 2278
+  },
+  {
+    "path": "scripts/Jem-Import-SamsungHealth.ps1",
+    "sha256": "f934cefbe41f321bf2f4e5fc55a18081c468fe37f60e26f2c437585418fae803",
+    "bytes": 1846
+  },
+  {
+    "path": "scripts/Jem-Inspect-Programs.ps1",
+    "sha256": "d97e93b107fe0c51956629cd1672a9ca76974e9f6f66cbe8eea496a1a7db86f2",
+    "bytes": 839
+  },
+  {
+    "path": "scripts/Jem-LLM-Programs.ps1",
+    "sha256": "77dd217cca920bbcea9df78839096688912a8c7ccbcfc3fea0a08ba33e34b9c7",
+    "bytes": 2116
+  },
+  {
+    "path": "scripts/Jem-Merge-Progress.ps1",
+    "sha256": "113e624cf9e3fed02df719b0dabc2889c9f9c00701c1efe1ca20f48f022d27b7",
+    "bytes": 1354
+  },
+  {
+    "path": "scripts/Jem-Normalize-Week1.ps1",
+    "sha256": "d8a0eb7ee718dcf54587d91d36007e1b9b43c42c510a15d59794a0ff45dbf70c",
+    "bytes": 5789
+  },
+  {
+    "path": "scripts/Jem-Pack-Imports.ps1",
+    "sha256": "ea1d5346740ef099d88b400427f0b53fcb6b11f60517fba7bd5fc565c75a9873",
+    "bytes": 1138
+  },
+  {
+    "path": "scripts/Jem-Progression-Engine.ps1",
+    "sha256": "181f5917202dddbd5d3c64bdcc50f4eb13fe6d9ba4af2df3e690ced307d7c745",
+    "bytes": 2552
+  },
+  {
+    "path": "scripts/Jem-Rescue-Intake.ps1",
+    "sha256": "4f10dacfc2d07b97979a38a7493a210ee30bd6d21158afbcb71c03873096e8c7",
+    "bytes": 1879
+  },
+  {
+    "path": "scripts/Jem-Training-LLM.ps1",
+    "sha256": "7de35640708562ba5469f631cc4ef3247ad22f2be09e4c7217b79162c1ea05db",
+    "bytes": 2392
+  },
+  {
+    "path": "scripts/Jem-Validate.ps1",
+    "sha256": "440eae1d2e417e007b82473235d54ca640abd03866c62ab36ece2bc74f724c22",
+    "bytes": 810
+  },
+  {
+    "path": "scripts/Jem-Week1-Evaluation.ps1",
+    "sha256": "13ed04008ea55868570064440a594e0c2959cd0c7c1114ed0a306765d2579e9d",
+    "bytes": 1733
+  },
+  {
+    "path": "scripts/Jem-Week1-Plan.ps1",
+    "sha256": "7890f4c74e11c7f59ed237e894fc5df15f4aed18f07366b71c15c43bd62f675e",
+    "bytes": 5490
+  },
+  {
+    "path": "scripts/LLM-Bridge.ps1",
+    "sha256": "60c8bd9cb066ad6d93417ec73356b622c9a6e26aaee770782cb6ba5156724e1a",
+    "bytes": 2128
+  },
+  {
+    "path": "scripts/Nina-Generate-Rooms.ps1",
+    "sha256": "92dc2616a9fb7d3fd456d3c59e692457f07af2893edce5f56a7a2df880fdea5b",
+    "bytes": 2032
+  },
+  {
+    "path": "scripts/Nina-Scene-Index.ps1",
+    "sha256": "3d30e5db69442e618c7aa52d808d6a2f39262dd02ae518a78dc14cf2cc058a89",
+    "bytes": 849
+  },
+  {
+    "path": "scripts/Nina-VRM-Index.ps1",
+    "sha256": "33b5dac03339aedb8dbe198b9d535c1b07b76e568b4567cac291c6689550031e",
+    "bytes": 817
+  },
+  {
+    "path": "scripts/Nina-VRM-Sanity.ps1",
+    "sha256": "4b6327f3ac8b82da931d81e570acbde9e00b2b31e5215c30e208f0eccc5e738b",
+    "bytes": 853
+  },
+  {
+    "path": "scripts/Repo-Doctor.ps1",
+    "sha256": "beb49506a2a56ec3d3e3e1b0024ef2e7cd780aca19e10fbe3c4fd269cf74581b",
+    "bytes": 3205
+  },
+  {
+    "path": "scripts/Repo-Index.ps1",
+    "sha256": "aa31b014404320e84fad939003dc1848419f175de5d62f7f43ef621702c36ffd",
+    "bytes": 871
+  },
+  {
+    "path": "scripts/Repo-Inventory.ps1",
+    "sha256": "a4e3dd2d82b3f96e16ea4dc2dc2a6adf087445306646eaad99e86c011587d588",
+    "bytes": 822
+  },
+  {
+    "path": "scripts/Repo-Read-All.ps1",
+    "sha256": "69e36a5447fa66e273c34b2d888ab6c74a510add5703bb33d89cafed558ac2ac",
+    "bytes": 1312
+  },
+  {
+    "path": "scripts/Repo-Refs-Graph.ps1",
+    "sha256": "1f5a4f53d79065020c79e93124604b639d0c960bc447f3c26acd7c6d5f65f178",
+    "bytes": 1867
+  },
+  {
+    "path": "scripts/Repo-Sweeper-Used-Files.ps1",
+    "sha256": "bf9c122eee15eae7379ea5e357fa993ef354c246d50a9f115d209b07a4a8e9de",
+    "bytes": 1427
+  },
+  {
+    "path": "scripts/Repo-Sweeper-Workflows.ps1",
+    "sha256": "ce3d2dfd8a6156dbad7fc5d0307110f06154098cb1066b577536df48344ce994",
+    "bytes": 1489
+  },
+  {
+    "path": "scripts/Repo-Usage-Report.ps1",
+    "sha256": "e2ab031677d12391c4324f6f8683e6097b80d23e776f4bed4741b712296143ba",
+    "bytes": 1822
+  },
+  {
+    "path": "scripts/Root-Index-Hotfix.ps1",
+    "sha256": "165bc57e970cd91ae034156b6d72f39dcb14973adcd8cc58844143b727e89b03",
+    "bytes": 3157
+  },
+  {
+    "path": "scripts/Run-All.ps1",
+    "sha256": "c167b06eeab0392e3ff8653c2d0420e4cfed03bccb29ee0479e35ee56bfce63f",
+    "bytes": 1460
+  },
+  {
+    "path": "scripts/Site-Doctor.ps1",
+    "sha256": "fcfb42aebb84a9a25d7b6b5703bcad43fe824febcbc139a92c0d3144d87d4fc9",
+    "bytes": 2320
+  },
+  {
+    "path": "scripts/Stella-Guided-LLM.ps1",
+    "sha256": "ffb2c87e4b8668c971ece785363c07df593fb79056705d634be3377a7ae8e042",
+    "bytes": 2189
+  },
+  {
+    "path": "scripts/Stella-LLM-Components.ps1",
+    "sha256": "b9b656c1b5cbea44e23cda1be58e225b5b88d8245aa395a55d5e6b2b351544a4",
+    "bytes": 2280
+  },
+  {
+    "path": "scripts/Stella-Schedule-LLM.ps1",
+    "sha256": "d5d7a36ac557a8a8e8380673f4a194b5cbee0575ac0104eff9f69c818acfa5e8",
+    "bytes": 2986
+  },
+  {
+    "path": "scripts/Stella-Validate.ps1",
+    "sha256": "32860b5688682155482f79ed5e3bd247062f169b81b165c25c398e1bb8a16ae7",
+    "bytes": 552
+  },
+  {
+    "path": "scripts/Tracy-Apply-Skin.ps1",
+    "sha256": "da909756d84d22b071a3d7081eedc859645c467346bf294e65b2885f4b2b984f",
+    "bytes": 330
+  },
+  {
+    "path": "scripts/Tracy-Optimize-Images.ps1",
+    "sha256": "c62825319a5043faaa96ea0b325ceddbc3677159a2b10423a575fdc24d96833a",
+    "bytes": 730
+  },
+  {
+    "path": "scripts/Tracy-Skin-From-Wallpapers.ps1",
+    "sha256": "b51b2207f4aed7286a4dc052883f96b793c569bd5ba05147bb01bf0c8d818602",
+    "bytes": 3876
+  },
+  {
+    "path": "scripts/Tracy-Wallpaper-Index.ps1",
+    "sha256": "08123eaea27e44a24455463b4c014b917510cee7b34cc89bd06c1998d3b8d167",
+    "bytes": 723
+  },
+  {
+    "path": "scripts/VersionParam-Sweeper.ps1",
+    "sha256": "b1a7619835b3c53ff02db3d4e5a59062766e633307701f0ef4d2e546711caf37",
+    "bytes": 954
+  },
+  {
+    "path": "scripts/Workflows-Sweeper.ps1",
+    "sha256": "373fbd95953a710d353f34acb9bbe946291b845d166b922d9f112abece845298",
+    "bytes": 905
+  },
+  {
+    "path": "scripts/carol/build-shopping.mjs",
+    "sha256": "d0245c9bcf7dc96fa8b9635d3f63a316a72f9e6553150183e6404126ab74ecad",
+    "bytes": 660
+  },
+  {
+    "path": "scripts/charlotte/crawler.mjs",
+    "sha256": "a9eaa31975dbe49dfd112beeee58ee3b2a0dd399cd965dc7dff0f2a3c4217932",
+    "bytes": 3596
+  },
+  {
+    "path": "scripts/charlotte/curated-crawl.mjs",
+    "sha256": "0181f0cc3e5cb14bc7579c8a5259bec30f47a38a73fe1693f16a3c2d0335da7a",
+    "bytes": 1931
+  },
+  {
+    "path": "scripts/clarity/analyze.mjs",
+    "sha256": "6f248c04cceb5e16f5cc4377db7ba28cf4b5c9115fcb417330d36befec889714",
+    "bytes": 3135
+  },
+  {
+    "path": "scripts/jem/plan-sync.mjs",
+    "sha256": "52c02eec5807d4646d5d52bd234e8117e2e2679436e6efe65b55f585b662f786",
+    "bytes": 449
+  },
+  {
+    "path": "scripts/nina-3d-index.ps1",
+    "sha256": "f4941ff55803b21e7e5af08aca91d5d0eae6c94c8238a51c78c85d351439ba9b",
+    "bytes": 404
+  },
+  {
+    "path": "scripts/overseers/alexandria-build-all.ps1",
+    "sha256": "d78ef590eb6bdb480a1339879a5c709ac71a780b6150074114f61292cd2aed74",
+    "bytes": 2985
+  },
+  {
+    "path": "scripts/overseers/alexandria-suite.ps1",
+    "sha256": "db181c553b14b2aefe70b5ef4bdb4caf3677990346f604ad4a4d9c1f163374ec",
+    "bytes": 1863
+  },
+  {
+    "path": "scripts/overseers/carol-build.mjs",
+    "sha256": "8ae1784f3461dac6ec7bb408be8a8a1d5721f94e85b6ae90dd8bd9d01c1af17a",
+    "bytes": 26
+  },
+  {
+    "path": "scripts/overseers/carol-meal-plan.ps1",
+    "sha256": "c81df446b2e0a3911450b17936608e04fbe28c6c90cf5c78ff6a8a95dfb572b6",
+    "bytes": 1377
+  },
+  {
+    "path": "scripts/overseers/charlotte-crawl.mjs",
+    "sha256": "a1a713913e7f1d7d59feeb23ee51dca09fa0952c1048f7186f57808b5955d003",
+    "bytes": 30
+  },
+  {
+    "path": "scripts/overseers/charlotte-pipeline-plan.ps1",
+    "sha256": "0cee750d35cc372a8ef5cada688cee89d9773e864967405d8fbe084201b9f216",
+    "bytes": 991
+  },
+  {
+    "path": "scripts/overseers/charlotte-tts-azure.ps1",
+    "sha256": "7958a7342754f6012d5ec0c25b434be61e7a6801286e589b6e80558fa75b310e",
+    "bytes": 2171
+  },
+  {
+    "path": "scripts/overseers/cleanup-dup-workflows.mjs",
+    "sha256": "c8cbfd1c90ee0c88b0a92f5d7d1346976876df3bc774f9a89bff50f87f3a9352",
+    "bytes": 946
+  },
+  {
+    "path": "scripts/overseers/cleanup-legacy.mjs",
+    "sha256": "331be0ad1a028c348c3d114c3dd09de5b9bf70357ed6dd56d77ada0bfcd5acd6",
+    "bytes": 22
+  },
+  {
+    "path": "scripts/overseers/crossrepo-scan.mjs",
+    "sha256": "6e4f3009d2b5206eca3b7ee4d0bfaa9d4e93af552c019ae10ea4c9aeee30841c",
+    "bytes": 1376
+  },
+  {
+    "path": "scripts/overseers/crossrepo-sweep.mjs",
+    "sha256": "cf1f83f49daff31f337b9c1ceb3209e12bf9f153090c3c2922d8f4587ccec450",
+    "bytes": 2250
+  },
+  {
+    "path": "scripts/overseers/importmap-merge.mjs",
+    "sha256": "ff7065b7bdab98a5d9c536f86da2ceaf636ed9fccaac0066a13d766bc5cf504c",
+    "bytes": 30
+  },
+  {
+    "path": "scripts/overseers/jem-program-plan.mjs",
+    "sha256": "cd38e934a90803bd0a29372ebc5c5a94a4029da088fcd964dc65a4ce87bea92b",
+    "bytes": 24
+  },
+  {
+    "path": "scripts/overseers/jem-program-plan.ps1",
+    "sha256": "0c07b0c0183b7f8c2c18cc2800fdc125a4929b8dbcb90060da5ded108c6aaaf1",
+    "bytes": 1508
+  },
+  {
+    "path": "scripts/overseers/memory-index.mjs",
+    "sha256": "c241465a1a945ecd99b2eff260e66163af303035ba8e4c2cdb77789f4e40e06e",
+    "bytes": 2644
+  },
+  {
+    "path": "scripts/overseers/nina-3d-index.ps1",
+    "sha256": "29c84cd7bae01a57b3e235441e48c503e98ed61ddee89de897ce0c0cceb5f314",
+    "bytes": 1903
+  },
+  {
+    "path": "scripts/overseers/overseers-llm-bridge.ps1",
+    "sha256": "c1b5a04ac9fd96f06c386c8cde841c9ffbfe4da38192ec564915fcd2510da3d8",
+    "bytes": 3451
+  },
+  {
+    "path": "scripts/overseers/repo-doctor.mjs",
+    "sha256": "2e13ab46c196cf2c684b89d11f544578f4dc3cb9accc137b73e90edf56802928",
+    "bytes": 4365
+  },
+  {
+    "path": "scripts/overseers/repo-sweep.mjs",
+    "sha256": "55868f133f29e166c77775580b9652d84c346554518e763c620f9825a845ec1e",
+    "bytes": 2942
+  },
+  {
+    "path": "scripts/overseers/tracy-artboard.ps1",
+    "sha256": "77d5f23838f82475c8d9d260fbd46ac44cd04774031fb415545a2125f1e74fd3",
+    "bytes": 1373
+  },
+  {
+    "path": "scripts/overseers/tracy-optimize.mjs",
+    "sha256": "049176c270136f59a95b76b5ab931bfface8d3a4f885081bbb5171144a22fe5f",
+    "bytes": 29
+  },
+  {
+    "path": "scripts/pack-avalon.mjs",
+    "sha256": "232ca769db9159ea18e50183b72f7102e261c23346c4e530a0702108fcf88f7a",
+    "bytes": 717
+  },
+  {
+    "path": "scripts/tracy-artboard.ps1",
+    "sha256": "d83d807da922e971549026682bb7717f89a1b540f598ae728fe2e5c73721cc84",
+    "bytes": 502
+  },
+  {
+    "path": "scripts/windows/Check-Env.ps1",
+    "sha256": "9cb1e4bce29c9c35d8130f35ebc464d39f97ca1fdf4af44d4b1df90174c159f9",
+    "bytes": 295
+  },
+  {
+    "path": "scripts/windows/Run-Setup.cmd",
+    "sha256": "0ad71a517ceb774a2e8fea5d22a22f59762a18029699e9b573964e9d0282d1fd",
+    "bytes": 436
+  },
+  {
+    "path": "ui/ui-kit.css",
+    "sha256": "bea1047911f18ce0a523dadaa429761f50e38b431d8117985a3fc9413d370f34",
+    "bytes": 8
+  },
+  {
+    "path": "version.txt",
+    "sha256": "53aec96b1ec532caf74f2a991b0a2c88e360b72e428102c503c6b7205ad4d2b8",
+    "bytes": 36
+  },
+  {
+    "path": "workers/stella-voice-worker.js",
+    "sha256": "55ea165f1fb9bb642bda2f5bf1f9683cbb742bbac9aefaecaadd90e01e0e22d2",
+    "bytes": 3501
+  },
+  {
+    "path": "wrangler.toml",
+    "sha256": "a1889d693010e76b8943eddccfe6e9116406b557a02c60559191c9874b3c7bbe",
+    "bytes": 82
+  }
+]

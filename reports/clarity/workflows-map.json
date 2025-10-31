@@ -1,0 +1,924 @@
+[
+  {
+    "path": ".github/workflows/actions-audit.yml",
+    "name": "Actions Audit (list workflows & last runs)",
+    "triggers": [
+      "workflow_dispatch",
+      "inputs",
+      "lookback_hours",
+      "description",
+      "Hours",
+      "back",
+      "to",
+      "inspect",
+      "required",
+      "true",
+      "default"
+    ]
+  },
+  {
+    "path": ".github/workflows/alexandria-dm-setup.yml",
+    "name": "Alexandria DM Setup",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/alexandria-voice-dm.yml",
+    "name": "Alexandria - Voice DM (pages & logs)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/audit-on-push.yml",
+    "name": "Actions Audit (on push)",
+    "triggers": [
+      "push",
+      "branches",
+      "main"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-build-shopping-direct.yml",
+    "name": "Carol — Refresh Shopping (direct commit)",
+    "triggers": [
+      "workflow_dispatch",
+      "inputs",
+      "plan_path",
+      "description",
+      "Path",
+      "to",
+      "the",
+      "plan",
+      "JSON",
+      "use",
+      "required",
+      "false",
+      "default",
+      "pages",
+      "apps",
+      "carol",
+      "plans",
+      "twoperson",
+      "wk",
+      "unique",
+      "T",
+      "Z",
+      "json"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-build-shopping.yml",
+    "name": "Carol - Rebuild Shopping List",
+    "triggers": [
+      "workflow_dispatch",
+      "push",
+      "paths",
+      "pages",
+      "apps",
+      "carol",
+      "index",
+      "json",
+      "plans",
+      "scripts",
+      "build",
+      "shopping",
+      "mjs"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-ensure-plan.yml",
+    "name": "Carol - Ensure Plan (create 14d if missing)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-extract-from-plan.yml",
+    "name": "Carol — Extract Shopping (from plan)",
+    "triggers": [
+      "workflow_dispatch",
+      "inputs",
+      "plan_path",
+      "description",
+      "Path",
+      "to",
+      "plan",
+      "JSON",
+      "copy",
+      "and",
+      "extract",
+      "required",
+      "true",
+      "default",
+      "pages",
+      "apps",
+      "carol",
+      "plans",
+      "twoperson",
+      "wk",
+      "unique",
+      "T",
+      "Z",
+      "json"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-generate-shopping.yml",
+    "name": "Carol - Generate Shopping List (from current plan)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-inspect-plan.yml",
+    "name": "Carol - Inspect Plan",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-pin-and-extract.yml",
+    "name": "Carol — Pin Plan & Extract (14‑day)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-pointer-set.yml",
+    "name": "Carol — Set Plan Pointer",
+    "triggers": [
+      "workflow_dispatch",
+      "inputs",
+      "plan_path",
+      "description",
+      "Path",
+      "to",
+      "plan",
+      "JSON",
+      "required",
+      "true",
+      "default",
+      "pages",
+      "apps",
+      "carol",
+      "plans",
+      "twoperson",
+      "wk",
+      "unique",
+      "T",
+      "Z",
+      "json"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-preferences.yml",
+    "name": "Carol Preferences Snapshot",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-refresh-from-pointer.yml",
+    "name": "Carol — Refresh from Pointer",
+    "triggers": [
+      "workflow_dispatch",
+      "inputs",
+      "plan_path",
+      "description",
+      "Plan",
+      "JSON",
+      "path",
+      "leave",
+      "blank",
+      "to",
+      "read",
+      "from",
+      "pages",
+      "apps",
+      "carol",
+      "index",
+      "json",
+      "plan_latest",
+      "required",
+      "false",
+      "default",
+      "push",
+      "paths",
+      "plans",
+      "scripts",
+      "Carol",
+      "Extract",
+      "Shopping",
+      "v",
+      "ps"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-refresh-menu-shopping.yml",
+    "name": "Carol — Refresh Menu + Shopping",
+    "triggers": [
+      "workflow_dispatch",
+      "inputs",
+      "plan_path",
+      "description",
+      "Path",
+      "to",
+      "the",
+      "day",
+      "plan",
+      "JSON",
+      "use",
+      "required",
+      "true",
+      "default",
+      "pages",
+      "apps",
+      "carol",
+      "plans",
+      "twoperson",
+      "wk",
+      "unique",
+      "T",
+      "Z",
+      "json"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-refresh.yml",
+    "name": "Carol Refresh (shopping & report)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/carol-verify-plan.yml",
+    "name": "Carol - Verify Plan Pointer",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/charlotte-crawl.yml",
+    "name": "Charlotte Crawl",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/charlotte-crawler.yml",
+    "name": "Charlotte - AI Projects Crawler",
+    "triggers": [
+      "workflow_dispatch",
+      "schedule",
+      "cron",
+      "daily",
+      "UTC"
+    ]
+  },
+  {
+    "path": ".github/workflows/charlotte-curated-crawl.yml",
+    "name": "Charlotte - Curated Crawl",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/charlotte-link-registry.yml",
+    "name": "Charlotte - Link Registry",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/city-link-prefix-patch.yml",
+    "name": "City — Link Prefix Patch",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/city-publish-hotfix.yml",
+    "name": "City — Publish Map Hotfix",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/city-remove-castle-town.yml",
+    "name": "City — Remove Castle Town",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/city-visual.yml",
+    "name": "City — Visual (Touch-up)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/clarity-core.yml",
+    "name": "Crown of Clarity — Core (catalog + snapshot + site crawl)",
+    "triggers": [
+      "push",
+      "branches",
+      "main",
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/clarity-digest.yml",
+    "name": "Crown of Clarity — Digest (issues)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/clarity-observe-on-push.yml",
+    "name": "Crown of Clarity — Observe (repo + site) on push",
+    "triggers": [
+      "push",
+      "branches",
+      "main",
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/clarity-on-push.yml",
+    "name": "Crown of Clarity — On Push (catalog + snapshot + analysis + crawl)",
+    "triggers": [
+      "push",
+      "branches",
+      "main",
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/clarity-sweeper-proposal.yml",
+    "name": "Crown of Clarity — Sweeper Proposal (non-destructive)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/cleanup-legacy.yml",
+    "name": "Cleanup Legacy",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-billie-social.yml",
+    "name": "Deploy Worker - billie social",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-cloudflare-worker.yml",
+    "name": "Deploy — Cloudflare Auth Worker",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-hello-v4.yml",
+    "name": "Deploy Worker - hello (v4)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-hello.yml",
+    "name": "Deploy Worker - hello (debug)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-importmap-installer-v4.yml",
+    "name": "Deploy Worker - importmap installer (v4)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-importmap-installer.yml",
+    "name": "Deploy Worker - importmap installer",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-market-v4.yml",
+    "name": "Deploy Worker - market (v4)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-market.yml",
+    "name": "Deploy Worker - market",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-pages.yml",
+    "name": "Deploy GitHub Pages",
+    "triggers": [
+      "push",
+      "branches",
+      "main",
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-stella-voice.yml",
+    "name": "Deploy Worker - stella voice",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-tracy-llm-skin.yml",
+    "name": "Deploy Worker - tracy llm skin",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-tracy-skin-llm.yml",
+    "name": "Deploy Worker - tracy skin llm",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/deploy-tts-worker.yml",
+    "name": "Deploy TTS Worker",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/failure-feed.yml",
+    "name": "Failure Feed (on workflow_run)",
+    "triggers": [
+      "workflow_run",
+      "workflows",
+      "types",
+      "completed"
+    ]
+  },
+  {
+    "path": ".github/workflows/importmap-merge.yml",
+    "name": "Importmap Merge (PR-first)",
+    "triggers": [
+      "workflow_dispatch",
+      "inputs",
+      "imports_json",
+      "description",
+      "JSON",
+      "object",
+      "keys",
+      "become",
+      "importmap",
+      "json",
+      "imports",
+      "entries",
+      "required",
+      "true"
+    ]
+  },
+  {
+    "path": ".github/workflows/jem-assessment.yml",
+    "name": "Jem Assessment Import",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/jem-plan-sync.yml",
+    "name": "Jem Plan Sync",
+    "triggers": [
+      "workflow_dispatch",
+      "inputs",
+      "sample_data",
+      "description",
+      "Optional",
+      "JSON",
+      "of",
+      "health",
+      "metrics",
+      "required",
+      "false",
+      "default"
+    ]
+  },
+  {
+    "path": ".github/workflows/llm-bootstrap-nightly.yml",
+    "name": "LLM Bootstrap (nightly)",
+    "triggers": [
+      "schedule",
+      "cron",
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/llm-bootstrap.yml",
+    "name": "LLM Bootstrap Bundle (One-Click)",
+    "triggers": [
+      "workflow_dispatch",
+      "inputs",
+      "crawl_url",
+      "description",
+      "Root",
+      "URL",
+      "to",
+      "snapshot",
+      "e",
+      "g",
+      "https",
+      "fairiesofavalon",
+      "com",
+      "required",
+      "true",
+      "default",
+      "crawl_depth",
+      "Crawl",
+      "depth",
+      "is",
+      "typical"
+    ]
+  },
+  {
+    "path": ".github/workflows/memory-rescue.yml",
+    "name": "Memory Rescue (move Cody's Memory)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/memory-snapshot.yml",
+    "name": "Memory Snapshot",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/nina-city-tiles.yml",
+    "name": "Nina - City Tiles",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/nina-guard.yml",
+    "name": "Nina Guard (YAML + importmap sanity)",
+    "triggers": [
+      "pull_request",
+      "branches",
+      "main",
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/observability-on-push.yml",
+    "name": "Observability (catalog + crawl + actions) on push",
+    "triggers": [
+      "push",
+      "branches",
+      "main",
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/overseers-clean-dup-workflows.yml",
+    "name": "Overseers - Cleanup Duplicate Manifests Workflows",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/overseers-crossrepo-sweep.yml",
+    "name": "Overseers - Crossrepo Sweep",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/overseers-manifests.yml",
+    "name": "Overseers - Manifests + WPI",
+    "triggers": [
+      "workflow_dispatch",
+      "push",
+      "branches",
+      "main",
+      "master",
+      "paths",
+      "asset",
+      "models",
+      "wings",
+      "textures",
+      "wallpapers",
+      "scripts",
+      "overseers",
+      "repo",
+      "sweep",
+      "mjs"
+    ]
+  },
+  {
+    "path": ".github/workflows/overseers-memory-index.yml",
+    "name": "Overseers — Memory Index",
+    "triggers": [
+      "push",
+      "branches",
+      "main",
+      "master",
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/overseers-memory-sweep.yml",
+    "name": "Overseers - Memory Sweep",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/overseers-permissions.yml",
+    "name": "Overseers — Permissions Processor",
+    "triggers": [
+      "workflow_dispatch",
+      "push",
+      "branches",
+      "main",
+      "master",
+      "paths",
+      "permissions",
+      "grants"
+    ]
+  },
+  {
+    "path": ".github/workflows/overseers-repo-doctor.yml",
+    "name": "Overseers - Repo Doctor",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/overseers-repo-sweeper.yml",
+    "name": "Overseers — Sweeper (propose-deletions PR)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/package-content.yml",
+    "name": "Package - Content ZIP (no workflows)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/package-workflows.yml",
+    "name": "Package - Workflows ZIP (flat root)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/repo-doctor.yml",
+    "name": "Repo Doctor (read-only reports)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/repo-read-index.yml",
+    "name": "Repo — Read Index",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/repo-read.yml",
+    "name": "Repo - Read Full Index",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/repo-retire-odessa.yml",
+    "name": "Repo - Retire Odessa",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/repo-sweeper-report.yml",
+    "name": "Repo — Sweeper Report (PR)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/repo-sweeper.yml",
+    "name": "Repo Sweeper (PR-based cleanup)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/repo-workflows-standardize.yml",
+    "name": "Repo - Workflows Standardize (rename + delete old)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/response-check.yml",
+    "name": "Response Check (URLs & API endpoints)",
+    "triggers": [
+      "workflow_dispatch",
+      "inputs",
+      "urls",
+      "description",
+      "Space",
+      "separated",
+      "URLs",
+      "to",
+      "check",
+      "required",
+      "true",
+      "default",
+      "https",
+      "fairiesofavalon",
+      "com",
+      "pages",
+      "index",
+      "html"
+    ]
+  },
+  {
+    "path": ".github/workflows/retire-old-hello.yml",
+    "name": "Retire old hello workflow (PR)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/root-fix-404.yml",
+    "name": "Root - Fix 404 & Redirect to Plaza",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/root-launcher-hotfix.yml",
+    "name": "Root - Launcher Hotfix",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/site-cache-bust.yml",
+    "name": "Site — Cache Bust",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/site-deploy-only.yml",
+    "name": "Site — Deploy Only",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/site-fix-and-deploy.yml",
+    "name": "Site — Fix Routes & Deploy",
+    "triggers": [
+      "workflow_dispatch",
+      "inputs",
+      "plan_path",
+      "description",
+      "Carol",
+      "plan",
+      "file",
+      "to",
+      "set",
+      "as",
+      "current",
+      "required",
+      "true",
+      "default",
+      "pages",
+      "apps",
+      "carol",
+      "plans",
+      "twoperson",
+      "wk",
+      "unique",
+      "T",
+      "Z",
+      "json"
+    ]
+  },
+  {
+    "path": ".github/workflows/site-fix-links.yml",
+    "name": "Site — Fix App Links to /pages/apps",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/site-hotfix-404.yml",
+    "name": "Site — Hotfix 404 (links & city)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/site-route-corrector.yml",
+    "name": "Site — Route Corrector (apps/ → pages/apps/)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/sorcha-storyboard.yml",
+    "name": "Sorcha - Faceless Video Storyboards",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/tracy-campaign-release.yml",
+    "name": "Tracy Campaign Release",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/tracy-optimize.yml",
+    "name": "Tracy Optimize",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/tracy-pack-art.yml",
+    "name": "Tracy Pack Art",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/tracy-skin-ui.yml",
+    "name": "Tracy Skin UI (page scaffold)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/tracy-wallpaper-theme.yml",
+    "name": "Tracy - Wallpaper Theme",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/treasury-build-release.yml",
+    "name": "Treasury Build Release",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/treasury-qa.yml",
+    "name": "Treasury QA",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/worker-diagnostics.yml",
+    "name": "Worker Diagnostics (tree + sanity checks)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/wrangler-whoami.yml",
+    "name": "Wrangler WhoAmI (debug)",
+    "triggers": [
+      "workflow_dispatch"
+    ]
+  }
+]

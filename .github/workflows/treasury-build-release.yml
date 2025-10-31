@@ -1,0 +1,22 @@
+name: Treasury Build Release
+on: { workflow_dispatch: {} }
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  rel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create release pack
+        run: |
+          mkdir -p artifacts/treasury
+          echo "Release build 2025-10-31 06:38:21" > artifacts/treasury/RELEASE.txt
+      - uses: actions/upload-artifact@v4
+        with: { name: treasury-release, path: artifacts/treasury }
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'treasury: new release pack'
+          title: 'treasury: new release pack'
+          branch: ci/treasury-release-${{ github.run_id }}
+          base: ${{ github.ref_name }}

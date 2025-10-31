@@ -1,0 +1,25 @@
+name: Actions Audit (on push)
+on:
+  push:
+    branches: [ main ]
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner, repo = context.repo.repo;
+            const wfs = await github.rest.actions.listRepoWorkflows({owner, repo, per_page: 200});
+            const workflows = wfs.data.workflows || [];
+            const names = workflows.map(w => `- ${w.name} (${w.path})`).join('\n');
+            const body = `## Actions Audit (push)\n\n${names}`;
+            const title = 'Actions Audit Report';
+            const issues = await github.rest.issues.listForRepo({owner, repo, state: 'open', labels: 'overseer'});
+            const existing = issues.data.find(i => i.title === title);
+            if (existing) {
+              await github.rest.issues.update({owner, repo, issue_number: existing.number, body});
+            } else {
+              await github.rest.issues.create({owner, repo, title, body, labels: ['overseer']});
+            }

@@ -540,6 +540,11 @@
     "bytes": 1334
   },
   {
+    "path": "artifacts/campaign/README.txt",
+    "sha256": "9e68e6817c1eefa33fe77cad19801ca11e8985fb95488c4027f6d22cad1b8a77",
+    "bytes": 33
+  },
+  {
     "path": "asset/css/style.css",
     "sha256": "5f12cfe8120b0751d0f55d56307a1a4558ed481127521c862bf1899a91cebb0c",
     "bytes": 133
@@ -3320,6 +3325,11 @@
     "bytes": 288
   },
   {
+    "path": "pages/apps/carol/plan-report.json",
+    "sha256": "8f5c3018a7e8131fcf6e9aa2ba4a0c085d0c7adfb3d107fd201c00a86cccf916",
+    "bytes": 88
+  },
+  {
     "path": "pages/apps/carol/plans/index.json",
     "sha256": "7a1fbfcc4d2c06161cd87aff018b7ee4c366dea9cc048351433cfd24293b6025",
     "bytes": 61
@@ -3493,6 +3503,11 @@
     "path": "pages/apps/carol/recipes/defs.json",
     "sha256": "3673dfdbd469dc9a2a043c1c115e8492c782c7968d29ae8ebd6513d7e9514d5a",
     "bytes": 8968
+  },
+  {
+    "path": "pages/apps/carol/shopping-quantized.json",
+    "sha256": "33e9ed446623f2f7b28214833fa8786297433aebbf86006cfd3f5b334f584076",
+    "bytes": 60
   },
   {
     "path": "pages/apps/carol/shopping.html",
@@ -3688,6 +3703,11 @@
     "path": "pages/apps/jem/dashboard.html",
     "sha256": "edb5c97e39be6c562e0f63f38a63bac6dc5f28c64594e2f2497834a233acef4a",
     "bytes": 291
+  },
+  {
+    "path": "pages/apps/jem/data/plan-latest.json",
+    "sha256": "3167f9e3957e5f6f745fc0a1937e0b83d4c1047677e159fbcadd527a0cc6c3b5",
+    "bytes": 28
   },
   {
     "path": "pages/apps/jem/dragon-dojo.html",
@@ -4736,13 +4756,13 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "7f42be55e1887f0cb6c76e4ef8e8bfc46babdc138fa0af0b28e5a85e900951bd",
-    "bytes": 176151
+    "sha256": "c21c3b66f8fd7632086f02c5e208e81e75d129166ddd69edda56b52df155fc9b",
+    "bytes": 176783
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "d6dfe4ece69f42f6e886e283340ce32d79692f6f9fd36e483981e67bb2cbbc5b",
-    "bytes": 3356703
+    "sha256": "beb0d54ae5bbf0369e583f8e5b1d9a60577e64990f1ffe55854d69d3d3488dbc",
+    "bytes": 3363421
   },
   {
     "path": "reports/clarity/pages-map.json",

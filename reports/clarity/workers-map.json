@@ -1,0 +1,29 @@
+[
+  {
+    "path": "cloudflare/worker-alexandria.js"
+  },
+  {
+    "path": "cloudflare/worker-auth.js"
+  },
+  {
+    "path": "cloudflare/worker-billie-social.js"
+  },
+  {
+    "path": "cloudflare/worker-hello.js"
+  },
+  {
+    "path": "cloudflare/worker-importmap-install.js"
+  },
+  {
+    "path": "cloudflare/worker-market.js"
+  },
+  {
+    "path": "cloudflare/worker-skin-llm.js"
+  },
+  {
+    "path": "cloudflare/worker-tracy-skin-llm.js"
+  },
+  {
+    "path": "cloudflare/worker-tts.js"
+  }
+]

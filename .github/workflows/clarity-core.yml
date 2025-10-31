@@ -1,0 +1,95 @@
+name: Crown of Clarity — Core (catalog + snapshot + site crawl)
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y jq wget zip
+
+      - name: Build file catalog (path, sha256, bytes)
+        run: |
+          git ls-files -z | xargs -0 -I{} bash -lc 'printf "%s\t%s\n" "$(stat -c %s "{}")" "{}"' > _sizes.tsv
+          git ls-files -z | xargs -0 -I{} bash -lc 'sha256sum "{}"' > _sha.tsv
+          awk '{print $2"\t"$1}' _sha.tsv | sort > _sha.sorted
+          sort _sizes.tsv > _sizes.sorted
+          join -t $'\t' -1 1 -2 2 _sha.sorted _sizes.sorted > _join.tsv
+          jq -Rn '
+            [inputs | split("\n")[] | select(length>0) | split("\t")]
+            | map({path: .[0], sha256: .[1], bytes: (.[2]|tonumber)})
+          ' < _join.tsv > reports_catalog.json
+
+      - name: Create repo snapshot artifact (zip of repo HEAD)
+        run: |
+          mkdir -p snapshot
+          git ls-files -z | xargs -0 -I{} bash -lc 'mkdir -p "snapshot/$(dirname "{}")"; cp "{}" "snapshot/{}"' || true
+          (cd snapshot && zip -r ../repo-snapshot.zip .)
+
+      - name: Discover site URLs from index + /pages
+        run: |
+          mkdir -p urls
+          BASE="https://fairiesofavalon.com"
+          echo "$BASE/index.html" > urls/seed.txt
+          echo "$BASE/pages/" >> urls/seed.txt
+          touch urls/discovered-raw.txt
+          while read -r u; do
+            curl -fsSL "$u" | grep -Eoi 'href=["'\''"]([^"'\''"]+)["'\''"]' | sed -E 's/^href=["'\''"]//; s/["'\''"]$//' >> urls/discovered-raw.txt || true
+          done < urls/seed.txt
+          awk -v B="$BASE" '
+            /^http/ {print $0; next}
+            /^\// {print B $0; next}
+            {print B"/"$0}
+          ' urls/discovered-raw.txt |
+          sed 's#//*#/#g; s#https:/#https://#' |
+          grep -E '^https://fairiesofavalon\.com' |
+          sort -u > urls/discovered-urls.txt
+
+      - name: Response check for discovered URLs
+        run: |
+          mkdir -p response-check
+          while read -r u; do
+            fn=$(echo "$u" | sed 's#https\?://##; s#[^a-zA-Z0-9._-]#_#g')
+            echo "=== $u ===" | tee -a response-check/summary.txt
+            curl -sS -w "\nHTTP %{http_code} in %{time_total}s\n" -o "response-check/${fn}.html" "$u" | tee -a response-check/summary.txt || true
+          done < urls/discovered-urls.txt
+
+      - name: Upload artifacts (catalog, snapshot, urls, responses)
+        uses: actions/upload-artifact@v4
+        with:
+          name: clarity-core
+          path: |
+            reports_catalog.json
+            repo-snapshot.zip
+            urls
+            response-check
+
+      - name: Move catalog into repo (for PR)
+        run: |
+          mkdir -p reports/clarity
+          mv reports_catalog.json reports/clarity/catalog.json
+
+      - name: PR — Commit file catalog JSON to repo
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "clarity(core): update file catalog (path/sha256/bytes)"
+          title: "clarity(core): update file catalog"
+          branch: "ci/clarity-core-catalog-${{ github.run_id }}"
+          base: "${{ github.ref_name }}"
+          add-paths: |
+            reports/clarity/catalog.json

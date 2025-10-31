@@ -7939,6 +7939,16 @@
     "preview": "<!doctype html><meta charset='utf-8'><title>Jem — Dashboard</title><body style='font-family:system-ui;background:#0b0f17;color:#e5e7eb'><h1>Jem — Programs & Biometrics</h1><p>Upload Samsung Health ZIP to <code>pages/apps/jem/imports/</code>, run import workflow, then refresh.</p></body>"
   },
   {
+    "path": "pages/apps/jem/data/plan-latest.json",
+    "sha256": "3167f9e3957e5f6f745fc0a1937e0b83d4c1047677e159fbcadd527a0cc6c3b5",
+    "bytes": 28,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\"generated\":\"18965870776\"}\n"
+  },
+  {
     "path": "pages/apps/jem/dragon-dojo.html",
     "sha256": "244dc53854a4ae681bc7fc0890554b2cbe70ac2f48433b8d583883945318c423",
     "bytes": 254,
@@ -10283,8 +10293,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "c21c3b66f8fd7632086f02c5e208e81e75d129166ddd69edda56b52df155fc9b",
-    "bytes": 176783,
+    "sha256": "5543ef8a9a9564d424145d74e70631ed05d1ca5d3870819f1bd9e0af35c0a728",
+    "bytes": 176942,
     "purpose": "other",
     "imports": [],
     "links": [],
@@ -10293,8 +10303,8 @@
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "d6dfe4ece69f42f6e886e283340ce32d79692f6f9fd36e483981e67bb2cbbc5b",
-    "bytes": 3356703,
+    "sha256": "beb0d54ae5bbf0369e583f8e5b1d9a60577e64990f1ffe55854d69d3d3488dbc",
+    "bytes": 3363421,
     "purpose": "other",
     "imports": [],
     "links": [],

@@ -3325,6 +3325,11 @@
     "bytes": 288
   },
   {
+    "path": "pages/apps/carol/plan-report.json",
+    "sha256": "8f5c3018a7e8131fcf6e9aa2ba4a0c085d0c7adfb3d107fd201c00a86cccf916",
+    "bytes": 88
+  },
+  {
     "path": "pages/apps/carol/plans/index.json",
     "sha256": "7a1fbfcc4d2c06161cd87aff018b7ee4c366dea9cc048351433cfd24293b6025",
     "bytes": 61
@@ -3498,6 +3503,11 @@
     "path": "pages/apps/carol/recipes/defs.json",
     "sha256": "3673dfdbd469dc9a2a043c1c115e8492c782c7968d29ae8ebd6513d7e9514d5a",
     "bytes": 8968
+  },
+  {
+    "path": "pages/apps/carol/shopping-quantized.json",
+    "sha256": "33e9ed446623f2f7b28214833fa8786297433aebbf86006cfd3f5b334f584076",
+    "bytes": 60
   },
   {
     "path": "pages/apps/carol/shopping.html",
@@ -4746,8 +4756,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "c21c3b66f8fd7632086f02c5e208e81e75d129166ddd69edda56b52df155fc9b",
-    "bytes": 176783
+    "sha256": "e898b5ee28fa402b2a17abf0b204f47238c7a017e31961bc019839b45b0e7bc0",
+    "bytes": 177094
   },
   {
     "path": "reports/clarity/files-index.json",

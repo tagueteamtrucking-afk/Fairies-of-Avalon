@@ -540,6 +540,11 @@
     "bytes": 1334
   },
   {
+    "path": "artifacts/campaign/README.txt",
+    "sha256": "9e68e6817c1eefa33fe77cad19801ca11e8985fb95488c4027f6d22cad1b8a77",
+    "bytes": 33
+  },
+  {
     "path": "asset/css/style.css",
     "sha256": "5f12cfe8120b0751d0f55d56307a1a4558ed481127521c862bf1899a91cebb0c",
     "bytes": 133
@@ -3690,6 +3695,11 @@
     "bytes": 291
   },
   {
+    "path": "pages/apps/jem/data/plan-latest.json",
+    "sha256": "3167f9e3957e5f6f745fc0a1937e0b83d4c1047677e159fbcadd527a0cc6c3b5",
+    "bytes": 28
+  },
+  {
     "path": "pages/apps/jem/dragon-dojo.html",
     "sha256": "244dc53854a4ae681bc7fc0890554b2cbe70ac2f48433b8d583883945318c423",
     "bytes": 254
@@ -4736,13 +4746,13 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "7f42be55e1887f0cb6c76e4ef8e8bfc46babdc138fa0af0b28e5a85e900951bd",
-    "bytes": 176151
+    "sha256": "c21c3b66f8fd7632086f02c5e208e81e75d129166ddd69edda56b52df155fc9b",
+    "bytes": 176783
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "d6dfe4ece69f42f6e886e283340ce32d79692f6f9fd36e483981e67bb2cbbc5b",
-    "bytes": 3356703
+    "sha256": "beb0d54ae5bbf0369e583f8e5b1d9a60577e64990f1ffe55854d69d3d3488dbc",
+    "bytes": 3363421
   },
   {
     "path": "reports/clarity/pages-map.json",

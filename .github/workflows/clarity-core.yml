@@ -82,6 +82,8 @@ jobs:
       - name: Move catalog into repo (for PR)
         run: |
           mkdir -p reports/clarity
+- name: Ensure reports/clarity exists
+  run: mkdir -p reports/clarity
           mv reports_catalog.json reports/clarity/catalog.json
 
       - name: PR — Commit file catalog JSON to repo

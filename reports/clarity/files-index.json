@@ -2563,6 +2563,16 @@
     "preview": ""
   },
   {
+    "path": "assets/css/avalon-dashboard.css",
+    "sha256": "bdf0f1156eefeee78856ddd1df55b6c1585984e9901e74d373b30d72ab5aeb2b",
+    "bytes": 785,
+    "purpose": "style",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": ":root{--bg:#0b0c10;--ink:#e8e8e8;--muted:#9db0c3;--card:#141b22;--line:#223241;--accent:#8bd3dd}\n*{box-sizing:border-box}html,body{margin:0}\nbody{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,Segoe UI,Roboto,Arial,sans-serif}\n.wrap{max-width:1100px;margin:0 auto;padding:16px}\n.av-head{border-bottom:1px solid var(--line);padding:12px 0}.sub{color:var(--muted)}\n.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}\n.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}\n.table{width:100%;border-collapse:collapse}.table th,.table td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}\n.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}.muted{color:var(--muted)}\n"
+  },
+  {
     "path": "assets/css/avalon.css",
     "sha256": "e12614e77120510f5d22eba12f47e6be690c0251b9a76e8295bf48b40964e531",
     "bytes": 427,
@@ -7047,6 +7057,20 @@
     "preview": ":root {\n  --bg-dark: #0e0f11;\n  --card: #15171b;\n  --ink: #e9e9ec;\n  --muted: #b4b8c2;\n  --accent: #e6b85c;\n  --accent-2: #7ec8a1;\n}\n\n* { box-sizing: border-box; }\nhtml, body { margin: 0; padding: 0; background: var(--bg-dark); color: var(--ink); font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }\n\n.header {\n  position: relative;\n  min-height: 42vh;\n  display: grid;\n  place-items: end start;\n  padding: 1.25rem;\n  background-size: cover;\n  background-position: center;\n  border-bottom: 1px solid #22252b;\n}\n\n.header .title {\n  backdrop-filter: blur(2px);\n  background: color-mix(in srgb, #000 60%, transparent);\n  padding: .75rem 1rem;\n  border-radius: 10px;\n  border: 1px solid #2b2f37;\n  color: var(--ink);\n}\n\n.main {\n  padding: 1rem;\n  max-width: 1100px;\n  margin: 0 auto;\n}\n\n.grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));\n  gap: 12px;\n}\n\n.card {\n  background: var(--card);\n  border: 1px solid #242832;\n  border-radius: 12px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n}\n\n.card .top {\n  padding: .75rem 1rem;\n  border-bottom: 1px dashed #2a2f39;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}"
   },
   {
+    "path": "pages/apps/carol/dashboard.html",
+    "sha256": "c7677edc1355c53ba4a26273edf5b11703e82ceeb52c2d869dfea60fb323cfed",
+    "bytes": 2168,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "refs": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "preview": "<!doctype html><html lang=\"en\"><head>\n<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Carol — Nutrition Dashboard</title>\n<link rel=\"stylesheet\" href=\"../../assets/css/avalon-dashboard.css\">\n</head><body>\n<header class=\"av-head\"><div class=\"wrap\">\n  <h1>🍎 Carol — Nutrition Dashboard</h1>\n  <p class=\"sub\">Live view of plan & shopping. Source of truth: <code>pages/apps/carol/</code> JSON files.</p>\n</div></header>\n<main class=\"wrap grid\">\n  <section class=\"card\">\n    <h2>Plan Report</h2>\n    <pre id=\"planReport\" class=\"mono muted\">Loading plan-report.json…</pre>\n  </section>\n  <section class=\"card\">\n    <h2>Shopping (Quantized)</h2>\n    <table id=\"shop\" class=\"table\"><thead><tr><th>Item</th><th>Qty</th><th>Notes</th></tr></thead><tbody></tbody></table>\n    <div id=\"shopEmpty\" class=\"muted\" hidden>shopping-quantized.json was empty.</div>\n  </section>\n  <section class=\"card\">\n    <h2>Preferences</h2>\n    <pre id=\"prefs\" class=\"mono muted\">Loading preferences.json…</pre>\n  </section>\n</main>\n\n<script type=\"module\">\nasync function loadJSON(p){ try{ const r=await fetch(p+'?t='+Date.now(),{cache:'no-store'}); if(!r.ok) throw new Error(r.status); return await r.json(); }catch(e){ return null; } }\n\nconst rep = await loadJSON('../carol/plan-report.json');\ndocument.getElementById('planReport').textContent = rep ? JSON.stringify(rep,null,2) : 'plan-report.json not found. Run “Carol Refresh (shopping & report)”.';\n\nconst shop = await loadJSON('../carol/shopping-quantized.json');\nconst tbody = document.querySelector('#shop tbody');\nif (shop && Array.isArray(shop.items) && shop.items.length){\n  tbody.innerHTML = shop.items.slice(0,500).map(x=>`<tr><td>${(x.name||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}</td><td>${x.qty||''}</td><td>${x.notes||''}</td></tr>`).join('');\n}else{\n  document.getElementById('shopEmpty').hidden = false;\n}\n\nconst prefs = await loadJSON('../carol/profile/preferences.json');\ndocument.getElementById('prefs').textContent = prefs ? JSON.stringify(prefs,null,2) : 'preferences.json not found. Open Phoenix to save.';\n</script>\n</body></html>\n"
+  },
+  {
     "path": "pages/apps/carol/debug/plan-inspect.json",
     "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
     "bytes": 3,
@@ -7960,23 +7984,27 @@
   },
   {
     "path": "pages/apps/jem/dashboard.html",
-    "sha256": "edb5c97e39be6c562e0f63f38a63bac6dc5f28c64594e2f2497834a233acef4a",
-    "bytes": 291,
+    "sha256": "da43f0ef81e5fd7be4e3bcabc07be9d6ca2e2d47b612d53eaea55e3a6b71789e",
+    "bytes": 1644,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><meta charset='utf-8'><title>Jem — Dashboard</title><body style='font-family:system-ui;background:#0b0f17;color:#e5e7eb'><h1>Jem — Programs & Biometrics</h1><p>Upload Samsung Health ZIP to <code>pages/apps/jem/imports/</code>, run import workflow, then refresh.</p></body>"
+    "links": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "refs": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "preview": "<!doctype html><html lang=\"en\"><head>\n<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Jem — Golden Dragon Dojo</title>\n<link rel=\"stylesheet\" href=\"../../assets/css/avalon-dashboard.css\">\n</head><body>\n<header class=\"av-head\"><div class=\"wrap\">\n  <h1>🐉 Jem — Golden Dragon Dojo</h1>\n  <p class=\"sub\">Live plan snapshots for training. Source: <code>pages/apps/jem/data/plan-latest.json</code></p>\n</div></header>\n<main class=\"wrap grid\">\n  <section class=\"card\">\n    <h2>Current Plan</h2>\n    <pre id=\"plan\" class=\"mono muted\">Loading plan-latest.json…</pre>\n  </section>\n  <section class=\"card\">\n    <h2>Exercise Log (Local)</h2>\n    <div class=\"muted\">Logs saved locally by your browser from the Dojo UI.</div>\n    <table class=\"table\"><thead><tr><th>Exercise</th><th>Sets x Reps</th><th>RPE</th><th>Time</th></tr></thead><tbody id=\"logBody\"></tbody></table>\n  </section>\n</main>\n<script type=\"module\">\nasync function loadJSON(p){ try{ const r=await fetch(p+'?t='+Date.now(),{cache:'no-store'}); if(!r.ok) throw new Error(r.status); return await r.json(); }catch(e){ return null; } }\nconst plan = await loadJSON('../jem/data/plan-latest.json');\ndocument.getElementById('plan').textContent = plan ? JSON.stringify(plan,null,2) : 'plan-latest.json not found. Run “Jem Assessment Import”.';\nconst logs = JSON.parse(localStorage.getItem('jem_log')||'[]');\ndocument.getElementById('logBody').innerHTML = logs.map(x=>`<tr><td>${x.ex||x.ex||''}</td><td>${x.sr||''}</td><td>${x.rpe||''}</td><td>${(x.at||'').replace('T',' ').replace('Z','')}</td></tr>`).join('');\n</script>\n</body></html>\n"
   },
   {
     "path": "pages/apps/jem/data/plan-latest.json",
-    "sha256": "3167f9e3957e5f6f745fc0a1937e0b83d4c1047677e159fbcadd527a0cc6c3b5",
+    "sha256": "3cecf89c052ba390ca85f9cec0eac7dcfc5f2b6521b3ebcf8e56b2d796cac288",
     "bytes": 28,
     "purpose": "app-page",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "{\"generated\":\"18965870776\"}\n"
+    "preview": "{\"generated\":\"18987542141\"}\n"
   },
   {
     "path": "pages/apps/jem/dragon-dojo.html",
@@ -10323,8 +10351,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "d1f9f70eac44612ffd406de7018a070bcbf99caa42c67b651b9f44ca98fb0a2e",
-    "bytes": 177413,
+    "sha256": "93d6cce4b0c170e036242699b2c65d5e35fdb3ddd4b334c2139552a872040f54",
+    "bytes": 177725,
     "purpose": "other",
     "imports": [],
     "links": [],
@@ -10333,7 +10361,7 @@
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "f5aba8e4ea17fd175fa4d51bf3e76782acc72ad9465f809df3f665e268659a36",
+    "sha256": "254196d3319271539c83ea656116a9c08eac812b9d861387c5b4b1b1373ea0ba",
     "bytes": 3364677,
     "purpose": "other",
     "imports": [],

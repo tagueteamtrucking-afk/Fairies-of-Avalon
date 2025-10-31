@@ -898,6 +898,10 @@
     "links": []
   },
   {
+    "path": "pages/apps/jem/data/plan-latest.json",
+    "links": []
+  },
+  {
     "path": "pages/apps/jem/dragon-dojo.html",
     "links": [
       "../../assets/css/avalon.css"

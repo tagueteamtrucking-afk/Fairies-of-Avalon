@@ -1133,6 +1133,16 @@
     "preview": "meta:\n  project: Avalon\n  file_name: \"Cody's Memory.yaml\"\n  version: \"3.1.1\"\n  last_updated: \"2025-10-21T23:43:45Z\"\n  author: \"Cody (GPT-5 Pro)\"\n  notes: >\n    Consolidated memory + fixed base64-embedded scripts for sweeps (no quoting bugs)\n    + Charlotte crawler (GitHub-only) + Carol 14-day plan (2 people).\n\ncody_rules_ref: \"Retain from v3.1.0; unchanged in spirit. Packaging remains two ZIPs for iPad.\"\n\nruntime:\n  workflows:\n    deploy_pages: \".github/workflows/deploy-pages.yml\"\n    overseers_memory_sweep: \".github/workflows/overseers-memory-sweep.yml\"\n    overseers_crossrepo_sweep: \".github/workflows/overseers-crossrepo-sweep.yml\"\n    overseers_manifests: \".github/workflows/overseers-manifests.yml\"\n    overseers_permissions: \".github/workflows/overseers-permissions.yml\"\n    overseers_repo_doctor: \".github/workflows/overseers-repo-doctor.yml\"\n    charlotte_crawler: \".github/workflows/charlotte-crawler.yml\"\n  pointers:\n    carol_latest_plan: \"/pages/apps/carol/plans/twoperson-2wk-20251021T234345Z.json\"\n    carol_shopping: \"/pages/apps/carol/plans/shopping-quantized.json\"\n\naudit_log:\n  - { ts: \"2025-10-21T23:43:45Z\", actor: \"assistant\", action: \"mem.replace\", target: \"Cody's Memory.yaml\", result: \"ok\",\n      notes: \"v3.1.1 — fix quoting in workflows (no ''fs''), add Charlotte crawler, add Carol 14-day plan.\" }\n"
   },
   {
+    "path": "artifacts/campaign/README.txt",
+    "sha256": "9e68e6817c1eefa33fe77cad19801ca11e8985fb95488c4027f6d22cad1b8a77",
+    "bytes": 33,
+    "purpose": "other",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "Campaign kit 2025-10-31 06:38:21\n"
+  },
+  {
     "path": "asset/css/style.css",
     "sha256": "5f12cfe8120b0751d0f55d56307a1a4558ed481127521c862bf1899a91cebb0c",
     "bytes": 133,
@@ -7939,6 +7949,16 @@
     "preview": "<!doctype html><meta charset='utf-8'><title>Jem — Dashboard</title><body style='font-family:system-ui;background:#0b0f17;color:#e5e7eb'><h1>Jem — Programs & Biometrics</h1><p>Upload Samsung Health ZIP to <code>pages/apps/jem/imports/</code>, run import workflow, then refresh.</p></body>"
   },
   {
+    "path": "pages/apps/jem/data/plan-latest.json",
+    "sha256": "3167f9e3957e5f6f745fc0a1937e0b83d4c1047677e159fbcadd527a0cc6c3b5",
+    "bytes": 28,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\"generated\":\"18965870776\"}\n"
+  },
+  {
     "path": "pages/apps/jem/dragon-dojo.html",
     "sha256": "244dc53854a4ae681bc7fc0890554b2cbe70ac2f48433b8d583883945318c423",
     "bytes": 254,
@@ -10283,8 +10303,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "c21c3b66f8fd7632086f02c5e208e81e75d129166ddd69edda56b52df155fc9b",
-    "bytes": 176783,
+    "sha256": "e898b5ee28fa402b2a17abf0b204f47238c7a017e31961bc019839b45b0e7bc0",
+    "bytes": 177094,
     "purpose": "other",
     "imports": [],
     "links": [],
@@ -10293,8 +10313,8 @@
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "d6dfe4ece69f42f6e886e283340ce32d79692f6f9fd36e483981e67bb2cbbc5b",
-    "bytes": 3356703,
+    "sha256": "beb0d54ae5bbf0369e583f8e5b1d9a60577e64990f1ffe55854d69d3d3488dbc",
+    "bytes": 3363421,
     "purpose": "other",
     "imports": [],
     "links": [],

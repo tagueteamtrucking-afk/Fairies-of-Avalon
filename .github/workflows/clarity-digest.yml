@@ -1,4 +1,4 @@
-name: Crown of Clarity — Digest (issues)
+name: Crown of Clarity - Digest (issues)
 on:
   workflow_dispatch:
 
@@ -26,13 +26,15 @@ jobs:
             const total = files.length;
             const size = files.reduce((a,b)=>a+(b.bytes||0),0);
             const mb = (size/1048576).toFixed(2);
-            const body = `## Crown of Clarity — Repo Digest
-Generated: ${new Date().toISOString()}
-
-- Total files: **${total}**
-- Total size: **${mb} MB**
-- Catalog: reports/clarity/catalog.json`;
-            const title = 'Crown of Clarity — Repo Digest';
+            const body = [
+              '## Crown of Clarity - Repo Digest',
+              'Generated: ' + new Date().toISOString(),
+              '',
+              '- Total files: **' + total + '**',
+              '- Total size: **' + mb + ' MB**',
+              '- Catalog: reports/clarity/catalog.json'
+            ].join('\n');
+            const title = 'Crown of Clarity - Repo Digest';
             const issues = (await github.rest.issues.listForRepo({owner, repo, state:'open'})).data;
             const existing = issues.find(i => i.title === title);
             if (existing) {

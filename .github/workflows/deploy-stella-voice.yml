@@ -1,17 +1,14 @@
-name: Deploy Worker - importmap installer
+name: Deploy Worker - stella voice
 on: { workflow_dispatch: {} }
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy Worker (wrangler)
+      - name: Publish TTS Worker
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: >
-            wrangler deploy cloudflare/worker-importmap-install.js --name=avalon-importmap-install
+            wrangler deploy cloudflare/worker-tts.js --name=stella-voice

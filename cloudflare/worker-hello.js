@@ -1,1 +1,1 @@
-export default { async fetch(){ return new Response('hello from Avalon worker'); } }
+export default { async fetch(){ return new Response('hello from Avalon worker',{status:200}); } }

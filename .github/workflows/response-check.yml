@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       urls:
-        description: 'Space-separated list of URLs to check'
+        description: "Space-separated URLs to check"
         required: true
-        default: 'https://fairiesofavalon.com https://fairiesofavalon.com/pages/_city/index.html'
+        default: "https://fairiesofavalon.com https://fairiesofavalon.com/pages/_city/index.html https://fairiesofavalon.com/api/hello"
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -13,6 +13,7 @@ jobs:
       - name: Curl each URL
         run: |
           set -e
+          ts=$(date -Iseconds)
           mkdir -p response-check
           for u in ${{ inputs.urls }}; do
             fn=$(echo "$u" | sed 's#https\?://##; s#[^a-zA-Z0-9._-]#_#g')

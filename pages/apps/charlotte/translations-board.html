@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Charlotte – Translations Board</title>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
+  <style>
+    .translator {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+    select {
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">🌐 Charlotte – Translations Board</h1>
+    <p class="lead">Enter text below and select a target language. Charlotte will translate using a basic dictionary. This feature will expand in future releases.</p>
+    <div class="translator">
+      <textarea id="source" placeholder="Enter text to translate (English only)…"></textarea>
+      <label>
+        Target language:
+        <select id="language">
+          <option value="es">Spanish (es)</option>
+          <option value="fr">French (fr)</option>
+        </select>
+      </label>
+      <button id="translate">Translate</button>
+      <textarea id="result" placeholder="Translation will appear here…" readonly></textarea>
+    </div>
+    <p><a href="index.html">← back to Charlotte</a></p>
+  </div>
+  <script type="module">
+    const dictionary = {
+      'hello': { es: 'hola', fr: 'bonjour' },
+      'world': { es: 'mundo', fr: 'monde' },
+      'good': { es: 'bueno', fr: 'bon' },
+      'morning': { es: 'mañana', fr: 'matin' },
+      'avalon': { es: 'avalón', fr: 'avalon' },
+      'fairies': { es: 'hadas', fr: 'fées' },
+      'of': { es: 'de', fr: 'de' },
+      'love': { es: 'amor', fr: 'amour' },
+      'peace': { es: 'paz', fr: 'paix' },
+      'light': { es: 'luz', fr: 'lumière' }
+    };
+    function translateWord(word, lang) {
+      const lower = word.toLowerCase();
+      if (dictionary[lower] && dictionary[lower][lang]) {
+        return dictionary[lower][lang];
+      }
+      return word;
+    }
+    document.getElementById('translate').addEventListener('click', () => {
+      const src = document.getElementById('source').value.trim();
+      const lang = document.getElementById('language').value;
+      if (!src) {
+        document.getElementById('result').value = '';
+        return;
+      }
+      const words = src.split(/\s+/);
+      const translated = words.map(w => translateWord(w, lang));
+      document.getElementById('result').value = translated.join(' ');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Charlotte – Queues Dashboard</title>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">📊 Charlotte – Queues Dashboard</h1>
+    <p class="lead">Monitor outstanding tasks across Avalon. Use this dashboard to track progress and assign tasks.</p>
+    <div id="queues-table"></div>
+    <p><a href="index.html">← back to Charlotte</a></p>
+  </div>
+  <script type="module">
+    // Static tasks; in a real implementation these would be fetched from an API or workflow queue.
+    const tasks = [
+      { id: 'Q‑101', title: 'Implement meal planner', assignee: 'Carol', status: 'in progress' },
+      { id: 'Q‑102', title: 'Build fitness planner', assignee: 'Jem', status: 'in progress' },
+      { id: 'Q‑103', title: 'Add story shelf', assignee: 'Alexandria', status: 'done' },
+      { id: 'Q‑104', title: 'Create guided session audio', assignee: 'Stella', status: 'done' },
+      { id: 'Q‑105', title: 'Develop art gallery page', assignee: 'Tracy', status: 'in review' },
+      { id: 'Q‑106', title: 'Set up import map validation', assignee: 'Nina', status: 'not started' }
+    ];
+    function renderTable() {
+      let html = '<table><thead><tr><th>ID</th><th>Title</th><th>Assignee</th><th>Status</th></tr></thead><tbody>';
+      tasks.forEach(task => {
+        html += `<tr><td>${task.id}</td><td>${task.title}</td><td>${task.assignee}</td><td>${task.status}</td></tr>`;
+      });
+      html += '</tbody></table>';
+      document.getElementById('queues-table').innerHTML = html;
+    }
+    renderTable();
+  </script>
+</body>
+</html>

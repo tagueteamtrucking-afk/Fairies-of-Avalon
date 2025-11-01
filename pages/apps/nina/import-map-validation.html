@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Nina – Import Map Validation</title>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #f2f2f2;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">📦 Nina – Import Map Validation</h1>
+    <p class="lead">This tool inspects the site import map and lists all module specifiers and their URLs. Use it to verify that modules are correctly mapped.</p>
+    <div id="map-table"></div>
+    <p><a href="index.html">← back to Nina</a></p>
+  </div>
+  <script type="module">
+    async function loadImportMap() {
+      try {
+        const resp = await fetch('/importmap.json');
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const data = await resp.json();
+        const imports = data.imports || {};
+        let html = '<table><thead><tr><th>Specifier</th><th>URL</th></tr></thead><tbody>';
+        Object.keys(imports).forEach(spec => {
+          html += `<tr><td>${spec}</td><td>${imports[spec]}</td></tr>`;
+        });
+        html += '</tbody></table>';
+        document.getElementById('map-table').innerHTML = html;
+      } catch (err) {
+        document.getElementById('map-table').innerHTML = `<p class="error">Failed to load import map: ${err.message}</p>`;
+      }
+    }
+    loadImportMap();
+  </script>
+</body>
+</html>

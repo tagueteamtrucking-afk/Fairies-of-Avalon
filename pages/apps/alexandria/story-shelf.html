@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Alexandria – Story Shelf</title>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
+  <style>
+    details {
+      margin-bottom: 1rem;
+    }
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">📖 Alexandria – Story Shelf</h1>
+    <p class="lead">Explore a growing collection of Avalon stories. Click a title to reveal the tale.</p>
+    <div id="stories"></div>
+    <p><a href="index.html">← back to Alexandria</a></p>
+  </div>
+  <script type="module">
+    async function loadStories() {
+      try {
+        const resp = await fetch('data/story.json');
+        const data = await resp.json();
+        const container = document.getElementById('stories');
+        data.stories.forEach(story => {
+          const details = document.createElement('details');
+          const summary = document.createElement('summary');
+          summary.textContent = story.title;
+          const p = document.createElement('p');
+          p.textContent = story.content;
+          details.appendChild(summary);
+          details.appendChild(p);
+          container.appendChild(details);
+        });
+      } catch (err) {
+        document.getElementById('stories').textContent = 'Failed to load stories.';
+      }
+    }
+    loadStories();
+  </script>
+</body>
+</html>

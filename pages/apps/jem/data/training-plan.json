@@ -1,0 +1,64 @@
+{
+  "plans": [
+    {
+      "day": 1,
+      "activities": [
+        {"name": "Warm‑up", "description": "5‑minute light jog and dynamic stretches"},
+        {"name": "Cardio", "description": "20‑minute HIIT on treadmill"},
+        {"name": "Strength", "description": "3 sets of 10 push‑ups, 15 squats, and 20 lunges"},
+        {"name": "Cooldown", "description": "5‑minute stretching and breathing exercises"}
+      ]
+    },
+    {
+      "day": 2,
+      "activities": [
+        {"name": "Warm‑up", "description": "5‑minute brisk walk and arm circles"},
+        {"name": "Cardio", "description": "30‑minute cycling session"},
+        {"name": "Strength", "description": "3 sets of 12 dumbbell rows, 15 glute bridges, and 1‑minute plank"},
+        {"name": "Cooldown", "description": "5‑minute yoga stretch"}
+      ]
+    },
+    {
+      "day": 3,
+      "activities": [
+        {"name": "Warm‑up", "description": "Jump rope for 3 minutes"},
+        {"name": "Cardio", "description": "25‑minute dance workout"},
+        {"name": "Strength", "description": "3 sets of 15 kettlebell swings, 12 push‑ups, and 30‑second side planks"},
+        {"name": "Cooldown", "description": "Foam rolling and deep breathing"}
+      ]
+    },
+    {
+      "day": 4,
+      "activities": [
+        {"name": "Warm‑up", "description": "5‑minute walk and leg swings"},
+        {"name": "Cardio", "description": "20‑minute swimming"},
+        {"name": "Strength", "description": "3 sets of 12 assisted pull‑ups, 15 goblet squats, and 20 calf raises"},
+        {"name": "Cooldown", "description": "Stretching focusing on legs and shoulders"}
+      ]
+    },
+    {
+      "day": 5,
+      "activities": [
+        {"name": "Warm‑up", "description": "Light jog and jumping jacks"},
+        {"name": "Cardio", "description": "15‑minute row machine"},
+        {"name": "Strength", "description": "3 sets of 10 burpees, 12 triceps dips, and 15 bicycle crunches"},
+        {"name": "Cooldown", "description": "Full body stretching and meditation"}
+      ]
+    },
+    {
+      "day": 6,
+      "activities": [
+        {"name": "Warm‑up", "description": "Dynamic stretching and torso twists"},
+        {"name": "Cardio", "description": "20‑minute outdoor jog"},
+        {"name": "Strength", "description": "3 sets of 15 dumbbell curls, 20 calf raises, and 2‑minute plank"},
+        {"name": "Cooldown", "description": "Stretch legs, arms and back"}
+      ]
+    },
+    {
+      "day": 7,
+      "activities": [
+        {"name": "Active rest", "description": "Yoga session or leisurely walk for 30 minutes"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "stories": [
+    {
+      "id": "origin",
+      "title": "The Birth of Avalon",
+      "content": "Long ago, the island of Avalon emerged from the mist, created by ancient spirits seeking harmony between technology and nature. The fairies of Avalon were entrusted to safeguard its secrets and guide curious travellers. Together they built a city where knowledge, creativity and wellness flourished."
+    },
+    {
+      "id": "hall_of_dragons",
+      "title": "The Dragon Hall",
+      "content": "Deep within the mountains lies the Dragon Hall, a sanctuary where Jem trains apprentices in the art of motion. Its golden sculptures and crimson tapestries echo the legendary battle between the first dragons and the healers of Avalon."
+    },
+    {
+      "id": "stella_song",
+      "title": "Stella's Song",
+      "content": "Guided by celestial melodies, Stella discovered the resonance frequencies that heal the mind. Her guided sessions blend binaural beats with whispering winds, transporting listeners to inner worlds of calm."
+    }
+  ]
+}

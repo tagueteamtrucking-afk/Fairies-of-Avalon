@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Alexandria – Character Sheets</title>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">🧙 Alexandria – Character Sheets</h1>
+    <p class="lead">Meet the residents of Avalon. These sheets summarise each fairy’s role and background.</p>
+    <div id="characters-table"></div>
+    <p><a href="index.html">← back to Alexandria</a></p>
+  </div>
+  <script type="module">
+    async function loadCharacters() {
+      try {
+        const resp = await fetch('data/characters.json');
+        const data = await resp.json();
+        const container = document.getElementById('characters-table');
+        let html = '<table><thead><tr><th>Name</th><th>Role</th><th>Bio</th></tr></thead><tbody>';
+        data.characters.forEach(char => {
+          html += `<tr><td>${char.name}</td><td>${char.role}</td><td>${char.bio}</td></tr>`;
+        });
+        html += '</tbody></table>';
+        container.innerHTML = html;
+      } catch (err) {
+        document.getElementById('characters-table').textContent = 'Failed to load character sheets.';
+      }
+    }
+    loadCharacters();
+  </script>
+</body>
+</html>

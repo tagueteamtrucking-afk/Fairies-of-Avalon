@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Nina – Security Reports</title>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+    }
+    th {
+      background: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">🔐 Nina – Security Reports</h1>
+    <p class="lead">Stay informed about the latest security findings and actions taken. This table lists open, investigating and resolved issues.</p>
+    <div id="reports-table"></div>
+    <p><a href="index.html">← back to Nina</a></p>
+  </div>
+  <script type="module">
+    async function loadReports() {
+      try {
+        const resp = await fetch('data/security-reports.json');
+        const data = await resp.json();
+        let html = '<table><thead><tr><th>ID</th><th>Title</th><th>Severity</th><th>Status</th><th>Description</th></tr></thead><tbody>';
+        data.reports.forEach(rep => {
+          html += `<tr><td>${rep.id}</td><td>${rep.title}</td><td>${rep.severity}</td><td>${rep.status}</td><td>${rep.description}</td></tr>`;
+        });
+        html += '</tbody></table>';
+        document.getElementById('reports-table').innerHTML = html;
+      } catch (err) {
+        document.getElementById('reports-table').textContent = 'Failed to load security reports.';
+      }
+    }
+    loadReports();
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "plan": [
+    {"day": 1, "breakfast": "Overnight oats with chia & berries", "lunch": "Chicken & avocado lettuce cups", "dinner": "Air‑fryer salmon & veg"},
+    {"day": 2, "breakfast": "Apple slices & peanut butter", "lunch": "Quinoa salad with roasted veggies", "dinner": "Turkey burgers with sweet potato fries"},
+    {"day": 3, "breakfast": "Greek yogurt with pineapple & honey", "lunch": "Tuna salad in lettuce wraps", "dinner": "Stir‑fry tofu with broccoli & rice"},
+    {"day": 4, "breakfast": "Banana‑spinach smoothie", "lunch": "Mediterranean chickpea bowl", "dinner": "Baked cod with asparagus & lemon"},
+    {"day": 5, "breakfast": "Oatmeal pancakes with blueberries", "lunch": "Turkey & avocado wrap", "dinner": "Vegetable curry with brown rice"},
+    {"day": 6, "breakfast": "Smoothie bowl with acai & granola", "lunch": "Quinoa salad with black beans & corn", "dinner": "Grilled steak with roasted Brussels sprouts"},
+    {"day": 7, "breakfast": "Scrambled eggs with spinach & tomatoes", "lunch": "Chicken Caesar salad", "dinner": "Shrimp stir‑fry with mixed vegetables"},
+    {"day": 8, "breakfast": "Overnight oats with chia & berries", "lunch": "Grilled chicken & kale salad", "dinner": "Air‑fryer salmon & veg"},
+    {"day": 9, "breakfast": "Greek yogurt with pineapple", "lunch": "Lentil soup & mixed greens", "dinner": "Turkey burgers with sweet potato fries"},
+    {"day": 10, "breakfast": "Banana‑spinach smoothie", "lunch": "Mediterranean chickpea bowl", "dinner": "Vegetable curry with brown rice"},
+    {"day": 11, "breakfast": "Oatmeal pancakes with blueberries", "lunch": "Tuna salad in lettuce wraps", "dinner": "Stir‑fry tofu with broccoli & rice"},
+    {"day": 12, "breakfast": "Apple slices & peanut butter", "lunch": "Quinoa salad with roasted veggies", "dinner": "Baked cod with asparagus & lemon"},
+    {"day": 13, "breakfast": "Smoothie bowl with acai & granola", "lunch": "Turkey & avocado wrap", "dinner": "Grilled steak with roasted Brussels sprouts"},
+    {"day": 14, "breakfast": "Scrambled eggs with spinach & tomatoes", "lunch": "Chicken Caesar salad", "dinner": "Shrimp stir‑fry with mixed vegetables"}
+  ]
+}

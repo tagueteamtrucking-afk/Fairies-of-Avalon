@@ -1,0 +1,25 @@
+{
+  "reports": [
+    {
+      "id": "SR‑001",
+      "title": "Outdated dependency identified",
+      "severity": "medium",
+      "description": "A dependency used by the VRM viewer is outdated and may contain vulnerabilities. Update to the latest version to mitigate potential exploits.",
+      "status": "open"
+    },
+    {
+      "id": "SR‑002",
+      "title": "Unauthorized access attempt detected",
+      "severity": "high",
+      "description": "Multiple failed login attempts were recorded from an unknown IP. Temporary lockout enforced and alert sent to administrators.",
+      "status": "investigating"
+    },
+    {
+      "id": "SR‑003",
+      "title": "Import map missing entry",
+      "severity": "low",
+      "description": "An internal page attempted to import a module not declared in the import map. Add the missing mapping to prevent runtime errors.",
+      "status": "resolved"
+    }
+  ]
+}

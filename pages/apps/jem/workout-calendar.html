@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Jem – Workout Calendar</title>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
+  <style>
+    ul.calendar {
+      list-style: none;
+      padding: 0;
+    }
+    ul.calendar > li {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+    }
+    ul.calendar h3 {
+      margin: 0 0 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">📅 Jem – Workout Calendar</h1>
+    <p class="lead">Visualise your weekly workouts day‑by‑day. Use this calendar to schedule your training and plan rest days.</p>
+    <ul id="calendar" class="calendar"></ul>
+    <p><a href="index.html">← back to Jem</a></p>
+  </div>
+  <script type="module">
+    async function loadCalendar() {
+      try {
+        const resp = await fetch('data/training-plan.json');
+        const plan = await resp.json();
+        const cal = document.getElementById('calendar');
+        plan.plans.forEach(item => {
+          const li = document.createElement('li');
+          const header = document.createElement('h3');
+          header.textContent = `Day ${item.day}`;
+          li.appendChild(header);
+          const list = document.createElement('ul');
+          item.activities.forEach(act => {
+            const sub = document.createElement('li');
+            sub.innerHTML = `<strong>${act.name}:</strong> ${act.description}`;
+            list.appendChild(sub);
+          });
+          li.appendChild(list);
+          cal.appendChild(li);
+        });
+      } catch (err) {
+        document.getElementById('calendar').textContent = 'Failed to load calendar.';
+      }
+    }
+    loadCalendar();
+  </script>
+</body>
+</html>

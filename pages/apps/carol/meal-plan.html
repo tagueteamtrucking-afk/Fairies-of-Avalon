@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Carol – Meal Planner</title>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">🥗 Carol – Meal Planner</h1>
+    <p class="lead">Below is a two‑week meal plan curated by Carol. Each day includes a balanced breakfast, lunch and dinner.</p>
+    <div id="meal-table"></div>
+    <p><a href="index.html">← back to Carol</a></p>
+  </div>
+  <script type="module">
+    async function loadPlan() {
+      try {
+        const resp = await fetch('data/meal-plan.json');
+        const data = await resp.json();
+        const container = document.getElementById('meal-table');
+        let html = '<table><thead><tr><th>Day</th><th>Breakfast</th><th>Lunch</th><th>Dinner</th></tr></thead><tbody>';
+        data.plan.forEach(item => {
+          html += `<tr><td>Day ${item.day}</td><td>${item.breakfast}</td><td>${item.lunch}</td><td>${item.dinner}</td></tr>`;
+        });
+        html += '</tbody></table>';
+        container.innerHTML = html;
+      } catch (err) {
+        document.getElementById('meal-table').textContent = 'Failed to load meal plan.';
+      }
+    }
+    loadPlan();
+  </script>
+</body>
+</html>

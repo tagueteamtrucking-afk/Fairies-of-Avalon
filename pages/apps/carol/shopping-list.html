@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Carol – Shopping List</title>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
+  <style>
+    ul.list {
+      list-style: none;
+      padding: 0;
+    }
+    ul.list li {
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">🛒 Carol – Shopping List</h1>
+    <p class="lead">Here is the aggregated shopping list for the two‑week meal plan. Quantities are suggestions for two people.</p>
+    <ul id="shopping-list" class="list"></ul>
+    <p><a href="index.html">← back to Carol</a></p>
+  </div>
+  <script type="module">
+    async function loadList() {
+      try {
+        const resp = await fetch('data/shopping-list.json');
+        const data = await resp.json();
+        const ul = document.getElementById('shopping-list');
+        data.ingredients.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = `${item.name} – ${item.quantity}`;
+          ul.appendChild(li);
+        });
+      } catch (err) {
+        document.getElementById('shopping-list').textContent = 'Failed to load shopping list.';
+      }
+    }
+    loadList();
+  </script>
+</body>
+</html>

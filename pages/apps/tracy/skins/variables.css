@@ -1,9 +1,0 @@
-/* Tracy Tokens: tweak these to theme the whole site */
-:root{
-  --bg:#0b0f17; --ink:#e8ecf1; --card:#141a24; --accent:#9cc1ff;
-  --pad:16px; --radius:14px;
-  --art-primary:#4b2bb5; --art-secondary:#fb7185; --art-warn:#f59e0b;
-}
-/* Alt themes */
-:root.theme-autumn{ --bg:#1d120a; --ink:#ffedd5; --card:#2a170c; --accent:#fb923c; --art-primary:#b45309; --art-secondary:#f97316; }
-:root.theme-noir{ --bg:#0a0a0a; --ink:#e5e7eb; --card:#111; --accent:#9ca3af; --art-primary:#334155; --art-secondary:#64748b; }

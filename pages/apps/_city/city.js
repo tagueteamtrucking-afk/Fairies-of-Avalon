@@ -1,1 +1,0 @@
-// Reserved for future map interactions (hotspots, badges, live status)

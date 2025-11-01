@@ -1,2 +1,0 @@
-:root{ --hero:url(/asset/textures/wallpapers/castle village 01.jpg); }
-.wrap{ background-image: var(--hero); background-size: cover; background-position:center; }

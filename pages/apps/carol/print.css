@@ -1,4 +1,0 @@
-@media print{
-  .day{break-after:page;page-break-after:always}
-  .day:last-child{break-after:auto;page-break-after:auto}
-}

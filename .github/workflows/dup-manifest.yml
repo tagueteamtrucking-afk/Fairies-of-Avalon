@@ -1,0 +1,39 @@
+name: Repo Cleanup - Duplicates Manifest
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build duplicates manifest
+        run: |
+          mkdir -p reports/cleanup
+          git ls-files -z | xargs -0 -I{} sha256sum "{}" > _all.sha
+          sort _all.sha > _all.sorted.sha
+          awk '{print $1}' _all.sorted.sha | uniq -d > _dups.sha
+          echo '[' > reports/cleanup/duplicates.json
+          first=1
+          while read -r H; do
+            files=$(grep "^${H} " _all.sorted.sha | awk '{print $2}' | jq -R -s 'split("\n")|map(select(length>0))')
+            if [ $first -eq 0 ]; then echo ',' >> reports/cleanup/duplicates.json; fi
+            echo "{\"sha256\":\"${H}\",\"files\":${files}}" >> reports/cleanup/duplicates.json
+            first=0
+          done < _dups.sha
+          echo ']' >> reports/cleanup/duplicates.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cleanup-duplicates
+          path: reports/cleanup/duplicates.json
+      - name: PR - add manifest
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "cleanup(manifest): duplicate files report"
+          title: "cleanup(manifest): duplicate files report"
+          branch: "ci/cleanup-manifest-${{ github.run_id }}"
+          base: "${{ github.ref_name }}"
+          add-paths: |
+            reports/cleanup/duplicates.json

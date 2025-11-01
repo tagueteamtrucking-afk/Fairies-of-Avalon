@@ -1,0 +1,31 @@
+name: Repo Cleanup - Apply Manifest
+on:
+  workflow_dispatch:
+    inputs:
+      manifest_path:
+        description: "Path to JSON file with an array of paths to delete"
+        required: true
+        default: "reports/cleanup/to-delete.json"
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Delete listed files and PR
+        run: |
+          set -e
+          PATHS=$(cat "${{ github.event.inputs.manifest_path }}" | jq -r '.[]')
+          for p in $PATHS; do
+            if [ -f "$p" ]; then git rm -f "$p"; else echo "skip: $p"; fi
+          done
+          git commit -m "cleanup: remove duplicates (manifest)" || echo "no changes"
+      - name: PR - cleanup
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "cleanup: remove duplicates (manifest)"
+          title: "cleanup: remove duplicates (manifest)"
+          branch: "ci/cleanup-apply-${{ github.run_id }}"
+          base: "${{ github.ref_name }}"

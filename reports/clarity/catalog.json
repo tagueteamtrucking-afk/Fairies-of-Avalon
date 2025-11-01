@@ -36,8 +36,8 @@
   },
   {
     "path": ".github/workflows/auto-approve-and-merge.yml",
-    "sha256": "afe7456cf824240f0c41a64aea65660afb9d2abb66598cb85f6711fedebea956",
-    "bytes": 673
+    "sha256": "5f6fdf1b03dd4a5dbd786fcb49f38db17b491662703834513efb1a4c2c741270",
+    "bytes": 1387
   },
   {
     "path": ".github/workflows/carol-build-shopping-direct.yml",
@@ -266,8 +266,13 @@
   },
   {
     "path": ".github/workflows/label-bot-prs.yml",
-    "sha256": "b9b31f179f5b72acc525c5c5f2943decc76f967192cea924a6ebae6641082ce5",
-    "bytes": 834
+    "sha256": "d5c522f0002269ab0e12577604625bd510a12fc18923e4e3a50a3f2ada072370",
+    "bytes": 446
+  },
+  {
+    "path": ".github/workflows/labeler.yml",
+    "sha256": "b3c5fd054136f74ccb34c240aee994564c9641cf85e128e124497d328af0d63a",
+    "bytes": 237
   },
   {
     "path": ".github/workflows/llm-bootstrap-nightly.yml",
@@ -353,6 +358,16 @@
     "path": ".github/workflows/package-workflows.yml",
     "sha256": "4e4ad07d02d12be3d9c29d26c6c67c8f6a8429c0cb75b6713386643178b88e94",
     "bytes": 812
+  },
+  {
+    "path": ".github/workflows/pr-automerge-comment-bot.yml",
+    "sha256": "fbf973107e8d4c827dc663454af0fb00e4be974cf215fa8485ebe1199b8c202c",
+    "bytes": 4691
+  },
+  {
+    "path": ".github/workflows/pr-policy.yml",
+    "sha256": "bd013a43fa663998edecbb2785f1500c17252c599197fa4f85c3d88faab1b88d",
+    "bytes": 580
   },
   {
     "path": ".github/workflows/repo-doctor.yml",
@@ -1460,6 +1475,11 @@
     "bytes": 268
   },
   {
+    "path": "docs/PR-Automerge-Comment-Bot.md",
+    "sha256": "7295d9a746f9d602339be67bd8056b07ef583240fd8f2a98e4fa0df339241047",
+    "bytes": 519
+  },
+  {
     "path": "docs/RULES.md",
     "sha256": "92a72564ea653f5273f00dc3c665c96956cf79fe0daf18ccfa01e81524533b7b",
     "bytes": 8
@@ -1471,13 +1491,13 @@
   },
   {
     "path": "importmap.json",
-    "sha256": "99621adad95d7d893bddac9bd6be0b08c0933838c60cc8beaa6e5b442d555bd4",
-    "bytes": 286
+    "sha256": "5749e6201204e03024f0f42346743951acba8839356564e1b9f3aa8d2fc1adeb",
+    "bytes": 248
   },
   {
     "path": "index.html",
-    "sha256": "47d011a53c5fa361434cba2897ec46a053d66d0e1051ce2395f0016b8c868162",
-    "bytes": 1706
+    "sha256": "035c3707ffd157e55221f6bbe850f98603e939f88981bdc3702449c48616089d",
+    "bytes": 1392
   },
   {
     "path": "kill-sw-boost.html",
@@ -2716,8 +2736,8 @@
   },
   {
     "path": "memory-history/repo-inventory.json",
-    "sha256": "b997ed5e241b2c0039a4fa3b7d2d8471b20d4f54c62fc833eaafb89bd79b0273",
-    "bytes": 190360
+    "sha256": "126b114a040a4fdd79413dc19cd2ba91dc03b67b617dc5c5a8ff88247e94681e",
+    "bytes": 199405
   },
   {
     "path": "memory-history/repo-read-index.json",
@@ -2726,12 +2746,12 @@
   },
   {
     "path": "memory-history/repo-refs.json",
-    "sha256": "6e75787fca4eda62f9b1e560b74fe1f927030469baba05630777087e8980ed88",
+    "sha256": "79ed2d573da4f36413046bd0bd0e7f9a5eff5c14a9a3a913f097921d7ece4133",
     "bytes": 633
   },
   {
     "path": "memory-history/repo-usage-report.json",
-    "sha256": "a3b1cd9576bf193f98fd7b702138b109b4ab38a5b964521b4ea76ca0a44445fd",
+    "sha256": "3ba1448dd0eed4482b8bb0ac3e29d706a7b40aa134b6b0d9167dee83e738312d",
     "bytes": 8544
   },
   {
@@ -2753,6 +2773,11 @@
     "path": "memory/Codys-Memory-visuals.yaml",
     "sha256": "6d63d90426123d559d0c8c012e6c3488ee70d65d20bad3ead36b4a4d8ac6c0ba",
     "bytes": 4260
+  },
+  {
+    "path": "memory/cleanup-rules.json",
+    "sha256": "538f6f2b177e9e35034e2644312c5ec836d4373afff87f74c0f6d9748f470f4c",
+    "bytes": 623
   },
   {
     "path": "memory/deadends.json",
@@ -4776,8 +4801,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "bdb6f4b48ffd73eb8e9b2872ec0ab95685b5a54fd03305f260d8e4bb7e8f90d4",
-    "bytes": 177413
+    "sha256": "3d84a5691b126847ccec2acd59a9fbe8709da68e0fe8e883490c0cc748aef5ec",
+    "bytes": 178052
   },
   {
     "path": "reports/clarity/files-index.json",
@@ -4798,6 +4823,11 @@
     "path": "reports/clarity/workflows-map.json",
     "sha256": "c3d997d9618e926638e175c438427e4543964de11eca571009fa2f540dc70ff6",
     "bytes": 19110
+  },
+  {
+    "path": "robots.txt",
+    "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+    "bytes": 26
   },
   {
     "path": "runtime/memory/crossrepo.json",

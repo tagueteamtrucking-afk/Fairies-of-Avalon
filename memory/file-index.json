@@ -1,6 +1,6 @@
 {
-  "generated": "2025-11-01T02:40:27.837Z",
-  "count": 1095,
+  "generated": "2025-11-01T02:51:20.372Z",
+  "count": 1104,
   "files": [
     {
       "path": ".github/cleanup/sweeper-manifest.json",
@@ -1834,8 +1834,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 1688,
-      "hash": "af999443e34b7e8ee33b3d703cae4de0",
+      "bytes": 961,
+      "hash": "1fa5f9bd4b757726215d1b2667971869",
       "purpose": "misc"
     },
     {
@@ -1876,8 +1876,8 @@
     },
     {
       "path": "memory/cleanup-rules.json",
-      "bytes": 1505,
-      "hash": "5db91ac24d2a545067ccb1a552da107c",
+      "bytes": 1253,
+      "hash": "c2eb1cfb2157be056bf223c5dde9f2c4",
       "purpose": "misc"
     },
     {
@@ -1901,7 +1901,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 185557,
-      "hash": "f1e22959b3e7de66e0103a7a45b22d3e",
+      "hash": "dedc760a7d830f3cd968ad673d8f5dee",
       "purpose": "misc"
     },
     {
@@ -4005,6 +4005,12 @@
       "purpose": "site-page"
     },
     {
+      "path": "pages/apps/billie/earnings.html",
+      "bytes": 549,
+      "hash": "c0b13079c2b7c044be94ea586b80eee1",
+      "purpose": "site-page"
+    },
+    {
       "path": "pages/apps/billie/faceless.html",
       "bytes": 7695,
       "hash": "44b02526c5502a868ca557e30d50c674",
@@ -4014,6 +4020,12 @@
       "path": "pages/apps/billie/ffmpeg.html",
       "bytes": 37,
       "hash": "9b38dc375b706a8e3c672c0296165577",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/apps/billie/grants.html",
+      "bytes": 535,
+      "hash": "dea37aa53037613c88624348cdc1ef4d",
       "purpose": "site-page"
     },
     {
@@ -4032,6 +4044,12 @@
       "path": "pages/apps/billie/overview.html",
       "bytes": 1476,
       "hash": "41ebb0b432a67bc0f36f4908a7233195",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/apps/billie/social.html",
+      "bytes": 558,
+      "hash": "0142215c048fcce6fe946b64e3a954d2",
       "purpose": "site-page"
     },
     {
@@ -4377,6 +4395,18 @@
       "purpose": "site-page"
     },
     {
+      "path": "pages/apps/charlotte/compliance/expirations.html",
+      "bytes": 601,
+      "hash": "6aee4e7828fad64caf22d6dbdd07defc",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/apps/charlotte/compliance/reminders.html",
+      "bytes": 590,
+      "hash": "e1acbd3e65bc51cfd0a322eb3217dc2d",
+      "purpose": "site-page"
+    },
+    {
       "path": "pages/apps/charlotte/crawler/index.html",
       "bytes": 18946,
       "hash": "c2774f7a34beb0c3d71ce598a2f363ad",
@@ -4515,9 +4545,21 @@
       "purpose": "site-page"
     },
     {
+      "path": "pages/apps/charlotte/queues.html",
+      "bytes": 554,
+      "hash": "c87148d8fd13ee77c37b499f7ac723aa",
+      "purpose": "site-page"
+    },
+    {
       "path": "pages/apps/charlotte/sources.json",
       "bytes": 1400,
       "hash": "76008b6604f2f7828dfedbd7d9df45af",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/apps/charlotte/translations.html",
+      "bytes": 549,
+      "hash": "881643aa67f68c7f9842646949a47ea9",
       "purpose": "site-page"
     },
     {
@@ -4770,6 +4812,18 @@
       "path": "pages/apps/nina/index.json",
       "bytes": 20,
       "hash": "ab956ec04db3919d58448a3a0094403a",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/apps/nina/overview.html",
+      "bytes": 603,
+      "hash": "0b7bb5d157908edb95682cc00c184fa9",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/apps/nina/security/reports.html",
+      "bytes": 627,
+      "hash": "a983b237ef82c11f692715a243f771fe",
       "purpose": "site-page"
     },
     {

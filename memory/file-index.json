@@ -1,6 +1,6 @@
 {
-  "generated": "2025-11-01T03:11:22.108Z",
-  "count": 1107,
+  "generated": "2025-11-01T03:11:44.023Z",
+  "count": 1108,
   "files": [
     {
       "path": ".github/cleanup/sweeper-manifest.json",
@@ -52,8 +52,8 @@
     },
     {
       "path": ".github/workflows/auto-approve-and-merge.yml",
-      "bytes": 1481,
-      "hash": "6033bc1727294838d4fd4d3dc2b3aefe",
+      "bytes": 1706,
+      "hash": "720c34cf50139a7feee6bef3093d943d",
       "purpose": "workflow"
     },
     {
@@ -340,8 +340,8 @@
     },
     {
       "path": ".github/workflows/label-bot-prs.yml",
-      "bytes": 1250,
-      "hash": "0c11fdb59831ecf4f782bb862c766773",
+      "bytes": 1651,
+      "hash": "07bd818211b9a9dd632bb351ba2ecaa1",
       "purpose": "workflow"
     },
     {
@@ -372,6 +372,12 @@
       "path": ".github/workflows/memory-snapshot.yml",
       "bytes": 573,
       "hash": "3f5b2b6c4c63f91ed1267e1ea9b15557",
+      "purpose": "workflow"
+    },
+    {
+      "path": ".github/workflows/merge-queue.yml",
+      "bytes": 1701,
+      "hash": "4520bf92fbf293616d28f529f02662d4",
       "purpose": "workflow"
     },
     {
@@ -1906,8 +1912,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 187190,
-      "hash": "b6fffbb9307bd4eea64fcff820cb91f5",
+      "bytes": 187515,
+      "hash": "50d76832fb2dbe7e47ac1f01cabd6321",
       "purpose": "misc"
     },
     {

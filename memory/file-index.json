@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T19:26:52.961Z",
+  "generated": "2025-11-01T19:27:12.327Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -242,6 +242,12 @@
       "purpose": "misc"
     },
     {
+      "path": "cloudflare/carol.toml",
+      "bytes": 186,
+      "hash": "4f1a3ecf9c00d17356997382508f914b",
+      "purpose": "misc"
+    },
+    {
       "path": "cloudflare/hello.toml",
       "bytes": 185,
       "hash": "5ef1daa34a5c19ae839750af87d5741d",
@@ -269,6 +275,12 @@
       "path": "cloudflare/worker-billie-social.js",
       "bytes": 333,
       "hash": "0d3b73f62065ae25ee72887d85ad5dd1",
+      "purpose": "misc"
+    },
+    {
+      "path": "cloudflare/worker-carol.js",
+      "bytes": 2824,
+      "hash": "cc9c24316031e27e31b80c52373a0482",
       "purpose": "misc"
     },
     {
@@ -441,8 +453,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 69109,
-      "hash": "04c111da436bb78c69cc6f18c81b32d9",
+      "bytes": 69411,
+      "hash": "0f5a8f7c23d762375610b1581fa21ba3",
       "purpose": "misc"
     },
     {

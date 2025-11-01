@@ -1,31 +1,41 @@
 name: Failure Feed (on workflow_run)
+
 on:
   workflow_run:
     workflows:
-      - "*"
-    types:
-      - completed
+      - "Deploy GitHub Pages"
+      - "Repo Vision (index + site map)"
+      - "Repo Sweeper (propose deletions)"
+      - "Nina Guard (YAML + importmap sanity)"
+      - "Response Check (URLs & API endpoints)"
+    types: [completed]
+
 permissions:
-  actions: read
+  contents: read
   issues: write
+
+concurrency:
+  group: failure-feed-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
-  feed:
-    if: ${{ github.event.workflow_run.conclusion != 'success' }}
+  post:
+    if: >
+      github.event.workflow_run.conclusion != 'success' &&
+      !contains(github.event.workflow_run.name, 'Failure Feed') &&
+      !contains(github.event.workflow_run.name, 'Pages Preflight')
     runs-on: ubuntu-latest
     steps:
-      - name: Append failure line
+      - name: Post summary comment
         uses: actions/github-script@v7
         with:
           script: |
-            const run = context.payload.workflow_run;
-            const owner = context.repo.owner, repo = context.repo.repo;
-            const title = 'Build Failures Feed';
-            const line = `- ${run.name} → *${run.status}/${run.conclusion}* (${run.html_url}) at ${run.updated_at}`;
-            const { data: issues } = await github.rest.issues.listForRepo({owner, repo, state: 'open'});
-            const existing = issues.find(i => i.title === title);
-            if (existing) {
-              const body = (existing.body || '') + '\n' + line;
-              await github.rest.issues.update({owner, repo, issue_number: existing.number, body});
-            } else {
-              await github.rest.issues.create({owner, repo, title, body: line});
-            }
+            const wr = context.payload.workflow_run;
+            const body = [
+              "### ❌ Workflow failed",
+              `**${wr.name}** #${wr.run_number}`,
+              `Branch: \`${wr.head_branch}\``,
+              `[View logs](${wr.html_url})`
+            ].join("\n");
+            const {owner, repo} = context.repo;
+            await github.rest.issues.create({owner, repo, title:`Fail: ${wr.name} #${wr.run_number}`, body});

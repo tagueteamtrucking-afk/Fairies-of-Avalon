@@ -1,1 +1,17 @@
-<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Carol — Phoenix Restaurant</title><link rel="stylesheet" href="../../assets/css/avalon-bright.css"><header><div class="wrap"><h1>🍜 Carol — Phoenix Restaurant</h1><div><a class="pill" href="/pages/apps/carol/dashboard.html">Dashboard</a><a class="pill" href="/index.html">Home</a></div><p class="muted">Use “Carol Refresh (shopping & report)” to update data; Phoenix can save prefs.</p></div></header><main class="wrap grid"><div class="card"><h3>Plan Report</h3><pre id="pr" class="mono">Loading…</pre></div><div class="card"><h3>Shopping</h3><pre id="sq" class="mono">Loading…</pre></div></main><script type="module">async function j(p){try{const r=await fetch(p+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)return null;return await r.json()}catch{return null}}document.getElementById('pr').textContent=JSON.stringify(await j('./plan-report.json')||{hint:'Run Carol Refresh (shopping & report).'},null,2);document.getElementById('sq').textContent=JSON.stringify(await j('./shopping-quantized.json')||{items:[]},null,2);</script>
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carol — Phoenix Restaurant</title>
+<link rel="stylesheet" href="../../assets/css/avalon-bright.css">
+<header><div class="wrap">
+  <h1>🍜 Carol — Phoenix Restaurant</h1>
+  <div><a class="pill" href="/pages/apps/carol/dashboard.html">Dashboard</a><a class="pill" href="/index.html">Home</a></div>
+  <p class="muted">Use “Carol Refresh (shopping & report)” to update data; Phoenix can save prefs.</p>
+</div></header>
+<main class="wrap grid">
+  <div class="card"><h3>Plan Report</h3><pre id="pr" class="mono">Loading…</pre></div>
+  <div class="card"><h3>Shopping</h3><pre id="sq" class="mono">Loading…</pre></div>
+</main>
+<script type="module">
+async function j(p){try{const r=await fetch(p+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)return null;return await r.json()}catch{return null}}
+document.getElementById('pr').textContent=JSON.stringify(await j('./plan-report.json')||{hint:'Run Carol Refresh (shopping & report).'},null,2);
+document.getElementById('sq').textContent=JSON.stringify(await j('./shopping-quantized.json')||{items:[]},null,2);
+</script>

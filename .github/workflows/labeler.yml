@@ -1,0 +1,16 @@
+docs:
+  - 'docs/**'
+  - '**/*.md'
+
+site:
+  - 'pages/**'
+  - 'asset/**'
+  - '!asset/models/**'
+  - '!asset/wings/**'
+
+workflows:
+  - '.github/workflows/**'
+
+bot:
+  - any: ['**/*']
+    createdBy: ['dependabot[bot]', 'github-actions[bot]']

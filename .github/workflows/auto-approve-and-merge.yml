@@ -1,4 +1,4 @@
-name: Auto-approve & Automerge (label-gated)
+name: Auto-approve & Automerge (smart)
 
 on:
   pull_request_target:
@@ -17,8 +17,13 @@ concurrency:
 jobs:
   approve-and-merge:
     if: >
-      contains(github.event.pull_request.labels.*.name, 'automerge') &&
-      !github.event.pull_request.draft
+      (
+        contains(github.event.pull_request.labels.*.name, 'automerge')
+        || (
+          (startsWith(github.event.pull_request.head.ref, 'ci/clarity-core') || contains(github.event.pull_request.title, 'clarity core'))
+          && endsWith(github.event.pull_request.user.login, '[bot]')
+        )
+      ) && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     steps:
       - name: Wait for checks
@@ -38,7 +43,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Enable auto-merge (squash) when eligible
+      - name: Merge (squash) when eligible
         uses: pascalgn/automerge-action@v0.16.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

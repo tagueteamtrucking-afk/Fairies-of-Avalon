@@ -6,11 +6,11 @@
     "memory/**",
     "index.html",
     "pages/_city/**",
+    "pages/apps/common/**",
     "pages/apps/nina/**",
     "pages/apps/charlotte/**",
     "pages/apps/billie/**",
-    "pages/apps/tracy/**",
-    "pages/apps/common/**"
+    "pages/apps/tracy/**"
   ],
   "deleteIf": [
     {

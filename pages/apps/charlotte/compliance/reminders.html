@@ -1,1 +1,14 @@
-<!doctype html><meta charset='utf-8'><title>Charlotte • 🔔 Reminders Service</title><link rel='stylesheet' href='/pages/apps/tracy/skins/variables.css'><link rel='stylesheet' href='/pages/apps/tracy/skins/base.css'><div class='wrap'><h2>🔔 Reminders Service</h2><p class='sub'>Render active reminders with timestamps; wire to Actions or Worker to send notifications.</p><p>Best content approach: load JSON from <code>/pages/apps/charlotte/**</code> or <code>/memory/**</code> and render tables with filters.</p><p><a href='/pages/apps/charlotte/index.html'>⬅ Charlotte</a></p></div>
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🔔 Reminders (Charlotte)</title>
+<link rel="stylesheet" href="/pages/apps/tracy/skins/variables.css">
+<link rel="stylesheet" href="/pages/apps/tracy/skins/base.css">
+<div class="wrap">
+  <h2>🔔 Reminders (Charlotte)</h2>
+  <p class="sub">Point this to your reminders JSON</p>
+  <div id="t"></div>
+  <p style="margin-top:12px"><a href="/index.html">⬅ Home</a></p>
+</div>
+<script type="module">
+import { renderTable } from '/pages/apps/common/js/json-table.js';
+renderTable(document.getElementById('t'), '/memory/site-map.json', [{"label": "Page", "path": "0"}]);
+</script>

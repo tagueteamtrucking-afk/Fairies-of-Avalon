@@ -1,1 +1,14 @@
-<!doctype html><meta charset='utf-8'><title>Billie • 🗓️ Social Posts Board</title><link rel='stylesheet' href='/pages/apps/tracy/skins/variables.css'><link rel='stylesheet' href='/pages/apps/tracy/skins/base.css'><div class='wrap'><h2>🗓️ Social Posts Board</h2><p class='sub'>Render a calendar/list of upcoming posts, owners, and platforms.</p><p>Best content approach: load JSON under <code>/pages/apps/billie/**</code> or data exports; keep secrets in Actions/Workers only.</p><p><a href='/pages/apps/billie/index.html'>⬅ Billie</a></p></div>
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🗓️ Social Posts (Billie)</title>
+<link rel="stylesheet" href="/pages/apps/tracy/skins/variables.css">
+<link rel="stylesheet" href="/pages/apps/tracy/skins/base.css">
+<div class="wrap">
+  <h2>🗓️ Social Posts (Billie)</h2>
+  <p class="sub">Point this at your social calendar JSON</p>
+  <div id="t"></div>
+  <p style="margin-top:12px"><a href="/index.html">⬅ Home</a></p>
+</div>
+<script type="module">
+import { renderTable } from '/pages/apps/common/js/json-table.js';
+renderTable(document.getElementById('t'), '/memory/site-map.json', [{"label": "Page", "path": "0"}]);
+</script>

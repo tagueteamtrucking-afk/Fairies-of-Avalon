@@ -1,20 +1,43 @@
-<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Apps — Fairies of Avalon</title>
-<style>
-body{font-family:system-ui;background:#0b0f17;color:#e5e7eb;margin:0}header{padding:12px 16px;border-bottom:1px solid #172033}
-main{padding:16px}.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.card{border:1px solid #172033;border-radius:10px;padding:14px;background:#0f172a}
-.card a{color:#e5e7eb;text-decoration:none;font-weight:600}
-small{color:#9ca3af}
-</style>
-<header><h1>Microapps</h1><small>Choose a tool</small></header>
-<main><div class="grid">
-  <div class="card"><a href="/pages/apps/alexandria/dm/play.html">Alexandria — DM</a><br><small>Talk to the DM (Worker)</small></div>
-  <div class="card"><a href="/pages/apps/alexandria/worlds/">Alexandria — Worlds</a><br><small>World bibles</small></div>
-  <div class="card"><a href="/pages/apps/stella/guided.html">Stella — Guided</a><br><small>Meditation player</small></div>
-  <div class="card"><a href="/pages/apps/jem/dashboard.html">Jem — Dashboard</a><br><small>Programs + Biometrics</small></div>
-  <div class="card"><a href="/pages/apps/carol/">Carol — Meal Plans</a><br><small>Plans & exports</small></div>
-  <div class="card"><a href="/pages/apps/charlotte/">Charlotte — Pipelines</a><br><small>Site/translation</small></div>
-  <div class="card"><a href="/pages/apps/nina/">Nina — 3D & assets</a><br><small>VRM index soon</small></div>
-  <div class="card"><a href="/pages/apps/clarice/">Clarice — Snapshots</a><br><small>Memory & backups</small></div>
-</div></main>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avalon — Launching…</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <style>
+    html,body{margin:0;height:100%;background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto}
+    main{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:12px}
+    .btn{color:#e5e7eb;border:1px solid #334155;border-radius:10px;padding:8px 12px;text-decoration:none}
+    .muted{opacity:.75;font-size:12px}
+  </style>
+</head>
+<body>
+<main>
+  <h1>🏰 Avalon</h1>
+  <p class="muted">Launching City Plaza…</p>
+  <p><a class="btn" id="fallback" href="/pages/plaza.html">Open City Plaza</a></p>
+</main>
+<script>
+(async function(){
+  try{
+    if('serviceWorker' in navigator){
+      const regs = await navigator.serviceWorker.getRegistrations();
+      for(const r of regs){ await r.unregister(); }
+      if(window.caches){
+        const keys = await caches.keys();
+        for(const k of keys){ await caches.delete(k); }
+      }
+    }
+  }catch(e){}
+  const target = "/pages/plaza.html";
+  const url = new URL(target, location.origin);
+  url.searchParams.set("cb", Date.now().toString(36));
+  location.replace(url.toString());
+})();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=/pages/plaza.html"></noscript>
+</body>
+</html>

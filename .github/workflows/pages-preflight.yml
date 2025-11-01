@@ -4,12 +4,12 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - "**/*.html"
-      - "importmap.json"
-      - "pages/**"
-      - "asset/**"
-      - "assets/**"
-      - "memory/site-map.json"
+      - '**/*.html'
+      - 'importmap.json'
+      - 'pages/**'
+      - 'assets/**'
+      - 'memory/site-map.json'
+      - '.github/workflows/pages-preflight.yml'
   workflow_dispatch: {}
 
 permissions:
@@ -46,7 +46,7 @@ jobs:
             const files = walk(process.cwd());
             const pages = files.filter(f => f.startsWith('pages/') && f.endsWith('.html')).map(f => '/'+f);
             const entry = fs.existsSync('index.html') ? ['/index.html'] : [];
-            const assets = files.filter(f => f.startsWith('asset/') || f.startsWith('assets/')).map(f => '/'+f);
+            const assets = files.filter(f => f.startsWith('assets/')).map(f => '/'+f);
             let importmap=null; try{ importmap = JSON.parse(fs.readFileSync('importmap.json','utf8')); }catch{}
             fs.writeFileSync('memory/site-map.json', JSON.stringify({
               generated: new Date().toISOString(),
@@ -78,7 +78,7 @@ jobs:
                 else if(e.isFile()){ acc.push(path.relative(process.cwd(),p).replace(/\\/g,'/')); }} return acc; })(process.cwd(),[]);
               const pages = files.filter(f=>f.startsWith('pages/')&&f.endsWith('.html')).map(f=>'/'+f);
               const entry = fs.existsSync('index.html')?['/index.html']:[];
-              const assets = files.filter(f=>f.startsWith('asset/')||f.startsWith('assets/')).map(f=>'/'+f);
+              const assets = files.filter(f=>f.startsWith('assets/')).map(f=>'/'+f);
               let importmap=null; try{ importmap = JSON.parse(fs.readFileSync('importmap.json','utf8')); }catch{}
               const sm={generated:new Date().toISOString(), entrypoints:entry, pages, assets, importmap};
               fs.mkdirSync('memory',{recursive:true}); fs.writeFileSync('memory/site-map.json', JSON.stringify(sm,null,2));

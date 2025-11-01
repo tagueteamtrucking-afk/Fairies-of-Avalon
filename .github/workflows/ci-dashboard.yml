@@ -1,0 +1,94 @@
+name: CI Dashboard
+
+on:
+  schedule:
+    - cron: '15 */6 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+env:
+  DASH_JSON: memory/ci-dashboard.json
+  DASH_HTML: pages/apps/overseers/ci-dashboard.html
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure dirs
+        run: |
+          mkdir -p $(dirname $DASH_JSON)
+          mkdir -p $(dirname $DASH_HTML)
+      - name: Collect workflow statuses
+        run: |
+          node - <<'JS'
+          const fs = require('fs');
+          const workflows = [
+            'Repo Vision',
+            'Repo Sweeper (propose deletions)',
+            'Pages Preflight',
+            'Auto approve & merge',
+            'Label PRs',
+            'CI Dashboard'
+          ];
+          const { owner, repo } = require('child_process').execSync('git config --get remote.origin.url').toString().trim().split(':').pop().replace('.git','').split('/');
+          const { Octokit } = require('@octokit/rest');
+          const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+          (async () => {
+            const results = [];
+            for (const name of workflows) {
+              try {
+                const { data: wfs } = await octokit.actions.listRepoWorkflows({ owner, repo, per_page: 100 });
+                const wf = wfs.workflows.find(w => w.name === name);
+                if (!wf) { results.push({ name, found: false }); continue; }
+                const { data: runs } = await octokit.actions.listWorkflowRuns({ owner, repo, workflow_id: wf.id, per_page: 1 });
+                const run = runs.workflow_runs[0];
+                if (!run) { results.push({ name, found: true, latest: null }); continue; }
+                results.push({
+                  name,
+                  found: true,
+                  latest: {
+                    id: run.id,
+                    run_number: run.run_number,
+                    status: run.status,
+                    conclusion: run.conclusion,
+                    head_branch: run.head_branch,
+                    updated_at: run.updated_at,
+                    url: run.html_url
+                  }
+                });
+              } catch (err) {
+                results.push({ name, found: false, error: err.message });
+              }
+            }
+            const payload = {
+              generated: new Date().toISOString(),
+              repo: `${owner}/${repo}`,
+              dashboards: results
+            };
+            fs.writeFileSync(process.env.DASH_JSON, JSON.stringify(payload, null, 2));
+            // Build simple HTML page
+            function badge(c) {
+              const map = { success: '#16a34a', failure: '#dc2626', cancelled: '#475569', timed_out: '#b45309', action_required: '#9333ea' };
+              const color = map[c] || '#64748b';
+              return `<span style="display:inline-block;padding:.2rem .5rem;border-radius:.5rem;background:${color};color:white;font:600 12px/1 ui-sans-serif,system-ui">${(c||'unknown').toUpperCase()}</span>`;
+            }
+            function row(d) {
+              if (!d.found) return `<tr><td>${d.name}</td><td colspan="4" style="color:#dc2626">Workflow not found</td></tr>`;
+              if (!d.latest) return `<tr><td>${d.name}</td><td colspan="4" style="color:#dc2626">No runs yet</td></tr>`;
+              const L = d.latest;
+              return `<tr><td>${d.name}</td><td>${badge(L.conclusion)}</td><td>#${L.run_number}</td><td><code>${L.head_branch||''}</code></td><td>${new Date(L.updated_at).toLocaleString('en-US',{hour12:false})}</td><td><a href="${L.url}">logs</a></td></tr>`;
+            }
+            const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CI Dashboard</title><link rel="stylesheet" href="/pages/apps/common/style.css" /></head><body><div class="wrap"><h1 class="heading">CI Dashboard</h1><table><thead><tr><th>Workflow</th><th>Status</th><th>Run</th><th>Branch</th><th>Updated</th><th>Logs</th></tr></thead><tbody>${results.map(row).join('')}</tbody></table><p class="lead">Generated ${payload.generated}</p><p><a href="/index.html">← back to home</a></p></div></body></html>`;
+            fs.writeFileSync(process.env.DASH_HTML, html);
+          })().catch(err => { console.error(err); process.exit(1); });
+          JS
+      - name: Commit dashboard
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore(dashboard): update CI dashboard [skip ci]'
+          file_pattern: |
+            ${{ env.DASH_JSON }}
+            ${{ env.DASH_HTML }}

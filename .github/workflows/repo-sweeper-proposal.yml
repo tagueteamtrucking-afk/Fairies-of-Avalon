@@ -1,0 +1,54 @@
+name: Repo Sweeper (propose deletions)
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '30 4 * * *'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compute cleanup proposal
+        id: plan
+        run: |
+          node - <<'JS'
+          const fs = require('fs');
+          const micromatch = require('micromatch');
+          const idx = JSON.parse(fs.readFileSync('memory/file-index.json','utf8'));
+          const rules = JSON.parse(fs.readFileSync('memory/cleanup-rules.json','utf8'));
+          const files = idx.files;
+          function preserved(p) { return micromatch.isMatch(p, rules.preserveGlobs || []); }
+          const deletes = [];
+          files.forEach(f => {
+            if (preserved(f.path)) return;
+            for (const r of rules.deleteIf || []) {
+              if (r.glob && micromatch.isMatch(f.path, r.glob)) {
+                deletes.push({ path: f.path, reason: 'pattern '+r.glob });
+                return;
+              }
+            }
+          });
+          fs.mkdirSync('memory', {recursive:true});
+          fs.writeFileSync('memory/cleanup-proposals.json', JSON.stringify({ generated: new Date().toISOString(), deletes }, null, 2));
+          console.log(`Will delete ${deletes.length} files`);
+          JS
+      - name: Create PR with deletions
+        if: ${{ steps.plan.outputs }}
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: chore/repo-sweep
+          title: 'chore: repo sweep (auto-proposed deletions)'
+          commit-message: 'chore: remove redundant files'
+          body: |
+            This PR proposes deletions based on `memory/cleanup-rules.json`.  Review and merge if acceptable.
+          add-paths: |
+            memory/cleanup-proposals.json
+          delete-files: |
+            $(node -p "JSON.parse(require('fs').readFileSync('memory/cleanup-proposals.json','utf8')).deletes.map(d=>d.path).join('\n')")
+          token: ${{ secrets.GITHUB_TOKEN }}

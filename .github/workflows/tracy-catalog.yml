@@ -1,0 +1,28 @@
+name: Tracy — Build Assets Catalog
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build catalog
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          if (Test-Path "scripts/overseers/tracy-catalog.ps1") { ./scripts/overseers/tracy-catalog.ps1 -RepoRoot "${{ github.workspace }}" } else { Write-Host "Missing scripts/overseers/tracy-catalog.ps1" }
+      - name: Commit (if changed)
+        shell: pwsh
+        run: |
+          git add -A "pages/apps/tracy/catalog.json" || echo "no catalog"
+          $changes = git status --porcelain -- "pages/apps/tracy/catalog.json"
+          if ([string]::IsNullOrWhiteSpace($changes)) { Write-Host "Nothing to commit."; }
+          else { git config user.email "actions@github.com"; git config user.name "GitHub Actions"; git commit -m "Tracy: assets catalog" }
+      - name: Push
+        uses: ad-m/github-push-action@v5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
+          force_with_lease: true

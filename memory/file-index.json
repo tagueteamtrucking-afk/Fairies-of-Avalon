@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T09:54:12.555Z",
+  "generated": "2025-11-01T09:54:58.703Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -65,6 +65,12 @@
       "path": "Cody's Memory.yml",
       "bytes": 1334,
       "hash": "45caf96a7e3fecd9e0b04df5e528c54f",
+      "purpose": "misc"
+    },
+    {
+      "path": "UPDATED_PLAN.md",
+      "bytes": 4618,
+      "hash": "d7bb8efb525f62df4919cc4aa0b543c1",
       "purpose": "misc"
     },
     {
@@ -161,6 +167,12 @@
       "path": "avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1",
       "bytes": 6702,
       "hash": "2db45d95fb4ce49e2a2015baf6c47c09",
+      "purpose": "misc"
+    },
+    {
+      "path": "cleanup.sh",
+      "bytes": 1301,
+      "hash": "8d1b4c2737d57f6419c2e9bf65dd20df",
       "purpose": "misc"
     },
     {
@@ -376,7 +388,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 64930,
-      "hash": "fb5bc77c7476a55d1a7b3ce1875abf55",
+      "hash": "e37537776670c5f0b5524ed3d46a2e13",
       "purpose": "misc"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T11:01:43.302Z",
+  "generated": "2025-11-01T12:04:50.733Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -110,9 +110,21 @@
       "purpose": "misc"
     },
     {
+      "path": "assets/img/jem-hall-inside.jpg",
+      "bytes": 190454,
+      "hash": "1bf541a19df4ad9d261dc00e7aef3ba2",
+      "purpose": "misc"
+    },
+    {
       "path": "assets/img/jem-hall-inside.jpg.jpg",
       "bytes": 190454,
       "hash": "1bf541a19df4ad9d261dc00e7aef3ba2",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/jem-hall-outside.jpg",
+      "bytes": 206000,
+      "hash": "67501e464a24b88c82021a63a8c3dd43",
       "purpose": "misc"
     },
     {
@@ -125,6 +137,18 @@
       "path": "assets/img/placeholder.svg",
       "bytes": 424,
       "hash": "263b45c5fdc80e0517e7dedfc4bf4684",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/tracy-sample.png",
+      "bytes": 2673251,
+      "hash": "6722a5704614a6cf3a0d6db3294d01cb",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/sounds/meditation.wav",
+      "bytes": 10584058,
+      "hash": "344245ba265c39e3bc39c4c7c304c33f",
       "purpose": "misc"
     },
     {
@@ -400,7 +424,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 65532,
-      "hash": "5ac7cd3081451db7599f2fd2ec87e812",
+      "hash": "c85a8c807cd4e6febef22d4fde5f7d21",
       "purpose": "misc"
     },
     {

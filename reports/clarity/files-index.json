@@ -5956,6 +5956,16 @@
     "preview": "meta:\n  project: Avalon\n  file_name: \"Cody's Memory.yaml\"\n  version: \"2.4.0-visuals\"\n  last_updated: \"20251019T224810Z\"\n  author: \"Cody (GPT-5 Pro)\"\n  notes: >\n    Visual-only worldbook for the city-builder look of Avalon.\n    Merges applied: Charlotte⇐Themis, Nina⇐Clarice, Billie⇐(Sorcha+Odessa).\n    Overseers are Ray & Blanca avatars at the Palace (progress showcase).\n    This file captures buildings, rooms, and visual link targets only.\n\nworld:\n  name: Avalon\n  style: \"Mobile city-builder; castle‑town map; dark theme with midnight blues.\"\n  palette: [\"#0b1220\",\"#111a2a\",\"#1c2842\",\"#a5d6ff\",\"#e6e9ff\"]\n  typography: [\"Inter\",\"Roboto\",\"Segoe UI\",\"system-ui\"]\n  levels:\n    - {\"id\":1,\"name\":\"Foundations\",\"desc\":\"Silhouettes, minimal props, labeled.\"}\n    - {\"id\":2,\"name\":\"Crafted\",\"desc\":\"Textures, lighting, animated accents.\"}\n    - {\"id\":3,\"name\":\"Alive\",\"desc\":\"Parallax, day/night, ambient glow.\"}\n\nroles_after_merges:\n  overseers:\n    - id: \"overseer_ray\"\n      name: \"Ray Czar\"\n      building: \"Palace\"\n    - id: \"overseer_blanca\"\n      name: \"White Star\"\n      building: \"Palace\"\n\n  assistants:\n    - id: \"alexandria\"\n      building: \"Gothic Library\"\n      room_links: [\"World Rules\",\"Session Log\",\"Voice DM\"]\n      objects: [\"Desk\",\"Bookshelves\",\"Globe\",\"Corkboard\"]\n    - id: \"tracy\"\n      building: \"Cathedral Studio\"\n      room_links: [\"2D Artboards\",\"3D Props\",\"Wallpapers\"]\n      objects: [\"Easel\",\"Clay Bust\",\"Palette\",\"Light Table\"]\n    - id: \"nina\"\n      merged_from: [\"clarice\"]\n      building: \"Court-Lab (Courtroom + Holographic Lab)\"\n      room_links: [\"Diagnostics\",\"Backups/Snapshots\",\"VRM Gallery\"]\n      objects: [\"Server Rack\",\"VRM Hanger\",\"Hologram Table\"]\n    - id: \"charlotte\"\n      merged_from: [\"themis\"]\n      building: \"Relay-Hall (Tower + Record Hall)\"\n      room_links: [\"Run Workflows\",\"Expirations\",\"Link Registry\"]\n      objects: [\"Control Wall\",\"Calendarium Shelf\",\"Clipboard\"]\n    - id: \"carol\"\n      building: \"Restaurant\"\n      diet: [\"DASH-style\",\"lactose-light\",\"shellfish-free\",\"no cilantro/cumin\",\"avoid very hard foods\",\"tuna ok\",\"salmon ok\",\"cod ok\",\"sushi ok\",\"eggs ok\",\"steamed baby carrots ok\",\"frozen & fresh fruit ok\"]\n      room_links: [\"14-day Menu\",\"Shopping List\",\"Cookbook\",\"Meal Alarms (.ics)\"]\n      objects: [\"Menu Board\",\"Pantry Shelf\",\"Recipe Book\",\"Bell\"]\n    - id: \"jem\"\n      building: \"Dojo\"\n      room_links: [\"Week-1 Evaluation\",\"Program Viewer\",\"Progress Log\"]\n      objects: [\"Training Dummy\",\"Chalkboard\",\"Mat\",\"Belt Rack\"]\n    - id: \"stella\""
   },
   {
+    "path": "memory/cleanup-proposals.json",
+    "sha256": "40b4e876ee2af97154fb10a7b3ded0c5f54f6964a8d0490b04d0c31094527c1e",
+    "bytes": 27046,
+    "purpose": "other",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\n  \"generated\": \"2025-11-01T02:26:22.913Z\",\n  \"deletes\": [\n    {\n      \"path\": \"asset/textures/wallpapers/carol-menu-bg.jpg\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"asset/textures/wallpapers/carol-pagoda.jpg\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"asset/textures/wallpapers/carol-restaurant-interior.jpg\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T185031Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T192026Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T193745Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T195049Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T202952Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T204046Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T205141Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T211642Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T211643Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T212718Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T214031Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {"
+  },
+  {
     "path": "memory/cleanup-rules.json",
     "sha256": "af45858125dd213a6aa78ed70f3048077e933efa60f01ce6e721fa274310d8d4",
     "bytes": 1505,
@@ -5997,13 +6007,13 @@
   },
   {
     "path": "memory/file-index.json",
-    "sha256": "23d3b35607741671e3656c193e3d25d7e01fa58fcf9dcf830057ce9bce61f3b0",
-    "bytes": 184425,
+    "sha256": "43e5e5181a3996567963a78e89739014854e8bd5fd0b02aa2d56d50afaf0952f",
+    "bytes": 185557,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "{\n  \"generated\": \"2025-11-01T02:20:22.933Z\",\n  \"count\": 1088,\n  \"files\": [\n    {\n      \"path\": \".github/cleanup/sweeper-manifest.json\",\n      \"bytes\": 118,\n      \"hash\": \"0fee89b48714e5e39e8129fe8c00df9b\",\n      \"purpose\": \"misc\"\n    },\n    {\n      \"path\": \".github/cleanup/workflows-to-review.json\",\n      \"bytes\": 1014,\n      \"hash\": \"04ae324f4c8ea030de09af6855b12640\",\n      \"purpose\": \"misc\"\n    },\n    {\n      \"path\": \".github/workflows/MANIFEST.json\",\n      \"bytes\": 1344,\n      \"hash\": \"109cd9a76c1412d25f610971efe9d082\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/actions-audit.yml\",\n      \"bytes\": 2915,\n      \"hash\": \"885c211d91e02693b02c8824290c9b11\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n      \"bytes\": 959,\n      \"hash\": \"9b081cefca80381eb33ce521e1e1f5e5\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n      \"bytes\": 3350,\n      \"hash\": \"a61caa571c9f36a2d3202971daac4ac8\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/audit-on-push.yml\",\n      \"bytes\": 1140,\n      \"hash\": \"ca68d5015ac63415ee9ba7d4fb201fb6\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n      \"bytes\": 1387,\n      \"hash\": \"b803310eee798fa494c858d6d743b77f\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n      \"bytes\": 1665,\n      \"hash\": \"76aee67ec6aa1a2940bce6e9f6bfbde5\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/carol-build-shopping.yml\","
+    "preview": "{\n  \"generated\": \"2025-11-01T02:40:04.208Z\",\n  \"count\": 1095,\n  \"files\": [\n    {\n      \"path\": \".github/cleanup/sweeper-manifest.json\",\n      \"bytes\": 118,\n      \"hash\": \"0fee89b48714e5e39e8129fe8c00df9b\",\n      \"purpose\": \"misc\"\n    },\n    {\n      \"path\": \".github/cleanup/workflows-to-review.json\",\n      \"bytes\": 1014,\n      \"hash\": \"04ae324f4c8ea030de09af6855b12640\",\n      \"purpose\": \"misc\"\n    },\n    {\n      \"path\": \".github/workflows/MANIFEST.json\",\n      \"bytes\": 1344,\n      \"hash\": \"109cd9a76c1412d25f610971efe9d082\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/actions-audit.yml\",\n      \"bytes\": 2915,\n      \"hash\": \"885c211d91e02693b02c8824290c9b11\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n      \"bytes\": 959,\n      \"hash\": \"9b081cefca80381eb33ce521e1e1f5e5\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n      \"bytes\": 3350,\n      \"hash\": \"a61caa571c9f36a2d3202971daac4ac8\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/audit-on-push.yml\",\n      \"bytes\": 1140,\n      \"hash\": \"ca68d5015ac63415ee9ba7d4fb201fb6\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n      \"bytes\": 1387,\n      \"hash\": \"b803310eee798fa494c858d6d743b77f\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/billie-evolved.yml\",\n      \"bytes\": 497,\n      \"hash\": \"c70aa82b7da1d38981cde3f3021a0597\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/carol-build-shopping-direct.yml\","
   },
   {
     "path": "memory/owners.json",
@@ -6027,31 +6037,35 @@
   },
   {
     "path": "pages/_city/index.html",
-    "sha256": "d59e5f549fdc665f843a3eea494c36318ea135893d5c11ba93a1f02e4f44c541",
-    "bytes": 1262,
+    "sha256": "55bd62ab43c168ce7c4576548d20c83b21f06cece3c79b433c2b6ad0f3ee87b1",
+    "bytes": 735,
     "purpose": "city-page",
     "imports": [],
     "links": [
-      "../../assets/css/avalon.css",
-      "../alexandria/index.html",
-      "../tracy/skins/generator.html",
-      "../jem/index.html",
-      "../carol/index.html",
-      "../stella/index.html",
-      "../charlotte/highlights.html",
-      "../../index.html"
+      "/index.html"
     ],
     "refs": [
-      "../../assets/css/avalon.css",
-      "../alexandria/index.html",
-      "../tracy/skins/generator.html",
-      "../jem/index.html",
-      "../carol/index.html",
-      "../stella/index.html",
-      "../charlotte/highlights.html",
-      "../../index.html"
+      "/index.html"
     ],
-    "preview": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Fairies of Avalon — City</title>\n  <link rel=\"stylesheet\" href=\"../../assets/css/avalon.css\">\n</head>\n<body>\n<header class=\"av-header\"><div class=\"wrap\">\n  <h1>🗺️ Avalon City</h1>\n  <p class=\"tagline\">Choose a district. Everything is bright, readable, and cohesive.</p>\n</div></header>\n<main class=\"wrap grid\">\n  <a class=\"card\" href=\"../alexandria/index.html\"><h3>📚 Library — Alexandria</h3><p>World Builder</p></a>\n  <a class=\"card\" href=\"../tracy/skins/generator.html\"><h3>🎨 Cathedral Studio — Tracy</h3><p>Skins & themes</p></a>\n  <a class=\"card\" href=\"../jem/index.html\"><h3>🥋 Dojo — Jem</h3><p>Plans & metrics</p></a>\n  <a class=\"card\" href=\"../carol/index.html\"><h3>🍎 Restaurant — Carol</h3><p>Menus & shopping</p></a>\n  <a class=\"card\" href=\"../stella/index.html\"><h3>🔭 Observatory — Stella</h3><p>TTS / sound</p></a>\n  <a class=\"card\" href=\"../charlotte/highlights.html\"><h3>📡 Relay — Charlotte</h3><p>Importmap + libs</p></a>\n</main>\n<footer class=\"av-footer\"><div class=\"wrap\"><small>Return to <a href=\"../../index.html\">Home</a></small></div></footer>\n</body>\n</html>\n"
+    "preview": "<!doctype html>\n<html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Avalon City — SVG Map</title>\n<style>\n  body{margin:0;font:16px ui-sans-serif,system-ui;background:#fff;color:#111}\n  header,footer{padding:16px 24px}\n  .wrap{max-width:1200px;margin:auto}\n  .map{display:block;width:100%;border:1px solid #e5e7eb}\n  a{color:#1c5eff;text-decoration:none}\n</style>\n</head>\n<body>\n<header class=\"wrap\"><h1>🗺️ Avalon City Map</h1><p>Click a building to enter its room/app.</p></header>\n<main class=\"wrap\">\n  <object class=\"map\" type=\"image/svg+xml\" data=\"map.svg\" aria-label=\"Avalon Map\"></object>\n  <p><a href=\"/index.html\">⬅ Back to Home</a></p>\n</main>\n</body></html>\n"
+  },
+  {
+    "path": "pages/_city/map.svg",
+    "sha256": "e365d6569d47d99bbb8066d78181dccb30f93e41f3a3f78c93d140b30829d9d7",
+    "bytes": 2572,
+    "purpose": "city-page",
+    "imports": [],
+    "links": [],
+    "refs": [
+      "/index.html",
+      "/pages/apps/alexandria/index.html",
+      "/pages/apps/nina/index.html",
+      "/pages/apps/tracy/skins/index.html",
+      "/pages/apps/charlotte/index.html",
+      "/pages/apps/abbey/index.html",
+      "/pages/apps/billie/index.html"
+    ],
+    "preview": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 700\">\n  <style>\n    .bg { fill: #f8fafc }\n    .road { stroke: #94a3b8; stroke-width: 4; fill: none }\n    .bldg { fill: #4b2bb5; opacity:.12 }\n    .pin  { fill: #4b2bb5 }\n    .label{ font: 14px ui-sans-serif, system-ui; fill: #111827 }\n    a text { text-decoration: underline; }\n  </style>\n  <rect class=\"bg\" x=\"0\" y=\"0\" width=\"1200\" height=\"700\"/>\n  <!-- Roads -->\n  <path class=\"road\" d=\"M50,350 L1150,350\"/>\n  <path class=\"road\" d=\"M600,50 L600,650\"/>\n  <!-- Buildings -->\n  <!-- Palace (Overseers) -->\n  <a xlink:href=\"/index.html\">\n    <rect class=\"bldg\" x=\"540\" y=\"80\" width=\"120\" height=\"80\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"600\" cy=\"120\" r=\"5\"/>\n    <text class=\"label\" x=\"570\" y=\"75\">🏰 Palace (Home)</text>\n  </a>\n  <!-- Library (Alexandria) -->\n  <a xlink:href=\"/pages/apps/alexandria/index.html\">\n    <rect class=\"bldg\" x=\"200\" y=\"120\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"280\" cy=\"170\" r=\"5\"/>\n    <text class=\"label\" x=\"210\" y=\"115\">📚 Library (Alexandria)</text>\n  </a>\n  <!-- Blue Lab (Nina) -->\n  <a xlink:href=\"/pages/apps/nina/index.html\">\n    <rect class=\"bldg\" x=\"820\" y=\"120\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"900\" cy=\"170\" r=\"5\"/>\n    <text class=\"label\" x=\"840\" y=\"115\">🧪 Blue Lab (Nina)</text>\n  </a>\n  <!-- Cathedral Studio (Tracy) -->\n  <a xlink:href=\"/pages/apps/tracy/skins/index.html\">\n    <rect class=\"bldg\" x=\"200\" y=\"480\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"280\" cy=\"530\" r=\"5\"/>\n    <text class=\"label\" x=\"190\" y=\"475\">🎨 Cathedral Studio (Tracy)</text>\n  </a>\n  <!-- Relay Tower (Charlotte) -->\n  <a xlink:href=\"/pages/apps/charlotte/index.html\">\n    <rect class=\"bldg\" x=\"820\" y=\"480\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"900\" cy=\"530\" r=\"5\"/>\n    <text class=\"label\" x=\"820\" y=\"475\">📡 Relay Tower (Charlotte)</text>\n  </a>\n  <!-- Grand Vault (Abbey) placeholder -->\n  <a xlink:href=\"/pages/apps/abbey/index.html\">\n    <rect class=\"bldg\" x=\"520\" y=\"480\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"600\" cy=\"530\" r=\"5\"/>\n    <text class=\"label\" x=\"530\" y=\"475\">🏦 Grand Vault (Abbey)</text>\n  </a>\n  <!-- Socialite/Museum Mansions (Billie) -->\n  <a xlink:href=\"/pages/apps/billie/index.html\">\n    <rect class=\"bldg\" x=\"980\" y=\"300\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"1060\" cy=\"350\" r=\"5\"/>\n    <text class=\"label\" x=\"950\" y=\"295\">💎 Mansions (Billie)</text>\n  </a>\n</svg>\n"
   },
   {
     "path": "pages/_city/plaza.html",
@@ -7149,13 +7163,27 @@
   },
   {
     "path": "pages/apps/billie/index.html",
-    "sha256": "ad04786b6ec67f0406fe8d5982a7bcb10413c3b448285a2779750e01e51f142d",
-    "bytes": 90,
+    "sha256": "382c2c10c5b58a3fe58aae7b529ca96362799362b8c3816e296902c7c66ee755",
+    "bytes": 777,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><h1>Billie — App</h1><script type='module'>fetch('./index.json')</script>"
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/billie/social.html",
+      "/pages/apps/billie/earnings.html",
+      "/pages/apps/billie/grants.html",
+      "/pages/_city/index.html"
+    ],
+    "refs": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/billie/social.html",
+      "/pages/apps/billie/earnings.html",
+      "/pages/apps/billie/grants.html",
+      "/pages/_city/index.html"
+    ],
+    "preview": "<!doctype html><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Billie • Monetization</title>\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/variables.css\">\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/base.css\">\n<div class=\"wrap\">\n  <h2>💎 Billie • Monetization</h2>\n  <div class=\"grid\">\n    <div class=\"card\"><strong>Social Posts Board</strong><br><a href=\"/pages/apps/billie/social.html\">Open</a></div>\n    <div class=\"card\"><strong>Earnings per Post</strong><br><a href=\"/pages/apps/billie/earnings.html\">Open</a></div>\n    <div class=\"card\"><strong>Grants Tracker</strong><br><a href=\"/pages/apps/billie/grants.html\">Open</a></div>\n  </div>\n  <p><a href=\"/pages/_city/index.html\">⬅ City</a></p>\n</div>\n"
   },
   {
     "path": "pages/apps/billie/index.json",
@@ -7959,13 +7987,29 @@
   },
   {
     "path": "pages/apps/charlotte/index.html",
-    "sha256": "4333074cdf27ef451ca1d2b42c922d2806bab91584ad5e99c72fbe163b9765f8",
-    "bytes": 93,
+    "sha256": "f2ae1238c2d653ee4cc302daac80ac53f22e19e10ed132ccc4e2f62b46c6a368",
+    "bytes": 962,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><h1>Charlotte — App</h1><script type='module'>fetch('./index.json')</script>"
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/charlotte/queues.html",
+      "/pages/apps/charlotte/translations.html",
+      "/pages/apps/charlotte/compliance/expirations.html",
+      "/pages/apps/charlotte/compliance/reminders.html",
+      "/pages/_city/index.html"
+    ],
+    "refs": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/charlotte/queues.html",
+      "/pages/apps/charlotte/translations.html",
+      "/pages/apps/charlotte/compliance/expirations.html",
+      "/pages/apps/charlotte/compliance/reminders.html",
+      "/pages/_city/index.html"
+    ],
+    "preview": "<!doctype html><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Charlotte • Relay + Compliance</title>\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/variables.css\">\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/base.css\">\n<div class=\"wrap\">\n  <h2>📡 Charlotte • Relay + Compliance</h2>\n  <div class=\"grid\">\n    <div class=\"card\"><strong>Queues Dashboard</strong><br><a href=\"/pages/apps/charlotte/queues.html\">Open</a></div>\n    <div class=\"card\"><strong>Translations Board</strong><br><a href=\"/pages/apps/charlotte/translations.html\">Open</a></div>\n    <div class=\"card\"><strong>Expirations Registry</strong><br><a href=\"/pages/apps/charlotte/compliance/expirations.html\">Open</a></div>\n    <div class=\"card\"><strong>Reminders Service</strong><br><a href=\"/pages/apps/charlotte/compliance/reminders.html\">Open</a></div>\n  </div>\n  <p><a href=\"/pages/_city/index.html\">⬅ City</a></p>\n</div>\n"
   },
   {
     "path": "pages/apps/charlotte/index.json",
@@ -8520,13 +8564,29 @@
   },
   {
     "path": "pages/apps/nina/index.html",
-    "sha256": "fb0719a85247880dd6d72ab99da8d9408ee3d4dda9753fca262ff513d1113298",
-    "bytes": 88,
+    "sha256": "45d1bcbc94886d0bdebc9e4eb7cbd4287c4a18a7eec7c7788bbc3d327474f378",
+    "bytes": 916,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><h1>Nina — App</h1><script type='module'>fetch('./index.json')</script>"
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/nina/security/reports.html",
+      "/pages/apps/nina/overview.html",
+      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/viewers/vrm.html",
+      "/pages/_city/index.html"
+    ],
+    "refs": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/nina/security/reports.html",
+      "/pages/apps/nina/overview.html",
+      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/viewers/vrm.html",
+      "/pages/_city/index.html"
+    ],
+    "preview": "<!doctype html><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Nina • Engineering + Security</title>\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/variables.css\">\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/base.css\">\n<div class=\"wrap\">\n  <h2>🧪 Nina • Engineering + Security</h2>\n  <div class=\"grid\">\n    <div class=\"card\"><strong>Security Reports</strong><br><a href=\"/pages/apps/nina/security/reports.html\">Open</a></div>\n    <div class=\"card\"><strong>Project Overview</strong><br><a href=\"/pages/apps/nina/overview.html\">Open</a></div>\n    <div class=\"card\"><strong>Import‑Map Sanity</strong><br><a href=\"/pages/apps/charlotte/highlights.html\">Check</a></div>\n    <div class=\"card\"><strong>3D Infra</strong><br><a href=\"/pages/apps/viewers/vrm.html\">Viewer</a></div>\n  </div>\n  <p><a href=\"/pages/_city/index.html\">⬅ City</a></p>\n</div>\n"
   },
   {
     "path": "pages/apps/nina/index.json",
@@ -9981,6 +10041,16 @@
     "preview": "/* Bright default skin */\n:root{--accent:#5a3dd5;--bg:#faf8ff;--ink:#222}\nbody{background:var(--bg);color:var(--ink)} a{color:var(--accent)}"
   },
   {
+    "path": "pages/apps/tracy/skins/base.css",
+    "sha256": "40bc7b64eabd618587ef8a7c75cb8722fb17075df3ae90b5c2e0936599c42e5d",
+    "bytes": 718,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "/* Base consumes tokens (no hard-coded colors) */\nhtml,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui}\n.wrap{max-width:1000px;margin:auto;padding:var(--pad)}\n.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--pad)}\n.card{background:var(--card);padding:var(--pad);border-radius:var(--radius);box-shadow:0 1px 0 rgba(0,0,0,.2)}\na{color:var(--accent);text-decoration:none}\n.badge{display:inline-block;padding:.2rem .5rem;border-radius:.5rem;background:var(--art-primary);color:white}\n.btn{padding:.5rem .75rem;border-radius:10px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}\n.btn:hover{opacity:.85}\n"
+  },
+  {
     "path": "pages/apps/tracy/skins/cathedral-gold.css",
     "sha256": "4a8c952e4b5dc77098d0df6ef963b15e8b4294e78b7ad754b294422362c8af88",
     "bytes": 249,
@@ -10002,17 +10072,21 @@
   },
   {
     "path": "pages/apps/tracy/skins/index.html",
-    "sha256": "c76ec25d5ee7777349a36aad79f5fe0895529aa62e0d4def4553f8fe3e204e89",
-    "bytes": 398,
+    "sha256": "720c014423932343bb69940ad207d8974b4d3ff17dc1bdaca40c0fe715809765",
+    "bytes": 1381,
     "purpose": "app-page",
     "imports": [],
     "links": [
-      "avalon-sunlit.css"
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
     ],
     "refs": [
-      "avalon-sunlit.css"
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
     ],
-    "preview": "<!doctype html>\n<html><head><meta charset=\"utf-8\"><title>Tracy Skins</title>\n<link rel=\"stylesheet\" href=\"avalon-sunlit.css\">\n</head><body>\n<h2>Tracy Skins — Bright by default</h2>\n<p>Switch skins by swapping CSS file link. Generator connects to /api/skin-llm (Worker).</p>\n<ul>\n<li>avalon-sunlit.css</li>\n<li>avalon-jewel-garden.css</li>\n<li>avalon-crystal-morning.css</li>\n</ul>\n</body></html>\n"
+    "preview": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Tracy • Skins & Variables</title>\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/variables.css\">\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/base.css\">\n</head>\n<body>\n<div class=\"wrap\">\n  <h2>🎨 Tracy • Skins & Variables</h2>\n  <p>Select a theme; all cards adopt symbols/variables instantly.</p>\n  <p>\n    <button class=\"btn\" onclick=\"setTheme('')\">Default</button>\n    <button class=\"btn\" onclick=\"setTheme('theme-autumn')\">Autumn</button>\n    <button class=\"btn\" onclick=\"setTheme('theme-noir')\">Noir</button>\n  </p>\n  <div class=\"grid\">\n    <div class=\"card\"><strong>Poster</strong><br><span class=\"badge\">Art 2D</span></div>\n    <div class=\"card\"><strong>T‑shirt</strong><br><span class=\"badge\">Art 2D</span></div>\n    <div class=\"card\"><strong>3D Asset</strong><br><span class=\"badge\">Art 3D</span></div>\n    <div class=\"card\"><strong>Web Skin</strong><br><span class=\"badge\">Skin</span></div>\n  </div>\n  <p style=\"margin-top:12px\"><a href=\"/index.html\">⬅ Home</a></p>\n</div>\n<script>\nfunction setTheme(name){\n  document.documentElement.className = name||'';\n  localStorage.setItem('TRACY_THEME', name||'');\n}\ndocument.documentElement.className = localStorage.getItem('TRACY_THEME')||'';\n</script>\n</body>\n</html>\n"
   },
   {
     "path": "pages/apps/tracy/skins/night-abyss.css",
@@ -10023,6 +10097,16 @@
     "links": [],
     "refs": [],
     "preview": ":root{--bg:#05060a;--fg:#dfe6ff;--card:#0a0c12;--accent:#7bbcff}body{background:var(--bg);color:var(--fg)}.card{background:var(--card);border:1px solid #141826;border-radius:12px;padding:12px}a{color:var(--accent)}"
+  },
+  {
+    "path": "pages/apps/tracy/skins/variables.css",
+    "sha256": "9fe19907c88828169cd82c4a71fbe6e64249d8c6a6af9c3d2b5bba1ee1feeb76",
+    "bytes": 507,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "/* Tracy Tokens: tweak these to theme the whole site */\n:root{\n  --bg:#0b0f17; --ink:#e8ecf1; --card:#141a24; --accent:#9cc1ff;\n  --pad:16px; --radius:14px;\n  --art-primary:#4b2bb5; --art-secondary:#fb7185; --art-warn:#f59e0b;\n}\n/* Alt themes */\n:root.theme-autumn{ --bg:#1d120a; --ink:#ffedd5; --card:#2a170c; --accent:#fb923c; --art-primary:#b45309; --art-secondary:#f97316; }\n:root.theme-noir{ --bg:#0a0a0a; --ink:#e5e7eb; --card:#111; --accent:#9ca3af; --art-primary:#334155; --art-secondary:#64748b; }\n"
   },
   {
     "path": "pages/apps/tracy/wallpaper-index.json",
@@ -10576,8 +10660,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "2ac28e5378b6efba581ef4257b6db86824866fbaed76a73ff974ce460d7ff344",
-    "bytes": 181043,
+    "sha256": "c5f648c294f903df16a8a7304abe3e9ef72a72636fdf11a319f883fcea79641f",
+    "bytes": 181660,
     "purpose": "other",
     "imports": [],
     "links": [],
@@ -10586,8 +10670,8 @@
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "f51591d8231ef3c77ad481724991601bcfdaee3035fdce60b64d39e6672259a5",
-    "bytes": 3382592,
+    "sha256": "7b2ff7ea8a18a7556541722b20d6364e89723a3c53822fe234eceb45332c3133",
+    "bytes": 3398467,
     "purpose": "other",
     "imports": [],
     "links": [],
@@ -10596,13 +10680,13 @@
   },
   {
     "path": "reports/clarity/pages-map.json",
-    "sha256": "feaab54edeecb337c66abd71dc8794f31af2cbf8b2ee454c2e118dacf25c1d48",
-    "bytes": 39367,
+    "sha256": "fb11fb11597b0030c5f0e29bf8bbbe8ddbd6c720433e6413065b75f079f9faad",
+    "bytes": 40154,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "[\n  {\n    \"path\": \"404.html\",\n    \"links\": [\n      \"/pages/apps/_city/index.html\"\n    ]\n  },\n  {\n    \"path\": \"avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html\",\n    \"links\": [\n      \"data:text/plain;charset=utf-8,\"\n    ]\n  },\n  {\n    \"path\": \"index.html\",\n    \"links\": [\n      \"/pages/_city/index.html\",\n      \"/pages/apps/charlotte/highlights.html\",\n      \"/pages/apps/tracy/skins/index.html\",\n      \"/pages/apps/stella/index.html\"\n    ]\n  },\n  {\n    \"path\": \"kill-sw-boost.html\",\n    \"links\": []\n  },\n  {\n    \"path\": \"kill-sw.html\",\n    \"links\": [\n      \"/\"\n    ]\n  },\n  {\n    \"path\": \"memory-history/retired/odessa/index.html\",\n    \"links\": [\n      \"/pages/plaza.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/city.css\",\n    \"links\": []\n  },\n  {\n    \"path\": \"pages/_city/index.html\",\n    \"links\": [\n      \"../../assets/css/avalon.css\",\n      \"../alexandria/index.html\",\n      \"../tracy/skins/generator.html\",\n      \"../jem/index.html\",\n      \"../carol/index.html\",\n      \"../stella/index.html\",\n      \"../charlotte/highlights.html\",\n      \"../../index.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/plaza.html\",\n    \"links\": [\n      \"../carol/index.html\",\n      \"../jem/week1/index.html\","
+    "preview": "[\n  {\n    \"path\": \"404.html\",\n    \"links\": [\n      \"/pages/apps/_city/index.html\"\n    ]\n  },\n  {\n    \"path\": \"avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html\",\n    \"links\": [\n      \"data:text/plain;charset=utf-8,\"\n    ]\n  },\n  {\n    \"path\": \"index.html\",\n    \"links\": [\n      \"/pages/apps/common/style.css\",\n      \"/pages/apps/nina/index.html\",\n      \"/pages/apps/charlotte/index.html\",\n      \"/pages/apps/billie/index.html\",\n      \"/pages/apps/carol/index.html\",\n      \"/pages/apps/jem/index.html\",\n      \"/pages/apps/alexandria/index.html\",\n      \"/pages/apps/stella/index.html\",\n      \"/pages/apps/tracy/skins/index.html\",\n      \"/pages/apps/overseers/ci-dashboard.html\"\n    ]\n  },\n  {\n    \"path\": \"kill-sw-boost.html\",\n    \"links\": []\n  },\n  {\n    \"path\": \"kill-sw.html\",\n    \"links\": [\n      \"/\"\n    ]\n  },\n  {\n    \"path\": \"memory-history/retired/odessa/index.html\",\n    \"links\": [\n      \"/pages/plaza.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/city.css\",\n    \"links\": []\n  },\n  {\n    \"path\": \"pages/_city/index.html\",\n    \"links\": [\n      \"../../assets/css/avalon.css\",\n      \"../alexandria/index.html\",\n      \"../tracy/skins/generator.html\",\n      \"../jem/index.html\",\n      \"../carol/index.html\",\n      \"../stella/index.html\",\n      \"../charlotte/highlights.html\",\n      \"../../index.html\"\n    ]"
   },
   {
     "path": "reports/clarity/workers-map.json",
@@ -10616,13 +10700,13 @@
   },
   {
     "path": "reports/clarity/workflows-map.json",
-    "sha256": "d600c2cd62a56ab40b486d5b47ac393d9a6880de4bc01df3bd7363ba7fbb8a6c",
-    "bytes": 20890,
+    "sha256": "a168801a0d6d21c06ae31dbbc707d57b3e945a69703fe92d2b30e9ad1eba2adf",
+    "bytes": 22872,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "[\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"name\": \"Actions Audit (list workflows & last runs)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"lookback_hours\",\n      \"description\",\n      \"Hours\",\n      \"back\",\n      \"to\",\n      \"inspect\",\n      \"required\",\n      \"true\",\n      \"default\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"name\": \"Alexandria DM Setup\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"name\": \"Alexandria - Voice DM (pages & logs)\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"name\": \"Actions Audit (on push)\",\n    \"triggers\": [\n      \"push\",\n      \"branches\",\n      \"main\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n    \"name\": \"Auto-approve & Automerge (label-gated)\",\n    \"triggers\": [\n      \"pull_request_target\",\n      \"types\",\n      \"labeled\",\n      \"synchronize\",\n      \"opened\",\n      \"reopened\",\n      \"ready_for_review\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"name\": \"Carol — Refresh Shopping (direct commit)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\","
+    "preview": "[\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"name\": \"Actions Audit (list workflows & last runs)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"lookback_hours\",\n      \"description\",\n      \"Hours\",\n      \"back\",\n      \"to\",\n      \"inspect\",\n      \"required\",\n      \"true\",\n      \"default\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"name\": \"Alexandria DM Setup\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"name\": \"Alexandria - Voice DM (pages & logs)\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"name\": \"Actions Audit (on push)\",\n    \"triggers\": [\n      \"push\",\n      \"branches\",\n      \"main\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n    \"name\": \"Auto-approve & Automerge (label-gated)\",\n    \"triggers\": [\n      \"pull_request_target\",\n      \"types\",\n      \"labeled\",\n      \"synchronize\",\n      \"opened\",\n      \"reopened\",\n      \"ready_for_review\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/billie-evolved.yml\",\n    \"name\": \"Billie (evolved) — watch monetization + social + grants\",\n    \"triggers\": [\n      \"push\",\n      \"branches\","
   },
   {
     "path": "robots.txt",

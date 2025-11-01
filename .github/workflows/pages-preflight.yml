@@ -1,34 +1,63 @@
-- name: Preflight checks (broken links + importmap sanity)
-  run: |
-    node - <<'JS'
-    const fs=require('fs'),path=require('path');
-    const site=JSON.parse(fs.readFileSync('memory/site-map.json','utf8'));
-    const problems=[];
-    let im=site.importmap||null; if(!im){ try{ im=JSON.parse(fs.readFileSync('importmap.json','utf8')); }catch{} }
+name: Pages Preflight (links + importmap)
 
-    const need=['three','three/addons/']; for(const n of need){ if(!im?.imports?.[n]) problems.push(`importmap.json missing "${n}"`); }
-    if(!im?.imports?.['@pixiv/three-vrm']) problems.push('importmap.json missing "@pixiv/three-vrm"');
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "**/*.html"
+      - "importmap.json"
+      - "pages/**"
+      - "asset/**"
+      - "memory/site-map.json"
+  workflow_dispatch: {}
 
-    const files=new Set(site.pages.concat(site.entrypoints).map(s=>s.replace(/^\//,'')));
-    function exists(p){ return fs.existsSync(p) && fs.statSync(p).isFile(); }
-    function parseLinks(h){ const out=[]; const rx=/(?:href|src)=["']([^"']+)["']/g; let m; while((m=rx.exec(h))) out.push(m[1]); return out; }
+permissions:
+  contents: read
 
-    for(const f of files){
-      if(!exists(f)){ problems.push('Missing HTML: '+f); continue; }
-      const html=fs.readFileSync(f,'utf8');
-      const links=parseLinks(html).filter(u=>!u.match(/^(https?:|mailto:|tel:|#)/));
-      for(const u of links){
-        let resolved;
-        if(u.startsWith('/')) {
-          // Treat as repo-rooted
-          resolved = u.replace(/^\//,'');
-        } else {
-          // Relative to the HTML file’s folder
-          resolved = path.posix.normalize(path.posix.join(path.posix.dirname(f), u));
-        }
-        if(!exists(resolved)) problems.push(`Broken link in ${f}: ${u}`);
-      }
-    }
-    if(problems.length){ console.log('::group::Preflight errors'); for(const p of problems) console.log('- '+p); console.log('::endgroup::'); fs.mkdirSync('preflight',{recursive:true}); fs.writeFileSync('preflight/report.txt', problems.join('\n')); process.exitCode=1; }
-    else { console.log('All good.'); }
-    JS
+concurrency:
+  group: pages-preflight-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # If memory/site-map.json is missing (first run, or Vision not run yet),
+      # create a minimal one so preflight can proceed.
+      - name: Build site map fallback (if not present)
+        run: |
+          if [ ! -f memory/site-map.json ]; then
+            mkdir -p memory
+            node - <<'JS'
+            const fs = require('fs'), path = require('path');
+            function walk(d, acc=[]) {
+              for (const e of fs.readdirSync(d, {withFileTypes:true})) {
+                const p = path.join(d, e.name);
+                if (e.isDirectory()) {
+                  if (['.git','node_modules','.next','.vercel','.cache'].includes(e.name)) continue;
+                  walk(p, acc);
+                } else if (e.isFile()) {
+                  acc.push(path.relative(process.cwd(), p).replace(/\\/g,'/'));
+                }
+              }
+              return acc;
+            }
+            const files = walk(process.cwd());
+            const pages = files.filter(f => f.startsWith('pages/') && f.endsWith('.html')).map(f => '/'+f);
+            const entry = fs.existsSync('index.html') ? ['/index.html'] : [];
+            const assets = files.filter(f => f.startsWith('asset/')).map(f => '/'+f);
+            let importmap=null; try{ importmap = JSON.parse(fs.readFileSync('importmap.json','utf8')); }catch{}
+            fs.writeFileSync('memory/site-map.json', JSON.stringify({
+              generated: new Date().toISOString(),
+              entrypoints: entry,
+              pages,
+              assets,
+              importmap
+            }, null, 2));
+            JS
+          fi
+
+      - name: Prefli
+::contentReference[oaicite:0]{index=0}

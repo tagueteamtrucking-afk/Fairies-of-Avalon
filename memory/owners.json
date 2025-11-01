@@ -1,0 +1,118 @@
+{
+  "nina": {
+    "merged_from": [
+      "clarice"
+    ],
+    "domains": [
+      "engineering",
+      "security",
+      "3D infra",
+      "import-map sanity"
+    ],
+    "rooms": [
+      "Blue Lab"
+    ],
+    "apps": [
+      "security_reports",
+      "project_overview_screen"
+    ]
+  },
+  "charlotte": {
+    "merged_from": [
+      "themis"
+    ],
+    "domains": [
+      "relay/translation",
+      "compliance",
+      "expirations",
+      "reminders"
+    ],
+    "rooms": [
+      "Relay Tower"
+    ],
+    "apps": [
+      "queues_dashboard",
+      "translations_board",
+      "expirations_registry",
+      "reminders_service"
+    ]
+  },
+  "billie": {
+    "merged_from": [
+      "odessa",
+      "sorcha"
+    ],
+    "domains": [
+      "monetization",
+      "social",
+      "grants"
+    ],
+    "rooms": [
+      "Museum Mansion / Socialite Mansion"
+    ],
+    "apps": [
+      "social_posts_board",
+      "earnings_per_post",
+      "grants_tracker"
+    ]
+  },
+  "jem": {
+    "merged_from": [],
+    "pair": "carol",
+    "domains": [
+      "fitness",
+      "biometrics"
+    ],
+    "rooms": [
+      "Dojo"
+    ]
+  },
+  "carol": {
+    "merged_from": [],
+    "pair": "jem",
+    "domains": [
+      "nutrition",
+      "shopping"
+    ],
+    "rooms": [
+      "Restaurant"
+    ]
+  },
+  "alexandria": {
+    "merged_from": [],
+    "pair": "stella",
+    "domains": [
+      "stories",
+      "worlds"
+    ],
+    "rooms": [
+      "Library"
+    ]
+  },
+  "stella": {
+    "merged_from": [],
+    "pair": "alexandria",
+    "domains": [
+      "voice",
+      "sound therapy"
+    ],
+    "rooms": [
+      "Observatory & Apothecary"
+    ]
+  },
+  "tracy": {
+    "merged_from": [],
+    "domains": [
+      "art-2D",
+      "art-3D",
+      "skins",
+      "t-shirt design",
+      "poster design",
+      "story art",
+      "web art"
+    ],
+    "rooms": [
+      "Cathedral Studio"
+    ]
+  }
+}

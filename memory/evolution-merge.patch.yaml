@@ -1,0 +1,44 @@
+# evolution-merge.patch.yaml
+generated: 2025-11-01T02:15:34.718865Z
+entities:
+  merges:
+    clarice -> nina: true
+    themis -> charlotte: true
+    odessa -> billie: true
+    sorcha -> billie: true
+  twins:
+    - [carol, jem]
+  pairs:
+    - [alexandria, stella]
+  specialties:
+    tracy:
+      - art-2D
+      - art-3D
+      - skins
+      - t-shirt design
+      - poster design
+      - story art
+      - web art
+
+interfaces_registry_updates:
+  security_reports: nina
+  expirations_registry: charlotte
+  reminders_service: charlotte
+  social_posts_board: billie
+  earnings_per_post: billie
+  grants_tracker: billie
+
+preserve_paths:
+  - asset/models
+  - asset/wings
+  - pages/apps/nina
+  - pages/apps/charlotte
+  - pages/apps/billie
+  - pages/apps/tracy
+  - pages/apps/jem
+  - pages/apps/carol
+  - pages/apps/alexandria
+  - pages/apps/stella
+  - pages/apps/overseers
+  - memory/**
+  - .github/workflows/**

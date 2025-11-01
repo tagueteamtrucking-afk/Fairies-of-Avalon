@@ -3,12 +3,40 @@
     "asset/models/**",
     "asset/wings/**",
     ".github/workflows/**",
-    "importmap.json",
+    "memory/**",
     "index.html",
-    "pages/**",
-    "memory/**"
+    "importmap.json",
+    "pages/apps/nina/**",
+    "pages/apps/charlotte/**",
+    "pages/apps/billie/**",
+    "pages/apps/tracy/**",
+    "pages/apps/jem/**",
+    "pages/apps/carol/**",
+    "pages/apps/alexandria/**",
+    "pages/apps/stella/**",
+    "pages/apps/overseers/**",
+    "pages/apps/clarice/index.html",
+    "pages/apps/themis/index.html",
+    "pages/apps/odessa/index.html",
+    "pages/apps/sorcha/index.html"
   ],
   "deleteIf": [
+    {
+      "glob": "pages/apps/clarice/**",
+      "reason": "legacy (merged into Nina) except redirect index.html"
+    },
+    {
+      "glob": "pages/apps/themis/**",
+      "reason": "legacy (merged into Charlotte) except redirect index.html"
+    },
+    {
+      "glob": "pages/apps/odessa/**",
+      "reason": "legacy (merged into Billie) except redirect index.html"
+    },
+    {
+      "glob": "pages/apps/sorcha/**",
+      "reason": "legacy (merged into Billie) except redirect index.html"
+    },
     {
       "glob": "**/*.tmp",
       "reason": "temporary file"

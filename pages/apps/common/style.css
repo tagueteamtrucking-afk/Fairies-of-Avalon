@@ -1,0 +1,7 @@
+:root{--bg:#0b0f17;--ink:#e8ecf1;--card:#141a24;--accent:#9cc1ff}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui}
+.wrap{max-width:1000px;margin:auto;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:12px}
+.card{background:var(--card);padding:16px;border-radius:14px}
+a{color:var(--accent);text-decoration:none}
+.sub{opacity:.8}

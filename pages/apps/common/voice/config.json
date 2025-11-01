@@ -1,0 +1,5 @@
+{
+  "worker_url": "",
+  "tts_default": true,
+  "note": "Set your Cloudflare Worker URL here; client fetch must not expose secrets."
+}

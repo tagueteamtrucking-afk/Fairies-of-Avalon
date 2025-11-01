@@ -1,0 +1,109 @@
+{
+  "generated": "2025-11-01T02:15:34.720890Z",
+  "fairies": {
+    "nina": {
+      "merged_from": [
+        "clarice"
+      ],
+      "owns": [
+        "security_reports",
+        "project_overview_screen",
+        "importmap_sanity",
+        "3d_infra"
+      ],
+      "rooms": [
+        "Blue Lab"
+      ]
+    },
+    "charlotte": {
+      "merged_from": [
+        "themis"
+      ],
+      "owns": [
+        "queues_dashboard",
+        "translations_board",
+        "expirations_registry",
+        "reminders_service"
+      ],
+      "rooms": [
+        "Relay Tower"
+      ]
+    },
+    "billie": {
+      "merged_from": [
+        "odessa",
+        "sorcha"
+      ],
+      "owns": [
+        "social_posts_board",
+        "earnings_per_post",
+        "grants_tracker"
+      ],
+      "rooms": [
+        "Museum Mansion / Socialite Mansion"
+      ]
+    },
+    "carol": {
+      "merged_from": [],
+      "owns": [
+        "meal_plans",
+        "shopping_lists"
+      ],
+      "rooms": [
+        "Restaurant"
+      ],
+      "twin_with": "jem"
+    },
+    "jem": {
+      "merged_from": [],
+      "owns": [
+        "fitness_plan",
+        "biometrics_dashboard",
+        "progress_tracker"
+      ],
+      "rooms": [
+        "Dojo"
+      ],
+      "twin_with": "carol"
+    },
+    "alexandria": {
+      "merged_from": [],
+      "owns": [
+        "stories_shelf",
+        "character_sheets_drawer",
+        "worlds_globes"
+      ],
+      "rooms": [
+        "Library"
+      ],
+      "paired_with": "stella"
+    },
+    "stella": {
+      "merged_from": [],
+      "owns": [
+        "ambient_sound_engine",
+        "guided_sessions",
+        "voice_bridge"
+      ],
+      "rooms": [
+        "Observatory & Apothecary"
+      ],
+      "paired_with": "alexandria"
+    },
+    "tracy": {
+      "merged_from": [],
+      "owns": [
+        "skins_system",
+        "art_2d",
+        "art_3d",
+        "tshirt_designs",
+        "poster_designs",
+        "story_art",
+        "web_art"
+      ],
+      "rooms": [
+        "Cathedral Studio"
+      ]
+    }
+  }
+}

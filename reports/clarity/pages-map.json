@@ -14,10 +14,16 @@
   {
     "path": "index.html",
     "links": [
-      "/pages/_city/index.html",
-      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/common/style.css",
+      "/pages/apps/nina/index.html",
+      "/pages/apps/charlotte/index.html",
+      "/pages/apps/billie/index.html",
+      "/pages/apps/carol/index.html",
+      "/pages/apps/jem/index.html",
+      "/pages/apps/alexandria/index.html",
+      "/pages/apps/stella/index.html",
       "/pages/apps/tracy/skins/index.html",
-      "/pages/apps/stella/index.html"
+      "/pages/apps/overseers/ci-dashboard.html"
     ]
   },
   {
@@ -887,7 +893,9 @@
   },
   {
     "path": "pages/apps/clarice/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/nina/index.html"
+    ]
   },
   {
     "path": "pages/apps/clarice/index.json",
@@ -895,6 +903,18 @@
   },
   {
     "path": "pages/apps/clarice/reports/graphics-audit-20251010T000205Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/common/health/shared.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/common/style.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/common/voice/config.json",
     "links": []
   },
   {
@@ -1070,7 +1090,9 @@
   },
   {
     "path": "pages/apps/odessa/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/billie/index.html"
+    ]
   },
   {
     "path": "pages/apps/odessa/index.json",
@@ -1079,6 +1101,13 @@
   {
     "path": "pages/apps/overseers/crossrepo/second_repo_index.json",
     "links": []
+  },
+  {
+    "path": "pages/apps/overseers/fairy-function-matrix.html",
+    "links": [
+      "/pages/apps/common/style.css",
+      "/index.html"
+    ]
   },
   {
     "path": "pages/apps/overseers/hub/hub.css",
@@ -1228,7 +1257,9 @@
   },
   {
     "path": "pages/apps/sorcha/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/billie/index.html"
+    ]
   },
   {
     "path": "pages/apps/sorcha/index.json",
@@ -1340,7 +1371,9 @@
   },
   {
     "path": "pages/apps/themis/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/charlotte/index.html"
+    ]
   },
   {
     "path": "pages/apps/themis/index.json",

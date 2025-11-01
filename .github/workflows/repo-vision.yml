@@ -1,0 +1,76 @@
+name: Repo Vision (index + site map)
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build repo index and site map
+        run: |
+          set -e
+          mkdir -p memory
+          node - <<'JS'
+          const fs = require('fs');
+          const path = require('path');
+
+          function walk(dir, acc=[], root=dir) {
+            for (const e of fs.readdirSync(dir, {withFileTypes:true})) {
+              const p = path.join(dir, e.name);
+              if (e.isDirectory()) {
+                if (['.git','node_modules','.cache','.vercel','.next'].includes(e.name)) continue;
+                acc = walk(p, acc, root);
+              } else {
+                const rel = path.relative(root, p).replace(/\\/g,'/');
+                const stat = fs.statSync(p);
+                const hash = require('crypto').createHash('md5').update(fs.readFileSync(p)).digest('hex');
+                const purpose =
+                  rel.startsWith('pages/') ? 'site-page' :
+                  rel.startsWith('asset/') ? 'asset' :
+                  rel.startsWith('.github/workflows/') ? 'workflow' :
+                  rel.startsWith('scripts/') ? 'script' : 'misc';
+                acc.push({ path: rel, bytes: stat.size, hash, purpose });
+              }
+            }
+            return acc;
+          }
+
+          const all = walk(process.cwd());
+          fs.writeFileSync('memory/file-index.json', JSON.stringify({
+            generated: new Date().toISOString(),
+            count: all.length,
+            files: all
+          }, null, 2));
+
+          const pages = all.filter(f => f.path.startsWith('pages/') && f.path.endsWith('.html'))
+                           .map(f => f.path.replace(/^pages\//,'/pages/'));
+          const entry = fs.existsSync('index.html') ? ['/index.html'] : [];
+          const assets = all.filter(f => f.path.startsWith('asset/')).map(f=>'/'+f.path);
+          let importmap = null;
+          try { importmap = JSON.parse(fs.readFileSync('importmap.json','utf8')); } catch {}
+          fs.writeFileSync('memory/site-map.json', JSON.stringify({
+            generated: new Date().toISOString(),
+            entrypoints: entry,
+            pages,
+            assets,
+            importmap
+          }, null, 2));
+          JS
+
+      - name: Commit index
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(vision): refresh file-index + site-map"
+          file_pattern: |
+            memory/file-index.json
+            memory/site-map.json

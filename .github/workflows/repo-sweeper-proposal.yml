@@ -1,0 +1,75 @@
+name: Repo Sweeper (propose deletions)
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "49 3 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup jq and micromatch
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq
+          npm i micromatch
+
+      - name: Compute cleanup proposal
+        id: plan
+        run: |
+          node - <<'JS'
+          const fs = require('fs'); const micromatch = require('micromatch');
+          const idx = JSON.parse(fs.readFileSync('memory/file-index.json','utf8'));
+          const rules = JSON.parse(fs.readFileSync('memory/cleanup-rules.json','utf8'));
+          const files = idx.files;
+
+          function preserved(p){ return micromatch.isMatch(p, rules.preserveGlobs||[]); }
+
+          const byHash = {};
+          for (const f of files) { (byHash[f.hash] ||= []).push(f); }
+
+          const deletes = [];
+          for (const f of files) {
+            if (preserved(f.path)) continue;
+
+            let doomed = false; let reason = '';
+            for (const r of rules.deleteIf||[]) {
+              if (r.glob && !micromatch.isMatch(f.path, r.glob)) continue;
+              if (r.sizeLT && !(f.bytes < r.sizeLT)) continue;
+              doomed = true; reason = r.reason || `rule ${JSON.stringify(r)}`; break;
+            }
+            if (doomed) { deletes.push({path:f.path, reason}); continue; }
+
+            const dup = byHash[f.hash];
+            if (dup && dup.length > 1) {
+              const max = dup.reduce((a,b)=> a.bytes>=b.bytes?a:b);
+              if (f.path !== max.path) deletes.push({path:f.path, reason:'duplicate content'});
+            }
+          }
+
+          fs.mkdirSync('memory', {recursive:true});
+          fs.writeFileSync('memory/cleanup-proposals.json', JSON.stringify({generated:new Date().toISOString(), deletes}, null, 2));
+          console.log(`Found ${deletes.length} deletions`);
+          JS
+
+      - name: Create PR with deletions
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: chore/repo-sweep
+          title: "chore: repo sweep (auto-proposed deletions)"
+          commit-message: "chore: remove redundant/temporary files"
+          body: |
+            Proposed by Repo Sweeper based on memory/file-index.json and cleanup-rules.json.
+            - Preserved critical paths (models, wings, workflows, pages, memory)
+            - Removed temp files, empty stubs, duplicates by content hash
+          add-paths: |
+            memory/cleanup-proposals.json
+          delete-files: |
+            $(jq -r '.deletes[].path' memory/cleanup-proposals.json)
+          token: ${{ secrets.GITHUB_TOKEN }}

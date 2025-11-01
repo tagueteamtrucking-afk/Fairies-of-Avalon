@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T06:00:11.232Z",
+  "generated": "2025-11-01T06:01:37.132Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -83,6 +83,24 @@
       "path": "assets/css/avalon.css",
       "bytes": 427,
       "hash": "adfc8632a8454faa17ebb44abd428bcc",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/designs/avalon-city.png",
+      "bytes": 3554896,
+      "hash": "d635ec2b69549a9e5d2280b041aa4681",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/designs/poster-fairy.png",
+      "bytes": 3169370,
+      "hash": "2e9b60c855594f0827e7c4a461ff2019",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/designs/tshirt-fairy.png",
+      "bytes": 2957505,
+      "hash": "52298272a38e509f1044a71cac287028",
       "purpose": "misc"
     },
     {
@@ -357,8 +375,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 38,
-      "hash": "18ace3568dd28c3f2869148faaa3f7aa",
+      "bytes": 64448,
+      "hash": "14290dcc3f7b93525b7176eb521d6f42",
       "purpose": "misc"
     },
     {

@@ -1,6 +1,6 @@
 {
-  "generated": "2025-11-01T01:26:42.776Z",
-  "count": 1081,
+  "generated": "2025-11-01T02:20:22.933Z",
+  "count": 1088,
   "files": [
     {
       "path": ".github/cleanup/sweeper-manifest.json",
@@ -1816,8 +1816,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 1392,
-      "hash": "bb6500961204fbea2a21317d05dc44f5",
+      "bytes": 1688,
+      "hash": "af999443e34b7e8ee33b3d703cae4de0",
       "purpose": "misc"
     },
     {
@@ -1852,8 +1852,8 @@
     },
     {
       "path": "memory/cleanup-rules.json",
-      "bytes": 623,
-      "hash": "7f74b363bbaa20f9aeccfbfc11f2dab1",
+      "bytes": 1505,
+      "hash": "5db91ac24d2a545067ccb1a552da107c",
       "purpose": "misc"
     },
     {
@@ -1863,9 +1863,27 @@
       "purpose": "misc"
     },
     {
+      "path": "memory/evolution-merge.patch.yaml",
+      "bytes": 903,
+      "hash": "18d421e09fc134aa3375c13087bfbdc4",
+      "purpose": "misc"
+    },
+    {
+      "path": "memory/fairy_function_matrix.json",
+      "bytes": 2023,
+      "hash": "697656acf09fa3f9824900fa395325c6",
+      "purpose": "misc"
+    },
+    {
       "path": "memory/file-index.json",
-      "bytes": 183127,
-      "hash": "c12d152c49c66317d4ed0574218bccca",
+      "bytes": 183294,
+      "hash": "8e132c2a8eaddc6ca71a97344e257423",
+      "purpose": "misc"
+    },
+    {
+      "path": "memory/owners.json",
+      "bytes": 1850,
+      "hash": "96bdb201d8e93e344234fc6d2b1b95b5",
       "purpose": "misc"
     },
     {
@@ -4492,8 +4510,8 @@
     },
     {
       "path": "pages/apps/clarice/index.html",
-      "bytes": 91,
-      "hash": "9fe2db65a24e994a6f57087eb876bc74",
+      "bytes": 144,
+      "hash": "dc7dc92cb80952fd3d780a2fef2ca81c",
       "purpose": "site-page"
     },
     {
@@ -4506,6 +4524,24 @@
       "path": "pages/apps/clarice/reports/graphics-audit-20251010T000205Z.json",
       "bytes": 253,
       "hash": "a377976f4f7d6c212be3e1c6961dad88",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/apps/common/health/shared.json",
+      "bytes": 95,
+      "hash": "d52a3f4075cead2a9cbfb4e61bb212eb",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/apps/common/style.css",
+      "bytes": 436,
+      "hash": "da7a975af1fc5b63feffb9fecebfe1f4",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/apps/common/voice/config.json",
+      "bytes": 133,
+      "hash": "6e137e78f07281d0841d2b92845c07b3",
       "purpose": "site-page"
     },
     {
@@ -4732,8 +4768,8 @@
     },
     {
       "path": "pages/apps/odessa/index.html",
-      "bytes": 90,
-      "hash": "7f53c3882009b3b9ca8d0aece183ed77",
+      "bytes": 148,
+      "hash": "7e7c7a1d8a428d2d3cef173eb4ec5274",
       "purpose": "site-page"
     },
     {
@@ -4746,6 +4782,12 @@
       "path": "pages/apps/overseers/crossrepo/second_repo_index.json",
       "bytes": 1298,
       "hash": "9d32789c141a837a671cd70f95730e3b",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/apps/overseers/fairy-function-matrix.html",
+      "bytes": 1511,
+      "hash": "2723abbbd5b6cd6592a5d08bf9ab3d71",
       "purpose": "site-page"
     },
     {
@@ -4942,8 +4984,8 @@
     },
     {
       "path": "pages/apps/sorcha/index.html",
-      "bytes": 90,
-      "hash": "80d74a1818ac81b1c2e5518a2df0765e",
+      "bytes": 148,
+      "hash": "7e7c7a1d8a428d2d3cef173eb4ec5274",
       "purpose": "site-page"
     },
     {
@@ -5092,8 +5134,8 @@
     },
     {
       "path": "pages/apps/themis/index.html",
-      "bytes": 90,
-      "hash": "ca082a5cdc41ba10b6443f908ee5f393",
+      "bytes": 154,
+      "hash": "f34f01460d52a6c20c01c52995121d78",
       "purpose": "site-page"
     },
     {

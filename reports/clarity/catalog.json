@@ -36,8 +36,8 @@
   },
   {
     "path": ".github/workflows/auto-approve-and-merge.yml",
-    "sha256": "afe7456cf824240f0c41a64aea65660afb9d2abb66598cb85f6711fedebea956",
-    "bytes": 673
+    "sha256": "5f6fdf1b03dd4a5dbd786fcb49f38db17b491662703834513efb1a4c2c741270",
+    "bytes": 1387
   },
   {
     "path": ".github/workflows/carol-build-shopping-direct.yml",
@@ -266,8 +266,13 @@
   },
   {
     "path": ".github/workflows/label-bot-prs.yml",
-    "sha256": "b9b31f179f5b72acc525c5c5f2943decc76f967192cea924a6ebae6641082ce5",
-    "bytes": 834
+    "sha256": "d5c522f0002269ab0e12577604625bd510a12fc18923e4e3a50a3f2ada072370",
+    "bytes": 446
+  },
+  {
+    "path": ".github/workflows/labeler.yml",
+    "sha256": "b3c5fd054136f74ccb34c240aee994564c9641cf85e128e124497d328af0d63a",
+    "bytes": 237
   },
   {
     "path": ".github/workflows/llm-bootstrap-nightly.yml",
@@ -353,6 +358,16 @@
     "path": ".github/workflows/package-workflows.yml",
     "sha256": "4e4ad07d02d12be3d9c29d26c6c67c8f6a8429c0cb75b6713386643178b88e94",
     "bytes": 812
+  },
+  {
+    "path": ".github/workflows/pr-automerge-comment-bot.yml",
+    "sha256": "fbf973107e8d4c827dc663454af0fb00e4be974cf215fa8485ebe1199b8c202c",
+    "bytes": 4691
+  },
+  {
+    "path": ".github/workflows/pr-policy.yml",
+    "sha256": "bd013a43fa663998edecbb2785f1500c17252c599197fa4f85c3d88faab1b88d",
+    "bytes": 580
   },
   {
     "path": ".github/workflows/repo-doctor.yml",
@@ -1458,6 +1473,11 @@
     "path": "docs/OAuth-Notes.md",
     "sha256": "239cc38842ee59050b4ee99c57ac55e919817a76631ad9b3eb71d28fefcc634b",
     "bytes": 268
+  },
+  {
+    "path": "docs/PR-Automerge-Comment-Bot.md",
+    "sha256": "7295d9a746f9d602339be67bd8056b07ef583240fd8f2a98e4fa0df339241047",
+    "bytes": 519
   },
   {
     "path": "docs/RULES.md",
@@ -4776,8 +4796,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "bdb6f4b48ffd73eb8e9b2872ec0ab95685b5a54fd03305f260d8e4bb7e8f90d4",
-    "bytes": 177413
+    "sha256": "3d84a5691b126847ccec2acd59a9fbe8709da68e0fe8e883490c0cc748aef5ec",
+    "bytes": 178052
   },
   {
     "path": "reports/clarity/files-index.json",

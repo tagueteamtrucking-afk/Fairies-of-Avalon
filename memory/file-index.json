@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T14:11:54.128Z",
+  "generated": "2025-11-01T19:26:52.961Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -83,6 +83,12 @@
       "path": "assets/README.md",
       "bytes": 638,
       "hash": "e756e23f729c67cc029b5a170bf2e41c",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/css/avalon-bright.css",
+      "bytes": 914,
+      "hash": "62847764e758e15b8a62fbb9ae322291",
       "purpose": "misc"
     },
     {
@@ -369,8 +375,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 2254,
-      "hash": "57982323b1f2eeba3f8d76f201148e47",
+      "bytes": 1180,
+      "hash": "ed5d62d2227e0638fb58642d94dc81ea",
       "purpose": "misc"
     },
     {
@@ -436,7 +442,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 69109,
-      "hash": "c30ffa806b26666b66838a3ea2bc37ea",
+      "hash": "04c111da436bb78c69cc6f18c81b32d9",
       "purpose": "misc"
     },
     {
@@ -2090,6 +2096,12 @@
       "purpose": "misc"
     },
     {
+      "path": "pages/_city/index.html",
+      "bytes": 1202,
+      "hash": "136e2d058e71938959a21b86c237a576",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/_city/index.html",
       "bytes": 736,
       "hash": "06b3e3f79ee63d05215c8cb72517d284",
@@ -2157,8 +2169,8 @@
     },
     {
       "path": "pages/apps/carol/index.html",
-      "bytes": 880,
-      "hash": "a7ce1e6ff4e19f080dc6ae43f8432d82",
+      "bytes": 1156,
+      "hash": "e78dd509cf07ba9e0718763ea4f7d6c5",
       "purpose": "page"
     },
     {

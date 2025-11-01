@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T13:04:29.927Z",
+  "generated": "2025-11-01T13:06:54.554Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -436,7 +436,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 69722,
-      "hash": "cc39e3c7de162157bcbec8999a5127c9",
+      "hash": "88704b8672774283d084dd875ad3a30e",
       "purpose": "misc"
     },
     {
@@ -2189,12 +2189,6 @@
       "path": "pages/apps/charlotte/translations-board.html",
       "bytes": 2697,
       "hash": "60a4d6cc97b3aea132066e7f57b8fe8e",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/clarice/index.html",
-      "bytes": 386,
-      "hash": "975e2dab87ba207cd603440760a72bc6",
       "purpose": "page"
     },
     {

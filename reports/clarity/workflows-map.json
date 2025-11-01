@@ -40,6 +40,19 @@
     ]
   },
   {
+    "path": ".github/workflows/auto-approve-and-merge.yml",
+    "name": "Auto-approve & Automerge (label-gated)",
+    "triggers": [
+      "pull_request_target",
+      "types",
+      "labeled",
+      "synchronize",
+      "opened",
+      "reopened",
+      "ready_for_review"
+    ]
+  },
+  {
     "path": ".github/workflows/carol-build-shopping-direct.yml",
     "name": "Carol — Refresh Shopping (direct commit)",
     "triggers": [
@@ -520,6 +533,24 @@
     ]
   },
   {
+    "path": ".github/workflows/label-bot-prs.yml",
+    "name": "Label PRs",
+    "triggers": [
+      "pull_request_target",
+      "types",
+      "opened",
+      "synchronize",
+      "reopened",
+      "ready_for_review",
+      "edited"
+    ]
+  },
+  {
+    "path": ".github/workflows/labeler.yml",
+    "name": "labeler.yml",
+    "triggers": []
+  },
+  {
     "path": ".github/workflows/llm-bootstrap-nightly.yml",
     "name": "LLM Bootstrap (nightly)",
     "triggers": [
@@ -693,6 +724,39 @@
     ]
   },
   {
+    "path": ".github/workflows/pr-automerge-comment-bot.yml",
+    "name": "PR Automerge Comment Bot",
+    "triggers": [
+      "pull_request_target",
+      "types",
+      "opened",
+      "reopened",
+      "synchronize",
+      "labeled",
+      "edited",
+      "ready_for_review",
+      "review_requested",
+      "review_request_removed",
+      "unlocked",
+      "converted_to_draft",
+      "auto_merge_enabled",
+      "auto_merge_disabled"
+    ]
+  },
+  {
+    "path": ".github/workflows/pr-policy.yml",
+    "name": "PR Policy (Conventional)",
+    "triggers": [
+      "pull_request_target",
+      "types",
+      "opened",
+      "synchronize",
+      "edited",
+      "reopened",
+      "ready_for_review"
+    ]
+  },
+  {
     "path": ".github/workflows/repo-doctor.yml",
     "name": "Repo Doctor (read-only reports)",
     "triggers": [
@@ -721,6 +785,15 @@
     ]
   },
   {
+    "path": ".github/workflows/repo-sweeper-proposal.yml",
+    "name": "Repo Sweeper (propose deletions)",
+    "triggers": [
+      "workflow_dispatch",
+      "schedule",
+      "cron"
+    ]
+  },
+  {
     "path": ".github/workflows/repo-sweeper-report.yml",
     "name": "Repo — Sweeper Report (PR)",
     "triggers": [
@@ -731,6 +804,18 @@
     "path": ".github/workflows/repo-sweeper.yml",
     "name": "Repo Sweeper (PR-based cleanup)",
     "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/repo-vision.yml",
+    "name": "Repo Vision (index + site map)",
+    "triggers": [
+      "push",
+      "branches",
+      "main",
+      "schedule",
+      "cron",
       "workflow_dispatch"
     ]
   },

@@ -70,6 +70,16 @@
     "preview": "name: Actions Audit (on push)\non:\n  push:\n    branches:\n      - main\npermissions:\n  contents: read\n  actions: read\n  issues: write\njobs:\n  audit:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n      - name: Update Audit Issue\n        uses: actions/github-script@v7\n        with:\n          script: |\n            const owner = context.repo.owner, repo = context.repo.repo;\n            const { data } = await github.rest.actions.listRepoWorkflows({owner, repo, per_page: 200});\n            const lines = (data.workflows||[]).map(w => `- ${w.name} (${w.path})`).join('\\n');\n            const body = `## Actions Audit (push)\\n\\n${lines}`;\n            const title = 'Actions Audit Report';\n            const { data: issues } = await github.rest.issues.listForRepo({owner, repo, state: 'open'});\n            const existing = issues.find(i => i.title === title);\n            if (existing) {\n              await github.rest.issues.update({owner, repo, issue_number: existing.number, body});\n            } else {\n              await github.rest.issues.create({owner, repo, title, body});\n            }\n"
   },
   {
+    "path": ".github/workflows/auto-approve-and-merge.yml",
+    "sha256": "5f6fdf1b03dd4a5dbd786fcb49f38db17b491662703834513efb1a4c2c741270",
+    "bytes": 1387,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: Auto-approve & Automerge (label-gated)\n\non:\n  pull_request_target:\n    types: [labeled, synchronize, opened, reopened, ready_for_review]\n\npermissions:\n  contents: write\n  pull-requests: write\n  statuses: read\n  checks: read\n\njobs:\n  approve-and-merge:\n    if: >\n      contains(github.event.pull_request.labels.*.name, 'automerge') &&\n      !github.event.pull_request.draft\n    runs-on: ubuntu-latest\n\n    steps:\n      - name: Ensure CI is green\n        uses: actions-ecosystem/action-wait-for-check@v1\n        with:\n          token: ${{ secrets.GITHUB_TOKEN }}\n          intervalSeconds: 10\n          timeoutSeconds: 3600\n\n      - name: Auto-approve (for bots / safe areas)\n        if: |\n          contains(github.event.pull_request.labels.*.name, 'bot') ||\n          contains(github.event.pull_request.labels.*.name, 'docs') ||\n          contains(github.event.pull_request.labels.*.name, 'workflows') ||\n          contains(github.event.pull_request.labels.*.name, 'site')\n        uses: hmarr/auto-approve-action@v4\n        with:\n          github-token: ${{ secrets.GITHUB_TOKEN }}\n\n      - name: Automerge (squash) when eligible\n        uses: pascalgn/automerge-action@v0.16.3\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          MERGE_LABELS: automerge\n          MERGE_METHOD: squash\n          MERGE_DELETE_BRANCH: \"true\"\n          MERGE_BLOCK_LABELS: hold\n"
+  },
+  {
     "path": ".github/workflows/carol-build-shopping-direct.yml",
     "sha256": "020b45e10af39c88087e289c63caa1241c530008b9706943f254fe013fc86033",
     "bytes": 1665,
@@ -522,6 +532,26 @@
     "preview": "name: Jem Plan Sync\non:\n  workflow_dispatch:\n    inputs:\n      sample_data:\n        description: 'Optional JSON of health metrics'\n        required: false\n        default: ''\npermissions:\n  contents: write\n  pull-requests: write\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Build plan JSON\n        run: |\n          mkdir -p pages/apps/jem/data\n          node scripts/jem/plan-sync.mjs '${{ inputs.sample_data }}'\n      - uses: actions/upload-artifact@v4\n        with:\n          name: jem-plan\n          path: pages/apps/jem/data/plan-latest.json\n      - name: Create PR\n        uses: peter-evans/create-pull-request@v6\n        with:\n          commit-message: 'jem: update plan-latest.json'\n          title: 'jem: update plan-latest.json'\n          branch: ci/jem-plan-${{ github.run_id }}\n          base: ${{ github.ref_name }}\n"
   },
   {
+    "path": ".github/workflows/label-bot-prs.yml",
+    "sha256": "d5c522f0002269ab0e12577604625bd510a12fc18923e4e3a50a3f2ada072370",
+    "bytes": 446,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: Label PRs\n\non:\n  pull_request_target:\n    types: [opened, synchronize, reopened, ready_for_review, edited]\n\npermissions:\n  contents: read\n  pull-requests: write\n\njobs:\n  label:\n    if: ${{ !github.event.pull_request.draft }}\n    runs-on: ubuntu-latest\n    steps:\n      - name: Apply labels from .github/labeler.yml\n        uses: actions/labeler@v5\n        with:\n          repo-token: ${{ secrets.GITHUB_TOKEN }}\n          sync-labels: true\n"
+  },
+  {
+    "path": ".github/workflows/labeler.yml",
+    "sha256": "b3c5fd054136f74ccb34c240aee994564c9641cf85e128e124497d328af0d63a",
+    "bytes": 237,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "docs:\n  - 'docs/**'\n  - '**/*.md'\n\nsite:\n  - 'pages/**'\n  - 'asset/**'\n  - '!asset/models/**'\n  - '!asset/wings/**'\n\nworkflows:\n  - '.github/workflows/**'\n\nbot:\n  - any: ['**/*']\n    createdBy: ['dependabot[bot]', 'github-actions[bot]']\n"
+  },
+  {
     "path": ".github/workflows/llm-bootstrap-nightly.yml",
     "sha256": "48009d46abb441573afa6cea057e846e37440b62b5935fbe3511c5f1a2feb7b6",
     "bytes": 760,
@@ -692,6 +722,26 @@
     "preview": "name: Package - Workflows ZIP (flat root)\non: { workflow_dispatch: {} }\njobs:\n  package:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Stage workflows\n        run: |\n          mkdir -p staging\n          if [ -d \".github/workflows\" ]; then\n            find .github/workflows -maxdepth 1 -type f \\( -name \"*.yml\" -o -name \"*.yaml\" \\) -print0 | while IFS= read -r -d '' f; do cp \"$f\" \"staging/$(basename \"$f\")\"; done\n          fi\n          count=$(ls -1 staging 2>/dev/null | wc -l | tr -d ' ')\n          if [ \"$count\" = \"0\" ]; then echo \"No workflow files found\" >&2; exit 1; fi\n          (cd staging && zip -r ../Avalon-Workflows.zip .)\n      - uses: actions/upload-artifact@v4\n        with: { name: Avalon-Workflows, path: Avalon-Workflows.zip, if-no-files-found: error }\n"
   },
   {
+    "path": ".github/workflows/pr-automerge-comment-bot.yml",
+    "sha256": "fbf973107e8d4c827dc663454af0fb00e4be974cf215fa8485ebe1199b8c202c",
+    "bytes": 4691,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: PR Automerge Comment Bot\n\non:\n  pull_request_target:\n    types:\n      - opened\n      - reopened\n      - synchronize\n      - labeled\n      - edited\n      - ready_for_review\n      - review_requested\n      - review_request_removed\n      - unlocked\n      - converted_to_draft\n      - auto_merge_enabled\n      - auto_merge_disabled\n\npermissions:\n  contents: read\n  checks: read\n  statuses: read\n  pull-requests: write\n  issues: write\n\njobs:\n  explain-non-automerge:\n    if: github.event.pull_request.merged == false\n    runs-on: ubuntu-latest\n    steps:\n      - name: Explain why PR did not auto-merge\n        uses: actions/github-script@v7\n        with:\n          script: |\n            const pr = context.payload.pull_request;\n            const owner = context.repo.owner;\n            const repo = context.repo.repo;\n            const HEADER = \"### 🤖 Automerge Comment Bot — Status Check\";\n\n            const { data: fresh } = await github.rest.pulls.get({ owner, repo, pull_number: pr.number });\n\n            const reasons = [];\n            const labels = new Set(fresh.labels.map(l => l.name.toLowerCase()));\n            const hasAutomerge = labels.has(\"automerge\");\n            const hasHold = labels.has(\"hold\");\n            const isDraft = fresh.draft;\n\n            if (!hasAutomerge) reasons.push(\"No **`automerge`** label on this PR.\");\n            if (hasHold) reasons.push(\"The **`hold`** label is present (merges are blocked until it is removed).\");\n            if (isDraft) reasons.push(\"This PR is still in **Draft** state.\");\n\n            const reviews = await github.paginate(github.rest.pulls.listReviews, { owner, repo, pull_number: pr.number });\n            const approvals = reviews.filter(r => r.state === \"APPROVED\");\n            if (approvals.length < 1) reasons.push(\"No **approving review** found. (Branch protection may require one.)\");\n\n            const head_sha = fresh.head.sha;\n            const { data: status } = await github.rest.repos.getCombinedStatusForRef({ owner, repo, ref: head_sha });\n            const failingStatuses = status.statuses.filter(s => s.state !== \"success\");\n            const checks = await github.paginate(github.rest.checks.listForRef, { owner, repo, ref: head_sha });\n            const failingChecks = checks.filter(cr => cr.status !== \"completed\" || (cr.conclusion && ![\"success\",\"neutral\",\"skipped\"].includes(cr.conclusion)));"
+  },
+  {
+    "path": ".github/workflows/pr-policy.yml",
+    "sha256": "bd013a43fa663998edecbb2785f1500c17252c599197fa4f85c3d88faab1b88d",
+    "bytes": 580,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: PR Policy (Conventional)\n\non:\n  pull_request_target:\n    types: [opened, synchronize, edited, reopened, ready_for_review]\n\npermissions:\n  pull-requests: read\n\njobs:\n  conventional:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: amannn/action-semantic-pull-request@v5\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n        with:\n          requireScope: false\n          types: |\n            feat\n            fix\n            chore\n            docs\n            style\n            refactor\n            perf\n            test\n            build\n            ci\n"
+  },
+  {
     "path": ".github/workflows/repo-doctor.yml",
     "sha256": "3f71b2c9b244ed68286401e59d2fdb10038695eeb3498d0ea139411a11072906",
     "bytes": 1714,
@@ -732,6 +782,16 @@
     "preview": "name: Repo - Retire Odessa\non: { workflow_dispatch: {} }\npermissions: { contents: write }\njobs:\n  retire:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Move Odessa to memory-history/retired\n        shell: bash\n        run: |\n          set -euo pipefail\n          if [ -d \"pages/apps/odessa\" ]; then\n            mkdir -p memory-history/retired\n            git mv pages/apps/odessa memory-history/retired/odessa || true\n          else\n            echo \"Odessa folder not found (already retired).\"\n          fi\n      - name: Commit move\n        shell: bash\n        run: |\n          git config user.name \"github-actions[bot]\"\n          git config user.email \"github-actions[bot]@users.noreply.github.com\"\n          if git diff --cached --quiet; then echo \"No changes\"; else git commit -m \"chore(repo): retire Odessa (Sorcha covers social+adult track)\" && git push; fi\n"
   },
   {
+    "path": ".github/workflows/repo-sweeper-proposal.yml",
+    "sha256": "a0be9c193383be59f20587d269dd60c225fc80cb929fa39e1c7fda3c073b2535",
+    "bytes": 2757,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: Repo Sweeper (propose deletions)\n\non:\n  workflow_dispatch: {}\n  schedule:\n    - cron: \"49 3 * * *\"\n\npermissions:\n  contents: write\n  pull-requests: write\n\njobs:\n  sweep:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      - name: Setup jq and micromatch\n        run: |\n          sudo apt-get update && sudo apt-get install -y jq\n          npm i micromatch\n\n      - name: Compute cleanup proposal\n        id: plan\n        run: |\n          node - <<'JS'\n          const fs = require('fs'); const micromatch = require('micromatch');\n          const idx = JSON.parse(fs.readFileSync('memory/file-index.json','utf8'));\n          const rules = JSON.parse(fs.readFileSync('memory/cleanup-rules.json','utf8'));\n          const files = idx.files;\n\n          function preserved(p){ return micromatch.isMatch(p, rules.preserveGlobs||[]); }\n\n          const byHash = {};\n          for (const f of files) { (byHash[f.hash] ||= []).push(f); }\n\n          const deletes = [];\n          for (const f of files) {\n            if (preserved(f.path)) continue;\n\n            let doomed = false; let reason = '';\n            for (const r of rules.deleteIf||[]) {\n              if (r.glob && !micromatch.isMatch(f.path, r.glob)) continue;\n              if (r.sizeLT && !(f.bytes < r.sizeLT)) continue;\n              doomed = true; reason = r.reason || `rule ${JSON.stringify(r)}`; break;\n            }\n            if (doomed) { deletes.push({path:f.path, reason}); continue; }\n\n            const dup = byHash[f.hash];\n            if (dup && dup.length > 1) {\n              const max = dup.reduce((a,b)=> a.bytes>=b.bytes?a:b);\n              if (f.path !== max.path) deletes.push({path:f.path, reason:'duplicate content'});\n            }\n          }\n\n          fs.mkdirSync('memory', {recursive:true});\n          fs.writeFileSync('memory/cleanup-proposals.json', JSON.stringify({generated:new Date().toISOString(), deletes}, null, 2));\n          console.log(`Found ${deletes.length} deletions`);\n          JS\n"
+  },
+  {
     "path": ".github/workflows/repo-sweeper-report.yml",
     "sha256": "ff79da1756a53d6350b580edb3b61bcfe86bd4caa681b7b71d07c58f7737ff08",
     "bytes": 674,
@@ -750,6 +810,16 @@
     "links": [],
     "refs": [],
     "preview": "\nname: Repo Sweeper (PR-based cleanup)\non:\n  workflow_dispatch: {}\npermissions:\n  contents: write\n  pull-requests: write\njobs:\n  sweep:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      - name: Read manifest\n        id: manifest\n        run: |\n          test -f \".github/cleanup/sweeper-manifest.json\"\n          echo \"paths=$(cat .github/cleanup/sweeper-manifest.json | jq -r '.delete[]?' | paste -sd ' ' -)\" >> $GITHUB_OUTPUT\n\n      - name: Delete files (staging)\n        if: steps.manifest.outputs.paths != ''\n        run: |\n          set -e\n          for p in ${{ steps.manifest.outputs.paths }}; do\n            if [ -f \"$p\" ]; then\n              git rm -f \"$p\"\n            else\n              echo \"skip (not found): $p\"\n            fi\n          done\n\n      - name: Create PR\n        if: steps.manifest.outputs.paths != ''\n        uses: peter-evans/create-pull-request@v6\n        with:\n          commit-message: \"chore: repo sweep (delete unused files)\"\n          title: \"chore: repo sweep (delete unused files)\"\n          body: |\n            Automated sweep based on .github/cleanup/sweeper-manifest.json.\n            Please review the diff carefully before merging.\n          branch: ci/repo-sweep-${{ github.run_id }}\n          base: ${{ github.ref_name }}\n"
+  },
+  {
+    "path": ".github/workflows/repo-vision.yml",
+    "sha256": "360c99101b160833da2fd03336e1cda839059cbc0327cb0dbe170a88005252ab",
+    "bytes": 2690,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: Repo Vision (index + site map)\n\non:\n  push:\n    branches: [ main ]\n  schedule:\n    - cron: \"17 3 * * *\"\n  workflow_dispatch: {}\n\npermissions:\n  contents: write\n\njobs:\n  index:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      - name: Build repo index and site map\n        run: |\n          set -e\n          mkdir -p memory\n          node - <<'JS'\n          const fs = require('fs');\n          const path = require('path');\n\n          function walk(dir, acc=[], root=dir) {\n            for (const e of fs.readdirSync(dir, {withFileTypes:true})) {\n              const p = path.join(dir, e.name);\n              if (e.isDirectory()) {\n                if (['.git','node_modules','.cache','.vercel','.next'].includes(e.name)) continue;\n                acc = walk(p, acc, root);\n              } else {\n                const rel = path.relative(root, p).replace(/\\\\/g,'/');\n                const stat = fs.statSync(p);\n                const hash = require('crypto').createHash('md5').update(fs.readFileSync(p)).digest('hex');\n                const purpose =\n                  rel.startsWith('pages/') ? 'site-page' :\n                  rel.startsWith('asset/') ? 'asset' :\n                  rel.startsWith('.github/workflows/') ? 'workflow' :\n                  rel.startsWith('scripts/') ? 'script' : 'misc';\n                acc.push({ path: rel, bytes: stat.size, hash, purpose });\n              }\n            }\n            return acc;\n          }\n\n          const all = walk(process.cwd());\n          fs.writeFileSync('memory/file-index.json', JSON.stringify({\n            generated: new Date().toISOString(),\n            count: all.length,\n            files: all\n          }, null, 2));\n\n          const pages = all.filter(f => f.path.startsWith('pages/') && f.path.endsWith('.html'))\n                           .map(f => f.path.replace(/^pages\\//,'/pages/'));\n          const entry = fs.existsSync('index.html') ? ['/index.html'] : [];\n          const assets = all.filter(f => f.path.startsWith('asset/')).map(f=>'/'+f.path);\n          let importmap = null;\n          try { importmap = JSON.parse(fs.readFileSync('importmap.json','utf8')); } catch {}"
   },
   {
     "path": ".github/workflows/repo-workflows-standardize.yml",
@@ -2563,6 +2633,16 @@
     "preview": ""
   },
   {
+    "path": "assets/css/avalon-dashboard.css",
+    "sha256": "bdf0f1156eefeee78856ddd1df55b6c1585984e9901e74d373b30d72ab5aeb2b",
+    "bytes": 785,
+    "purpose": "style",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": ":root{--bg:#0b0c10;--ink:#e8e8e8;--muted:#9db0c3;--card:#141b22;--line:#223241;--accent:#8bd3dd}\n*{box-sizing:border-box}html,body{margin:0}\nbody{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,Segoe UI,Roboto,Arial,sans-serif}\n.wrap{max-width:1100px;margin:0 auto;padding:16px}\n.av-head{border-bottom:1px solid var(--line);padding:12px 0}.sub{color:var(--muted)}\n.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}\n.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}\n.table{width:100%;border-collapse:collapse}.table th,.table td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}\n.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}.muted{color:var(--muted)}\n"
+  },
+  {
     "path": "assets/css/avalon.css",
     "sha256": "e12614e77120510f5d22eba12f47e6be690c0251b9a76e8295bf48b40964e531",
     "bytes": 427,
@@ -2958,6 +3038,16 @@
     "preview": "# OAuth Notes (QuickBooks, Gmail)\n\nWe will use a Cloudflare Worker for OAuth flows. Secrets live in Worker Variables (never in client). Redirect URIs look like `https://YOUR-WORKER.workers.dev/qbo/callback` etc. When you are ready, we will ship the Worker and scopes.\n"
   },
   {
+    "path": "docs/PR-Automerge-Comment-Bot.md",
+    "sha256": "7295d9a746f9d602339be67bd8056b07ef583240fd8f2a98e4fa0df339241047",
+    "bytes": 519,
+    "purpose": "other",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "# PR Automerge System — Bundle\n\nThis bundle installs:\n- Auto labeling (`label-bot-prs.yml` + `.github/labeler.yml`)\n- Title policy (optional) via conventional commits\n- Label-gated auto-approve + automerge\n- A comment bot that explains **why a PR didn't auto-merge**\n\n## Install\nUnzip at the repository **root**. Commit the files. Done.\n\n## Labels used\n- `automerge`: signals intent to merge once CI is green\n- `hold`: blocks automerge\n- `docs`, `workflows`, `site`, `bot`: used to grant auto-approval in safe scopes\n"
+  },
+  {
     "path": "docs/RULES.md",
     "sha256": "92a72564ea653f5273f00dc3c665c96956cf79fe0daf18ccfa01e81524533b7b",
     "bytes": 8,
@@ -2979,42 +3069,34 @@
   },
   {
     "path": "importmap.json",
-    "sha256": "99621adad95d7d893bddac9bd6be0b08c0933838c60cc8beaa6e5b442d555bd4",
-    "bytes": 286,
+    "sha256": "5749e6201204e03024f0f42346743951acba8839356564e1b9f3aa8d2fc1adeb",
+    "bytes": 248,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "{\n  \"imports\": {\n    \"three\": \"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js\",\n    \"three/addons/\": \"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/\",\n    \"@pixiv/three-vrm\": \"https://cdn.jsdelivr.net/npm/@pixiv/three-vrm@2.0.5/lib/three-vrm.module.js\"\n  }\n}"
+    "preview": "{\n  \"imports\": {\n    \"three\": \"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js\",\n    \"three/addons/\": \"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/\",\n    \"@pixiv/three-vrm\": \"https://esm.sh/@pixiv/three-vrm@2.0.5\"\n  }\n}"
   },
   {
     "path": "index.html",
-    "sha256": "47d011a53c5fa361434cba2897ec46a053d66d0e1051ce2395f0016b8c868162",
-    "bytes": 1706,
+    "sha256": "035c3707ffd157e55221f6bbe850f98603e939f88981bdc3702449c48616089d",
+    "bytes": 1392,
     "purpose": "page",
     "imports": [],
     "links": [
-      "assets/css/avalon.css",
-      "pages/_city/index.html",
-      "pages/apps/alexandria/index.html",
-      "pages/apps/jem/index.html",
-      "pages/apps/tracy/skins/generator.html",
-      "pages/apps/carol/index.html",
-      "pages/apps/charlotte/highlights.html",
-      "pages/apps/stella/index.html"
+      "/pages/_city/index.html",
+      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/tracy/skins/index.html",
+      "/pages/apps/stella/index.html"
     ],
     "refs": [
-      "assets/css/avalon.css",
-      "assets/img/placeholder.svg",
-      "pages/_city/index.html",
-      "pages/apps/alexandria/index.html",
-      "pages/apps/jem/index.html",
-      "pages/apps/tracy/skins/generator.html",
-      "pages/apps/carol/index.html",
-      "pages/apps/charlotte/highlights.html",
-      "pages/apps/stella/index.html"
+      "/importmap.json",
+      "/pages/_city/index.html",
+      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/tracy/skins/index.html",
+      "/pages/apps/stella/index.html"
     ],
-    "preview": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Fairies of Avalon — Home</title>\n  <link rel=\"stylesheet\" href=\"assets/css/avalon.css\">\n</head>\n<body>\n<header class=\"av-header\">\n  <div class=\"wrap\">\n    <img src=\"assets/img/placeholder.svg\" alt=\"\" class=\"crest\">\n    <div>\n      <h1>🏰 Fairies of Avalon</h1>\n      <p class=\"tagline\">Bright, cheerful, magical, fanciful — jewel tones, carved stone, crystal accents.</p>\n    </div>\n  </div>\n</header>\n<main class=\"wrap grid\">\n  <a class=\"card\" href=\"pages/_city/index.html\"><h3>🗺️ City Map</h3><p>Enter the sunlit city and visit each Fairy’s domain.</p></a>\n  <a class=\"card\" href=\"pages/apps/alexandria/index.html\"><h3>📚 Alexandria</h3><p>World‑building DM — prompts & logs (bright UI).</p></a>\n  <a class=\"card\" href=\"pages/apps/jem/index.html\"><h3>🏃 Jem</h3><p>Fitness plan dashboard. Pull latest plan JSON.</p></a>\n  <a class=\"card\" href=\"pages/apps/tracy/skins/generator.html\"><h3>🎨 Tracy</h3><p>Skin generator (LLM Worker). Bright by default.</p></a>\n  <a class=\"card\" href=\"pages/apps/carol/index.html\"><h3>🍎 Carol</h3><p>Shopping & menu — reads plan, generates list.</p></a>\n  <a class=\"card\" href=\"pages/apps/charlotte/highlights.html\"><h3>🔧 Charlotte</h3><p>Importmap & library curation (PR‑first install).</p></a>\n  <a class=\"card\" href=\"pages/apps/stella/index.html\"><h3>🔊 Stella</h3><p>TTS page calling /api/voice (no secrets in client).</p></a>\n</main>\n<footer class=\"av-footer\"><div class=\"wrap\"><small>© 2025 Fairies of Avalon — Bright edition. No dark defaults.</small></div></footer>\n</body>\n</html>\n"
+    "preview": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<meta name=\"robots\" content=\"noindex,nofollow\">\n<title>Fairies of Avalon</title>\n<script type=\"importmap\" src=\"/importmap.json\"></script>\n<style>\n  :root{--bg:#0b0f17;--ink:#e8ecf1;--card:#141a24}\n  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui}\n  .wrap{max-width:960px;margin:auto;padding:24px}\n  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}\n  .card{background:var(--card);padding:16px;border-radius:14px}\n  a{color:#9cc1ff;text-decoration:none}\n</style>\n</head>\n<body>\n  <header class=\"wrap\">\n    <h1>🏰 Fairies of Avalon</h1>\n    <p>This development shell is private and unindexed.</p>\n  </header>\n  <main class=\"wrap\">\n    <section class=\"grid\" id=\"links\">\n      <div class=\"card\"><strong>City</strong><br><a href=\"/pages/_city/index.html\">Open map</a></div>\n      <div class=\"card\"><strong>Charlotte</strong><br><a href=\"/pages/apps/charlotte/highlights.html\">Importmap installer</a></div>\n      <div class=\"card\"><strong>Tracy</strong><br><a href=\"/pages/apps/tracy/skins/index.html\">Skins & theme</a></div>\n      <div class=\"card\"><strong>Stella</strong><br><a href=\"/pages/apps/stella/index.html\">TTS (Worker)</a></div>\n    </section>\n  </main>\n</body>\n</html>\n"
   },
   {
     "path": "kill-sw-boost.html",
@@ -5740,13 +5822,13 @@
   },
   {
     "path": "memory-history/repo-inventory.json",
-    "sha256": "b997ed5e241b2c0039a4fa3b7d2d8471b20d4f54c62fc833eaafb89bd79b0273",
-    "bytes": 190360,
+    "sha256": "126b114a040a4fdd79413dc19cd2ba91dc03b67b617dc5c5a8ff88247e94681e",
+    "bytes": 199405,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "﻿{\n  \"files\": [\n    {\n      \"size\": 1,\n      \"path\": \"/nojekyll\",\n      \"modified\": \"2025-10-31T04:17:42Z\"\n    },\n    {\n      \"size\": 65,\n      \"path\": \"/yamllint.yml\",\n      \"modified\": \"2025-10-31T04:17:42Z\"\n    },\n    {\n      \"size\": 937,\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/404.html\",\n      \"modified\": \"2025-10-31T04:17:42Z\"\n    },\n    {\n      \"size\": 19,\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/CNAME\",\n      \"modified\": \"2025-10-31T04:17:42Z\"\n    },\n    {\n      \"size\": 1228,\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/Cody's Memory.yaml\",\n      \"modified\": \"2025-10-31T04:17:42Z\"\n    },\n    {\n      \"size\": 1334,\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/Cody's Memory.yml\",\n      \"modified\": \"2025-10-31T04:17:42Z\"\n    },\n    {\n      \"size\": 415,\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/deploy-importmap-installer.yml\",\n      \"modified\": \"2025-10-31T04:17:42Z\"\n    },\n    {\n      \"size\": 286,\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/importmap.json\",\n      \"modified\": \"2025-10-31T04:17:42Z\"\n    },\n    {\n      \"size\": 1849,\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/index.html\",\n      \"modified\": \"2025-10-31T04:17:42Z\"\n    },\n    {\n      \"size\": 718,\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/kill-sw-boost.html\",\n      \"modified\": \"2025-10-31T04:17:42Z\"\n    },\n    {\n      \"size\": 620,\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/kill-sw.html\",\n      \"modified\": \"2025-10-31T04:17:42Z\"\n    },\n    {\n      \"size\": 36,\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/version.txt\","
+    "preview": "﻿{\n  \"files\": [\n    {\n      \"modified\": \"2025-11-01T01:03:26Z\",\n      \"path\": \"/nojekyll\",\n      \"size\": 1\n    },\n    {\n      \"modified\": \"2025-11-01T01:03:26Z\",\n      \"path\": \"/yamllint.yml\",\n      \"size\": 65\n    },\n    {\n      \"modified\": \"2025-11-01T01:03:26Z\",\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/404.html\",\n      \"size\": 937\n    },\n    {\n      \"modified\": \"2025-11-01T01:03:26Z\",\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/CNAME\",\n      \"size\": 19\n    },\n    {\n      \"modified\": \"2025-11-01T01:03:26Z\",\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/Cody's Memory.yaml\",\n      \"size\": 77\n    },\n    {\n      \"modified\": \"2025-11-01T01:03:26Z\",\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/Cody's Memory.yml\",\n      \"size\": 1334\n    },\n    {\n      \"modified\": \"2025-11-01T01:03:27Z\",\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/deploy-importmap-installer.yml\",\n      \"size\": 415\n    },\n    {\n      \"modified\": \"2025-11-01T01:03:27Z\",\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/importmap.json\",\n      \"size\": 286\n    },\n    {\n      \"modified\": \"2025-11-01T01:03:27Z\",\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/index.html\",\n      \"size\": 1706\n    },\n    {\n      \"modified\": \"2025-11-01T01:03:27Z\",\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/kill-sw-boost.html\",\n      \"size\": 718\n    },\n    {\n      \"modified\": \"2025-11-01T01:03:27Z\",\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/kill-sw.html\",\n      \"size\": 620\n    },\n    {\n      \"modified\": \"2025-11-01T01:03:27Z\",\n      \"path\": \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/version.txt\","
   },
   {
     "path": "memory-history/repo-read-index.json",
@@ -5760,23 +5842,23 @@
   },
   {
     "path": "memory-history/repo-refs.json",
-    "sha256": "6e75787fca4eda62f9b1e560b74fe1f927030469baba05630777087e8980ed88",
+    "sha256": "79ed2d573da4f36413046bd0bd0e7f9a5eff5c14a9a3a913f097921d7ece4133",
     "bytes": 633,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "﻿{\n  \"edges\": [\n    {\n      \"from\": \"/github/workflows/charlotte-link-registry.yml\",\n      \"to\": \"/scripts/Charlotte-Build-Link-Registry.ps1\"\n    },\n    {\n      \"from\": \"/github/workflows/repo-read.yml\",\n      \"to\": \"/scripts/Repo-Inventory.ps1\"\n    },\n    {\n      \"from\": \"/github/workflows/repo-read.yml\",\n      \"to\": \"/scripts/Repo-Refs-Graph.ps1\"\n    },\n    {\n      \"from\": \"/github/workflows/repo-read.yml\",\n      \"to\": \"/scripts/Repo-Usage-Report.ps1\"\n    },\n    {\n      \"from\": \"/github/workflows/repo-sweeper-report.yml\",\n      \"to\": \"/./scripts/Repo-Sweeper-Used-Files.ps1\"\n    }\n  ],\n  \"updated\": \"2025-10-31T04:17:53Z\"\n}"
+    "preview": "﻿{\n  \"edges\": [\n    {\n      \"to\": \"/scripts/Charlotte-Build-Link-Registry.ps1\",\n      \"from\": \"/github/workflows/charlotte-link-registry.yml\"\n    },\n    {\n      \"to\": \"/scripts/Repo-Inventory.ps1\",\n      \"from\": \"/github/workflows/repo-read.yml\"\n    },\n    {\n      \"to\": \"/scripts/Repo-Refs-Graph.ps1\",\n      \"from\": \"/github/workflows/repo-read.yml\"\n    },\n    {\n      \"to\": \"/scripts/Repo-Usage-Report.ps1\",\n      \"from\": \"/github/workflows/repo-read.yml\"\n    },\n    {\n      \"to\": \"/./scripts/Repo-Sweeper-Used-Files.ps1\",\n      \"from\": \"/github/workflows/repo-sweeper-report.yml\"\n    }\n  ],\n  \"updated\": \"2025-11-01T01:03:35Z\"\n}"
   },
   {
     "path": "memory-history/repo-usage-report.json",
-    "sha256": "a3b1cd9576bf193f98fd7b702138b109b4ab38a5b964521b4ea76ca0a44445fd",
+    "sha256": "3ba1448dd0eed4482b8bb0ac3e29d706a7b40aa134b6b0d9167dee83e738312d",
     "bytes": 8544,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "﻿{\n  \"used\": [],\n  \"totals\": {\n    \"used\": 0,\n    \"scripts\": 89,\n    \"orphans\": 89,\n    \"files\": 1048\n  },\n  \"orphans\": [\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Abbey-Parse-Transactions.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Abbey-Subscriptions-From-Ledger.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Agents-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Alexandria-DM-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Alexandria-Validate.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Alexandria-World-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-FromFile.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-Packages-v2.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-Packages-v3.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-Packages.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Build-Pointer.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Diet-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Expand-14d.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Export-PDF.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Extract-Shopping-v2.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Extract-Shopping-v3.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Extract-Shopping.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Full-Refresh.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-LLM-Plans.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Meal-Plan-2or6wk.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Meal-Plan-2wk.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Offline-2wk.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Package-Map-Report.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Plan-Inspector.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Plan-Merge.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Validate.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Build-Link-Registry.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Design-Tokens.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Inject-Tokens.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Site-Manifest.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-TTS-OpenAI.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-TTS.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Clarice-Graphics-Audit.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Clarice-Snapshot.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/FactCheck-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Hotfix-StripV-And-UnregisterSW.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Import-SamsujgHealth.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Import-SamsungHealth.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Inspect-Programs.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-LLM-Programs.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Merge-Progress.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Normalize-Week1.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Pack-Imports.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Progression-Engine.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Rescue-Intake.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Training-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Validate.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Week1-Evaluation.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Week1-Plan.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/LLM-Bridge.ps1\","
+    "preview": "﻿{\n  \"used\": [],\n  \"totals\": {\n    \"used\": 0,\n    \"files\": 1106,\n    \"orphans\": 89,\n    \"scripts\": 89\n  },\n  \"orphans\": [\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Abbey-Parse-Transactions.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Abbey-Subscriptions-From-Ledger.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Agents-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Alexandria-DM-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Alexandria-Validate.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Alexandria-World-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-FromFile.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-Packages-v2.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-Packages-v3.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Aggregate-Packages.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Build-Pointer.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Diet-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Expand-14d.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Export-PDF.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Extract-Shopping-v2.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Extract-Shopping-v3.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Extract-Shopping.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Full-Refresh.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-LLM-Plans.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Meal-Plan-2or6wk.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Meal-Plan-2wk.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Offline-2wk.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Package-Map-Report.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Plan-Inspector.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Plan-Merge.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Carol-Validate.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Build-Link-Registry.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Design-Tokens.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Inject-Tokens.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-Site-Manifest.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-TTS-OpenAI.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Charlotte-TTS.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Clarice-Graphics-Audit.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Clarice-Snapshot.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/FactCheck-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Hotfix-StripV-And-UnregisterSW.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Import-SamsujgHealth.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Import-SamsungHealth.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Inspect-Programs.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-LLM-Programs.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Merge-Progress.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Normalize-Week1.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Pack-Imports.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Progression-Engine.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Rescue-Intake.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Training-LLM.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Validate.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Week1-Evaluation.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/Jem-Week1-Plan.ps1\",\n    \"/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/LLM-Bridge.ps1\","
   },
   {
     "path": "memory-history/retired/odessa/index.html",
@@ -5821,6 +5903,16 @@
     "links": [],
     "refs": [],
     "preview": "meta:\n  project: Avalon\n  file_name: \"Cody's Memory.yaml\"\n  version: \"2.4.0-visuals\"\n  last_updated: \"20251019T224810Z\"\n  author: \"Cody (GPT-5 Pro)\"\n  notes: >\n    Visual-only worldbook for the city-builder look of Avalon.\n    Merges applied: Charlotte⇐Themis, Nina⇐Clarice, Billie⇐(Sorcha+Odessa).\n    Overseers are Ray & Blanca avatars at the Palace (progress showcase).\n    This file captures buildings, rooms, and visual link targets only.\n\nworld:\n  name: Avalon\n  style: \"Mobile city-builder; castle‑town map; dark theme with midnight blues.\"\n  palette: [\"#0b1220\",\"#111a2a\",\"#1c2842\",\"#a5d6ff\",\"#e6e9ff\"]\n  typography: [\"Inter\",\"Roboto\",\"Segoe UI\",\"system-ui\"]\n  levels:\n    - {\"id\":1,\"name\":\"Foundations\",\"desc\":\"Silhouettes, minimal props, labeled.\"}\n    - {\"id\":2,\"name\":\"Crafted\",\"desc\":\"Textures, lighting, animated accents.\"}\n    - {\"id\":3,\"name\":\"Alive\",\"desc\":\"Parallax, day/night, ambient glow.\"}\n\nroles_after_merges:\n  overseers:\n    - id: \"overseer_ray\"\n      name: \"Ray Czar\"\n      building: \"Palace\"\n    - id: \"overseer_blanca\"\n      name: \"White Star\"\n      building: \"Palace\"\n\n  assistants:\n    - id: \"alexandria\"\n      building: \"Gothic Library\"\n      room_links: [\"World Rules\",\"Session Log\",\"Voice DM\"]\n      objects: [\"Desk\",\"Bookshelves\",\"Globe\",\"Corkboard\"]\n    - id: \"tracy\"\n      building: \"Cathedral Studio\"\n      room_links: [\"2D Artboards\",\"3D Props\",\"Wallpapers\"]\n      objects: [\"Easel\",\"Clay Bust\",\"Palette\",\"Light Table\"]\n    - id: \"nina\"\n      merged_from: [\"clarice\"]\n      building: \"Court-Lab (Courtroom + Holographic Lab)\"\n      room_links: [\"Diagnostics\",\"Backups/Snapshots\",\"VRM Gallery\"]\n      objects: [\"Server Rack\",\"VRM Hanger\",\"Hologram Table\"]\n    - id: \"charlotte\"\n      merged_from: [\"themis\"]\n      building: \"Relay-Hall (Tower + Record Hall)\"\n      room_links: [\"Run Workflows\",\"Expirations\",\"Link Registry\"]\n      objects: [\"Control Wall\",\"Calendarium Shelf\",\"Clipboard\"]\n    - id: \"carol\"\n      building: \"Restaurant\"\n      diet: [\"DASH-style\",\"lactose-light\",\"shellfish-free\",\"no cilantro/cumin\",\"avoid very hard foods\",\"tuna ok\",\"salmon ok\",\"cod ok\",\"sushi ok\",\"eggs ok\",\"steamed baby carrots ok\",\"frozen & fresh fruit ok\"]\n      room_links: [\"14-day Menu\",\"Shopping List\",\"Cookbook\",\"Meal Alarms (.ics)\"]\n      objects: [\"Menu Board\",\"Pantry Shelf\",\"Recipe Book\",\"Bell\"]\n    - id: \"jem\"\n      building: \"Dojo\"\n      room_links: [\"Week-1 Evaluation\",\"Program Viewer\",\"Progress Log\"]\n      objects: [\"Training Dummy\",\"Chalkboard\",\"Mat\",\"Belt Rack\"]\n    - id: \"stella\""
+  },
+  {
+    "path": "memory/cleanup-rules.json",
+    "sha256": "538f6f2b177e9e35034e2644312c5ec836d4373afff87f74c0f6d9748f470f4c",
+    "bytes": 623,
+    "purpose": "other",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\n  \"preserveGlobs\": [\n    \"asset/models/**\",\n    \"asset/wings/**\",\n    \".github/workflows/**\",\n    \"importmap.json\",\n    \"index.html\",\n    \"pages/**\",\n    \"memory/**\"\n  ],\n  \"deleteIf\": [\n    {\n      \"glob\": \"**/*.tmp\",\n      \"reason\": \"temporary file\"\n    },\n    {\n      \"glob\": \"**/*~\",\n      \"reason\": \"editor backup\"\n    },\n    {\n      \"glob\": \"**/.DS_Store\",\n      \"reason\": \"system file\"\n    },\n    {\n      \"glob\": \"**/Thumbs.db\",\n      \"reason\": \"system file\"\n    },\n    {\n      \"glob\": \"pages/**\",\n      \"sizeLT\": 12,\n      \"reason\": \"empty stub page\"\n    }\n  ],\n  \"duplicateHashPolicy\": \"delete-all-but-largest\"\n}"
   },
   {
     "path": "memory/deadends.json",
@@ -7047,6 +7139,20 @@
     "preview": ":root {\n  --bg-dark: #0e0f11;\n  --card: #15171b;\n  --ink: #e9e9ec;\n  --muted: #b4b8c2;\n  --accent: #e6b85c;\n  --accent-2: #7ec8a1;\n}\n\n* { box-sizing: border-box; }\nhtml, body { margin: 0; padding: 0; background: var(--bg-dark); color: var(--ink); font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }\n\n.header {\n  position: relative;\n  min-height: 42vh;\n  display: grid;\n  place-items: end start;\n  padding: 1.25rem;\n  background-size: cover;\n  background-position: center;\n  border-bottom: 1px solid #22252b;\n}\n\n.header .title {\n  backdrop-filter: blur(2px);\n  background: color-mix(in srgb, #000 60%, transparent);\n  padding: .75rem 1rem;\n  border-radius: 10px;\n  border: 1px solid #2b2f37;\n  color: var(--ink);\n}\n\n.main {\n  padding: 1rem;\n  max-width: 1100px;\n  margin: 0 auto;\n}\n\n.grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));\n  gap: 12px;\n}\n\n.card {\n  background: var(--card);\n  border: 1px solid #242832;\n  border-radius: 12px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n}\n\n.card .top {\n  padding: .75rem 1rem;\n  border-bottom: 1px dashed #2a2f39;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}"
   },
   {
+    "path": "pages/apps/carol/dashboard.html",
+    "sha256": "c7677edc1355c53ba4a26273edf5b11703e82ceeb52c2d869dfea60fb323cfed",
+    "bytes": 2168,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "refs": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "preview": "<!doctype html><html lang=\"en\"><head>\n<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Carol — Nutrition Dashboard</title>\n<link rel=\"stylesheet\" href=\"../../assets/css/avalon-dashboard.css\">\n</head><body>\n<header class=\"av-head\"><div class=\"wrap\">\n  <h1>🍎 Carol — Nutrition Dashboard</h1>\n  <p class=\"sub\">Live view of plan & shopping. Source of truth: <code>pages/apps/carol/</code> JSON files.</p>\n</div></header>\n<main class=\"wrap grid\">\n  <section class=\"card\">\n    <h2>Plan Report</h2>\n    <pre id=\"planReport\" class=\"mono muted\">Loading plan-report.json…</pre>\n  </section>\n  <section class=\"card\">\n    <h2>Shopping (Quantized)</h2>\n    <table id=\"shop\" class=\"table\"><thead><tr><th>Item</th><th>Qty</th><th>Notes</th></tr></thead><tbody></tbody></table>\n    <div id=\"shopEmpty\" class=\"muted\" hidden>shopping-quantized.json was empty.</div>\n  </section>\n  <section class=\"card\">\n    <h2>Preferences</h2>\n    <pre id=\"prefs\" class=\"mono muted\">Loading preferences.json…</pre>\n  </section>\n</main>\n\n<script type=\"module\">\nasync function loadJSON(p){ try{ const r=await fetch(p+'?t='+Date.now(),{cache:'no-store'}); if(!r.ok) throw new Error(r.status); return await r.json(); }catch(e){ return null; } }\n\nconst rep = await loadJSON('../carol/plan-report.json');\ndocument.getElementById('planReport').textContent = rep ? JSON.stringify(rep,null,2) : 'plan-report.json not found. Run “Carol Refresh (shopping & report)”.';\n\nconst shop = await loadJSON('../carol/shopping-quantized.json');\nconst tbody = document.querySelector('#shop tbody');\nif (shop && Array.isArray(shop.items) && shop.items.length){\n  tbody.innerHTML = shop.items.slice(0,500).map(x=>`<tr><td>${(x.name||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}</td><td>${x.qty||''}</td><td>${x.notes||''}</td></tr>`).join('');\n}else{\n  document.getElementById('shopEmpty').hidden = false;\n}\n\nconst prefs = await loadJSON('../carol/profile/preferences.json');\ndocument.getElementById('prefs').textContent = prefs ? JSON.stringify(prefs,null,2) : 'preferences.json not found. Open Phoenix to save.';\n</script>\n</body></html>\n"
+  },
+  {
     "path": "pages/apps/carol/debug/plan-inspect.json",
     "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
     "bytes": 3,
@@ -7960,23 +8066,27 @@
   },
   {
     "path": "pages/apps/jem/dashboard.html",
-    "sha256": "edb5c97e39be6c562e0f63f38a63bac6dc5f28c64594e2f2497834a233acef4a",
-    "bytes": 291,
+    "sha256": "da43f0ef81e5fd7be4e3bcabc07be9d6ca2e2d47b612d53eaea55e3a6b71789e",
+    "bytes": 1644,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><meta charset='utf-8'><title>Jem — Dashboard</title><body style='font-family:system-ui;background:#0b0f17;color:#e5e7eb'><h1>Jem — Programs & Biometrics</h1><p>Upload Samsung Health ZIP to <code>pages/apps/jem/imports/</code>, run import workflow, then refresh.</p></body>"
+    "links": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "refs": [
+      "../../assets/css/avalon-dashboard.css"
+    ],
+    "preview": "<!doctype html><html lang=\"en\"><head>\n<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Jem — Golden Dragon Dojo</title>\n<link rel=\"stylesheet\" href=\"../../assets/css/avalon-dashboard.css\">\n</head><body>\n<header class=\"av-head\"><div class=\"wrap\">\n  <h1>🐉 Jem — Golden Dragon Dojo</h1>\n  <p class=\"sub\">Live plan snapshots for training. Source: <code>pages/apps/jem/data/plan-latest.json</code></p>\n</div></header>\n<main class=\"wrap grid\">\n  <section class=\"card\">\n    <h2>Current Plan</h2>\n    <pre id=\"plan\" class=\"mono muted\">Loading plan-latest.json…</pre>\n  </section>\n  <section class=\"card\">\n    <h2>Exercise Log (Local)</h2>\n    <div class=\"muted\">Logs saved locally by your browser from the Dojo UI.</div>\n    <table class=\"table\"><thead><tr><th>Exercise</th><th>Sets x Reps</th><th>RPE</th><th>Time</th></tr></thead><tbody id=\"logBody\"></tbody></table>\n  </section>\n</main>\n<script type=\"module\">\nasync function loadJSON(p){ try{ const r=await fetch(p+'?t='+Date.now(),{cache:'no-store'}); if(!r.ok) throw new Error(r.status); return await r.json(); }catch(e){ return null; } }\nconst plan = await loadJSON('../jem/data/plan-latest.json');\ndocument.getElementById('plan').textContent = plan ? JSON.stringify(plan,null,2) : 'plan-latest.json not found. Run “Jem Assessment Import”.';\nconst logs = JSON.parse(localStorage.getItem('jem_log')||'[]');\ndocument.getElementById('logBody').innerHTML = logs.map(x=>`<tr><td>${x.ex||x.ex||''}</td><td>${x.sr||''}</td><td>${x.rpe||''}</td><td>${(x.at||'').replace('T',' ').replace('Z','')}</td></tr>`).join('');\n</script>\n</body></html>\n"
   },
   {
     "path": "pages/apps/jem/data/plan-latest.json",
-    "sha256": "3167f9e3957e5f6f745fc0a1937e0b83d4c1047677e159fbcadd527a0cc6c3b5",
+    "sha256": "3cecf89c052ba390ca85f9cec0eac7dcfc5f2b6521b3ebcf8e56b2d796cac288",
     "bytes": 28,
     "purpose": "app-page",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "{\"generated\":\"18965870776\"}\n"
+    "preview": "{\"generated\":\"18987542141\"}\n"
   },
   {
     "path": "pages/apps/jem/dragon-dojo.html",
@@ -10323,17 +10433,17 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "d1f9f70eac44612ffd406de7018a070bcbf99caa42c67b651b9f44ca98fb0a2e",
-    "bytes": 177413,
+    "sha256": "59928aa7baa098fa899c25e0ca5d6cc33255df6225b1772364438e74b9b71eba",
+    "bytes": 179296,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "[\n  {\n    \"path\": \".github/cleanup/sweeper-manifest.json\",\n    \"sha256\": \"cef7e4630d04f87eccc06a42b9547140d8a6cfa2056832abb1dc1626f9a04b59\",\n    \"bytes\": 118\n  },\n  {\n    \"path\": \".github/cleanup/workflows-to-review.json\",\n    \"sha256\": \"4dbe1b5a8951b4db58f924173d6f9656b63b009143d50de55cc60181fdd9e143\",\n    \"bytes\": 1014\n  },\n  {\n    \"path\": \".github/workflows/MANIFEST.json\",\n    \"sha256\": \"a0c9b6ac359814e15512e71b37897ccd2ee3a74fc75fa7422d31977eae8aba03\",\n    \"bytes\": 1344\n  },\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"sha256\": \"5ad3343375ab2b6c6a6af8f1627ec4c125f6423ca2c21a10c3ee921719a669d6\",\n    \"bytes\": 2915\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"sha256\": \"705197397c418cf7efd4e39d55922f8dc4a7c604e1887ef83e05d3919f642cf0\",\n    \"bytes\": 959\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"sha256\": \"b9c3cffea875f666a5661bd07ee3f2853809e4e8328efad45f1f61e55f94cb87\",\n    \"bytes\": 3350\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"sha256\": \"e5f899bf6e1a24271930c4f3d486f9d721e14c70a7f618807d1293c5dc7e90ca\",\n    \"bytes\": 1140\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"sha256\": \"020b45e10af39c88087e289c63caa1241c530008b9706943f254fe013fc86033\",\n    \"bytes\": 1665\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping.yml\",\n    \"sha256\": \"41df3f63e5e025f4746f9314f8f92934fbd4cf69daa6d0c741dcd989fd32f49f\",\n    \"bytes\": 894\n  },\n  {\n    \"path\": \".github/workflows/carol-ensure-plan.yml\",\n    \"sha256\": \"b64d196147a82b62ce5995c4d5d5c350d79f009db539a5f81790817792d5c384\",\n    \"bytes\": 1145\n  },\n  {\n    \"path\": \".github/workflows/carol-extract-from-plan.yml\",\n    \"sha256\": \"cd3fdbe8b0fff6778a2c4c4d275a27881e72949b3b484dcc8c94177c683a24f8\",\n    \"bytes\": 1322\n  },\n  {\n    \"path\": \".github/workflows/carol-generate-shopping.yml\",\n    \"sha256\": \"f96ae893ce8ba8cce7ef5883975db06ad96d4b35f5d267dbbefa3435fef0eb1a\",\n    \"bytes\": 1215"
+    "preview": "[\n  {\n    \"path\": \".github/cleanup/sweeper-manifest.json\",\n    \"sha256\": \"cef7e4630d04f87eccc06a42b9547140d8a6cfa2056832abb1dc1626f9a04b59\",\n    \"bytes\": 118\n  },\n  {\n    \"path\": \".github/cleanup/workflows-to-review.json\",\n    \"sha256\": \"4dbe1b5a8951b4db58f924173d6f9656b63b009143d50de55cc60181fdd9e143\",\n    \"bytes\": 1014\n  },\n  {\n    \"path\": \".github/workflows/MANIFEST.json\",\n    \"sha256\": \"a0c9b6ac359814e15512e71b37897ccd2ee3a74fc75fa7422d31977eae8aba03\",\n    \"bytes\": 1344\n  },\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"sha256\": \"5ad3343375ab2b6c6a6af8f1627ec4c125f6423ca2c21a10c3ee921719a669d6\",\n    \"bytes\": 2915\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"sha256\": \"705197397c418cf7efd4e39d55922f8dc4a7c604e1887ef83e05d3919f642cf0\",\n    \"bytes\": 959\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"sha256\": \"b9c3cffea875f666a5661bd07ee3f2853809e4e8328efad45f1f61e55f94cb87\",\n    \"bytes\": 3350\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"sha256\": \"e5f899bf6e1a24271930c4f3d486f9d721e14c70a7f618807d1293c5dc7e90ca\",\n    \"bytes\": 1140\n  },\n  {\n    \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n    \"sha256\": \"5f6fdf1b03dd4a5dbd786fcb49f38db17b491662703834513efb1a4c2c741270\",\n    \"bytes\": 1387\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"sha256\": \"020b45e10af39c88087e289c63caa1241c530008b9706943f254fe013fc86033\",\n    \"bytes\": 1665\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping.yml\",\n    \"sha256\": \"41df3f63e5e025f4746f9314f8f92934fbd4cf69daa6d0c741dcd989fd32f49f\",\n    \"bytes\": 894\n  },\n  {\n    \"path\": \".github/workflows/carol-ensure-plan.yml\",\n    \"sha256\": \"b64d196147a82b62ce5995c4d5d5c350d79f009db539a5f81790817792d5c384\",\n    \"bytes\": 1145\n  },\n  {\n    \"path\": \".github/workflows/carol-extract-from-plan.yml\",\n    \"sha256\": \"cd3fdbe8b0fff6778a2c4c4d275a27881e72949b3b484dcc8c94177c683a24f8\",\n    \"bytes\": 1322"
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "f5aba8e4ea17fd175fa4d51bf3e76782acc72ad9465f809df3f665e268659a36",
+    "sha256": "254196d3319271539c83ea656116a9c08eac812b9d861387c5b4b1b1373ea0ba",
     "bytes": 3364677,
     "purpose": "other",
     "imports": [],
@@ -10370,6 +10480,16 @@
     "links": [],
     "refs": [],
     "preview": "[\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"name\": \"Actions Audit (list workflows & last runs)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"lookback_hours\",\n      \"description\",\n      \"Hours\",\n      \"back\",\n      \"to\",\n      \"inspect\",\n      \"required\",\n      \"true\",\n      \"default\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"name\": \"Alexandria DM Setup\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"name\": \"Alexandria - Voice DM (pages & logs)\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"name\": \"Actions Audit (on push)\",\n    \"triggers\": [\n      \"push\",\n      \"branches\",\n      \"main\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"name\": \"Carol — Refresh Shopping (direct commit)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"plan_path\",\n      \"description\",\n      \"Path\",\n      \"to\",\n      \"the\",\n      \"plan\",\n      \"JSON\",\n      \"use\",\n      \"required\",\n      \"false\",\n      \"default\",\n      \"pages\",\n      \"apps\","
+  },
+  {
+    "path": "robots.txt",
+    "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+    "bytes": 26,
+    "purpose": "other",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "User-agent: *\nDisallow: /\n"
   },
   {
     "path": "runtime/memory/crossrepo.json",

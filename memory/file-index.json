@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T19:27:12.327Z",
+  "generated": "2025-11-01T19:27:29.996Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -453,8 +453,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 69411,
-      "hash": "0f5a8f7c23d762375610b1581fa21ba3",
+      "bytes": 69709,
+      "hash": "0d3aac6c6c4e9ddfd2ac04d94e1cb7e2",
       "purpose": "misc"
     },
     {
@@ -2282,6 +2282,12 @@
       "purpose": "page"
     },
     {
+      "path": "pages/apps/nina/vrm-viewer.html",
+      "bytes": 629,
+      "hash": "524f83ba16a6b433d3c9ce38c34dfa97",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/overseers/index.html",
       "bytes": 806,
       "hash": "4df977713adf4c79650905988d2ed848",
@@ -2303,6 +2309,12 @@
       "path": "pages/apps/tracy/art-gallery.html",
       "bytes": 1977,
       "hash": "927d346830245e612e6815ab2c2806cc",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/tracy/catalog.html",
+      "bytes": 1224,
+      "hash": "cc63949fbf4ae4a6fea8121043a9ab22",
       "purpose": "page"
     },
     {

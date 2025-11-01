@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T13:21:41.184Z",
+  "generated": "2025-11-01T13:22:13.995Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -116,15 +116,15 @@
       "purpose": "misc"
     },
     {
-      "path": "assets/img/Carol-kitchen-outside.jpg",
-      "bytes": 213590,
-      "hash": "b71b6e0eac8db3d8b9656ce0dbb6f265",
-      "purpose": "misc"
-    },
-    {
       "path": "assets/img/carol-kitchen-inside.jpg",
       "bytes": 251624,
       "hash": "429239f1dbf8555d31a242fddaf0d08c",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/carol-kitchen-outside.jpg",
+      "bytes": 213590,
+      "hash": "b71b6e0eac8db3d8b9656ce0dbb6f265",
       "purpose": "misc"
     },
     {
@@ -436,7 +436,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 69109,
-      "hash": "1eb2525d367639bb6e3b9b5cbca76adf",
+      "hash": "e6eface0e84c26b95cdce671c1bfaa25",
       "purpose": "misc"
     },
     {

@@ -45,9 +45,9 @@
     "triggers": [
       "pull_request_target",
       "types",
+      "opened",
       "labeled",
       "synchronize",
-      "opened",
       "reopened",
       "ready_for_review"
     ]
@@ -437,14 +437,37 @@
     "path": ".github/workflows/deploy-hello-v4.yml",
     "name": "Deploy Worker - hello (v4)",
     "triggers": [
-      "workflow_dispatch"
+      "workflow_dispatch",
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "cloudflare",
+      "worker",
+      "hello",
+      "v",
+      "js",
+      "github",
+      "workflows",
+      "yml"
     ]
   },
   {
     "path": ".github/workflows/deploy-hello.yml",
     "name": "Deploy Worker - hello (debug)",
     "triggers": [
-      "workflow_dispatch"
+      "workflow_dispatch",
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "cloudflare",
+      "worker",
+      "hello",
+      "js",
+      "github",
+      "workflows",
+      "yml"
     ]
   },
   {
@@ -458,7 +481,19 @@
     "path": ".github/workflows/deploy-importmap-installer.yml",
     "name": "Deploy Worker - importmap installer",
     "triggers": [
-      "workflow_dispatch"
+      "workflow_dispatch",
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "cloudflare",
+      "worker",
+      "importmap",
+      "js",
+      "github",
+      "workflows",
+      "installer",
+      "yml"
     ]
   },
   {
@@ -472,7 +507,18 @@
     "path": ".github/workflows/deploy-market.yml",
     "name": "Deploy Worker - market",
     "triggers": [
-      "workflow_dispatch"
+      "workflow_dispatch",
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "cloudflare",
+      "worker",
+      "market",
+      "js",
+      "github",
+      "workflows",
+      "yml"
     ]
   },
   {
@@ -489,21 +535,60 @@
     "path": ".github/workflows/deploy-stella-voice.yml",
     "name": "Deploy Worker - stella voice",
     "triggers": [
-      "workflow_dispatch"
+      "workflow_dispatch",
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "cloudflare",
+      "worker",
+      "tts",
+      "js",
+      "github",
+      "workflows",
+      "stella",
+      "voice",
+      "yml"
     ]
   },
   {
     "path": ".github/workflows/deploy-tracy-llm-skin.yml",
     "name": "Deploy Worker - tracy llm skin",
     "triggers": [
-      "workflow_dispatch"
+      "workflow_dispatch",
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "cloudflare",
+      "worker",
+      "tracy",
+      "js",
+      "github",
+      "workflows",
+      "llm",
+      "skin",
+      "yml"
     ]
   },
   {
     "path": ".github/workflows/deploy-tracy-skin-llm.yml",
     "name": "Deploy Worker - tracy skin llm",
     "triggers": [
-      "workflow_dispatch"
+      "workflow_dispatch",
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "cloudflare",
+      "worker",
+      "tracy",
+      "llm",
+      "js",
+      "github",
+      "workflows",
+      "skin",
+      "yml"
     ]
   },
   {
@@ -521,7 +606,6 @@
       "js",
       "github",
       "workflows",
-      "deploy",
       "yml"
     ]
   },

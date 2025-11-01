@@ -18,3 +18,22 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           sync-labels: true
+      - name: Ensure 'automerge' on safe scopes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.number
+            });
+            const safe = files.every(f =>
+              f.filename.startsWith('pages/') ||
+              f.filename.startsWith('.github/workflows/') ||
+              f.filename.endsWith('.md')
+            );
+            if (safe) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: pr.number, labels: ['automerge']
+              });
+            }

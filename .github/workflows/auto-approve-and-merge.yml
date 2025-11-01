@@ -2,7 +2,7 @@ name: Auto-approve & Automerge (label-gated)
 
 on:
   pull_request_target:
-    types: [labeled, synchronize, opened, reopened, ready_for_review]
+    types: [opened, labeled, synchronize, reopened, ready_for_review]
 
 permissions:
   contents: write
@@ -10,22 +10,25 @@ permissions:
   statuses: read
   checks: read
 
+concurrency:
+  group: automerge-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   approve-and-merge:
     if: >
       contains(github.event.pull_request.labels.*.name, 'automerge') &&
       !github.event.pull_request.draft
     runs-on: ubuntu-latest
-
     steps:
-      - name: Ensure CI is green
+      - name: Wait for checks
         uses: actions-ecosystem/action-wait-for-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           intervalSeconds: 10
-          timeoutSeconds: 3600
+          timeoutSeconds: 5400
 
-      - name: Auto-approve (for bots / safe areas)
+      - name: Auto-approve (safe scopes)
         if: |
           contains(github.event.pull_request.labels.*.name, 'bot') ||
           contains(github.event.pull_request.labels.*.name, 'docs') ||
@@ -35,7 +38,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Automerge (squash) when eligible
+      - name: Enable auto-merge (squash) when eligible
         uses: pascalgn/automerge-action@v0.16.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,6 @@
 {
-  "generated": "2025-11-01T02:22:08.708Z",
-  "count": 1091,
+  "generated": "2025-11-01T02:38:32.371Z",
+  "count": 1094,
   "files": [
     {
       "path": ".github/cleanup/sweeper-manifest.json",
@@ -1895,7 +1895,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 184921,
-      "hash": "f466236542097a825d42e934b1770478",
+      "hash": "ce5520084f04736862d44704f8f7732d",
       "purpose": "misc"
     },
     {
@@ -3412,8 +3412,14 @@
     },
     {
       "path": "pages/_city/index.html",
-      "bytes": 1262,
-      "hash": "2608699dd76d8dbc41b0ff8397321edc",
+      "bytes": 735,
+      "hash": "deb1c422d365067a6194fca61cf5695b",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/_city/map.svg",
+      "bytes": 2572,
+      "hash": "62841285f3b95743b35da7b0911456fe",
       "purpose": "site-page"
     },
     {
@@ -4006,8 +4012,8 @@
     },
     {
       "path": "pages/apps/billie/index.html",
-      "bytes": 90,
-      "hash": "58b25b1fba05d6ea02e1ab1454d5c58d",
+      "bytes": 777,
+      "hash": "436f7557f950f5dfd4bba6210b6d4de7",
       "purpose": "site-page"
     },
     {
@@ -4444,8 +4450,8 @@
     },
     {
       "path": "pages/apps/charlotte/index.html",
-      "bytes": 93,
-      "hash": "c896f719ed1c5e67f6ba1325d889a84e",
+      "bytes": 962,
+      "hash": "36324ebe7f261ec88934e82eb7b436ed",
       "purpose": "site-page"
     },
     {
@@ -4750,8 +4756,8 @@
     },
     {
       "path": "pages/apps/nina/index.html",
-      "bytes": 88,
-      "hash": "6d17de05047965f08275c87479ed62f9",
+      "bytes": 916,
+      "hash": "d80f97c2dc3212d02a28f3b8cb862b6e",
       "purpose": "site-page"
     },
     {
@@ -5553,6 +5559,12 @@
       "purpose": "site-page"
     },
     {
+      "path": "pages/apps/tracy/skins/base.css",
+      "bytes": 718,
+      "hash": "df379f6c64441b8662493cf650dfdd4a",
+      "purpose": "site-page"
+    },
+    {
       "path": "pages/apps/tracy/skins/cathedral-gold.css",
       "bytes": 249,
       "hash": "bcf8cb588720c0904d525d3f4d7f50d4",
@@ -5566,14 +5578,20 @@
     },
     {
       "path": "pages/apps/tracy/skins/index.html",
-      "bytes": 398,
-      "hash": "b6faa2aeaeecbd7a75444749bdfc6a3d",
+      "bytes": 1381,
+      "hash": "db56397997c3278c64197e64cbffd1f9",
       "purpose": "site-page"
     },
     {
       "path": "pages/apps/tracy/skins/night-abyss.css",
       "bytes": 214,
       "hash": "d6001959b007a837a96191cc8bf9a24e",
+      "purpose": "site-page"
+    },
+    {
+      "path": "pages/apps/tracy/skins/variables.css",
+      "bytes": 507,
+      "hash": "40884de00941e874104bae867f8890d4",
       "purpose": "site-page"
     },
     {

@@ -206,13 +206,13 @@
   },
   {
     "path": ".github/workflows/deploy-hello-v4.yml",
-    "sha256": "61827f14d9eafa9d70e6b4f09cabafef4595fd0a9eabe10dd2de630a6afd6ea8",
-    "bytes": 584
+    "sha256": "e4123cc1222eeccf435b73b98e2d68cf19a4f3b46dcf6b5ed2b3e4dc129421ba",
+    "bytes": 692
   },
   {
     "path": ".github/workflows/deploy-hello.yml",
-    "sha256": "be146416e563d336d36c9d70742ce5902cbae34746838947de4e5d70a5ee4a33",
-    "bytes": 428
+    "sha256": "751cce4e3a4174d41a912e2268364ad577c21b60a3b73b62a6fbd6a502209e3f",
+    "bytes": 701
   },
   {
     "path": ".github/workflows/deploy-importmap-installer-v4.yml",
@@ -221,8 +221,8 @@
   },
   {
     "path": ".github/workflows/deploy-importmap-installer.yml",
-    "sha256": "79ec176a53582643de6723bdb93895c2b1ef23823963726f89aadf541ac4291d",
-    "bytes": 467
+    "sha256": "ce0d6173a61c12d9b1ffb4a8ce5637e70857e32ed352446f56529a5c2879227b",
+    "bytes": 736
   },
   {
     "path": ".github/workflows/deploy-market-v4.yml",
@@ -231,8 +231,8 @@
   },
   {
     "path": ".github/workflows/deploy-market.yml",
-    "sha256": "94cbadecc7475be9856d1fafa512140dbd81ee628bdaffc0a8d0de42aaabcd24",
-    "bytes": 437
+    "sha256": "67f7726876af4e7bad67c21a12acb804e95092716f4b6731af447f6dbaaa6083",
+    "bytes": 678
   },
   {
     "path": ".github/workflows/deploy-pages.yml",
@@ -241,23 +241,23 @@
   },
   {
     "path": ".github/workflows/deploy-stella-voice.yml",
-    "sha256": "ce91f04e8c47850c58ba661b9f9803adfe44da4768d50b6becbac5796f59b261",
-    "bytes": 450
+    "sha256": "335bdd01d708617f14f95d7361c703e3c82c3c982e13ddaacd686c4693bb2116",
+    "bytes": 696
   },
   {
     "path": ".github/workflows/deploy-tracy-llm-skin.yml",
-    "sha256": "3e087519e5fe9ce0a0c31698757dfa21e32b3dac239d7d14ef355ad0a8676623",
-    "bytes": 432
+    "sha256": "d94019144ec6ee320a7961d5334b07937d7c8037baff49d6ac2add7f66269e78",
+    "bytes": 708
   },
   {
     "path": ".github/workflows/deploy-tracy-skin-llm.yml",
-    "sha256": "945e9122069d84198051291cffb1b5bfcc3728d71b21dc42da83c3ce803c03c1",
-    "bytes": 445
+    "sha256": "3c36af03f6b6a286ae3d1a51ad98c0210cf5981ad0bc4aab6275596ef8c07375",
+    "bytes": 716
   },
   {
     "path": ".github/workflows/deploy-tts-worker.yml",
-    "sha256": "8a73031bc695b736a98190c40e3fe6fc2a17b076fb6dd31eb6bced649dfd3e1c",
-    "bytes": 675
+    "sha256": "76a0c51607312318267dbc4496644f9ac0b564dd72e631ab93afbbddb3c29ad7",
+    "bytes": 679
   },
   {
     "path": ".github/workflows/failure-feed.yml",
@@ -1531,8 +1531,8 @@
   },
   {
     "path": "index.html",
-    "sha256": "a41c3be38d990155a04d329baa78b771e80918e4e526050e590b5fb55cfa295d",
-    "bytes": 961
+    "sha256": "4bca6011d8585f505c8a8996b6f021b78ee2081e8d8c682aa33cfdffffc5777e",
+    "bytes": 1132
   },
   {
     "path": "kill-sw-boost.html",
@@ -2816,7 +2816,7 @@
   },
   {
     "path": "memory/cleanup-rules.json",
-    "sha256": "f6ce798d0a90c7faab581fb8d541d312f94cdf350fbf683afab9436328642d0a",
+    "sha256": "aa396012ec5e8122732f6389cd8a38aa53bc89b7cc1f68a8db4ef733a5b788f3",
     "bytes": 1253
   },
   {
@@ -2836,8 +2836,8 @@
   },
   {
     "path": "memory/file-index.json",
-    "sha256": "ac893158418cd1d9c016b4ab240c31742852a959091b0fb289b2be9bedee5786",
-    "bytes": 187045
+    "sha256": "16ad7698e1a8809ef710375d68d93f7aecb0cde8f165f78537c1a28cbf0e4f17",
+    "bytes": 187190
   },
   {
     "path": "memory/owners.json",
@@ -3341,8 +3341,8 @@
   },
   {
     "path": "pages/apps/billie/earnings.html",
-    "sha256": "231e8f22ce905ad3b474d48982a2c8605ef97ec6ae6b146d207c16d52a9140cf",
-    "bytes": 549
+    "sha256": "dfd64c874d4522ee9a01978f9111373a763580a6a4e2a421600dce17a5afa82c",
+    "bytes": 704
   },
   {
     "path": "pages/apps/billie/faceless.html",
@@ -3356,8 +3356,8 @@
   },
   {
     "path": "pages/apps/billie/grants.html",
-    "sha256": "967d2f729937ecd7c6d5adf653cc1662e90b5e892305e06306ebafec8d340764",
-    "bytes": 535
+    "sha256": "e3cc58c95f3abba0f678ad88e4b220b9cb8a5b7d07ce05c5a8cb120892d75960",
+    "bytes": 677
   },
   {
     "path": "pages/apps/billie/index.html",
@@ -3376,8 +3376,8 @@
   },
   {
     "path": "pages/apps/billie/social.html",
-    "sha256": "ddb836fb9f992ae203a242af90f287a4b482b7ef44ffb682a910ccbcaf42c9b7",
-    "bytes": 558
+    "sha256": "401b28e6ba7ec7c19c288ff7f6739503d80763610775a6a6ef61ad11d182991b",
+    "bytes": 701
   },
   {
     "path": "pages/apps/billie/storyboards.html",
@@ -3666,13 +3666,13 @@
   },
   {
     "path": "pages/apps/charlotte/compliance/expirations.html",
-    "sha256": "b08fc5ce1c697fc4bf18d0bebabedbeabf29a3e32a9309553678e1cebfe77fda",
-    "bytes": 601
+    "sha256": "554efe77b7f33af65a1e6bdd2c6307fefe74cc8d23756fed2749381a26b851b3",
+    "bytes": 702
   },
   {
     "path": "pages/apps/charlotte/compliance/reminders.html",
-    "sha256": "0c5218fb42b3d2d3794f8d9c1c325fce5c4b6f576c83ec4300c1dc6e42a4240f",
-    "bytes": 590
+    "sha256": "ab5803ce505a380699a99dc032eaedf84320bef658c8a8c758e132f142103783",
+    "bytes": 689
   },
   {
     "path": "pages/apps/charlotte/crawler/index.html",
@@ -3791,8 +3791,8 @@
   },
   {
     "path": "pages/apps/charlotte/queues.html",
-    "sha256": "c04e97a98247ca50bc549b311665b918ba602643f58a62faa1001cc3755e3484",
-    "bytes": 554
+    "sha256": "348964a32c5dcfa5796fff818ca3d3670799a5b273d1e756b18cc289784d403b",
+    "bytes": 714
   },
   {
     "path": "pages/apps/charlotte/sources.json",
@@ -3838,6 +3838,11 @@
     "path": "pages/apps/common/health/shared.json",
     "sha256": "e92fe61f1c7a290841f5242cce9d041581476585a42bb6fef5b861b7c3c636ba",
     "bytes": 95
+  },
+  {
+    "path": "pages/apps/common/js/json-table.js",
+    "sha256": "7472bea538ac5bdb030fa98b4c032d961ee3e4be00aefdc72243b147991fdd0f",
+    "bytes": 1243
   },
   {
     "path": "pages/apps/common/style.css",
@@ -4016,8 +4021,13 @@
   },
   {
     "path": "pages/apps/nina/overview.html",
-    "sha256": "a9d95afbdbf1d690ed5784e91c6661cebb51fe2fddc5a2922e064e7c3780add9",
-    "bytes": 603
+    "sha256": "a6bb0561d1054b014525fb1048acec49e362729eea5853b2e893a2d23ae7d452",
+    "bytes": 796
+  },
+  {
+    "path": "pages/apps/nina/security.html",
+    "sha256": "9338b641ccfb585b6faf3a03d657b1cc7bd6a6987eaf57428ad96fe423e2588e",
+    "bytes": 713
   },
   {
     "path": "pages/apps/nina/security/reports.html",
@@ -4936,8 +4946,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "2ac28e5378b6efba581ef4257b6db86824866fbaed76a73ff974ce460d7ff344",
-    "bytes": 181043
+    "sha256": "4980fd70a623fae69586359e4d5afec82473c22ca279638a605692651edbdc27",
+    "bytes": 183238
   },
   {
     "path": "reports/clarity/files-index.json",

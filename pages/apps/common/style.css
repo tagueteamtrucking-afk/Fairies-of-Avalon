@@ -18,6 +18,35 @@ html, body {
   min-height: 100vh;
 }
 
+/* Backgrounds for Jem and Carol */
+.jem-outside {
+  background-image: url('/assets/img/jem-hall-outside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.jem-inside {
+  background-image: url('/assets/img/jem-hall-inside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.carol-outside {
+  background-image: url('/assets/img/carol-kitchen-outside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.carol-inside {
+  background-image: url('/assets/img/carol-kitchen-inside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
 .wrap {
   max-width: 960px;
   margin: 0 auto;

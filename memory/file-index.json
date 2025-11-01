@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T13:25:06.127Z",
+  "generated": "2025-11-01T13:30:51.480Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -436,7 +436,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 69109,
-      "hash": "5986e5261345b5221c7b03257d1a5ba2",
+      "hash": "f41ec3997adb3f14b25cbe5906f7035f",
       "purpose": "misc"
     },
     {
@@ -2097,8 +2097,8 @@
     },
     {
       "path": "pages/apps/_city/map.svg",
-      "bytes": 2452,
-      "hash": "90b5cb3ea10ccd74804d51fe6dc72bb2",
+      "bytes": 2495,
+      "hash": "cbc8f0e39e6f6ac6a11a80d430962190",
       "purpose": "page"
     },
     {
@@ -2157,20 +2157,20 @@
     },
     {
       "path": "pages/apps/carol/index.html",
-      "bytes": 858,
-      "hash": "d0ba8e50301ed3cb8c4af60d0b8de0a4",
+      "bytes": 880,
+      "hash": "a7ce1e6ff4e19f080dc6ae43f8432d82",
       "purpose": "page"
     },
     {
       "path": "pages/apps/carol/meal-plan.html",
-      "bytes": 1610,
-      "hash": "c0e2825cec61d5d9438930a3a0f7d216",
+      "bytes": 1631,
+      "hash": "ee4db6e945eba0b07458c88f648a322f",
       "purpose": "page"
     },
     {
       "path": "pages/apps/carol/shopping-list.html",
-      "bytes": 1408,
-      "hash": "fa786f7587aeb7d9b03b1b0135e58991",
+      "bytes": 1429,
+      "hash": "db9cc80f6b806d7a261ac2b4bc8f9605",
       "purpose": "page"
     },
     {
@@ -2199,8 +2199,8 @@
     },
     {
       "path": "pages/apps/common/style.css",
-      "bytes": 1406,
-      "hash": "fc86e9b881c5de496aaffd3b6ee42f88",
+      "bytes": 2080,
+      "hash": "ca070ded97fe85369967c3b606457d9c",
       "purpose": "page"
     },
     {
@@ -2211,26 +2211,26 @@
     },
     {
       "path": "pages/apps/jem/fitness-planner.html",
-      "bytes": 1723,
-      "hash": "e1e88d1da90df014ae815a342ab88412",
+      "bytes": 1742,
+      "hash": "e6a070847701b38e6679e71e5c427758",
       "purpose": "page"
     },
     {
       "path": "pages/apps/jem/index.html",
-      "bytes": 897,
-      "hash": "aa4cee818d855e4e6c1210fa049545dd",
+      "bytes": 917,
+      "hash": "954071e66978c34ee5a0f1a649dbc2eb",
       "purpose": "page"
     },
     {
       "path": "pages/apps/jem/progress-tracker.html",
-      "bytes": 2668,
-      "hash": "f7e1d4743f16bb37c0959891267413d4",
+      "bytes": 2687,
+      "hash": "fc22bc20bc178d8d5cfaef89ec8f2c6c",
       "purpose": "page"
     },
     {
       "path": "pages/apps/jem/workout-calendar.html",
-      "bytes": 1878,
-      "hash": "7a10e62e42a8daaf07ad439cbee1c013",
+      "bytes": 1897,
+      "hash": "267726d934a8f3db9c31e38503397f54",
       "purpose": "page"
     },
     {

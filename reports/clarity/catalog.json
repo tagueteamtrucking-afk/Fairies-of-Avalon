@@ -1526,8 +1526,8 @@
   },
   {
     "path": "index.html",
-    "sha256": "bc6849b00b40488eff9593c87838643e23d8da6068eb886903d3f85ad4372055",
-    "bytes": 1688
+    "sha256": "a41c3be38d990155a04d329baa78b771e80918e4e526050e590b5fb55cfa295d",
+    "bytes": 961
   },
   {
     "path": "kill-sw-boost.html",
@@ -2805,9 +2805,14 @@
     "bytes": 4260
   },
   {
+    "path": "memory/cleanup-proposals.json",
+    "sha256": "40b4e876ee2af97154fb10a7b3ded0c5f54f6964a8d0490b04d0c31094527c1e",
+    "bytes": 27046
+  },
+  {
     "path": "memory/cleanup-rules.json",
-    "sha256": "af45858125dd213a6aa78ed70f3048077e933efa60f01ce6e721fa274310d8d4",
-    "bytes": 1505
+    "sha256": "f6ce798d0a90c7faab581fb8d541d312f94cdf350fbf683afab9436328642d0a",
+    "bytes": 1253
   },
   {
     "path": "memory/deadends.json",
@@ -2826,8 +2831,8 @@
   },
   {
     "path": "memory/file-index.json",
-    "sha256": "23d3b35607741671e3656c193e3d25d7e01fa58fcf9dcf830057ce9bce61f3b0",
-    "bytes": 184425
+    "sha256": "b87a39681843f1c45ca3ebc5b7652103ab3e471ba502387ec19d9ab58de6c609",
+    "bytes": 185557
   },
   {
     "path": "memory/owners.json",
@@ -2841,8 +2846,13 @@
   },
   {
     "path": "pages/_city/index.html",
-    "sha256": "d59e5f549fdc665f843a3eea494c36318ea135893d5c11ba93a1f02e4f44c541",
-    "bytes": 1262
+    "sha256": "55bd62ab43c168ce7c4576548d20c83b21f06cece3c79b433c2b6ad0f3ee87b1",
+    "bytes": 735
+  },
+  {
+    "path": "pages/_city/map.svg",
+    "sha256": "e365d6569d47d99bbb8066d78181dccb30f93e41f3a3f78c93d140b30829d9d7",
+    "bytes": 2572
   },
   {
     "path": "pages/_city/plaza.html",
@@ -3325,6 +3335,11 @@
     "bytes": 2073
   },
   {
+    "path": "pages/apps/billie/earnings.html",
+    "sha256": "231e8f22ce905ad3b474d48982a2c8605ef97ec6ae6b146d207c16d52a9140cf",
+    "bytes": 549
+  },
+  {
     "path": "pages/apps/billie/faceless.html",
     "sha256": "00213456ef5708d06a4923fc7227f230f5df97ede2b10cc0d524851d5620793d",
     "bytes": 7695
@@ -3335,9 +3350,14 @@
     "bytes": 37
   },
   {
+    "path": "pages/apps/billie/grants.html",
+    "sha256": "967d2f729937ecd7c6d5adf653cc1662e90b5e892305e06306ebafec8d340764",
+    "bytes": 535
+  },
+  {
     "path": "pages/apps/billie/index.html",
-    "sha256": "ad04786b6ec67f0406fe8d5982a7bcb10413c3b448285a2779750e01e51f142d",
-    "bytes": 90
+    "sha256": "382c2c10c5b58a3fe58aae7b529ca96362799362b8c3816e296902c7c66ee755",
+    "bytes": 777
   },
   {
     "path": "pages/apps/billie/index.json",
@@ -3348,6 +3368,11 @@
     "path": "pages/apps/billie/overview.html",
     "sha256": "310b6b1df081e4571b18ade8ff2291f382718caa512527721f658f619e8ee98e",
     "bytes": 1476
+  },
+  {
+    "path": "pages/apps/billie/social.html",
+    "sha256": "ddb836fb9f992ae203a242af90f287a4b482b7ef44ffb682a910ccbcaf42c9b7",
+    "bytes": 558
   },
   {
     "path": "pages/apps/billie/storyboards.html",
@@ -3635,6 +3660,16 @@
     "bytes": 320
   },
   {
+    "path": "pages/apps/charlotte/compliance/expirations.html",
+    "sha256": "b08fc5ce1c697fc4bf18d0bebabedbeabf29a3e32a9309553678e1cebfe77fda",
+    "bytes": 601
+  },
+  {
+    "path": "pages/apps/charlotte/compliance/reminders.html",
+    "sha256": "0c5218fb42b3d2d3794f8d9c1c325fce5c4b6f576c83ec4300c1dc6e42a4240f",
+    "bytes": 590
+  },
+  {
     "path": "pages/apps/charlotte/crawler/index.html",
     "sha256": "bc3b7437132b3c507c30c5f129660a1b2c82adf6f7f715e6e715fbd1f0449d7a",
     "bytes": 18946
@@ -3701,8 +3736,8 @@
   },
   {
     "path": "pages/apps/charlotte/index.html",
-    "sha256": "4333074cdf27ef451ca1d2b42c922d2806bab91584ad5e99c72fbe163b9765f8",
-    "bytes": 93
+    "sha256": "f2ae1238c2d653ee4cc302daac80ac53f22e19e10ed132ccc4e2f62b46c6a368",
+    "bytes": 962
   },
   {
     "path": "pages/apps/charlotte/index.json",
@@ -3750,9 +3785,19 @@
     "bytes": 253
   },
   {
+    "path": "pages/apps/charlotte/queues.html",
+    "sha256": "c04e97a98247ca50bc549b311665b918ba602643f58a62faa1001cc3755e3484",
+    "bytes": 554
+  },
+  {
     "path": "pages/apps/charlotte/sources.json",
     "sha256": "7304fd39bc72cf4f7efb1bfb8cb300129ff02c140483cfabf157a9f5aacd2721",
     "bytes": 1400
+  },
+  {
+    "path": "pages/apps/charlotte/translations.html",
+    "sha256": "9ed05ab2d6be0dc283b6e7f27b496e677f5465292f5a065654070358df0b1504",
+    "bytes": 549
   },
   {
     "path": "pages/apps/charlotte/voiceovers/20250918T031302Z-avalon/opening.txt",
@@ -3956,13 +4001,23 @@
   },
   {
     "path": "pages/apps/nina/index.html",
-    "sha256": "fb0719a85247880dd6d72ab99da8d9408ee3d4dda9753fca262ff513d1113298",
-    "bytes": 88
+    "sha256": "45d1bcbc94886d0bdebc9e4eb7cbd4287c4a18a7eec7c7788bbc3d327474f378",
+    "bytes": 916
   },
   {
     "path": "pages/apps/nina/index.json",
     "sha256": "61ac5857feb130a1dc475db36bbe21604fddf30024110bb2bea9d8b23e8b1b44",
     "bytes": 20
+  },
+  {
+    "path": "pages/apps/nina/overview.html",
+    "sha256": "a9d95afbdbf1d690ed5784e91c6661cebb51fe2fddc5a2922e064e7c3780add9",
+    "bytes": 603
+  },
+  {
+    "path": "pages/apps/nina/security/reports.html",
+    "sha256": "502f0a855908ef13321b88726789a8a5dc28bb51f6bce95a3a7d09af5d02defa",
+    "bytes": 627
   },
   {
     "path": "pages/apps/nina/viewer.html",
@@ -4625,6 +4680,11 @@
     "bytes": 140
   },
   {
+    "path": "pages/apps/tracy/skins/base.css",
+    "sha256": "40bc7b64eabd618587ef8a7c75cb8722fb17075df3ae90b5c2e0936599c42e5d",
+    "bytes": 718
+  },
+  {
     "path": "pages/apps/tracy/skins/cathedral-gold.css",
     "sha256": "4a8c952e4b5dc77098d0df6ef963b15e8b4294e78b7ad754b294422362c8af88",
     "bytes": 249
@@ -4636,13 +4696,18 @@
   },
   {
     "path": "pages/apps/tracy/skins/index.html",
-    "sha256": "c76ec25d5ee7777349a36aad79f5fe0895529aa62e0d4def4553f8fe3e204e89",
-    "bytes": 398
+    "sha256": "720c014423932343bb69940ad207d8974b4d3ff17dc1bdaca40c0fe715809765",
+    "bytes": 1381
   },
   {
     "path": "pages/apps/tracy/skins/night-abyss.css",
     "sha256": "1092c074d516cc910f3c8f567c3d4ac2fad5a306466726487e34c63cdcbd4ca6",
     "bytes": 214
+  },
+  {
+    "path": "pages/apps/tracy/skins/variables.css",
+    "sha256": "9fe19907c88828169cd82c4a71fbe6e64249d8c6a6af9c3d2b5bba1ee1feeb76",
+    "bytes": 507
   },
   {
     "path": "pages/apps/tracy/wallpaper-index.json",
@@ -4866,18 +4931,18 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "59928aa7baa098fa899c25e0ca5d6cc33255df6225b1772364438e74b9b71eba",
-    "bytes": 179296
+    "sha256": "2ac28e5378b6efba581ef4257b6db86824866fbaed76a73ff974ce460d7ff344",
+    "bytes": 181043
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "f51591d8231ef3c77ad481724991601bcfdaee3035fdce60b64d39e6672259a5",
-    "bytes": 3382592
+    "sha256": "7b2ff7ea8a18a7556541722b20d6364e89723a3c53822fe234eceb45332c3133",
+    "bytes": 3398467
   },
   {
     "path": "reports/clarity/pages-map.json",
-    "sha256": "feaab54edeecb337c66abd71dc8794f31af2cbf8b2ee454c2e118dacf25c1d48",
-    "bytes": 39367
+    "sha256": "fb11fb11597b0030c5f0e29bf8bbbe8ddbd6c720433e6413065b75f079f9faad",
+    "bytes": 40154
   },
   {
     "path": "reports/clarity/workers-map.json",
@@ -4886,8 +4951,8 @@
   },
   {
     "path": "reports/clarity/workflows-map.json",
-    "sha256": "d600c2cd62a56ab40b486d5b47ac393d9a6880de4bc01df3bd7363ba7fbb8a6c",
-    "bytes": 20890
+    "sha256": "a168801a0d6d21c06ae31dbbc707d57b3e945a69703fe92d2b30e9ad1eba2adf",
+    "bytes": 22872
   },
   {
     "path": "robots.txt",

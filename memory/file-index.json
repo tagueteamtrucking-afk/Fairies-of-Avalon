@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T01:18:34.409Z",
+  "generated": "2025-11-01T01:23:02.045Z",
   "count": 1080,
   "files": [
     {
@@ -1858,8 +1858,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 167878,
-      "hash": "3fe98e9ea403c1e12734a0077f5a70c7",
+      "bytes": 183127,
+      "hash": "ee7522d6994f1b430693cab62217e9ff",
       "purpose": "misc"
     },
     {
@@ -5776,20 +5776,20 @@
     },
     {
       "path": "reports/clarity/catalog.json",
-      "bytes": 178052,
-      "hash": "5b68253f4244c84bbc8df03e7af7c20f",
+      "bytes": 179296,
+      "hash": "92ed05654e87e200cbb27bcab7775e08",
       "purpose": "misc"
     },
     {
       "path": "reports/clarity/files-index.json",
-      "bytes": 3364677,
-      "hash": "b494e613633f845dc7ce7721db127023",
+      "bytes": 3382592,
+      "hash": "36d6abdb10d89cc873e48c7b9ce62e1b",
       "purpose": "misc"
     },
     {
       "path": "reports/clarity/pages-map.json",
-      "bytes": 39338,
-      "hash": "0f6f4dc4425484a135664b83dd94a4d1",
+      "bytes": 39367,
+      "hash": "e003afe1cb97793035b8dcb8e17c93b1",
       "purpose": "misc"
     },
     {
@@ -5800,8 +5800,8 @@
     },
     {
       "path": "reports/clarity/workflows-map.json",
-      "bytes": 19110,
-      "hash": "41b4ad9ce87d0eeef7c388a04ac96b9b",
+      "bytes": 20890,
+      "hash": "93d27058a3f5ae7805f223b6c774f43a",
       "purpose": "misc"
     },
     {

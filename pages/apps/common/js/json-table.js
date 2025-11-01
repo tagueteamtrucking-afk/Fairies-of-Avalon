@@ -1,25 +1,58 @@
-export async function renderTable(el, url, columns){
-  try{
-    const data = await fetch(url).then(r=>r.json());
-    const rows = Array.isArray(data) ? data : (data.files || data.pages || data.items || []);
-    const table = document.createElement('table');
-    table.style.width='100%'; table.style.borderCollapse='collapse';
-    const thead = document.createElement('thead'); const trh=document.createElement('tr');
-    for(const c of columns){ const th=document.createElement('th'); th.textContent=c.label; th.style.textAlign='left'; th.style.padding='8px'; trh.appendChild(th); }
-    thead.appendChild(trh); table.appendChild(thead);
-    const tbody = document.createElement('tbody');
-    for(const row of rows.slice(0,200)){
-      const tr=document.createElement('tr');
-      for(const c of columns){
-        const td=document.createElement('td'); td.style.padding='8px';
-        const v = c.path.split('.').reduce((a,k)=>a&&a[k], row);
-        td.textContent = (v==null?'':String(v));
-        tr.appendChild(td);
-      }
-      tbody.appendChild(tr);
+/**
+ * Render a JSON resource into an HTML table.
+ *
+ * Usage:
+ * import { renderTable } from '/pages/apps/common/js/json-table.js';
+ * renderTable('#myTable', '/memory/file-index.json');
+ *
+ * @param {string} selector CSS selector for the table element
+ * @param {string} url Path to the JSON file
+ */
+export async function renderTable(selector, url) {
+  const table = document.querySelector(selector);
+  if (!table) return;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
+    const json = await res.json();
+    let rows;
+    if (Array.isArray(json)) {
+      rows = json;
+    } else if (Array.isArray(json.files)) {
+      rows = json.files;
+    } else {
+      rows = Object.entries(json).map(([key, value]) => ({ key, value }));
     }
-    table.appendChild(tbody); el.innerHTML=''; el.appendChild(table);
-  }catch(e){
-    el.innerHTML = '<div style="color:#ef4444">Error loading '+url+': '+e.message+'</div>';
+    if (rows.length === 0) {
+      table.innerHTML = '<caption>No data to display</caption>';
+      return;
+    }
+    // Determine columns from keys of first row
+    const cols = Object.keys(rows[0]);
+    const thead = document.createElement('thead');
+    const headRow = document.createElement('tr');
+    cols.forEach(col => {
+      const th = document.createElement('th');
+      th.textContent = col;
+      headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    const tbody = document.createElement('tbody');
+    rows.forEach(row => {
+      const tr = document.createElement('tr');
+      cols.forEach(col => {
+        const td = document.createElement('td');
+        const val = row[col];
+        td.textContent = typeof val === 'object' ? JSON.stringify(val) : val;
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    table.innerHTML = '';
+    table.appendChild(thead);
+    table.appendChild(tbody);
+  } catch (err) {
+    console.error(err);
+    table.innerHTML = `<caption>Error loading data: ${err.message}</caption>`;
   }
 }

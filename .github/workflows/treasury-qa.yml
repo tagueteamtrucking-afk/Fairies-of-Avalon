@@ -1,9 +1,0 @@
-name: Treasury QA
-on: { workflow_dispatch: {} }
-jobs:
-  qa:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: QA placeholder
-        run: echo "Run topology/UV/texture/rig checks here."

@@ -1,6 +1,6 @@
 {
-  "generated": "2025-11-01T01:23:24.193Z",
-  "count": 1080,
+  "generated": "2025-11-01T01:26:42.776Z",
+  "count": 1081,
   "files": [
     {
       "path": ".github/cleanup/sweeper-manifest.json",
@@ -292,14 +292,14 @@
     },
     {
       "path": ".github/workflows/deploy-tts-worker.yml",
-      "bytes": 395,
-      "hash": "bb18566e82d330533c57c8878fe3574a",
+      "bytes": 675,
+      "hash": "68f1b6cf1673f7e10b894bb67be85cdc",
       "purpose": "workflow"
     },
     {
       "path": ".github/workflows/failure-feed.yml",
-      "bytes": 1154,
-      "hash": "53009ccda9216632c8cb48e4dc1036e2",
+      "bytes": 1244,
+      "hash": "f63ff29fc5f177b05378ec6443b9a279",
       "purpose": "workflow"
     },
     {
@@ -432,6 +432,12 @@
       "path": ".github/workflows/package-workflows.yml",
       "bytes": 812,
       "hash": "3c7b79576398b639c142f665abf7b7b3",
+      "purpose": "workflow"
+    },
+    {
+      "path": ".github/workflows/pages-preflight.yml",
+      "bytes": 3773,
+      "hash": "4f6cdc48fd2cd12c5665cd31998da228",
       "purpose": "workflow"
     },
     {
@@ -616,8 +622,8 @@
     },
     {
       "path": ".github/workflows/wrangler-whoami.yml",
-      "bytes": 628,
-      "hash": "d776804d774f7b6749892bb08348a8c1",
+      "bytes": 361,
+      "hash": "906fe1885029f10db6a7a02116ebace3",
       "purpose": "workflow"
     },
     {
@@ -1859,7 +1865,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 183127,
-      "hash": "88e3a53306fa4e477e946930dca09952",
+      "hash": "c12d152c49c66317d4ed0574218bccca",
       "purpose": "misc"
     },
     {

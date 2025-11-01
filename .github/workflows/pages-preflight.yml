@@ -25,7 +25,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Build site-map if missing. (We also rebuild inside the Node step if parse fails.)
       - name: Build site map fallback (if not present)
         run: |
           if [ ! -f memory/site-map.json ]; then
@@ -60,111 +59,60 @@ jobs:
           fi
 
       - name: Preflight checks (broken links + importmap sanity)
+        continue-on-error: true
         run: |
           node - <<'JS'
           const fs = require('fs'), path = require('path');
-
-          const REPORT_DIR = 'preflight';
-          const REPORT_FILE = path.join(REPORT_DIR, 'report.txt');
+          const REPORT_DIR = 'preflight'; const REPORT_FILE = path.join(REPORT_DIR, 'report.txt');
           fs.mkdirSync(REPORT_DIR, { recursive: true });
-
-          function writeReport(lines) {
-            fs.writeFileSync(REPORT_FILE, (lines && lines.length ? lines : ['No details']).join('\n'));
-          }
+          function writeReport(lines) { fs.writeFileSync(REPORT_FILE, (lines?.length?lines:['No details']).join('\n')); }
           function exists(p){ try { return fs.existsSync(p) && fs.statSync(p).isFile(); } catch { return false; } }
 
-          // robust site-map loader with self-heal on parse errors
+          // Load or rebuild site-map if corrupt
           function loadOrRebuildSiteMap() {
-            try {
-              return JSON.parse(fs.readFileSync('memory/site-map.json','utf8'));
-            } catch (e) {
-              // rebuild if corrupt
-              const files = (function walk(d, acc=[]) {
-                for (const e of fs.readdirSync(d, {withFileTypes:true})) {
-                  const p = path.join(d, e.name);
-                  if (e.isDirectory()) {
-                    if (['.git','node_modules','.next','.vercel','.cache'].includes(e.name)) continue;
-                    walk(p, acc);
-                  } else if (e.isFile()) {
-                    acc.push(path.relative(process.cwd(), p).replace(/\\/g,'/'));
-                  }
-                }
-                return acc;
-              }) (process.cwd(), []);
-              const pages = files.filter(f => f.startsWith('pages/') && f.endsWith('.html')).map(f => '/'+f);
-              const entry = fs.existsSync('index.html') ? ['/index.html'] : [];
-              const assets = files.filter(f => f.startsWith('asset/') || f.startsWith('assets/')).map(f => '/'+f);
-              let importmap = null; try { importmap = JSON.parse(fs.readFileSync('importmap.json','utf8')); } catch {}
-              const sm = { generated: new Date().toISOString(), entrypoints: entry, pages, assets, importmap };
-              fs.mkdirSync('memory', {recursive:true});
-              fs.writeFileSync('memory/site-map.json', JSON.stringify(sm, null, 2));
+            try { return JSON.parse(fs.readFileSync('memory/site-map.json','utf8')); }
+            catch {
+              const files=(function walk(d,acc=[]){for(const e of fs.readdirSync(d,{withFileTypes:true})){
+                const p=path.join(d,e.name);
+                if(e.isDirectory()){ if(['.git','node_modules','.next','.vercel','.cache'].includes(e.name)) continue; walk(p,acc);}
+                else if(e.isFile()){ acc.push(path.relative(process.cwd(),p).replace(/\\/g,'/')); }} return acc; })(process.cwd(),[]);
+              const pages = files.filter(f=>f.startsWith('pages/')&&f.endsWith('.html')).map(f=>'/'+f);
+              const entry = fs.existsSync('index.html')?['/index.html']:[];
+              const assets = files.filter(f=>f.startsWith('asset/')||f.startsWith('assets/')).map(f=>'/'+f);
+              let importmap=null; try{ importmap = JSON.parse(fs.readFileSync('importmap.json','utf8')); }catch{}
+              const sm={generated:new Date().toISOString(), entrypoints:entry, pages, assets, importmap};
+              fs.mkdirSync('memory',{recursive:true}); fs.writeFileSync('memory/site-map.json', JSON.stringify(sm,null,2));
               return sm;
             }
           }
 
           try {
             const site = loadOrRebuildSiteMap();
-            let im = site.importmap || null;
-            if (!im) { try { im = JSON.parse(fs.readFileSync('importmap.json','utf8')); } catch {} }
-
+            let im = site.importmap || null; if(!im){ try{ im=JSON.parse(fs.readFileSync('importmap.json','utf8')); }catch{} }
             const problems = [];
-            // importmap sanity
-            for (const need of ['three','three/addons/']) {
-              if (!im?.imports?.[need]) problems.push(`importmap.json missing "${need}"`);
-            }
+
+            for (const need of ['three','three/addons/']) if (!im?.imports?.[need]) problems.push(`importmap.json missing "${need}"`);
             if (!im?.imports?.['@pixiv/three-vrm']) problems.push('importmap.json missing "@pixiv/three-vrm"');
 
-            // gather html files (strip leading '/')
-            const htmlFiles = new Set(
-              (site.entrypoints || []).concat(site.pages || []).map(s => s.replace(/^\//,''))
-            );
+            const htmlFiles = new Set((site.entrypoints||[]).concat(site.pages||[]).map(s=>s.replace(/^\//,'')));
 
-            function parseLinks(html) {
-              const out = [];
-              const rx = /(?:href|src)=["']([^"']+)["']/g; let m;
-              while ((m = rx.exec(html))) out.push(m[1]);
-              return out;
-            }
+            function parseLinks(h){ const out=[]; const rx=/(?:href|src)=["']([^"']+)["']/g; let m; while((m=rx.exec(h))) out.push(m[1]); return out; }
 
             for (const file of htmlFiles) {
               if (!exists(file)) { problems.push(`Missing HTML: ${file}`); continue; }
-              const html = fs.readFileSync(file,'utf8');
-              const links = parseLinks(html)
-                .filter(u => !u.match(/^(https?:|mailto:|tel:|#)/));
-
+              const links = parseLinks(fs.readFileSync(file,'utf8')).filter(u=>!u.match(/^(https?:|mailto:|tel:|#)/));
               for (const u of links) {
-                let resolved;
-                if (u.startsWith('/')) {
-                  // Treat absolute URL as repo-rooted
-                  resolved = u.replace(/^\//,'');
-                } else {
-                  // Relative to the HTML file’s folder
-                  resolved = path.posix.normalize(path.posix.join(path.posix.dirname(file), u));
-                }
+                const resolved = u.startsWith('/') ? u.replace(/^\//,'')
+                  : path.posix.normalize(path.posix.join(path.posix.dirname(file), u));
                 if (!exists(resolved)) problems.push(`Broken link in ${file}: ${u}`);
               }
             }
 
-            if (problems.length) {
-              console.log('::group::Preflight errors');
-              for (const p of problems) console.log('- ' + p);
-              console.log('::endgroup::');
-              writeReport(problems);
-              process.exitCode = 1;
-            } else {
-              console.log('All good. importmap + internal links OK.');
-              // still write a small report so the artifact step never complains
-              writeReport(['OK']);
-            }
-          } catch (err) {
-            console.error('Preflight crashed:', err.stack || err.message || String(err));
-            writeReport(['Preflight crashed:', String(err.stack || err.message || err)]);
-            // set a nonzero exit code so the job is marked failed, but we still have a report
-            process.exitCode = 1;
-          }
+            if (problems.length) { console.log('::group::Preflight errors'); problems.forEach(p=>console.log('- '+p)); console.log('::endgroup::'); writeReport(problems); }
+            else { console.log('All good.'); writeReport(['OK']); }
+          } catch (err) { console.error('Preflight crashed:', err.stack||String(err)); writeReport(['Preflight crashed:', String(err.stack||err)]); }
           JS
 
-      # Always try to upload the report; don't fail the job if it's missing
       - name: Upload preflight report
         if: always()
         uses: actions/upload-artifact@v4

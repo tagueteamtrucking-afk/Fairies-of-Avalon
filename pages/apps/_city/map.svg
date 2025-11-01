@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .building {
+      fill: #1a2233;
+      stroke: #89b4fa;
+      stroke-width: 2;
+      rx: 8;
+      ry: 8;
+    }
+    .label {
+      fill: #e5e8ef;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 12px;
+      pointer-events: none;
+    }
+    a:hover .building {
+      fill: #89b4fa;
+    }
+  </style>
+  <!-- Palace / Overseers -->
+  <a xlink:href="/pages/apps/overseers/index.html">
+    <rect class="building" x="350" y="30" width="100" height="60" />
+    <text class="label" x="400" y="65" text-anchor="middle">Palace</text>
+  </a>
+  <!-- Nina -->
+  <a xlink:href="/pages/apps/nina/index.html">
+    <rect class="building" x="100" y="150" width="120" height="60" />
+    <text class="label" x="160" y="185" text-anchor="middle">Nina</text>
+  </a>
+  <!-- Charlotte -->
+  <a xlink:href="/pages/apps/charlotte/index.html">
+    <rect class="building" x="250" y="150" width="120" height="60" />
+    <text class="label" x="310" y="185" text-anchor="middle">Charlotte</text>
+  </a>
+  <!-- Billie -->
+  <a xlink:href="/pages/apps/billie/index.html">
+    <rect class="building" x="400" y="150" width="120" height="60" />
+    <text class="label" x="460" y="185" text-anchor="middle">Billie</text>
+  </a>
+  <!-- Tracy -->
+  <a xlink:href="/pages/apps/tracy/index.html">
+    <rect class="building" x="550" y="150" width="120" height="60" />
+    <text class="label" x="610" y="185" text-anchor="middle">Tracy</text>
+  </a>
+  <!-- Carol -->
+  <a xlink:href="/pages/apps/carol/index.html">
+    <rect class="building" x="150" y="250" width="120" height="60" />
+    <text class="label" x="210" y="285" text-anchor="middle">Carol</text>
+  </a>
+  <!-- Jem -->
+  <a xlink:href="/pages/apps/jem/index.html">
+    <rect class="building" x="300" y="250" width="120" height="60" />
+    <text class="label" x="360" y="285" text-anchor="middle">Jem</text>
+  </a>
+  <!-- Alexandria -->
+  <a xlink:href="/pages/apps/alexandria/index.html">
+    <rect class="building" x="450" y="250" width="120" height="60" />
+    <text class="label" x="510" y="285" text-anchor="middle">Alexandria</text>
+  </a>
+  <!-- Stella -->
+  <a xlink:href="/pages/apps/stella/index.html">
+    <rect class="building" x="600" y="250" width="120" height="60" />
+    <text class="label" x="660" y="285" text-anchor="middle">Stella</text>
+  </a>
+</svg>

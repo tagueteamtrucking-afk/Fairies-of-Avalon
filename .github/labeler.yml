@@ -1,17 +1,11 @@
 docs:
-  - 'docs/**'
   - '**/*.md'
 site:
   - 'pages/**'
-  - 'asset/**'
-  - '!asset/models/**'
-  - '!asset/wings/**'
 workflows:
   - '.github/workflows/**'
-bot:
-  - any: ['**/*']
-    createdBy: ['dependabot[bot]', 'github-actions[bot]']
+  - '.github/labeler.yml'
+# Automatically label bot PRs for merge
 automerge:
-  - 'pages/**'
-  - '.github/workflows/**'
-  - 'docs/**'
+  - any: ['**/*']
+    createdBy: ['dependabot[bot]', 'github-actions[bot]', 'clarity[bot]']

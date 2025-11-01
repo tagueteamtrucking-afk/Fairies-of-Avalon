@@ -1,6 +1,6 @@
 {
-  "generated": "2025-11-01T02:38:32.371Z",
-  "count": 1094,
+  "generated": "2025-11-01T02:39:37.356Z",
+  "count": 1095,
   "files": [
     {
       "path": ".github/cleanup/sweeper-manifest.json",
@@ -1869,6 +1869,12 @@
       "purpose": "misc"
     },
     {
+      "path": "memory/cleanup-proposals.json",
+      "bytes": 27046,
+      "hash": "bad82c0385a10d25e66d63853684d384",
+      "purpose": "misc"
+    },
+    {
       "path": "memory/cleanup-rules.json",
       "bytes": 1505,
       "hash": "5db91ac24d2a545067ccb1a552da107c",
@@ -1894,8 +1900,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 184921,
-      "hash": "ce5520084f04736862d44704f8f7732d",
+      "bytes": 185401,
+      "hash": "9781c3ff7ad88b544ba2d6482c5c88cc",
       "purpose": "misc"
     },
     {

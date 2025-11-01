@@ -1,15 +1,30 @@
 name: Deploy Worker - stella voice
+
 on:
   workflow_dispatch: {}
+  # push:
+  #   branches: [ main ]
+  #   paths:
+  #     - "cloudflare/worker-tts.js"
+  #     - ".github/workflows/stella-voice.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stella-voice-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Publish TTS Worker
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: >
-            wrangler deploy cloudflare/worker-tts.js --name=stella-voice
+      - name: Wrangler deploy
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          WORKER_NAME: stella-voice
+        run: |
+          npm i -g wrangler
+          wrangler deploy cloudflare/worker-tts.js --name $WORKER_NAME

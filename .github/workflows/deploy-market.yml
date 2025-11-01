@@ -1,15 +1,30 @@
 name: Deploy Worker - market
+
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
+  # push:
+  #   branches: [ main ]
+  #   paths:
+  #     - "cloudflare/worker-market.js"
+  #     - ".github/workflows/market.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: market-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Deploy market worker
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --config cloudflare/worker-market.toml
+      - uses: actions/checkout@v4
+      - name: Wrangler deploy
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          WORKER_NAME: market
+        run: |
+          npm i -g wrangler
+          wrangler deploy cloudflare/worker-market.js --name $WORKER_NAME

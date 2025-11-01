@@ -1,0 +1,16 @@
+name: Billie (evolved) — watch monetization + social + grants
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "pages/apps/billie/**"
+      - ".github/workflows/billie-evolved.yml"
+  workflow_dispatch: {}
+permissions: { contents: read }
+concurrency: { group: billie-evolved-${ github.ref }, cancel-in-progress: true }
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Billie (evolved) — watch monetization + social + grants active."

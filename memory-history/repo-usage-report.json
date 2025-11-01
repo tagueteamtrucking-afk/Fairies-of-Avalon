@@ -2,9 +2,9 @@
   "used": [],
   "totals": {
     "used": 0,
-    "scripts": 89,
+    "files": 1106,
     "orphans": 89,
-    "files": 1048
+    "scripts": 89
   },
   "orphans": [
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1",
@@ -97,5 +97,5 @@
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/scripts/overseers/tracy-artboard.ps1",
     "/home/runner/work/Fairies-of-Avalon/Fairies-of-Avalon/avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1"
   ],
-  "updated": "2025-10-31T04:17:54Z"
+  "updated": "2025-11-01T01:03:36Z"
 }

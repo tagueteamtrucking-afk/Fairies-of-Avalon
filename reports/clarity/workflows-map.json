@@ -53,6 +53,24 @@
     ]
   },
   {
+    "path": ".github/workflows/billie-evolved.yml",
+    "name": "Billie (evolved) — watch monetization + social + grants",
+    "triggers": [
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "pages",
+      "apps",
+      "billie",
+      "github",
+      "workflows",
+      "evolved",
+      "yml",
+      "workflow_dispatch"
+    ]
+  },
+  {
     "path": ".github/workflows/carol-build-shopping-direct.yml",
     "name": "Carol — Refresh Shopping (direct commit)",
     "triggers": [
@@ -298,6 +316,24 @@
     ]
   },
   {
+    "path": ".github/workflows/charlotte-evolved.yml",
+    "name": "Charlotte (evolved) — watch relay + compliance",
+    "triggers": [
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "pages",
+      "apps",
+      "charlotte",
+      "github",
+      "workflows",
+      "evolved",
+      "yml",
+      "workflow_dispatch"
+    ]
+  },
+  {
     "path": ".github/workflows/charlotte-link-registry.yml",
     "name": "Charlotte - Link Registry",
     "triggers": [
@@ -474,7 +510,19 @@
     "path": ".github/workflows/deploy-tts-worker.yml",
     "name": "Deploy TTS Worker",
     "triggers": [
-      "workflow_dispatch"
+      "workflow_dispatch",
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "cloudflare",
+      "worker",
+      "tts",
+      "js",
+      "github",
+      "workflows",
+      "deploy",
+      "yml"
     ]
   },
   {
@@ -483,6 +531,27 @@
     "triggers": [
       "workflow_run",
       "workflows",
+      "Deploy",
+      "GitHub",
+      "Pages",
+      "Repo",
+      "Vision",
+      "index",
+      "site",
+      "map",
+      "Sweeper",
+      "propose",
+      "deletions",
+      "Nina",
+      "Guard",
+      "YAML",
+      "importmap",
+      "sanity",
+      "Response",
+      "Check",
+      "URLs",
+      "API",
+      "endpoints",
       "types",
       "completed"
     ]
@@ -608,6 +677,24 @@
     ]
   },
   {
+    "path": ".github/workflows/nina-evolved.yml",
+    "name": "Nina (evolved) — watch engineering + security",
+    "triggers": [
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "pages",
+      "apps",
+      "nina",
+      "github",
+      "workflows",
+      "evolved",
+      "yml",
+      "workflow_dispatch"
+    ]
+  },
+  {
     "path": ".github/workflows/nina-guard.yml",
     "name": "Nina Guard (YAML + importmap sanity)",
     "triggers": [
@@ -720,6 +807,29 @@
     "path": ".github/workflows/package-workflows.yml",
     "name": "Package - Workflows ZIP (flat root)",
     "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/pages-preflight.yml",
+    "name": "Pages Preflight (links + importmap)",
+    "triggers": [
+      "pull_request",
+      "branches",
+      "main",
+      "paths",
+      "html",
+      "importmap",
+      "json",
+      "pages",
+      "asset",
+      "github",
+      "workflows",
+      "preflight",
+      "yml",
+      "memory",
+      "site",
+      "map",
       "workflow_dispatch"
     ]
   },

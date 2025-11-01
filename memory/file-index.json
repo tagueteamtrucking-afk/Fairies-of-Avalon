@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T12:17:08.500Z",
+  "generated": "2025-11-01T12:48:35.297Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -116,19 +116,7 @@
       "purpose": "misc"
     },
     {
-      "path": "assets/img/jem-hall-inside.jpg.jpg",
-      "bytes": 190454,
-      "hash": "1bf541a19df4ad9d261dc00e7aef3ba2",
-      "purpose": "misc"
-    },
-    {
       "path": "assets/img/jem-hall-outside.jpg",
-      "bytes": 206000,
-      "hash": "67501e464a24b88c82021a63a8c3dd43",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/jem-hall-outside.jpg.jpg",
       "bytes": 206000,
       "hash": "67501e464a24b88c82021a63a8c3dd43",
       "purpose": "misc"
@@ -424,7 +412,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 69451,
-      "hash": "d9da1ae5f22726144cd2b07338556c54",
+      "hash": "5d03cc28dc693bb034fcb0ce5ad72a32",
       "purpose": "misc"
     },
     {

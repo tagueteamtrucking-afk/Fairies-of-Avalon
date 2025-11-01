@@ -40,6 +40,16 @@
     ]
   },
   {
+    "path": ".github/workflows/auto-approve-and-merge.yml",
+    "name": "Auto-approve and merge labeled PRs",
+    "triggers": [
+      "pull_request",
+      "types",
+      "labeled",
+      "synchronize"
+    ]
+  },
+  {
     "path": ".github/workflows/carol-build-shopping-direct.yml",
     "name": "Carol — Refresh Shopping (direct commit)",
     "triggers": [
@@ -520,6 +530,17 @@
     ]
   },
   {
+    "path": ".github/workflows/label-bot-prs.yml",
+    "name": "Label bot PRs for automerge",
+    "triggers": [
+      "pull_request",
+      "types",
+      "opened",
+      "reopened",
+      "synchronize"
+    ]
+  },
+  {
     "path": ".github/workflows/llm-bootstrap-nightly.yml",
     "name": "LLM Bootstrap (nightly)",
     "triggers": [
@@ -690,6 +711,26 @@
     "name": "Package - Workflows ZIP (flat root)",
     "triggers": [
       "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/pr-automerge-comment-bot.yml",
+    "name": "PR Automerge Comment Bot",
+    "triggers": [
+      "pull_request_target",
+      "types",
+      "opened",
+      "reopened",
+      "synchronize",
+      "labeled",
+      "edited",
+      "ready_for_review",
+      "review_requested",
+      "review_request_removed",
+      "unlocked",
+      "converted_to_draft",
+      "auto_merge_enabled",
+      "auto_merge_disabled"
     ]
   },
   {

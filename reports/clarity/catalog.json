@@ -355,6 +355,11 @@
     "bytes": 812
   },
   {
+    "path": ".github/workflows/pr-automerge-comment-bot.yml",
+    "sha256": "2426eb31e7dac2d91325a534619db38b1ef10557917d1ce027070d30f40a9210",
+    "bytes": 5827
+  },
+  {
     "path": ".github/workflows/repo-doctor.yml",
     "sha256": "3f71b2c9b244ed68286401e59d2fdb10038695eeb3498d0ea139411a11072906",
     "bytes": 1714
@@ -1458,6 +1463,11 @@
     "path": "docs/OAuth-Notes.md",
     "sha256": "239cc38842ee59050b4ee99c57ac55e919817a76631ad9b3eb71d28fefcc634b",
     "bytes": 268
+  },
+  {
+    "path": "docs/PR-Automerge-Comment-Bot.md",
+    "sha256": "79ec3678bae93dfed2d311b304a3c8fc6416c49457057d220bd77eee36ee70d2",
+    "bytes": 1115
   },
   {
     "path": "docs/RULES.md",
@@ -4776,8 +4786,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "bdb6f4b48ffd73eb8e9b2872ec0ab95685b5a54fd03305f260d8e4bb7e8f90d4",
-    "bytes": 177413
+    "sha256": "3d84a5691b126847ccec2acd59a9fbe8709da68e0fe8e883490c0cc748aef5ec",
+    "bytes": 178052
   },
   {
     "path": "reports/clarity/files-index.json",

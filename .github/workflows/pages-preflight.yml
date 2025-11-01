@@ -1,66 +1,34 @@
-name: Pages Preflight
+- name: Preflight checks (broken links + importmap sanity)
+  run: |
+    node - <<'JS'
+    const fs=require('fs'),path=require('path');
+    const site=JSON.parse(fs.readFileSync('memory/site-map.json','utf8'));
+    const problems=[];
+    let im=site.importmap||null; if(!im){ try{ im=JSON.parse(fs.readFileSync('importmap.json','utf8')); }catch{} }
 
-on:
-  pull_request:
-    branches: [ main ]
-    paths:
-      - '**/*.html'
-      - 'importmap.json'
-      - 'pages/**'
-      - 'memory/site-map.json'
-  workflow_dispatch: {}
+    const need=['three','three/addons/']; for(const n of need){ if(!im?.imports?.[n]) problems.push(`importmap.json missing "${n}"`); }
+    if(!im?.imports?.['@pixiv/three-vrm']) problems.push('importmap.json missing "@pixiv/three-vrm"');
 
-permissions:
-  contents: read
+    const files=new Set(site.pages.concat(site.entrypoints).map(s=>s.replace(/^\//,'')));
+    function exists(p){ return fs.existsSync(p) && fs.statSync(p).isFile(); }
+    function parseLinks(h){ const out=[]; const rx=/(?:href|src)=["']([^"']+)["']/g; let m; while((m=rx.exec(h))) out.push(m[1]); return out; }
 
-jobs:
-  preflight:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Check import map & internal links
-        run: |
-          node - <<'JS'
-          const fs = require('fs');
-          const path = require('path');
-          function exists(p){ return fs.existsSync(p) && fs.statSync(p).isFile(); }
-          // Check import map
-          const imp = JSON.parse(fs.readFileSync('importmap.json','utf8'));
-          const needs = ['three','three/addons/','@pixiv/three-vrm'];
-          let failed = false;
-          needs.forEach(key => {
-            if (!(imp.imports && imp.imports[key])) {
-              console.log(`::error ::importmap.json missing key ${key}`);
-              failed = true;
-            }
-          });
-          // Gather HTML files
-          const htmlFiles = [];
-          function walk(dir) {
-            for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-              const p = path.join(dir, e.name);
-              if (e.isDirectory()) walk(p);
-              else if (e.isFile() && e.name.endsWith('.html')) htmlFiles.push(p);
-            }
-          }
-          walk('pages');
-          htmlFiles.push('index.html');
-          // Check internal links
-          const linkRegex = /(?:href|src)=\"([^\"#]+)\"/g;
-          for (const file of htmlFiles) {
-            const content = fs.readFileSync(file,'utf8');
-            let m;
-            while ((m = linkRegex.exec(content)) !== null) {
-              const u = m[1];
-              if (u.startsWith('http://') || u.startsWith('https://') || u.startsWith('mailto:') || u.startsWith('tel:')) continue;
-              // Normalise relative URL
-              let resolved = path.posix.join(path.posix.dirname(file), u);
-              resolved = resolved.replace(/^\/+/, '');
-              if (!exists(resolved)) {
-                console.log(`::error ::Broken link in ${file}: ${u}`);
-                failed = true;
-              }
-            }
-          }
-          if (failed) process.exit(1);
-          JS
+    for(const f of files){
+      if(!exists(f)){ problems.push('Missing HTML: '+f); continue; }
+      const html=fs.readFileSync(f,'utf8');
+      const links=parseLinks(html).filter(u=>!u.match(/^(https?:|mailto:|tel:|#)/));
+      for(const u of links){
+        let resolved;
+        if(u.startsWith('/')) {
+          // Treat as repo-rooted
+          resolved = u.replace(/^\//,'');
+        } else {
+          // Relative to the HTML file’s folder
+          resolved = path.posix.normalize(path.posix.join(path.posix.dirname(f), u));
+        }
+        if(!exists(resolved)) problems.push(`Broken link in ${f}: ${u}`);
+      }
+    }
+    if(problems.length){ console.log('::group::Preflight errors'); for(const p of problems) console.log('- '+p); console.log('::endgroup::'); fs.mkdirSync('preflight',{recursive:true}); fs.writeFileSync('preflight/report.txt', problems.join('\n')); process.exitCode=1; }
+    else { console.log('All good.'); }
+    JS

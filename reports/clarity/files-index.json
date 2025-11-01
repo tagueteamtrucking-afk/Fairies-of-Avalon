@@ -80,6 +80,16 @@
     "preview": "name: Auto-approve & Automerge (label-gated)\n\non:\n  pull_request_target:\n    types: [labeled, synchronize, opened, reopened, ready_for_review]\n\npermissions:\n  contents: write\n  pull-requests: write\n  statuses: read\n  checks: read\n\njobs:\n  approve-and-merge:\n    if: >\n      contains(github.event.pull_request.labels.*.name, 'automerge') &&\n      !github.event.pull_request.draft\n    runs-on: ubuntu-latest\n\n    steps:\n      - name: Ensure CI is green\n        uses: actions-ecosystem/action-wait-for-check@v1\n        with:\n          token: ${{ secrets.GITHUB_TOKEN }}\n          intervalSeconds: 10\n          timeoutSeconds: 3600\n\n      - name: Auto-approve (for bots / safe areas)\n        if: |\n          contains(github.event.pull_request.labels.*.name, 'bot') ||\n          contains(github.event.pull_request.labels.*.name, 'docs') ||\n          contains(github.event.pull_request.labels.*.name, 'workflows') ||\n          contains(github.event.pull_request.labels.*.name, 'site')\n        uses: hmarr/auto-approve-action@v4\n        with:\n          github-token: ${{ secrets.GITHUB_TOKEN }}\n\n      - name: Automerge (squash) when eligible\n        uses: pascalgn/automerge-action@v0.16.3\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          MERGE_LABELS: automerge\n          MERGE_METHOD: squash\n          MERGE_DELETE_BRANCH: \"true\"\n          MERGE_BLOCK_LABELS: hold\n"
   },
   {
+    "path": ".github/workflows/billie-evolved.yml",
+    "sha256": "d84a8a0c614ebe71c009bab8d606bfa80f04b20b00d6a048f84281f9c2697905",
+    "bytes": 497,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: Billie (evolved) — watch monetization + social + grants\non:\n  push:\n    branches: [ main ]\n    paths:\n      - \"pages/apps/billie/**\"\n      - \".github/workflows/billie-evolved.yml\"\n  workflow_dispatch: {}\npermissions: { contents: read }\nconcurrency: { group: billie-evolved-${ github.ref }, cancel-in-progress: true }\njobs:\n  noop:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo \"Billie (evolved) — watch monetization + social + grants active.\"\n"
+  },
+  {
     "path": ".github/workflows/carol-build-shopping-direct.yml",
     "sha256": "020b45e10af39c88087e289c63caa1241c530008b9706943f254fe013fc86033",
     "bytes": 1665,
@@ -240,6 +250,16 @@
     "links": [],
     "refs": [],
     "preview": "name: Charlotte - Curated Crawl\non:\n  workflow_dispatch:\njobs:\n  crawl:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: write\n      pull-requests: write\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 20\n      - name: Run curated crawl\n        run: node scripts/charlotte/curated-crawl.mjs\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n      - name: Create Pull Request (curated finds)\n        uses: peter-evans/create-pull-request@v6\n        with:\n          commit-message: \"feat(charlotte): update curated AI project finds\"\n          title: \"feat(charlotte): update curated AI project finds\"\n          branch: autobot/charlotte-curated-${{ github.run_id }}\n          add-paths: |\n            pages/apps/charlotte/finds.json\n"
+  },
+  {
+    "path": ".github/workflows/charlotte-evolved.yml",
+    "sha256": "b65cca4cbcff9fc0556ef2d36078642d022d5f80d4ef8303c72068dd76cca043",
+    "bytes": 488,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: Charlotte (evolved) — watch relay + compliance\non:\n  push:\n    branches: [ main ]\n    paths:\n      - \"pages/apps/charlotte/**\"\n      - \".github/workflows/charlotte-evolved.yml\"\n  workflow_dispatch: {}\npermissions: { contents: read }\nconcurrency: { group: charlotte-evolved-${ github.ref }, cancel-in-progress: true }\njobs:\n  noop:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo \"Charlotte (evolved) — watch relay + compliance active.\"\n"
   },
   {
     "path": ".github/workflows/charlotte-link-registry.yml",
@@ -483,23 +503,23 @@
   },
   {
     "path": ".github/workflows/deploy-tts-worker.yml",
-    "sha256": "e1108e8dbd15d26eeb2d410fb0a29a8d7fa1003a17ae6897935f372bfa641a7f",
-    "bytes": 395,
+    "sha256": "8a73031bc695b736a98190c40e3fe6fc2a17b076fb6dd31eb6bced649dfd3e1c",
+    "bytes": 675,
     "purpose": "workflow",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "name: Deploy TTS Worker\non: { workflow_dispatch: {} }\npermissions: { contents: read }\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: cloudflare/wrangler-action@v3\n        with:\n          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}\n          command: deploy --config wrangler.toml\n"
+    "preview": "name: Deploy TTS Worker\n\non:\n  workflow_dispatch: {}\n  push:\n    branches: [ main ]\n    paths:\n      - \"cloudflare/worker-tts.js\"\n      - \".github/workflows/deploy-tts-worker.yml\"\n\npermissions:\n  contents: read\n\nconcurrency:\n  group: deploy-tts-${{ github.ref }}\n  cancel-in-progress: true\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Publish worker\n        env:\n          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}\n          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}\n          WORKER_NAME: tts-worker\n        run: |\n          npm i -g wrangler\n          wrangler deploy cloudflare/worker-tts.js --name $WORKER_NAME\n"
   },
   {
     "path": ".github/workflows/failure-feed.yml",
-    "sha256": "98774c49bb13f7c050eee630684f47f565b48935fccb7b3398655f8617940793",
-    "bytes": 1154,
+    "sha256": "a82ba573df108a7d7c604a609334ddfe78043e496c328fc9f20679d53a83be94",
+    "bytes": 1244,
     "purpose": "workflow",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "name: Failure Feed (on workflow_run)\non:\n  workflow_run:\n    workflows:\n      - \"*\"\n    types:\n      - completed\npermissions:\n  actions: read\n  issues: write\njobs:\n  feed:\n    if: ${{ github.event.workflow_run.conclusion != 'success' }}\n    runs-on: ubuntu-latest\n    steps:\n      - name: Append failure line\n        uses: actions/github-script@v7\n        with:\n          script: |\n            const run = context.payload.workflow_run;\n            const owner = context.repo.owner, repo = context.repo.repo;\n            const title = 'Build Failures Feed';\n            const line = `- ${run.name} → *${run.status}/${run.conclusion}* (${run.html_url}) at ${run.updated_at}`;\n            const { data: issues } = await github.rest.issues.listForRepo({owner, repo, state: 'open'});\n            const existing = issues.find(i => i.title === title);\n            if (existing) {\n              const body = (existing.body || '') + '\\n' + line;\n              await github.rest.issues.update({owner, repo, issue_number: existing.number, body});\n            } else {\n              await github.rest.issues.create({owner, repo, title, body: line});\n            }\n"
+    "preview": "name: Failure Feed (on workflow_run)\n\non:\n  workflow_run:\n    workflows:\n      - \"Deploy GitHub Pages\"\n      - \"Repo Vision (index + site map)\"\n      - \"Repo Sweeper (propose deletions)\"\n      - \"Nina Guard (YAML + importmap sanity)\"\n      - \"Response Check (URLs & API endpoints)\"\n    types: [completed]\n\npermissions:\n  contents: read\n  issues: write\n\nconcurrency:\n  group: failure-feed-${{ github.ref }}\n  cancel-in-progress: false\n\njobs:\n  post:\n    if: >\n      github.event.workflow_run.conclusion != 'success' &&\n      !contains(github.event.workflow_run.name, 'Failure Feed') &&\n      !contains(github.event.workflow_run.name, 'Pages Preflight')\n    runs-on: ubuntu-latest\n    steps:\n      - name: Post summary comment\n        uses: actions/github-script@v7\n        with:\n          script: |\n            const wr = context.payload.workflow_run;\n            const body = [\n              \"### ❌ Workflow failed\",\n              `**${wr.name}** #${wr.run_number}`,\n              `Branch: \\`${wr.head_branch}\\``,\n              `[View logs](${wr.html_url})`\n            ].join(\"\\n\");\n            const {owner, repo} = context.repo;\n            await github.rest.issues.create({owner, repo, title:`Fail: ${wr.name} #${wr.run_number}`, body});\n"
   },
   {
     "path": ".github/workflows/importmap-merge.yml",
@@ -600,6 +620,16 @@
     "links": [],
     "refs": [],
     "preview": "name: Nina - City Tiles\non: { workflow_dispatch: {} }\npermissions: { contents: write }\njobs:\n  tiles:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Theme registry icons (BOM-safe)\n        shell: bash\n        run: |\n          set -euo pipefail\n          file=\"pages/apps/_city/registry.json\"\n          [ -f \"$file\" ] || { echo \"registry.json missing; run Charlotte - Link Registry\"; exit 0; }\n          tmp=\"$(mktemp)\"\n          node - <<'JS' \"$file\" \"$tmp\"\n          const fs=require('fs'); const p=process.argv[2]; const o=process.argv[3];\n          let text = fs.readFileSync(p,'utf8'); if(text.charCodeAt(0)===0xFEFF) text=text.slice(1);\n          const reg=JSON.parse(text); const icons={\n            alexandria:\"📚\", charlotte:\"📡\", nina:\"🧪\", tracy:\"🎨\", carol:\"🍽️\", jem:\"🥋\",\n            stella:\"🌌\", abbey:\"🏦\", themis:\"⚖️\", billie:\"💰\", sorcha:\"🎬\", clarice:\"🔐\"\n          };\n          reg.items = (reg.items||[]).filter(it=> (it.name||'').toLowerCase()!=='odessa')\n            .map(it=>({ ...it, icon: icons[(it.name||'').toLowerCase()] || it.icon || '🏛️'}));\n          fs.writeFileSync(o, JSON.stringify(reg,null,2));\n          JS\n          mv \"$tmp\" \"$file\"\n      - name: Commit tiles\n        shell: bash\n        run: |\n          git config user.name \"github-actions[bot]\"\n          git config user.email \"github-actions[bot]@users.noreply.github.com\"\n          git add pages/apps/_city/registry.json || true\n          if git diff --cached --quiet; then echo \"No changes\"; else git commit -m \"feat(nina): city icons (BOM-safe) & remove Odessa\" && git push; fi\n"
+  },
+  {
+    "path": ".github/workflows/nina-evolved.yml",
+    "sha256": "776f4a212c5e9d1ff37cfdf394cda9f7d97dee7f110503cff4edadec5309079f",
+    "bytes": 471,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: Nina (evolved) — watch engineering + security\non:\n  push:\n    branches: [ main ]\n    paths:\n      - \"pages/apps/nina/**\"\n      - \".github/workflows/nina-evolved.yml\"\n  workflow_dispatch: {}\npermissions: { contents: read }\nconcurrency: { group: nina-evolved-${ github.ref }, cancel-in-progress: true }\njobs:\n  noop:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: echo \"Nina (evolved) — watch engineering + security active.\"\n"
   },
   {
     "path": ".github/workflows/nina-guard.yml",
@@ -720,6 +750,16 @@
     "links": [],
     "refs": [],
     "preview": "name: Package - Workflows ZIP (flat root)\non: { workflow_dispatch: {} }\njobs:\n  package:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Stage workflows\n        run: |\n          mkdir -p staging\n          if [ -d \".github/workflows\" ]; then\n            find .github/workflows -maxdepth 1 -type f \\( -name \"*.yml\" -o -name \"*.yaml\" \\) -print0 | while IFS= read -r -d '' f; do cp \"$f\" \"staging/$(basename \"$f\")\"; done\n          fi\n          count=$(ls -1 staging 2>/dev/null | wc -l | tr -d ' ')\n          if [ \"$count\" = \"0\" ]; then echo \"No workflow files found\" >&2; exit 1; fi\n          (cd staging && zip -r ../Avalon-Workflows.zip .)\n      - uses: actions/upload-artifact@v4\n        with: { name: Avalon-Workflows, path: Avalon-Workflows.zip, if-no-files-found: error }\n"
+  },
+  {
+    "path": ".github/workflows/pages-preflight.yml",
+    "sha256": "e4925676c1a252f53526b03dae5cfb660303e60212baeeba8ce434d9fb3494d9",
+    "bytes": 3773,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: Pages Preflight (links + importmap)\n\non:\n  pull_request:\n    branches: [ main ]\n    paths:\n      - \"**/*.html\"\n      - \"importmap.json\"\n      - \"pages/**\"\n      - \"asset/**\"\n      - \".github/workflows/pages-preflight.yml\"\n      - \"memory/site-map.json\"\n  workflow_dispatch: {}\n\npermissions:\n  contents: read\n\nconcurrency:\n  group: pages-preflight-${{ github.ref }}\n  cancel-in-progress: true\n\njobs:\n  preflight:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Build site map fallback (if not present)\n        run: |\n          if [ ! -f memory/site-map.json ]; then\n            mkdir -p memory\n            node - <<'JS'\n            const fs = require('fs'), path = require('path');\n            function walk(d, acc=[]){for(const e of fs.readdirSync(d,{withFileTypes:true})){\n              const p=path.join(d,e.name); if(e.isDirectory()){ if(['.git','node_modules','.next','.vercel','.cache'].includes(e.name))continue; walk(p,acc);}\n              else{ acc.push(path.relative(process.cwd(),p).replace(/\\\\/g,'/')); }} return acc; }\n            const files = walk(process.cwd());\n            const pages = files.filter(f=>f.startsWith('pages/') && f.endsWith('.html')).map(f=>'/'+f);\n            const entry = fs.existsSync('index.html')? ['/index.html']:[];\n            const assets = files.filter(f=>f.startsWith('asset/')).map(f=>'/'+f);\n            let importmap=null; try{importmap=JSON.parse(fs.readFileSync('importmap.json','utf8'));}catch{}\n            fs.writeFileSync('memory/site-map.json', JSON.stringify({generated:new Date().toISOString(),entrypoints:entry,pages,assets,importmap},null,2));\n            JS\n          fi\n      - name: Preflight checks (broken links + importmap sanity)\n        id: check\n        run: |\n          node - <<'JS'\n          const fs = require('fs'), path = require('path');\n          const exists = p => fs.existsSync(p) && fs.statSync(p).isFile();\n          const site = JSON.parse(fs.readFileSync('memory/site-map.json','utf8'));\n          const problems = [];\n          let im = site.importmap || null;\n          if (!im) { try { im = JSON.parse(fs.readFileSync('importmap.json','utf8')); } catch {} }\n          const need = ['three','three/addons/'];\n          for (const n of need) if (!im?.imports?.[n]) problems.push(`importmap.json missing \"${n}\"`);\n          if (!im?.imports?.['@pixiv/three-vrm']) problems.push('importmap.json missing \"@pixiv/three-vrm\"');\n          const htmlFiles = new Set([...site.entrypoints.map(s=>s.replace(/^\\//,'')),...site.pages.map(s=>s.replace(/^\\//,''))]);\n          const allFiles = new Set(fs.readdirSync('.',{withFileTypes:true}).flatMap(e=>e.name));\n          function parseLinks(html){const out=[];const rx=/(?:href|src)=[\"']([^\"']+)[\"']/g;let m;while((m=rx.exec(html)))out.push(m[1]);return out;}\n          for(const file of htmlFiles){if(!exists(file)){problems.push(`Missing HTML: ${file}`);continue;}"
   },
   {
     "path": ".github/workflows/pr-automerge-comment-bot.yml",
@@ -1066,13 +1106,13 @@
   },
   {
     "path": ".github/workflows/wrangler-whoami.yml",
-    "sha256": "ee868e654b603d9cbabdcf4e32a2e9e9fcf12dd473179637dba910c5091c0a60",
-    "bytes": 628,
+    "sha256": "f2a66ab55650c2a354566f97b85b67aff2a8069eb1b178fc987d9cab9013dffe",
+    "bytes": 361,
     "purpose": "workflow",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "name: Wrangler WhoAmI (debug)\non:\n  workflow_dispatch:\njobs:\n  whoami:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n      - name: wrangler --version\n        uses: cloudflare/wrangler-action@v3\n        with:\n          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}\n          command: --version\n      - name: wrangler whoami\n        uses: cloudflare/wrangler-action@v3\n        with:\n          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}\n          command: whoami\n"
+    "preview": "name: Wrangler WhoAmI (debug)\n\non:\n  workflow_dispatch: {}\n\npermissions:\n  contents: read\n\nconcurrency:\n  group: wrangler-whoami-${{ github.ref }}\n  cancel-in-progress: true\n\njobs:\n  whoami:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: WhoAmI\n        run: |\n          npm i -g wrangler\n          wrangler whoami || true\n"
   },
   {
     "path": ".nojekyll",
@@ -3079,24 +3119,35 @@
   },
   {
     "path": "index.html",
-    "sha256": "035c3707ffd157e55221f6bbe850f98603e939f88981bdc3702449c48616089d",
-    "bytes": 1392,
+    "sha256": "bc6849b00b40488eff9593c87838643e23d8da6068eb886903d3f85ad4372055",
+    "bytes": 1688,
     "purpose": "page",
     "imports": [],
     "links": [
-      "/pages/_city/index.html",
-      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/common/style.css",
+      "/pages/apps/nina/index.html",
+      "/pages/apps/charlotte/index.html",
+      "/pages/apps/billie/index.html",
+      "/pages/apps/carol/index.html",
+      "/pages/apps/jem/index.html",
+      "/pages/apps/alexandria/index.html",
+      "/pages/apps/stella/index.html",
       "/pages/apps/tracy/skins/index.html",
-      "/pages/apps/stella/index.html"
+      "/pages/apps/overseers/ci-dashboard.html"
     ],
     "refs": [
-      "/importmap.json",
-      "/pages/_city/index.html",
-      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/common/style.css",
+      "/pages/apps/nina/index.html",
+      "/pages/apps/charlotte/index.html",
+      "/pages/apps/billie/index.html",
+      "/pages/apps/carol/index.html",
+      "/pages/apps/jem/index.html",
+      "/pages/apps/alexandria/index.html",
+      "/pages/apps/stella/index.html",
       "/pages/apps/tracy/skins/index.html",
-      "/pages/apps/stella/index.html"
+      "/pages/apps/overseers/ci-dashboard.html"
     ],
-    "preview": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<meta name=\"robots\" content=\"noindex,nofollow\">\n<title>Fairies of Avalon</title>\n<script type=\"importmap\" src=\"/importmap.json\"></script>\n<style>\n  :root{--bg:#0b0f17;--ink:#e8ecf1;--card:#141a24}\n  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui}\n  .wrap{max-width:960px;margin:auto;padding:24px}\n  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}\n  .card{background:var(--card);padding:16px;border-radius:14px}\n  a{color:#9cc1ff;text-decoration:none}\n</style>\n</head>\n<body>\n  <header class=\"wrap\">\n    <h1>🏰 Fairies of Avalon</h1>\n    <p>This development shell is private and unindexed.</p>\n  </header>\n  <main class=\"wrap\">\n    <section class=\"grid\" id=\"links\">\n      <div class=\"card\"><strong>City</strong><br><a href=\"/pages/_city/index.html\">Open map</a></div>\n      <div class=\"card\"><strong>Charlotte</strong><br><a href=\"/pages/apps/charlotte/highlights.html\">Importmap installer</a></div>\n      <div class=\"card\"><strong>Tracy</strong><br><a href=\"/pages/apps/tracy/skins/index.html\">Skins & theme</a></div>\n      <div class=\"card\"><strong>Stella</strong><br><a href=\"/pages/apps/stella/index.html\">TTS (Worker)</a></div>\n    </section>\n  </main>\n</body>\n</html>\n"
+    "preview": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<meta name=\"robots\" content=\"noindex,nofollow\">\n<title>Fairies of Avalon — Evolution</title>\n<link rel=\"stylesheet\" href=\"/pages/apps/common/style.css\">\n</head>\n<body>\n  <div class=\"wrap\">\n    <h1>🏰 Fairies of Avalon — Evolution Merge</h1>\n    <p class=\"sub\">Nina (with Clarice), Charlotte (with Themis), Billie (with Sorcha & Odessa). Twins: Carol & Jem. Pair: Alexandria & Stella. Tracy: art 2D/3D.</p>\n    <section class=\"grid\">\n      <div class=\"card\"><strong>Nina</strong><br><a href=\"/pages/apps/nina/index.html\">Engineering + Security</a></div>\n      <div class=\"card\"><strong>Charlotte</strong><br><a href=\"/pages/apps/charlotte/index.html\">Relay + Compliance</a></div>\n      <div class=\"card\"><strong>Billie</strong><br><a href=\"/pages/apps/billie/index.html\">Monetization Suite</a></div>\n      <div class=\"card\"><strong>Carol</strong><br><a href=\"/pages/apps/carol/index.html\">Nutrition</a></div>\n      <div class=\"card\"><strong>Jem</strong><br><a href=\"/pages/apps/jem/index.html\">Fitness</a></div>\n      <div class=\"card\"><strong>Alexandria</strong><br><a href=\"/pages/apps/alexandria/index.html\">Stories & Worlds</a></div>\n      <div class=\"card\"><strong>Stella</strong><br><a href=\"/pages/apps/stella/index.html\">Voice & Sound</a></div>\n      <div class=\"card\"><strong>Tracy</strong><br><a href=\"/pages/apps/tracy/skins/index.html\">Art • 2D/3D • Skins</a></div>\n      <div class=\"card\"><strong>CI Dashboard</strong><br><a href=\"/pages/apps/overseers/ci-dashboard.html\">Status Board</a></div>\n    </section>\n  </div>\n</body>\n</html>\n"
   },
   {
     "path": "kill-sw-boost.html",
@@ -5905,14 +5956,24 @@
     "preview": "meta:\n  project: Avalon\n  file_name: \"Cody's Memory.yaml\"\n  version: \"2.4.0-visuals\"\n  last_updated: \"20251019T224810Z\"\n  author: \"Cody (GPT-5 Pro)\"\n  notes: >\n    Visual-only worldbook for the city-builder look of Avalon.\n    Merges applied: Charlotte⇐Themis, Nina⇐Clarice, Billie⇐(Sorcha+Odessa).\n    Overseers are Ray & Blanca avatars at the Palace (progress showcase).\n    This file captures buildings, rooms, and visual link targets only.\n\nworld:\n  name: Avalon\n  style: \"Mobile city-builder; castle‑town map; dark theme with midnight blues.\"\n  palette: [\"#0b1220\",\"#111a2a\",\"#1c2842\",\"#a5d6ff\",\"#e6e9ff\"]\n  typography: [\"Inter\",\"Roboto\",\"Segoe UI\",\"system-ui\"]\n  levels:\n    - {\"id\":1,\"name\":\"Foundations\",\"desc\":\"Silhouettes, minimal props, labeled.\"}\n    - {\"id\":2,\"name\":\"Crafted\",\"desc\":\"Textures, lighting, animated accents.\"}\n    - {\"id\":3,\"name\":\"Alive\",\"desc\":\"Parallax, day/night, ambient glow.\"}\n\nroles_after_merges:\n  overseers:\n    - id: \"overseer_ray\"\n      name: \"Ray Czar\"\n      building: \"Palace\"\n    - id: \"overseer_blanca\"\n      name: \"White Star\"\n      building: \"Palace\"\n\n  assistants:\n    - id: \"alexandria\"\n      building: \"Gothic Library\"\n      room_links: [\"World Rules\",\"Session Log\",\"Voice DM\"]\n      objects: [\"Desk\",\"Bookshelves\",\"Globe\",\"Corkboard\"]\n    - id: \"tracy\"\n      building: \"Cathedral Studio\"\n      room_links: [\"2D Artboards\",\"3D Props\",\"Wallpapers\"]\n      objects: [\"Easel\",\"Clay Bust\",\"Palette\",\"Light Table\"]\n    - id: \"nina\"\n      merged_from: [\"clarice\"]\n      building: \"Court-Lab (Courtroom + Holographic Lab)\"\n      room_links: [\"Diagnostics\",\"Backups/Snapshots\",\"VRM Gallery\"]\n      objects: [\"Server Rack\",\"VRM Hanger\",\"Hologram Table\"]\n    - id: \"charlotte\"\n      merged_from: [\"themis\"]\n      building: \"Relay-Hall (Tower + Record Hall)\"\n      room_links: [\"Run Workflows\",\"Expirations\",\"Link Registry\"]\n      objects: [\"Control Wall\",\"Calendarium Shelf\",\"Clipboard\"]\n    - id: \"carol\"\n      building: \"Restaurant\"\n      diet: [\"DASH-style\",\"lactose-light\",\"shellfish-free\",\"no cilantro/cumin\",\"avoid very hard foods\",\"tuna ok\",\"salmon ok\",\"cod ok\",\"sushi ok\",\"eggs ok\",\"steamed baby carrots ok\",\"frozen & fresh fruit ok\"]\n      room_links: [\"14-day Menu\",\"Shopping List\",\"Cookbook\",\"Meal Alarms (.ics)\"]\n      objects: [\"Menu Board\",\"Pantry Shelf\",\"Recipe Book\",\"Bell\"]\n    - id: \"jem\"\n      building: \"Dojo\"\n      room_links: [\"Week-1 Evaluation\",\"Program Viewer\",\"Progress Log\"]\n      objects: [\"Training Dummy\",\"Chalkboard\",\"Mat\",\"Belt Rack\"]\n    - id: \"stella\""
   },
   {
-    "path": "memory/cleanup-rules.json",
-    "sha256": "538f6f2b177e9e35034e2644312c5ec836d4373afff87f74c0f6d9748f470f4c",
-    "bytes": 623,
+    "path": "memory/cleanup-proposals.json",
+    "sha256": "40b4e876ee2af97154fb10a7b3ded0c5f54f6964a8d0490b04d0c31094527c1e",
+    "bytes": 27046,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "{\n  \"preserveGlobs\": [\n    \"asset/models/**\",\n    \"asset/wings/**\",\n    \".github/workflows/**\",\n    \"importmap.json\",\n    \"index.html\",\n    \"pages/**\",\n    \"memory/**\"\n  ],\n  \"deleteIf\": [\n    {\n      \"glob\": \"**/*.tmp\",\n      \"reason\": \"temporary file\"\n    },\n    {\n      \"glob\": \"**/*~\",\n      \"reason\": \"editor backup\"\n    },\n    {\n      \"glob\": \"**/.DS_Store\",\n      \"reason\": \"system file\"\n    },\n    {\n      \"glob\": \"**/Thumbs.db\",\n      \"reason\": \"system file\"\n    },\n    {\n      \"glob\": \"pages/**\",\n      \"sizeLT\": 12,\n      \"reason\": \"empty stub page\"\n    }\n  ],\n  \"duplicateHashPolicy\": \"delete-all-but-largest\"\n}"
+    "preview": "{\n  \"generated\": \"2025-11-01T02:26:22.913Z\",\n  \"deletes\": [\n    {\n      \"path\": \"asset/textures/wallpapers/carol-menu-bg.jpg\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"asset/textures/wallpapers/carol-pagoda.jpg\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"asset/textures/wallpapers/carol-restaurant-interior.jpg\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T185031Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T192026Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T193745Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T195049Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T202952Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T204046Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T205141Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T211642Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T211643Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T212718Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {\n      \"path\": \"memory-history/20250913T214031Z-Codys-Memory.yaml\",\n      \"reason\": \"duplicate content\"\n    },\n    {"
+  },
+  {
+    "path": "memory/cleanup-rules.json",
+    "sha256": "af45858125dd213a6aa78ed70f3048077e933efa60f01ce6e721fa274310d8d4",
+    "bytes": 1505,
+    "purpose": "other",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\n  \"preserveGlobs\": [\n    \"asset/models/**\",\n    \"asset/wings/**\",\n    \".github/workflows/**\",\n    \"memory/**\",\n    \"index.html\",\n    \"importmap.json\",\n    \"pages/apps/nina/**\",\n    \"pages/apps/charlotte/**\",\n    \"pages/apps/billie/**\",\n    \"pages/apps/tracy/**\",\n    \"pages/apps/jem/**\",\n    \"pages/apps/carol/**\",\n    \"pages/apps/alexandria/**\",\n    \"pages/apps/stella/**\",\n    \"pages/apps/overseers/**\",\n    \"pages/apps/clarice/index.html\",\n    \"pages/apps/themis/index.html\",\n    \"pages/apps/odessa/index.html\",\n    \"pages/apps/sorcha/index.html\"\n  ],\n  \"deleteIf\": [\n    {\n      \"glob\": \"pages/apps/clarice/**\",\n      \"reason\": \"legacy (merged into Nina) except redirect index.html\"\n    },\n    {\n      \"glob\": \"pages/apps/themis/**\",\n      \"reason\": \"legacy (merged into Charlotte) except redirect index.html\"\n    },\n    {\n      \"glob\": \"pages/apps/odessa/**\",\n      \"reason\": \"legacy (merged into Billie) except redirect index.html\"\n    },\n    {\n      \"glob\": \"pages/apps/sorcha/**\",\n      \"reason\": \"legacy (merged into Billie) except redirect index.html\"\n    },\n    {\n      \"glob\": \"**/*.tmp\",\n      \"reason\": \"temporary file\"\n    },\n    {\n      \"glob\": \"**/*~\",\n      \"reason\": \"editor backup\"\n    },\n    {\n      \"glob\": \"**/.DS_Store\",\n      \"reason\": \"system file\"\n    },\n    {\n      \"glob\": \"**/Thumbs.db\",\n      \"reason\": \"system file\"\n    },\n    {\n      \"glob\": \"pages/**\",\n      \"sizeLT\": 12,\n      \"reason\": \"empty stub page\"\n    }"
   },
   {
     "path": "memory/deadends.json",
@@ -5925,14 +5986,44 @@
     "preview": "{\n  \"generated_at\": \"2025-10-22T01:48:45.309Z\",\n  \"deleted\": [\n    {\n      \"path\": \"pages/apps/_city/castle-town.html\",\n      \"deleted_in\": \"0ad44a4986401a993998badc16c7308be9044c8f\",\n      \"deleted_at\": \"2025-10-21T00:28:37.000Z\"\n    },\n    {\n      \"path\": \"pages/apps/_city/city-index-patch.html\",\n      \"deleted_in\": \"0ad44a4986401a993998badc16c7308be9044c8f\",\n      \"deleted_at\": \"2025-10-21T00:28:37.000Z\"\n    },\n    {\n      \"path\": \".github/workflows/00-sanity.yml\",\n      \"deleted_in\": \"9f7d6405018aea90cae70bf3967c79a40c3a2948\",\n      \"deleted_at\": \"2025-10-19T00:19:38.000Z\"\n    },\n    {\n      \"path\": \".github/workflows/abbey-parse-subscriptions.yml\",\n      \"deleted_in\": \"9f7d6405018aea90cae70bf3967c79a40c3a2948\",\n      \"deleted_at\": \"2025-10-19T00:19:38.000Z\"\n    },\n    {\n      \"path\": \".github/workflows/abbey.yml\",\n      \"deleted_in\": \"9f7d6405018aea90cae70bf3967c79a40c3a2948\",\n      \"deleted_at\": \"2025-10-19T00:19:38.000Z\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-config.yml\",\n      \"deleted_in\": \"9f7d6405018aea90cae70bf3967c79a40c3a2948\",\n      \"deleted_at\": \"2025-10-19T00:19:38.000Z\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-dm.yml\",\n      \"deleted_in\": \"9f7d6405018aea90cae70bf3967c79a40c3a2948\",\n      \"deleted_at\": \"2025-10-19T00:19:38.000Z\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-world.yml\",\n      \"deleted_in\": \"9f7d6405018aea90cae70bf3967c79a40c3a2948\",\n      \"deleted_at\": \"2025-10-19T00:19:38.000Z\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria.yml\",\n      \"deleted_in\": \"9f7d6405018aea90cae70bf3967c79a40c3a2948\",\n      \"deleted_at\": \"2025-10-19T00:19:38.000Z\"\n    },\n    {\n      \"path\": \".github/workflows/avalon-fact-check.yml\",\n      \"deleted_in\": \"9f7d6405018aea90cae70bf3967c79a40c3a2948\",\n      \"deleted_at\": \"2025-10-19T00:19:38.000Z\"\n    },\n    {\n      \"path\": \".github/workflows/avalon-run-all.yml\",\n      \"deleted_in\": \"9f7d6405018aea90cae70bf3967c79a40c3a2948\",\n      \"deleted_at\": \"2025-10-19T00:19:38.000Z\"\n    },\n    {\n      \"path\": \".github/workflows/billie.yml\","
   },
   {
-    "path": "memory/file-index.json",
-    "sha256": "c181b8fa3e84a85faeb863799ffe2e234ac7ff826d2dcf79dccfaa455d107b7a",
-    "bytes": 167878,
+    "path": "memory/evolution-merge.patch.yaml",
+    "sha256": "27c44ddc3ce3364ec278b0e353970ec84313d951f4f69a30c3ba699801df29b2",
+    "bytes": 903,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "{\n  \"summary\": {\n    \"count\": 842,\n    \"byType\": {\n      \"other\": 123,\n      \"html\": 6,\n      \"cname\": 1,\n      \"data\": 267,\n      \"style\": 2,\n      \"model\": 16,\n      \"wallpaper\": 10,\n      \"wings\": 108,\n      \"script\": 6,\n      \"page\": 20,\n      \"microapp\": 283\n    },\n    \"generated_at\": \"2025-10-22T01:48:45.232Z\"\n  },\n  \"files\": [\n    {\n      \"path\": \".nojekyll\",\n      \"bytes\": 1,\n      \"sha1\": \"adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\",\n      \"type\": \"other\",\n      \"purpose\": \"\"\n    },\n    {\n      \"path\": \"404.html\",\n      \"bytes\": 937,\n      \"sha1\": \"09b5f9bdc957a8d294bb61a1c355393deef3c5e4\",\n      \"type\": \"html\",\n      \"purpose\": \"\"\n    },\n    {\n      \"path\": \"CNAME\",\n      \"bytes\": 20,\n      \"sha1\": \"21a97f44c418bfac8370728f67ace6eb5b9eae87\",\n      \"type\": \"cname\",\n      \"purpose\": \"Custom domain for GitHub Pages\"\n    },\n    {\n      \"path\": \"Cody's Memory.yaml\",\n      \"bytes\": 1731,\n      \"sha1\": \"498ee9bdfbe737d83226033718bc70a618e2e1e1\",\n      \"type\": \"data\",\n      \"purpose\": \"Canonical project memory\"\n    },\n    {\n      \"path\": \"Cody's Memory.yml\",\n      \"bytes\": 1334,\n      \"sha1\": \"d0728d2cc0e2d205f335100d279762be5bcf8954\",\n      \"type\": \"data\",\n      \"purpose\": \"\"\n    },\n    {\n      \"path\": \"asset/css/style.css\",\n      \"bytes\": 133,\n      \"sha1\": \"acf8a7cb2ad1177b89056f1267e4c72fa9f924c1\",\n      \"type\": \"style\",\n      \"purpose\": \"\""
+    "preview": "# evolution-merge.patch.yaml\ngenerated: 2025-11-01T02:15:34.718865Z\nentities:\n  merges:\n    clarice -> nina: true\n    themis -> charlotte: true\n    odessa -> billie: true\n    sorcha -> billie: true\n  twins:\n    - [carol, jem]\n  pairs:\n    - [alexandria, stella]\n  specialties:\n    tracy:\n      - art-2D\n      - art-3D\n      - skins\n      - t-shirt design\n      - poster design\n      - story art\n      - web art\n\ninterfaces_registry_updates:\n  security_reports: nina\n  expirations_registry: charlotte\n  reminders_service: charlotte\n  social_posts_board: billie\n  earnings_per_post: billie\n  grants_tracker: billie\n\npreserve_paths:\n  - asset/models\n  - asset/wings\n  - pages/apps/nina\n  - pages/apps/charlotte\n  - pages/apps/billie\n  - pages/apps/tracy\n  - pages/apps/jem\n  - pages/apps/carol\n  - pages/apps/alexandria\n  - pages/apps/stella\n  - pages/apps/overseers\n  - memory/**\n  - .github/workflows/**\n"
+  },
+  {
+    "path": "memory/fairy_function_matrix.json",
+    "sha256": "c9b16ae7002333cfddeb9b88c320c78b6f75cdcfe3af13de070b6116112f7c31",
+    "bytes": 2023,
+    "purpose": "other",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\n  \"generated\": \"2025-11-01T02:15:34.720890Z\",\n  \"fairies\": {\n    \"nina\": {\n      \"merged_from\": [\n        \"clarice\"\n      ],\n      \"owns\": [\n        \"security_reports\",\n        \"project_overview_screen\",\n        \"importmap_sanity\",\n        \"3d_infra\"\n      ],\n      \"rooms\": [\n        \"Blue Lab\"\n      ]\n    },\n    \"charlotte\": {\n      \"merged_from\": [\n        \"themis\"\n      ],\n      \"owns\": [\n        \"queues_dashboard\",\n        \"translations_board\",\n        \"expirations_registry\",\n        \"reminders_service\"\n      ],\n      \"rooms\": [\n        \"Relay Tower\"\n      ]\n    },\n    \"billie\": {\n      \"merged_from\": [\n        \"odessa\",\n        \"sorcha\"\n      ],\n      \"owns\": [\n        \"social_posts_board\",\n        \"earnings_per_post\",\n        \"grants_tracker\"\n      ],\n      \"rooms\": [\n        \"Museum Mansion / Socialite Mansion\"\n      ]\n    },\n    \"carol\": {\n      \"merged_from\": [],\n      \"owns\": [\n        \"meal_plans\",\n        \"shopping_lists\"\n      ],\n      \"rooms\": [\n        \"Restaurant\"\n      ],\n      \"twin_with\": \"jem\"\n    },\n    \"jem\": {\n      \"merged_from\": [],\n      \"owns\": [\n        \"fitness_plan\","
+  },
+  {
+    "path": "memory/file-index.json",
+    "sha256": "cf7881ba25b9bec00c32cf8a8d867f6c38b2eea3dd722a44399b52e455126191",
+    "bytes": 185401,
+    "purpose": "other",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\n  \"generated\": \"2025-11-01T02:38:32.371Z\",\n  \"count\": 1094,\n  \"files\": [\n    {\n      \"path\": \".github/cleanup/sweeper-manifest.json\",\n      \"bytes\": 118,\n      \"hash\": \"0fee89b48714e5e39e8129fe8c00df9b\",\n      \"purpose\": \"misc\"\n    },\n    {\n      \"path\": \".github/cleanup/workflows-to-review.json\",\n      \"bytes\": 1014,\n      \"hash\": \"04ae324f4c8ea030de09af6855b12640\",\n      \"purpose\": \"misc\"\n    },\n    {\n      \"path\": \".github/workflows/MANIFEST.json\",\n      \"bytes\": 1344,\n      \"hash\": \"109cd9a76c1412d25f610971efe9d082\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/actions-audit.yml\",\n      \"bytes\": 2915,\n      \"hash\": \"885c211d91e02693b02c8824290c9b11\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n      \"bytes\": 959,\n      \"hash\": \"9b081cefca80381eb33ce521e1e1f5e5\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n      \"bytes\": 3350,\n      \"hash\": \"a61caa571c9f36a2d3202971daac4ac8\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/audit-on-push.yml\",\n      \"bytes\": 1140,\n      \"hash\": \"ca68d5015ac63415ee9ba7d4fb201fb6\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n      \"bytes\": 1387,\n      \"hash\": \"b803310eee798fa494c858d6d743b77f\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/billie-evolved.yml\",\n      \"bytes\": 497,\n      \"hash\": \"c70aa82b7da1d38981cde3f3021a0597\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/carol-build-shopping-direct.yml\","
+  },
+  {
+    "path": "memory/owners.json",
+    "sha256": "1be671c0ce23a38cee128d82267f18635eee9dfb73652d57561b9dec342bb661",
+    "bytes": 1850,
+    "purpose": "other",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\n  \"nina\": {\n    \"merged_from\": [\n      \"clarice\"\n    ],\n    \"domains\": [\n      \"engineering\",\n      \"security\",\n      \"3D infra\",\n      \"import-map sanity\"\n    ],\n    \"rooms\": [\n      \"Blue Lab\"\n    ],\n    \"apps\": [\n      \"security_reports\",\n      \"project_overview_screen\"\n    ]\n  },\n  \"charlotte\": {\n    \"merged_from\": [\n      \"themis\"\n    ],\n    \"domains\": [\n      \"relay/translation\",\n      \"compliance\",\n      \"expirations\",\n      \"reminders\"\n    ],\n    \"rooms\": [\n      \"Relay Tower\"\n    ],\n    \"apps\": [\n      \"queues_dashboard\",\n      \"translations_board\",\n      \"expirations_registry\",\n      \"reminders_service\"\n    ]\n  },\n  \"billie\": {\n    \"merged_from\": [\n      \"odessa\",\n      \"sorcha\"\n    ],\n    \"domains\": [\n      \"monetization\",\n      \"social\",\n      \"grants\"\n    ],\n    \"rooms\": [\n      \"Museum Mansion / Socialite Mansion\"\n    ],\n    \"apps\": [\n      \"social_posts_board\",\n      \"earnings_per_post\",\n      \"grants_tracker\"\n    ]\n  },\n  \"jem\": {\n    \"merged_from\": [],"
   },
   {
     "path": "pages/_city/city.css",
@@ -5946,31 +6037,35 @@
   },
   {
     "path": "pages/_city/index.html",
-    "sha256": "d59e5f549fdc665f843a3eea494c36318ea135893d5c11ba93a1f02e4f44c541",
-    "bytes": 1262,
+    "sha256": "55bd62ab43c168ce7c4576548d20c83b21f06cece3c79b433c2b6ad0f3ee87b1",
+    "bytes": 735,
     "purpose": "city-page",
     "imports": [],
     "links": [
-      "../../assets/css/avalon.css",
-      "../alexandria/index.html",
-      "../tracy/skins/generator.html",
-      "../jem/index.html",
-      "../carol/index.html",
-      "../stella/index.html",
-      "../charlotte/highlights.html",
-      "../../index.html"
+      "/index.html"
     ],
     "refs": [
-      "../../assets/css/avalon.css",
-      "../alexandria/index.html",
-      "../tracy/skins/generator.html",
-      "../jem/index.html",
-      "../carol/index.html",
-      "../stella/index.html",
-      "../charlotte/highlights.html",
-      "../../index.html"
+      "/index.html"
     ],
-    "preview": "<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Fairies of Avalon — City</title>\n  <link rel=\"stylesheet\" href=\"../../assets/css/avalon.css\">\n</head>\n<body>\n<header class=\"av-header\"><div class=\"wrap\">\n  <h1>🗺️ Avalon City</h1>\n  <p class=\"tagline\">Choose a district. Everything is bright, readable, and cohesive.</p>\n</div></header>\n<main class=\"wrap grid\">\n  <a class=\"card\" href=\"../alexandria/index.html\"><h3>📚 Library — Alexandria</h3><p>World Builder</p></a>\n  <a class=\"card\" href=\"../tracy/skins/generator.html\"><h3>🎨 Cathedral Studio — Tracy</h3><p>Skins & themes</p></a>\n  <a class=\"card\" href=\"../jem/index.html\"><h3>🥋 Dojo — Jem</h3><p>Plans & metrics</p></a>\n  <a class=\"card\" href=\"../carol/index.html\"><h3>🍎 Restaurant — Carol</h3><p>Menus & shopping</p></a>\n  <a class=\"card\" href=\"../stella/index.html\"><h3>🔭 Observatory — Stella</h3><p>TTS / sound</p></a>\n  <a class=\"card\" href=\"../charlotte/highlights.html\"><h3>📡 Relay — Charlotte</h3><p>Importmap + libs</p></a>\n</main>\n<footer class=\"av-footer\"><div class=\"wrap\"><small>Return to <a href=\"../../index.html\">Home</a></small></div></footer>\n</body>\n</html>\n"
+    "preview": "<!doctype html>\n<html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Avalon City — SVG Map</title>\n<style>\n  body{margin:0;font:16px ui-sans-serif,system-ui;background:#fff;color:#111}\n  header,footer{padding:16px 24px}\n  .wrap{max-width:1200px;margin:auto}\n  .map{display:block;width:100%;border:1px solid #e5e7eb}\n  a{color:#1c5eff;text-decoration:none}\n</style>\n</head>\n<body>\n<header class=\"wrap\"><h1>🗺️ Avalon City Map</h1><p>Click a building to enter its room/app.</p></header>\n<main class=\"wrap\">\n  <object class=\"map\" type=\"image/svg+xml\" data=\"map.svg\" aria-label=\"Avalon Map\"></object>\n  <p><a href=\"/index.html\">⬅ Back to Home</a></p>\n</main>\n</body></html>\n"
+  },
+  {
+    "path": "pages/_city/map.svg",
+    "sha256": "e365d6569d47d99bbb8066d78181dccb30f93e41f3a3f78c93d140b30829d9d7",
+    "bytes": 2572,
+    "purpose": "city-page",
+    "imports": [],
+    "links": [],
+    "refs": [
+      "/index.html",
+      "/pages/apps/alexandria/index.html",
+      "/pages/apps/nina/index.html",
+      "/pages/apps/tracy/skins/index.html",
+      "/pages/apps/charlotte/index.html",
+      "/pages/apps/abbey/index.html",
+      "/pages/apps/billie/index.html"
+    ],
+    "preview": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1200 700\">\n  <style>\n    .bg { fill: #f8fafc }\n    .road { stroke: #94a3b8; stroke-width: 4; fill: none }\n    .bldg { fill: #4b2bb5; opacity:.12 }\n    .pin  { fill: #4b2bb5 }\n    .label{ font: 14px ui-sans-serif, system-ui; fill: #111827 }\n    a text { text-decoration: underline; }\n  </style>\n  <rect class=\"bg\" x=\"0\" y=\"0\" width=\"1200\" height=\"700\"/>\n  <!-- Roads -->\n  <path class=\"road\" d=\"M50,350 L1150,350\"/>\n  <path class=\"road\" d=\"M600,50 L600,650\"/>\n  <!-- Buildings -->\n  <!-- Palace (Overseers) -->\n  <a xlink:href=\"/index.html\">\n    <rect class=\"bldg\" x=\"540\" y=\"80\" width=\"120\" height=\"80\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"600\" cy=\"120\" r=\"5\"/>\n    <text class=\"label\" x=\"570\" y=\"75\">🏰 Palace (Home)</text>\n  </a>\n  <!-- Library (Alexandria) -->\n  <a xlink:href=\"/pages/apps/alexandria/index.html\">\n    <rect class=\"bldg\" x=\"200\" y=\"120\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"280\" cy=\"170\" r=\"5\"/>\n    <text class=\"label\" x=\"210\" y=\"115\">📚 Library (Alexandria)</text>\n  </a>\n  <!-- Blue Lab (Nina) -->\n  <a xlink:href=\"/pages/apps/nina/index.html\">\n    <rect class=\"bldg\" x=\"820\" y=\"120\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"900\" cy=\"170\" r=\"5\"/>\n    <text class=\"label\" x=\"840\" y=\"115\">🧪 Blue Lab (Nina)</text>\n  </a>\n  <!-- Cathedral Studio (Tracy) -->\n  <a xlink:href=\"/pages/apps/tracy/skins/index.html\">\n    <rect class=\"bldg\" x=\"200\" y=\"480\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"280\" cy=\"530\" r=\"5\"/>\n    <text class=\"label\" x=\"190\" y=\"475\">🎨 Cathedral Studio (Tracy)</text>\n  </a>\n  <!-- Relay Tower (Charlotte) -->\n  <a xlink:href=\"/pages/apps/charlotte/index.html\">\n    <rect class=\"bldg\" x=\"820\" y=\"480\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"900\" cy=\"530\" r=\"5\"/>\n    <text class=\"label\" x=\"820\" y=\"475\">📡 Relay Tower (Charlotte)</text>\n  </a>\n  <!-- Grand Vault (Abbey) placeholder -->\n  <a xlink:href=\"/pages/apps/abbey/index.html\">\n    <rect class=\"bldg\" x=\"520\" y=\"480\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"600\" cy=\"530\" r=\"5\"/>\n    <text class=\"label\" x=\"530\" y=\"475\">🏦 Grand Vault (Abbey)</text>\n  </a>\n  <!-- Socialite/Museum Mansions (Billie) -->\n  <a xlink:href=\"/pages/apps/billie/index.html\">\n    <rect class=\"bldg\" x=\"980\" y=\"300\" width=\"160\" height=\"100\" rx=\"8\"/>\n    <circle class=\"pin\" cx=\"1060\" cy=\"350\" r=\"5\"/>\n    <text class=\"label\" x=\"950\" y=\"295\">💎 Mansions (Billie)</text>\n  </a>\n</svg>\n"
   },
   {
     "path": "pages/_city/plaza.html",
@@ -7068,13 +7163,27 @@
   },
   {
     "path": "pages/apps/billie/index.html",
-    "sha256": "ad04786b6ec67f0406fe8d5982a7bcb10413c3b448285a2779750e01e51f142d",
-    "bytes": 90,
+    "sha256": "382c2c10c5b58a3fe58aae7b529ca96362799362b8c3816e296902c7c66ee755",
+    "bytes": 777,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><h1>Billie — App</h1><script type='module'>fetch('./index.json')</script>"
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/billie/social.html",
+      "/pages/apps/billie/earnings.html",
+      "/pages/apps/billie/grants.html",
+      "/pages/_city/index.html"
+    ],
+    "refs": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/billie/social.html",
+      "/pages/apps/billie/earnings.html",
+      "/pages/apps/billie/grants.html",
+      "/pages/_city/index.html"
+    ],
+    "preview": "<!doctype html><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Billie • Monetization</title>\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/variables.css\">\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/base.css\">\n<div class=\"wrap\">\n  <h2>💎 Billie • Monetization</h2>\n  <div class=\"grid\">\n    <div class=\"card\"><strong>Social Posts Board</strong><br><a href=\"/pages/apps/billie/social.html\">Open</a></div>\n    <div class=\"card\"><strong>Earnings per Post</strong><br><a href=\"/pages/apps/billie/earnings.html\">Open</a></div>\n    <div class=\"card\"><strong>Grants Tracker</strong><br><a href=\"/pages/apps/billie/grants.html\">Open</a></div>\n  </div>\n  <p><a href=\"/pages/_city/index.html\">⬅ City</a></p>\n</div>\n"
   },
   {
     "path": "pages/apps/billie/index.json",
@@ -7878,13 +7987,29 @@
   },
   {
     "path": "pages/apps/charlotte/index.html",
-    "sha256": "4333074cdf27ef451ca1d2b42c922d2806bab91584ad5e99c72fbe163b9765f8",
-    "bytes": 93,
+    "sha256": "f2ae1238c2d653ee4cc302daac80ac53f22e19e10ed132ccc4e2f62b46c6a368",
+    "bytes": 962,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><h1>Charlotte — App</h1><script type='module'>fetch('./index.json')</script>"
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/charlotte/queues.html",
+      "/pages/apps/charlotte/translations.html",
+      "/pages/apps/charlotte/compliance/expirations.html",
+      "/pages/apps/charlotte/compliance/reminders.html",
+      "/pages/_city/index.html"
+    ],
+    "refs": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/charlotte/queues.html",
+      "/pages/apps/charlotte/translations.html",
+      "/pages/apps/charlotte/compliance/expirations.html",
+      "/pages/apps/charlotte/compliance/reminders.html",
+      "/pages/_city/index.html"
+    ],
+    "preview": "<!doctype html><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Charlotte • Relay + Compliance</title>\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/variables.css\">\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/base.css\">\n<div class=\"wrap\">\n  <h2>📡 Charlotte • Relay + Compliance</h2>\n  <div class=\"grid\">\n    <div class=\"card\"><strong>Queues Dashboard</strong><br><a href=\"/pages/apps/charlotte/queues.html\">Open</a></div>\n    <div class=\"card\"><strong>Translations Board</strong><br><a href=\"/pages/apps/charlotte/translations.html\">Open</a></div>\n    <div class=\"card\"><strong>Expirations Registry</strong><br><a href=\"/pages/apps/charlotte/compliance/expirations.html\">Open</a></div>\n    <div class=\"card\"><strong>Reminders Service</strong><br><a href=\"/pages/apps/charlotte/compliance/reminders.html\">Open</a></div>\n  </div>\n  <p><a href=\"/pages/_city/index.html\">⬅ City</a></p>\n</div>\n"
   },
   {
     "path": "pages/apps/charlotte/index.json",
@@ -8022,13 +8147,17 @@
   },
   {
     "path": "pages/apps/clarice/index.html",
-    "sha256": "84e5cd3cce7f3ed4668bb04057d1e482493005a745fc31f9106d39c1701966cf",
-    "bytes": 91,
+    "sha256": "af2646fc2318e6aaa8b859a861aa6c7d4690c32bcd6e5883c259de3de3391b23",
+    "bytes": 144,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><h1>Clarice — App</h1><script type='module'>fetch('./index.json')</script>"
+    "links": [
+      "/pages/apps/nina/index.html"
+    ],
+    "refs": [
+      "/pages/apps/nina/index.html"
+    ],
+    "preview": "<!doctype html><meta http-equiv=\"refresh\" content=\"0; url=/pages/apps/nina/index.html\"><link rel=\"canonical\" href=\"/pages/apps/nina/index.html\">"
   },
   {
     "path": "pages/apps/clarice/index.json",
@@ -8049,6 +8178,36 @@
     "links": [],
     "refs": [],
     "preview": "﻿{\n  \"updated\": \"2025-10-10T00:02:05Z\",\n  \"total_files\": 8,\n  \"total_megabytes\": 56.31,\n  \"by_extension\": [\n    {\n      \"count\": 4,\n      \"ext\": \".jpg\",\n      \"mb\": 0.03\n    },\n    {\n      \"count\": 4,\n      \"ext\": \".vrm\",\n      \"mb\": 56.27\n    }\n  ]\n}"
+  },
+  {
+    "path": "pages/apps/common/health/shared.json",
+    "sha256": "e92fe61f1c7a290841f5242cce9d041581476585a42bb6fef5b861b7c3c636ba",
+    "bytes": 95,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\n  \"version\": \"1.0.0\",\n  \"meals\": [],\n  \"shopping\": [],\n  \"programs\": [],\n  \"biometrics\": {}\n}"
+  },
+  {
+    "path": "pages/apps/common/style.css",
+    "sha256": "d03b6866b4110e61116da3065cb16527fc405f033c4a070ce87d6dc4dfaec50b",
+    "bytes": 436,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": ":root{--bg:#0b0f17;--ink:#e8ecf1;--card:#141a24;--accent:#9cc1ff}\nhtml,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui}\n.wrap{max-width:1000px;margin:auto;padding:24px}\n.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:12px}\n.card{background:var(--card);padding:16px;border-radius:14px}\na{color:var(--accent);text-decoration:none}\n.sub{opacity:.8}\n"
+  },
+  {
+    "path": "pages/apps/common/voice/config.json",
+    "sha256": "6c782b013c203898320b43624aa3f5a10568f4c9ef54a3dbcb1fc783bc8fc895",
+    "bytes": 133,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "{\n  \"worker_url\": \"\",\n  \"tts_default\": true,\n  \"note\": \"Set your Cloudflare Worker URL here; client fetch must not expose secrets.\"\n}"
   },
   {
     "path": "pages/apps/index.html",
@@ -8405,13 +8564,29 @@
   },
   {
     "path": "pages/apps/nina/index.html",
-    "sha256": "fb0719a85247880dd6d72ab99da8d9408ee3d4dda9753fca262ff513d1113298",
-    "bytes": 88,
+    "sha256": "45d1bcbc94886d0bdebc9e4eb7cbd4287c4a18a7eec7c7788bbc3d327474f378",
+    "bytes": 916,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><h1>Nina — App</h1><script type='module'>fetch('./index.json')</script>"
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/nina/security/reports.html",
+      "/pages/apps/nina/overview.html",
+      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/viewers/vrm.html",
+      "/pages/_city/index.html"
+    ],
+    "refs": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/nina/security/reports.html",
+      "/pages/apps/nina/overview.html",
+      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/viewers/vrm.html",
+      "/pages/_city/index.html"
+    ],
+    "preview": "<!doctype html><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Nina • Engineering + Security</title>\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/variables.css\">\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/base.css\">\n<div class=\"wrap\">\n  <h2>🧪 Nina • Engineering + Security</h2>\n  <div class=\"grid\">\n    <div class=\"card\"><strong>Security Reports</strong><br><a href=\"/pages/apps/nina/security/reports.html\">Open</a></div>\n    <div class=\"card\"><strong>Project Overview</strong><br><a href=\"/pages/apps/nina/overview.html\">Open</a></div>\n    <div class=\"card\"><strong>Import‑Map Sanity</strong><br><a href=\"/pages/apps/charlotte/highlights.html\">Check</a></div>\n    <div class=\"card\"><strong>3D Infra</strong><br><a href=\"/pages/apps/viewers/vrm.html\">Viewer</a></div>\n  </div>\n  <p><a href=\"/pages/_city/index.html\">⬅ City</a></p>\n</div>\n"
   },
   {
     "path": "pages/apps/nina/index.json",
@@ -8474,13 +8649,17 @@
   },
   {
     "path": "pages/apps/odessa/index.html",
-    "sha256": "3b5187885501c2aaec8a35fc140be0795f8618d88e1c7723ed192bac3a306c4c",
-    "bytes": 90,
+    "sha256": "dc7bb23a7eacb3cf7a35e09aca2936bae259bc0a33460f6eba52035cec134450",
+    "bytes": 148,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><h1>Odessa — App</h1><script type='module'>fetch('./index.json')</script>"
+    "links": [
+      "/pages/apps/billie/index.html"
+    ],
+    "refs": [
+      "/pages/apps/billie/index.html"
+    ],
+    "preview": "<!doctype html><meta http-equiv=\"refresh\" content=\"0; url=/pages/apps/billie/index.html\"><link rel=\"canonical\" href=\"/pages/apps/billie/index.html\">"
   },
   {
     "path": "pages/apps/odessa/index.json",
@@ -8501,6 +8680,22 @@
     "links": [],
     "refs": [],
     "preview": "{\n  \"repo\": \"tagueteamtrucking-afk/castle-town\",\n  \"generated_at\": \"2025-10-22T06:13:12.881Z\",\n  \"total_files\": 36,\n  \"top_dirs\": {\n    \"asset\": 17,\n    \"buildings\": 16,\n    \".nojekyll\": 1,\n    \"index.html\": 1,\n    \"pages\": 1\n  },\n  \"sample\": [\n    \".nojekyll\",\n    \"asset/css/style.css\",\n    \"asset/js/vrm-room.js\",\n    \"asset/models/abbey.vrm\",\n    \"asset/models/alexandria.vrm\",\n    \"asset/models/billie.vrm\",\n    \"asset/models/carol.vrm\",\n    \"asset/models/charlotte.vrm\",\n    \"asset/models/clarice.vrm\",\n    \"asset/models/jem.vrm\",\n    \"asset/models/nina.vrm\",\n    \"asset/models/odessa.vrm\",\n    \"asset/models/reyczar.vrm\",\n    \"asset/models/sorcha.vrm\",\n    \"asset/models/stella.vrm\",\n    \"asset/models/themis.vrm\",\n    \"asset/models/tracy.vrm\",\n    \"asset/models/whitestar.vrm\",\n    \"buildings/_template.html\",\n    \"buildings/abbey.html\",\n    \"buildings/alexandria.html\",\n    \"buildings/billie.html\",\n    \"buildings/carol.html\",\n    \"buildings/charlotte.html\",\n    \"buildings/clarice.html\",\n    \"buildings/dance.html\",\n    \"buildings/jem.html\",\n    \"buildings/nina.html\",\n    \"buildings/odessa.html\",\n    \"buildings/palace.html\",\n    \"buildings/sorcha.html\",\n    \"buildings/stella.html\",\n    \"buildings/themis.html\",\n    \"buildings/tracy.html\",\n    \"index.html\",\n    \"pages/plaza.html\"\n  ]\n}"
+  },
+  {
+    "path": "pages/apps/overseers/fairy-function-matrix.html",
+    "sha256": "cd23a50f616a2054fbb76e81db538e5580c3cb03f7de56f490c9b0fd00e1f019",
+    "bytes": 1511,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [
+      "/pages/apps/common/style.css",
+      "/index.html"
+    ],
+    "refs": [
+      "/pages/apps/common/style.css",
+      "/index.html"
+    ],
+    "preview": "<!doctype html>\n<html lang=\"en\"><head>\n<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Fairy–Function Matrix</title>\n<link rel=\"stylesheet\" href=\"/pages/apps/common/style.css\">\n</head><body><div class=\"wrap\">\n<h2>🧭 Fairy–Function Matrix (Evolution)</h2>\n<p class=\"sub\">Live snapshot derived from memory/owners.json and evolution rules.</p>\n<table style=\"width:100%;border-collapse:collapse\">\n  <thead><tr><th style=\"text-align:left;padding:8px\">Fairy</th><th style=\"text-align:left;padding:8px\">Merged From</th><th style=\"text-align:left;padding:8px\">Owns</th><th style=\"text-align:left;padding:8px\">Relations</th></tr></thead>\n  <tbody id=\"rows\"></tbody>\n</table>\n<p style=\"margin-top:12px\"><a href=\"/index.html\">⬅ Home</a></p>\n<script type=\"module\">\nconst rows = document.getElementById('rows');\nconst data = await fetch('/memory/fairy_function_matrix.json').then(r=>r.json());\nfor(const [name, s] of Object.entries(data.fairies)){\n  const tr = document.createElement('tr');\n  const owns = (s.owns||[]).join(', ');\n  const merged = (s.merged_from||[]).join(', ');\n  const rel = [s.twin_with?`twin:${s.twin_with}`:'', s.paired_with?`pair:${s.paired_with}`:''].filter(Boolean).join(' | ');\n  tr.innerHTML = `<td style=\\\"padding:8px\\\"><strong>${name}</strong></td><td style=\\\"padding:8px\\\">${merged||'-'}</td><td style=\\\"padding:8px\\\">${owns||'-'}</td><td style=\\\"padding:8px\\\">${rel||'-'}</td>`;\n  rows.appendChild(tr);\n}\n</script>\n</div></body></html>\n"
   },
   {
     "path": "pages/apps/overseers/hub/hub.css",
@@ -8868,13 +9063,17 @@
   },
   {
     "path": "pages/apps/sorcha/index.html",
-    "sha256": "bd2c9f9260740f1e048093894b2ae52d38a57e2ddb6b0861ffa172971fecc339",
-    "bytes": 90,
+    "sha256": "dc7bb23a7eacb3cf7a35e09aca2936bae259bc0a33460f6eba52035cec134450",
+    "bytes": 148,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><h1>Sorcha — App</h1><script type='module'>fetch('./index.json')</script>"
+    "links": [
+      "/pages/apps/billie/index.html"
+    ],
+    "refs": [
+      "/pages/apps/billie/index.html"
+    ],
+    "preview": "<!doctype html><meta http-equiv=\"refresh\" content=\"0; url=/pages/apps/billie/index.html\"><link rel=\"canonical\" href=\"/pages/apps/billie/index.html\">"
   },
   {
     "path": "pages/apps/sorcha/index.json",
@@ -9145,13 +9344,17 @@
   },
   {
     "path": "pages/apps/themis/index.html",
-    "sha256": "3c4cfac27b7d706b52a6d2c27f8b2696a460d3e8650e5d28f8e2920cf6493f88",
-    "bytes": 90,
+    "sha256": "5c5e8faa834e98247c861d57514b8bd6efa7d2e165b1e4752ee84e725e6bea0b",
+    "bytes": 154,
     "purpose": "app-page",
     "imports": [],
-    "links": [],
-    "refs": [],
-    "preview": "<!doctype html><h1>Themis — App</h1><script type='module'>fetch('./index.json')</script>"
+    "links": [
+      "/pages/apps/charlotte/index.html"
+    ],
+    "refs": [
+      "/pages/apps/charlotte/index.html"
+    ],
+    "preview": "<!doctype html><meta http-equiv=\"refresh\" content=\"0; url=/pages/apps/charlotte/index.html\"><link rel=\"canonical\" href=\"/pages/apps/charlotte/index.html\">"
   },
   {
     "path": "pages/apps/themis/index.json",
@@ -9838,6 +10041,16 @@
     "preview": "/* Bright default skin */\n:root{--accent:#5a3dd5;--bg:#faf8ff;--ink:#222}\nbody{background:var(--bg);color:var(--ink)} a{color:var(--accent)}"
   },
   {
+    "path": "pages/apps/tracy/skins/base.css",
+    "sha256": "40bc7b64eabd618587ef8a7c75cb8722fb17075df3ae90b5c2e0936599c42e5d",
+    "bytes": 718,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "/* Base consumes tokens (no hard-coded colors) */\nhtml,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui}\n.wrap{max-width:1000px;margin:auto;padding:var(--pad)}\n.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--pad)}\n.card{background:var(--card);padding:var(--pad);border-radius:var(--radius);box-shadow:0 1px 0 rgba(0,0,0,.2)}\na{color:var(--accent);text-decoration:none}\n.badge{display:inline-block;padding:.2rem .5rem;border-radius:.5rem;background:var(--art-primary);color:white}\n.btn{padding:.5rem .75rem;border-radius:10px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}\n.btn:hover{opacity:.85}\n"
+  },
+  {
     "path": "pages/apps/tracy/skins/cathedral-gold.css",
     "sha256": "4a8c952e4b5dc77098d0df6ef963b15e8b4294e78b7ad754b294422362c8af88",
     "bytes": 249,
@@ -9859,17 +10072,21 @@
   },
   {
     "path": "pages/apps/tracy/skins/index.html",
-    "sha256": "c76ec25d5ee7777349a36aad79f5fe0895529aa62e0d4def4553f8fe3e204e89",
-    "bytes": 398,
+    "sha256": "720c014423932343bb69940ad207d8974b4d3ff17dc1bdaca40c0fe715809765",
+    "bytes": 1381,
     "purpose": "app-page",
     "imports": [],
     "links": [
-      "avalon-sunlit.css"
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
     ],
     "refs": [
-      "avalon-sunlit.css"
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
     ],
-    "preview": "<!doctype html>\n<html><head><meta charset=\"utf-8\"><title>Tracy Skins</title>\n<link rel=\"stylesheet\" href=\"avalon-sunlit.css\">\n</head><body>\n<h2>Tracy Skins — Bright by default</h2>\n<p>Switch skins by swapping CSS file link. Generator connects to /api/skin-llm (Worker).</p>\n<ul>\n<li>avalon-sunlit.css</li>\n<li>avalon-jewel-garden.css</li>\n<li>avalon-crystal-morning.css</li>\n</ul>\n</body></html>\n"
+    "preview": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Tracy • Skins & Variables</title>\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/variables.css\">\n<link rel=\"stylesheet\" href=\"/pages/apps/tracy/skins/base.css\">\n</head>\n<body>\n<div class=\"wrap\">\n  <h2>🎨 Tracy • Skins & Variables</h2>\n  <p>Select a theme; all cards adopt symbols/variables instantly.</p>\n  <p>\n    <button class=\"btn\" onclick=\"setTheme('')\">Default</button>\n    <button class=\"btn\" onclick=\"setTheme('theme-autumn')\">Autumn</button>\n    <button class=\"btn\" onclick=\"setTheme('theme-noir')\">Noir</button>\n  </p>\n  <div class=\"grid\">\n    <div class=\"card\"><strong>Poster</strong><br><span class=\"badge\">Art 2D</span></div>\n    <div class=\"card\"><strong>T‑shirt</strong><br><span class=\"badge\">Art 2D</span></div>\n    <div class=\"card\"><strong>3D Asset</strong><br><span class=\"badge\">Art 3D</span></div>\n    <div class=\"card\"><strong>Web Skin</strong><br><span class=\"badge\">Skin</span></div>\n  </div>\n  <p style=\"margin-top:12px\"><a href=\"/index.html\">⬅ Home</a></p>\n</div>\n<script>\nfunction setTheme(name){\n  document.documentElement.className = name||'';\n  localStorage.setItem('TRACY_THEME', name||'');\n}\ndocument.documentElement.className = localStorage.getItem('TRACY_THEME')||'';\n</script>\n</body>\n</html>\n"
   },
   {
     "path": "pages/apps/tracy/skins/night-abyss.css",
@@ -9880,6 +10097,16 @@
     "links": [],
     "refs": [],
     "preview": ":root{--bg:#05060a;--fg:#dfe6ff;--card:#0a0c12;--accent:#7bbcff}body{background:var(--bg);color:var(--fg)}.card{background:var(--card);border:1px solid #141826;border-radius:12px;padding:12px}a{color:var(--accent)}"
+  },
+  {
+    "path": "pages/apps/tracy/skins/variables.css",
+    "sha256": "9fe19907c88828169cd82c4a71fbe6e64249d8c6a6af9c3d2b5bba1ee1feeb76",
+    "bytes": 507,
+    "purpose": "app-page",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "/* Tracy Tokens: tweak these to theme the whole site */\n:root{\n  --bg:#0b0f17; --ink:#e8ecf1; --card:#141a24; --accent:#9cc1ff;\n  --pad:16px; --radius:14px;\n  --art-primary:#4b2bb5; --art-secondary:#fb7185; --art-warn:#f59e0b;\n}\n/* Alt themes */\n:root.theme-autumn{ --bg:#1d120a; --ink:#ffedd5; --card:#2a170c; --accent:#fb923c; --art-primary:#b45309; --art-secondary:#f97316; }\n:root.theme-noir{ --bg:#0a0a0a; --ink:#e5e7eb; --card:#111; --accent:#9ca3af; --art-primary:#334155; --art-secondary:#64748b; }\n"
   },
   {
     "path": "pages/apps/tracy/wallpaper-index.json",
@@ -10433,18 +10660,18 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "59928aa7baa098fa899c25e0ca5d6cc33255df6225b1772364438e74b9b71eba",
-    "bytes": 179296,
+    "sha256": "35259a80d10297566d5a76930a06792d37c2edb772b46ab94a571e7e16ae4ffd",
+    "bytes": 181660,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "[\n  {\n    \"path\": \".github/cleanup/sweeper-manifest.json\",\n    \"sha256\": \"cef7e4630d04f87eccc06a42b9547140d8a6cfa2056832abb1dc1626f9a04b59\",\n    \"bytes\": 118\n  },\n  {\n    \"path\": \".github/cleanup/workflows-to-review.json\",\n    \"sha256\": \"4dbe1b5a8951b4db58f924173d6f9656b63b009143d50de55cc60181fdd9e143\",\n    \"bytes\": 1014\n  },\n  {\n    \"path\": \".github/workflows/MANIFEST.json\",\n    \"sha256\": \"a0c9b6ac359814e15512e71b37897ccd2ee3a74fc75fa7422d31977eae8aba03\",\n    \"bytes\": 1344\n  },\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"sha256\": \"5ad3343375ab2b6c6a6af8f1627ec4c125f6423ca2c21a10c3ee921719a669d6\",\n    \"bytes\": 2915\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"sha256\": \"705197397c418cf7efd4e39d55922f8dc4a7c604e1887ef83e05d3919f642cf0\",\n    \"bytes\": 959\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"sha256\": \"b9c3cffea875f666a5661bd07ee3f2853809e4e8328efad45f1f61e55f94cb87\",\n    \"bytes\": 3350\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"sha256\": \"e5f899bf6e1a24271930c4f3d486f9d721e14c70a7f618807d1293c5dc7e90ca\",\n    \"bytes\": 1140\n  },\n  {\n    \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n    \"sha256\": \"5f6fdf1b03dd4a5dbd786fcb49f38db17b491662703834513efb1a4c2c741270\",\n    \"bytes\": 1387\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"sha256\": \"020b45e10af39c88087e289c63caa1241c530008b9706943f254fe013fc86033\",\n    \"bytes\": 1665\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping.yml\",\n    \"sha256\": \"41df3f63e5e025f4746f9314f8f92934fbd4cf69daa6d0c741dcd989fd32f49f\",\n    \"bytes\": 894\n  },\n  {\n    \"path\": \".github/workflows/carol-ensure-plan.yml\",\n    \"sha256\": \"b64d196147a82b62ce5995c4d5d5c350d79f009db539a5f81790817792d5c384\",\n    \"bytes\": 1145\n  },\n  {\n    \"path\": \".github/workflows/carol-extract-from-plan.yml\",\n    \"sha256\": \"cd3fdbe8b0fff6778a2c4c4d275a27881e72949b3b484dcc8c94177c683a24f8\",\n    \"bytes\": 1322"
+    "preview": "[\n  {\n    \"path\": \".github/cleanup/sweeper-manifest.json\",\n    \"sha256\": \"cef7e4630d04f87eccc06a42b9547140d8a6cfa2056832abb1dc1626f9a04b59\",\n    \"bytes\": 118\n  },\n  {\n    \"path\": \".github/cleanup/workflows-to-review.json\",\n    \"sha256\": \"4dbe1b5a8951b4db58f924173d6f9656b63b009143d50de55cc60181fdd9e143\",\n    \"bytes\": 1014\n  },\n  {\n    \"path\": \".github/workflows/MANIFEST.json\",\n    \"sha256\": \"a0c9b6ac359814e15512e71b37897ccd2ee3a74fc75fa7422d31977eae8aba03\",\n    \"bytes\": 1344\n  },\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"sha256\": \"5ad3343375ab2b6c6a6af8f1627ec4c125f6423ca2c21a10c3ee921719a669d6\",\n    \"bytes\": 2915\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"sha256\": \"705197397c418cf7efd4e39d55922f8dc4a7c604e1887ef83e05d3919f642cf0\",\n    \"bytes\": 959\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"sha256\": \"b9c3cffea875f666a5661bd07ee3f2853809e4e8328efad45f1f61e55f94cb87\",\n    \"bytes\": 3350\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"sha256\": \"e5f899bf6e1a24271930c4f3d486f9d721e14c70a7f618807d1293c5dc7e90ca\",\n    \"bytes\": 1140\n  },\n  {\n    \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n    \"sha256\": \"5f6fdf1b03dd4a5dbd786fcb49f38db17b491662703834513efb1a4c2c741270\",\n    \"bytes\": 1387\n  },\n  {\n    \"path\": \".github/workflows/billie-evolved.yml\",\n    \"sha256\": \"d84a8a0c614ebe71c009bab8d606bfa80f04b20b00d6a048f84281f9c2697905\",\n    \"bytes\": 497\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"sha256\": \"020b45e10af39c88087e289c63caa1241c530008b9706943f254fe013fc86033\",\n    \"bytes\": 1665\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping.yml\",\n    \"sha256\": \"41df3f63e5e025f4746f9314f8f92934fbd4cf69daa6d0c741dcd989fd32f49f\",\n    \"bytes\": 894\n  },\n  {\n    \"path\": \".github/workflows/carol-ensure-plan.yml\",\n    \"sha256\": \"b64d196147a82b62ce5995c4d5d5c350d79f009db539a5f81790817792d5c384\",\n    \"bytes\": 1145"
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "254196d3319271539c83ea656116a9c08eac812b9d861387c5b4b1b1373ea0ba",
-    "bytes": 3364677,
+    "sha256": "f51591d8231ef3c77ad481724991601bcfdaee3035fdce60b64d39e6672259a5",
+    "bytes": 3382592,
     "purpose": "other",
     "imports": [],
     "links": [],
@@ -10453,13 +10680,13 @@
   },
   {
     "path": "reports/clarity/pages-map.json",
-    "sha256": "2f1cacd434e71bae734d1e591c44a09f8383cfcae2f8a9b0ebbdc5f91184290c",
-    "bytes": 39338,
+    "sha256": "feaab54edeecb337c66abd71dc8794f31af2cbf8b2ee454c2e118dacf25c1d48",
+    "bytes": 39367,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "[\n  {\n    \"path\": \"404.html\",\n    \"links\": [\n      \"/pages/apps/_city/index.html\"\n    ]\n  },\n  {\n    \"path\": \"avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html\",\n    \"links\": [\n      \"data:text/plain;charset=utf-8,\"\n    ]\n  },\n  {\n    \"path\": \"index.html\",\n    \"links\": [\n      \"assets/css/avalon.css\",\n      \"pages/_city/index.html\",\n      \"pages/apps/alexandria/index.html\",\n      \"pages/apps/jem/index.html\",\n      \"pages/apps/tracy/skins/generator.html\",\n      \"pages/apps/carol/index.html\",\n      \"pages/apps/charlotte/highlights.html\",\n      \"pages/apps/stella/index.html\"\n    ]\n  },\n  {\n    \"path\": \"kill-sw-boost.html\",\n    \"links\": []\n  },\n  {\n    \"path\": \"kill-sw.html\",\n    \"links\": [\n      \"/\"\n    ]\n  },\n  {\n    \"path\": \"memory-history/retired/odessa/index.html\",\n    \"links\": [\n      \"/pages/plaza.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/city.css\",\n    \"links\": []\n  },\n  {\n    \"path\": \"pages/_city/index.html\",\n    \"links\": [\n      \"../../assets/css/avalon.css\",\n      \"../alexandria/index.html\",\n      \"../tracy/skins/generator.html\",\n      \"../jem/index.html\",\n      \"../carol/index.html\",\n      \"../stella/index.html\",\n      \"../charlotte/highlights.html\",\n      \"../../index.html\"\n    ]\n  },\n  {"
+    "preview": "[\n  {\n    \"path\": \"404.html\",\n    \"links\": [\n      \"/pages/apps/_city/index.html\"\n    ]\n  },\n  {\n    \"path\": \"avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html\",\n    \"links\": [\n      \"data:text/plain;charset=utf-8,\"\n    ]\n  },\n  {\n    \"path\": \"index.html\",\n    \"links\": [\n      \"/pages/_city/index.html\",\n      \"/pages/apps/charlotte/highlights.html\",\n      \"/pages/apps/tracy/skins/index.html\",\n      \"/pages/apps/stella/index.html\"\n    ]\n  },\n  {\n    \"path\": \"kill-sw-boost.html\",\n    \"links\": []\n  },\n  {\n    \"path\": \"kill-sw.html\",\n    \"links\": [\n      \"/\"\n    ]\n  },\n  {\n    \"path\": \"memory-history/retired/odessa/index.html\",\n    \"links\": [\n      \"/pages/plaza.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/city.css\",\n    \"links\": []\n  },\n  {\n    \"path\": \"pages/_city/index.html\",\n    \"links\": [\n      \"../../assets/css/avalon.css\",\n      \"../alexandria/index.html\",\n      \"../tracy/skins/generator.html\",\n      \"../jem/index.html\",\n      \"../carol/index.html\",\n      \"../stella/index.html\",\n      \"../charlotte/highlights.html\",\n      \"../../index.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/plaza.html\",\n    \"links\": [\n      \"../carol/index.html\",\n      \"../jem/week1/index.html\","
   },
   {
     "path": "reports/clarity/workers-map.json",
@@ -10473,13 +10700,13 @@
   },
   {
     "path": "reports/clarity/workflows-map.json",
-    "sha256": "c3d997d9618e926638e175c438427e4543964de11eca571009fa2f540dc70ff6",
-    "bytes": 19110,
+    "sha256": "d600c2cd62a56ab40b486d5b47ac393d9a6880de4bc01df3bd7363ba7fbb8a6c",
+    "bytes": 20890,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "[\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"name\": \"Actions Audit (list workflows & last runs)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"lookback_hours\",\n      \"description\",\n      \"Hours\",\n      \"back\",\n      \"to\",\n      \"inspect\",\n      \"required\",\n      \"true\",\n      \"default\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"name\": \"Alexandria DM Setup\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"name\": \"Alexandria - Voice DM (pages & logs)\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"name\": \"Actions Audit (on push)\",\n    \"triggers\": [\n      \"push\",\n      \"branches\",\n      \"main\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"name\": \"Carol — Refresh Shopping (direct commit)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"plan_path\",\n      \"description\",\n      \"Path\",\n      \"to\",\n      \"the\",\n      \"plan\",\n      \"JSON\",\n      \"use\",\n      \"required\",\n      \"false\",\n      \"default\",\n      \"pages\",\n      \"apps\","
+    "preview": "[\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"name\": \"Actions Audit (list workflows & last runs)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"lookback_hours\",\n      \"description\",\n      \"Hours\",\n      \"back\",\n      \"to\",\n      \"inspect\",\n      \"required\",\n      \"true\",\n      \"default\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"name\": \"Alexandria DM Setup\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"name\": \"Alexandria - Voice DM (pages & logs)\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"name\": \"Actions Audit (on push)\",\n    \"triggers\": [\n      \"push\",\n      \"branches\",\n      \"main\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n    \"name\": \"Auto-approve & Automerge (label-gated)\",\n    \"triggers\": [\n      \"pull_request_target\",\n      \"types\",\n      \"labeled\",\n      \"synchronize\",\n      \"opened\",\n      \"reopened\",\n      \"ready_for_review\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"name\": \"Carol — Refresh Shopping (direct commit)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\","
   },
   {
     "path": "robots.txt",

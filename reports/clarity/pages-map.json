@@ -14,10 +14,16 @@
   {
     "path": "index.html",
     "links": [
-      "/pages/_city/index.html",
-      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/common/style.css",
+      "/pages/apps/nina/index.html",
+      "/pages/apps/charlotte/index.html",
+      "/pages/apps/billie/index.html",
+      "/pages/apps/carol/index.html",
+      "/pages/apps/jem/index.html",
+      "/pages/apps/alexandria/index.html",
+      "/pages/apps/stella/index.html",
       "/pages/apps/tracy/skins/index.html",
-      "/pages/apps/stella/index.html"
+      "/pages/apps/overseers/ci-dashboard.html"
     ]
   },
   {
@@ -43,15 +49,12 @@
   {
     "path": "pages/_city/index.html",
     "links": [
-      "../../assets/css/avalon.css",
-      "../alexandria/index.html",
-      "../tracy/skins/generator.html",
-      "../jem/index.html",
-      "../carol/index.html",
-      "../stella/index.html",
-      "../charlotte/highlights.html",
-      "../../index.html"
+      "/index.html"
     ]
+  },
+  {
+    "path": "pages/_city/map.svg",
+    "links": []
   },
   {
     "path": "pages/_city/plaza.html",
@@ -496,7 +499,14 @@
   },
   {
     "path": "pages/apps/billie/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/billie/social.html",
+      "/pages/apps/billie/earnings.html",
+      "/pages/apps/billie/grants.html",
+      "/pages/_city/index.html"
+    ]
   },
   {
     "path": "pages/apps/billie/index.json",
@@ -829,7 +839,15 @@
   },
   {
     "path": "pages/apps/charlotte/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/charlotte/queues.html",
+      "/pages/apps/charlotte/translations.html",
+      "/pages/apps/charlotte/compliance/expirations.html",
+      "/pages/apps/charlotte/compliance/reminders.html",
+      "/pages/_city/index.html"
+    ]
   },
   {
     "path": "pages/apps/charlotte/index.json",
@@ -887,7 +905,9 @@
   },
   {
     "path": "pages/apps/clarice/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/nina/index.html"
+    ]
   },
   {
     "path": "pages/apps/clarice/index.json",
@@ -895,6 +915,18 @@
   },
   {
     "path": "pages/apps/clarice/reports/graphics-audit-20251010T000205Z.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/common/health/shared.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/common/style.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/common/voice/config.json",
     "links": []
   },
   {
@@ -1044,7 +1076,15 @@
   },
   {
     "path": "pages/apps/nina/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/nina/security/reports.html",
+      "/pages/apps/nina/overview.html",
+      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/viewers/vrm.html",
+      "/pages/_city/index.html"
+    ]
   },
   {
     "path": "pages/apps/nina/index.json",
@@ -1070,7 +1110,9 @@
   },
   {
     "path": "pages/apps/odessa/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/billie/index.html"
+    ]
   },
   {
     "path": "pages/apps/odessa/index.json",
@@ -1079,6 +1121,13 @@
   {
     "path": "pages/apps/overseers/crossrepo/second_repo_index.json",
     "links": []
+  },
+  {
+    "path": "pages/apps/overseers/fairy-function-matrix.html",
+    "links": [
+      "/pages/apps/common/style.css",
+      "/index.html"
+    ]
   },
   {
     "path": "pages/apps/overseers/hub/hub.css",
@@ -1228,7 +1277,9 @@
   },
   {
     "path": "pages/apps/sorcha/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/billie/index.html"
+    ]
   },
   {
     "path": "pages/apps/sorcha/index.json",
@@ -1340,7 +1391,9 @@
   },
   {
     "path": "pages/apps/themis/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/charlotte/index.html"
+    ]
   },
   {
     "path": "pages/apps/themis/index.json",
@@ -1619,6 +1672,10 @@
     "links": []
   },
   {
+    "path": "pages/apps/tracy/skins/base.css",
+    "links": []
+  },
+  {
     "path": "pages/apps/tracy/skins/cathedral-gold.css",
     "links": []
   },
@@ -1629,11 +1686,17 @@
   {
     "path": "pages/apps/tracy/skins/index.html",
     "links": [
-      "avalon-sunlit.css"
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
     ]
   },
   {
     "path": "pages/apps/tracy/skins/night-abyss.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skins/variables.css",
     "links": []
   },
   {

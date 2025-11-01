@@ -45,9 +45,9 @@
     "triggers": [
       "pull_request_target",
       "types",
+      "opened",
       "labeled",
       "synchronize",
-      "opened",
       "reopened",
       "ready_for_review"
     ]

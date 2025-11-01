@@ -14,16 +14,12 @@
   {
     "path": "index.html",
     "links": [
-      "/pages/apps/common/style.css",
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/_city/index.html",
       "/pages/apps/nina/index.html",
       "/pages/apps/charlotte/index.html",
-      "/pages/apps/billie/index.html",
-      "/pages/apps/carol/index.html",
-      "/pages/apps/jem/index.html",
-      "/pages/apps/alexandria/index.html",
-      "/pages/apps/stella/index.html",
-      "/pages/apps/tracy/skins/index.html",
-      "/pages/apps/overseers/ci-dashboard.html"
+      "/pages/apps/billie/index.html"
     ]
   },
   {
@@ -49,15 +45,12 @@
   {
     "path": "pages/_city/index.html",
     "links": [
-      "../../assets/css/avalon.css",
-      "../alexandria/index.html",
-      "../tracy/skins/generator.html",
-      "../jem/index.html",
-      "../carol/index.html",
-      "../stella/index.html",
-      "../charlotte/highlights.html",
-      "../../index.html"
+      "/index.html"
     ]
+  },
+  {
+    "path": "pages/_city/map.svg",
+    "links": []
   },
   {
     "path": "pages/_city/plaza.html",
@@ -491,6 +484,14 @@
     ]
   },
   {
+    "path": "pages/apps/billie/earnings.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/billie/index.html"
+    ]
+  },
+  {
     "path": "pages/apps/billie/faceless.html",
     "links": [
       "../_shared/ui-lite.css"
@@ -501,8 +502,23 @@
     "links": []
   },
   {
+    "path": "pages/apps/billie/grants.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/billie/index.html"
+    ]
+  },
+  {
     "path": "pages/apps/billie/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/billie/social.html",
+      "/pages/apps/billie/earnings.html",
+      "/pages/apps/billie/grants.html",
+      "/pages/_city/index.html"
+    ]
   },
   {
     "path": "pages/apps/billie/index.json",
@@ -514,6 +530,14 @@
       "../theme/tokens.css",
       "storyboards.html",
       "index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/billie/social.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/billie/index.html"
     ]
   },
   {
@@ -766,6 +790,22 @@
     ]
   },
   {
+    "path": "pages/apps/charlotte/compliance/expirations.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/charlotte/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/charlotte/compliance/reminders.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/charlotte/index.html"
+    ]
+  },
+  {
     "path": "pages/apps/charlotte/crawler/index.html",
     "links": [
       "https://github.com/public-apis/public-apis",
@@ -835,7 +875,15 @@
   },
   {
     "path": "pages/apps/charlotte/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/charlotte/queues.html",
+      "/pages/apps/charlotte/translations.html",
+      "/pages/apps/charlotte/compliance/expirations.html",
+      "/pages/apps/charlotte/compliance/reminders.html",
+      "/pages/_city/index.html"
+    ]
   },
   {
     "path": "pages/apps/charlotte/index.json",
@@ -874,8 +922,24 @@
     "links": []
   },
   {
+    "path": "pages/apps/charlotte/queues.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/charlotte/index.html"
+    ]
+  },
+  {
     "path": "pages/apps/charlotte/sources.json",
     "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/translations.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/charlotte/index.html"
+    ]
   },
   {
     "path": "pages/apps/charlotte/voiceovers/20250918T031302Z-avalon/opening.txt",
@@ -1064,11 +1128,35 @@
   },
   {
     "path": "pages/apps/nina/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/nina/security/reports.html",
+      "/pages/apps/nina/overview.html",
+      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/viewers/vrm.html",
+      "/pages/_city/index.html"
+    ]
   },
   {
     "path": "pages/apps/nina/index.json",
     "links": []
+  },
+  {
+    "path": "pages/apps/nina/overview.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/nina/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/nina/security/reports.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/nina/index.html"
+    ]
   },
   {
     "path": "pages/apps/nina/viewer.html",
@@ -1652,6 +1740,10 @@
     "links": []
   },
   {
+    "path": "pages/apps/tracy/skins/base.css",
+    "links": []
+  },
+  {
     "path": "pages/apps/tracy/skins/cathedral-gold.css",
     "links": []
   },
@@ -1662,11 +1754,17 @@
   {
     "path": "pages/apps/tracy/skins/index.html",
     "links": [
-      "avalon-sunlit.css"
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
     ]
   },
   {
     "path": "pages/apps/tracy/skins/night-abyss.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skins/variables.css",
     "links": []
   },
   {

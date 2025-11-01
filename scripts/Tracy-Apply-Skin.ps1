@@ -1,1 +1,0 @@
-param([string]$Skin='castle-town') $root=Split-Path -Parent $PSScriptRoot; $out=Join-Path $root 'pages/apps/tracy/skin/active.json'; $payload=@{updated=(Get-Date).ToUniversalTime().ToString('s')+'Z';skin=$Skin}; [IO.File]::WriteAllText($out,($payload|ConvertTo-Json -Depth 6),[Text.Encoding]::UTF8); Write-Host "Set skin -> $Skin"

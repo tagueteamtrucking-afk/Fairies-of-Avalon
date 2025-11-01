@@ -5926,13 +5926,13 @@
   },
   {
     "path": "memory/file-index.json",
-    "sha256": "c181b8fa3e84a85faeb863799ffe2e234ac7ff826d2dcf79dccfaa455d107b7a",
-    "bytes": 167878,
+    "sha256": "2684083afcab8bbc4b42dabf922d353072c921e7082fe444a83b805ffebe1673",
+    "bytes": 183127,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "{\n  \"summary\": {\n    \"count\": 842,\n    \"byType\": {\n      \"other\": 123,\n      \"html\": 6,\n      \"cname\": 1,\n      \"data\": 267,\n      \"style\": 2,\n      \"model\": 16,\n      \"wallpaper\": 10,\n      \"wings\": 108,\n      \"script\": 6,\n      \"page\": 20,\n      \"microapp\": 283\n    },\n    \"generated_at\": \"2025-10-22T01:48:45.232Z\"\n  },\n  \"files\": [\n    {\n      \"path\": \".nojekyll\",\n      \"bytes\": 1,\n      \"sha1\": \"adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\",\n      \"type\": \"other\",\n      \"purpose\": \"\"\n    },\n    {\n      \"path\": \"404.html\",\n      \"bytes\": 937,\n      \"sha1\": \"09b5f9bdc957a8d294bb61a1c355393deef3c5e4\",\n      \"type\": \"html\",\n      \"purpose\": \"\"\n    },\n    {\n      \"path\": \"CNAME\",\n      \"bytes\": 20,\n      \"sha1\": \"21a97f44c418bfac8370728f67ace6eb5b9eae87\",\n      \"type\": \"cname\",\n      \"purpose\": \"Custom domain for GitHub Pages\"\n    },\n    {\n      \"path\": \"Cody's Memory.yaml\",\n      \"bytes\": 1731,\n      \"sha1\": \"498ee9bdfbe737d83226033718bc70a618e2e1e1\",\n      \"type\": \"data\",\n      \"purpose\": \"Canonical project memory\"\n    },\n    {\n      \"path\": \"Cody's Memory.yml\",\n      \"bytes\": 1334,\n      \"sha1\": \"d0728d2cc0e2d205f335100d279762be5bcf8954\",\n      \"type\": \"data\",\n      \"purpose\": \"\"\n    },\n    {\n      \"path\": \"asset/css/style.css\",\n      \"bytes\": 133,\n      \"sha1\": \"acf8a7cb2ad1177b89056f1267e4c72fa9f924c1\",\n      \"type\": \"style\",\n      \"purpose\": \"\""
+    "preview": "{\n  \"generated\": \"2025-11-01T01:23:02.045Z\",\n  \"count\": 1080,\n  \"files\": [\n    {\n      \"path\": \".github/cleanup/sweeper-manifest.json\",\n      \"bytes\": 118,\n      \"hash\": \"0fee89b48714e5e39e8129fe8c00df9b\",\n      \"purpose\": \"misc\"\n    },\n    {\n      \"path\": \".github/cleanup/workflows-to-review.json\",\n      \"bytes\": 1014,\n      \"hash\": \"04ae324f4c8ea030de09af6855b12640\",\n      \"purpose\": \"misc\"\n    },\n    {\n      \"path\": \".github/workflows/MANIFEST.json\",\n      \"bytes\": 1344,\n      \"hash\": \"109cd9a76c1412d25f610971efe9d082\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/actions-audit.yml\",\n      \"bytes\": 2915,\n      \"hash\": \"885c211d91e02693b02c8824290c9b11\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n      \"bytes\": 959,\n      \"hash\": \"9b081cefca80381eb33ce521e1e1f5e5\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n      \"bytes\": 3350,\n      \"hash\": \"a61caa571c9f36a2d3202971daac4ac8\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/audit-on-push.yml\",\n      \"bytes\": 1140,\n      \"hash\": \"ca68d5015ac63415ee9ba7d4fb201fb6\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n      \"bytes\": 1387,\n      \"hash\": \"b803310eee798fa494c858d6d743b77f\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n      \"bytes\": 1665,\n      \"hash\": \"76aee67ec6aa1a2940bce6e9f6bfbde5\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/carol-build-shopping.yml\","
   },
   {
     "path": "pages/_city/city.css",
@@ -10433,7 +10433,7 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "59928aa7baa098fa899c25e0ca5d6cc33255df6225b1772364438e74b9b71eba",
+    "sha256": "f463fd0721ea8539e8a0df89d1bebb075b687585f8f9594a52a923730bfad98b",
     "bytes": 179296,
     "purpose": "other",
     "imports": [],
@@ -10443,8 +10443,8 @@
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "254196d3319271539c83ea656116a9c08eac812b9d861387c5b4b1b1373ea0ba",
-    "bytes": 3364677,
+    "sha256": "f51591d8231ef3c77ad481724991601bcfdaee3035fdce60b64d39e6672259a5",
+    "bytes": 3382592,
     "purpose": "other",
     "imports": [],
     "links": [],
@@ -10453,13 +10453,13 @@
   },
   {
     "path": "reports/clarity/pages-map.json",
-    "sha256": "2f1cacd434e71bae734d1e591c44a09f8383cfcae2f8a9b0ebbdc5f91184290c",
-    "bytes": 39338,
+    "sha256": "feaab54edeecb337c66abd71dc8794f31af2cbf8b2ee454c2e118dacf25c1d48",
+    "bytes": 39367,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "[\n  {\n    \"path\": \"404.html\",\n    \"links\": [\n      \"/pages/apps/_city/index.html\"\n    ]\n  },\n  {\n    \"path\": \"avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html\",\n    \"links\": [\n      \"data:text/plain;charset=utf-8,\"\n    ]\n  },\n  {\n    \"path\": \"index.html\",\n    \"links\": [\n      \"assets/css/avalon.css\",\n      \"pages/_city/index.html\",\n      \"pages/apps/alexandria/index.html\",\n      \"pages/apps/jem/index.html\",\n      \"pages/apps/tracy/skins/generator.html\",\n      \"pages/apps/carol/index.html\",\n      \"pages/apps/charlotte/highlights.html\",\n      \"pages/apps/stella/index.html\"\n    ]\n  },\n  {\n    \"path\": \"kill-sw-boost.html\",\n    \"links\": []\n  },\n  {\n    \"path\": \"kill-sw.html\",\n    \"links\": [\n      \"/\"\n    ]\n  },\n  {\n    \"path\": \"memory-history/retired/odessa/index.html\",\n    \"links\": [\n      \"/pages/plaza.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/city.css\",\n    \"links\": []\n  },\n  {\n    \"path\": \"pages/_city/index.html\",\n    \"links\": [\n      \"../../assets/css/avalon.css\",\n      \"../alexandria/index.html\",\n      \"../tracy/skins/generator.html\",\n      \"../jem/index.html\",\n      \"../carol/index.html\",\n      \"../stella/index.html\",\n      \"../charlotte/highlights.html\",\n      \"../../index.html\"\n    ]\n  },\n  {"
+    "preview": "[\n  {\n    \"path\": \"404.html\",\n    \"links\": [\n      \"/pages/apps/_city/index.html\"\n    ]\n  },\n  {\n    \"path\": \"avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html\",\n    \"links\": [\n      \"data:text/plain;charset=utf-8,\"\n    ]\n  },\n  {\n    \"path\": \"index.html\",\n    \"links\": [\n      \"/pages/_city/index.html\",\n      \"/pages/apps/charlotte/highlights.html\",\n      \"/pages/apps/tracy/skins/index.html\",\n      \"/pages/apps/stella/index.html\"\n    ]\n  },\n  {\n    \"path\": \"kill-sw-boost.html\",\n    \"links\": []\n  },\n  {\n    \"path\": \"kill-sw.html\",\n    \"links\": [\n      \"/\"\n    ]\n  },\n  {\n    \"path\": \"memory-history/retired/odessa/index.html\",\n    \"links\": [\n      \"/pages/plaza.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/city.css\",\n    \"links\": []\n  },\n  {\n    \"path\": \"pages/_city/index.html\",\n    \"links\": [\n      \"../../assets/css/avalon.css\",\n      \"../alexandria/index.html\",\n      \"../tracy/skins/generator.html\",\n      \"../jem/index.html\",\n      \"../carol/index.html\",\n      \"../stella/index.html\",\n      \"../charlotte/highlights.html\",\n      \"../../index.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/plaza.html\",\n    \"links\": [\n      \"../carol/index.html\",\n      \"../jem/week1/index.html\","
   },
   {
     "path": "reports/clarity/workers-map.json",
@@ -10473,13 +10473,13 @@
   },
   {
     "path": "reports/clarity/workflows-map.json",
-    "sha256": "c3d997d9618e926638e175c438427e4543964de11eca571009fa2f540dc70ff6",
-    "bytes": 19110,
+    "sha256": "d600c2cd62a56ab40b486d5b47ac393d9a6880de4bc01df3bd7363ba7fbb8a6c",
+    "bytes": 20890,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "[\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"name\": \"Actions Audit (list workflows & last runs)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"lookback_hours\",\n      \"description\",\n      \"Hours\",\n      \"back\",\n      \"to\",\n      \"inspect\",\n      \"required\",\n      \"true\",\n      \"default\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"name\": \"Alexandria DM Setup\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"name\": \"Alexandria - Voice DM (pages & logs)\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"name\": \"Actions Audit (on push)\",\n    \"triggers\": [\n      \"push\",\n      \"branches\",\n      \"main\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"name\": \"Carol — Refresh Shopping (direct commit)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"plan_path\",\n      \"description\",\n      \"Path\",\n      \"to\",\n      \"the\",\n      \"plan\",\n      \"JSON\",\n      \"use\",\n      \"required\",\n      \"false\",\n      \"default\",\n      \"pages\",\n      \"apps\","
+    "preview": "[\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"name\": \"Actions Audit (list workflows & last runs)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"lookback_hours\",\n      \"description\",\n      \"Hours\",\n      \"back\",\n      \"to\",\n      \"inspect\",\n      \"required\",\n      \"true\",\n      \"default\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"name\": \"Alexandria DM Setup\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"name\": \"Alexandria - Voice DM (pages & logs)\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"name\": \"Actions Audit (on push)\",\n    \"triggers\": [\n      \"push\",\n      \"branches\",\n      \"main\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n    \"name\": \"Auto-approve & Automerge (label-gated)\",\n    \"triggers\": [\n      \"pull_request_target\",\n      \"types\",\n      \"labeled\",\n      \"synchronize\",\n      \"opened\",\n      \"reopened\",\n      \"ready_for_review\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"name\": \"Carol — Refresh Shopping (direct commit)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\","
   },
   {
     "path": "robots.txt",

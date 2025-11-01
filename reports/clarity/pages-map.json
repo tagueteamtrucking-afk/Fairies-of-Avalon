@@ -14,14 +14,10 @@
   {
     "path": "index.html",
     "links": [
-      "assets/css/avalon.css",
-      "pages/_city/index.html",
-      "pages/apps/alexandria/index.html",
-      "pages/apps/jem/index.html",
-      "pages/apps/tracy/skins/generator.html",
-      "pages/apps/carol/index.html",
-      "pages/apps/charlotte/highlights.html",
-      "pages/apps/stella/index.html"
+      "/pages/_city/index.html",
+      "/pages/apps/charlotte/highlights.html",
+      "/pages/apps/tracy/skins/index.html",
+      "/pages/apps/stella/index.html"
     ]
   },
   {
@@ -529,6 +525,12 @@
     "links": []
   },
   {
+    "path": "pages/apps/carol/dashboard.html",
+    "links": [
+      "../../assets/css/avalon-dashboard.css"
+    ]
+  },
+  {
     "path": "pages/apps/carol/debug/plan-inspect.json",
     "links": []
   },
@@ -903,7 +905,9 @@
   },
   {
     "path": "pages/apps/jem/dashboard.html",
-    "links": []
+    "links": [
+      "../../assets/css/avalon-dashboard.css"
+    ]
   },
   {
     "path": "pages/apps/jem/data/plan-latest.json",

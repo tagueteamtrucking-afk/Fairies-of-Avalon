@@ -1,0 +1,9 @@
+/* Base consumes tokens (no hard-coded colors) */
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui}
+.wrap{max-width:1000px;margin:auto;padding:var(--pad)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--pad)}
+.card{background:var(--card);padding:var(--pad);border-radius:var(--radius);box-shadow:0 1px 0 rgba(0,0,0,.2)}
+a{color:var(--accent);text-decoration:none}
+.badge{display:inline-block;padding:.2rem .5rem;border-radius:.5rem;background:var(--art-primary);color:white}
+.btn{padding:.5rem .75rem;border-radius:10px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+.btn:hover{opacity:.85}

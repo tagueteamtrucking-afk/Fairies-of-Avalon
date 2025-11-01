@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700">
+  <style>
+    .bg { fill: #f8fafc }
+    .road { stroke: #94a3b8; stroke-width: 4; fill: none }
+    .bldg { fill: #4b2bb5; opacity:.12 }
+    .pin  { fill: #4b2bb5 }
+    .label{ font: 14px ui-sans-serif, system-ui; fill: #111827 }
+    a text { text-decoration: underline; }
+  </style>
+  <rect class="bg" x="0" y="0" width="1200" height="700"/>
+  <!-- Roads -->
+  <path class="road" d="M50,350 L1150,350"/>
+  <path class="road" d="M600,50 L600,650"/>
+  <!-- Buildings -->
+  <!-- Palace (Overseers) -->
+  <a xlink:href="/index.html">
+    <rect class="bldg" x="540" y="80" width="120" height="80" rx="8"/>
+    <circle class="pin" cx="600" cy="120" r="5"/>
+    <text class="label" x="570" y="75">🏰 Palace (Home)</text>
+  </a>
+  <!-- Library (Alexandria) -->
+  <a xlink:href="/pages/apps/alexandria/index.html">
+    <rect class="bldg" x="200" y="120" width="160" height="100" rx="8"/>
+    <circle class="pin" cx="280" cy="170" r="5"/>
+    <text class="label" x="210" y="115">📚 Library (Alexandria)</text>
+  </a>
+  <!-- Blue Lab (Nina) -->
+  <a xlink:href="/pages/apps/nina/index.html">
+    <rect class="bldg" x="820" y="120" width="160" height="100" rx="8"/>
+    <circle class="pin" cx="900" cy="170" r="5"/>
+    <text class="label" x="840" y="115">🧪 Blue Lab (Nina)</text>
+  </a>
+  <!-- Cathedral Studio (Tracy) -->
+  <a xlink:href="/pages/apps/tracy/skins/index.html">
+    <rect class="bldg" x="200" y="480" width="160" height="100" rx="8"/>
+    <circle class="pin" cx="280" cy="530" r="5"/>
+    <text class="label" x="190" y="475">🎨 Cathedral Studio (Tracy)</text>
+  </a>
+  <!-- Relay Tower (Charlotte) -->
+  <a xlink:href="/pages/apps/charlotte/index.html">
+    <rect class="bldg" x="820" y="480" width="160" height="100" rx="8"/>
+    <circle class="pin" cx="900" cy="530" r="5"/>
+    <text class="label" x="820" y="475">📡 Relay Tower (Charlotte)</text>
+  </a>
+  <!-- Grand Vault (Abbey) placeholder -->
+  <a xlink:href="/pages/apps/abbey/index.html">
+    <rect class="bldg" x="520" y="480" width="160" height="100" rx="8"/>
+    <circle class="pin" cx="600" cy="530" r="5"/>
+    <text class="label" x="530" y="475">🏦 Grand Vault (Abbey)</text>
+  </a>
+  <!-- Socialite/Museum Mansions (Billie) -->
+  <a xlink:href="/pages/apps/billie/index.html">
+    <rect class="bldg" x="980" y="300" width="160" height="100" rx="8"/>
+    <circle class="pin" cx="1060" cy="350" r="5"/>
+    <text class="label" x="950" y="295">💎 Mansions (Billie)</text>
+  </a>
+</svg>

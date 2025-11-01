@@ -1,24 +1,18 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fairies of Avalon — City</title>
-  <link rel="stylesheet" href="../../assets/css/avalon.css">
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avalon City — SVG Map</title>
+<style>
+  body{margin:0;font:16px ui-sans-serif,system-ui;background:#fff;color:#111}
+  header,footer{padding:16px 24px}
+  .wrap{max-width:1200px;margin:auto}
+  .map{display:block;width:100%;border:1px solid #e5e7eb}
+  a{color:#1c5eff;text-decoration:none}
+</style>
 </head>
 <body>
-<header class="av-header"><div class="wrap">
-  <h1>🗺️ Avalon City</h1>
-  <p class="tagline">Choose a district. Everything is bright, readable, and cohesive.</p>
-</div></header>
-<main class="wrap grid">
-  <a class="card" href="../alexandria/index.html"><h3>📚 Library — Alexandria</h3><p>World Builder</p></a>
-  <a class="card" href="../tracy/skins/generator.html"><h3>🎨 Cathedral Studio — Tracy</h3><p>Skins & themes</p></a>
-  <a class="card" href="../jem/index.html"><h3>🥋 Dojo — Jem</h3><p>Plans & metrics</p></a>
-  <a class="card" href="../carol/index.html"><h3>🍎 Restaurant — Carol</h3><p>Menus & shopping</p></a>
-  <a class="card" href="../stella/index.html"><h3>🔭 Observatory — Stella</h3><p>TTS / sound</p></a>
-  <a class="card" href="../charlotte/highlights.html"><h3>📡 Relay — Charlotte</h3><p>Importmap + libs</p></a>
+<header class="wrap"><h1>🗺️ Avalon City Map</h1><p>Click a building to enter its room/app.</p></header>
+<main class="wrap">
+  <object class="map" type="image/svg+xml" data="map.svg" aria-label="Avalon Map"></object>
+  <p><a href="/index.html">⬅ Back to Home</a></p>
 </main>
-<footer class="av-footer"><div class="wrap"><small>Return to <a href="../../index.html">Home</a></small></div></footer>
-</body>
-</html>
+</body></html>

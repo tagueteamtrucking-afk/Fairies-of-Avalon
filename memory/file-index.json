@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T02:51:42.609Z",
+  "generated": "2025-11-01T02:58:48.612Z",
   "count": 1105,
   "files": [
     {
@@ -250,14 +250,14 @@
     },
     {
       "path": ".github/workflows/deploy-hello-v4.yml",
-      "bytes": 584,
-      "hash": "aad369121c6e57cb0677bb6781c0b92d",
+      "bytes": 692,
+      "hash": "0343df5f02602db48d2b1334af118324",
       "purpose": "workflow"
     },
     {
       "path": ".github/workflows/deploy-hello.yml",
-      "bytes": 428,
-      "hash": "1a2e22145b5ef66f32f91bf13258ddc4",
+      "bytes": 701,
+      "hash": "454b13ad7cca545f866a931a4ef5b02d",
       "purpose": "workflow"
     },
     {
@@ -268,8 +268,8 @@
     },
     {
       "path": ".github/workflows/deploy-importmap-installer.yml",
-      "bytes": 467,
-      "hash": "e67d22ce6442db67574b6f7795087457",
+      "bytes": 736,
+      "hash": "a75f5738e884e4822c22e5f9d7d82b44",
       "purpose": "workflow"
     },
     {
@@ -280,8 +280,8 @@
     },
     {
       "path": ".github/workflows/deploy-market.yml",
-      "bytes": 437,
-      "hash": "4c763bf7d55bcffcd034cd55a8246752",
+      "bytes": 678,
+      "hash": "a12f8d02eb1c7971a9ca3acf3b3392c6",
       "purpose": "workflow"
     },
     {
@@ -292,26 +292,26 @@
     },
     {
       "path": ".github/workflows/deploy-stella-voice.yml",
-      "bytes": 450,
-      "hash": "6801e5cf92ab6a73d3659fb5c565cf73",
+      "bytes": 696,
+      "hash": "9b5b814838ce23d4843f84ebdcb050b7",
       "purpose": "workflow"
     },
     {
       "path": ".github/workflows/deploy-tracy-llm-skin.yml",
-      "bytes": 432,
-      "hash": "99a3783ac0aa5de52b4468b5ebc52833",
+      "bytes": 708,
+      "hash": "7bbd8eef0bc0a12b327bd2fabe701c6e",
       "purpose": "workflow"
     },
     {
       "path": ".github/workflows/deploy-tracy-skin-llm.yml",
-      "bytes": 445,
-      "hash": "3a087ca22feab50676d5d4af81a15228",
+      "bytes": 716,
+      "hash": "08bf5b0b29937c676ac0215fa44e05fd",
       "purpose": "workflow"
     },
     {
       "path": ".github/workflows/deploy-tts-worker.yml",
-      "bytes": 675,
-      "hash": "68f1b6cf1673f7e10b894bb67be85cdc",
+      "bytes": 679,
+      "hash": "b712c2bb89cf03b6386061be3b4e0e3d",
       "purpose": "workflow"
     },
     {
@@ -1906,8 +1906,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 187045,
-      "hash": "6f896f61a8ef5b024c8de9d353a4e39f",
+      "bytes": 187190,
+      "hash": "6f9c4cecc9d527e474b120e351a8ac03",
       "purpose": "misc"
     },
     {

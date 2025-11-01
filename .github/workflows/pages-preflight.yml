@@ -30,32 +30,35 @@ jobs:
           if [ ! -f memory/site-map.json ]; then
             mkdir -p memory
             node - <<'JS'
-            const fs = require('fs'), path = require('path');
-            function walk(d, acc=[]) {
-              for (const e of fs.readdirSync(d, {withFileTypes:true})) {
-                const p = path.join(d, e.name);
-                if (e.isDirectory()) {
-                  if (['.git','node_modules','.next','.vercel','.cache'].includes(e.name)) continue;
-                  walk(p, acc);
-                } else if (e.isFile()) {
-                  acc.push(path.relative(process.cwd(), p).replace(/\\/g,'/'));
-                }
-              }
-              return acc;
-            }
-            const files = walk(process.cwd());
-            const pages = files.filter(f => f.startsWith('pages/') && f.endsWith('.html')).map(f => '/'+f);
-            const entry = fs.existsSync('index.html') ? ['/index.html'] : [];
-            const assets = files.filter(f => f.startsWith('assets/')).map(f => '/'+f);
-            let importmap=null; try{ importmap = JSON.parse(fs.readFileSync('importmap.json','utf8')); }catch{}
-            fs.writeFileSync('memory/site-map.json', JSON.stringify({
-              generated: new Date().toISOString(),
-              entrypoints: entry,
-              pages,
-              assets,
-              importmap
-            }, null, 2));
-            JS
+const fs = require('fs'), path = require('path');
+function walk(d, acc=[]) {
+  for (const e of fs.readdirSync(d, {withFileTypes:true})) {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) {
+      if (['.git','node_modules','.next','.vercel','.cache'].includes(e.name)) continue;
+      walk(p, acc);
+    } else if (e.isFile()) {
+      acc.push(path.relative(process.cwd(), p).replace(/\\/g,'/'));
+    }
+  }
+  return acc;
+}
+const files = walk(process.cwd());
+const pages = files.filter(f => f.startsWith('pages/') && f.endsWith('.html')).map(f => '/' + f);
+const entry = fs.existsSync('index.html') ? ['/index.html'] : [];
+const assets = files.filter(f => f.startsWith('assets/')).map(f => '/' + f);
+let importmap = null;
+try {
+  importmap = JSON.parse(fs.readFileSync('importmap.json', 'utf8'));
+} catch {}
+fs.writeFileSync('memory/site-map.json', JSON.stringify({
+  generated: new Date().toISOString(),
+  entrypoints: entry,
+  pages,
+  assets,
+  importmap
+}, null, 2));
+JS
           fi
 
       - name: Preflight checks (broken links + importmap sanity)

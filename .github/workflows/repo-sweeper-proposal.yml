@@ -18,26 +18,45 @@ jobs:
         id: plan
         run: |
           node - <<'JS'
-          const fs = require('fs');
-          const micromatch = require('micromatch');
-          const idx = JSON.parse(fs.readFileSync('memory/file-index.json','utf8'));
-          const rules = JSON.parse(fs.readFileSync('memory/cleanup-rules.json','utf8'));
-          const files = idx.files;
-          function preserved(p) { return micromatch.isMatch(p, rules.preserveGlobs || []); }
-          const deletes = [];
-          files.forEach(f => {
-            if (preserved(f.path)) return;
-            for (const r of rules.deleteIf || []) {
-              if (r.glob && micromatch.isMatch(f.path, r.glob)) {
-                deletes.push({ path: f.path, reason: 'pattern '+r.glob });
-                return;
-              }
-            }
-          });
-          fs.mkdirSync('memory', {recursive:true});
-          fs.writeFileSync('memory/cleanup-proposals.json', JSON.stringify({ generated: new Date().toISOString(), deletes }, null, 2));
-          console.log(`Will delete ${deletes.length} files`);
-          JS
+const fs = require('fs');
+let micromatch;
+try {
+  // Attempt to require micromatch if available
+  micromatch = require('micromatch');
+} catch {
+  // Fallback glob matcher using simple wildcard conversion
+  micromatch = {
+    isMatch: (p, patterns) => {
+      if (!patterns || patterns.length === 0) return false;
+      return patterns.some(g => {
+        // Escape regex special characters except wildcards
+        let r = g.replace(/[.+^${}()|[\]\\]/g, '\\$&');
+        // Replace ** with .*, * with [^/]* and ? with .
+        r = r.replace(/\*\*/g, '.*').replace(/\*/g, '[^/]*').replace(/\?/g, '.');
+        const regex = new RegExp('^' + r + '$');
+        return regex.test(p);
+      });
+    }
+  };
+}
+const idx = JSON.parse(fs.readFileSync('memory/file-index.json','utf8'));
+const rules = JSON.parse(fs.readFileSync('memory/cleanup-rules.json','utf8'));
+const files = idx.files;
+function preserved(p) { return micromatch.isMatch(p, rules.preserveGlobs || []); }
+const deletes = [];
+files.forEach(f => {
+  if (preserved(f.path)) return;
+  for (const r of (rules.deleteIf || [])) {
+    if (r.glob && micromatch.isMatch(f.path, [r.glob])) {
+      deletes.push({ path: f.path, reason: 'pattern '+r.glob });
+      return;
+    }
+  }
+});
+fs.mkdirSync('memory', {recursive:true});
+fs.writeFileSync('memory/cleanup-proposals.json', JSON.stringify({ generated: new Date().toISOString(), deletes }, null, 2));
+console.log(`Will delete ${deletes.length} files`);
+JS
       - name: Create PR with deletions
         if: ${{ steps.plan.outputs }}
         uses: peter-evans/create-pull-request@v6
@@ -50,5 +69,5 @@ jobs:
           add-paths: |
             memory/cleanup-proposals.json
           delete-files: |
-            $(node -p "JSON.parse(require('fs').readFileSync('memory/cleanup-proposals.json','utf8')).deletes.map(d=>d.path).join('\n')")
+            $(node -p "JSON.parse(require('fs').readFileSync('memory/cleanup-proposals.json','utf8')).deletes.map(d=>d.path).join('\\n')")
           token: ${{ secrets.GITHUB_TOKEN }}

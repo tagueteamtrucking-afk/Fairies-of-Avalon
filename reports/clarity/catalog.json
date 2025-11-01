@@ -2805,6 +2805,11 @@
     "bytes": 4260
   },
   {
+    "path": "memory/cleanup-proposals.json",
+    "sha256": "40b4e876ee2af97154fb10a7b3ded0c5f54f6964a8d0490b04d0c31094527c1e",
+    "bytes": 27046
+  },
+  {
     "path": "memory/cleanup-rules.json",
     "sha256": "af45858125dd213a6aa78ed70f3048077e933efa60f01ce6e721fa274310d8d4",
     "bytes": 1505
@@ -2826,8 +2831,8 @@
   },
   {
     "path": "memory/file-index.json",
-    "sha256": "23d3b35607741671e3656c193e3d25d7e01fa58fcf9dcf830057ce9bce61f3b0",
-    "bytes": 184425
+    "sha256": "3b9edd0a0cbca58f2ce603174da532b238642dd6332e0ce7acd380af3e4dbbdd",
+    "bytes": 185557
   },
   {
     "path": "memory/owners.json",
@@ -2841,8 +2846,13 @@
   },
   {
     "path": "pages/_city/index.html",
-    "sha256": "d59e5f549fdc665f843a3eea494c36318ea135893d5c11ba93a1f02e4f44c541",
-    "bytes": 1262
+    "sha256": "55bd62ab43c168ce7c4576548d20c83b21f06cece3c79b433c2b6ad0f3ee87b1",
+    "bytes": 735
+  },
+  {
+    "path": "pages/_city/map.svg",
+    "sha256": "e365d6569d47d99bbb8066d78181dccb30f93e41f3a3f78c93d140b30829d9d7",
+    "bytes": 2572
   },
   {
     "path": "pages/_city/plaza.html",
@@ -3336,8 +3346,8 @@
   },
   {
     "path": "pages/apps/billie/index.html",
-    "sha256": "ad04786b6ec67f0406fe8d5982a7bcb10413c3b448285a2779750e01e51f142d",
-    "bytes": 90
+    "sha256": "382c2c10c5b58a3fe58aae7b529ca96362799362b8c3816e296902c7c66ee755",
+    "bytes": 777
   },
   {
     "path": "pages/apps/billie/index.json",
@@ -3701,8 +3711,8 @@
   },
   {
     "path": "pages/apps/charlotte/index.html",
-    "sha256": "4333074cdf27ef451ca1d2b42c922d2806bab91584ad5e99c72fbe163b9765f8",
-    "bytes": 93
+    "sha256": "f2ae1238c2d653ee4cc302daac80ac53f22e19e10ed132ccc4e2f62b46c6a368",
+    "bytes": 962
   },
   {
     "path": "pages/apps/charlotte/index.json",
@@ -3956,8 +3966,8 @@
   },
   {
     "path": "pages/apps/nina/index.html",
-    "sha256": "fb0719a85247880dd6d72ab99da8d9408ee3d4dda9753fca262ff513d1113298",
-    "bytes": 88
+    "sha256": "45d1bcbc94886d0bdebc9e4eb7cbd4287c4a18a7eec7c7788bbc3d327474f378",
+    "bytes": 916
   },
   {
     "path": "pages/apps/nina/index.json",
@@ -4625,6 +4635,11 @@
     "bytes": 140
   },
   {
+    "path": "pages/apps/tracy/skins/base.css",
+    "sha256": "40bc7b64eabd618587ef8a7c75cb8722fb17075df3ae90b5c2e0936599c42e5d",
+    "bytes": 718
+  },
+  {
     "path": "pages/apps/tracy/skins/cathedral-gold.css",
     "sha256": "4a8c952e4b5dc77098d0df6ef963b15e8b4294e78b7ad754b294422362c8af88",
     "bytes": 249
@@ -4636,13 +4651,18 @@
   },
   {
     "path": "pages/apps/tracy/skins/index.html",
-    "sha256": "c76ec25d5ee7777349a36aad79f5fe0895529aa62e0d4def4553f8fe3e204e89",
-    "bytes": 398
+    "sha256": "720c014423932343bb69940ad207d8974b4d3ff17dc1bdaca40c0fe715809765",
+    "bytes": 1381
   },
   {
     "path": "pages/apps/tracy/skins/night-abyss.css",
     "sha256": "1092c074d516cc910f3c8f567c3d4ac2fad5a306466726487e34c63cdcbd4ca6",
     "bytes": 214
+  },
+  {
+    "path": "pages/apps/tracy/skins/variables.css",
+    "sha256": "9fe19907c88828169cd82c4a71fbe6e64249d8c6a6af9c3d2b5bba1ee1feeb76",
+    "bytes": 507
   },
   {
     "path": "pages/apps/tracy/wallpaper-index.json",
@@ -4866,18 +4886,18 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "59928aa7baa098fa899c25e0ca5d6cc33255df6225b1772364438e74b9b71eba",
-    "bytes": 179296
+    "sha256": "2ac28e5378b6efba581ef4257b6db86824866fbaed76a73ff974ce460d7ff344",
+    "bytes": 181043
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "f51591d8231ef3c77ad481724991601bcfdaee3035fdce60b64d39e6672259a5",
-    "bytes": 3382592
+    "sha256": "7b2ff7ea8a18a7556541722b20d6364e89723a3c53822fe234eceb45332c3133",
+    "bytes": 3398467
   },
   {
     "path": "reports/clarity/pages-map.json",
-    "sha256": "feaab54edeecb337c66abd71dc8794f31af2cbf8b2ee454c2e118dacf25c1d48",
-    "bytes": 39367
+    "sha256": "fb11fb11597b0030c5f0e29bf8bbbe8ddbd6c720433e6413065b75f079f9faad",
+    "bytes": 40154
   },
   {
     "path": "reports/clarity/workers-map.json",
@@ -4886,8 +4906,8 @@
   },
   {
     "path": "reports/clarity/workflows-map.json",
-    "sha256": "d600c2cd62a56ab40b486d5b47ac393d9a6880de4bc01df3bd7363ba7fbb8a6c",
-    "bytes": 20890
+    "sha256": "a168801a0d6d21c06ae31dbbc707d57b3e945a69703fe92d2b30e9ad1eba2adf",
+    "bytes": 22872
   },
   {
     "path": "robots.txt",

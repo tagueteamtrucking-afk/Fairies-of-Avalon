@@ -1,6 +1,6 @@
 {
-  "generated": "2025-11-01T02:51:20.372Z",
-  "count": 1104,
+  "generated": "2025-11-01T02:51:42.609Z",
+  "count": 1105,
   "files": [
     {
       "path": ".github/cleanup/sweeper-manifest.json",
@@ -12,6 +12,12 @@
       "path": ".github/cleanup/workflows-to-review.json",
       "bytes": 1014,
       "hash": "04ae324f4c8ea030de09af6855b12640",
+      "purpose": "misc"
+    },
+    {
+      "path": ".github/labeler.yml",
+      "bytes": 305,
+      "hash": "edd4ba8d21d413027db40b0352932b93",
       "purpose": "misc"
     },
     {
@@ -46,8 +52,8 @@
     },
     {
       "path": ".github/workflows/auto-approve-and-merge.yml",
-      "bytes": 1387,
-      "hash": "b803310eee798fa494c858d6d743b77f",
+      "bytes": 1481,
+      "hash": "6033bc1727294838d4fd4d3dc2b3aefe",
       "purpose": "workflow"
     },
     {
@@ -334,8 +340,8 @@
     },
     {
       "path": ".github/workflows/label-bot-prs.yml",
-      "bytes": 446,
-      "hash": "2970404ec483aa4bd4f4bd95b9531997",
+      "bytes": 1250,
+      "hash": "0c11fdb59831ecf4f782bb862c766773",
       "purpose": "workflow"
     },
     {
@@ -1900,8 +1906,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 185557,
-      "hash": "dedc760a7d830f3cd968ad673d8f5dee",
+      "bytes": 187045,
+      "hash": "6f896f61a8ef5b024c8de9d353a4e39f",
       "purpose": "misc"
     },
     {

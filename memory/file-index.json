@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T10:05:18.229Z",
+  "generated": "2025-11-01T10:58:15.689Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -107,6 +107,18 @@
       "path": "assets/designs/tshirt-fairy.png",
       "bytes": 2957505,
       "hash": "52298272a38e509f1044a71cac287028",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/jem-hall-inside.jpg.jpg",
+      "bytes": 190454,
+      "hash": "1bf541a19df4ad9d261dc00e7aef3ba2",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/jem-hall-outside.jpg.jpg",
+      "bytes": 206000,
+      "hash": "67501e464a24b88c82021a63a8c3dd43",
       "purpose": "misc"
     },
     {
@@ -388,7 +400,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 65207,
-      "hash": "b9d367d6ce2211d91f5c07506ba5bfbd",
+      "hash": "8d094a997bda8ca0716297ed010ba7d3",
       "purpose": "misc"
     },
     {

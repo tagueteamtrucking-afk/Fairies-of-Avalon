@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T19:27:29.996Z",
+  "generated": "2025-11-01T19:50:35.132Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -87,8 +87,8 @@
     },
     {
       "path": "assets/css/avalon-bright.css",
-      "bytes": 914,
-      "hash": "62847764e758e15b8a62fbb9ae322291",
+      "bytes": 927,
+      "hash": "9f33d9f265ac8733d356ca679300a750",
       "purpose": "misc"
     },
     {
@@ -279,8 +279,8 @@
     },
     {
       "path": "cloudflare/worker-carol.js",
-      "bytes": 2824,
-      "hash": "cc9c24316031e27e31b80c52373a0482",
+      "bytes": 3129,
+      "hash": "4aa8d19ebd5ef8d0d45e5a23f213671e",
       "purpose": "misc"
     },
     {
@@ -387,8 +387,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 1180,
-      "hash": "ed5d62d2227e0638fb58642d94dc81ea",
+      "bytes": 1213,
+      "hash": "a18f3c4e2eab811adb094a7bdb841b82",
       "purpose": "misc"
     },
     {
@@ -453,8 +453,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 69709,
-      "hash": "0d3aac6c6c4e9ddfd2ac04d94e1cb7e2",
+      "bytes": 70020,
+      "hash": "9dfc59ba6c73bbbbe8d5526852af3453",
       "purpose": "misc"
     },
     {
@@ -2109,8 +2109,8 @@
     },
     {
       "path": "pages/_city/index.html",
-      "bytes": 1202,
-      "hash": "136e2d058e71938959a21b86c237a576",
+      "bytes": 1237,
+      "hash": "75455c78c2b92be5ca405a58bfc11247",
       "purpose": "page"
     },
     {
@@ -2181,8 +2181,8 @@
     },
     {
       "path": "pages/apps/carol/index.html",
-      "bytes": 1156,
-      "hash": "e78dd509cf07ba9e0718763ea4f7d6c5",
+      "bytes": 1183,
+      "hash": "a61caf54c6e7a84f7c91a4514c715592",
       "purpose": "page"
     },
     {

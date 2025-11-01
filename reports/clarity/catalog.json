@@ -610,6 +610,11 @@
     "bytes": 33
   },
   {
+    "path": "asset/README.md",
+    "sha256": "1e2aff67c5a9d124cfcd6aaf70145bbcea97974758b8b6a98a8c05d55273f8f4",
+    "bytes": 638
+  },
+  {
     "path": "asset/css/style.css",
     "sha256": "5f12cfe8120b0751d0f55d56307a1a4558ed481127521c862bf1899a91cebb0c",
     "bytes": 133
@@ -2823,6 +2828,8 @@
     "path": "memory/cleanup-rules.json",
     "sha256": "aa396012ec5e8122732f6389cd8a38aa53bc89b7cc1f68a8db4ef733a5b788f3",
     "bytes": 1253
+    "sha256": "fa8ca19770ed1d21f9441be87c251ff41b8c0f035914aecd9769a35adc50c683",
+    "bytes": 353
   },
   {
     "path": "memory/deadends.json",
@@ -2836,18 +2843,30 @@
   },
   {
     "path": "memory/fairy_function_matrix.json",
-    "sha256": "c9b16ae7002333cfddeb9b88c320c78b6f75cdcfe3af13de070b6116112f7c31",
-    "bytes": 2023
+    "sha256": "b2d02c9cea1c8ecefce9ace68a63cdbb34aa171c42002193ed482eb43f41e113",
+    "bytes": 991
   },
   {
     "path": "memory/file-index.json",
     "sha256": "3f725000b61417df42bbc7e10d4ce22796d309ff329bf746d05b554b3b04d0fb",
     "bytes": 187678
+    "sha256": "782939e8e2b4dc42486b1a167d675491520c7e1e01e2660ecd05e93c9a2aee5e",
+    "bytes": 38
   },
   {
     "path": "memory/owners.json",
-    "sha256": "1be671c0ce23a38cee128d82267f18635eee9dfb73652d57561b9dec342bb661",
-    "bytes": 1850
+    "sha256": "4815eb7590078f24d280245564d3520546c13e5089c8dd2ab963fea057321b96",
+    "bytes": 1961
+  },
+  {
+    "path": "memory/site-map.json",
+    "sha256": "8838ce62baf2fbef075776a4a6a96a78f95b36a50b97dfb18354d5dd53960190",
+    "bytes": 117
+  },
+  {
+    "path": "package.json",
+    "sha256": "64400ba8ae20a20bd6105f38251122b33b5fe5f8ce9cb07603858cf887e8f94c",
+    "bytes": 259
   },
   {
     "path": "pages/_city/city.css",
@@ -2906,13 +2925,18 @@
   },
   {
     "path": "pages/apps/_city/index.html",
-    "sha256": "529aad492feddf6ede0ee8f78aa8161cfe85648491453084bd846cd3a07179e6",
-    "bytes": 1219
+    "sha256": "9430f9aae987af22c57bc4e5d66120c5cd3204ca66f75b333541f10c64025e98",
+    "bytes": 736
   },
   {
     "path": "pages/apps/_city/map.js",
     "sha256": "139e1b9547c4f0065da43e0f726352d0926c414e9d7b807402a623d6e0762da7",
     "bytes": 3357
+  },
+  {
+    "path": "pages/apps/_city/map.svg",
+    "sha256": "578ffaaca01dd64f04247b802134cfef9d922a14ac69df407c7807705d1e47f7",
+    "bytes": 2452
   },
   {
     "path": "pages/apps/_city/palace.html",
@@ -3036,8 +3060,8 @@
   },
   {
     "path": "pages/apps/alexandria/index.html",
-    "sha256": "cac7a82ca2b76c1c678195cd453384bdf29bd5144ac384fe8ae40d2689ff0534",
-    "bytes": 195
+    "sha256": "31ad7cce25fb121e7900f502dd2e20afa5e3b000bd4b544d99cab21288e681e5",
+    "bytes": 807
   },
   {
     "path": "pages/apps/alexandria/index.json",
@@ -3366,8 +3390,8 @@
   },
   {
     "path": "pages/apps/billie/index.html",
-    "sha256": "382c2c10c5b58a3fe58aae7b529ca96362799362b8c3816e296902c7c66ee755",
-    "bytes": 777
+    "sha256": "223ff2d8fdbc345df2596b5f9a0da87994a1da628831ea9381b8dc1620dec1ff",
+    "bytes": 796
   },
   {
     "path": "pages/apps/billie/index.json",
@@ -3411,8 +3435,8 @@
   },
   {
     "path": "pages/apps/carol/index.html",
-    "sha256": "ea73071b91ba80ec3558b5420dd34fcb4eda7a5ddca567efa66652484435ae0c",
-    "bytes": 466
+    "sha256": "3517025767967f093d8204941295bfb524e0adb10ea74f4bf70cf67fc68f9f82",
+    "bytes": 791
   },
   {
     "path": "pages/apps/carol/index.json",
@@ -3746,8 +3770,8 @@
   },
   {
     "path": "pages/apps/charlotte/index.html",
-    "sha256": "f2ae1238c2d653ee4cc302daac80ac53f22e19e10ed132ccc4e2f62b46c6a368",
-    "bytes": 962
+    "sha256": "6d05401eeb200e84a97d308fac3f3d134c33599f183f7be8a5f8f338fcd4a323",
+    "bytes": 885
   },
   {
     "path": "pages/apps/charlotte/index.json",
@@ -3826,8 +3850,8 @@
   },
   {
     "path": "pages/apps/clarice/index.html",
-    "sha256": "af2646fc2318e6aaa8b859a861aa6c7d4690c32bcd6e5883c259de3de3391b23",
-    "bytes": 144
+    "sha256": "be51e0aff0f71b43d21a9262b089e7663ea5d8e23518a5d69dd1d2793d06e6cb",
+    "bytes": 386
   },
   {
     "path": "pages/apps/clarice/index.json",
@@ -3848,11 +3872,13 @@
     "path": "pages/apps/common/js/json-table.js",
     "sha256": "7472bea538ac5bdb030fa98b4c032d961ee3e4be00aefdc72243b147991fdd0f",
     "bytes": 1243
+    "sha256": "e9ae95c54c485c51f30efa6a558120fe8ed28ec4bdf2d0e403ac0269126fe534",
+    "bytes": 1875
   },
   {
     "path": "pages/apps/common/style.css",
-    "sha256": "d03b6866b4110e61116da3065cb16527fc405f033c4a070ce87d6dc4dfaec50b",
-    "bytes": 436
+    "sha256": "ba455e0b5873602c6239b78fa9da35418f6759703bc256d6ef28683972de8e4c",
+    "bytes": 1406
   },
   {
     "path": "pages/apps/common/voice/config.json",
@@ -3901,8 +3927,8 @@
   },
   {
     "path": "pages/apps/jem/index.html",
-    "sha256": "133bf61806701d2761d6bd9574b524e25c6a8320c8030045f8b5c808fbbbfd6e",
-    "bytes": 172
+    "sha256": "bfc036fbb7459194b4ca1a259e03bde9dfef6c993a0fb6c191e5326d37393fb2",
+    "bytes": 787
   },
   {
     "path": "pages/apps/jem/index.json",
@@ -4016,8 +4042,8 @@
   },
   {
     "path": "pages/apps/nina/index.html",
-    "sha256": "45d1bcbc94886d0bdebc9e4eb7cbd4287c4a18a7eec7c7788bbc3d327474f378",
-    "bytes": 916
+    "sha256": "18f1ac41267c2b0c0e154ce04d927be12b5c94e096f73913e02daa32358f0e33",
+    "bytes": 896
   },
   {
     "path": "pages/apps/nina/index.json",
@@ -4061,8 +4087,8 @@
   },
   {
     "path": "pages/apps/odessa/index.html",
-    "sha256": "dc7bb23a7eacb3cf7a35e09aca2936bae259bc0a33460f6eba52035cec134450",
-    "bytes": 148
+    "sha256": "329bf1c9202428656a22c28fc31cfcc3ea970c8935c62774fed1a8d10b810d0b",
+    "bytes": 396
   },
   {
     "path": "pages/apps/odessa/index.json",
@@ -4106,8 +4132,8 @@
   },
   {
     "path": "pages/apps/overseers/index.html",
-    "sha256": "362c89ca5389a11d6204a0c0ba2b37a0851b58969c055c57aaba24ac6ba3245c",
-    "bytes": 93
+    "sha256": "730b2f97b40e2fb6005029f8c36b6f2b016f92060c0ed044eb3dce706bd14149",
+    "bytes": 806
   },
   {
     "path": "pages/apps/overseers/index.json",
@@ -4241,8 +4267,8 @@
   },
   {
     "path": "pages/apps/sorcha/index.html",
-    "sha256": "dc7bb23a7eacb3cf7a35e09aca2936bae259bc0a33460f6eba52035cec134450",
-    "bytes": 148
+    "sha256": "14c8a016183a77ab66b9f436c6f654f99c4b6ab4c590e9b7484df089abfc55e8",
+    "bytes": 396
   },
   {
     "path": "pages/apps/sorcha/index.json",
@@ -4311,8 +4337,8 @@
   },
   {
     "path": "pages/apps/stella/index.html",
-    "sha256": "e1c3cdc3e5d35657bb79416b2099285447b464f9e92fb772251fd79c82929a80",
-    "bytes": 735
+    "sha256": "4a8ef0111df5f50201ebd968df06d9d543918f87521b22f4114537f8484269c4",
+    "bytes": 781
   },
   {
     "path": "pages/apps/stella/index.json",
@@ -4366,8 +4392,8 @@
   },
   {
     "path": "pages/apps/themis/index.html",
-    "sha256": "5c5e8faa834e98247c861d57514b8bd6efa7d2e165b1e4752ee84e725e6bea0b",
-    "bytes": 154
+    "sha256": "9ff5b892e0e280df8c4b6c08d506dfd6e1f25484c356787251c6481795cd7b5a",
+    "bytes": 414
   },
   {
     "path": "pages/apps/themis/index.json",
@@ -4641,8 +4667,8 @@
   },
   {
     "path": "pages/apps/tracy/index.html",
-    "sha256": "3d6d8944d8a138b6bd7c792f1ccda7dba130f8ac0cbd1bfb6354ff357c0814d9",
-    "bytes": 89
+    "sha256": "c8f3e5ef3f701030d5ff1bd05fd403cde2ab1ec7a1afdfb6bc98bb6dd2c62545",
+    "bytes": 839
   },
   {
     "path": "pages/apps/tracy/index.json",
@@ -4756,8 +4782,8 @@
   },
   {
     "path": "pages/index.html",
-    "sha256": "e85282222fb239de961090703f6d7c365eadb3b01063f0e17023bcb1842d2900",
-    "bytes": 1551
+    "sha256": "4559e680930977c93b9f3a79f0390b9b452501fbc68a66d394a08fbea281e6b0",
+    "bytes": 2254
   },
   {
     "path": "pages/pin-config.html",
@@ -4976,8 +5002,8 @@
   },
   {
     "path": "robots.txt",
-    "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
-    "bytes": 26
+    "sha256": "efdb5938a9736727f5cce2b60355588e4fa541d19d022d222d8a09b8efd5dcce",
+    "bytes": 25
   },
   {
     "path": "runtime/memory/crossrepo.json",

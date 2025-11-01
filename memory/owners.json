@@ -1,118 +1,77 @@
 {
-  "nina": {
-    "merged_from": [
-      "clarice"
-    ],
-    "domains": [
-      "engineering",
-      "security",
-      "3D infra",
-      "import-map sanity"
-    ],
-    "rooms": [
-      "Blue Lab"
-    ],
-    "apps": [
+  "Nina": {
+    "description": "Engineering and security overseer, responsible for infrastructure and 3D rendering.",
+    "features": [
       "security_reports",
-      "project_overview_screen"
+      "import_map_validation",
+      "vrm_viewer",
+      "scene_index"
     ]
   },
-  "charlotte": {
-    "merged_from": [
-      "themis"
-    ],
-    "domains": [
-      "relay/translation",
-      "compliance",
-      "expirations",
-      "reminders"
-    ],
-    "rooms": [
-      "Relay Tower"
-    ],
-    "apps": [
+  "Charlotte": {
+    "description": "Translation relay and compliance manager (evolved from Charlotte + Themis).",
+    "features": [
       "queues_dashboard",
       "translations_board",
       "expirations_registry",
       "reminders_service"
     ]
   },
-  "billie": {
-    "merged_from": [
-      "odessa",
-      "sorcha"
-    ],
-    "domains": [
-      "monetization",
-      "social",
-      "grants"
-    ],
-    "rooms": [
-      "Museum Mansion / Socialite Mansion"
-    ],
-    "apps": [
-      "social_posts_board",
-      "earnings_per_post",
+  "Billie": {
+    "description": "Monetisation and social media overseer (evolved from Billie + Odessa + Sorcha).",
+    "features": [
+      "social_posts",
+      "earnings_dashboard",
       "grants_tracker"
     ]
   },
-  "jem": {
-    "merged_from": [],
-    "pair": "carol",
-    "domains": [
-      "fitness",
-      "biometrics"
-    ],
-    "rooms": [
-      "Dojo"
+  "Carol": {
+    "description": "Nutrition assistant; manages meal plans and shopping lists.",
+    "features": [
+      "meal_planner",
+      "shopping_list",
+      "nutrition_reports"
     ]
   },
-  "carol": {
-    "merged_from": [],
-    "pair": "jem",
-    "domains": [
-      "nutrition",
-      "shopping"
-    ],
-    "rooms": [
-      "Restaurant"
+  "Jem": {
+    "description": "Fitness assistant; manages workout plans and movement programs.",
+    "features": [
+      "fitness_planner",
+      "workout_calendar",
+      "progress_tracker"
     ]
   },
-  "alexandria": {
-    "merged_from": [],
-    "pair": "stella",
-    "domains": [
-      "stories",
-      "worlds"
-    ],
-    "rooms": [
-      "Library"
+  "Alexandria": {
+    "description": "Storyteller; curates lore and narrative content.",
+    "features": [
+      "story_shelf",
+      "character_sheets",
+      "timeline_explorer"
     ]
   },
-  "stella": {
-    "merged_from": [],
-    "pair": "alexandria",
-    "domains": [
-      "voice",
-      "sound therapy"
-    ],
-    "rooms": [
-      "Observatory & Apothecary"
+  "Stella": {
+    "description": "Voice and sound assistant; offers text‑to‑speech and sound therapy.",
+    "features": [
+      "tts_player",
+      "sound_library",
+      "guided_sessions"
     ]
   },
-  "tracy": {
-    "merged_from": [],
-    "domains": [
-      "art-2D",
-      "art-3D",
-      "skins",
-      "t-shirt design",
-      "poster design",
-      "story art",
-      "web art"
-    ],
-    "rooms": [
-      "Cathedral Studio"
+  "Tracy": {
+    "description": "Artist; produces 2D and 3D art, skins, posters and story illustrations.",
+    "features": [
+      "art_gallery",
+      "skin_designer",
+      "poster_creator",
+      "story_art"
+    ]
+  },
+  "Overseers": {
+    "description": "Governance; manages the palace, permissions and telemetry (Rey Czar & White Star).",
+    "features": [
+      "palace_hub",
+      "permissions_registry",
+      "telemetry_dashboard"
     ]
   }
 }

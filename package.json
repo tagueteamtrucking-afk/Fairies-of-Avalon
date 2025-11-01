@@ -1,0 +1,11 @@
+{
+  "name": "fairies-of-avalon",
+  "version": "1.0.0",
+  "description": "The evolved Avalon site",
+  "scripts": {
+    "start": "npx http-server -c-1",
+    "build": "echo 'Nothing to build: this site is static.'"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}

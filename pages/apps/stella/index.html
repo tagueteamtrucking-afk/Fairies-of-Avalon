@@ -1,16 +1,22 @@
-<!doctype html><meta charset="utf-8"><title>Stella — Voice</title>
-<link rel="stylesheet" href="../../assets/css/avalon.css">
-<main class="wrap">
-  <h2>🔊 Stella — Voice</h2>
-  <textarea id="t" rows="4" class="box" placeholder="Type something cheerful..."></textarea>
-  <button id="s">Speak</button>
-  <script type="module">
-  document.getElementById('s').onclick = async () => {
-    const text = document.getElementById('t').value.trim();
-    if(!text) return;
-    const r = await fetch('/api/voice', {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({text})});
-    const j = await r.json().catch(_=>({}));
-    alert('TTS request sent. (Connect Worker to hear audio.)');
-  };
-  </script>
-</main>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Stella – Voice &amp; Sound</title>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">🎵 Stella</h1>
+    <p class="lead">Stella provides voice and sound.  Enjoy text‑to‑speech, music and guided sessions.</p>
+    <ul>
+      <li>🗣️ <strong>TTS player:</strong> coming soon</li>
+      <li>🎶 <strong>Sound library:</strong> coming soon</li>
+      <li>🧘 <strong>Guided sessions:</strong> coming soon</li>
+    </ul>
+    <p><a href="/index.html">← back to home</a></p>
+  </div>
+</body>
+</html>

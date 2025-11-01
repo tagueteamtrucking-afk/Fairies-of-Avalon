@@ -1,27 +1,20 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Avalon — City</title>
-  <style>
-    body{margin:0;background:#0b0c10;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    header{padding:16px 18px;border-bottom:1px solid #ffffff22;background:#0008}
-    .wrap{padding:16px;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
-    a.card{display:block;text-decoration:none;color:inherit;background:#ffffff10;border:1px solid #ffffff22;border-radius:12px;overflow:hidden}
-    a.card .ph{height:120px;background:linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,.0)),url('/asset/textures/wallpapers/carol-pagoda-exterior.jpg') center/cover}
-    a.card h3{margin:0;padding:12px 12px 2px 12px}
-    a.card p{margin:0;padding:0 12px 12px 12px;color:#ffffffcc;font-size:14px}
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Avalon City Map</title>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
 </head>
 <body>
-  <header><strong>Avalon</strong> — City</header>
   <div class="wrap">
-    <a class="card" href="/pages/apps/carol/menu.html">
-      <div class="ph"></div>
-      <h3>Carol — Phoenix Pagoda</h3>
-      <p>Menu & Shopping</p>
-    </a>
+    <h1 class="heading">🗺️ Avalon City</h1>
+    <p class="lead">Click a building to visit the corresponding fairy’s app.</p>
+    <div style="overflow:auto; border: 1px solid var(--card); border-radius: 8px;">
+      <object type="image/svg+xml" data="/pages/apps/_city/map.svg" width="100%" height="500px"></object>
+    </div>
+    <p><a href="/index.html">← back to home</a></p>
   </div>
 </body>
 </html>

@@ -1,1 +1,0 @@
-:root{--surface:#0f172a;--text:#e5e7eb;--accent:#7caceb;--panel:#0b1220;--border:#172033;--wallpaper:url('/asset/textures/wallpapers/avalon-01.jpg')}body{background-color:var(--panel);color:var(--text);background-image:var(--wallpaper);background-size:cover;background-position:center}.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px}

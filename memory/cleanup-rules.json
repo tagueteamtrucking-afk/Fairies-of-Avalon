@@ -1,55 +1,17 @@
 {
   "preserveGlobs": [
-    "asset/models/**",
-    "asset/wings/**",
-    ".github/workflows/**",
+    "asset/**",
     "memory/**",
-    "index.html",
-    "pages/_city/**",
-    "pages/apps/common/**",
-    "pages/apps/nina/**",
-    "pages/apps/charlotte/**",
-    "pages/apps/billie/**",
-    "pages/apps/tracy/**"
+    "pages/**",
+    ".github/workflows/**",
+    ".github/labeler.yml"
   ],
   "deleteIf": [
-    {
-      "glob": "pages/apps/clarice/**",
-      "reason": "merged into Nina (keep only redirect index if present)"
-    },
-    {
-      "glob": "pages/apps/themis/**",
-      "reason": "merged into Charlotte (keep only redirect index if present)"
-    },
-    {
-      "glob": "pages/apps/odessa/**",
-      "reason": "merged into Billie (keep only redirect index if present)"
-    },
-    {
-      "glob": "pages/apps/sorcha/**",
-      "reason": "merged into Billie (keep only redirect index if present)"
-    },
-    {
-      "glob": "**/*.tmp",
-      "reason": "temporary file"
-    },
-    {
-      "glob": "**/*~",
-      "reason": "editor backup"
-    },
-    {
-      "glob": "**/.DS_Store",
-      "reason": "system file"
-    },
-    {
-      "glob": "**/Thumbs.db",
-      "reason": "system file"
-    },
-    {
-      "glob": "pages/**",
-      "sizeLT": 12,
-      "reason": "empty stub page"
-    }
+    { "glob": "**/*.tmp" },
+    { "glob": "**/*~" },
+    { "glob": "**/.DS_Store" },
+    { "glob": "**/Thumbs.db" },
+    { "glob": "**/__MACOSX/**" }
   ],
   "duplicateHashPolicy": "delete-all-but-largest"
 }

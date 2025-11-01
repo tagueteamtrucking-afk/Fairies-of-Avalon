@@ -1,3 +1,0 @@
-/* Bright default skin */
-:root{--accent:#5a3dd5;--bg:#faf8ff;--ink:#222}
-body{background:var(--bg);color:var(--ink)} a{color:var(--accent)}

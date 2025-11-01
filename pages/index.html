@@ -1,43 +1,63 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Avalon — Launching…</title>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <style>
-    html,body{margin:0;height:100%;background:#0b1220;color:#e5e7eb;font-family:system-ui,Segoe UI,Roboto}
-    main{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:12px}
-    .btn{color:#e5e7eb;border:1px solid #334155;border-radius:10px;padding:8px 12px;text-decoration:none}
-    .muted{opacity:.75;font-size:12px}
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Fairies of Avalon – Home</title>
+  <script type="importmap" src="/importmap.json"></script>
+  <link rel="stylesheet" href="/pages/apps/common/style.css" />
 </head>
 <body>
-<main>
-  <h1>🏰 Avalon</h1>
-  <p class="muted">Launching City Plaza…</p>
-  <p><a class="btn" id="fallback" href="/pages/plaza.html">Open City Plaza</a></p>
-</main>
-<script>
-(async function(){
-  try{
-    if('serviceWorker' in navigator){
-      const regs = await navigator.serviceWorker.getRegistrations();
-      for(const r of regs){ await r.unregister(); }
-      if(window.caches){
-        const keys = await caches.keys();
-        for(const k of keys){ await caches.delete(k); }
-      }
-    }
-  }catch(e){}
-  const target = "/pages/plaza.html";
-  const url = new URL(target, location.origin);
-  url.searchParams.set("cb", Date.now().toString(36));
-  location.replace(url.toString());
-})();
-</script>
-<noscript><meta http-equiv="refresh" content="0; url=/pages/plaza.html"></noscript>
+  <div class="wrap">
+    <h1 class="heading">🏰 Fairies of Avalon</h1>
+    <p class="lead">Welcome to Avalon.  Choose a fairy or explore the city.</p>
+    <section class="grid">
+      <div class="card">
+        <strong>Nina</strong><br />
+        <a href="/pages/apps/nina/index.html">Engineering &amp; Security</a>
+      </div>
+      <div class="card">
+        <strong>Charlotte</strong><br />
+        <a href="/pages/apps/charlotte/index.html">Relay &amp; Compliance</a>
+      </div>
+      <div class="card">
+        <strong>Billie</strong><br />
+        <a href="/pages/apps/billie/index.html">Monetisation &amp; Social</a>
+      </div>
+      <div class="card">
+        <strong>Carol</strong><br />
+        <a href="/pages/apps/carol/index.html">Nutrition &amp; Meals</a>
+      </div>
+      <div class="card">
+        <strong>Jem</strong><br />
+        <a href="/pages/apps/jem/index.html">Fitness &amp; Motion</a>
+      </div>
+      <div class="card">
+        <strong>Alexandria</strong><br />
+        <a href="/pages/apps/alexandria/index.html">Stories &amp; Lore</a>
+      </div>
+      <div class="card">
+        <strong>Stella</strong><br />
+        <a href="/pages/apps/stella/index.html">Voice &amp; Sound</a>
+      </div>
+      <div class="card">
+        <strong>Tracy</strong><br />
+        <a href="/pages/apps/tracy/index.html">Art &amp; Design</a>
+      </div>
+      <div class="card">
+        <strong>Overseers</strong><br />
+        <a href="/pages/apps/overseers/index.html">Palace &amp; Governance</a>
+      </div>
+      <div class="card">
+        <strong>City Map</strong><br />
+        <a href="/pages/apps/_city/index.html">Explore Avalon</a>
+      </div>
+      <div class="card">
+        <strong>CI Dashboard</strong><br />
+        <a href="/pages/apps/overseers/ci-dashboard.html">Automation Status</a>
+      </div>
+    </section>
+  </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T02:26:22.913Z",
+  "generated": "2025-11-01T03:59:11.802Z",
   "deletes": [
     {
       "path": "asset/textures/wallpapers/carol-menu-bg.jpg",
@@ -866,24 +866,96 @@
       "reason": "duplicate content"
     },
     {
+      "path": "pages/apps/alexandria/index.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/continuity-checklist.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20250918T052002Z-avalon/scene-seeds.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/continuity-checklist.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T012716Z-avalon/notable-figures.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/continuity-checklist.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T014952Z-avalon/scene-seeds.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/continuity-checklist.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T032652Z-avalon/notable-figures.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/alexandria/worlds/20251006T034428Z-avalon/continuity-checklist.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/carol/debug/plan-inspect.json",
+      "reason": "empty stub page"
+    },
+    {
+      "path": "pages/apps/carol/plans/twoperson-2wk-merged.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/carol/templates/mealplan-balanced-14d.json",
+      "reason": "duplicate content"
+    },
+    {
       "path": "pages/apps/clarice/diagnostics.html",
-      "reason": "legacy (merged into Nina) except redirect index.html"
+      "reason": "merged into Nina (keep only redirect index if present)"
+    },
+    {
+      "path": "pages/apps/clarice/index.html",
+      "reason": "merged into Nina (keep only redirect index if present)"
     },
     {
       "path": "pages/apps/clarice/index.json",
-      "reason": "legacy (merged into Nina) except redirect index.html"
+      "reason": "merged into Nina (keep only redirect index if present)"
     },
     {
       "path": "pages/apps/clarice/reports/graphics-audit-20251010T000205Z.json",
-      "reason": "legacy (merged into Nina) except redirect index.html"
+      "reason": "merged into Nina (keep only redirect index if present)"
+    },
+    {
+      "path": "pages/apps/index.html",
+      "reason": "duplicate content"
     },
     {
       "path": "pages/apps/jem/imports/.gitkeep",
       "reason": "duplicate content"
     },
     {
+      "path": "pages/apps/jem/index.json",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/odessa/index.html",
+      "reason": "merged into Billie (keep only redirect index if present)"
+    },
+    {
       "path": "pages/apps/odessa/index.json",
-      "reason": "legacy (merged into Billie) except redirect index.html"
+      "reason": "merged into Billie (keep only redirect index if present)"
+    },
+    {
+      "path": "pages/apps/overseers/index.json",
+      "reason": "duplicate content"
     },
     {
       "path": "pages/apps/reyczar/index.json",
@@ -891,31 +963,47 @@
     },
     {
       "path": "pages/apps/sorcha/coach.html",
-      "reason": "legacy (merged into Billie) except redirect index.html"
+      "reason": "merged into Billie (keep only redirect index if present)"
+    },
+    {
+      "path": "pages/apps/sorcha/index.html",
+      "reason": "merged into Billie (keep only redirect index if present)"
     },
     {
       "path": "pages/apps/sorcha/index.json",
-      "reason": "legacy (merged into Billie) except redirect index.html"
+      "reason": "merged into Billie (keep only redirect index if present)"
     },
     {
       "path": "pages/apps/sorcha/storyboards/storyboard-20251019T033626Z.json",
-      "reason": "legacy (merged into Billie) except redirect index.html"
+      "reason": "merged into Billie (keep only redirect index if present)"
     },
     {
       "path": "pages/apps/sorcha/storyboards.html",
-      "reason": "legacy (merged into Billie) except redirect index.html"
+      "reason": "merged into Billie (keep only redirect index if present)"
     },
     {
       "path": "pages/apps/sorcha/uploader.html",
-      "reason": "legacy (merged into Billie) except redirect index.html"
+      "reason": "merged into Billie (keep only redirect index if present)"
+    },
+    {
+      "path": "pages/apps/stella/app.css",
+      "reason": "duplicate content"
+    },
+    {
+      "path": "pages/apps/stella/index.json",
+      "reason": "duplicate content"
     },
     {
       "path": "pages/apps/themis/expirations.html",
-      "reason": "legacy (merged into Charlotte) except redirect index.html"
+      "reason": "merged into Charlotte (keep only redirect index if present)"
+    },
+    {
+      "path": "pages/apps/themis/index.html",
+      "reason": "merged into Charlotte (keep only redirect index if present)"
     },
     {
       "path": "pages/apps/themis/index.json",
-      "reason": "legacy (merged into Charlotte) except redirect index.html"
+      "reason": "merged into Charlotte (keep only redirect index if present)"
     },
     {
       "path": "pages/apps/whitestar/index.json",

@@ -4776,8 +4776,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "bdb6f4b48ffd73eb8e9b2872ec0ab95685b5a54fd03305f260d8e4bb7e8f90d4",
-    "bytes": 177413
+    "sha256": "3d84a5691b126847ccec2acd59a9fbe8709da68e0fe8e883490c0cc748aef5ec",
+    "bytes": 178052
   },
   {
     "path": "reports/clarity/files-index.json",

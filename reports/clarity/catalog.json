@@ -2796,8 +2796,8 @@
   },
   {
     "path": "memory/file-index.json",
-    "sha256": "c181b8fa3e84a85faeb863799ffe2e234ac7ff826d2dcf79dccfaa455d107b7a",
-    "bytes": 167878
+    "sha256": "a8a12d801a5e24f120adc3201dc04bd533895d7ad27d2e0473142d998845a626",
+    "bytes": 183127
   },
   {
     "path": "pages/_city/city.css",
@@ -4811,18 +4811,18 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "3d84a5691b126847ccec2acd59a9fbe8709da68e0fe8e883490c0cc748aef5ec",
-    "bytes": 178052
+    "sha256": "59928aa7baa098fa899c25e0ca5d6cc33255df6225b1772364438e74b9b71eba",
+    "bytes": 179296
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "254196d3319271539c83ea656116a9c08eac812b9d861387c5b4b1b1373ea0ba",
-    "bytes": 3364677
+    "sha256": "f51591d8231ef3c77ad481724991601bcfdaee3035fdce60b64d39e6672259a5",
+    "bytes": 3382592
   },
   {
     "path": "reports/clarity/pages-map.json",
-    "sha256": "2f1cacd434e71bae734d1e591c44a09f8383cfcae2f8a9b0ebbdc5f91184290c",
-    "bytes": 39338
+    "sha256": "feaab54edeecb337c66abd71dc8794f31af2cbf8b2ee454c2e118dacf25c1d48",
+    "bytes": 39367
   },
   {
     "path": "reports/clarity/workers-map.json",
@@ -4831,8 +4831,8 @@
   },
   {
     "path": "reports/clarity/workflows-map.json",
-    "sha256": "c3d997d9618e926638e175c438427e4543964de11eca571009fa2f540dc70ff6",
-    "bytes": 19110
+    "sha256": "d600c2cd62a56ab40b486d5b47ac393d9a6880de4bc01df3bd7363ba7fbb8a6c",
+    "bytes": 20890
   },
   {
     "path": "robots.txt",

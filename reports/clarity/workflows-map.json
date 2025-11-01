@@ -474,7 +474,19 @@
     "path": ".github/workflows/deploy-tts-worker.yml",
     "name": "Deploy TTS Worker",
     "triggers": [
-      "workflow_dispatch"
+      "workflow_dispatch",
+      "push",
+      "branches",
+      "main",
+      "paths",
+      "cloudflare",
+      "worker",
+      "tts",
+      "js",
+      "github",
+      "workflows",
+      "deploy",
+      "yml"
     ]
   },
   {
@@ -483,6 +495,27 @@
     "triggers": [
       "workflow_run",
       "workflows",
+      "Deploy",
+      "GitHub",
+      "Pages",
+      "Repo",
+      "Vision",
+      "index",
+      "site",
+      "map",
+      "Sweeper",
+      "propose",
+      "deletions",
+      "Nina",
+      "Guard",
+      "YAML",
+      "importmap",
+      "sanity",
+      "Response",
+      "Check",
+      "URLs",
+      "API",
+      "endpoints",
       "types",
       "completed"
     ]
@@ -720,6 +753,29 @@
     "path": ".github/workflows/package-workflows.yml",
     "name": "Package - Workflows ZIP (flat root)",
     "triggers": [
+      "workflow_dispatch"
+    ]
+  },
+  {
+    "path": ".github/workflows/pages-preflight.yml",
+    "name": "Pages Preflight (links + importmap)",
+    "triggers": [
+      "pull_request",
+      "branches",
+      "main",
+      "paths",
+      "html",
+      "importmap",
+      "json",
+      "pages",
+      "asset",
+      "github",
+      "workflows",
+      "preflight",
+      "yml",
+      "memory",
+      "site",
+      "map",
       "workflow_dispatch"
     ]
   },

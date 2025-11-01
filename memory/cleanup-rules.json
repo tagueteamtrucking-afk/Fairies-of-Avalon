@@ -1,0 +1,35 @@
+{
+  "preserveGlobs": [
+    "asset/models/**",
+    "asset/wings/**",
+    ".github/workflows/**",
+    "importmap.json",
+    "index.html",
+    "pages/**",
+    "memory/**"
+  ],
+  "deleteIf": [
+    {
+      "glob": "**/*.tmp",
+      "reason": "temporary file"
+    },
+    {
+      "glob": "**/*~",
+      "reason": "editor backup"
+    },
+    {
+      "glob": "**/.DS_Store",
+      "reason": "system file"
+    },
+    {
+      "glob": "**/Thumbs.db",
+      "reason": "system file"
+    },
+    {
+      "glob": "pages/**",
+      "sizeLT": 12,
+      "reason": "empty stub page"
+    }
+  ],
+  "duplicateHashPolicy": "delete-all-but-largest"
+}

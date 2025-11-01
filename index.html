@@ -1,30 +1,32 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fairies of Avalon — Home</title>
-  <link rel="stylesheet" href="assets/css/avalon.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Fairies of Avalon</title>
+<script type="importmap" src="/importmap.json"></script>
+<style>
+  :root{--bg:#0b0f17;--ink:#e8ecf1;--card:#141a24}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 ui-sans-serif,system-ui}
+  .wrap{max-width:960px;margin:auto;padding:24px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .card{background:var(--card);padding:16px;border-radius:14px}
+  a{color:#9cc1ff;text-decoration:none}
+</style>
 </head>
 <body>
-<header class="av-header">
-  <div class="wrap">
-    <img src="assets/img/placeholder.svg" alt="" class="crest">
-    <div>
-      <h1>🏰 Fairies of Avalon</h1>
-      <p class="tagline">Bright, cheerful, magical, fanciful — jewel tones, carved stone, crystal accents.</p>
-    </div>
-  </div>
-</header>
-<main class="wrap grid">
-  <a class="card" href="pages/_city/index.html"><h3>🗺️ City Map</h3><p>Enter the sunlit city and visit each Fairy’s domain.</p></a>
-  <a class="card" href="pages/apps/alexandria/index.html"><h3>📚 Alexandria</h3><p>World‑building DM — prompts & logs (bright UI).</p></a>
-  <a class="card" href="pages/apps/jem/index.html"><h3>🏃 Jem</h3><p>Fitness plan dashboard. Pull latest plan JSON.</p></a>
-  <a class="card" href="pages/apps/tracy/skins/generator.html"><h3>🎨 Tracy</h3><p>Skin generator (LLM Worker). Bright by default.</p></a>
-  <a class="card" href="pages/apps/carol/index.html"><h3>🍎 Carol</h3><p>Shopping & menu — reads plan, generates list.</p></a>
-  <a class="card" href="pages/apps/charlotte/highlights.html"><h3>🔧 Charlotte</h3><p>Importmap & library curation (PR‑first install).</p></a>
-  <a class="card" href="pages/apps/stella/index.html"><h3>🔊 Stella</h3><p>TTS page calling /api/voice (no secrets in client).</p></a>
-</main>
-<footer class="av-footer"><div class="wrap"><small>© 2025 Fairies of Avalon — Bright edition. No dark defaults.</small></div></footer>
+  <header class="wrap">
+    <h1>🏰 Fairies of Avalon</h1>
+    <p>This development shell is private and unindexed.</p>
+  </header>
+  <main class="wrap">
+    <section class="grid" id="links">
+      <div class="card"><strong>City</strong><br><a href="/pages/_city/index.html">Open map</a></div>
+      <div class="card"><strong>Charlotte</strong><br><a href="/pages/apps/charlotte/highlights.html">Importmap installer</a></div>
+      <div class="card"><strong>Tracy</strong><br><a href="/pages/apps/tracy/skins/index.html">Skins & theme</a></div>
+      <div class="card"><strong>Stella</strong><br><a href="/pages/apps/stella/index.html">TTS (Worker)</a></div>
+    </section>
+  </main>
 </body>
 </html>

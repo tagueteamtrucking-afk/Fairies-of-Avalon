@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T13:07:16.913Z",
+  "generated": "2025-11-01T13:07:50.246Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -435,8 +435,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 69568,
-      "hash": "b47904dfc7085a2691913a2627303aa6",
+      "bytes": 69415,
+      "hash": "7290217e1be28d209e83fb5c869ccb73",
       "purpose": "misc"
     },
     {
@@ -2264,12 +2264,6 @@
       "purpose": "page"
     },
     {
-      "path": "pages/apps/sorcha/index.html",
-      "bytes": 396,
-      "hash": "a7e2010291da60bdc7904af00f0266e1",
-      "purpose": "page"
-    },
-    {
       "path": "pages/apps/stella/guided-sessions.html",
       "bytes": 1305,
       "hash": "ca947ce6d032ab887a0c4810f2302124",
@@ -2279,12 +2273,6 @@
       "path": "pages/apps/stella/index.html",
       "bytes": 833,
       "hash": "a644f5196f910f298ef06a13b7eead66",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/themis/index.html",
-      "bytes": 414,
-      "hash": "65ed2d8b674aaa396a88b3ba0f764e46",
       "purpose": "page"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T12:57:39.447Z",
+  "generated": "2025-11-01T12:58:23.256Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -368,6 +368,12 @@
       "purpose": "misc"
     },
     {
+      "path": "index.html",
+      "bytes": 2254,
+      "hash": "57982323b1f2eeba3f8d76f201148e47",
+      "purpose": "misc"
+    },
+    {
       "path": "kill-sw.html",
       "bytes": 620,
       "hash": "05a006421c030ca47215e5695e8935c2",
@@ -429,8 +435,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 69453,
-      "hash": "7cf0cf46fb64092d65107341af732fcb",
+      "bytes": 69586,
+      "hash": "c0b1e509206fe78b9f12e304a6d17dcf",
       "purpose": "misc"
     },
     {

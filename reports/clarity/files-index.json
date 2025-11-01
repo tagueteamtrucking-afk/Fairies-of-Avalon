@@ -483,23 +483,23 @@
   },
   {
     "path": ".github/workflows/deploy-tts-worker.yml",
-    "sha256": "e1108e8dbd15d26eeb2d410fb0a29a8d7fa1003a17ae6897935f372bfa641a7f",
-    "bytes": 395,
+    "sha256": "8a73031bc695b736a98190c40e3fe6fc2a17b076fb6dd31eb6bced649dfd3e1c",
+    "bytes": 675,
     "purpose": "workflow",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "name: Deploy TTS Worker\non: { workflow_dispatch: {} }\npermissions: { contents: read }\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: cloudflare/wrangler-action@v3\n        with:\n          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}\n          command: deploy --config wrangler.toml\n"
+    "preview": "name: Deploy TTS Worker\n\non:\n  workflow_dispatch: {}\n  push:\n    branches: [ main ]\n    paths:\n      - \"cloudflare/worker-tts.js\"\n      - \".github/workflows/deploy-tts-worker.yml\"\n\npermissions:\n  contents: read\n\nconcurrency:\n  group: deploy-tts-${{ github.ref }}\n  cancel-in-progress: true\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Publish worker\n        env:\n          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}\n          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}\n          WORKER_NAME: tts-worker\n        run: |\n          npm i -g wrangler\n          wrangler deploy cloudflare/worker-tts.js --name $WORKER_NAME\n"
   },
   {
     "path": ".github/workflows/failure-feed.yml",
-    "sha256": "98774c49bb13f7c050eee630684f47f565b48935fccb7b3398655f8617940793",
-    "bytes": 1154,
+    "sha256": "a82ba573df108a7d7c604a609334ddfe78043e496c328fc9f20679d53a83be94",
+    "bytes": 1244,
     "purpose": "workflow",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "name: Failure Feed (on workflow_run)\non:\n  workflow_run:\n    workflows:\n      - \"*\"\n    types:\n      - completed\npermissions:\n  actions: read\n  issues: write\njobs:\n  feed:\n    if: ${{ github.event.workflow_run.conclusion != 'success' }}\n    runs-on: ubuntu-latest\n    steps:\n      - name: Append failure line\n        uses: actions/github-script@v7\n        with:\n          script: |\n            const run = context.payload.workflow_run;\n            const owner = context.repo.owner, repo = context.repo.repo;\n            const title = 'Build Failures Feed';\n            const line = `- ${run.name} → *${run.status}/${run.conclusion}* (${run.html_url}) at ${run.updated_at}`;\n            const { data: issues } = await github.rest.issues.listForRepo({owner, repo, state: 'open'});\n            const existing = issues.find(i => i.title === title);\n            if (existing) {\n              const body = (existing.body || '') + '\\n' + line;\n              await github.rest.issues.update({owner, repo, issue_number: existing.number, body});\n            } else {\n              await github.rest.issues.create({owner, repo, title, body: line});\n            }\n"
+    "preview": "name: Failure Feed (on workflow_run)\n\non:\n  workflow_run:\n    workflows:\n      - \"Deploy GitHub Pages\"\n      - \"Repo Vision (index + site map)\"\n      - \"Repo Sweeper (propose deletions)\"\n      - \"Nina Guard (YAML + importmap sanity)\"\n      - \"Response Check (URLs & API endpoints)\"\n    types: [completed]\n\npermissions:\n  contents: read\n  issues: write\n\nconcurrency:\n  group: failure-feed-${{ github.ref }}\n  cancel-in-progress: false\n\njobs:\n  post:\n    if: >\n      github.event.workflow_run.conclusion != 'success' &&\n      !contains(github.event.workflow_run.name, 'Failure Feed') &&\n      !contains(github.event.workflow_run.name, 'Pages Preflight')\n    runs-on: ubuntu-latest\n    steps:\n      - name: Post summary comment\n        uses: actions/github-script@v7\n        with:\n          script: |\n            const wr = context.payload.workflow_run;\n            const body = [\n              \"### ❌ Workflow failed\",\n              `**${wr.name}** #${wr.run_number}`,\n              `Branch: \\`${wr.head_branch}\\``,\n              `[View logs](${wr.html_url})`\n            ].join(\"\\n\");\n            const {owner, repo} = context.repo;\n            await github.rest.issues.create({owner, repo, title:`Fail: ${wr.name} #${wr.run_number}`, body});\n"
   },
   {
     "path": ".github/workflows/importmap-merge.yml",
@@ -720,6 +720,16 @@
     "links": [],
     "refs": [],
     "preview": "name: Package - Workflows ZIP (flat root)\non: { workflow_dispatch: {} }\njobs:\n  package:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Stage workflows\n        run: |\n          mkdir -p staging\n          if [ -d \".github/workflows\" ]; then\n            find .github/workflows -maxdepth 1 -type f \\( -name \"*.yml\" -o -name \"*.yaml\" \\) -print0 | while IFS= read -r -d '' f; do cp \"$f\" \"staging/$(basename \"$f\")\"; done\n          fi\n          count=$(ls -1 staging 2>/dev/null | wc -l | tr -d ' ')\n          if [ \"$count\" = \"0\" ]; then echo \"No workflow files found\" >&2; exit 1; fi\n          (cd staging && zip -r ../Avalon-Workflows.zip .)\n      - uses: actions/upload-artifact@v4\n        with: { name: Avalon-Workflows, path: Avalon-Workflows.zip, if-no-files-found: error }\n"
+  },
+  {
+    "path": ".github/workflows/pages-preflight.yml",
+    "sha256": "e4925676c1a252f53526b03dae5cfb660303e60212baeeba8ce434d9fb3494d9",
+    "bytes": 3773,
+    "purpose": "workflow",
+    "imports": [],
+    "links": [],
+    "refs": [],
+    "preview": "name: Pages Preflight (links + importmap)\n\non:\n  pull_request:\n    branches: [ main ]\n    paths:\n      - \"**/*.html\"\n      - \"importmap.json\"\n      - \"pages/**\"\n      - \"asset/**\"\n      - \".github/workflows/pages-preflight.yml\"\n      - \"memory/site-map.json\"\n  workflow_dispatch: {}\n\npermissions:\n  contents: read\n\nconcurrency:\n  group: pages-preflight-${{ github.ref }}\n  cancel-in-progress: true\n\njobs:\n  preflight:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Build site map fallback (if not present)\n        run: |\n          if [ ! -f memory/site-map.json ]; then\n            mkdir -p memory\n            node - <<'JS'\n            const fs = require('fs'), path = require('path');\n            function walk(d, acc=[]){for(const e of fs.readdirSync(d,{withFileTypes:true})){\n              const p=path.join(d,e.name); if(e.isDirectory()){ if(['.git','node_modules','.next','.vercel','.cache'].includes(e.name))continue; walk(p,acc);}\n              else{ acc.push(path.relative(process.cwd(),p).replace(/\\\\/g,'/')); }} return acc; }\n            const files = walk(process.cwd());\n            const pages = files.filter(f=>f.startsWith('pages/') && f.endsWith('.html')).map(f=>'/'+f);\n            const entry = fs.existsSync('index.html')? ['/index.html']:[];\n            const assets = files.filter(f=>f.startsWith('asset/')).map(f=>'/'+f);\n            let importmap=null; try{importmap=JSON.parse(fs.readFileSync('importmap.json','utf8'));}catch{}\n            fs.writeFileSync('memory/site-map.json', JSON.stringify({generated:new Date().toISOString(),entrypoints:entry,pages,assets,importmap},null,2));\n            JS\n          fi\n      - name: Preflight checks (broken links + importmap sanity)\n        id: check\n        run: |\n          node - <<'JS'\n          const fs = require('fs'), path = require('path');\n          const exists = p => fs.existsSync(p) && fs.statSync(p).isFile();\n          const site = JSON.parse(fs.readFileSync('memory/site-map.json','utf8'));\n          const problems = [];\n          let im = site.importmap || null;\n          if (!im) { try { im = JSON.parse(fs.readFileSync('importmap.json','utf8')); } catch {} }\n          const need = ['three','three/addons/'];\n          for (const n of need) if (!im?.imports?.[n]) problems.push(`importmap.json missing \"${n}\"`);\n          if (!im?.imports?.['@pixiv/three-vrm']) problems.push('importmap.json missing \"@pixiv/three-vrm\"');\n          const htmlFiles = new Set([...site.entrypoints.map(s=>s.replace(/^\\//,'')),...site.pages.map(s=>s.replace(/^\\//,''))]);\n          const allFiles = new Set(fs.readdirSync('.',{withFileTypes:true}).flatMap(e=>e.name));\n          function parseLinks(html){const out=[];const rx=/(?:href|src)=[\"']([^\"']+)[\"']/g;let m;while((m=rx.exec(html)))out.push(m[1]);return out;}\n          for(const file of htmlFiles){if(!exists(file)){problems.push(`Missing HTML: ${file}`);continue;}"
   },
   {
     "path": ".github/workflows/pr-automerge-comment-bot.yml",
@@ -1066,13 +1076,13 @@
   },
   {
     "path": ".github/workflows/wrangler-whoami.yml",
-    "sha256": "ee868e654b603d9cbabdcf4e32a2e9e9fcf12dd473179637dba910c5091c0a60",
-    "bytes": 628,
+    "sha256": "f2a66ab55650c2a354566f97b85b67aff2a8069eb1b178fc987d9cab9013dffe",
+    "bytes": 361,
     "purpose": "workflow",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "name: Wrangler WhoAmI (debug)\non:\n  workflow_dispatch:\njobs:\n  whoami:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n      - name: wrangler --version\n        uses: cloudflare/wrangler-action@v3\n        with:\n          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}\n          command: --version\n      - name: wrangler whoami\n        uses: cloudflare/wrangler-action@v3\n        with:\n          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}\n          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}\n          command: whoami\n"
+    "preview": "name: Wrangler WhoAmI (debug)\n\non:\n  workflow_dispatch: {}\n\npermissions:\n  contents: read\n\nconcurrency:\n  group: wrangler-whoami-${{ github.ref }}\n  cancel-in-progress: true\n\njobs:\n  whoami:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: WhoAmI\n        run: |\n          npm i -g wrangler\n          wrangler whoami || true\n"
   },
   {
     "path": ".nojekyll",
@@ -5926,13 +5936,13 @@
   },
   {
     "path": "memory/file-index.json",
-    "sha256": "c181b8fa3e84a85faeb863799ffe2e234ac7ff826d2dcf79dccfaa455d107b7a",
-    "bytes": 167878,
+    "sha256": "33097d4f7d7ed031fee9c6a6a1db76046cdf89580dc7b132a6d8a5d48d6e27e4",
+    "bytes": 183127,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "{\n  \"summary\": {\n    \"count\": 842,\n    \"byType\": {\n      \"other\": 123,\n      \"html\": 6,\n      \"cname\": 1,\n      \"data\": 267,\n      \"style\": 2,\n      \"model\": 16,\n      \"wallpaper\": 10,\n      \"wings\": 108,\n      \"script\": 6,\n      \"page\": 20,\n      \"microapp\": 283\n    },\n    \"generated_at\": \"2025-10-22T01:48:45.232Z\"\n  },\n  \"files\": [\n    {\n      \"path\": \".nojekyll\",\n      \"bytes\": 1,\n      \"sha1\": \"adc83b19e793491b1c6ea0fd8b46cd9f32e592fc\",\n      \"type\": \"other\",\n      \"purpose\": \"\"\n    },\n    {\n      \"path\": \"404.html\",\n      \"bytes\": 937,\n      \"sha1\": \"09b5f9bdc957a8d294bb61a1c355393deef3c5e4\",\n      \"type\": \"html\",\n      \"purpose\": \"\"\n    },\n    {\n      \"path\": \"CNAME\",\n      \"bytes\": 20,\n      \"sha1\": \"21a97f44c418bfac8370728f67ace6eb5b9eae87\",\n      \"type\": \"cname\",\n      \"purpose\": \"Custom domain for GitHub Pages\"\n    },\n    {\n      \"path\": \"Cody's Memory.yaml\",\n      \"bytes\": 1731,\n      \"sha1\": \"498ee9bdfbe737d83226033718bc70a618e2e1e1\",\n      \"type\": \"data\",\n      \"purpose\": \"Canonical project memory\"\n    },\n    {\n      \"path\": \"Cody's Memory.yml\",\n      \"bytes\": 1334,\n      \"sha1\": \"d0728d2cc0e2d205f335100d279762be5bcf8954\",\n      \"type\": \"data\",\n      \"purpose\": \"\"\n    },\n    {\n      \"path\": \"asset/css/style.css\",\n      \"bytes\": 133,\n      \"sha1\": \"acf8a7cb2ad1177b89056f1267e4c72fa9f924c1\",\n      \"type\": \"style\",\n      \"purpose\": \"\""
+    "preview": "{\n  \"generated\": \"2025-11-01T01:23:24.193Z\",\n  \"count\": 1080,\n  \"files\": [\n    {\n      \"path\": \".github/cleanup/sweeper-manifest.json\",\n      \"bytes\": 118,\n      \"hash\": \"0fee89b48714e5e39e8129fe8c00df9b\",\n      \"purpose\": \"misc\"\n    },\n    {\n      \"path\": \".github/cleanup/workflows-to-review.json\",\n      \"bytes\": 1014,\n      \"hash\": \"04ae324f4c8ea030de09af6855b12640\",\n      \"purpose\": \"misc\"\n    },\n    {\n      \"path\": \".github/workflows/MANIFEST.json\",\n      \"bytes\": 1344,\n      \"hash\": \"109cd9a76c1412d25f610971efe9d082\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/actions-audit.yml\",\n      \"bytes\": 2915,\n      \"hash\": \"885c211d91e02693b02c8824290c9b11\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n      \"bytes\": 959,\n      \"hash\": \"9b081cefca80381eb33ce521e1e1f5e5\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n      \"bytes\": 3350,\n      \"hash\": \"a61caa571c9f36a2d3202971daac4ac8\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/audit-on-push.yml\",\n      \"bytes\": 1140,\n      \"hash\": \"ca68d5015ac63415ee9ba7d4fb201fb6\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n      \"bytes\": 1387,\n      \"hash\": \"b803310eee798fa494c858d6d743b77f\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n      \"bytes\": 1665,\n      \"hash\": \"76aee67ec6aa1a2940bce6e9f6bfbde5\",\n      \"purpose\": \"workflow\"\n    },\n    {\n      \"path\": \".github/workflows/carol-build-shopping.yml\","
   },
   {
     "path": "pages/_city/city.css",
@@ -10433,8 +10443,8 @@
   },
   {
     "path": "reports/clarity/catalog.json",
-    "sha256": "59928aa7baa098fa899c25e0ca5d6cc33255df6225b1772364438e74b9b71eba",
-    "bytes": 179296,
+    "sha256": "03a71fff01292dbb6898e1df793a5cf85ec1d3398a570d878eafab53ae55cc4b",
+    "bytes": 179458,
     "purpose": "other",
     "imports": [],
     "links": [],
@@ -10443,8 +10453,8 @@
   },
   {
     "path": "reports/clarity/files-index.json",
-    "sha256": "254196d3319271539c83ea656116a9c08eac812b9d861387c5b4b1b1373ea0ba",
-    "bytes": 3364677,
+    "sha256": "f51591d8231ef3c77ad481724991601bcfdaee3035fdce60b64d39e6672259a5",
+    "bytes": 3382592,
     "purpose": "other",
     "imports": [],
     "links": [],
@@ -10453,13 +10463,13 @@
   },
   {
     "path": "reports/clarity/pages-map.json",
-    "sha256": "2f1cacd434e71bae734d1e591c44a09f8383cfcae2f8a9b0ebbdc5f91184290c",
-    "bytes": 39338,
+    "sha256": "feaab54edeecb337c66abd71dc8794f31af2cbf8b2ee454c2e118dacf25c1d48",
+    "bytes": 39367,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "[\n  {\n    \"path\": \"404.html\",\n    \"links\": [\n      \"/pages/apps/_city/index.html\"\n    ]\n  },\n  {\n    \"path\": \"avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html\",\n    \"links\": [\n      \"data:text/plain;charset=utf-8,\"\n    ]\n  },\n  {\n    \"path\": \"index.html\",\n    \"links\": [\n      \"assets/css/avalon.css\",\n      \"pages/_city/index.html\",\n      \"pages/apps/alexandria/index.html\",\n      \"pages/apps/jem/index.html\",\n      \"pages/apps/tracy/skins/generator.html\",\n      \"pages/apps/carol/index.html\",\n      \"pages/apps/charlotte/highlights.html\",\n      \"pages/apps/stella/index.html\"\n    ]\n  },\n  {\n    \"path\": \"kill-sw-boost.html\",\n    \"links\": []\n  },\n  {\n    \"path\": \"kill-sw.html\",\n    \"links\": [\n      \"/\"\n    ]\n  },\n  {\n    \"path\": \"memory-history/retired/odessa/index.html\",\n    \"links\": [\n      \"/pages/plaza.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/city.css\",\n    \"links\": []\n  },\n  {\n    \"path\": \"pages/_city/index.html\",\n    \"links\": [\n      \"../../assets/css/avalon.css\",\n      \"../alexandria/index.html\",\n      \"../tracy/skins/generator.html\",\n      \"../jem/index.html\",\n      \"../carol/index.html\",\n      \"../stella/index.html\",\n      \"../charlotte/highlights.html\",\n      \"../../index.html\"\n    ]\n  },\n  {"
+    "preview": "[\n  {\n    \"path\": \"404.html\",\n    \"links\": [\n      \"/pages/apps/_city/index.html\"\n    ]\n  },\n  {\n    \"path\": \"avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html\",\n    \"links\": [\n      \"data:text/plain;charset=utf-8,\"\n    ]\n  },\n  {\n    \"path\": \"index.html\",\n    \"links\": [\n      \"/pages/_city/index.html\",\n      \"/pages/apps/charlotte/highlights.html\",\n      \"/pages/apps/tracy/skins/index.html\",\n      \"/pages/apps/stella/index.html\"\n    ]\n  },\n  {\n    \"path\": \"kill-sw-boost.html\",\n    \"links\": []\n  },\n  {\n    \"path\": \"kill-sw.html\",\n    \"links\": [\n      \"/\"\n    ]\n  },\n  {\n    \"path\": \"memory-history/retired/odessa/index.html\",\n    \"links\": [\n      \"/pages/plaza.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/city.css\",\n    \"links\": []\n  },\n  {\n    \"path\": \"pages/_city/index.html\",\n    \"links\": [\n      \"../../assets/css/avalon.css\",\n      \"../alexandria/index.html\",\n      \"../tracy/skins/generator.html\",\n      \"../jem/index.html\",\n      \"../carol/index.html\",\n      \"../stella/index.html\",\n      \"../charlotte/highlights.html\",\n      \"../../index.html\"\n    ]\n  },\n  {\n    \"path\": \"pages/_city/plaza.html\",\n    \"links\": [\n      \"../carol/index.html\",\n      \"../jem/week1/index.html\","
   },
   {
     "path": "reports/clarity/workers-map.json",
@@ -10473,13 +10483,13 @@
   },
   {
     "path": "reports/clarity/workflows-map.json",
-    "sha256": "c3d997d9618e926638e175c438427e4543964de11eca571009fa2f540dc70ff6",
-    "bytes": 19110,
+    "sha256": "d600c2cd62a56ab40b486d5b47ac393d9a6880de4bc01df3bd7363ba7fbb8a6c",
+    "bytes": 20890,
     "purpose": "other",
     "imports": [],
     "links": [],
     "refs": [],
-    "preview": "[\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"name\": \"Actions Audit (list workflows & last runs)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"lookback_hours\",\n      \"description\",\n      \"Hours\",\n      \"back\",\n      \"to\",\n      \"inspect\",\n      \"required\",\n      \"true\",\n      \"default\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"name\": \"Alexandria DM Setup\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"name\": \"Alexandria - Voice DM (pages & logs)\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"name\": \"Actions Audit (on push)\",\n    \"triggers\": [\n      \"push\",\n      \"branches\",\n      \"main\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"name\": \"Carol — Refresh Shopping (direct commit)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"plan_path\",\n      \"description\",\n      \"Path\",\n      \"to\",\n      \"the\",\n      \"plan\",\n      \"JSON\",\n      \"use\",\n      \"required\",\n      \"false\",\n      \"default\",\n      \"pages\",\n      \"apps\","
+    "preview": "[\n  {\n    \"path\": \".github/workflows/actions-audit.yml\",\n    \"name\": \"Actions Audit (list workflows & last runs)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\",\n      \"lookback_hours\",\n      \"description\",\n      \"Hours\",\n      \"back\",\n      \"to\",\n      \"inspect\",\n      \"required\",\n      \"true\",\n      \"default\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-dm-setup.yml\",\n    \"name\": \"Alexandria DM Setup\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/alexandria-voice-dm.yml\",\n    \"name\": \"Alexandria - Voice DM (pages & logs)\",\n    \"triggers\": [\n      \"workflow_dispatch\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/audit-on-push.yml\",\n    \"name\": \"Actions Audit (on push)\",\n    \"triggers\": [\n      \"push\",\n      \"branches\",\n      \"main\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/auto-approve-and-merge.yml\",\n    \"name\": \"Auto-approve & Automerge (label-gated)\",\n    \"triggers\": [\n      \"pull_request_target\",\n      \"types\",\n      \"labeled\",\n      \"synchronize\",\n      \"opened\",\n      \"reopened\",\n      \"ready_for_review\"\n    ]\n  },\n  {\n    \"path\": \".github/workflows/carol-build-shopping-direct.yml\",\n    \"name\": \"Carol — Refresh Shopping (direct commit)\",\n    \"triggers\": [\n      \"workflow_dispatch\",\n      \"inputs\","
   },
   {
     "path": "robots.txt",

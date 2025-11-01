@@ -35,82 +35,47 @@ jobs:
             const pr = context.payload.pull_request;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-
-            // Sentinel header to dedupe old bot comments
             const HEADER = "### 🤖 Automerge Comment Bot — Status Check";
 
-            // Fetch PR fresh to get mergeability and labels
-            const { data: fresh } = await github.rest.pulls.get({
-              owner, repo, pull_number: pr.number
-            });
+            const { data: fresh } = await github.rest.pulls.get({ owner, repo, pull_number: pr.number });
 
-            // Collect reasons
             const reasons = [];
-
             const labels = new Set(fresh.labels.map(l => l.name.toLowerCase()));
             const hasAutomerge = labels.has("automerge");
             const hasHold = labels.has("hold");
             const isDraft = fresh.draft;
 
-            if (!hasAutomerge) {
-              reasons.push("No **`automerge`** label on this PR.");
-            }
-            if (hasHold) {
-              reasons.push("The **`hold`** label is present (merges are blocked until it is removed).");
-            }
-            if (isDraft) {
-              reasons.push("This PR is still in **Draft** state.");
-            }
+            if (!hasAutomerge) reasons.push("No **`automerge`** label on this PR.");
+            if (hasHold) reasons.push("The **`hold`** label is present (merges are blocked until it is removed).");
+            if (isDraft) reasons.push("This PR is still in **Draft** state.");
 
-            // Check approvals
-            const reviews = await github.paginate(
-              github.rest.pulls.listReviews, { owner, repo, pull_number: pr.number }
-            );
+            const reviews = await github.paginate(github.rest.pulls.listReviews, { owner, repo, pull_number: pr.number });
             const approvals = reviews.filter(r => r.state === "APPROVED");
-            if (approvals.length < 1) {
-              reasons.push("No **approving review** found. (Branch protection may require one.)");
-            }
+            if (approvals.length < 1) reasons.push("No **approving review** found. (Branch protection may require one.)");
 
-            // Check CI status
             const head_sha = fresh.head.sha;
-
-            // Old-style statuses
-            const { data: status } = await github.rest.repos.getCombinedStatusForRef({
-              owner, repo, ref: head_sha
-            });
+            const { data: status } = await github.rest.repos.getCombinedStatusForRef({ owner, repo, ref: head_sha });
             const failingStatuses = status.statuses.filter(s => s.state !== "success");
-            // Checks API
-            const checks = await github.paginate(
-              github.rest.checks.listForRef, { owner, repo, ref: head_sha }
-            );
-            const failingChecks = checks.filter(cr => {
-              const c = cr.conclusion;
-              const inProg = cr.status !== "completed";
-              return inProg || (c && !["success","neutral","skipped"].includes(c));
-            });
+            const checks = await github.paginate(github.rest.checks.listForRef, { owner, repo, ref: head_sha });
+            const failingChecks = checks.filter(cr => cr.status !== "completed" || (cr.conclusion && !["success","neutral","skipped"].includes(cr.conclusion)));
 
             if (failingStatuses.length > 0 || failingChecks.length > 0) {
               const names = [
                 ...failingStatuses.map(s => s.context),
                 ...failingChecks.map(c => c.name + (c.status !== "completed" ? " (in progress)" : ""))
               ];
-              reasons.push(`CI is not green yet for commit \`${head_sha.slice(0,7)}\`:
-- ` + names.slice(0,12).join("\n- "));
+              reasons.push(`CI is not green yet for commit \`${head_sha.slice(0,7)}\`:\n- ` + names.slice(0,12).join("\n- "));
             }
 
-            // Mergeability
-            // mergeable_state can be: "clean", "unstable", "dirty", "blocked", "draft", "unknown"
             const ms = fresh.mergeable_state;
             if (ms && !["clean"].includes(ms)) {
               reasons.push(`Mergeable state is **${ms}** (not \`clean\`). This can mean conflicts, pending checks, or branch protection rules.`);
             }
 
-            // If no reasons so far, explain that bot only comments when not auto-merged
             if (reasons.length === 0) {
               reasons.push("All signals look good. If this PR didn't auto-merge, a repository rule may be preventing it (e.g. required checks, codeowners review, or auto-merge disabled at the repo).");
             }
 
-            // Compose message
             const body = [
               HEADER,
               "",
@@ -132,22 +97,10 @@ jobs:
               "<sub>Tip: remove `hold`, add `automerge`, wait for checks, and ensure at least one approval if required.</sub>"
             ].join("\n");
 
-            // Delete previous bot comments to avoid noise
-            const comments = await github.paginate(github.rest.issues.listComments, {
-              owner, repo, issue_number: pr.number
-            });
-            const mine = comments.filter(c =>
-              c.user?.type === "Bot" && c.body && c.body.startsWith(HEADER)
-            );
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number: pr.number });
+            const mine = comments.filter(c => c.user?.type === "Bot" && c.body && c.body.startsWith(HEADER));
             for (const c of mine) {
-              try {
-                await github.rest.issues.deleteComment({ owner, repo, comment_id: c.id });
-              } catch (e) {
-                core.warning("Could not delete old bot comment: " + e.message);
-              }
+              try { await github.rest.issues.deleteComment({ owner, repo, comment_id: c.id }); } catch (e) {}
             }
 
-            // Post fresh comment
-            await github.rest.issues.createComment({
-              owner, repo, issue_number: pr.number, body
-            });
+            await github.rest.issues.createComment({ owner, repo, issue_number: pr.number, body });

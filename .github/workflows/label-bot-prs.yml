@@ -1,21 +1,20 @@
-name: Label bot PRs for automerge
+name: Label PRs
+
 on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+
 permissions:
+  contents: read
   pull-requests: write
+
 jobs:
   label:
+    if: ${{ !github.event.pull_request.draft }}
     runs-on: ubuntu-latest
     steps:
-      - name: Add 'automerge' label to bot PRs (Clarity, Carol Refresh, Jem Assessment)
-        uses: actions/github-script@v7
+      - name: Apply labels from .github/labeler.yml
+        uses: actions/labeler@v5
         with:
-          script: |
-            const pr = context.payload.pull_request;
-            const owner = context.repo.owner, repo = context.repo.repo;
-            const isBot = (pr.user && /\[bot\]$/.test(pr.user.login));
-            const goodTitle = /^(clarity\b|carol: refresh shopping & report\b|jem: (assessment|update)\b)/i.test(pr.title);
-            if (isBot && goodTitle) {
-              await github.rest.issues.addLabels({ owner, repo, issue_number: pr.number, labels: ['automerge'] });
-            }
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          sync-labels: true

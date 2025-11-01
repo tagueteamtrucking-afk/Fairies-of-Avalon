@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-01T12:09:15.990Z",
+  "generated": "2025-11-01T06:40:38.259Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -68,12 +68,6 @@
       "purpose": "misc"
     },
     {
-      "path": "UPDATED_PLAN.md",
-      "bytes": 4618,
-      "hash": "d7bb8efb525f62df4919cc4aa0b543c1",
-      "purpose": "misc"
-    },
-    {
       "path": "assets/README.md",
       "bytes": 638,
       "hash": "e756e23f729c67cc029b5a170bf2e41c",
@@ -110,45 +104,9 @@
       "purpose": "misc"
     },
     {
-      "path": "assets/img/jem-hall-inside.jpg",
-      "bytes": 190454,
-      "hash": "1bf541a19df4ad9d261dc00e7aef3ba2",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/jem-hall-inside.jpg.jpg",
-      "bytes": 190454,
-      "hash": "1bf541a19df4ad9d261dc00e7aef3ba2",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/jem-hall-outside.jpg",
-      "bytes": 206000,
-      "hash": "67501e464a24b88c82021a63a8c3dd43",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/jem-hall-outside.jpg.jpg",
-      "bytes": 206000,
-      "hash": "67501e464a24b88c82021a63a8c3dd43",
-      "purpose": "misc"
-    },
-    {
       "path": "assets/img/placeholder.svg",
       "bytes": 424,
       "hash": "263b45c5fdc80e0517e7dedfc4bf4684",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-sample.png",
-      "bytes": 2673251,
-      "hash": "6722a5704614a6cf3a0d6db3294d01cb",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/sounds/meditation.wav",
-      "bytes": 10584058,
-      "hash": "344245ba265c39e3bc39c4c7c304c33f",
       "purpose": "misc"
     },
     {
@@ -203,12 +161,6 @@
       "path": "avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1",
       "bytes": 6702,
       "hash": "2db45d95fb4ce49e2a2015baf6c47c09",
-      "purpose": "misc"
-    },
-    {
-      "path": "cleanup.sh",
-      "bytes": 1301,
-      "hash": "8d1b4c2737d57f6419c2e9bf65dd20df",
       "purpose": "misc"
     },
     {
@@ -423,8 +375,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 69451,
-      "hash": "64877987c87c5ab94d46b45c36822fc3",
+      "bytes": 64930,
+      "hash": "851025f261285b88749a70966033cb7b",
       "purpose": "misc"
     },
     {
@@ -2090,39 +2042,9 @@
       "purpose": "page"
     },
     {
-      "path": "pages/apps/alexandria/character-sheets.html",
-      "bytes": 1604,
-      "hash": "7201be307c19626d2e40e041a144c50b",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/alexandria/data/characters.json",
-      "bytes": 1019,
-      "hash": "2265c38b8a9c499d5370f186615c9c85",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/alexandria/data/story.json",
-      "bytes": 1042,
-      "hash": "5271d2dea4ae0eded5d41ae7257bb6d0",
-      "purpose": "page"
-    },
-    {
       "path": "pages/apps/alexandria/index.html",
-      "bytes": 888,
-      "hash": "70ab3ed19dad45d64df228532ea63887",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/alexandria/story-shelf.html",
-      "bytes": 1554,
-      "hash": "8f079552ff259b106a7fdab2eadfebdb",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/alexandria/timeline-explorer.html",
-      "bytes": 1421,
-      "hash": "f108be5a1a9dded5a3f7b887bae578cc",
+      "bytes": 807,
+      "hash": "947a7816be3fda3ab103c63bbb9f386e",
       "purpose": "page"
     },
     {
@@ -2132,51 +2054,15 @@
       "purpose": "page"
     },
     {
-      "path": "pages/apps/carol/data/meal-plan.json",
-      "bytes": 2170,
-      "hash": "780f48e18353a8b0ce33d8d55afd0669",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/data/shopping-list.json",
-      "bytes": 1878,
-      "hash": "1d9fb1b09c92089ac14589520e565627",
-      "purpose": "page"
-    },
-    {
       "path": "pages/apps/carol/index.html",
-      "bytes": 858,
-      "hash": "d0ba8e50301ed3cb8c4af60d0b8de0a4",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/meal-plan.html",
-      "bytes": 1610,
-      "hash": "c0e2825cec61d5d9438930a3a0f7d216",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/shopping-list.html",
-      "bytes": 1408,
-      "hash": "fa786f7587aeb7d9b03b1b0135e58991",
+      "bytes": 791,
+      "hash": "3ccf2f58661b2591acf8a947ab7e232e",
       "purpose": "page"
     },
     {
       "path": "pages/apps/charlotte/index.html",
-      "bytes": 983,
-      "hash": "ac5758121fe3967927aa652f5fc519cb",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/charlotte/queues-dashboard.html",
-      "bytes": 2051,
-      "hash": "d31f3f5b062a2313e90429f46dc09004",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/charlotte/translations-board.html",
-      "bytes": 2697,
-      "hash": "60a4d6cc97b3aea132066e7f57b8fe8e",
+      "bytes": 885,
+      "hash": "55c4902eb2916af40da00ad5d2eda620",
       "purpose": "page"
     },
     {
@@ -2198,57 +2084,15 @@
       "purpose": "page"
     },
     {
-      "path": "pages/apps/jem/data/training-plan.json",
-      "bytes": 2621,
-      "hash": "6852464030d009082541d39182bf1ff9",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/jem/fitness-planner.html",
-      "bytes": 1723,
-      "hash": "e1e88d1da90df014ae815a342ab88412",
-      "purpose": "page"
-    },
-    {
       "path": "pages/apps/jem/index.html",
-      "bytes": 897,
-      "hash": "aa4cee818d855e4e6c1210fa049545dd",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/jem/progress-tracker.html",
-      "bytes": 2668,
-      "hash": "f7e1d4743f16bb37c0959891267413d4",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/jem/workout-calendar.html",
-      "bytes": 1878,
-      "hash": "7a10e62e42a8daaf07ad439cbee1c013",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/nina/data/security-reports.json",
-      "bytes": 909,
-      "hash": "69b3107647f4dc77aa440760a566f939",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/nina/import-map-validation.html",
-      "bytes": 1728,
-      "hash": "85ea0e652cee2306cab9216db542a52d",
+      "bytes": 787,
+      "hash": "3a955c409303c33f4ea65e1314f145a8",
       "purpose": "page"
     },
     {
       "path": "pages/apps/nina/index.html",
-      "bytes": 992,
-      "hash": "f3d9269f9642fb6864e8bf80f963c33f",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/nina/security-reports.html",
-      "bytes": 1638,
-      "hash": "5a6c4863e69f8bc10dbf821aaef13ceb",
+      "bytes": 896,
+      "hash": "03e144949f3be242bb222ec9273b6ec0",
       "purpose": "page"
     },
     {
@@ -2270,15 +2114,9 @@
       "purpose": "page"
     },
     {
-      "path": "pages/apps/stella/guided-sessions.html",
-      "bytes": 1305,
-      "hash": "ca947ce6d032ab887a0c4810f2302124",
-      "purpose": "page"
-    },
-    {
       "path": "pages/apps/stella/index.html",
-      "bytes": 833,
-      "hash": "a644f5196f910f298ef06a13b7eead66",
+      "bytes": 781,
+      "hash": "0c5e0928ecce66189f767ed4449afc79",
       "purpose": "page"
     },
     {
@@ -2288,15 +2126,9 @@
       "purpose": "page"
     },
     {
-      "path": "pages/apps/tracy/art-gallery.html",
-      "bytes": 1977,
-      "hash": "927d346830245e612e6815ab2c2806cc",
-      "purpose": "page"
-    },
-    {
       "path": "pages/apps/tracy/index.html",
-      "bytes": 898,
-      "hash": "55f213b1eed79625c27e2538dad2159a",
+      "bytes": 839,
+      "hash": "12b0df2872517a0db02771f36c097868",
       "purpose": "page"
     },
     {

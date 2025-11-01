@@ -1,19 +1,15 @@
 name: Auto-approve & Automerge (smart)
-
 on:
   pull_request_target:
     types: [opened, labeled, synchronize, reopened, ready_for_review]
-
 permissions:
   contents: write
   pull-requests: write
   statuses: read
   checks: read
-
 concurrency:
   group: automerge-${{ github.event.pull_request.number }}
   cancel-in-progress: true
-
 jobs:
   approve-and-merge:
     if: >
@@ -32,7 +28,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           intervalSeconds: 10
           timeoutSeconds: 5400
-
       - name: Auto-approve (safe scopes)
         if: |
           contains(github.event.pull_request.labels.*.name, 'bot') ||
@@ -42,7 +37,6 @@ jobs:
         uses: hmarr/auto-approve-action@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Merge (squash) when eligible
         uses: pascalgn/automerge-action@v0.16.3
         env:

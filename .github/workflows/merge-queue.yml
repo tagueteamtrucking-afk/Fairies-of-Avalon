@@ -1,5 +1,4 @@
 name: Merge Queue (batch)
-
 on:
   workflow_dispatch:
     inputs:
@@ -7,11 +6,9 @@ on:
         description: 'Max PRs to merge this run'
         required: false
         default: '20'
-
 permissions:
   contents: write
   pull-requests: write
-
 jobs:
   queue:
     runs-on: ubuntu-latest
@@ -30,13 +27,9 @@ jobs:
               const isCatalog = pr.head.ref.startsWith('ci/clarity-core') || /clarity[- ]core/i.test(pr.title);
               const isBot = pr.user.login.endsWith('[bot]');
               const eligible = labels.includes('automerge') || (isCatalog && isBot);
-              if (!eligible) continue;
-
-              // Checks must be green
               const { data: statuses } = await github.rest.repos.getCombinedStatusForRef({ owner, repo, ref: pr.head.sha });
               const ok = statuses.state === 'success';
-              if (!ok) continue;
-
+              if (!(eligible && ok)) continue;
               try {
                 await github.rest.pulls.merge({ owner, repo, pull_number: pr.number, merge_method: 'squash' });
                 count++;

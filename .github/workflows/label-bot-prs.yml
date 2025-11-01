@@ -1,13 +1,10 @@
 name: Label PRs (safe scopes + CI catalog)
-
 on:
   pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review, edited]
-
 permissions:
   contents: read
   pull-requests: write
-
 jobs:
   label:
     if: ${{ !github.event.pull_request.draft }}
@@ -18,7 +15,6 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           sync-labels: true
-
       - name: Add 'automerge' for safe scopes and CI catalog PRs
         uses: actions/github-script@v7
         with:
@@ -26,19 +22,14 @@ jobs:
             const pr = context.payload.pull_request;
             const owner = context.repo.owner, repo = context.repo.repo;
             const files = await github.paginate(github.rest.pulls.listFiles, { owner, repo, pull_number: pr.number });
-
-            // Safe scope if ALL files are in site/docs/workflows
             const safe = files.length>0 && files.every(f =>
               f.filename.startsWith('pages/') ||
               f.filename.startsWith('.github/workflows/') ||
               f.filename.endsWith('.md')
             );
-
-            // CI catalog pattern e.g., ci/clarity-core-catalog-18990233195 or similar
             const title = pr.title || "";
             const isCatalog = /^ci\/clarity-core/i.test(pr.head.ref) || /^clarity core/i.test(title) || /clarity[- ]core/i.test(title);
             const isBot = /\[bot\]$/.test(pr.user.login);
-
             if (safe || (isCatalog && isBot)) {
               await github.rest.issues.addLabels({ owner, repo, issue_number: pr.number, labels: ['automerge'] });
             }

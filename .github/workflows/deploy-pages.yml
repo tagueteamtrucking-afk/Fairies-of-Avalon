@@ -10,7 +10,8 @@ on:
       - 'assets/**'
       - 'importmap.json'
       - '.github/workflows/deploy-pages.yml'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    {}
 
 permissions:
   pages: write

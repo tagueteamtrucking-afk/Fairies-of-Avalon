@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-02T09:27:42.370Z",
+  "generated": "2025-11-02T13:02:27.850Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -471,8 +471,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 375,
-      "hash": "5a5772dc9191d0370dbea738119814f4",
+      "bytes": 70610,
+      "hash": "e8f2c49276b0b79d443160bc85232a85",
       "purpose": "misc"
     },
     {
@@ -2168,6 +2168,12 @@
       "purpose": "page"
     },
     {
+      "path": "pages/apps/alexandria/story-assistant.html",
+      "bytes": 2271,
+      "hash": "2ce952c0973a39f054964b8324a715c3",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/alexandria/story-shelf.html",
       "bytes": 1554,
       "hash": "8f079552ff259b106a7fdab2eadfebdb",
@@ -2180,15 +2186,57 @@
       "purpose": "page"
     },
     {
+      "path": "pages/apps/billie/data/earnings.json",
+      "bytes": 217,
+      "hash": "ce2de7775c0dbdfe8caead21cd0c1f2c",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/billie/data/social-posts.json",
+      "bytes": 360,
+      "hash": "940397fd852896bdc4f018900d2721b9",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/billie/earnings-dashboard.html",
+      "bytes": 1728,
+      "hash": "44c59ca72bc94c39abf62238b0ba24b4",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/billie/index.html",
       "bytes": 796,
       "hash": "7d8ca1c8a21ff0d7d2ebfcf6cd9d90f5",
       "purpose": "page"
     },
     {
+      "path": "pages/apps/billie/social-posts.html",
+      "bytes": 1499,
+      "hash": "5f36429425cf86a4dd15731bf34b63c4",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/billie/video-maker.html",
+      "bytes": 2318,
+      "hash": "2cbed110eab900c4321284001d8509c5",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/carol/data/meal-plan-upgraded.json",
+      "bytes": 3997,
+      "hash": "67cb5fee10a372047c5ba4e1b680e7a7",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/carol/data/meal-plan.json",
       "bytes": 2170,
       "hash": "780f48e18353a8b0ce33d8d55afd0669",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/carol/data/menu.json",
+      "bytes": 485,
+      "hash": "60a1017d72c46bb82d922629478a6877",
       "purpose": "page"
     },
     {
@@ -2199,8 +2247,14 @@
     },
     {
       "path": "pages/apps/carol/index.html",
-      "bytes": 1183,
-      "hash": "a61caf54c6e7a84f7c91a4514c715592",
+      "bytes": 1493,
+      "hash": "8d73cf37310d5c5c88c5a769fec855a8",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/carol/meal-plan-upgraded.html",
+      "bytes": 3731,
+      "hash": "d75861ad7c604ee797885c34028f71aa",
       "purpose": "page"
     },
     {
@@ -2210,15 +2264,45 @@
       "purpose": "page"
     },
     {
+      "path": "pages/apps/carol/menu.html",
+      "bytes": 1710,
+      "hash": "ac50ad4496fe1a103cc5ec44ba669f9e",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/carol/shopping-list.html",
       "bytes": 1429,
       "hash": "db9cc80f6b806d7a261ac2b4bc8f9605",
       "purpose": "page"
     },
     {
+      "path": "pages/apps/charlotte/armor-builder.html",
+      "bytes": 2304,
+      "hash": "62481409978ffa0accf2019b91fbe218",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/charlotte/data/expirations.json",
+      "bytes": 211,
+      "hash": "13da28f31310e1f6367888e9565c64f6",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/charlotte/data/reminders.json",
+      "bytes": 257,
+      "hash": "34f0a48a20cd69a052790c33894f59e9",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/charlotte/expirations-registry.html",
+      "bytes": 1509,
+      "hash": "1ae0a4ecb30bd8ac9c733564df365ea0",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/charlotte/index.html",
-      "bytes": 983,
-      "hash": "ac5758121fe3967927aa652f5fc519cb",
+      "bytes": 1538,
+      "hash": "2fb04f30ac4216af9ba0c5f4228df6d7",
       "purpose": "page"
     },
     {
@@ -2228,9 +2312,21 @@
       "purpose": "page"
     },
     {
+      "path": "pages/apps/charlotte/reminders.html",
+      "bytes": 1407,
+      "hash": "741fb3099833b02f659bd47815ad7179",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/charlotte/translations-board.html",
       "bytes": 2697,
       "hash": "60a4d6cc97b3aea132066e7f57b8fe8e",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/charlotte/vrm-viewer.html",
+      "bytes": 1211,
+      "hash": "5ee80bec122bab2bf560f4b611817be7",
       "purpose": "page"
     },
     {
@@ -2246,6 +2342,12 @@
       "purpose": "page"
     },
     {
+      "path": "pages/apps/jem/data/gallery.json",
+      "bytes": 68,
+      "hash": "e25c0ba1c403c663da394227ca82bc88",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/jem/data/training-plan.json",
       "bytes": 2621,
       "hash": "6852464030d009082541d39182bf1ff9",
@@ -2255,6 +2357,12 @@
       "path": "pages/apps/jem/fitness-planner.html",
       "bytes": 1742,
       "hash": "e6a070847701b38e6679e71e5c427758",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/jem/gallery.html",
+      "bytes": 1592,
+      "hash": "de5817ea9fd3638ed9a1e448e0efb178",
       "purpose": "page"
     },
     {
@@ -2312,6 +2420,18 @@
       "purpose": "page"
     },
     {
+      "path": "pages/apps/stella/data/scripts.json",
+      "bytes": 419,
+      "hash": "34ee9d53ba4d05c9b41481433b0d62df",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/stella/data/sounds.json",
+      "bytes": 198,
+      "hash": "bb1a41c509839245d323288e228ef5cf",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/stella/guided-sessions.html",
       "bytes": 1305,
       "hash": "ca947ce6d032ab887a0c4810f2302124",
@@ -2324,6 +2444,18 @@
       "purpose": "page"
     },
     {
+      "path": "pages/apps/stella/script-library.html",
+      "bytes": 2224,
+      "hash": "73e6b84f8f28fcaa839ef0ae2ae0a286",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/stella/sound-library.html",
+      "bytes": 2150,
+      "hash": "e097d1b5f87ee37fb1011ede7ad6332e",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/tracy/art-gallery.html",
       "bytes": 1977,
       "hash": "927d346830245e612e6815ab2c2806cc",
@@ -2333,6 +2465,12 @@
       "path": "pages/apps/tracy/catalog.html",
       "bytes": 1224,
       "hash": "cc63949fbf4ae4a6fea8121043a9ab22",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/tracy/character-designer.html",
+      "bytes": 1946,
+      "hash": "21a2f3ec8b2a371d7c6935eb7d5d1d0d",
       "purpose": "page"
     },
     {

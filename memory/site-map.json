@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-02T13:20:42Z",
+  "generated": "2025-11-02T21:33:38Z",
   "entrypoints": [
     "/index.html"
   ],
@@ -75,6 +75,10 @@
     {
       "path": "/pages/apps/carol/menu.html",
       "title": "Carol's Menu"
+    },
+    {
+      "path": "/pages/apps/carol/dashboard.html",
+      "title": "Redirecting\u2026"
     },
     {
       "path": "/pages/apps/carol/meal-plan.html",
@@ -163,6 +167,10 @@
     {
       "path": "/pages/apps/jem/index.html",
       "title": "Jem \u2013 Fitness & Motion"
+    },
+    {
+      "path": "/pages/apps/jem/dashboard.html",
+      "title": "Redirecting\u2026"
     },
     {
       "path": "/pages/apps/jem/gallery.html",

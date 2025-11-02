@@ -1,9 +1,42 @@
 {
-  "generated": null,
+  "generated": "2025-11-02T06:00:00Z",
   "entrypoints": [
     "/index.html"
   ],
-  "pages": [],
+  "pages": [
+    {
+      "path": "/index.html",
+      "title": "Fairies of Avalon"
+    },
+    {
+      "path": "/pages/apps/nina/overview.html",
+      "title": "Project Overview (Nina)"
+    },
+    {
+      "path": "/pages/apps/nina/security.html",
+      "title": "Security Pages (Nina)"
+    },
+    {
+      "path": "/pages/apps/charlotte/queues.html",
+      "title": "Queues Dashboard (Charlotte)"
+    },
+    {
+      "path": "/pages/apps/charlotte/compliance/expirations.html",
+      "title": "Expirations (Charlotte)"
+    },
+    {
+      "path": "/pages/apps/billie/social.html",
+      "title": "Social Posts (Billie)"
+    },
+    {
+      "path": "/pages/apps/billie/earnings.html",
+      "title": "Earnings per Post (Billie)"
+    },
+    {
+      "path": "/pages/_city/index.html",
+      "title": "Avalon City Map"
+    }
+  ],
   "assets": [],
   "importmap": null
 }

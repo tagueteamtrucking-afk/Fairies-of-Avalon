@@ -19,7 +19,7 @@
 </head>
 <body class="jem-inside">
   <div class="wrap">
-    <h1 class="heading">📊 Jem – Progress Tracker</h1>
+    <h1 class="heading"> Jem – Progress Tracker</h1>
     <p class="lead">Track your progress by checking off activities as you complete them. Your progress resets when you leave the page.</p>
     <div id="tracker"></div>
     <p id="progress-summary"><em>Loading...</em></p>
@@ -39,13 +39,11 @@
           const h3 = document.createElement('h3');
           h3.textContent = `Day ${item.day}`;
           div.appendChild(h3);
-          item.activities.forEach((act, idx) => {
+          item.activities.forEach(act => {
             const label = document.createElement('label');
             label.style.display = 'block';
             const input = document.createElement('input');
             input.type = 'checkbox';
-            input.dataset.day = item.day;
-            input.dataset.name = act.name;
             input.addEventListener('change', () => {
               if (input.checked) {
                 completed++;

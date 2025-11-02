@@ -1,11 +1,44 @@
 {
   "characters": [
-    {"name": "Nina", "role": "Engineer & Security Overseer", "bio": "Nina designs and maintains Avalon’s infrastructure. She ensures the system is secure and efficient."},
-    {"name": "Charlotte", "role": "Translator & Relay", "bio": "Charlotte bridges languages and communicates with all corners of Avalon."},
-    {"name": "Carol", "role": "Nutritionist", "bio": "Carol crafts wholesome meal plans to nourish residents and visitors alike."},
-    {"name": "Jem", "role": "Fitness Coach", "bio": "Jem trains others in the art of movement and strength, helping them achieve balance."},
-    {"name": "Alexandria", "role": "Storyteller", "bio": "Alexandria curates tales of Avalon, preserving its myths and histories."},
-    {"name": "Stella", "role": "Sound Therapist", "bio": "Stella composes healing audio experiences blending binaural beats and natural resonance."},
-    {"name": "Tracy", "role": "Artist", "bio": "Tracy paints, sculpts and designs skins, posters and story illustrations."}
+    {
+      "name": "Charlotte",
+      "role": "Relay, Translator & 3D Fabrication",
+      "bio": "Charlotte bridges languages, communicates with all corners of Avalon and now oversees the 3D workshop, taking over Nina’s former duties."
+    },
+    {
+      "name": "Carol",
+      "role": "Nutritionist",
+      "bio": "Carol crafts wholesome meal plans to nourish residents and visitors alike, tracking substitutions and ratings to tailor your diet."
+    },
+    {
+      "name": "Jem",
+      "role": "Fitness Coach",
+      "bio": "Jem trains others in the art of movement and strength, helping them achieve balance through plans, calendars and progress tracking."
+    },
+    {
+      "name": "Alexandria",
+      "role": "Storyteller",
+      "bio": "Alexandria curates tales of Avalon, preserving its myths and histories and helping build new worlds through collaboration."
+    },
+    {
+      "name": "Stella",
+      "role": "Sound Therapist",
+      "bio": "Stella composes healing audio experiences blending binaural beats and natural resonance. She writes scripts and manages a growing sound library."
+    },
+    {
+      "name": "Tracy",
+      "role": "Artist",
+      "bio": "Tracy paints, sculpts and designs skins, posters and story illustrations, ensuring visual continuity across Avalon."
+    },
+    {
+      "name": "Billie",
+      "role": "Monetisation & Social",
+      "bio": "Billie oversees monetisation and social channels, from managing social posts and earnings to experimenting with faceless video."
+    },
+    {
+      "name": "Overseers",
+      "role": "Governance",
+      "bio": "Rey Czar and White Star maintain the palace, permissions and telemetry that power Avalon."
+    }
   ]
 }

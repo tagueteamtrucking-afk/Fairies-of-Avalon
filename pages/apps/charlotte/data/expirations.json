@@ -1,0 +1,5 @@
+[
+  { "name": "Milk", "category": "Dairy", "expiry": "2025-11-05" },
+  { "name": "Strawberries", "category": "Fruit", "expiry": "2025-11-03" },
+  { "name": "Eggs", "category": "Dairy", "expiry": "2025-11-10" }
+]

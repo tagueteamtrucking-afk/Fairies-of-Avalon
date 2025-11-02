@@ -1,0 +1,102 @@
+{
+  "plan": [
+    {
+      "day": 1,
+      "breakfast": "Overnight oats with chia & berries",
+      "lunch": "Chicken & avocado lettuce cups",
+      "dinner": "Air‑fryer salmon & veg",
+      "instructions": "Soak oats overnight; roast chicken; air‑fry salmon and vegetables until flaky."
+    },
+    {
+      "day": 2,
+      "breakfast": "Apple slices & peanut butter",
+      "lunch": "Quinoa salad with roasted veggies",
+      "dinner": "Turkey burgers with sweet potato fries",
+      "instructions": "Slice apples; cook quinoa and roast vegetables; grill turkey patties and bake fries."
+    },
+    {
+      "day": 3,
+      "breakfast": "Greek yogurt with pineapple & honey",
+      "lunch": "Tuna salad in lettuce wraps",
+      "dinner": "Stir‑fry tofu with broccoli & rice",
+      "instructions": "Assemble yogurt bowl; mix tuna salad and serve in lettuce; stir‑fry tofu and broccoli, serve over rice."
+    },
+    {
+      "day": 4,
+      "breakfast": "Banana‑spinach smoothie",
+      "lunch": "Mediterranean chickpea bowl",
+      "dinner": "Baked cod with asparagus & lemon",
+      "instructions": "Blend smoothie; assemble chickpea bowl; bake cod fillets with asparagus and lemon slices."
+    },
+    {
+      "day": 5,
+      "breakfast": "Oatmeal pancakes with blueberries",
+      "lunch": "Turkey & avocado wrap",
+      "dinner": "Vegetable curry with brown rice",
+      "instructions": "Cook pancakes; assemble wraps; simmer mixed vegetables in curry sauce, serve over rice."
+    },
+    {
+      "day": 6,
+      "breakfast": "Smoothie bowl with acai & granola",
+      "lunch": "Quinoa salad with black beans & corn",
+      "dinner": "Grilled steak with roasted Brussels sprouts",
+      "instructions": "Blend acai smoothie and top with granola; prepare quinoa salad; grill steak and roast sprouts."
+    },
+    {
+      "day": 7,
+      "breakfast": "Scrambled eggs with spinach & tomatoes",
+      "lunch": "Chicken Caesar salad",
+      "dinner": "Shrimp stir‑fry with mixed vegetables",
+      "instructions": "Scramble eggs; toss salad; stir‑fry shrimp and vegetables until pink and tender."
+    },
+    {
+      "day": 8,
+      "breakfast": "Overnight oats with chia & berries",
+      "lunch": "Grilled chicken & kale salad",
+      "dinner": "Air‑fryer salmon & veg",
+      "instructions": "Repeat day 1 for breakfast and dinner; grill chicken and toss with kale."
+    },
+    {
+      "day": 9,
+      "breakfast": "Greek yogurt with pineapple",
+      "lunch": "Lentil soup & mixed greens",
+      "dinner": "Turkey burgers with sweet potato fries",
+      "instructions": "Assemble yogurt bowl; simmer lentils into soup; grill burgers and bake fries."
+    },
+    {
+      "day": 10,
+      "breakfast": "Banana‑spinach smoothie",
+      "lunch": "Mediterranean chickpea bowl",
+      "dinner": "Vegetable curry with brown rice",
+      "instructions": "Repeat day 4 breakfast and lunch; cook vegetable curry."
+    },
+    {
+      "day": 11,
+      "breakfast": "Oatmeal pancakes with blueberries",
+      "lunch": "Tuna salad in lettuce wraps",
+      "dinner": "Stir‑fry tofu with broccoli & rice",
+      "instructions": "Repeat day 5 breakfast; make tuna wraps; stir‑fry tofu and broccoli."
+    },
+    {
+      "day": 12,
+      "breakfast": "Apple slices & peanut butter",
+      "lunch": "Quinoa salad with roasted veggies",
+      "dinner": "Baked cod with asparagus & lemon",
+      "instructions": "Repeat day 2 breakfast and lunch; bake cod with asparagus."
+    },
+    {
+      "day": 13,
+      "breakfast": "Smoothie bowl with acai & granola",
+      "lunch": "Turkey & avocado wrap",
+      "dinner": "Grilled steak with roasted Brussels sprouts",
+      "instructions": "Repeat day 6 breakfast; assemble wrap; grill steak and roast sprouts."
+    },
+    {
+      "day": 14,
+      "breakfast": "Scrambled eggs with spinach & tomatoes",
+      "lunch": "Chicken Caesar salad",
+      "dinner": "Shrimp stir‑fry with mixed vegetables",
+      "instructions": "Repeat day 7 schedule."
+    }
+  ]
+}

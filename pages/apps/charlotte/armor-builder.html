@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Charlotte – Armor & Accessories Builder</title>
+  <link rel="stylesheet" href="../common/style.css" />
+  <style>
+    label { display: block; margin-top: 0.5rem; }
+    input, select { width: 100%; padding: 0.4rem; margin-top: 0.2rem; }
+    .preview { margin-top: 1rem; padding: 1rem; border: 1px dashed #666; }
+  </style>
+</head>
+<!--
+  This page is a placeholder for a 3D armour and accessory builder. Users can
+  select armour type, material and colour. A preview area would show the 3D
+  model once integrated with a 3D renderer. For now, the form simply
+  constructs a text description of the gear.
+-->
+<body>
+  <div class="wrap">
+    <h1 class="heading">Design Your Gear</h1>
+    <form id="gear-form">
+      <label>Type
+        <select name="type">
+          <option value="armor">Armor</option>
+          <option value="weapon">Weapon</option>
+          <option value="accessory">Accessory</option>
+        </select>
+      </label>
+      <label>Material
+        <select name="material">
+          <option value="steel">Steel</option>
+          <option value="leather">Leather</option>
+          <option value="mythril">Mythril</option>
+        </select>
+      </label>
+      <label>Colour
+        <input type="color" name="colour" value="#8888ff" />
+      </label>
+      <label>Name your creation
+        <input type="text" name="name" placeholder="e.g. Dragonplate" />
+      </label>
+      <button type="submit">Generate Description</button>
+    </form>
+    <div class="preview" id="preview">
+      <em>Your creation will appear here…</em>
+    </div>
+    <p><a href="index.html">← back to Charlotte</a></p>
+  </div>
+  <script>
+    document.getElementById('gear-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const form = event.target;
+      const type = form.type.value;
+      const material = form.material.value;
+      const colour = form.colour.value;
+      const name = form.name.value || 'Unnamed Gear';
+      const preview = document.getElementById('preview');
+      preview.innerHTML = `<strong>${name}</strong> – a ${material} ${type} coloured ${colour}.`;
+    });
+  </script>
+</body>
+</html>

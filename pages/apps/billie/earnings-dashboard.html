@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billie's Earnings Dashboard</title>
+  <link rel="stylesheet" href="../common/style.css">
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #444;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<!-- This dashboard summarises income sources and monthly totals for Billie. It uses
+     a static JSON dataset. In the future this could be populated from an API or
+     database, but this version illustrates the UI and data structure. -->
+<body>
+  <header>
+    <h1>Earnings Dashboard</h1>
+  </header>
+  <main>
+    <table id="earnings-table">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Content Sales</th>
+          <th>Sponsorships</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+  <script>
+    async function loadEarnings() {
+      try {
+        const res = await fetch('data/earnings.json');
+        const earnings = await res.json();
+        const tbody = document.querySelector('#earnings-table tbody');
+        earnings.forEach(row => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${row.month}</td><td>$${row.sales.toFixed(2)}</td><td>$${row.sponsorships.toFixed(2)}</td><td>$${(row.sales + row.sponsorships).toFixed(2)}</td>`;
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error('Error loading earnings', err);
+      }
+    }
+    loadEarnings();
+  </script>
+</body>
+</html>

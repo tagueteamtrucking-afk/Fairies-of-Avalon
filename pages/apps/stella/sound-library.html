@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stella – Sound Library</title>
+  <link rel="stylesheet" href="../common/style.css" />
+  <style>
+    ul { list-style: none; padding: 0; }
+    li { margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #444; border-radius: 0.25rem; }
+    button { margin-left: 0.5rem; }
+    .favourite { color: #f90; }
+  </style>
+</head>
+<!--
+  Stella's sound library lists audio tracks for meditation and relaxation. You can
+  mark tracks as favourites or remove them. Sound files live in `assets/sound/`
+  and are described in `data/sounds.json`.
+-->
+<body class="stella-inside">
+  <div class="wrap">
+    <h1 class="heading">Sound Library</h1>
+    <ul id="sound-list"></ul>
+    <p><a href="index.html">← back to Stella</a></p>
+  </div>
+  <script>
+    const listEl = document.getElementById('sound-list');
+    const favourites = JSON.parse(localStorage.getItem('stella-sound-favs') || '[]');
+    function saveFavs() { localStorage.setItem('stella-sound-favs', JSON.stringify(favourites)); }
+    async function loadSounds() {
+      const res = await fetch('data/sounds.json');
+      const sounds = await res.json();
+      sounds.forEach(track => {
+        const li = document.createElement('li');
+        const isFav = favourites.includes(track.id);
+        li.innerHTML = `<strong>${track.title}</strong> <button class="fav-btn">${isFav ? '★' : '☆'}</button> <button class="delete-btn">Delete</button><br/><audio controls src="/assets/sound/${track.file}"></audio>`;
+        li.querySelector('.fav-btn').addEventListener('click', () => {
+          const idx = favourites.indexOf(track.id);
+          if (idx > -1) favourites.splice(idx, 1); else favourites.push(track.id);
+          saveFavs();
+          li.querySelector('.fav-btn').textContent = favourites.includes(track.id) ? '★' : '☆';
+        });
+        li.querySelector('.delete-btn').addEventListener('click', () => {
+          li.remove();
+        });
+        listEl.appendChild(li);
+      });
+    }
+    loadSounds();
+  </script>
+</body>
+</html>

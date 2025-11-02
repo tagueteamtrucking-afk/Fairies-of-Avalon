@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stella – Script Library</title>
+  <link rel="stylesheet" href="../common/style.css" />
+  <style>
+    ul { list-style: none; padding: 0; }
+    li { margin-bottom: 0.5rem; padding: 0.5rem; border: 1px solid #444; border-radius: 0.25rem; }
+    button { margin-left: 0.5rem; }
+    .favourite { color: #f90; }
+  </style>
+</head>
+<!--
+  A simple script library for guided meditations. Scripts are loaded from
+  `data/scripts.json`. Users can mark scripts as favourites (stored in
+  localStorage) or delete them locally. Additional features like editing
+  and saving new scripts could be added later.
+-->
+<body class="stella-inside">
+  <div class="wrap">
+    <h1 class="heading">Guided Meditation Scripts</h1>
+    <ul id="script-list"></ul>
+    <p><a href="index.html">← back to Stella</a></p>
+  </div>
+  <script>
+    const listEl = document.getElementById('script-list');
+    const favourites = JSON.parse(localStorage.getItem('stella-favourites') || '[]');
+    function saveFavourites() {
+      localStorage.setItem('stella-favourites', JSON.stringify(favourites));
+    }
+    async function loadScripts() {
+      const res = await fetch('data/scripts.json');
+      const scripts = await res.json();
+      scripts.forEach(script => {
+        const li = document.createElement('li');
+        const isFav = favourites.includes(script.id);
+        li.innerHTML = `<strong>${script.title}</strong> <button class="fav-btn">${isFav ? '★' : '☆'}</button> <button class="delete-btn">Delete</button><p>${script.description}</p>`;
+        li.querySelector('.fav-btn').addEventListener('click', () => {
+          const idx = favourites.indexOf(script.id);
+          if (idx > -1) favourites.splice(idx, 1); else favourites.push(script.id);
+          saveFavourites();
+          li.querySelector('.fav-btn').textContent = favourites.includes(script.id) ? '★' : '☆';
+        });
+        li.querySelector('.delete-btn').addEventListener('click', () => {
+          li.remove();
+        });
+        listEl.appendChild(li);
+      });
+    }
+    loadScripts();
+  </script>
+</body>
+</html>

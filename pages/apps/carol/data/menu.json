@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Roasted Root Stew",
+    "description": "A hearty stew of carrots, parsnips and potatoes simmered in vegetable broth.",
+    "price": "$8.50"
+  },
+  {
+    "name": "Summer Berry Tart",
+    "description": "A flaky pastry shell filled with vanilla custard and topped with fresh berries.",
+    "price": "$5.00"
+  },
+  {
+    "name": "Fairy Garden Salad",
+    "description": "Mixed greens with edible flowers, candied nuts and honey vinaigrette.",
+    "price": "$7.25"
+  }
+]

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carol's Menu</title>
+  <link rel="stylesheet" href="../common/style.css">
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #444;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<!-- This page displays a menu of dishes available in Carol's kitchen. The data
+     is loaded from a static JSON file located at `data/menu.json` to make it
+     easy to update without editing the HTML. This page uses the `carol-inside`
+     class because it represents the interior of the kitchen where guests can
+     browse the menu. -->
+<body class="carol-inside">
+  <header>
+    <h1>Today's Menu</h1>
+  </header>
+  <main>
+    <table id="menu-table">
+      <thead>
+        <tr>
+          <th>Dish</th>
+          <th>Description</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+  <script>
+    async function loadMenu() {
+      try {
+        const response = await fetch('data/menu.json');
+        const menuItems = await response.json();
+        const tbody = document.querySelector('#menu-table tbody');
+        menuItems.forEach(item => {
+          const row = document.createElement('tr');
+          row.innerHTML = `<td>${item.name}</td><td>${item.description}</td><td>${item.price}</td>`;
+          tbody.appendChild(row);
+        });
+      } catch (err) {
+        console.error('Error loading menu:', err);
+      }
+    }
+    loadMenu();
+  </script>
+</body>
+</html>

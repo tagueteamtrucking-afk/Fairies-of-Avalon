@@ -1,17 +1,38 @@
-<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Carol — Phoenix Restaurant</title>
-<link rel="stylesheet" href="../../assets/css/avalon-bright.css">
-<header><div class="wrap">
-  <h1>🍜 Carol — Phoenix Restaurant</h1>
-  <div><a class="pill" href="/pages/apps/carol/dashboard.html">Dashboard</a><a class="pill" href="/index.html">Home</a></div>
-  <p class="muted">Use “Carol Refresh (shopping & report)” to update data; Phoenix can save prefs.</p>
-</div></header>
-<main class="wrap grid">
-  <div class="card"><h3>Plan Report</h3><pre id="pr" class="mono">Loading…</pre></div>
-  <div class="card"><h3>Shopping</h3><pre id="sq" class="mono">Loading…</pre></div>
-</main>
-<script type="module">
-async function j(p){try{const r=await fetch(p+'?t='+Date.now(),{cache:'no-store'});if(!r.ok)return null;return await r.json()}catch{return null}}
-document.getElementById('pr').textContent=JSON.stringify(await j('./plan-report.json')||{hint:'Run Carol Refresh (shopping & report).'},null,2);
-document.getElementById('sq').textContent=JSON.stringify(await j('./shopping-quantized.json')||{items:[]},null,2);
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carol's Kitchen</title>
+  <!-- Use the common stylesheet so Carol's pages share the same theme as the rest of Avalon -->
+  <link rel="stylesheet" href="../common/style.css">
+</head>
+<!--
+  This is the landing page for Carol's micro‑app. The previous version used the
+  `carol-inside` class on the root <body>, which applies an indoor background. For the
+  exterior view of Carol’s kitchen we want to use the `carol-outside` class defined in
+  `common/style.css`【288090255808334†L20-L44】. This class applies the outdoor background
+  image. The interior pages (meal planner, shopping list) should continue to use
+  `carol-inside`.
+-->
+<body class="carol-outside">
+  <header>
+    <h1>Welcome to Carol's Kitchen</h1>
+    <p>Plan your meals, manage your pantry and enjoy the warmth of Avalon’s kitchen.</p>
+  </header>
+  <main>
+    <nav>
+      <ul>
+        <li><a href="meal-plan.html">Meal Planner</a></li>
+        <li><a href="shopping-list.html">Shopping List</a></li>
+        <li><a href="menu.html">Menu</a></li>
+      </ul>
+    </nav>
+    <section id="intro">
+      <p>Use the links above to navigate through Carol's cooking tools. The Meal Planner
+      helps schedule meals for the week, the Shopping List compiles ingredients, and the
+      Menu page showcases your culinary creations.</p>
+    </section>
+  </main>
+</body>
+</html>

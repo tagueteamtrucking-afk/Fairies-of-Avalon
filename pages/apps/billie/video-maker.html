@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Billie – Video Maker</title>
+  <link rel="stylesheet" href="../common/style.css" />
+  <style>
+    label { display: block; margin-top: 0.75rem; }
+    input, textarea, select { width: 100%; padding: 0.5rem; }
+  </style>
+</head>
+<!--
+  This page lays the groundwork for a video generator. Users can supply a script,
+  choose whether to produce a faceless demo or apply a deepfake, and optionally
+  upload source footage. A real implementation would call out to AI services to
+  render the video; here we simply acknowledge the request and show a preview
+  filename for user awareness. Future enhancements could integrate APIs.
+-->
+<body>
+  <div class="wrap">
+    <h1 class="heading">Video Maker</h1>
+    <p>Create engaging content without showing your face or use deepfake technology to generate avatars.</p>
+    <form id="video-form">
+      <label>Script or description
+        <textarea name="script" rows="4" placeholder="Describe your video or paste a script here..."></textarea>
+      </label>
+      <label>Video style
+        <select name="style">
+          <option value="faceless">Faceless demo</option>
+          <option value="deepfake">Deepfake avatar</option>
+        </select>
+      </label>
+      <label>Optional source video
+        <input type="file" name="source" accept="video/*" />
+      </label>
+      <button type="submit">Generate Video</button>
+    </form>
+    <div id="result" style="margin-top:1rem;"></div>
+    <p><a href="index.html">← back to Billie</a></p>
+  </div>
+  <script>
+    document.getElementById('video-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const style = form.style.value;
+      const script = form.script.value.trim();
+      const file = form.source.files[0];
+      const result = document.getElementById('result');
+      // For now, just echo back what the user requested
+      let msg = `Requested a ${style} video`;
+      if (script) msg += ` with script: "${script.substring(0,50)}..."`;
+      if (file) msg += ` using file: ${file.name}`;
+      result.textContent = msg + '. (Generation will be available in the future.)';
+    });
+  </script>
+</body>
+</html>

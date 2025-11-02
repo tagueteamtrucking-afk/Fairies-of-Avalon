@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jem – Gallery</title>
+  <link rel="stylesheet" href="../common/style.css" />
+  <style>
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.25rem;
+      box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<!--
+  Jem's gallery displays motivational workout images or exercise demonstrations. The
+  images are loaded from `data/gallery.json`, which lists filenames stored under
+  `assets/models` or another directory. The page uses a responsive grid layout.
+-->
+<body class="jem-inside">
+  <header>
+    <h1>Workout Inspiration</h1>
+    <p>Browse exercises and movement demos curated by Jem.</p>
+  </header>
+  <main>
+    <div class="gallery" id="gallery"></div>
+    <p><a href="index.html">← back to Jem</a></p>
+  </main>
+  <script>
+    async function loadGallery() {
+      try {
+        const res = await fetch('data/gallery.json');
+        const images = await res.json();
+        const container = document.getElementById('gallery');
+        images.forEach(src => {
+          const img = document.createElement('img');
+          img.src = `/assets/models/${src}`;
+          img.alt = src;
+          container.appendChild(img);
+        });
+      } catch (err) {
+        console.error('Error loading gallery', err);
+      }
+    }
+    loadGallery();
+  </script>
+</body>
+</html>

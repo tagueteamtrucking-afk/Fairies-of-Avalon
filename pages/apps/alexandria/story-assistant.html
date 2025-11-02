@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alexandria – Story Assistant</title>
+  <link rel="stylesheet" href="../common/style.css" />
+  <style>
+    #chat-log {
+      border: 1px solid #444;
+      padding: 1rem;
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+    .message { margin-bottom: 0.5rem; }
+    .user { color: #8fd; }
+    .assistant { color: #fd8; }
+  </style>
+</head>
+<!--
+  The story assistant provides a simple chat interface for brainstorming. Messages
+  are stored in localStorage to preserve your ideas. A future version could
+  connect to an AI service for richer dialogue and web searching.
+-->
+<body class="alexandria-inside">
+  <div class="wrap">
+    <h1 class="heading">Story Assistant</h1>
+    <div id="chat-log"></div>
+    <form id="chat-form">
+      <textarea name="message" rows="3" placeholder="Ask Alexandria anything about your multiverse..."></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <p><a href="index.html">← back to Alexandria</a></p>
+  </div>
+  <script>
+    const log = document.getElementById('chat-log');
+    const form = document.getElementById('chat-form');
+    const messages = JSON.parse(localStorage.getItem('alexandria-chat') || '[]');
+    function render() {
+      log.innerHTML = '';
+      messages.forEach(msg => {
+        const div = document.createElement('div');
+        div.className = 'message ' + msg.role;
+        div.textContent = `${msg.role === 'user' ? 'You' : 'Alexandria'}: ${msg.content}`;
+        log.appendChild(div);
+      });
+      log.scrollTop = log.scrollHeight;
+    }
+    render();
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const textarea = form.message;
+      const content = textarea.value.trim();
+      if (!content) return;
+      messages.push({ role: 'user', content });
+      // In a real implementation we would call an AI service here.
+      messages.push({ role: 'assistant', content: 'Let\'s explore that idea! (AI responses coming soon)' });
+      localStorage.setItem('alexandria-chat', JSON.stringify(messages));
+      textarea.value = '';
+      render();
+    });
+  </script>
+</body>
+</html>

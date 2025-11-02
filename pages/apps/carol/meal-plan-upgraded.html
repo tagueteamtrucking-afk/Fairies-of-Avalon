@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carol – Meal Planner (Enhanced)</title>
+  <link rel="stylesheet" href="../common/style.css" />
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background: rgba(255,255,255,0.1);
+    }
+    select, input[type="text"] {
+      width: 100%;
+    }
+  </style>
+</head>
+<!--
+  This upgraded meal planner adds the ability to capture user feedback. For each meal
+  you can rate how much you liked it (1–5), indicate if you substituted, added or
+  removed ingredients, and read basic preparation instructions. The data
+  is loaded from `data/meal-plan-upgraded.json`, which extends the original plan
+  with additional fields. Ratings are stored in localStorage so they persist across
+  sessions without editing the JSON file.
+-->
+<body class="carol-inside">
+  <div class="wrap">
+    <h1 class="heading">Carol – Meal Planner</h1>
+    <p class="lead">Use the table below to view each meal, see how to prepare it and record your feedback.</p>
+    <div id="meal-table"></div>
+    <p><a href="index.html">← back to Carol</a></p>
+  </div>
+  <script type="module">
+    async function loadPlan() {
+      try {
+        const resp = await fetch('data/meal-plan-upgraded.json');
+        const { plan } = await resp.json();
+        const container = document.getElementById('meal-table');
+        let html = '<table><thead><tr><th>Day</th><th>Breakfast</th><th>Lunch</th><th>Dinner</th><th>Instructions</th><th>Your Rating</th><th>Your Notes</th></tr></thead><tbody>';
+        plan.forEach(item => {
+          const ratingKey = `meal-rating-${item.day}`;
+          const notesKey = `meal-notes-${item.day}`;
+          const savedRating = localStorage.getItem(ratingKey) || '';
+          const savedNotes = localStorage.getItem(notesKey) || '';
+          html += `<tr>
+            <td>Day ${item.day}</td>
+            <td>${item.breakfast}</td>
+            <td>${item.lunch}</td>
+            <td>${item.dinner}</td>
+            <td>${item.instructions}</td>
+            <td>
+              <select data-key="${ratingKey}">
+                <option value="">—</option>
+                <option value="1" ${savedRating === '1' ? 'selected' : ''}>1</option>
+                <option value="2" ${savedRating === '2' ? 'selected' : ''}>2</option>
+                <option value="3" ${savedRating === '3' ? 'selected' : ''}>3</option>
+                <option value="4" ${savedRating === '4' ? 'selected' : ''}>4</option>
+                <option value="5" ${savedRating === '5' ? 'selected' : ''}>5</option>
+              </select>
+            </td>
+            <td>
+              <input type="text" data-key="${notesKey}" value="${savedNotes}" placeholder="Substitutions/notes" />
+            </td>
+          </tr>`;
+        });
+        html += '</tbody></table>';
+        container.innerHTML = html;
+        // Attach listeners to save ratings and notes
+        container.querySelectorAll('select[data-key]').forEach(sel => {
+          sel.addEventListener('change', (e) => {
+            localStorage.setItem(e.target.dataset.key, e.target.value);
+          });
+        });
+        container.querySelectorAll('input[data-key]').forEach(input => {
+          input.addEventListener('input', (e) => {
+            localStorage.setItem(e.target.dataset.key, e.target.value);
+          });
+        });
+      } catch (err) {
+        document.getElementById('meal-table').textContent = 'Failed to load meal plan.';
+      }
+    }
+    loadPlan();
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Charlotte – VRM Viewer</title>
+  <link rel="stylesheet" href="../common/style.css" />
+  <style>
+    .viewer {
+      border: 1px solid #444;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<!--
+  The VRM viewer allows you to upload a VRM or GLB file and view it in 3D.
+  In this stub implementation we simply display the filename; integration
+  with a 3D renderer like three.js would be needed for full functionality.
+-->
+<body>
+  <div class="wrap">
+    <h1 class="heading">VRM Viewer</h1>
+    <p>Select a VRM/GLB file to view. A future version will display the 3D model.</p>
+    <input type="file" id="file-input" accept=".vrm,.glb" />
+    <div class="viewer" id="viewer"><em>No file loaded.</em></div>
+    <p><a href="index.html">← back to Charlotte</a></p>
+  </div>
+  <script>
+    document.getElementById('file-input').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        document.getElementById('viewer').textContent = `Loaded: ${file.name}`;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charlotte's Reminders</title>
+  <link rel="stylesheet" href="../common/style.css">
+  <style>
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 0.75rem;
+      padding: 0.5rem;
+      border: 1px solid #444;
+      border-radius: 0.25rem;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  </style>
+</head>
+<!-- A simple reminders page for Charlotte. Each reminder has a due date and message.
+     The list is loaded from `data/reminders.json`. In a full implementation this
+     would support adding, editing and marking reminders as complete. -->
+<body>
+  <header>
+    <h1>Reminders</h1>
+  </header>
+  <main>
+    <ul id="reminders-list"></ul>
+  </main>
+  <script>
+    async function loadReminders() {
+      try {
+        const res = await fetch('data/reminders.json');
+        const reminders = await res.json();
+        const ul = document.getElementById('reminders-list');
+        reminders.forEach(item => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${item.due}</strong>: ${item.message}`;
+          ul.appendChild(li);
+        });
+      } catch (err) {
+        console.error('Error loading reminders', err);
+      }
+    }
+    loadReminders();
+  </script>
+</body>
+</html>

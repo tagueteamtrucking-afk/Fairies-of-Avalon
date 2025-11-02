@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tracy – Character Designer</title>
+  <link rel="stylesheet" href="../common/style.css" />
+  <style>
+    label { display: block; margin-top: 0.5rem; }
+    input, textarea { width: 100%; padding: 0.5rem; }
+    #output { margin-top: 1rem; padding: 1rem; border: 1px dashed #666; }
+  </style>
+</head>
+<!--
+  Tracy's character designer helps capture descriptive details for new characters.
+  In this simple implementation the output is textual; a future version could
+  integrate an AI image generator that respects continuity and previous designs.
+-->
+<body class="tracy-inside">
+  <div class="wrap">
+    <h1 class="heading">Character Designer</h1>
+    <form id="char-form">
+      <label>Name
+        <input type="text" name="name" placeholder="e.g. Aria" />
+      </label>
+      <label>Appearance description
+        <textarea name="appearance" rows="3" placeholder="Hair colour, clothing, accessories..."></textarea>
+      </label>
+      <label>Personality traits
+        <textarea name="traits" rows="3" placeholder="Brave, curious, etc."></textarea>
+      </label>
+      <button type="submit">Create Character</button>
+    </form>
+    <div id="output"><em>Your character description will appear here.</em></div>
+    <p><a href="index.html">← back to Tracy</a></p>
+  </div>
+  <script>
+    document.getElementById('char-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value.trim() || 'Unnamed';
+      const appearance = form.appearance.value.trim();
+      const traits = form.traits.value.trim();
+      const output = document.getElementById('output');
+      output.innerHTML = `<strong>${name}</strong> – ${appearance}. Personality: ${traits}. (Image generation coming soon.)`;
+    });
+  </script>
+</body>
+</html>

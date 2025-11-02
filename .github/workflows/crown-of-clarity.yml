@@ -1,0 +1,66 @@
+name: crown-of-clarity
+
+# This workflow runs the crown_of_clarity Python script to generate a deterministic file index
+# and site map of the repository. It can be triggered manually via the Actions tab (workflow_dispatch)
+# or scheduled to run daily. The script reads the repository contents and produces
+# `memory/file-index.json` and `memory/site-map.json`. If either of those files changes,
+# the workflow commits and pushes the updates back to the repository.
+
+on:
+  # Allow manually triggering from the Actions tab
+  workflow_dispatch:
+    inputs:
+      run_now:
+        description: "Generate file-index and site-map via the Crown of Clarity."
+        required: false
+        default: true
+  # Run daily at midnight UTC to keep the index current
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the repository so the script can inspect files
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # Set up Python. Crown of Clarity uses Python 3.10 but any recent 3.x should work.
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # Install optional dependencies if the project defines them. The script itself
+      # does not require external packages, but if a requirements file exists we'll install it.
+      - name: Install optional dependencies
+        if: ${{ exists('crown_of_clarity/requirements.txt') }}
+        run: |
+          pip install -r crown_of_clarity/requirements.txt
+
+      # Run the Crown of Clarity script. It generates `memory/file-index.json` and
+      # `memory/site-map.json` under the `memory` directory. These files are created
+      # deterministically and the script is idempotent. You can set SITE_DOMAIN if you
+      # want absolute URLs in the site map instead of relative paths.
+      - name: Generate file index and site map
+        run: |
+          python crown_of_clarity/crown_of_clarity.py
+        env:
+          SITE_DOMAIN: fairiesofavalon.com
+
+      # Commit and push the generated files if there are changes. Without this step the
+      # workflow would only run locally and wouldn't update the repository.
+      - name: Commit updates
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          # Add both JSON files if they exist. Use git status to see if anything changed.
+          git add memory/file-index.json memory/site-map.json || true
+          if [[ -n $(git status --porcelain) ]]; then
+            git commit -m "Update file-index and site-map via Crown of Clarity"
+            git push
+          else
+            echo "No changes to commit"
+          fi

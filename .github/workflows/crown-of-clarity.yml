@@ -36,7 +36,10 @@ jobs:
       # Install optional dependencies if the project defines them. The script itself
       # does not require external packages, but if a requirements file exists we'll install it.
       - name: Install optional dependencies
-        if: ${{ exists('crown_of_clarity/requirements.txt') }}
+        # Use hashFiles to test for existence of the requirements file. hashFiles
+        # returns an empty string if the file is missing, so we can compare it
+        # against '' to decide whether to run pip.
+        if: ${{ hashFiles('crown_of_clarity/requirements.txt') != '' }}
         run: |
           pip install -r crown_of_clarity/requirements.txt
 

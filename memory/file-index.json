@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-02T04:21:56.746Z",
+  "generated": "2025-11-02T09:25:57.754Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -380,6 +380,12 @@
       "purpose": "misc"
     },
     {
+      "path": "file-index.json",
+      "bytes": 375,
+      "hash": "5a5772dc9191d0370dbea738119814f4",
+      "purpose": "misc"
+    },
+    {
       "path": "importmap.json",
       "bytes": 248,
       "hash": "0dd6750207808aafad113e80eb23457c",
@@ -454,7 +460,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 70020,
-      "hash": "bdaebf29aa4aa48d076ca3949e40dcce",
+      "hash": "33f887347e786bcee8d52322a4fba2bf",
       "purpose": "misc"
     },
     {
@@ -2489,6 +2495,12 @@
       "path": "scripts/generate_art.py",
       "bytes": 2951,
       "hash": "dbc474caacc6960647df349cbbc053aa",
+      "purpose": "misc"
+    },
+    {
+      "path": "site-map.json",
+      "bytes": 941,
+      "hash": "a8b61d31e000f65d3f7a49b63cbb826c",
       "purpose": "misc"
     },
     {

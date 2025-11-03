@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-03T21:39:32.970Z",
+  "generated": "2025-11-03T21:39:54.403Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -167,12 +167,6 @@
       "path": "assets/img/charlotte-outside .img",
       "bytes": 298325,
       "hash": "49c8b07ee31484c1ef0cc87f740e2718",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/jem-hall-outside.jpg",
-      "bytes": 2453856,
-      "hash": "a21741c4111c7570b5c615eeac8c2633",
       "purpose": "misc"
     },
     {
@@ -531,8 +525,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 77282,
-      "hash": "5262516e88dd4a7b685dcd10559cae32",
+      "bytes": 77123,
+      "hash": "5567680875f255d4838ab7acc04a6902",
       "purpose": "misc"
     },
     {

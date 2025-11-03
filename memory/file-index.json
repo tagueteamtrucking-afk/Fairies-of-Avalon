@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-03T21:36:19.381Z",
+  "generated": "2025-11-03T21:37:00.625Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -122,12 +122,6 @@
       "purpose": "misc"
     },
     {
-      "path": "assets/img/Tracy-Inside.jpeg",
-      "bytes": 331004,
-      "hash": "13faddf9340f28f0ddfacefd29cbe571",
-      "purpose": "misc"
-    },
-    {
       "path": "assets/img/Tracy-Outside.jpeg",
       "bytes": 349791,
       "hash": "d7618c06190a60d21310fd00cca8cc88",
@@ -221,6 +215,12 @@
       "path": "assets/img/stella-outside.img",
       "bytes": 286156,
       "hash": "974d3dabfc8cce68d8da979a1eae5cb9",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/tracy-inside.img",
+      "bytes": 331004,
+      "hash": "13faddf9340f28f0ddfacefd29cbe571",
       "purpose": "misc"
     },
     {
@@ -549,8 +549,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 77614,
-      "hash": "3eb9402e32ab61bda66d5a1d0b3c9120",
+      "bytes": 77613,
+      "hash": "13d9dd6756a6bf5c6ef23d344a46d075",
       "purpose": "misc"
     },
     {

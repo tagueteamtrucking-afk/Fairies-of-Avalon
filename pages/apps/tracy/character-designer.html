@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tracy – Character Designer</title>
-  <link rel="stylesheet" href="../../../style.css">
+  <link rel="stylesheet" href="../common/style.css" />
   <style>
-    /* Inline styles specific to this page to augment the common stylesheet. */
-    #output {
-      margin-top: 1rem;
-      padding: 1rem;
-      border: 1px dashed var(--muted);
-      border-radius: 6px;
-      background: rgba(0, 0, 0, 0.3);
-    }
+    label { display: block; margin-top: 0.5rem; }
+    input, textarea { width: 100%; padding: 0.5rem; }
+    #output { margin-top: 1rem; padding: 1rem; border: 1px dashed #666; }
   </style>
 </head>
-<body>
+<!--
+  Tracy's character designer helps capture descriptive details for new characters.
+  In this simple implementation the output is textual; a future version could
+  integrate an AI image generator that respects continuity and previous designs.
+-->
+<body class="tracy-inside">
   <div class="wrap">
     <h1 class="heading">Character Designer</h1>
-    <p class="lead">Create a new character by describing their appearance and personality.</p>
     <form id="char-form">
       <label>Name
         <input type="text" name="name" placeholder="e.g. Aria" />
@@ -40,10 +39,10 @@
       e.preventDefault();
       const form = e.target;
       const name = form.name.value.trim() || 'Unnamed';
-      const appearance = form.appearance.value.trim() || 'no appearance description provided';
-      const traits = form.traits.value.trim() || 'no personality traits listed';
+      const appearance = form.appearance.value.trim();
+      const traits = form.traits.value.trim();
       const output = document.getElementById('output');
-      output.innerHTML = `<strong>${name}</strong> – ${appearance}. Personality: ${traits}.`;
+      output.innerHTML = `<strong>${name}</strong> – ${appearance}. Personality: ${traits}. (Image generation coming soon.)`;
     });
   </script>
 </body>

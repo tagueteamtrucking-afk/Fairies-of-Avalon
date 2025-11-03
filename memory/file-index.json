@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-03T21:37:47.969Z",
+  "generated": "2025-11-03T21:38:53.414Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -155,12 +155,6 @@
       "path": "assets/img/billie-outside.img",
       "bytes": 301588,
       "hash": "12b90816d35b7c38bc413d379114434f",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/carol-kitchen-inside.jpg",
-      "bytes": 2935708,
-      "hash": "dfb4b8ab7ae58d0cdae7779c277e749f",
       "purpose": "misc"
     },
     {
@@ -549,8 +543,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 77612,
-      "hash": "c99459ecc191c673b6412e9bcd5b04b9",
+      "bytes": 77611,
+      "hash": "4f2c598c7acfd6c10b6f16c54350b753",
       "purpose": "misc"
     },
     {

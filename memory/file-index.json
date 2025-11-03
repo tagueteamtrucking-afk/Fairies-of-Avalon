@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-03T21:33:39.416Z",
+  "generated": "2025-11-03T21:34:28.281Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -122,12 +122,6 @@
       "purpose": "misc"
     },
     {
-      "path": "assets/img/Charlotte-Inside.jpeg",
-      "bytes": 289290,
-      "hash": "a2d47a8f1f34a4c8b50e390aab9ad77a",
-      "purpose": "misc"
-    },
-    {
       "path": "assets/img/Charlotte-Outside .jpeg",
       "bytes": 298325,
       "hash": "49c8b07ee31484c1ef0cc87f740e2718",
@@ -203,6 +197,12 @@
       "path": "assets/img/carol-kitchen-outside.jpg",
       "bytes": 2108161,
       "hash": "484447d24cef338f9a2dcb8bf62eea48",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/charlotte-inside.img",
+      "bytes": 289290,
+      "hash": "a2d47a8f1f34a4c8b50e390aab9ad77a",
       "purpose": "misc"
     },
     {
@@ -549,8 +549,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 77618,
-      "hash": "096fae936680fdb89630620d4f46176b",
+      "bytes": 77617,
+      "hash": "c8a34a48fdcf2d1255dc84f15b2c872d",
       "purpose": "misc"
     },
     {

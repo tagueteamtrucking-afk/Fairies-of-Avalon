@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-03T21:35:02.223Z",
+  "generated": "2025-11-03T21:35:43.300Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -122,12 +122,6 @@
       "purpose": "misc"
     },
     {
-      "path": "assets/img/Stella-Inside.jpeg",
-      "bytes": 302780,
-      "hash": "2210fa4326eff6daf2cdfa1326718681",
-      "purpose": "misc"
-    },
-    {
       "path": "assets/img/Stella-Outside.jpeg",
       "bytes": 286156,
       "hash": "974d3dabfc8cce68d8da979a1eae5cb9",
@@ -221,6 +215,12 @@
       "path": "assets/img/placeholder.svg",
       "bytes": 424,
       "hash": "263b45c5fdc80e0517e7dedfc4bf4684",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/stella-inside.img",
+      "bytes": 302780,
+      "hash": "2210fa4326eff6daf2cdfa1326718681",
       "purpose": "misc"
     },
     {
@@ -549,8 +549,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 77616,
-      "hash": "c4e785b314652c1132fb4194adef8390",
+      "bytes": 77615,
+      "hash": "3768c86dc95035cd9ed1d490a3f26763",
       "purpose": "misc"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-03T21:37:00.625Z",
+  "generated": "2025-11-03T21:37:47.969Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -122,12 +122,6 @@
       "purpose": "misc"
     },
     {
-      "path": "assets/img/Tracy-Outside.jpeg",
-      "bytes": 349791,
-      "hash": "d7618c06190a60d21310fd00cca8cc88",
-      "purpose": "misc"
-    },
-    {
       "path": "assets/img/abbey-inside.img",
       "bytes": 330417,
       "hash": "414fda16ed7f260ab0672203c6b614c5",
@@ -221,6 +215,12 @@
       "path": "assets/img/tracy-inside.img",
       "bytes": 331004,
       "hash": "13faddf9340f28f0ddfacefd29cbe571",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/tracy-outside.img",
+      "bytes": 349791,
+      "hash": "d7618c06190a60d21310fd00cca8cc88",
       "purpose": "misc"
     },
     {
@@ -549,8 +549,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 77613,
-      "hash": "13d9dd6756a6bf5c6ef23d344a46d075",
+      "bytes": 77612,
+      "hash": "c99459ecc191c673b6412e9bcd5b04b9",
       "purpose": "misc"
     },
     {

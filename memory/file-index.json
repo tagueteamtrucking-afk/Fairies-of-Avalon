@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-03T21:34:28.281Z",
+  "generated": "2025-11-03T21:35:02.223Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -122,12 +122,6 @@
       "purpose": "misc"
     },
     {
-      "path": "assets/img/Charlotte-Outside .jpeg",
-      "bytes": 298325,
-      "hash": "49c8b07ee31484c1ef0cc87f740e2718",
-      "purpose": "misc"
-    },
-    {
       "path": "assets/img/Stella-Inside.jpeg",
       "bytes": 302780,
       "hash": "2210fa4326eff6daf2cdfa1326718681",
@@ -203,6 +197,12 @@
       "path": "assets/img/charlotte-inside.img",
       "bytes": 289290,
       "hash": "a2d47a8f1f34a4c8b50e390aab9ad77a",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/charlotte-outside .img",
+      "bytes": 298325,
+      "hash": "49c8b07ee31484c1ef0cc87f740e2718",
       "purpose": "misc"
     },
     {
@@ -549,8 +549,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 77617,
-      "hash": "c8a34a48fdcf2d1255dc84f15b2c872d",
+      "bytes": 77616,
+      "hash": "c4e785b314652c1132fb4194adef8390",
       "purpose": "misc"
     },
     {

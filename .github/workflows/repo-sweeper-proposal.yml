@@ -1,5 +1,12 @@
 name: Repo Sweeper (propose deletions)
 
+# This workflow examines the repository's file index and the cleanup rules
+# defined in `memory/cleanup-rules.json` and generates a set of proposed
+# deletions. It creates `memory/cleanup-proposals.json` listing files that
+# match deletion globs but are not protected by preserve globs. A pull request
+# is then opened with the proposed deletions for manual review. The workflow
+# is triggered either manually via the Actions tab or on a daily schedule.
+
 on:
   workflow_dispatch: {}
   schedule:
@@ -18,56 +25,51 @@ jobs:
         id: plan
         run: |
           node - <<'JS'
-const fs = require('fs');
-let micromatch;
-try {
-  // Attempt to require micromatch if available
-  micromatch = require('micromatch');
-} catch {
-  // Fallback glob matcher using simple wildcard conversion
-  micromatch = {
-    isMatch: (p, patterns) => {
-      if (!patterns || patterns.length === 0) return false;
-      return patterns.some(g => {
-        // Escape regex special characters except wildcards
-        let r = g.replace(/[.+^${}()|[\]\\]/g, '\\$&');
-        // Replace ** with .*, * with [^/]* and ? with .
-        r = r.replace(/\*\*/g, '.*').replace(/\*/g, '[^/]*').replace(/\?/g, '.');
-        const regex = new RegExp('^' + r + '$');
-        return regex.test(p);
-      });
-    }
-  };
-}
-const idx = JSON.parse(fs.readFileSync('memory/file-index.json','utf8'));
-const rules = JSON.parse(fs.readFileSync('memory/cleanup-rules.json','utf8'));
-const files = idx.files;
-function preserved(p) { return micromatch.isMatch(p, rules.preserveGlobs || []); }
-const deletes = [];
-files.forEach(f => {
-  if (preserved(f.path)) return;
-  for (const r of (rules.deleteIf || [])) {
-    if (r.glob && micromatch.isMatch(f.path, [r.glob])) {
-      deletes.push({ path: f.path, reason: 'pattern '+r.glob });
-      return;
-    }
-  }
-});
-fs.mkdirSync('memory', {recursive:true});
-fs.writeFileSync('memory/cleanup-proposals.json', JSON.stringify({ generated: new Date().toISOString(), deletes }, null, 2));
-console.log(`Will delete ${deletes.length} files`);
-JS
+          const fs = require('fs');
+          // Load micromatch if available; fallback to minimal glob matcher
+          let micromatch;
+          try {
+            micromatch = require('micromatch');
+          } catch (err) {
+            micromatch = {
+              isMatch: (p, patterns) => {
+                if (!patterns || patterns.length === 0) return false;
+                return patterns.some(g => {
+                  // Escape regex special characters except wildcards
+                  let r = g.replace(/[.+^${}()|[\]\\]/g, '\\$&');
+                  r = r.replace(/\*\*/g, '.*').replace(/\*/g, '[^/]*').replace(/\?/g, '.');
+                  return new RegExp('^' + r + '$').test(p);
+                });
+              }
+            };
+          }
+          const idx = JSON.parse(fs.readFileSync('memory/file-index.json','utf8'));
+          const rules = JSON.parse(fs.readFileSync('memory/cleanup-rules.json','utf8'));
+          const deletes = [];
+          idx.files.forEach(f => {
+            // Skip preserved files
+            if (micromatch.isMatch(f.path, rules.preserveGlobs || [])) return;
+            (rules.deleteIf || []).forEach(r => {
+              if (r.glob && micromatch.isMatch(f.path, [r.glob])) {
+                deletes.push({ path: f.path, reason: 'pattern ' + r.glob });
+              }
+            });
+          });
+          fs.mkdirSync('memory', {recursive:true});
+          fs.writeFileSync('memory/cleanup-proposals.json', JSON.stringify({ generated: new Date().toISOString(), deletes }, null, 2));
+          console.log(`Will delete ${deletes.length} files`);
+          JS
       - name: Create PR with deletions
-        if: ${{ steps.plan.outputs }}
+        if: ${{ always() }}
         uses: peter-evans/create-pull-request@v6
         with:
           branch: chore/repo-sweep
           title: 'chore: repo sweep (auto-proposed deletions)'
           commit-message: 'chore: remove redundant files'
           body: |
-            This PR proposes deletions based on `memory/cleanup-rules.json`.  Review and merge if acceptable.
+            This PR proposes deletions based on `memory/cleanup-rules.json`. Review and merge if acceptable.
           add-paths: |
             memory/cleanup-proposals.json
           delete-files: |
-            $(node -p "JSON.parse(require('fs').readFileSync('memory/cleanup-proposals.json','utf8')).deletes.map(d=>d.path).join('\\n')")
+            $(node -p "require('fs').existsSync('memory/cleanup-proposals.json') ? JSON.parse(require('fs').readFileSync('memory/cleanup-proposals.json','utf8')).deletes.map(d => d.path).join('\\n') : ''")
           token: ${{ secrets.GITHUB_TOKEN }}

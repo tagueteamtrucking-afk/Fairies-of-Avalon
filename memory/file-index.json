@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-03T04:27:35.202Z",
+  "generated": "2025-11-03T04:45:31.907Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -512,6 +512,12 @@
       "purpose": "misc"
     },
     {
+      "path": "memory/character-summary.md",
+      "bytes": 4655,
+      "hash": "045c224a66212a568ea83011e127f75a",
+      "purpose": "misc"
+    },
+    {
       "path": "memory/cleanup-proposals.json",
       "bytes": 29787,
       "hash": "40857eea5e77dca22bb145511da1f080",
@@ -544,7 +550,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 76755,
-      "hash": "792ef740fe89c05bedac5f647f1f6b62",
+      "hash": "744456631d2a8607cd24cf7ea732f506",
       "purpose": "misc"
     },
     {
@@ -2439,8 +2445,8 @@
     },
     {
       "path": "pages/apps/jem/data/training-plan.json",
-      "bytes": 4163,
-      "hash": "5646bf2b121b13670af0483468c743ba",
+      "bytes": 4007,
+      "hash": "c3112d7af9c3f7c5726a7c3acb1f5ecf",
       "purpose": "page"
     },
     {

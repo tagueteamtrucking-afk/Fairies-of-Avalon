@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-03T19:24:49.841Z",
+  "generated": "2025-11-03T20:45:28.834Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -477,8 +477,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 2190,
-      "hash": "22c560f2bde0dba1396c7500165c6d45",
+      "bytes": 1574,
+      "hash": "b1064787def8e28b08d61c1042af0eb5",
       "purpose": "misc"
     },
     {
@@ -549,8 +549,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 21209,
-      "hash": "99b0a6ee2936ec742d18d48491143db0",
+      "bytes": 77621,
+      "hash": "a818215bb3df22db3fecf4caa5fa08db",
       "purpose": "misc"
     },
     {
@@ -2343,8 +2343,8 @@
     },
     {
       "path": "pages/apps/carol/index.html",
-      "bytes": 938,
-      "hash": "f743bbc12ecb41201c36a39a45e682f5",
+      "bytes": 1493,
+      "hash": "8d73cf37310d5c5c88c5a769fec855a8",
       "purpose": "page"
     },
     {
@@ -2355,14 +2355,14 @@
     },
     {
       "path": "pages/apps/carol/meal-plan.html",
-      "bytes": 8628,
-      "hash": "a5b68c5795ff4ffcf7a2311ba86c270e",
+      "bytes": 4635,
+      "hash": "8ba440a43951c53c0357f7151ac140c4",
       "purpose": "page"
     },
     {
       "path": "pages/apps/carol/menu.html",
-      "bytes": 614,
-      "hash": "8499fc608d85f4341f12227852dc1b62",
+      "bytes": 1710,
+      "hash": "ac50ad4496fe1a103cc5ec44ba669f9e",
       "purpose": "page"
     },
     {
@@ -2397,8 +2397,8 @@
     },
     {
       "path": "pages/apps/charlotte/index.html",
-      "bytes": 1140,
-      "hash": "9074b656d443760e4ebeb6670674149e",
+      "bytes": 1538,
+      "hash": "2fb04f30ac4216af9ba0c5f4228df6d7",
       "purpose": "page"
     },
     {
@@ -2571,14 +2571,14 @@
     },
     {
       "path": "pages/apps/tracy/character-designer.html",
-      "bytes": 1876,
-      "hash": "2cf1b6abf66aae381fc51dcb24d911f8",
+      "bytes": 1946,
+      "hash": "21a2f3ec8b2a371d7c6935eb7d5d1d0d",
       "purpose": "page"
     },
     {
       "path": "pages/apps/tracy/index.html",
-      "bytes": 960,
-      "hash": "754bdff14400ae990246cb1910956621",
+      "bytes": 915,
+      "hash": "50cdbfa3cc6bb4fa6b49043c5c88cba0",
       "purpose": "page"
     },
     {

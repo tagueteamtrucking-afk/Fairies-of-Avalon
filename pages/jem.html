@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jem – Fitness & Motion</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="jem-inside">
+  <div class="wrap">
+    <h1 class="heading">Jem</h1>
+    <p class="lead">Fitness &amp; motion. Create and track your personalised workouts.</p>
+    <p>This simple fitness planner lets you record exercises and repetitions. In future updates Jem will offer guided workouts and progress tracking.</p>
+    <form id="workout-form">
+      <label>Exercise name
+        <input type="text" name="exercise" placeholder="e.g. Push ups">
+      </label>
+      <label>Repetitions / Duration
+        <input type="text" name="reps" placeholder="e.g. 10 reps or 30 sec">
+      </label>
+      <button type="submit">Add Exercise</button>
+    </form>
+    <h2>Today’s Plan</h2>
+    <ul id="workout-list"></ul>
+    <p><a href="../index.html">← back to home</a></p>
+  </div>
+  <script>
+    // Basic workout planner storing exercises in sessionStorage (clears when tab closes)
+    const workoutForm = document.getElementById('workout-form');
+    const workoutList = document.getElementById('workout-list');
+    const workout = JSON.parse(sessionStorage.getItem('jemWorkout') || '[]');
+    function renderWorkout() {
+      workoutList.innerHTML = workout.map((item, i) => `<li>${item.exercise} – ${item.reps} <button data-idx="${i}">Remove</button></li>`).join('');
+    }
+    renderWorkout();
+    workoutForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const exercise = workoutForm.exercise.value.trim();
+      const reps = workoutForm.reps.value.trim();
+      if (!exercise || !reps) return;
+      workout.push({ exercise, reps });
+      sessionStorage.setItem('jemWorkout', JSON.stringify(workout));
+      workoutForm.reset();
+      renderWorkout();
+    });
+    workoutList.addEventListener('click', e => {
+      if (e.target.tagName === 'BUTTON') {
+        const idx = parseInt(e.target.dataset.idx, 10);
+        workout.splice(idx, 1);
+        sessionStorage.setItem('jemWorkout', JSON.stringify(workout));
+        renderWorkout();
+      }
+    });
+  </script>
+</body>
+</html>

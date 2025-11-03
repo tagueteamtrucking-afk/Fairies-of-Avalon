@@ -1,0 +1,194 @@
+/* Core colour palette for the Fairies of Avalon site.  
+ * The design borrows from the dark/night‑mode aesthetic of the original but
+ * consolidates variables in one place for easy theming. These colours
+ * contrast well and keep text legible on top of photographic backgrounds.
+ */
+
+:root {
+  --bg: #0b0f1a;
+  --ink: #e5e8ef;
+  --card: #1a2233;
+  --muted: #8fa6c2;
+  --link: #89b4fa;
+  --accent: #cba6f7;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Backgrounds for Carol and Jem.  
+ * Using generated images stored in assets/img. Each class sets a
+ * photograph or illustration as the body background. You can swap
+ * out the images here without touching individual pages.
+ */
+.carol-outside {
+  background-image: url('assets/img/carol-kitchen-outside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.carol-inside {
+  background-image: url('assets/img/carol-kitchen-inside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.jem-outside {
+  background-image: url('assets/img/jem-hall-outside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.jem-inside {
+  background-image: url('assets/img/jem-hall-inside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+/* Generic wrapper used on most pages to constrain content width and
+ * center it on the screen. Padding creates breathing room around
+ * the edges of the viewport.
+ */
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  backdrop-filter: blur(4px) brightness(0.9);
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+}
+
+/* Typography helpers */
+.heading {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.lead {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+/* Grid layout for the home page cards. Automatically adapts
+ * to screen width by wrapping cards onto new rows.
+ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* Card component used to represent each fairy or item on the home page. */
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.card strong {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1.2rem;
+}
+
+/* Links */
+a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Tables used in dashboards and meal plans. The table styling
+ * ensures rows and columns have adequate padding and subtle separators.
+ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  overflow-wrap: anywhere;
+}
+
+th, td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--card);
+  vertical-align: top;
+}
+
+th {
+  text-align: left;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Form fields */
+input[type="text"], input[type="number"], textarea, select {
+  width: 100%;
+  padding: 8px;
+  margin: 4px 0 12px 0;
+  background: var(--card);
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+  color: var(--ink);
+}
+
+button {
+  background: var(--link);
+  color: #0b0f1a;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background: var(--accent);
+}
+
+/* Rating select fields in meal plan */
+select.rating {
+  width: auto;
+}
+
+/* Shopping list checkboxes */
+.shopping-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}

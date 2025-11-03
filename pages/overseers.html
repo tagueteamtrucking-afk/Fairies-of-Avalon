@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overseers – Palace & Governance</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">Overseers</h1>
+    <p class="lead">Palace &amp; governance. Participate in shaping Avalon’s future by casting your vote.</p>
+    <p>The Overseers manage and balance resources across all districts. Engage with this simple poll to let them know what you’d like to see next.</p>
+    <form id="poll-form">
+      <fieldset>
+        <legend>Which feature should Avalon develop next?</legend>
+        <label><input type="radio" name="feature" value="storyLibrary"> Expanded story library</label><br>
+        <label><input type="radio" name="feature" value="fitnessGuides"> Interactive fitness guides</label><br>
+        <label><input type="radio" name="feature" value="voiceActing"> Professional voice acting</label><br>
+        <label><input type="radio" name="feature" value="mealSuggestions"> AI meal suggestions</label>
+      </fieldset>
+      <button type="submit">Vote</button>
+    </form>
+    <h2>Current Results</h2>
+    <ul id="results"></ul>
+    <p><a href="../index.html">← back to home</a></p>
+  </div>
+  <script>
+    const POLL_KEY = 'avalonPollResults';
+    const resultsList = document.getElementById('results');
+    const pollForm = document.getElementById('poll-form');
+    // Load existing poll results or initialise counts
+    const results = JSON.parse(localStorage.getItem(POLL_KEY) || '{"storyLibrary":0,"fitnessGuides":0,"voiceActing":0,"mealSuggestions":0}');
+    function renderPoll() {
+      resultsList.innerHTML = Object.entries(results).map(([key, count]) => {
+        const label = {
+          storyLibrary: 'Expanded story library',
+          fitnessGuides: 'Interactive fitness guides',
+          voiceActing: 'Professional voice acting',
+          mealSuggestions: 'AI meal suggestions'
+        }[key];
+        return `<li>${label}: <strong>${count}</strong> vote${count === 1 ? '' : 's'}</li>`;
+      }).join('');
+    }
+    renderPoll();
+    pollForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const choice = pollForm.feature.value;
+      if (!choice) return;
+      results[choice]++;
+      localStorage.setItem(POLL_KEY, JSON.stringify(results));
+      renderPoll();
+      alert('Thanks for voting!');
+      pollForm.reset();
+    });
+  </script>
+</body>
+</html>

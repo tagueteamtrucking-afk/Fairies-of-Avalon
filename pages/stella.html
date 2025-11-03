@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stella – Voice & Sound</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="heading">Stella</h1>
+    <p class="lead">Voice &amp; sound. Experiment with spoken scripts using your browser’s speech synthesis.</p>
+    <p>Enter a short script below and click <em>Play</em> to hear it spoken aloud. This feature uses the Web Speech API available in most modern browsers.</p>
+    <label for="script">Script</label>
+    <textarea id="script" rows="4" placeholder="e.g. Welcome to Avalon! We hope you enjoy your stay."></textarea>
+    <button id="play">Play voice</button>
+    <button id="stop">Stop</button>
+    <p><a href="../index.html">← back to home</a></p>
+  </div>
+  <script>
+    const playBtn = document.getElementById('play');
+    const stopBtn = document.getElementById('stop');
+    playBtn.addEventListener('click', () => {
+      const text = document.getElementById('script').value.trim();
+      if (!text) return;
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.rate = 1;
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utter);
+    });
+    stopBtn.addEventListener('click', () => {
+      speechSynthesis.cancel();
+    });
+  </script>
+</body>
+</html>

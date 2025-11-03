@@ -1,52 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex,nofollow" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Charlotte – Queues Dashboard</title>
-  <link rel="stylesheet" href="/pages/apps/common/style.css" />
-  <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 0.5rem;
-      text-align: left;
-    }
-    th {
-      background: #f2f2f2;
-    }
-  </style>
+  <link rel="stylesheet" href="../../../style.css">
 </head>
 <body>
   <div class="wrap">
-    <h1 class="heading">📊 Charlotte – Queues Dashboard</h1>
+    <h1 class="heading">Queues Dashboard</h1>
     <p class="lead">Monitor outstanding tasks across Avalon. Use this dashboard to track progress and assign tasks.</p>
-    <div id="queues-table"></div>
+    <table>
+      <thead><tr><th>ID</th><th>Title</th><th>Assignee</th><th>Status</th><th></th></tr></thead>
+      <tbody id="task-body"></tbody>
+    </table>
+    <h2>Add new task</h2>
+    <form id="task-form">
+      <label>Title
+        <input type="text" name="title" placeholder="e.g. Implement meal planner" />
+      </label>
+      <label>Assignee
+        <input type="text" name="assignee" placeholder="e.g. Carol" />
+      </label>
+      <label>Status
+        <select name="status">
+          <option value="not started">Not started</option>
+          <option value="in progress">In progress</option>
+          <option value="in review">In review</option>
+          <option value="done">Done</option>
+        </select>
+      </label>
+      <button type="submit">Add Task</button>
+    </form>
     <p><a href="index.html">← back to Charlotte</a></p>
   </div>
-  <script type="module">
-    // Static tasks; in a real implementation these would be fetched from an API or workflow queue.
-    const tasks = [
-      { id: 'Q‑101', title: 'Implement meal planner', assignee: 'Carol', status: 'in progress' },
-      { id: 'Q‑102', title: 'Build fitness planner', assignee: 'Jem', status: 'in progress' },
-      { id: 'Q‑103', title: 'Add story shelf', assignee: 'Alexandria', status: 'done' },
-      { id: 'Q‑104', title: 'Create guided session audio', assignee: 'Stella', status: 'done' },
-      { id: 'Q‑105', title: 'Develop art gallery page', assignee: 'Tracy', status: 'in review' },
-      { id: 'Q‑106', title: 'Set up import map validation', assignee: 'Nina', status: 'not started' }
-    ];
-    function renderTable() {
-      let html = '<table><thead><tr><th>ID</th><th>Title</th><th>Assignee</th><th>Status</th></tr></thead><tbody>';
-      tasks.forEach(task => {
-        html += `<tr><td>${task.id}</td><td>${task.title}</td><td>${task.assignee}</td><td>${task.status}</td></tr>`;
-      });
-      html += '</tbody></table>';
-      document.getElementById('queues-table').innerHTML = html;
+  <script>
+    const TASK_KEY = 'avalonTasks';
+    const tbody = document.getElementById('task-body');
+    const form = document.getElementById('task-form');
+    let tasks = JSON.parse(localStorage.getItem(TASK_KEY) || '[]');
+    // Prepopulate with sample tasks if none exist
+    if (tasks.length === 0) {
+      tasks = [
+        { id: 'Q‑101', title: 'Implement meal planner', assignee: 'Carol', status: 'in progress' },
+        { id: 'Q‑102', title: 'Build fitness planner', assignee: 'Jem', status: 'in progress' },
+        { id: 'Q‑103', title: 'Add story shelf', assignee: 'Alexandria', status: 'done' },
+        { id: 'Q‑104', title: 'Create guided session audio', assignee: 'Stella', status: 'done' },
+        { id: 'Q‑105', title: 'Develop art gallery page', assignee: 'Tracy', status: 'in review' },
+        { id: 'Q‑106', title: 'Set up import map validation', assignee: 'Charlotte', status: 'not started' }
+      ];
     }
-    renderTable();
+    function render() {
+      tbody.innerHTML = tasks.map((t, i) => {
+        return `<tr><td>${t.id}</td><td>${t.title}</td><td>${t.assignee}</td><td>${t.status}</td><td><button data-idx="${i}">Delete</button></td></tr>`;
+      }).join('');
+      localStorage.setItem(TASK_KEY, JSON.stringify(tasks));
+    }
+    render();
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const title = form.title.value.trim();
+      const assignee = form.assignee.value.trim();
+      const status = form.status.value;
+      if (!title || !assignee) return;
+      // Generate an ID by incrementing the highest numeric portion
+      const ids = tasks.map(t => parseInt(t.id.replace(/[^0-9]/g, ''), 10) || 100);
+      const next = Math.max(...ids) + 1;
+      const id = `Q‑${next}`;
+      tasks.push({ id, title, assignee, status });
+      render();
+      form.reset();
+    });
+    tbody.addEventListener('click', e => {
+      if (e.target.tagName === 'BUTTON') {
+        const idx = parseInt(e.target.dataset.idx, 10);
+        tasks.splice(idx, 1);
+        render();
+      }
+    });
   </script>
 </body>
 </html>

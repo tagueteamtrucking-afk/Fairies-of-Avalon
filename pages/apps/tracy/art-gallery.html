@@ -1,52 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex,nofollow" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tracy – Art Gallery</title>
-  <link rel="stylesheet" href="/pages/apps/common/style.css" />
-  <style>
-    .gallery img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      margin-bottom: 1rem;
-    }
-    .prompt-form {
-      margin-bottom: 1rem;
-    }
-    .prompt-form input {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .prompt-form button {
-      padding: 0.5rem 1rem;
-    }
-    .message {
-      font-style: italic;
-      color: #666;
-    }
-  </style>
+  <link rel="stylesheet" href="../../../style.css">
 </head>
 <body>
   <div class="wrap">
-    <h1 class="heading">🖼️ Tracy – Art Gallery</h1>
-    <p class="lead">Browse sample art and experiment with prompts. (Image generation is a future feature.)</p>
+    <h1 class="heading">🎨 Tracy – Art Gallery</h1>
+    <p class="lead">Browse sample art and experiment with prompts. Image generation is a future feature.</p>
     <div class="gallery">
-      <img src="/assets/img/tracy-sample.png" alt="Sample art by Tracy" />
+      <img src="../../../assets/img/tracy-sample.png" alt="Sample art by Tracy" style="max-width:100%; height:auto; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.2); margin-bottom:1rem;">
     </div>
     <div class="prompt-form">
       <label for="prompt">Enter a description to inspire a new illustration:</label>
       <input id="prompt" type="text" placeholder="e.g. A dragon soaring over Avalon at sunset" />
       <button id="generate">Generate</button>
     </div>
-    <p id="output" class="message"></p>
+    <p id="output" class="lead"></p>
     <p><a href="index.html">← back to Tracy</a></p>
   </div>
-  <script type="module">
+  <script>
+    // Simulate image generation by displaying a friendly message. Real
+    // implementation could call a server‑side AI model or third‑party API.
     document.getElementById('generate').addEventListener('click', () => {
       const prompt = document.getElementById('prompt').value.trim();
       const output = document.getElementById('output');
@@ -54,8 +31,7 @@
         output.textContent = 'Please enter a prompt first.';
         return;
       }
-      // Since offline generation is not available, we show a friendly message.
-      output.textContent = `"${prompt}" – image generation is coming soon!`;
+      output.textContent = '"' + prompt + '" – image generation is coming soon!';
     });
   </script>
 </body>

@@ -1,79 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex,nofollow" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Charlotte – Translations Board</title>
-  <link rel="stylesheet" href="/pages/apps/common/style.css" />
-  <style>
-    .translator {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    textarea {
-      width: 100%;
-      min-height: 100px;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      resize: vertical;
-    }
-    select {
-      padding: 0.5rem;
-      border-radius: 4px;
-    }
-  </style>
+  <link rel="stylesheet" href="../../../style.css">
 </head>
 <body>
   <div class="wrap">
-    <h1 class="heading">🌐 Charlotte – Translations Board</h1>
-    <p class="lead">Enter text below and select a target language. Charlotte will translate using a basic dictionary. This feature will expand in future releases.</p>
-    <div class="translator">
-      <textarea id="source" placeholder="Enter text to translate (English only)…"></textarea>
-      <label>
-        Target language:
-        <select id="language">
-          <option value="es">Spanish (es)</option>
-          <option value="fr">French (fr)</option>
-        </select>
-      </label>
-      <button id="translate">Translate</button>
-      <textarea id="result" placeholder="Translation will appear here…" readonly></textarea>
-    </div>
+    <h1 class="heading">Translations Board</h1>
+    <p class="lead">Enter an English word below and select a target language. Charlotte will translate using a basic dictionary.</p>
+    <form id="translate-form">
+      <label for="word">Word or phrase</label>
+      <input type="text" id="word" placeholder="e.g. light" />
+      <label for="lang">Target language</label>
+      <select id="lang">
+        <option value="avalon">Avalonian (fantasy)</option>
+        <option value="es">Spanish (es)</option>
+        <option value="fr">French (fr)</option>
+      </select>
+      <button type="submit">Translate</button>
+    </form>
+    <p id="translation" class="lead"></p>
+    <h2>Sample vocabulary</h2>
+    <table>
+      <thead><tr><th>English</th><th>Avalonian</th><th>Spanish</th><th>French</th></tr></thead>
+      <tbody id="vocab"></tbody>
+    </table>
     <p><a href="index.html">← back to Charlotte</a></p>
   </div>
-  <script type="module">
-    const dictionary = {
-      'hello': { es: 'hola', fr: 'bonjour' },
-      'world': { es: 'mundo', fr: 'monde' },
-      'good': { es: 'bueno', fr: 'bon' },
-      'morning': { es: 'mañana', fr: 'matin' },
-      'avalon': { es: 'avalón', fr: 'avalon' },
-      'fairies': { es: 'hadas', fr: 'fées' },
-      'of': { es: 'de', fr: 'de' },
-      'love': { es: 'amor', fr: 'amour' },
-      'peace': { es: 'paz', fr: 'paix' },
-      'light': { es: 'luz', fr: 'lumière' }
+  <script>
+    // Dictionaries for demonstration. Avalonian is a constructed language.
+    const dictAvalon = {
+      dragon: 'tery',
+      forest: 'selva',
+      light: 'lux',
+      star: 'astra',
+      water: 'lira',
+      moon: 'luna',
+      sun: 'sola'
     };
-    function translateWord(word, lang) {
-      const lower = word.toLowerCase();
-      if (dictionary[lower] && dictionary[lower][lang]) {
-        return dictionary[lower][lang];
+    const dictEs = {
+      dragon: 'dragón',
+      forest: 'bosque',
+      light: 'luz',
+      star: 'estrella',
+      water: 'agua',
+      moon: 'luna',
+      sun: 'sol'
+    };
+    const dictFr = {
+      dragon: 'dragon',
+      forest: 'forêt',
+      light: 'lumière',
+      star: 'étoile',
+      water: 'eau',
+      moon: 'lune',
+      sun: 'soleil'
+    };
+    const vocabTable = document.getElementById('vocab');
+    // Populate vocabulary table
+    const words = Object.keys(dictAvalon);
+    vocabTable.innerHTML = words.map(word => {
+      return `<tr><td>${word}</td><td>${dictAvalon[word]}</td><td>${dictEs[word] || ''}</td><td>${dictFr[word] || ''}</td></tr>`;
+    }).join('');
+    const form = document.getElementById('translate-form');
+    const translationEl = document.getElementById('translation');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const word = document.getElementById('word').value.trim().toLowerCase();
+      const lang = document.getElementById('lang').value;
+      if (!word) return;
+      let result;
+      switch (lang) {
+        case 'avalon':
+          result = dictAvalon[word];
+          break;
+        case 'es':
+          result = dictEs[word];
+          break;
+        case 'fr':
+          result = dictFr[word];
+          break;
       }
-      return word;
-    }
-    document.getElementById('translate').addEventListener('click', () => {
-      const src = document.getElementById('source').value.trim();
-      const lang = document.getElementById('language').value;
-      if (!src) {
-        document.getElementById('result').value = '';
-        return;
-      }
-      const words = src.split(/\s+/);
-      const translated = words.map(w => translateWord(w, lang));
-      document.getElementById('result').value = translated.join(' ');
+      translationEl.textContent = result ? `"${word}" → ${result}` : `Sorry, no translation found for "${word}".`;
     });
   </script>
 </body>

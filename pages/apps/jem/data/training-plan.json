@@ -1,63 +1,66 @@
 {
+  "week": 1,
+  "title": "Evaluation and Warm‑Up",
   "plans": [
     {
       "day": 1,
       "activities": [
-        {"name": "Warm‑up", "description": "5‑minute light jog and dynamic stretches"},
-        {"name": "Cardio", "description": "20‑minute HIIT on treadmill"},
-        {"name": "Strength", "description": "3 sets of 10 push‑ups, 15 squats, and 20 lunges"},
-        {"name": "Cooldown", "description": "5‑minute stretching and breathing exercises"}
+        { "name": "Mobility Assessment", "description": "Perform dynamic stretches to assess range of motion in hips, shoulders and spine." },
+        { "name": "Cardio Warm‑Up", "description": "10‑minute brisk walk or light stationary cycling to increase heart rate gently." },
+        { "name": "Basic Strength Assessment", "description": "Complete 10 bodyweight squats, 5 modified push‑ups and a 20‑second plank. Record how each exercise feels." },
+        { "name": "Cooldown & Notes", "description": "Stretch major muscle groups and jot down observations about mobility, strength and any discomfort." }
       ]
     },
     {
       "day": 2,
       "activities": [
-        {"name": "Warm‑up", "description": "5‑minute brisk walk and arm circles"},
-        {"name": "Cardio", "description": "30‑minute cycling session"},
-        {"name": "Strength", "description": "3 sets of 12 dumbbell rows, 15 glute bridges, and 1‑minute plank"},
-        {"name": "Cooldown", "description": "5‑minute yoga stretch"}
+        { "name": "Flexibility & Balance", "description": "Hold gentle yoga poses (cat‑cow, child's pose, downward dog) for 30 seconds each to evaluate flexibility." },
+        { "name": "Low‑Impact Cardio", "description": "15‑minute session on an elliptical or recumbent bike at an easy pace." },
+        { "name": "Core Activation", "description": "Perform 3 sets of 10 bird‑dogs and 10 glute bridges to engage core and posterior chain." },
+        { "name": "Cooldown & Notes", "description": "Stretch lower back and legs; note any tightness or imbalances." }
       ]
     },
     {
       "day": 3,
       "activities": [
-        {"name": "Warm‑up", "description": "Jump rope for 3 minutes"},
-        {"name": "Cardio", "description": "25‑minute dance workout"},
-        {"name": "Strength", "description": "3 sets of 15 kettlebell swings, 12 push‑ups, and 30‑second side planks"},
-        {"name": "Cooldown", "description": "Foam rolling and deep breathing"}
+        { "name": "Postural Assessment", "description": "Stand against a wall to check alignment of head, shoulders and hips; practise wall angels." },
+        { "name": "Cardio Warm‑Up", "description": "8‑minute light jog or fast walk." },
+        { "name": "Bodyweight Circuit", "description": "2 rounds of 15 air squats, 10 lunges per leg and 15 supermans. Focus on form over speed." },
+        { "name": "Cooldown & Notes", "description": "Stretch quadriceps and chest; record fatigue levels." }
       ]
     },
     {
       "day": 4,
       "activities": [
-        {"name": "Warm‑up", "description": "5‑minute walk and leg swings"},
-        {"name": "Cardio", "description": "20‑minute swimming"},
-        {"name": "Strength", "description": "3 sets of 12 assisted pull‑ups, 15 goblet squats, and 20 calf raises"},
-        {"name": "Cooldown", "description": "Stretching focusing on legs and shoulders"}
+        { "name": "Balance & Stability", "description": "Perform single‑leg stands for 30 seconds per leg; practise heel‑to‑toe walking." },
+        { "name": "Low‑Impact Cardio", "description": "15‑minute swim or water aerobics if accessible; otherwise a gentle bike ride." },
+        { "name": "Upper Body Activation", "description": "3 sets of 12 band pull‑aparts, 10 wall push‑ups and 15 shoulder taps." },
+        { "name": "Cooldown & Notes", "description": "Stretch shoulders and arms; document any weaknesses." }
       ]
     },
     {
       "day": 5,
       "activities": [
-        {"name": "Warm‑up", "description": "Light jog and jumping jacks"},
-        {"name": "Cardio", "description": "15‑minute row machine"},
-        {"name": "Strength", "description": "3 sets of 10 burpees, 12 triceps dips, and 15 bicycle crunches"},
-        {"name": "Cooldown", "description": "Full body stretching and meditation"}
+        { "name": "Functional Movement", "description": "Perform sit‑to‑stands from a chair 10 times and practise step‑ups on a low platform." },
+        { "name": "Cardio Warm‑Up", "description": "5‑minute jump rope or march in place." },
+        { "name": "Core & Glute Activation", "description": "3 sets of 12 dead bugs, 12 clamshells per side and 20‑second side planks." },
+        { "name": "Cooldown & Notes", "description": "Stretch hips and obliques; note progress." }
       ]
     },
     {
       "day": 6,
       "activities": [
-        {"name": "Warm‑up", "description": "Dynamic stretching and torso twists"},
-        {"name": "Cardio", "description": "20‑minute outdoor jog"},
-        {"name": "Strength", "description": "3 sets of 15 dumbbell curls, 20 calf raises, and 2‑minute plank"},
-        {"name": "Cooldown", "description": "Stretch legs, arms and back"}
+        { "name": "Light Circuit", "description": "Perform a circuit of 15 bodyweight squats, 10 knee push‑ups, 15 chair dips and 20 calf raises. Rest 1 minute between exercises." },
+        { "name": "Cardio Endurance", "description": "20‑minute brisk walk increasing pace halfway through." },
+        { "name": "Flexibility", "description": "Spend 10 minutes foam rolling or using a massage ball on tight areas." },
+        { "name": "Cooldown & Notes", "description": "Stretch hamstrings and triceps; reflect on any improvements in endurance." }
       ]
     },
     {
       "day": 7,
       "activities": [
-        {"name": "Active rest", "description": "Yoga session or leisurely walk for 30 minutes"}
+        { "name": "Active Rest", "description": "Engage in a gentle activity such as a leisurely walk, restorative yoga session or light tai chi for 20–30 minutes." },
+        { "name": "Weekly Reflection", "description": "Review your notes from the week. Consider which exercises felt comfortable, which were challenging, and any areas needing attention before moving into more intensive body sculpting." }
       ]
     }
   ]

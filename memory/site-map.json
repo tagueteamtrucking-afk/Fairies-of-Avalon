@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-03T03:52:21Z",
+  "generated": "2025-11-03T06:06:16Z",
   "entrypoints": [
     "/index.html"
   ],
@@ -82,7 +82,7 @@
     },
     {
       "path": "/pages/apps/carol/meal-plan.html",
-      "title": "Carol \u2013 Meal Planner"
+      "title": "Carol \u2013 Two\u2011Week Meal Planner"
     },
     {
       "path": "/pages/apps/nina/index.html",
@@ -227,6 +227,7 @@
     "/memory-history/Codys-Memory.json",
     "/pages/apps/billie/data/social-posts.json",
     "/pages/apps/billie/data/earnings.json",
+    "/pages/apps/carol/data/twoperson-2wk-unique-20251015T022300Z.json",
     "/pages/apps/carol/data/menu.json",
     "/pages/apps/carol/data/meal-plan-upgraded.json",
     "/pages/apps/carol/data/shopping-list.json",
@@ -243,12 +244,24 @@
     "/pages/apps/jem/data/training-plan.json",
     "/pages/apps/stella/data/scripts.json",
     "/pages/apps/stella/data/sounds.json",
+    "/assets/img/Tracy-Outside.jpeg",
+    "/assets/img/Billie-Outside.jpeg",
     "/assets/img/carol-kitchen-inside.jpg",
+    "/assets/img/Stella-Inside.jpeg",
+    "/assets/img/Tracy-Inside.jpeg",
     "/assets/img/jem-hall-inside.jpg",
     "/assets/img/jem-hall-outside.jpg",
+    "/assets/img/Alexandria-Outside.jpeg",
+    "/assets/img/Abbey-Inside.jpeg",
     "/assets/img/carol-kitchen-outside.jpg",
+    "/assets/img/Abbey-Outside.jpeg",
     "/assets/img/placeholder.svg",
+    "/assets/img/Charlotte-Outside .jpeg",
+    "/assets/img/Stella-Outside.jpeg",
     "/assets/img/tracy-sample.png",
+    "/assets/img/Charlotte-Inside.jpeg",
+    "/assets/img/Billie-Inside.jpeg",
+    "/assets/img/Alexandria-Inside.jpeg",
     "/assets/css/avalon-dashboard.css",
     "/assets/css/avalon.css",
     "/assets/css/avalon-bright.css",

@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-03T06:06:16Z",
+  "generated": "2025-11-04T01:07:36Z",
   "entrypoints": [
     "/index.html"
   ],
@@ -21,8 +21,24 @@
       "title": "Odessa \u2014 Room"
     },
     {
+      "path": "/pages/overseers.html",
+      "title": "Overseers \u2013 Palace & Governance"
+    },
+    {
       "path": "/pages/index.html",
       "title": "Fairies of Avalon \u2013 Home"
+    },
+    {
+      "path": "/pages/jem.html",
+      "title": "Jem \u2013 Fitness & Motion"
+    },
+    {
+      "path": "/pages/alexandria.html",
+      "title": "Alexandria \u2013 Stories & Spells"
+    },
+    {
+      "path": "/pages/stella.html",
+      "title": "Stella \u2013 Voice & Sound"
     },
     {
       "path": "/pages/apps/tracy/character-designer.html",
@@ -203,6 +219,7 @@
   ],
   "assets": [
     "/importmap.json",
+    "/style.css",
     "/package.json",
     "/site-map.json",
     "/file-index.json",
@@ -244,24 +261,8 @@
     "/pages/apps/jem/data/training-plan.json",
     "/pages/apps/stella/data/scripts.json",
     "/pages/apps/stella/data/sounds.json",
-    "/assets/img/Tracy-Outside.jpeg",
-    "/assets/img/Billie-Outside.jpeg",
-    "/assets/img/carol-kitchen-inside.jpg",
-    "/assets/img/Stella-Inside.jpeg",
-    "/assets/img/Tracy-Inside.jpeg",
-    "/assets/img/jem-hall-inside.jpg",
-    "/assets/img/jem-hall-outside.jpg",
-    "/assets/img/Alexandria-Outside.jpeg",
-    "/assets/img/Abbey-Inside.jpeg",
-    "/assets/img/carol-kitchen-outside.jpg",
-    "/assets/img/Abbey-Outside.jpeg",
     "/assets/img/placeholder.svg",
-    "/assets/img/Charlotte-Outside .jpeg",
-    "/assets/img/Stella-Outside.jpeg",
     "/assets/img/tracy-sample.png",
-    "/assets/img/Charlotte-Inside.jpeg",
-    "/assets/img/Billie-Inside.jpeg",
-    "/assets/img/Alexandria-Inside.jpeg",
     "/assets/css/avalon-dashboard.css",
     "/assets/css/avalon.css",
     "/assets/css/avalon-bright.css",

@@ -16,18 +16,38 @@
    * Fetch the meal plan JSON from possible paths. Returns the parsed JSON or null.
    */
   async function loadPlan() {
-    const endpoints = [
+    /*
+     * Attempt to fetch Carol’s two‑week plan from multiple locations.  The official
+     * plan lives under a versioned folder (avalon‑carol‑unique‑2.9.4) and
+     * contains all fourteen days.  However, some deployments still host a
+     * truncated plan under the local data/ directory with only two days.  We
+     * iterate through a list of potential paths and return the first plan
+     * that loads successfully.  If none of the sources respond, we return
+     * null so the UI can show an error.
+     */
+    const candidatePaths = [
+      // Preferred: full two‑week plan in the versioned folder.  Use a
+      // relative path from meal-plan.html (pages/apps/carol/) to the root.
+      '../../../avalon-carol-unique-2.9.4/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json',
+      // Fallback: a local copy in a plans folder (if added to the repo)
+      'plans/twoperson-2wk-unique-20251015T022300Z.json',
+      '../plans/twoperson-2wk-unique-20251015T022300Z.json',
+      // Legacy: truncated plan in data directory
       'data/twoperson-2wk-unique-20251015T022300Z.json',
       '../data/twoperson-2wk-unique-20251015T022300Z.json'
     ];
-    for (const url of endpoints) {
+    for (const path of candidatePaths) {
       try {
-        const resp = await fetch(url);
+        const resp = await fetch(path);
         if (resp.ok) {
-          return await resp.json();
+          const json = await resp.json();
+          // Ensure we have a days array with more than two days; otherwise keep looking
+          if (Array.isArray(json.days) && json.days.length >= 2) {
+            return json;
+          }
         }
       } catch (e) {
-        // continue to next
+        // ignore fetch errors and try next path
       }
     }
     return null;
@@ -53,15 +73,12 @@
   function createMealCard(event) {
     const card = document.createElement('div');
     card.className = 'meal-card';
-    const img = document.createElement('img');
-    img.className = 'meal-image';
-    // Use fallback image; event.image may be provided in future
-    img.src = '/assets/img/tracy-sample.png';
-    img.alt = event.name;
+    // Each meal card shows only the meal name; we intentionally omit a photo
+    // because the plan does not provide specific images for each dish.  Using a
+    // generic placeholder for every meal proved confusing in earlier versions.
     const nameDiv = document.createElement('div');
     nameDiv.className = 'meal-name';
     nameDiv.textContent = event.name;
-    card.appendChild(img);
     card.appendChild(nameDiv);
     card.addEventListener('click', () => showMealDetails(event));
     return card;

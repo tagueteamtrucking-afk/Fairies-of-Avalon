@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-05T01:43:56.835Z",
+  "generated": "2025-11-05T01:59:42.499Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -526,7 +526,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 77416,
-      "hash": "7384c777f2757f283ebe4fb85dfb16c3",
+      "hash": "00fb435d2bec2e53f3ece218357b7ba4",
       "purpose": "misc"
     },
     {
@@ -2331,8 +2331,8 @@
     },
     {
       "path": "pages/apps/carol/meal-plan.html",
-      "bytes": 4635,
-      "hash": "8ba440a43951c53c0357f7151ac140c4",
+      "bytes": 1258,
+      "hash": "2a3c220858b3d5e9a624c66eed8ec30e",
       "purpose": "page"
     },
     {
@@ -2579,6 +2579,12 @@
       "path": "pages/js/avalon-skins.js",
       "bytes": 1344,
       "hash": "4f7d8a595c47e6b90658137387c25a34",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/js/meal-plan.js",
+      "bytes": 5926,
+      "hash": "482bbead7d1754a108bb6d2d25b6a063",
       "purpose": "page"
     },
     {

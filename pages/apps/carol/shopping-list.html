@@ -1,82 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carol – Shopping List</title>
-  <link rel="stylesheet" href="../../../style.css">
-</head>
-<body class="carol-inside">
-  <div class="wrap">
-    <h1 class="heading">Shopping List</h1>
-    <p class="lead">This list aggregates all ingredients from the weekly meal plan. Check items off as you shop.</p>
-    <div id="list"></div>
-    <button id="reset">Reset purchased items</button>
-    <p><a href="index.html">← back to Carol</a></p>
-  </div>
-  <script>
-    // Reuse the same mealPlan definition from meal-plan.html by reconstructing it here.
-    const day1 = [
-      {ingredients: ['0.5 cup rolled oats','1 tbsp chia seeds','0.75 cup lactose‑free milk','0.5 cup frozen mixed berries']},
-      {ingredients: ['1 apple','2 tbsp peanut butter']},
-      {ingredients: ['4 oz cooked chicken breast','0.5 avocado','6 butter lettuce leaves','1 tsp olive oil','1 tsp lemon juice']},
-      {ingredients: ['3 tbsp hummus (no cumin)','0.5 cup cucumber','0.5 cup steamed carrots']},
-      {ingredients: ['0.75 cup lactose‑free Greek yogurt','0.5 cup pineapple (drained)']},
-      {ingredients: ['5 oz salmon fillet','2 tsp olive oil','2 cup mixed vegetables (frozen)','0.25 lemon','0.5 tsp garlic powder']},
-      {ingredients: ['1 banana','1 cup spinach','0.75 cup lactose‑free milk','1 tbsp ground flaxseed']}
-    ];
-    const day2 = [
-      {ingredients: ['0.75 cup lactose‑free cottage cheese','0.5 cup peach (drained)','2 tbsp rolled oats']},
-      {ingredients: ['2 rice cakes','1.5 tbsp peanut butter','0.5 banana']},
-      {ingredients: ['1 soft whole‑wheat tortilla','3 oz turkey breast (low sodium)','1 cup spinach','1 tbsp lactose‑free cream cheese']},
-      {ingredients: ['1 ripe pear','1 oz slivered almonds']},
-      {ingredients: ['1.25 cup low‑sodium tomato soup','1 tsp olive oil']},
-      {ingredients: ['5 oz chicken breast','0.25 cup light panko','Olive oil spray']},
-      {ingredients: ['0.75 cup frozen berries','0.75 cup lactose‑free milk','1 tsp unsweetened cocoa']}
-    ];
-    const mealPlan = {
-      'Day 1': day1,
-      'Day 2': day2,
-      'Day 3': day1,
-      'Day 4': day2,
-      'Day 5': day1,
-      'Day 6': day2,
-      'Day 7': day1
-    };
-    // Flatten all ingredient strings and tally duplicates.
-    const counts = {};
-    Object.values(mealPlan).forEach(day => {
-      day.forEach(item => {
-        item.ingredients.forEach(ing => {
-          const key = ing.trim();
-          counts[key] = (counts[key] || 0) + 1;
-        });
-      });
-    });
-    const listDiv = document.getElementById('list');
-    const PURCHASED_KEY = 'shoppingPurchased';
-    const purchased = JSON.parse(localStorage.getItem(PURCHASED_KEY) || '{}');
-    function render() {
-      listDiv.innerHTML = Object.keys(counts).sort().map(item => {
-        const qty = counts[item] > 1 ? ` ×${counts[item]}` : '';
-        const checked = purchased[item] ? 'checked' : '';
-        return `<div class="shopping-item"><input type="checkbox" data-item="${item}" ${checked}> <span${purchased[item] ? ' style="text-decoration: line-through; color: var(--muted);"' : ''}>${item}${qty}</span></div>`;
-      }).join('');
-    }
-    render();
-    listDiv.addEventListener('change', e => {
-      if (e.target.type === 'checkbox') {
-        const item = e.target.dataset.item;
-        purchased[item] = e.target.checked;
-        localStorage.setItem(PURCHASED_KEY, JSON.stringify(purchased));
-        render();
-      }
-    });
-    document.getElementById('reset').addEventListener('click', () => {
-      localStorage.removeItem(PURCHASED_KEY);
-      Object.keys(purchased).forEach(key => { delete purchased[key]; });
-      render();
-    });
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carol – Shopping List</title>
+    <!-- Use Avalon theme styles so the page matches the rest of the site -->
+    <link rel="stylesheet" href="../../../assets/css/avalon.css" />
+  </head>
+  <body class="carol-inside">
+    <header>
+      <h1>Carol – Shopping List</h1>
+    </header>
+    <main class="mealplan-container">
+      <p>
+        This page will generate a shopping list based on your meal plan and
+        selected ratings/notes.  It is not yet implemented.
+      </p>
+    </main>
+  </body>
 </html>

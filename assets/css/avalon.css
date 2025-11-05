@@ -16,6 +16,48 @@ body {
   color: #333;
 }
 
+/*
+ * Backgrounds for Avalon buildings.  These classes mirror the
+ * definitions found in the original `common/style.css` from the live
+ * site.  They apply full‑bleed backgrounds for each location.  The
+ * image paths are relative to this CSS file (assets/css), so `../img/`
+ * moves up into the `assets/img` directory.
+ */
+.carol-outside,
+.carol-inside,
+.palace-outside,
+.palace-inside,
+.town-outside,
+.town-inside {
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+/* Carol’s kitchen backgrounds */
+.carol-outside {
+  background-image: url('../img/carol-kitchen-outside.jpg');
+}
+.carol-inside {
+  background-image: url('../img/carol-kitchen-inside.jpg');
+}
+
+/* Palace backgrounds (Camelot-inspired) */
+.palace-outside {
+  background-image: url('../img/palace-outside.png');
+}
+.palace-inside {
+  background-image: url('../img/palace-inside.png');
+}
+
+/* Town backgrounds (fantasy village) */
+.town-outside {
+  background-image: url('../img/town-outside.png');
+}
+.town-inside {
+  background-image: url('../img/town-inside.png');
+}
+
 .mealplan-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -69,6 +111,34 @@ body {
   padding: 0.5rem;
   font-size: 1rem;
   text-align: center;
+}
+
+/* Rating and notes styles for modal */
+.rating-container {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.rating-star {
+  font-size: 1.5rem;
+  margin-right: 0.125rem;
+  cursor: pointer;
+  color: #ccc;
+}
+.rating-star.selected {
+  color: #f4c10f;
+}
+.note-section {
+  margin-top: 0.5rem;
+}
+.note-section textarea {
+  width: 100%;
+  min-height: 80px;
+  resize: vertical;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 /* Modal styles */

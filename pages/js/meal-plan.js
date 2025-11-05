@@ -108,6 +108,62 @@
     modalTitle.textContent = event.name;
     modalBody.innerHTML = '';
     const fragments = [];
+
+    // Helper functions for localStorage persistence
+    function storageKey(base) {
+      // Normalize event name to create a safe key
+      const safeName = event.name.replace(/[^a-zA-Z0-9]/g, '');
+      return `carolMeal-${safeName}-${base}`;
+    }
+    function getSavedRating() {
+      const val = localStorage.getItem(storageKey('rating'));
+      return val ? parseInt(val, 10) : 0;
+    }
+    function setSavedRating(r) {
+      localStorage.setItem(storageKey('rating'), String(r));
+    }
+    function getSavedNote() {
+      return localStorage.getItem(storageKey('note')) || '';
+    }
+    function setSavedNote(note) {
+      localStorage.setItem(storageKey('note'), note);
+    }
+
+    // Rating UI
+    const ratingDiv = document.createElement('div');
+    ratingDiv.className = 'rating-container';
+    let currentRating = getSavedRating();
+    function renderStars() {
+      ratingDiv.innerHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.className = 'rating-star' + (i <= currentRating ? ' selected' : '');
+        star.textContent = '★';
+        star.addEventListener('click', () => {
+          currentRating = i;
+          setSavedRating(i);
+          renderStars();
+        });
+        ratingDiv.appendChild(star);
+      }
+    }
+    renderStars();
+    fragments.push(ratingDiv);
+
+    // Notes UI
+    const noteSection = document.createElement('div');
+    noteSection.className = 'note-section';
+    const noteLabel = document.createElement('strong');
+    noteLabel.textContent = 'Notes:';
+    const textarea = document.createElement('textarea');
+    textarea.value = getSavedNote();
+    textarea.addEventListener('input', (e) => {
+      setSavedNote(e.target.value);
+    });
+    noteSection.appendChild(noteLabel);
+    noteSection.appendChild(document.createElement('br'));
+    noteSection.appendChild(textarea);
+    fragments.push(noteSection);
     // Portion sizes / ingredients
     if (event.items && event.items.length > 0) {
       const itemsList = document.createElement('ul');

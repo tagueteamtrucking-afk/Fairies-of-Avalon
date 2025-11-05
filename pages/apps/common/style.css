@@ -1,4 +1,4 @@
-/* Core colour palette */
+/* Core colour palette (copied from the live site) */
 :root {
   --bg: #0b0f1a;
   --ink: #e5e8ef;
@@ -18,8 +18,9 @@ html, body {
   min-height: 100vh;
 }
 
-/* Backgrounds for Jem and Carol */
+/* Backgrounds for Jem and Carol (updated to use local assets) */
 .jem-outside {
+  /* Note: you can add your own images to assets/img/jem-hall-outside.jpg to override this */
   background-image: url('/assets/img/jem-hall-outside.jpg');
   background-size: cover;
   background-position: center;
@@ -33,6 +34,9 @@ html, body {
   min-height: 100vh;
 }
 
+/* Updated backgrounds for Carol’s kitchen.  These point to the new images
+ * added in assets/img so the kitchen properly reflects an inside/outside
+ * view. */
 .carol-outside {
   background-image: url('/assets/img/carol-kitchen-outside.jpg');
   background-size: cover;
@@ -47,6 +51,38 @@ html, body {
   min-height: 100vh;
 }
 
+/* New backgrounds for the Palace (Camelot‑inspired) and Town (fantasy village).
+ * Use these classes on the body element or any container to apply the
+ * corresponding background.  The images live in assets/img. */
+.palace-outside {
+  background-image: url('/assets/img/palace-outside.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.palace-inside {
+  background-image: url('/assets/img/palace-inside.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.town-outside {
+  background-image: url('/assets/img/town-outside.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.town-inside {
+  background-image: url('/assets/img/town-inside.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+/* Basic layout and card styles (from the live site) */
 .wrap {
   max-width: 960px;
   margin: 0 auto;

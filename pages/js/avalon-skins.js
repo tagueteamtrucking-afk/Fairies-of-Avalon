@@ -3,19 +3,34 @@
 document.addEventListener('DOMContentLoaded', () => {
   const skins = document.querySelectorAll('.building-skin');
   skins.forEach((el) => {
-    const character = el.getAttribute('data-character');
-    const side = el.getAttribute('data-side');
-    if (!character || !side) return;
-    // Try to find a matching image file with various extensions. Many
-    // environments store images as .png or .jpg rather than a custom
-    // .img extension. We attempt a few common formats and apply the
-    // first one that successfully loads.
+    const dataset = el.dataset;
+    // Determine building/character and side/room from data attributes.  Fallbacks
+    // cascade: building-room, building-side, character-side, default-side.
+    const building = dataset.building;
+    const room = dataset.room;
+    const character = dataset.character || dataset.char || dataset.charactername;
+    const side = dataset.side || 'outside';
+    // Build an ordered list of candidate filenames (without extension).
+    const names = [];
+    if (building && room) names.push(`${building}-${room}`);
+    if (building) names.push(`${building}-${side}`);
+    if (character) names.push(`${character}-${side}`);
+    // Always provide a default fallback
+    names.push(`default-${side}`);
+    // Try a set of common image extensions for each candidate name until one
+    // succeeds.
     const extensions = ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp'];
     let applied = false;
-    function tryExtension(extIndex) {
-      if (extIndex >= extensions.length) return;
+    function tryNextName(nameIndex, extIndex) {
+      if (nameIndex >= names.length) return;
+      if (extIndex >= extensions.length) {
+        // move to next base name
+        tryNextName(nameIndex + 1, 0);
+        return;
+      }
       const ext = extensions[extIndex];
-      const path = `/assets/img/${character}-${side}.${ext}`;
+      const base = names[nameIndex];
+      const path = `/assets/img/${base}.${ext}`;
       const img = new Image();
       img.onload = () => {
         if (!applied) {
@@ -26,11 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
       img.onerror = () => {
-        // try next extension if this one fails
-        tryExtension(extIndex + 1);
+        // try next extension for the same base name
+        tryNextName(nameIndex, extIndex + 1);
       };
       img.src = path;
     }
-    tryExtension(0);
+    tryNextName(0, 0);
   });
 });

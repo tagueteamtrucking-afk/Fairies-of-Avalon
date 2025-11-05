@@ -1,13 +1,4 @@
-/*
- * Avalon building skins helper
- *
- * This module scans the document for elements with the class
- * `.building-skin` and uses the data attributes `data-character`
- * and `data-side` to determine which image to apply. Images must be
- * stored under `assets/img/<character>-<side>.img`. For example,
- * for character "carol" and side "inside", the script will set
- * the element's background image to `/assets/img/carol-inside.img`.
- */
+// Apply building skins for elements with the `.building-skin` class.
 
 document.addEventListener('DOMContentLoaded', () => {
   const skins = document.querySelectorAll('.building-skin');

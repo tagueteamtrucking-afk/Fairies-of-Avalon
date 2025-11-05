@@ -1,18 +1,4 @@
-/*
- * Meal plan rendering script
- *
- * This script fetches a two‑week meal plan and dynamically renders
- * approximately seven mini‑meals for each day. Users can select
- * a specific day from a dropdown list; the script will populate
- * the grid with that day's meals. Each meal card includes the dish
- * image (if provided) and a label; clicking the card opens a modal
- * with detailed portion sizes, ingredients and nutrition notes.
- *
- * The plan is pulled from a JSON file relative to the project. To
- * accommodate both local builds and environment‑specific paths,
- * the script checks two possible locations. If neither is found,
- * it gracefully displays an error message on the page.
- */
+// Meal plan rendering script
 
 (function () {
   const daySelect = document.getElementById('day-select');

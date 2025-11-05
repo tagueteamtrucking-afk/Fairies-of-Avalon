@@ -1,33 +1,13 @@
-<!--
-  This page displays a meal plan for a two‑week period with approximately
-  seven mini‑meals per day. Meals are rendered as Tracy‑style cards
-  inspired by the provided sample image (assets/img/tracy-sample.png).
-  Users can select a day from a dropdown menu to view the meals for that
-  date. Clicking any meal card opens a modal with detailed portion sizes
-  and nutrition information pulled from the meal plan JSON file.
-
-  To integrate the building skin helper, include a `.building-skin`
-  element anywhere on your page with `data-character` and `data-side`
-  attributes. The script `avalon-skins.js` will automatically set
-  the correct background image from `assets/img/<character>-<side>.img`.
--->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carol Meal Plan</title>
-    <!--
-      Use relative paths rather than absolute root paths. When this file
-      lives under pages/apps/carol, the root `/` may not point to the
-      repository root on some deployment platforms (e.g. GitHub Pages or
-      nested apps). Going up three directories takes us back to the project
-      root and then into assets/css.
-    -->
     <link rel="stylesheet" href="../../../assets/css/avalon.css" />
   </head>
   <body>
-    <!-- Optional building skin banner; remove or duplicate as needed -->
+    <!-- A container for applying building skins. Adjust data attributes to change character or side. -->
     <div class="building-skin" data-character="carol" data-side="inside"></div>
 
     <main class="mealplan-container">
@@ -39,7 +19,6 @@
       <section id="meals-grid" class="meals-grid"></section>
     </main>
 
-    <!-- Modal for meal details -->
     <div id="meal-modal" class="modal hidden">
       <div class="modal-content">
         <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
@@ -48,7 +27,6 @@
       </div>
     </div>
 
-    <!-- Use relative paths for scripts -->
     <script src="../../js/avalon-skins.js"></script>
     <script src="../../js/mealplan.js"></script>
   </body>

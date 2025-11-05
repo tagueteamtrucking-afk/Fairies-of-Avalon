@@ -17,7 +17,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carol Meal Plan</title>
-    <link rel="stylesheet" href="/assets/css/avalon.css" />
+    <!--
+      Use relative paths rather than absolute root paths. When this file
+      lives under pages/apps/carol, the root `/` may not point to the
+      repository root on some deployment platforms (e.g. GitHub Pages or
+      nested apps). Going up three directories takes us back to the project
+      root and then into assets/css.
+    -->
+    <link rel="stylesheet" href="../../../assets/css/avalon.css" />
   </head>
   <body>
     <!-- Optional building skin banner; remove or duplicate as needed -->
@@ -41,7 +48,8 @@
       </div>
     </div>
 
-    <script src="/pages/js/avalon-skins.js"></script>
-    <script src="/pages/js/mealplan.js"></script>
+    <!-- Use relative paths for scripts -->
+    <script src="../../js/avalon-skins.js"></script>
+    <script src="../../js/mealplan.js"></script>
   </body>
 </html>

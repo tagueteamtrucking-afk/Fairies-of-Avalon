@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-05T05:28:16.652Z",
+  "generated": "2025-11-05T06:02:32.738Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -159,14 +159,20 @@
     },
     {
       "path": "assets/img/carol-kitchen-inside.jpg",
-      "bytes": 3110046,
-      "hash": "75af9bcf0b468e6a7f484ec5e84828e4",
+      "bytes": 26733,
+      "hash": "9b2a781d1ddd4005417e5f4b08c95f36",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/carol-kitchen-inside.png",
+      "bytes": 9487,
+      "hash": "73ec0b7685e35d1be2f469c93b73ff29",
       "purpose": "misc"
     },
     {
       "path": "assets/img/carol-kitchen-outside.jpg",
-      "bytes": 432390,
-      "hash": "aacf98202d1c454f75c3471ab215f252",
+      "bytes": 26733,
+      "hash": "9b2a781d1ddd4005417e5f4b08c95f36",
       "purpose": "misc"
     },
     {
@@ -585,8 +591,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 78811,
-      "hash": "72993bacb5752ba62a858e55207e51a1",
+      "bytes": 79279,
+      "hash": "8b476e775510981edc1c5f22e02b250d",
       "purpose": "misc"
     },
     {
@@ -2235,8 +2241,8 @@
     },
     {
       "path": "memory_summary.md",
-      "bytes": 6655,
-      "hash": "d0934fb01116bf467eedfe6bb86d44e0",
+      "bytes": 10422,
+      "hash": "4ae978986ee57bb2ec0273638c27dd6b",
       "purpose": "misc"
     },
     {
@@ -2385,8 +2391,8 @@
     },
     {
       "path": "pages/apps/carol/index.html",
-      "bytes": 1302,
-      "hash": "807c47a64f0c085c9ddcca14a5a87988",
+      "bytes": 1292,
+      "hash": "bf3cb3bc2178edf09bdc743e7fb3f82d",
       "purpose": "page"
     },
     {

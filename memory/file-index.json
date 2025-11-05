@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-04T04:21:53.844Z",
+  "generated": "2025-11-05T00:16:10.856Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -99,8 +99,8 @@
     },
     {
       "path": "assets/css/avalon.css",
-      "bytes": 427,
-      "hash": "adfc8632a8454faa17ebb44abd428bcc",
+      "bytes": 3007,
+      "hash": "df2550bbaef0d67e605ddac937c17773",
       "purpose": "misc"
     },
     {
@@ -525,8 +525,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 21154,
-      "hash": "69c92253908c49589cc89c8e1dccddf1",
+      "bytes": 76963,
+      "hash": "f61750257a6797113f670fc18db11182",
       "purpose": "misc"
     },
     {
@@ -2336,6 +2336,12 @@
       "purpose": "page"
     },
     {
+      "path": "pages/apps/carol/mealplan.html",
+      "bytes": 1493,
+      "hash": "e5ee8ef2b259022179a7cf29c43a1bb4",
+      "purpose": "page"
+    },
+    {
       "path": "pages/apps/carol/menu.html",
       "bytes": 1710,
       "hash": "ac50ad4496fe1a103cc5ec44ba669f9e",
@@ -2567,6 +2573,18 @@
       "path": "pages/jem.html",
       "bytes": 2244,
       "hash": "caf138024cdccc90e14df468e62bff3f",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/js/avalon-skins.js",
+      "bytes": 871,
+      "hash": "d68ce6f5bdac6b5d694bcd8e1b15f81d",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/js/mealplan.js",
+      "bytes": 5961,
+      "hash": "6b283be9a2b56514e2ff0e9ee8cb1812",
       "purpose": "page"
     },
     {

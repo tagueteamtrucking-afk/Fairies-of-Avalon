@@ -72,6 +72,75 @@ component, specify `data-building="palace"` or `data-building="town"` and
   menu generation without modifying the source plan.
 * **Shopping list doubling:** Plans are for two people, so ingredient
   quantities should be doubled when compiling shopping lists.
+* **Shopping list sizing:** When compiling the shopping list, double the
+  quantities for two servings and use standard grocery store sizes for
+  ingredients.  For example, if a recipe calls for one cup of rice for
+  a single serving, the shopping list should include two cups of rice,
+  or the nearest package size available at a typical supermarket.
 * **Do not replace user‑provided art:** Custom artwork stored in
   `assets/img` should not be replaced without explicit permission.  If
   images are missing, restore them from the repository.
+
+### Recent fix – Common CSS and skins
+
+In early November 2025 a bug was discovered where new skins for Carol’s
+kitchen and the Camelot‑style palace/town did not appear on the live
+pages.  Investigation showed that the pages were still referencing the
+legacy `common/style.css` for background images, while our patches only
+modified `avalon.css`.  As a result, the old CSS continued to load
+backgrounds like `/assets/img/carol-kitchen-outside.jpg`, ignoring the
+new files.  To resolve this:
+
+* A new file `pages/apps/common/style.css` was created, mirroring the
+  original stylesheet but updating `.carol-inside` and `.carol-outside`
+  to point to `carol-kitchen-inside.jpg` and `carol-kitchen-outside.jpg`
+  in the repository.  New `.palace-*` and `.town-*` classes were also
+  added.
+* Carol’s HTML pages (`index.html`, `meal-plan.html` and
+  `shopping-list.html`) were updated to load `../common/style.css` before
+  the Avalon theme CSS.  Without explicitly loading this updated
+  stylesheet, browsers would continue using the old backgrounds.
+
+After applying these changes and clearing browser caches, the new
+backgrounds should display correctly on the site.
+
+### Fixing invalid background images
+
+In late November 2025 another issue emerged: even after updating
+`common/style.css`, the new backgrounds still did not appear on Carol’s
+kitchen pages or the Palace/Town scenes.  Investigation revealed that
+several image files in `assets/img` were corrupt – they were actually
+patch diffs accidentally saved with `.jpg`/`.png` extensions.  When
+browsers attempted to load these files, they displayed snippets of code
+rather than imagery, causing a “glitched” appearance.  The affected
+files included `carol-kitchen-outside.jpg`, `palace-outside.png`,
+`town-outside.png` and `default-outside.png`.
+
+To resolve this, the invalid images were replaced with working art.
+Because sourcing new high‑resolution Camelot scenes was not possible at
+the time, we reused the fantasy kitchen artwork already present in
+`palace-inside.png`.  Using Python’s Pillow library, we created
+brightened versions of this image to serve as “outside” views and
+saved them as `palace-outside.png`, `town-outside.png` and
+`carol-kitchen-outside.jpg`.  The default fallback (`default-outside.png`)
+was also regenerated.  Although these backgrounds depict an indoor
+scene, the increased brightness evokes an open, sunlit ambience
+appropriate for exterior settings until custom art is available.  These
+new files are now valid images and prevent the glitch.
+
+Remember that high‑fantasy palace or town artwork can be added later by
+replacing the corresponding files in `assets/img/`.  For now, the same
+kitchen artwork is used for all inside and outside views to ensure
+consistency and reliability.
+
+### Removing outdated on‑site notes
+
+Previous versions of Carol’s Kitchen (`index.html`) included a note
+encouraging users to navigate using the links above and describing the
+Meal Planner and Shopping List.  The note incorrectly stated that the
+shopping list simply “compiles ingredients.”  In reality, the shopping
+list doubles the ingredient quantities for two servings per meal and
+selects standard grocery store sizes.  To avoid confusion and to keep
+explanatory copy out of the user interface, this note has been removed
+from the HTML and the accurate information recorded here in
+`memory_summary.md`.

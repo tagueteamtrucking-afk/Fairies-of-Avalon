@@ -1,46 +1,47 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Carol • 2‑Week Meal Plan</title>
-  <link rel="stylesheet" href="/assets/css/avalon.css">
-</head>
-<body>
-  <div class="container">
-    <div class="building-skin" id="phoenixSkin" data-character="carol" data-side="inside">
-      <div class="overlay"></div>
-      <div class="badge">Phoenix Kitchen</div>
-    </div>
+<!--
+  This page displays a meal plan for a two‑week period with approximately
+  seven mini‑meals per day. Meals are rendered as Tracy‑style cards
+  inspired by the provided sample image (assets/img/tracy-sample.png).
+  Users can select a day from a dropdown menu to view the meals for that
+  date. Clicking any meal card opens a modal with detailed portion sizes
+  and nutrition information pulled from the meal plan JSON file.
 
-    <div class="header">
-      <h1>2‑Week Meal Plan</h1>
-      <div class="controls">
-        <label for="daySelect">Day</label>
-        <select id="daySelect" class="select"></select>
-        <button id="toggleSide" class="button" title="Toggle inside/outside skin">Toggle Skin</button>
+  To integrate the building skin helper, include a `.building-skin`
+  element anywhere on your page with `data-character` and `data-side`
+  attributes. The script `avalon-skins.js` will automatically set
+  the correct background image from `assets/img/<character>-<side>.img`.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carol Meal Plan</title>
+    <link rel="stylesheet" href="/assets/css/avalon.css" />
+  </head>
+  <body>
+    <!-- Optional building skin banner; remove or duplicate as needed -->
+    <div class="building-skin" data-character="carol" data-side="inside"></div>
+
+    <main class="mealplan-container">
+      <header class="mealplan-header">
+        <h1>Carol Meal Plan</h1>
+        <label for="day-select">Day:</label>
+        <select id="day-select" class="day-select"></select>
+      </header>
+      <section id="meals-grid" class="meals-grid"></section>
+    </main>
+
+    <!-- Modal for meal details -->
+    <div id="meal-modal" class="modal hidden">
+      <div class="modal-content">
+        <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
+        <h2 id="modal-title"></h2>
+        <div id="modal-body"></div>
       </div>
     </div>
 
-    <div id="summary" class="meta"></div>
-    <div id="cards" class="grid" aria-live="polite"></div>
-  </div>
-
-  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal">
-      <button class="close button" id="modalClose" aria-label="Close">Close</button>
-      <h2 id="modalTitle"></h2>
-      <div id="modalBody"></div>
-    </div>
-  </div>
-
-  <script src="/pages/js/avalon-skins.js"></script>
-  <script src="/pages/js/mealplan.js"></script>
-  <script>
-    // Apply Carol's building skin
-    window.AvalonSkins.apply(document.getElementById('phoenixSkin'));
-    // Initialize meal plan
-    window.CarolMealPlan.init();
-  </script>
-</body>
+    <script src="/pages/js/avalon-skins.js"></script>
+    <script src="/pages/js/mealplan.js"></script>
+  </body>
 </html>

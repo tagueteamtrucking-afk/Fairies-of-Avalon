@@ -1,151 +1,164 @@
+/*
+ * Meal plan rendering script
+ *
+ * This script fetches a two‑week meal plan and dynamically renders
+ * approximately seven mini‑meals for each day. Users can select
+ * a specific day from a dropdown list; the script will populate
+ * the grid with that day's meals. Each meal card includes the dish
+ * image (if provided) and a label; clicking the card opens a modal
+ * with detailed portion sizes, ingredients and nutrition notes.
+ *
+ * The plan is pulled from a JSON file relative to the project. To
+ * accommodate both local builds and environment‑specific paths,
+ * the script checks two possible locations. If neither is found,
+ * it gracefully displays an error message on the page.
+ */
 
-// mealplan.js — renders ~7 mini‑meals per selected day; click a dish to view portions
-window.CarolMealPlan = (function(){
-  // Primary plan path from memory; fallback to a simpler path if repo root differs
-  const PLAN_CANDIDATES = [
-    "/avalon-carol-unique-2.9.4/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-    "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json"
-  ];
+(function () {
+  const daySelect = document.getElementById('day-select');
+  const mealsGrid = document.getElementById('meals-grid');
+  const modal = document.getElementById('meal-modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalBody = document.getElementById('modal-body');
+  const modalClose = document.getElementById('modal-close');
 
-  const state = { plan: null, dayIndex: 0 };
-
-  async function fetchFirstAvailable(urls){
-    for(const url of urls){
+  /**
+   * Attempt to fetch the meal plan JSON from multiple known paths.
+   * Returns the parsed JSON or null if both attempts fail.
+   */
+  async function loadMealPlan() {
+    const endpoints = [
+      '/avalon-carol-unique-2.9.4/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json',
+      '/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json'
+    ];
+    for (const url of endpoints) {
       try {
-        const res = await fetch(url, { cache: "no-store" });
-        if(res.ok) return await res.json();
-      } catch(_){ /* continue */ }
-    }
-    throw new Error("Meal plan JSON not found at expected locations.");
-  }
-
-  function buildDayOptions(plan, select){
-    select.innerHTML = "";
-    const days = plan.days || plan.Days || [];
-    days.forEach((d, i) => {
-      const opt = document.createElement("option");
-      opt.value = String(i);
-      const name = d.name || d.day || `Day ${i+1}`;
-      opt.textContent = name;
-      select.appendChild(opt);
-    });
-  }
-
-  function kcal(n){ return typeof n==="number" ? `${Math.round(n)} kcal` : ""; }
-
-  function normalizeEvents(day){
-    // Support "events" or "meals" or similar; target ~7 mini‑meals
-    const arr = day.events || day.meals || day.snacks || [];
-    return arr;
-  }
-
-  function thumbFor(entry){
-    // Use provided image if present; otherwise fall back to Tracy sample card
-    return entry.image || "/assets/img/tracy-sample.png";
-  }
-
-  function renderDay(plan, index){
-    const day = (plan.days || plan.Days || [])[index] || {};
-    const events = normalizeEvents(day);
-    const cards = document.getElementById("cards");
-    const summary = document.getElementById("summary");
-    cards.innerHTML = "";
-
-    const totalKcal = (events || []).reduce((sum, e) => sum + (e.calories||e.kcal||0), 0);
-    const approx = `${events.length} mini‑meals • ${Math.round(totalKcal||0)} kcal (approx)`;
-    summary.textContent = approx;
-
-    (events || []).forEach((e, idx) => {
-      const card = document.createElement("article");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="thumb" style="background-image:url('${thumbFor(e)}')"></div>
-        <div class="body">
-          <div class="title">${e.title || e.name || "Untitled dish"}</div>
-          <div class="meta">
-            ${kcal(e.calories || e.kcal)} ${e.time ? " • " + e.time : ""}
-          </div>
-          <div class="actions">
-            <button class="button" data-idx="${idx}">Portions & Details</button>
-            ${Array.isArray(e.tags) ? e.tags.map(t=>`<span class="chip">${t}</span>`).join("") : ""}
-          </div>
-        </div>
-      `;
-      // clicking either the button or the image opens details
-      card.querySelector(".button").addEventListener("click", () => openDetails(day, e));
-      card.querySelector(".thumb").addEventListener("click", () => openDetails(day, e));
-      cards.appendChild(card);
-    });
-  }
-
-  function openDetails(day, entry){
-    const modal = document.getElementById("modalBackdrop");
-    const title = document.getElementById("modalTitle");
-    const body = document.getElementById("modalBody");
-    title.textContent = entry.title || entry.name || "Dish";
-    const portions = entry.portions || entry.portion || entry.serving || entry.servings || {};
-    const ing = entry.ingredients || entry.ings || [];
-    const sodium = entry.sodium != null ? `${entry.sodium} mg sodium` : "";
-    const sugar = entry.addedSugars != null ? `${entry.addedSugars} g added sugars` : "";
-    const fiber = entry.fiber != null ? `${entry.fiber} g fiber` : "";
-    const notes = entry.notes || "";
-
-    function kv(key, val){
-      return val ? `<div><strong>${key}:</strong> ${val}</div>` : "";
-    }
-
-    const portionList = Array.isArray(portions) ? portions.map(p=>`<li>${p}</li>`).join("") :
-      Object.keys(portions).length ? Object.entries(portions).map(([k,v])=>`<li>${k}: ${v}</li>`).join("") :
-      "<li>See ingredients and instructions for suggested serving sizes.</li>";
-
-    const ingList = Array.isArray(ing) ? ing.map(i=>`<li>${i.qty ? i.qty + " " : ""}${i.item || i.name || i}</li>`).join("") : "";
-
-    body.innerHTML = `
-      <div class="meta">${kv("Time", entry.time||"")} ${kv("Calories", entry.calories||entry.kcal||"")} ${kv("Sodium", sodium)} ${kv("Added Sugars", sugar)} ${kv("Fiber", fiber)}</div>
-      <h3>Portion Sizes</h3>
-      <ul>${portionList}</ul>
-      ${ingList ? "<h3>Ingredients</h3><ul>"+ingList+"</ul>" : ""}
-      ${entry.instructions ? "<h3>Instructions</h3><p>"+entry.instructions+"</p>" : ""}
-      ${notes ? "<h3>Notes</h3><p>"+notes+"</p>" : ""}
-    `;
-    modal.style.display = "flex";
-    modal.setAttribute("aria-hidden", "false");
-  }
-
-  function wireModal(){
-    const modal = document.getElementById("modalBackdrop");
-    document.getElementById("modalClose").addEventListener("click", () => {
-      modal.style.display = "none";
-      modal.setAttribute("aria-hidden", "true");
-    });
-    modal.addEventListener("click", (e) => {
-      if(e.target === modal){
-        modal.style.display = "none";
-        modal.setAttribute("aria-hidden", "true");
+        const res = await fetch(url);
+        if (res.ok) {
+          return await res.json();
+        }
+      } catch (e) {
+        // continue to next
       }
+    }
+    return null;
+  }
+
+  /**
+   * Populate the day dropdown based on the keys in the meal plan.
+   */
+  function populateDaySelect(plan) {
+    const days = Object.keys(plan);
+    days.sort();
+    daySelect.innerHTML = '';
+    days.forEach((day, idx) => {
+      const option = document.createElement('option');
+      option.value = day;
+      option.textContent = day;
+      // select first day by default
+      if (idx === 0) option.selected = true;
+      daySelect.appendChild(option);
     });
   }
 
-  async function init(){
-    wireModal();
-    // side toggle for building skin
-    const skinEl = document.getElementById("phoenixSkin");
-    document.getElementById("toggleSide").addEventListener("click", () => window.AvalonSkins.toggle(skinEl));
-
-    const plan = await fetchFirstAvailable(PLAN_CANDIDATES);
-    state.plan = plan;
-
-    const select = document.getElementById("daySelect");
-    buildDayOptions(plan, select);
-    select.addEventListener("change", (e) => {
-      state.dayIndex = parseInt(e.target.value,10)||0;
-      renderDay(state.plan, state.dayIndex);
-    });
-
-    // default to day 1
-    select.value = "0";
-    renderDay(plan, 0);
+  /**
+   * Create an individual meal card element.
+   */
+  function createMealCard(meal) {
+    const card = document.createElement('div');
+    card.className = 'meal-card';
+    const img = document.createElement('img');
+    img.className = 'meal-image';
+    // fallback to placeholder if missing
+    img.src = meal.image || '/assets/img/tracy-sample.png';
+    img.alt = meal.name;
+    const name = document.createElement('div');
+    name.className = 'meal-name';
+    name.textContent = meal.name;
+    card.appendChild(img);
+    card.appendChild(name);
+    card.addEventListener('click', () => showMealDetails(meal));
+    return card;
   }
 
-  return { init };
+  /**
+   * Render the meals for a given day.
+   */
+  function renderMealsForDay(day, plan) {
+    const meals = plan[day] || [];
+    mealsGrid.innerHTML = '';
+    if (meals.length === 0) {
+      const msg = document.createElement('p');
+      msg.textContent = 'No meals found for this day.';
+      mealsGrid.appendChild(msg);
+      return;
+    }
+    meals.forEach((meal) => {
+      mealsGrid.appendChild(createMealCard(meal));
+    });
+  }
+
+  /**
+   * Show meal details in a modal dialog.
+   */
+  function showMealDetails(meal) {
+    modalTitle.textContent = meal.name;
+    modalBody.innerHTML = '';
+    const ul = document.createElement('ul');
+    if (meal.portions) {
+      meal.portions.forEach((p) => {
+        const li = document.createElement('li');
+        li.textContent = `${p.item}: ${p.amount}`;
+        ul.appendChild(li);
+      });
+    }
+    if (meal.ingredients) {
+      const li = document.createElement('li');
+      li.textContent = `Ingredients: ${meal.ingredients.join(', ')}`;
+      ul.appendChild(li);
+    }
+    if (meal.notes) {
+      const li = document.createElement('li');
+      li.textContent = `Notes: ${meal.notes}`;
+      ul.appendChild(li);
+    }
+    if (meal.nutrition) {
+      const li = document.createElement('li');
+      li.textContent = `Nutrition: ${meal.nutrition}`;
+      ul.appendChild(li);
+    }
+    modalBody.appendChild(ul);
+    modal.classList.remove('hidden');
+  }
+
+  /**
+   * Hide the modal when closed.
+   */
+  function hideModal() {
+    modal.classList.add('hidden');
+  }
+
+  // Event listeners
+  modalClose.addEventListener('click', hideModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) hideModal();
+  });
+  daySelect.addEventListener('change', (e) => {
+    const selectedDay = e.target.value;
+    renderMealsForDay(selectedDay, window.mealPlanData);
+  });
+
+  // Initialize: load plan and render
+  (async function init() {
+    const plan = await loadMealPlan();
+    if (!plan) {
+      mealsGrid.innerHTML = '<p class="error">Unable to load meal plan. Please ensure the JSON file exists in the correct directory.</p>';
+      return;
+    }
+    window.mealPlanData = plan;
+    populateDaySelect(plan);
+    // Render the first day by default
+    const firstDay = daySelect.value;
+    renderMealsForDay(firstDay, plan);
+  })();
 })();

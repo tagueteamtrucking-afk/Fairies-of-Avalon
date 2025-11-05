@@ -1,22 +1,23 @@
+/*
+ * Avalon building skins helper
+ *
+ * This module scans the document for elements with the class
+ * `.building-skin` and uses the data attributes `data-character`
+ * and `data-side` to determine which image to apply. Images must be
+ * stored under `assets/img/<character>-<side>.img`. For example,
+ * for character "carol" and side "inside", the script will set
+ * the element's background image to `/assets/img/carol-inside.img`.
+ */
 
-// avalon-skins.js — apply inside/outside building skins from assets/img/<character>-<side>.img
-// Usage: element with class "building-skin", data-character="carol", data-side="inside|outside"
-window.AvalonSkins = (function(){
-  const IMG_BASE = "/assets/img";
-  function pathFor(character, side){
-    return `${IMG_BASE}/${character}-${side}.img`; // do not replace user's art; just reference
-  }
-  function apply(el){
-    if(!el) return;
-    const character = el.getAttribute('data-character') || 'tracy';
-    const side = el.getAttribute('data-side') || 'inside';
-    el.style.backgroundImage = `url("${pathFor(character, side)}")`;
-  }
-  function toggle(el){
-    if(!el) return;
-    const side = el.getAttribute('data-side') === 'inside' ? 'outside' : 'inside';
-    el.setAttribute('data-side', side);
-    apply(el);
-  }
-  return { apply, toggle, pathFor };
-})();
+document.addEventListener('DOMContentLoaded', () => {
+  const skins = document.querySelectorAll('.building-skin');
+  skins.forEach((el) => {
+    const character = el.getAttribute('data-character');
+    const side = el.getAttribute('data-side');
+    if (!character || !side) return;
+    const imgPath = `/assets/img/${character}-${side}.img`;
+    el.style.backgroundImage = `url('${imgPath}')`;
+    el.style.backgroundSize = 'cover';
+    el.style.backgroundPosition = 'center';
+  });
+});

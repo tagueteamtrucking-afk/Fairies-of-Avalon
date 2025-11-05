@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-05T04:26:39.090Z",
+  "generated": "2025-11-05T04:40:07.290Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -567,8 +567,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 77563,
-      "hash": "63be720720275731f427c4aab1f6c393",
+      "bytes": 78811,
+      "hash": "12d17098c7d98776aeeb744a305b5755",
       "purpose": "misc"
     },
     {
@@ -2367,8 +2367,8 @@
     },
     {
       "path": "pages/apps/carol/index.html",
-      "bytes": 1247,
-      "hash": "f18592ec129d932383598528f8bdd229",
+      "bytes": 1302,
+      "hash": "807c47a64f0c085c9ddcca14a5a87988",
       "purpose": "page"
     },
     {
@@ -2379,8 +2379,8 @@
     },
     {
       "path": "pages/apps/carol/meal-plan.html",
-      "bytes": 1258,
-      "hash": "2a3c220858b3d5e9a624c66eed8ec30e",
+      "bytes": 1387,
+      "hash": "4fde153d9098aadbb121224679fcc529",
       "purpose": "page"
     },
     {
@@ -2397,8 +2397,8 @@
     },
     {
       "path": "pages/apps/carol/shopping-list.html",
-      "bytes": 667,
-      "hash": "c7d6e0ffdb899c93d51cf0da692ef5fd",
+      "bytes": 754,
+      "hash": "07dc411db569bff22067cddb719faf67",
       "purpose": "page"
     },
     {

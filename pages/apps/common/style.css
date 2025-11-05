@@ -37,15 +37,18 @@ html, body {
 /* Updated backgrounds for Carol’s kitchen.  These point to the new images
  * added in assets/img so the kitchen properly reflects an inside/outside
  * view. */
+/* Updated backgrounds for Carol’s Phoenix Kitchen.  These point to the
+ * phoenix‑themed images (carol-inside.jpg and carol-outside.jpg) so the kitchen
+ * properly reflects a pagoda/phoenix motif both inside and outside. */
 .carol-outside {
-  background-image: url('/assets/img/carol-kitchen-outside.jpg');
+  background-image: url('/assets/img/carol-outside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
 
 .carol-inside {
-  background-image: url('/assets/img/carol-kitchen-inside.jpg');
+  background-image: url('/assets/img/carol-inside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -77,6 +80,96 @@ html, body {
 
 .town-inside {
   background-image: url('/assets/img/town-inside.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+/* Skins for individual characters (inside/outside).  These classes apply
+ * custom backgrounds to entire pages or sections when you set the body
+ * class accordingly.  Each image lives in assets/img and is named
+ * <character>-inside.jpg or <character>-outside.jpg.  If you add new
+ * characters, follow this naming convention and define their classes here. */
+
+.abbey-inside {
+  background-image: url('/assets/img/abbey-inside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.abbey-outside {
+  background-image: url('/assets/img/abbey-outside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.alexandria-inside {
+  background-image: url('/assets/img/alexandria-inside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.alexandria-outside {
+  background-image: url('/assets/img/alexandria-outside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.charlotte-inside {
+  background-image: url('/assets/img/charlotte-inside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.charlotte-outside {
+  background-image: url('/assets/img/charlotte-outside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.stella-inside {
+  background-image: url('/assets/img/stella-inside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.stella-outside {
+  background-image: url('/assets/img/stella-outside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.tracy-inside {
+  background-image: url('/assets/img/tracy-inside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.tracy-outside {
+  background-image: url('/assets/img/tracy-outside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.billie-inside {
+  background-image: url('/assets/img/billie-inside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.billie-outside {
+  background-image: url('/assets/img/billie-outside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;

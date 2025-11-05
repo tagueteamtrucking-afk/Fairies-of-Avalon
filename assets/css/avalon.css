@@ -35,11 +35,14 @@ body {
 }
 
 /* Carol’s kitchen backgrounds */
+/* Use the Phoenix‑themed backgrounds for Carol’s kitchen.  These images live in
+ * assets/img/carol-outside.jpg and carol-inside.jpg.  They feature a stylised
+ * phoenix rising against a warm gradient, evoking the Phoenix Kitchen. */
 .carol-outside {
-  background-image: url('../img/carol-kitchen-outside.jpg');
+  background-image: url('../img/carol-outside.jpg');
 }
 .carol-inside {
-  background-image: url('../img/carol-kitchen-inside.jpg');
+  background-image: url('../img/carol-inside.jpg');
 }
 
 /* Palace backgrounds (Camelot-inspired) */

@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-05T04:51:15.958Z",
+  "generated": "2025-11-05T05:28:16.652Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -165,8 +165,8 @@
     },
     {
       "path": "assets/img/carol-kitchen-outside.jpg",
-      "bytes": 1429933,
-      "hash": "197ac8db6aa0ef9635be18645c92cc59",
+      "bytes": 432390,
+      "hash": "aacf98202d1c454f75c3471ab215f252",
       "purpose": "misc"
     },
     {
@@ -182,15 +182,33 @@
       "purpose": "misc"
     },
     {
+      "path": "assets/img/default-inside.png",
+      "bytes": 3110046,
+      "hash": "75af9bcf0b468e6a7f484ec5e84828e4",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/default-outside.png",
+      "bytes": 3370614,
+      "hash": "7f9dc6a85c8ca96cee9cf686f9fedcde",
+      "purpose": "misc"
+    },
+    {
       "path": "assets/img/palace-inside.png",
       "bytes": 3110046,
       "hash": "75af9bcf0b468e6a7f484ec5e84828e4",
       "purpose": "misc"
     },
     {
+      "path": "assets/img/palace-outside.jpg",
+      "bytes": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "purpose": "misc"
+    },
+    {
       "path": "assets/img/palace-outside.png",
-      "bytes": 1429933,
-      "hash": "197ac8db6aa0ef9635be18645c92cc59",
+      "bytes": 3016832,
+      "hash": "6b6affdf37995a8d67db107e92924769",
       "purpose": "misc"
     },
     {
@@ -219,8 +237,8 @@
     },
     {
       "path": "assets/img/town-outside.png",
-      "bytes": 1429933,
-      "hash": "197ac8db6aa0ef9635be18645c92cc59",
+      "bytes": 3016832,
+      "hash": "6b6affdf37995a8d67db107e92924769",
       "purpose": "misc"
     },
     {
@@ -568,7 +586,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 78811,
-      "hash": "73e7a591c73c2dc570d3a94e33f6cd42",
+      "hash": "72993bacb5752ba62a858e55207e51a1",
       "purpose": "misc"
     },
     {

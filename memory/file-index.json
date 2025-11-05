@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-05T04:22:40.516Z",
+  "generated": "2025-11-05T04:26:39.090Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -99,8 +99,8 @@
     },
     {
       "path": "assets/css/avalon.css",
-      "bytes": 2235,
-      "hash": "64604b94d83b9213b41626d6f30a1366",
+      "bytes": 3780,
+      "hash": "2aa937d9eedc2aa613186c47411826fd",
       "purpose": "misc"
     },
     {
@@ -158,6 +158,18 @@
       "purpose": "misc"
     },
     {
+      "path": "assets/img/carol-kitchen-inside.jpg",
+      "bytes": 3110046,
+      "hash": "75af9bcf0b468e6a7f484ec5e84828e4",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/carol-kitchen-outside.jpg",
+      "bytes": 1429933,
+      "hash": "197ac8db6aa0ef9635be18645c92cc59",
+      "purpose": "misc"
+    },
+    {
       "path": "assets/img/charlotte-inside.img",
       "bytes": 289290,
       "hash": "a2d47a8f1f34a4c8b50e390aab9ad77a",
@@ -167,6 +179,18 @@
       "path": "assets/img/charlotte-outside .img",
       "bytes": 298325,
       "hash": "49c8b07ee31484c1ef0cc87f740e2718",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/palace-inside.png",
+      "bytes": 3110046,
+      "hash": "75af9bcf0b468e6a7f484ec5e84828e4",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/palace-outside.png",
+      "bytes": 1429933,
+      "hash": "197ac8db6aa0ef9635be18645c92cc59",
       "purpose": "misc"
     },
     {
@@ -185,6 +209,18 @@
       "path": "assets/img/stella-outside.img",
       "bytes": 286156,
       "hash": "974d3dabfc8cce68d8da979a1eae5cb9",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/town-inside.png",
+      "bytes": 3110046,
+      "hash": "75af9bcf0b468e6a7f484ec5e84828e4",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/town-outside.png",
+      "bytes": 1429933,
+      "hash": "197ac8db6aa0ef9635be18645c92cc59",
       "purpose": "misc"
     },
     {
@@ -440,6 +476,12 @@
       "purpose": "misc"
     },
     {
+      "path": "fairies_rules_and_info.md",
+      "bytes": 4790,
+      "hash": "1e0604798e9a153b8f3e70708393cdca",
+      "purpose": "misc"
+    },
+    {
       "path": "file-index.json",
       "bytes": 375,
       "hash": "5a5772dc9191d0370dbea738119814f4",
@@ -526,7 +568,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 77563,
-      "hash": "81b0e10417d43cb845afb0ff07a6b99a",
+      "hash": "63be720720275731f427c4aab1f6c393",
       "purpose": "misc"
     },
     {
@@ -2174,6 +2216,12 @@
       "purpose": "misc"
     },
     {
+      "path": "memory_summary.md",
+      "bytes": 6655,
+      "hash": "d0934fb01116bf467eedfe6bb86d44e0",
+      "purpose": "misc"
+    },
+    {
       "path": "package.json",
       "bytes": 259,
       "hash": "80f00f3039270387c92a3c90336fea05",
@@ -2319,8 +2367,8 @@
     },
     {
       "path": "pages/apps/carol/index.html",
-      "bytes": 1493,
-      "hash": "8d73cf37310d5c5c88c5a769fec855a8",
+      "bytes": 1247,
+      "hash": "f18592ec129d932383598528f8bdd229",
       "purpose": "page"
     },
     {
@@ -2349,8 +2397,8 @@
     },
     {
       "path": "pages/apps/carol/shopping-list.html",
-      "bytes": 3860,
-      "hash": "b5f3b3d52df295b2f8a0c7d703cddc7f",
+      "bytes": 667,
+      "hash": "c7d6e0ffdb899c93d51cf0da692ef5fd",
       "purpose": "page"
     },
     {
@@ -2415,8 +2463,8 @@
     },
     {
       "path": "pages/apps/common/style.css",
-      "bytes": 2080,
-      "hash": "ca070ded97fe85369967c3b606457d9c",
+      "bytes": 3289,
+      "hash": "1c3673d80444f87e65119fa059b567d7",
       "purpose": "page"
     },
     {
@@ -2577,14 +2625,14 @@
     },
     {
       "path": "pages/js/avalon-skins.js",
-      "bytes": 1344,
-      "hash": "4f7d8a595c47e6b90658137387c25a34",
+      "bytes": 1960,
+      "hash": "5cd8538f4883c675b2f107591a0ea393",
       "purpose": "page"
     },
     {
       "path": "pages/js/meal-plan.js",
-      "bytes": 7182,
-      "hash": "912b1c69590ffd414964148c3c78c234",
+      "bytes": 9104,
+      "hash": "0eca42764fe21c953654e294bab566d2",
       "purpose": "page"
     },
     {

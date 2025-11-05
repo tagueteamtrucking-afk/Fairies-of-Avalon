@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-04T01:07:36Z",
+  "generated": "2025-11-05T01:09:24Z",
   "entrypoints": [
     "/index.html"
   ],
@@ -79,6 +79,10 @@
     {
       "path": "/pages/apps/carol/shopping-list.html",
       "title": "Carol \u2013 Shopping List"
+    },
+    {
+      "path": "/pages/apps/carol/mealplan.html",
+      "title": "Carol \u2022 2\u2011Week Meal Plan"
     },
     {
       "path": "/pages/apps/carol/meal-plan-upgraded.html",
@@ -261,6 +265,8 @@
     "/pages/apps/jem/data/training-plan.json",
     "/pages/apps/stella/data/scripts.json",
     "/pages/apps/stella/data/sounds.json",
+    "/pages/js/avalon-skins.js",
+    "/pages/js/mealplan.js",
     "/assets/img/placeholder.svg",
     "/assets/img/tracy-sample.png",
     "/assets/css/avalon-dashboard.css",

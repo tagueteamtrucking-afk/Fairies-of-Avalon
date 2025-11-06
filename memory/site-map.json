@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-05T01:09:24Z",
+  "generated": "2025-11-06T01:08:29Z",
   "entrypoints": [
     "/index.html"
   ],
@@ -41,12 +41,16 @@
       "title": "Stella \u2013 Voice & Sound"
     },
     {
+      "path": "/pages/apps/abbey/index.html",
+      "title": "Abbey \u2013 Grand\u00a0Vault"
+    },
+    {
       "path": "/pages/apps/tracy/character-designer.html",
       "title": "Tracy \u2013 Character Designer"
     },
     {
       "path": "/pages/apps/tracy/index.html",
-      "title": "Tracy \u2013 Art & Design"
+      "title": "Tracy \u2013 Cathedral\u00a0Studio"
     },
     {
       "path": "/pages/apps/tracy/art-gallery.html",
@@ -66,7 +70,7 @@
     },
     {
       "path": "/pages/apps/billie/index.html",
-      "title": "Billie \u2013 Monetisation & Social"
+      "title": "Billie \u2013 Superstar\u00a0Mansion"
     },
     {
       "path": "/pages/apps/billie/earnings-dashboard.html",
@@ -82,7 +86,7 @@
     },
     {
       "path": "/pages/apps/carol/mealplan.html",
-      "title": "Carol \u2022 2\u2011Week Meal Plan"
+      "title": "Carol Meal Plan"
     },
     {
       "path": "/pages/apps/carol/meal-plan-upgraded.html",
@@ -102,7 +106,7 @@
     },
     {
       "path": "/pages/apps/carol/meal-plan.html",
-      "title": "Carol \u2013 Two\u2011Week Meal Planner"
+      "title": "Carol \u2013 Two\u2011Week Meal Plan"
     },
     {
       "path": "/pages/apps/nina/index.html",
@@ -142,7 +146,7 @@
     },
     {
       "path": "/pages/apps/charlotte/index.html",
-      "title": "Charlotte \u2013 Operations & Workshop"
+      "title": "Charlotte \u2013 Relay\u00a0Hall"
     },
     {
       "path": "/pages/apps/charlotte/translations-board.html",
@@ -158,7 +162,7 @@
     },
     {
       "path": "/pages/apps/alexandria/index.html",
-      "title": "Alexandria \u2013 Stories & Lore"
+      "title": "Alexandria \u2013 Gothic\u00a0Library"
     },
     {
       "path": "/pages/apps/alexandria/timeline-explorer.html",
@@ -186,7 +190,7 @@
     },
     {
       "path": "/pages/apps/jem/index.html",
-      "title": "Jem \u2013 Fitness & Motion"
+      "title": "Jem \u2013 Dojo"
     },
     {
       "path": "/pages/apps/jem/dashboard.html",
@@ -198,7 +202,7 @@
     },
     {
       "path": "/pages/apps/stella/index.html",
-      "title": "Stella \u2013 Voice & Sound"
+      "title": "Stella \u2013 Observatory & Apothecary"
     },
     {
       "path": "/pages/apps/stella/guided-sessions.html",
@@ -266,9 +270,36 @@
     "/pages/apps/stella/data/scripts.json",
     "/pages/apps/stella/data/sounds.json",
     "/pages/js/avalon-skins.js",
+    "/pages/js/meal-plan.js",
     "/pages/js/mealplan.js",
+    "/assets/img/alexandria-inside.jpg",
+    "/assets/img/palace-outside.png",
+    "/assets/img/palace-outside.jpg",
+    "/assets/img/default-inside.png",
+    "/assets/img/carol-kitchen-inside.jpg",
+    "/assets/img/tracy-outside.jpg",
+    "/assets/img/tracy-inside.jpg",
+    "/assets/img/jem-hall-inside.jpg",
+    "/assets/img/billie-outside.jpg",
+    "/assets/img/jem-hall-outside.jpg",
+    "/assets/img/stella-inside.jpg",
+    "/assets/img/billie-inside.jpg",
+    "/assets/img/carol-kitchen-inside.png",
+    "/assets/img/charlotte-outside.jpg",
+    "/assets/img/abbey-inside.jpg",
+    "/assets/img/palace-inside.png",
+    "/assets/img/carol-kitchen-outside.jpg",
+    "/assets/img/charlotte-inside.jpg",
+    "/assets/img/carol-outside.jpg",
+    "/assets/img/alexandria-outside.jpg",
     "/assets/img/placeholder.svg",
+    "/assets/img/stella-outside.jpg",
     "/assets/img/tracy-sample.png",
+    "/assets/img/town-outside.png",
+    "/assets/img/abbey-outside.jpg",
+    "/assets/img/default-outside.png",
+    "/assets/img/town-inside.png",
+    "/assets/img/carol-inside.jpg",
     "/assets/css/avalon-dashboard.css",
     "/assets/css/avalon.css",
     "/assets/css/avalon-bright.css",

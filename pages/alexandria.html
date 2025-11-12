@@ -6,53 +6,36 @@
   <title>Alexandria – Stories & Spells</title>
   <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body class="alexandria-inside">
   <div class="wrap">
     <h1 class="heading">Alexandria</h1>
     <p class="lead">Storyteller &amp; multiverse builder. Alexandria curates tales from across Avalon and beyond.</p>
-    <p>In future releases this page will host a library of stories, complete with browsing and search tools. For now you can add your own story summaries below to start building a personal library.</p>
-    <form id="story-form">
-      <label>Story title
-        <input type="text" name="title" placeholder="e.g. The Lost Fountain">
-      </label>
-      <label>Summary
-        <textarea name="summary" rows="4" placeholder="Write a brief synopsis..."></textarea>
-      </label>
-      <button type="submit">Add to Library</button>
-    </form>
-    <h2>My Library</h2>
-    <ul id="library"></ul>
+    <p>This tool allows you to generate whimsical stories from your own conversation prompts. Enter a short description of a chat or an idea and Alexandria will spin it into a tale.</p>
+    <label for="prompt"><strong>Conversation / prompt:</strong>
+      <textarea id="prompt" rows="4" placeholder="Describe your conversation or idea..."></textarea>
+    </label>
+    <button id="generate-story">Generate Story</button>
+    <div id="story-output" style="margin-top:1rem;"></div>
     <p><a href="../index.html">← back to home</a></p>
   </div>
   <script>
-    // Simple client‑side library. Stories are stored in localStorage so they
-    // persist across visits. Each new entry appends to the list and
-    // re-saves the collection.
-    const form = document.getElementById('story-form');
-    const list = document.getElementById('library');
-    const STORAGE_KEY = 'avalonLibrary';
-    const stories = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    function render() {
-      list.innerHTML = stories.map((s, i) => `<li><strong>${s.title}</strong>: ${s.summary} <button data-idx="${i}">Remove</button></li>`).join('');
-    }
-    render();
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const title = form.title.value.trim();
-      const summary = form.summary.value.trim();
-      if (!title || !summary) return;
-      stories.push({ title, summary });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(stories));
-      form.reset();
-      render();
-    });
-    list.addEventListener('click', e => {
-      if (e.target.tagName === 'BUTTON') {
-        const idx = parseInt(e.target.dataset.idx, 10);
-        stories.splice(idx, 1);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(stories));
-        render();
+    // Story generation based on a simple template. Without external AI services
+    // we create a fun narrative by weaving the user prompt into a generic
+    // Avalon adventure. Further enhancements could randomise characters or settings.
+    document.getElementById('generate-story').addEventListener('click', () => {
+      const prompt = document.getElementById('prompt').value.trim();
+      const output = document.getElementById('story-output');
+      if (!prompt) {
+        output.textContent = 'Please describe a conversation or idea to inspire a story.';
+        return;
       }
+      // Basic story template: wrap the prompt in a fairy tale.
+      const opening = 'Once upon a time in the realms of Avalon, ';
+      const challenge = 'faced a curious challenge: ' + prompt + '. ';
+      const journey = 'With the help of wise fairies and a sprinkle of magic, our heroes navigated forests, halls and hidden kitchens. ';
+      const resolution = 'In the end they discovered that understanding and kindness solved the problem better than spells. ';
+      const closing = 'And so, another story was added to Alexandria’s ever‑growing chronicle of adventures.';
+      output.textContent = opening + challenge + journey + resolution + closing;
     });
   </script>
 </body>

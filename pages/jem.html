@@ -9,48 +9,81 @@
 <body class="jem-inside">
   <div class="wrap">
     <h1 class="heading">Jem</h1>
-    <p class="lead">Fitness &amp; motion. Create and track your personalised workouts.</p>
-    <p>This simple fitness planner lets you record exercises and repetitions. In future updates Jem will offer guided workouts and progress tracking.</p>
-    <form id="workout-form">
-      <label>Exercise name
-        <input type="text" name="exercise" placeholder="e.g. Push ups">
-      </label>
-      <label>Repetitions / Duration
-        <input type="text" name="reps" placeholder="e.g. 10 reps or 30 sec">
-      </label>
-      <button type="submit">Add Exercise</button>
-    </form>
-    <h2>Today’s Plan</h2>
-    <ul id="workout-list"></ul>
-    <p><a href="../index.html">← back to home</a></p>
+    <p class="lead">Fitness &amp; motion. Follow a suggested routine and let Jem adjust it based on your performance.</p>
+    <p>Below is your current workout plan. Record how many repetitions you actually complete for each exercise, then click <strong>Evaluate</strong>. Jem will increase or decrease the target for next time depending on your performance.</p>
+    <table id="routine-table">
+      <thead>
+        <tr><th>Exercise</th><th>Target reps</th><th>Achieved reps</th><th>Next target</th></tr>
+      </thead>
+      <tbody>
+        <!-- rows injected by script -->
+      </tbody>
+    </table>
+    <button id="evaluate">Evaluate Performance</button>
+    <button id="reset-routine">Reset Routine</button>
+    <p style="margin-top:1rem;"><a href="../index.html">← back to home</a></p>
   </div>
   <script>
-    // Basic workout planner storing exercises in sessionStorage (clears when tab closes)
-    const workoutForm = document.getElementById('workout-form');
-    const workoutList = document.getElementById('workout-list');
-    const workout = JSON.parse(sessionStorage.getItem('jemWorkout') || '[]');
-    function renderWorkout() {
-      workoutList.innerHTML = workout.map((item, i) => `<li>${item.exercise} – ${item.reps} <button data-idx="${i}">Remove</button></li>`).join('');
+    // Predefined routine. Each exercise has a target number of repetitions.
+    // The routine is persisted in localStorage so it evolves over time.
+    const DEFAULT_ROUTINE = [
+      { name: 'Jumping jacks', target: 20 },
+      { name: 'Push ups', target: 10 },
+      { name: 'Squats', target: 15 }
+    ];
+    const STORAGE_KEY = 'jemRoutine';
+    let routine = [];
+    try {
+      routine = JSON.parse(localStorage.getItem(STORAGE_KEY)) || JSON.parse(JSON.stringify(DEFAULT_ROUTINE));
+    } catch {
+      routine = JSON.parse(JSON.stringify(DEFAULT_ROUTINE));
     }
-    renderWorkout();
-    workoutForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const exercise = workoutForm.exercise.value.trim();
-      const reps = workoutForm.reps.value.trim();
-      if (!exercise || !reps) return;
-      workout.push({ exercise, reps });
-      sessionStorage.setItem('jemWorkout', JSON.stringify(workout));
-      workoutForm.reset();
-      renderWorkout();
-    });
-    workoutList.addEventListener('click', e => {
-      if (e.target.tagName === 'BUTTON') {
-        const idx = parseInt(e.target.dataset.idx, 10);
-        workout.splice(idx, 1);
-        sessionStorage.setItem('jemWorkout', JSON.stringify(workout));
-        renderWorkout();
-      }
-    });
+    const tbody = document.querySelector('#routine-table tbody');
+    const evaluateBtn = document.getElementById('evaluate');
+    const resetBtn = document.getElementById('reset-routine');
+
+    function renderRoutine() {
+      tbody.innerHTML = '';
+      routine.forEach((ex, idx) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${ex.name}</td>
+          <td>${ex.target}</td>
+          <td><input type="number" min="0" data-idx="${idx}" placeholder="0"></td>
+          <td class="next-target">—</td>`;
+        tbody.appendChild(row);
+      });
+    }
+
+    function evaluatePerformance() {
+      const inputs = tbody.querySelectorAll('input[type="number"]');
+      inputs.forEach(input => {
+        const idx = parseInt(input.dataset.idx, 10);
+        const achieved = parseInt(input.value, 10);
+        const current = routine[idx].target;
+        let nextTarget = current;
+        if (!isNaN(achieved)) {
+          if (achieved >= current) {
+            nextTarget = Math.ceil(current * 1.1);
+          } else {
+            nextTarget = Math.max(1, Math.ceil(current * 0.9));
+          }
+        }
+        routine[idx].target = nextTarget;
+        // update next target cell
+        input.closest('tr').querySelector('.next-target').textContent = nextTarget;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(routine));
+    }
+
+    function resetRoutine() {
+      routine = JSON.parse(JSON.stringify(DEFAULT_ROUTINE));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(routine));
+      renderRoutine();
+    }
+
+    evaluateBtn.addEventListener('click', evaluatePerformance);
+    resetBtn.addEventListener('click', resetRoutine);
+    renderRoutine();
   </script>
 </body>
 </html>

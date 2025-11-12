@@ -20,6 +20,13 @@
       <option value="Day 5">Day&nbsp;5</option>
       <option value="Day 6">Day&nbsp;6</option>
       <option value="Day 7">Day&nbsp;7</option>
+      <option value="Day 8">Day&nbsp;8</option>
+      <option value="Day 9">Day&nbsp;9</option>
+      <option value="Day 10">Day&nbsp;10</option>
+      <option value="Day 11">Day&nbsp;11</option>
+      <option value="Day 12">Day&nbsp;12</option>
+      <option value="Day 13">Day&nbsp;13</option>
+      <option value="Day 14">Day&nbsp;14</option>
     </select>
     <div id="meal-table" style="margin-top:1rem;"></div>
     <p id="summary" class="lead"></p>
@@ -129,8 +136,9 @@
         instructions: ['Blend until smooth.']
       }
     ];
-    // Build a week by alternating between day1 and day2 menus. This keeps the example
-    // concise while demonstrating the drop‑down functionality.
+    // Build a 14‑day plan by alternating between day1 and day2 menus.  Odd
+    // numbered days use the day1 array and even numbered days use day2.  This
+    // preserves the original meals while satisfying a longer schedule.
     const mealPlan = {
       'Day 1': day1,
       'Day 2': day2,
@@ -138,7 +146,14 @@
       'Day 4': day2,
       'Day 5': day1,
       'Day 6': day2,
-      'Day 7': day1
+      'Day 7': day1,
+      'Day 8': day2,
+      'Day 9': day1,
+      'Day 10': day2,
+      'Day 11': day1,
+      'Day 12': day2,
+      'Day 13': day1,
+      'Day 14': day2
     };
     const selector = document.getElementById('day-selector');
     const tableDiv = document.getElementById('meal-table');
@@ -162,7 +177,7 @@
       }
       const meals = mealPlan[day];
       let total = 0;
-      let html = '<table><thead><tr><th>Meal</th><th>Type</th><th>Calories</th><th>Ingredients</th><th>Instructions</th><th>Rating</th><th>Notes</th></tr></thead><tbody>';
+      let html = '<table><thead><tr><th>Meal</th><th>Type</th><th>Calories</th><th>Ingredients</th><th>Instructions</th></tr></thead><tbody>';
       meals.forEach((item, idx) => {
         total += item.nutrition;
         const savedRating = loadSaved(day, idx, 'rating');
@@ -173,33 +188,12 @@
           <td>${item.nutrition}</td>
           <td>${item.ingredients.join(', ')}</td>
           <td><ul>${item.instructions.map(i => `<li>${i}</li>`).join('')}</ul></td>
-          <td>
-            <select class="rating" data-day="${day}" data-idx="${idx}">
-              <option value="">--</option>
-              ${[1,2,3,4,5].map(n => `<option value="${n}" ${savedRating == n ? 'selected' : ''}>${n}</option>`).join('')}
-            </select>
-          </td>
-          <td><textarea rows="2" data-day="${day}" data-idx="${idx}">${savedNote}</textarea></td>
         </tr>`;
       });
       html += '</tbody></table>';
       tableDiv.innerHTML = html;
       summary.textContent = `Total calories for ${day}: ${total} kcal`;
-      // Attach event listeners to rating selects and notes
-      tableDiv.querySelectorAll('select.rating').forEach(sel => {
-        sel.addEventListener('change', e => {
-          const d = e.target.dataset.day;
-          const i = e.target.dataset.idx;
-          saveValue(d, i, 'rating', e.target.value);
-        });
-      });
-      tableDiv.querySelectorAll('textarea').forEach(txt => {
-        txt.addEventListener('input', e => {
-          const d = e.target.dataset.day;
-          const i = e.target.dataset.idx;
-          saveValue(d, i, 'note', e.target.value);
-        });
-      });
+      // No rating or notes fields are displayed in the 14‑day plan.
     });
   </script>
 </body>

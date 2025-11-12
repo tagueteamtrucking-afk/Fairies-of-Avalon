@@ -56,6 +56,60 @@ html, body {
   min-height: 100vh;
 }
 
+/* Additional character backgrounds using uploaded artwork.  Each fairy has
+ * an inside and outside class so pages can choose the appropriate
+ * photographic illustration.  When a corresponding inside image is
+ * unavailable the outside image is used for both classes. */
+.alexandria-outside {
+  background-image: url('assets/img/alexandria-outside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+.alexandria-inside {
+  /* Alexandria does not have an inside photo, reuse outside image */
+  background-image: url('assets/img/alexandria-outside.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+.tracy-outside {
+  background-image: url('assets/img/tracy-outside.JPG');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+.tracy-inside {
+  background-image: url('assets/img/tracy-inside.JPG');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+.charlotte-outside {
+  background-image: url('assets/img/charlotte-outside.JPG');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+.charlotte-inside {
+  background-image: url('assets/img/charlotte-inside.JPG');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+.stella-outside {
+  background-image: url('assets/img/stella-outside.JPG');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+.stella-inside {
+  background-image: url('assets/img/stella-inside.JPG');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
 /* Generic wrapper used on most pages to constrain content width and
  * center it on the screen. Padding creates breathing room around
  * the edges of the viewport.

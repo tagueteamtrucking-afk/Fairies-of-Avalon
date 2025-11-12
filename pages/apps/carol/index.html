@@ -1,34 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carol's Kitchen</title>
-    <!-- Load the shared common styles first to pick up building backgrounds, then Avalon theme styles. -->
-    <link rel="stylesheet" href="../common/style.css" />
-    <link rel="stylesheet" href="../../../assets/css/avalon.css" />
-  </head>
-  <body class="carol-outside">
-    <header>
-      <h1>Welcome to Carol's Kitchen</h1>
-      <p>
-        Plan your meals, manage your pantry and enjoy the warmth of Avalon’s
-        kitchen.
-      </p>
-    </header>
-    <main>
-      <nav>
-        <ul>
-          <li><a href="meal-plan.html">Meal Planner</a></li>
-          <li><a href="shopping-list.html">Shopping List</a></li>
-          <!-- Removed Menu link because the planner now consolidates meal planning
-               and menu functionality into a single page. -->
-        </ul>
-      </nav>
-      <!-- The introductory note has been removed from the page per project rules.  
-           Explanatory notes about the meal planner and shopping list now live in 
-           memory_summary.md instead of appearing on the user-facing site. -->
-      <section id="intro"></section>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carol’s Kitchen</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body class="carol-outside">
+  <div class="wrap">
+    <h1 class="heading">Welcome to Carol’s Kitchen</h1>
+    <p class="lead">Plan your meals, manage your pantry and enjoy the warmth of Avalon’s kitchen.</p>
+    <ul>
+      <li><a href="meal-plan.html">📆 Meal planner</a> – schedule meals for each day.</li>
+      <li><a href="shopping-list.html">🛒 Shopping list</a> – generate an aggregated list of ingredients.</li>
+      <li><a href="menu.html">🍽️ Menu</a> – browse all available dishes (coming soon).</li>
+    </ul>
+    <!-- Use relative path that climbs three levels back to the site root. -->
+    <p><a href="../../../index.html">← back to home</a></p>
+  </div>
+</body>
 </html>

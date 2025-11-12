@@ -1,37 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carol – Two‑Week Meal Plan</title>
-    <!-- Load the common styles first so the building background classes apply, then Avalon theme styles -->
-    <link rel="stylesheet" href="../common/style.css" />
-    <link rel="stylesheet" href="../../../assets/css/avalon.css" />
-  </head>
-  <body>
-    <!-- Building skin placeholder: adjust data-character and data-side to change skin -->
-    <div class="building-skin" data-character="carol" data-side="inside"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carol – Meal Planner</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body class="carol-inside">
+  <div class="wrap">
+    <h1 class="heading">Meal Planner</h1>
+    <p class="lead">Select a day to view its meal plan. Rate each dish and add your own notes to refine future plans.</p>
+    <label for="day-selector"><strong>Day:</strong></label>
+    <select id="day-selector">
+      <option value="" disabled selected>Choose a day</option>
+      <option value="Day 1">Day&nbsp;1</option>
+      <option value="Day 2">Day&nbsp;2</option>
+      <option value="Day 3">Day&nbsp;3</option>
+      <option value="Day 4">Day&nbsp;4</option>
+      <option value="Day 5">Day&nbsp;5</option>
+      <option value="Day 6">Day&nbsp;6</option>
+      <option value="Day 7">Day&nbsp;7</option>
+    </select>
+    <div id="meal-table" style="margin-top:1rem;"></div>
+    <p id="summary" class="lead"></p>
+    <p><a href="index.html">← back to Carol</a></p>
+  </div>
+  <script>
+    // Two sample days of data based on the original Avalon meal plan.
+    const day1 = [
+      {
+        name: 'Overnight oats (LF) with chia & berries',
+        mealType: 'Snack',
+        nutrition: 280,
+        ingredients: ['0.5 cup rolled oats','1 tbsp chia seeds','0.75 cup lactose‑free milk','0.5 cup frozen mixed berries'],
+        instructions: ['Mix oats, chia and milk in a jar.','Stir, cover, chill overnight.','Top with thawed berries.']
+      },
+      {
+        name: 'Apple slices with peanut butter',
+        mealType: 'Snack',
+        nutrition: 220,
+        ingredients: ['1 apple','2 tbsp peanut butter'],
+        instructions: ['Slice apple thinly.','Spread peanut butter or dip.']
+      },
+      {
+        name: 'Chicken & avocado lettuce cups',
+        mealType: 'Mini‑meal',
+        nutrition: 380,
+        ingredients: ['4 oz cooked chicken breast','0.5 avocado','6 butter lettuce leaves','1 tsp olive oil','1 tsp lemon juice'],
+        instructions: ['Mash avocado with lemon and oil.','Mix with diced chicken.','Spoon into lettuce cups.']
+      },
+      {
+        name: 'Hummus (no cumin) with soft veg',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['3 tbsp hummus (no cumin)','0.5 cup cucumber','0.5 cup steamed carrots'],
+        instructions: ['Steam carrots until soft.','Slice/peel cucumber.','Serve with hummus.']
+      },
+      {
+        name: 'LF Greek yogurt + pineapple',
+        mealType: 'Snack',
+        nutrition: 210,
+        ingredients: ['0.75 cup lactose‑free Greek yogurt','0.5 cup pineapple (drained)'],
+        instructions: ['Drain pineapple well.','Spoon over yogurt.']
+      },
+      {
+        name: 'Air‑fryer salmon + veg tray',
+        mealType: 'Mini‑meal',
+        nutrition: 520,
+        ingredients: ['5 oz salmon fillet','2 tsp olive oil','2 cup mixed vegetables (frozen)','0.25 lemon','0.5 tsp garlic powder'],
+        instructions: ['Preheat air fryer to 380 °F (193 °C).','Toss vegetables with 1 tsp oil + garlic; air‑fry 8–10 min.','Add salmon brushed with 1 tsp oil; cook 7–9 min to 145 °F.','Finish with lemon.']
+      },
+      {
+        name: 'Banana‑spinach smoothie (LF)',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['1 banana','1 cup spinach','0.75 cup lactose‑free milk','1 tbsp ground flaxseed'],
+        instructions: ['Blend until smooth.']
+      }
+    ];
+    const day2 = [
+      {
+        name: 'Cottage bowl (LF) with peach & oats',
+        mealType: 'Snack',
+        nutrition: 260,
+        ingredients: ['0.75 cup lactose‑free cottage cheese','0.5 cup peach (drained)','2 tbsp rolled oats'],
+        instructions: ['Drain peaches.','Top cottage cheese with peaches + oats.']
+      },
+      {
+        name: 'Rice cake + PB + sliced banana',
+        mealType: 'Snack',
+        nutrition: 210,
+        ingredients: ['2 rice cakes','1.5 tbsp peanut butter','0.5 banana'],
+        instructions: ['Spread peanut butter on cakes; add banana slices.']
+      },
+      {
+        name: 'Turkey & spinach wrap (soft)',
+        mealType: 'Mini‑meal',
+        nutrition: 360,
+        ingredients: ['1 soft whole‑wheat tortilla','3 oz turkey breast (low sodium)','1 cup spinach','1 tbsp lactose‑free cream cheese'],
+        instructions: ['Spread cream cheese on tortilla.','Layer turkey + spinach.','Roll up tightly.']
+      },
+      {
+        name: 'Soft pear + almonds (slivered)',
+        mealType: 'Snack',
+        nutrition: 190,
+        ingredients: ['1 ripe pear','1 oz slivered almonds'],
+        instructions: ['Slice pear; chew well.','Add slivered almonds.']
+      },
+      {
+        name: 'Tomato‑basil soup (low‑Na)',
+        mealType: 'Snack',
+        nutrition: 220,
+        ingredients: ['1.25 cup low‑sodium tomato soup','1 tsp olive oil'],
+        instructions: ['Heat soup gently.','Stir in olive oil.']
+      },
+      {
+        name: 'Air‑fryer chicken bites (light panko)',
+        mealType: 'Mini‑meal',
+        nutrition: 480,
+        ingredients: ['5 oz chicken breast','0.25 cup light panko','Olive oil spray'],
+        instructions: ['Toss chicken in light panko.','Mist basket with oil spray; air‑fry 380 °F 10–12 min, shaking once.']
+      },
+      {
+        name: 'Berry‑cocoa shake (LF)',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['0.75 cup frozen berries','0.75 cup lactose‑free milk','1 tsp unsweetened cocoa'],
+        instructions: ['Blend until smooth.']
+      }
+    ];
+    // Build a week by alternating between day1 and day2 menus. This keeps the example
+    // concise while demonstrating the drop‑down functionality.
+    const mealPlan = {
+      'Day 1': day1,
+      'Day 2': day2,
+      'Day 3': day1,
+      'Day 4': day2,
+      'Day 5': day1,
+      'Day 6': day2,
+      'Day 7': day1
+    };
+    const selector = document.getElementById('day-selector');
+    const tableDiv = document.getElementById('meal-table');
+    const summary = document.getElementById('summary');
 
-    <main class="mealplan-container">
-      <header class="mealplan-header">
-        <h1>Carol – Two‑Week Meal Plan</h1>
-        <label for="day-select">Day:</label>
-        <select id="day-select" class="day-select"></select>
-      </header>
-      <section id="meals-grid" class="meals-grid"></section>
-    </main>
+    // Load any saved ratings/notes from localStorage. They are keyed by
+    // day+index (e.g. 'Day 1-0-rating') so they persist between page visits.
+    function loadSaved(day, idx, type) {
+      return localStorage.getItem(`meal-${day}-${idx}-${type}`) || '';
+    }
+    function saveValue(day, idx, type, value) {
+      localStorage.setItem(`meal-${day}-${idx}-${type}`, value);
+    }
 
-    <!-- Modal for meal details -->
-    <div id="meal-modal" class="modal hidden">
-      <div class="modal-content">
-        <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
-        <h2 id="modal-title"></h2>
-        <div id="modal-body"></div>
-      </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="../../js/avalon-skins.js"></script>
-    <script src="../../js/meal-plan.js"></script>
-  </body>
+    selector.addEventListener('change', () => {
+      const day = selector.value;
+      if (!day) {
+        tableDiv.innerHTML = '';
+        summary.textContent = '';
+        return;
+      }
+      const meals = mealPlan[day];
+      let total = 0;
+      let html = '<table><thead><tr><th>Meal</th><th>Type</th><th>Calories</th><th>Ingredients</th><th>Instructions</th><th>Rating</th><th>Notes</th></tr></thead><tbody>';
+      meals.forEach((item, idx) => {
+        total += item.nutrition;
+        const savedRating = loadSaved(day, idx, 'rating');
+        const savedNote = loadSaved(day, idx, 'note');
+        html += `<tr>
+          <td>${item.name}</td>
+          <td>${item.mealType}</td>
+          <td>${item.nutrition}</td>
+          <td>${item.ingredients.join(', ')}</td>
+          <td><ul>${item.instructions.map(i => `<li>${i}</li>`).join('')}</ul></td>
+          <td>
+            <select class="rating" data-day="${day}" data-idx="${idx}">
+              <option value="">--</option>
+              ${[1,2,3,4,5].map(n => `<option value="${n}" ${savedRating == n ? 'selected' : ''}>${n}</option>`).join('')}
+            </select>
+          </td>
+          <td><textarea rows="2" data-day="${day}" data-idx="${idx}">${savedNote}</textarea></td>
+        </tr>`;
+      });
+      html += '</tbody></table>';
+      tableDiv.innerHTML = html;
+      summary.textContent = `Total calories for ${day}: ${total} kcal`;
+      // Attach event listeners to rating selects and notes
+      tableDiv.querySelectorAll('select.rating').forEach(sel => {
+        sel.addEventListener('change', e => {
+          const d = e.target.dataset.day;
+          const i = e.target.dataset.idx;
+          saveValue(d, i, 'rating', e.target.value);
+        });
+      });
+      tableDiv.querySelectorAll('textarea').forEach(txt => {
+        txt.addEventListener('input', e => {
+          const d = e.target.dataset.day;
+          const i = e.target.dataset.idx;
+          saveValue(d, i, 'note', e.target.value);
+        });
+      });
+    });
+  </script>
+</body>
 </html>

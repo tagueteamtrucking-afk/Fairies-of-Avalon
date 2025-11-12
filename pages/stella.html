@@ -10,9 +10,18 @@
   <div class="wrap">
     <h1 class="heading">Stella</h1>
     <p class="lead">Voice &amp; sound. Experiment with spoken scripts using your browser’s speech synthesis.</p>
-    <p>Enter a short script below and click <em>Play</em> to hear it spoken aloud. This feature uses the Web Speech API available in most modern browsers.</p>
+    <p>Generate guided meditations based on principles of NLP, hypnotherapy and the Gateway program. Choose a theme, generate a script, then play it with built‑in text‑to‑speech. Background music support is planned for a future release.</p>
+    <label for="theme">Meditation theme</label>
+    <select id="theme">
+      <option value="relaxation">Relaxation</option>
+      <option value="confidence">Confidence</option>
+      <option value="focus">Focus</option>
+    </select>
+    <button id="generate-script">Generate Script</button>
+    <br><br>
     <label for="script">Script</label>
-    <textarea id="script" rows="4" placeholder="e.g. Welcome to Avalon! We hope you enjoy your stay."></textarea>
+    <textarea id="script" rows="6" placeholder="Your generated meditation will appear here..."></textarea>
+    <br>
     <button id="play">Play voice</button>
     <button id="stop">Stop</button>
     <p><a href="../index.html">← back to home</a></p>
@@ -20,6 +29,44 @@
   <script>
     const playBtn = document.getElementById('play');
     const stopBtn = document.getElementById('stop');
+    const generateBtn = document.getElementById('generate-script');
+    const themeSelect = document.getElementById('theme');
+    // Generate meditation scripts based on selected theme
+    function createMeditation(theme) {
+      switch (theme) {
+        case 'relaxation':
+          return `Welcome. Find a comfortable position and gently close your eyes.\n` +
+                 `Take a deep breath in through your nose, and exhale slowly through your mouth.\n` +
+                 `With each breath, imagine a warm wave of light washing over you, releasing tension from your body.\n` +
+                 `As you relax, let the sounds around you fade and focus on the quiet inner space.\n` +
+                 `Repeat softly in your mind: 'I am safe, I am calm, I am at peace.'\n` +
+                 `Allow your subconscious mind to drift, exploring beautiful landscapes and memories.\n` +
+                 `When you are ready, slowly open your eyes and carry this serenity with you.`;
+        case 'confidence':
+          return `Begin by standing tall or sitting upright. Feel the ground beneath you supporting your journey.\n` +
+                 `Take a deep breath and imagine drawing in radiant energy from the universe.\n` +
+                 `As you exhale, release doubt and fear.\n` +
+                 `Visualise a door opening to a room filled with achievements and accolades. This room belongs to you.\n` +
+                 `Repeat: 'I am strong, I am capable, I am confident.'\n` +
+                 `Picture yourself accomplishing your goals with ease, your mind clear and focused.\n` +
+                 `When you are ready, open your eyes and step forward with newfound confidence.`;
+        case 'focus':
+          return `Sit comfortably and let your hands rest gently in your lap.\n` +
+                 `Take a slow, deep breath, holding for a moment at the top before exhaling.\n` +
+                 `Imagine a beam of light entering the top of your head and illuminating your mind.\n` +
+                 `Allow any stray thoughts to pass like clouds in the sky, returning your attention to the beam of light.\n` +
+                 `Repeat quietly: 'I am focused, I am alert, I am present.'\n` +
+                 `Feel a sense of clarity as distractions melt away.\n` +
+                 `When you are ready, open your eyes and carry this sharp focus with you into the rest of your day.`;
+        default:
+          return '';
+      }
+    }
+    generateBtn.addEventListener('click', () => {
+      const theme = themeSelect.value;
+      const script = createMeditation(theme);
+      document.getElementById('script').value = script;
+    });
     playBtn.addEventListener('click', () => {
       const text = document.getElementById('script').value.trim();
       if (!text) return;

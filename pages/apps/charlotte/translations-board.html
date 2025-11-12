@@ -18,13 +18,28 @@
         <option value="avalon">Avalonian (fantasy)</option>
         <option value="es">Spanish (es)</option>
         <option value="fr">French (fr)</option>
+        <option value="zh">Chinese (zh)</option>
+        <option value="ja">Japanese (ja)</option>
+        <option value="ko">Korean (ko)</option>
+        <option value="hi">Hindi (hi)</option>
       </select>
       <button type="submit">Translate</button>
     </form>
     <p id="translation" class="lead"></p>
     <h2>Sample vocabulary</h2>
     <table>
-      <thead><tr><th>English</th><th>Avalonian</th><th>Spanish</th><th>French</th></tr></thead>
+      <thead>
+        <tr>
+          <th>English</th>
+          <th>Avalonian</th>
+          <th>Spanish</th>
+          <th>French</th>
+          <th>Chinese</th>
+          <th>Japanese</th>
+          <th>Korean</th>
+          <th>Hindi</th>
+        </tr>
+      </thead>
       <tbody id="vocab"></tbody>
     </table>
     <p><a href="index.html">← back to Charlotte</a></p>
@@ -58,11 +73,61 @@
       moon: 'lune',
       sun: 'soleil'
     };
+
+    // Chinese (Simplified) translations
+    const dictZh = {
+      dragon: '龙', // lóng
+      forest: '森林', // sēn lín
+      light: '光', // guāng
+      star: '星', // xīng
+      water: '水', // shuǐ
+      moon: '月亮', // yuè liàng
+      sun: '太阳' // tài yáng
+    };
+    // Japanese translations
+    const dictJa = {
+      dragon: '竜', // ryū
+      forest: '森林', // shinrin
+      light: '光', // hikari
+      star: '星', // hoshi
+      water: '水', // mizu
+      moon: '月', // tsuki
+      sun: '太陽' // taiyō
+    };
+    // Korean translations
+    const dictKo = {
+      dragon: '용', // yong
+      forest: '숲', // sup
+      light: '빛', // bit
+      star: '별', // byeol
+      water: '물', // mul
+      moon: '달', // dal
+      sun: '태양' // taeyang
+    };
+    // Hindi translations
+    const dictHi = {
+      dragon: 'ड्रैगन', // draigan
+      forest: 'जंगल', // jangal
+      light: 'प्रकाश', // prakash
+      star: 'तारा', // tara
+      water: 'पानी', // paani
+      moon: 'चाँद', // chaand
+      sun: 'सूरज' // sooraj
+    };
     const vocabTable = document.getElementById('vocab');
     // Populate vocabulary table
     const words = Object.keys(dictAvalon);
     vocabTable.innerHTML = words.map(word => {
-      return `<tr><td>${word}</td><td>${dictAvalon[word]}</td><td>${dictEs[word] || ''}</td><td>${dictFr[word] || ''}</td></tr>`;
+      return `<tr>
+        <td>${word}</td>
+        <td>${dictAvalon[word]}</td>
+        <td>${dictEs[word] || ''}</td>
+        <td>${dictFr[word] || ''}</td>
+        <td>${dictZh[word] || ''}</td>
+        <td>${dictJa[word] || ''}</td>
+        <td>${dictKo[word] || ''}</td>
+        <td>${dictHi[word] || ''}</td>
+      </tr>`;
     }).join('');
     const form = document.getElementById('translate-form');
     const translationEl = document.getElementById('translation');
@@ -81,6 +146,18 @@
           break;
         case 'fr':
           result = dictFr[word];
+          break;
+        case 'zh':
+          result = dictZh[word];
+          break;
+        case 'ja':
+          result = dictJa[word];
+          break;
+        case 'ko':
+          result = dictKo[word];
+          break;
+        case 'hi':
+          result = dictHi[word];
           break;
       }
       translationEl.textContent = result ? `"${word}" → ${result}` : `Sorry, no translation found for "${word}".`;

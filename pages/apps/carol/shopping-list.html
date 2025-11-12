@@ -34,6 +34,9 @@
       {ingredients: ['5 oz chicken breast','0.25 cup light panko','Olive oil spray']},
       {ingredients: ['0.75 cup frozen berries','0.75 cup lactose‑free milk','1 tsp unsweetened cocoa']}
     ];
+    // Build a 14-day meal plan and aggregate ingredients for two people.  Odd
+    // numbered days use day1 and even days use day2.  Each ingredient is
+    // multiplied by the number of occurrences times the number of persons.
     const mealPlan = {
       'Day 1': day1,
       'Day 2': day2,
@@ -41,33 +44,89 @@
       'Day 4': day2,
       'Day 5': day1,
       'Day 6': day2,
-      'Day 7': day1
+      'Day 7': day1,
+      'Day 8': day2,
+      'Day 9': day1,
+      'Day 10': day2,
+      'Day 11': day1,
+      'Day 12': day2,
+      'Day 13': day1,
+      'Day 14': day2
     };
-    // Flatten all ingredient strings and tally duplicates.
-    const counts = {};
+    const persons = 2;
+    // Aggregate quantities by parsing numeric values where possible.
+    const aggregate = {};
     Object.values(mealPlan).forEach(day => {
       day.forEach(item => {
         item.ingredients.forEach(ing => {
           const key = ing.trim();
-          counts[key] = (counts[key] || 0) + 1;
+          // Try to parse a quantity and unit
+          const m = key.match(/^([0-9]*\.?[0-9]+)\s*([a-zA-Z\u00C0-\u024F\.]+)\s+(.*)$/);
+          if (m) {
+            const qty = parseFloat(m[1]);
+            const unit = m[2];
+            const name = m[3];
+            const id = name.toLowerCase() + '_' + unit.toLowerCase();
+            if (!aggregate[id]) {
+              aggregate[id] = { name, unit, quantity: 0 };
+            }
+            aggregate[id].quantity += qty;
+          } else {
+            // No quantity found; treat the whole string as an item count
+            const id = key.toLowerCase();
+            if (!aggregate[id]) {
+              aggregate[id] = { name: key, unit: null, quantity: 0, count: 0 };
+            }
+            aggregate[id].count = (aggregate[id].count || 0) + 1;
+          }
         });
       });
     });
+    // Multiply quantities by the number of persons
+    Object.values(aggregate).forEach(item => {
+      if (item.quantity) {
+        item.quantity *= persons;
+      } else if (item.count) {
+        item.count *= persons;
+      }
+    });
+    // Special conversion: convert spinach cups to 8 oz bags.  One 8 oz bag (~227g) of spinach is roughly 7.5 cups raw.
+    function convertSpinach(item) {
+      const cupsPerBag = 7.5;
+      const bags = Math.ceil(item.quantity / cupsPerBag);
+      return bags;
+    }
     const listDiv = document.getElementById('list');
     const PURCHASED_KEY = 'shoppingPurchased';
     const purchased = JSON.parse(localStorage.getItem(PURCHASED_KEY) || '{}');
     function render() {
-      listDiv.innerHTML = Object.keys(counts).sort().map(item => {
-        const qty = counts[item] > 1 ? ` ×${counts[item]}` : '';
-        const checked = purchased[item] ? 'checked' : '';
-        return `<div class="shopping-item"><input type="checkbox" data-item="${item}" ${checked}> <span${purchased[item] ? ' style="text-decoration: line-through; color: var(--muted);"' : ''}>${item}${qty}</span></div>`;
+      const entries = Object.values(aggregate);
+      const html = entries.sort((a,b) => a.name.localeCompare(b.name)).map(item => {
+        let label;
+        if (item.unit && item.quantity) {
+          const quantity = Math.round(item.quantity * 100) / 100;
+          // For spinach convert to bag count
+          if (item.name.toLowerCase().includes('spinach') && item.unit.toLowerCase() === 'cup') {
+            const bags = convertSpinach(item);
+            label = `${bags} bag(s) (8 oz) spinach`;
+          } else {
+            label = `${quantity} ${item.unit} ${item.name}`;
+          }
+        } else if (item.count) {
+          label = `${item.count} x ${item.name}`;
+        } else {
+          label = item.name;
+        }
+        const checked = purchased[label] ? 'checked' : '';
+        return `<div class="shopping-item"><input type="checkbox" data-label="${label}" ${checked}> <span${purchased[label] ? ' style="text-decoration: line-through; color: var(--muted);"' : ''}>${label}</span></div>`;
       }).join('');
+      listDiv.innerHTML = html;
     }
     render();
     listDiv.addEventListener('change', e => {
       if (e.target.type === 'checkbox') {
-        const item = e.target.dataset.item;
-        purchased[item] = e.target.checked;
+        const label = e.target.dataset.label;
+        purchased[label] = e.target.checked;
         localStorage.setItem(PURCHASED_KEY, JSON.stringify(purchased));
         render();
       }

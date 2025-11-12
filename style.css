@@ -23,6 +23,18 @@ html, body {
   min-height: 100vh;
 }
 
+/* Home page background.
+ * Use the user-provided castle photograph for the main page.  The image
+ * lives in assets/img/avalon-castle.jpg.  Applying this class to the
+ * <body> element will set a dramatic backdrop while still allowing
+ * the content wrapper to apply a translucent overlay. */
+.home {
+  background-image: url('assets/img/avalon-castle.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
 /* Backgrounds for Carol and Jem.  
  * Using generated images stored in assets/img. Each class sets a
  * photograph or illustration as the body background. You can swap
@@ -105,6 +117,34 @@ html, body {
 }
 .stella-inside {
   background-image: url('assets/img/stella-inside.JPG');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+/* Abbey backgrounds for finance & receipts fairy */
+.abbey-outside {
+  background-image: url('assets/img/abbey-outside.JPG');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+.abbey-inside {
+  background-image: url('assets/img/abbey-inside.JPG');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+/* Billie backgrounds for social & media fairy */
+.billie-outside {
+  background-image: url('assets/img/billie-outside.JPG');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+.billie-inside {
+  background-image: url('assets/img/billie-inside.JPG');
   background-size: cover;
   background-position: center;
   min-height: 100vh;

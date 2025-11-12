@@ -1,30 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Abbey – Grand Vault</title>
-    <!-- Load the shared common styles first to pick up building backgrounds, then Avalon theme styles. -->
-    <link rel="stylesheet" href="../common/style.css" />
-    <link rel="stylesheet" href="../../../assets/css/avalon.css" />
-  </head>
-  <!-- Set the body class to abbey‑outside to apply the Grand Vault exterior skin. -->
-  <body class="abbey-outside">
-    <header>
-      <h1>Welcome to Abbey’s Grand Vault</h1>
-      <p>Manage finances, review ledgers and keep the books balanced.</p>
-    </header>
-    <main>
-      <nav>
-        <ul>
-          <li><a href="#">Ledger</a></li>
-          <li><a href="#">Budgets</a></li>
-          <li><a href="#">Monthly Roll‑ups</a></li>
-        </ul>
-      </nav>
-      <section>
-        <p>The finance desk tools are under construction.  Please check back soon.</p>
-      </section>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abbey – Finance & Receipts</title>
+  <link rel="stylesheet" href="../../../style.css">
+</head>
+<body class="abbey-inside">
+  <div class="wrap">
+    <h1 class="heading">Abbey</h1>
+    <p class="lead">Finance fairy. Abbey helps you organise receipts, subscriptions and transactions. Connect your accounts or paste statement lines below.</p>
+    <p>Full integration with Gmail, QuickBooks and banking services requires OAuth authentication. Because this site cannot access your accounts directly, you will need to sign in during a takeover step. In the meantime, you can paste transaction data here to see how Abbey will parse and summarise it.</p>
+    <label for="transactions"><strong>Paste transactions or receipts</strong> (one per line, format: date, description, amount):</label>
+    <textarea id="transactions" rows="6" placeholder="2025-01-02, Amazon purchase, -25.99\n2025-01-03, Paycheck, 1500\n..."></textarea>
+    <button id="parse">Parse transactions</button>
+    <div id="results" style="margin-top:1rem;"></div>
+    <p><a href="../../../index.html">← back to home</a></p>
+  </div>
+  <script>
+    document.getElementById('parse').addEventListener('click', () => {
+      const raw = document.getElementById('transactions').value.trim();
+      const results = document.getElementById('results');
+      if (!raw) {
+        results.textContent = 'Please paste some transaction lines.';
+        return;
+      }
+      const lines = raw.split(/\n+/);
+      const rows = [];
+      let totalIncome = 0;
+      let totalExpense = 0;
+      lines.forEach(line => {
+        const parts = line.split(/,\s*/);
+        if (parts.length >= 3) {
+          const date = parts[0];
+          const desc = parts[1];
+          const amount = parseFloat(parts[2]);
+          const type = amount >= 0 ? 'Income' : 'Expense';
+          if (type === 'Income') totalIncome += amount; else totalExpense += amount;
+          rows.push({ date, desc, amount: amount.toFixed(2), type });
+        }
+      });
+      if (rows.length === 0) {
+        results.textContent = 'No valid transactions detected.';
+        return;
+      }
+      let html = '<table><thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Type</th></tr></thead><tbody>';
+      rows.forEach(r => {
+        html += `<tr><td>${r.date}</td><td>${r.desc}</td><td>${r.amount}</td><td>${r.type}</td></tr>`;
+      });
+      html += '</tbody></table>';
+      html += `<p><strong>Total income:</strong> $${totalIncome.toFixed(2)}<br><strong>Total expenses:</strong> $${Math.abs(totalExpense).toFixed(2)}</p>`;
+      results.innerHTML = html;
+    });
+  </script>
+</body>
 </html>

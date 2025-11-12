@@ -30,6 +30,7 @@
     </select>
     <div id="meal-table" style="margin-top:1rem;"></div>
     <p id="summary" class="lead"></p>
+    <p class="lead">Your ratings and notes are saved and will help Carol refine future meal plans.</p>
     <p><a href="index.html">← back to Carol</a></p>
   </div>
   <script>
@@ -177,7 +178,7 @@
       }
       const meals = mealPlan[day];
       let total = 0;
-      let html = '<table><thead><tr><th>Meal</th><th>Type</th><th>Calories</th><th>Ingredients</th><th>Instructions</th></tr></thead><tbody>';
+      let html = '<table><thead><tr><th>Meal</th><th>Type</th><th>Calories</th><th>Ingredients</th><th>Instructions</th><th>Rating</th><th>Notes</th></tr></thead><tbody>';
       meals.forEach((item, idx) => {
         total += item.nutrition;
         const savedRating = loadSaved(day, idx, 'rating');
@@ -188,12 +189,37 @@
           <td>${item.nutrition}</td>
           <td>${item.ingredients.join(', ')}</td>
           <td><ul>${item.instructions.map(i => `<li>${i}</li>`).join('')}</ul></td>
+          <td>
+            <select data-idx="${idx}" class="rating-select">
+              <option value="">–</option>
+              <option value="1" ${savedRating === '1' ? 'selected' : ''}>1</option>
+              <option value="2" ${savedRating === '2' ? 'selected' : ''}>2</option>
+              <option value="3" ${savedRating === '3' ? 'selected' : ''}>3</option>
+              <option value="4" ${savedRating === '4' ? 'selected' : ''}>4</option>
+              <option value="5" ${savedRating === '5' ? 'selected' : ''}>5</option>
+            </select>
+          </td>
+          <td>
+            <textarea rows="2" data-idx="${idx}" class="note-input" placeholder="Add notes...">${savedNote}</textarea>
+          </td>
         </tr>`;
       });
       html += '</tbody></table>';
       tableDiv.innerHTML = html;
       summary.textContent = `Total calories for ${day}: ${total} kcal`;
-      // No rating or notes fields are displayed in the 14‑day plan.
+      // Attach change handlers after rendering so we can persist values.
+      document.querySelectorAll('.rating-select').forEach(sel => {
+        sel.addEventListener('change', (e) => {
+          const idx = e.target.dataset.idx;
+          saveValue(day, idx, 'rating', e.target.value);
+        });
+      });
+      document.querySelectorAll('.note-input').forEach(textarea => {
+        textarea.addEventListener('input', (e) => {
+          const idx = e.target.dataset.idx;
+          saveValue(day, idx, 'note', e.target.value);
+        });
+      });
     });
   </script>
 </body>

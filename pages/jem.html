@@ -9,8 +9,8 @@
 <body class="jem-inside">
   <div class="wrap">
     <h1 class="heading">Jem</h1>
-    <p class="lead">Fitness &amp; motion. Follow a suggested routine and let Jem adjust it based on your performance.</p>
-    <p>Below is your current workout plan. Record how many repetitions you actually complete for each exercise, then click <strong>Evaluate</strong>. Jem will increase or decrease the target for next time depending on your performance.</p>
+    <p class="lead">Fitness &amp; motion. Jem guides you through a weekly training split inspired by Joe Weider’s methods. Each day mixes morning warmups, afternoon workouts and evening stretches. Log your performance and Jem will adapt your targets for next time.</p>
+    <p>Below is your current routine covering a full week. Record how many repetitions (or seconds) you actually complete for each item, then click <strong>Evaluate</strong>. Jem will increase or decrease the target by about 10% to help you progress sustainably. Use the <strong>Reset</strong> button to restore the original targets.</p>
     <table id="routine-table">
       <thead>
         <tr><th>Exercise</th><th>Target reps</th><th>Achieved reps</th><th>Next target</th></tr>
@@ -24,12 +24,21 @@
     <p style="margin-top:1rem;"><a href="../index.html">← back to home</a></p>
   </div>
   <script>
-    // Predefined routine. Each exercise has a target number of repetitions.
-    // The routine is persisted in localStorage so it evolves over time.
+    // Predefined routine based on a 7-day training split inspired by Joe Weider.
+    // The list blends morning warmups, afternoon workouts and evening stretches.
+    // Each exercise has a target count (reps or seconds).  Users log what
+    // they actually complete, and Jem adjusts the target up or down by 10%.
     const DEFAULT_ROUTINE = [
-      { name: 'Jumping jacks', target: 20 },
-      { name: 'Push ups', target: 10 },
-      { name: 'Squats', target: 15 }
+      { name: 'Morning: Jumping jacks', target: 30 },
+      { name: 'Morning: High knees', target: 30 },
+      { name: 'Afternoon: Push-ups', target: 15 },
+      { name: 'Afternoon: Resistance band rows', target: 15 },
+      { name: 'Afternoon: Squats', target: 20 },
+      { name: 'Afternoon: Lunges (per leg)', target: 16 },
+      { name: 'Afternoon: Glute bridges', target: 20 },
+      { name: 'Afternoon: Bicep curls (band)', target: 15 },
+      { name: 'Core: Plank (seconds)', target: 60 },
+      { name: 'Evening: Stretch routine', target: 1 }
     ];
     const STORAGE_KEY = 'jemRoutine';
     let routine = [];

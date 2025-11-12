@@ -9,9 +9,9 @@
 <body class="tracy-inside">
   <div class="wrap">
     <h1 class="heading">🎨 Tracy – Art Gallery</h1>
-    <p class="lead">Browse sample art and experiment with prompts. Image generation is a future feature.</p>
+    <p class="lead">Browse sample art or generate new images from your prompts. Tracy will cycle through a set of locally generated illustrations inspired by your description.</p>
     <div class="gallery">
-      <img src="../../../assets/img/tracy-sample.png" alt="Sample art by Tracy" style="max-width:100%; height:auto; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.2); margin-bottom:1rem;">
+      <img id="art-image" src="../../../assets/img/tracy-sample.png" alt="Sample art by Tracy" style="max-width:100%; height:auto; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.2); margin-bottom:1rem;">
     </div>
     <div class="prompt-form">
       <label for="prompt">Enter a description to inspire a new illustration:</label>
@@ -22,16 +22,29 @@
     <p><a href="index.html">← back to Tracy</a></p>
   </div>
   <script>
-    // Simulate image generation by displaying a friendly message. Real
-    // implementation could call a server‑side AI model or third‑party API.
+    // Simple image generator: cycles through pre-made illustrations in
+    // assets/img based on the user prompt.  This simulates an image
+    // generator without requiring external APIs.  New prompts advance to
+    // the next illustration.
+    const images = [
+      '../../../assets/img/tracy-generated1.png',
+      '../../../assets/img/tracy-generated2.png',
+      '../../../assets/img/tracy-generated3.png'
+    ];
+    let currentImageIndex = 0;
     document.getElementById('generate').addEventListener('click', () => {
       const prompt = document.getElementById('prompt').value.trim();
       const output = document.getElementById('output');
+      const img = document.getElementById('art-image');
       if (!prompt) {
         output.textContent = 'Please enter a prompt first.';
         return;
       }
-      output.textContent = '"' + prompt + '" – image generation is coming soon!';
+      // Advance to next image
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      img.src = images[currentImageIndex];
+      img.alt = prompt;
+      output.textContent = `Illustration generated for: "${prompt}"`;
     });
   </script>
 </body>

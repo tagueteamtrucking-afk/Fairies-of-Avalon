@@ -3,40 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alexandria – Stories & Spells</title>
+  <title>Alexandria – Dungeon Master</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body class="alexandria-inside">
   <div class="wrap">
-    <h1 class="heading">Alexandria</h1>
-    <p class="lead">Storyteller &amp; multiverse builder. Alexandria curates tales from across Avalon and beyond.</p>
-    <p>This tool allows you to generate whimsical stories from your own conversation prompts. Enter a short description of a chat or an idea and Alexandria will spin it into a tale.</p>
-    <label for="prompt"><strong>Conversation / prompt:</strong>
-      <textarea id="prompt" rows="4" placeholder="Describe your conversation or idea..."></textarea>
-    </label>
-    <button id="generate-story">Generate Story</button>
-    <div id="story-output" style="margin-top:1rem;"></div>
+    <h1 class="heading">Alexandria the Story Weaver</h1>
+    <p class="lead">As your Dungeon Master, Alexandria listens to your ideas and guides you through a collaborative world‑building session. Describe your idea, answer a few questions and let her weave a tale complete with monsters, treasures and cities.</p>
+
+    <div id="dm-section">
+      <p id="question"></p>
+      <textarea id="answer" rows="3" placeholder="Speak or type your answer here..."></textarea><br>
+      <button id="record-btn">🎤 Record Answer</button>
+      <button id="next-btn">Next</button>
+    </div>
+
+    <div id="story-section" style="display:none;">
+      <h2>Your Story</h2>
+      <div id="story-output" style="white-space: pre-line;"></div>
+      <button id="play-story">🔊 Listen to Story</button>
+    </div>
     <p><a href="../index.html">← back to home</a></p>
   </div>
   <script>
-    // Story generation based on a simple template. Without external AI services
-    // we create a fun narrative by weaving the user prompt into a generic
-    // Avalon adventure. Further enhancements could randomise characters or settings.
-    document.getElementById('generate-story').addEventListener('click', () => {
-      const prompt = document.getElementById('prompt').value.trim();
-      const output = document.getElementById('story-output');
-      if (!prompt) {
-        output.textContent = 'Please describe a conversation or idea to inspire a story.';
+    // Dungeon Master interactive session
+    const questions = [
+      'Describe your overall idea of the story. What theme or genre do you imagine?',
+      'Describe the setting. Is it a mystical forest, a futuristic city, an ancient temple or something else?',
+      'Who is the main character? Give their name and a brief description.',
+      'What goal or quest drives the protagonist?',
+      'Who or what opposes them? Describe the villain, monster or obstacle.',
+      'Is there a special weapon, magical item or secret skill involved? If so, describe it.',
+      'Any other important details or twists you would like to include?'
+    ];
+    let answers = [];
+    let currentIndex = 0;
+
+    const questionEl = document.getElementById('question');
+    const answerEl = document.getElementById('answer');
+    const recordBtn = document.getElementById('record-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const storySection = document.getElementById('story-section');
+    const storyOutput = document.getElementById('story-output');
+
+    function askQuestion() {
+      if (currentIndex < questions.length) {
+        questionEl.textContent = questions[currentIndex];
+        answerEl.value = '';
+      }
+    }
+
+    // Set up speech recognition for STT
+    let recognition;
+    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+      recordBtn.addEventListener('click', () => {
+        recordBtn.disabled = true;
+        recognition.start();
+      });
+      recognition.addEventListener('result', (e) => {
+        const transcript = e.results[0][0].transcript;
+        answerEl.value = transcript;
+      });
+      recognition.addEventListener('end', () => {
+        recordBtn.disabled = false;
+      });
+    } else {
+      recordBtn.style.display = 'none';
+    }
+
+    nextBtn.addEventListener('click', () => {
+      const val = answerEl.value.trim();
+      if (!val) {
+        alert('Please answer the question before continuing.');
         return;
       }
-      // Basic story template: wrap the prompt in a fairy tale.
-      const opening = 'Once upon a time in the realms of Avalon, ';
-      const challenge = 'faced a curious challenge: ' + prompt + '. ';
-      const journey = 'With the help of wise fairies and a sprinkle of magic, our heroes navigated forests, halls and hidden kitchens. ';
-      const resolution = 'In the end they discovered that understanding and kindness solved the problem better than spells. ';
-      const closing = 'And so, another story was added to Alexandria’s ever‑growing chronicle of adventures.';
-      output.textContent = opening + challenge + journey + resolution + closing;
+      answers[currentIndex] = val;
+      currentIndex++;
+      if (currentIndex < questions.length) {
+        askQuestion();
+      } else {
+        // Generate story
+        generateStory();
+      }
     });
+
+    function generateStory() {
+      const [idea, setting, character, goal, villain, weapon, twist] = answers;
+      // Compose a story using a flexible template. The template utilises
+      // user-provided details and adds extra flavour text.
+      let story = '';
+      story += `In the realm of Avalon, there was a tale unlike any other. You envisioned ${idea}.\n\n`;
+      story += `Our adventure begins in ${setting}, where the air shimmers with ancient magic.\n\n`;
+      story += `The protagonist, ${character}, embarked on a quest: ${goal}.\n`;
+      story += `But lurking in the shadows was ${villain}, standing in the way of glory.\n`;
+      if (weapon) {
+        story += `${character.split(' ')[0]} carried ${weapon}, a source of power that could turn the tide.\n`;
+      }
+      if (twist) {
+        story += `${twist}\n`;
+      }
+      story += `Guided by you, Alexandria conjured monsters, treasures and hidden cities. Through challenges and riddles, the quest led to unexpected alliances and gripping battles. In the end, the story was yours to continue, to play and to evolve like the finest campaigns.\n`;
+      storyOutput.textContent = story;
+      document.getElementById('dm-section').style.display = 'none';
+      storySection.style.display = 'block';
+    }
+
+    // Speech synthesis for TTS
+    document.getElementById('play-story').addEventListener('click', () => {
+      const storyText = storyOutput.textContent;
+      if (!storyText) return;
+      const utterance = new SpeechSynthesisUtterance(storyText);
+      utterance.lang = 'en-US';
+      window.speechSynthesis.speak(utterance);
+    });
+
+    // Initialize first question
+    askQuestion();
   </script>
 </body>
 </html>

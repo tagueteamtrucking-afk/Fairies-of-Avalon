@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-12T01:14:03.372Z",
+  "generated": "2025-11-12T01:47:39.326Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -122,6 +122,12 @@
       "purpose": "misc"
     },
     {
+      "path": "assets/img/abbey-inside.JPG",
+      "bytes": 330417,
+      "hash": "414fda16ed7f260ab0672203c6b614c5",
+      "purpose": "misc"
+    },
+    {
       "path": "assets/img/abbey-inside.img",
       "bytes": 330417,
       "hash": "414fda16ed7f260ab0672203c6b614c5",
@@ -131,6 +137,12 @@
       "path": "assets/img/abbey-inside.jpg",
       "bytes": 240887,
       "hash": "168daabbdb00023318a44c119653a920",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/abbey-outside.JPG",
+      "bytes": 328704,
+      "hash": "06e51b3fbd216554246297d31161d8e7",
       "purpose": "misc"
     },
     {
@@ -165,8 +177,14 @@
     },
     {
       "path": "assets/img/alexandria-outside.jpg",
-      "bytes": 261326,
-      "hash": "16c1bf27078b327b12f6638ca8f3961c",
+      "bytes": 110237,
+      "hash": "f5305adaddc556395975cd15a675197a",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/billie-inside.JPG",
+      "bytes": 277376,
+      "hash": "0a412ab37e0291fc52670de6c2854d28",
       "purpose": "misc"
     },
     {
@@ -179,6 +197,12 @@
       "path": "assets/img/billie-inside.jpg",
       "bytes": 223230,
       "hash": "cb54214364d9aff6887115d364d1ab5a",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/billie-outside.JPG",
+      "bytes": 301588,
+      "hash": "12b90816d35b7c38bc413d379114434f",
       "purpose": "misc"
     },
     {
@@ -224,6 +248,12 @@
       "purpose": "misc"
     },
     {
+      "path": "assets/img/charlotte-inside.JPG",
+      "bytes": 289290,
+      "hash": "a2d47a8f1f34a4c8b50e390aab9ad77a",
+      "purpose": "misc"
+    },
+    {
       "path": "assets/img/charlotte-inside.img",
       "bytes": 289290,
       "hash": "a2d47a8f1f34a4c8b50e390aab9ad77a",
@@ -237,6 +267,12 @@
     },
     {
       "path": "assets/img/charlotte-outside .img",
+      "bytes": 298325,
+      "hash": "49c8b07ee31484c1ef0cc87f740e2718",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/charlotte-outside.JPG",
       "bytes": 298325,
       "hash": "49c8b07ee31484c1ef0cc87f740e2718",
       "purpose": "misc"
@@ -296,6 +332,12 @@
       "purpose": "misc"
     },
     {
+      "path": "assets/img/stella-inside.JPG",
+      "bytes": 302780,
+      "hash": "2210fa4326eff6daf2cdfa1326718681",
+      "purpose": "misc"
+    },
+    {
       "path": "assets/img/stella-inside.img",
       "bytes": 302780,
       "hash": "2210fa4326eff6daf2cdfa1326718681",
@@ -305,6 +347,12 @@
       "path": "assets/img/stella-inside.jpg",
       "bytes": 223329,
       "hash": "b90a0c30c62f7ca6b33823f9ad4d865c",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/stella-outside.JPG",
+      "bytes": 286156,
+      "hash": "974d3dabfc8cce68d8da979a1eae5cb9",
       "purpose": "misc"
     },
     {
@@ -329,6 +377,12 @@
       "path": "assets/img/town-outside.png",
       "bytes": 3016832,
       "hash": "6b6affdf37995a8d67db107e92924769",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/img/tracy-inside.JPG",
+      "bytes": 331004,
+      "hash": "13faddf9340f28f0ddfacefd29cbe571",
       "purpose": "misc"
     },
     {
@@ -687,8 +741,8 @@
     },
     {
       "path": "memory/file-index.json",
-      "bytes": 22354,
-      "hash": "f80ba303dd584dd3423caaa0a3ba416c",
+      "bytes": 82110,
+      "hash": "5ca7bb8a105930434bd2515cf9337afb",
       "purpose": "misc"
     },
     {
@@ -2355,8 +2409,8 @@
     },
     {
       "path": "pages/alexandria.html",
-      "bytes": 2347,
-      "hash": "d468b86d41e6f7e0d57dcd5029cd62a7",
+      "bytes": 2296,
+      "hash": "d6a5e31192e5c7769c50207627591123",
       "purpose": "page"
     },
     {
@@ -2493,8 +2547,8 @@
     },
     {
       "path": "pages/apps/carol/index.html",
-      "bytes": 938,
-      "hash": "f743bbc12ecb41201c36a39a45e682f5",
+      "bytes": 839,
+      "hash": "d88c5912191eef28c750679423f79520",
       "purpose": "page"
     },
     {
@@ -2505,8 +2559,8 @@
     },
     {
       "path": "pages/apps/carol/meal-plan.html",
-      "bytes": 8628,
-      "hash": "a5b68c5795ff4ffcf7a2311ba86c270e",
+      "bytes": 8261,
+      "hash": "d965307f320aa0e0a59ea961f042d4b7",
       "purpose": "page"
     },
     {
@@ -2553,14 +2607,14 @@
     },
     {
       "path": "pages/apps/charlotte/index.html",
-      "bytes": 1140,
-      "hash": "9074b656d443760e4ebeb6670674149e",
+      "bytes": 1166,
+      "hash": "2548dd47f098260f533d4cb0c3c15a73",
       "purpose": "page"
     },
     {
       "path": "pages/apps/charlotte/queues-dashboard.html",
-      "bytes": 3371,
-      "hash": "3b44af344cbf0ace346a3d232dfc5466",
+      "bytes": 3396,
+      "hash": "28655c98544e5657106064ce91e6d7eb",
       "purpose": "page"
     },
     {
@@ -2571,8 +2625,8 @@
     },
     {
       "path": "pages/apps/charlotte/translations-board.html",
-      "bytes": 2923,
-      "hash": "6d82c33a4da594cf42af8fdab9f85c47",
+      "bytes": 2948,
+      "hash": "6e6e0c1c6f02d7013180afc45b6d26f0",
       "purpose": "page"
     },
     {
@@ -2715,8 +2769,8 @@
     },
     {
       "path": "pages/apps/tracy/art-gallery.html",
-      "bytes": 1619,
-      "hash": "f404678d31ac4e46d673d2319b0a19b6",
+      "bytes": 1640,
+      "hash": "57e33491c4c39eea3f61fc1428e205fc",
       "purpose": "page"
     },
     {
@@ -2727,14 +2781,14 @@
     },
     {
       "path": "pages/apps/tracy/character-designer.html",
-      "bytes": 1876,
-      "hash": "2cf1b6abf66aae381fc51dcb24d911f8",
+      "bytes": 1897,
+      "hash": "77a4df980e2df0820d3d880f211e6a63",
       "purpose": "page"
     },
     {
       "path": "pages/apps/tracy/index.html",
-      "bytes": 960,
-      "hash": "754bdff14400ae990246cb1910956621",
+      "bytes": 982,
+      "hash": "36a91388c799acc836f4b47970cdeaa1",
       "purpose": "page"
     },
     {
@@ -2745,8 +2799,8 @@
     },
     {
       "path": "pages/jem.html",
-      "bytes": 2244,
-      "hash": "caf138024cdccc90e14df468e62bff3f",
+      "bytes": 3432,
+      "hash": "86e4a69a1a90a500c210c9a5ce8a8414",
       "purpose": "page"
     },
     {
@@ -2775,8 +2829,8 @@
     },
     {
       "path": "pages/stella.html",
-      "bytes": 1391,
-      "hash": "7a9c8437ac3851039f370848798d8386",
+      "bytes": 1413,
+      "hash": "fc984e82722e563247ff3c101fa7e798",
       "purpose": "page"
     },
     {
@@ -2949,8 +3003,8 @@
     },
     {
       "path": "style.css",
-      "bytes": 4031,
-      "hash": "1c7dcbb8e1749a38df25ff1c32c71792",
+      "bytes": 5640,
+      "hash": "da094159901fa1d009e01a5ee975384f",
       "purpose": "misc"
     },
     {

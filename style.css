@@ -160,12 +160,22 @@ html, body {
  * center it on the screen. Padding creates breathing room around
  * the edges of the viewport.
  */
+/*
+ * The wrapper creates a soft panel atop photographic backgrounds.  To improve
+ * readability on mobile devices we slightly lighten and blur the panel
+ * more than before.  Increasing the alpha value of the background adds
+ * contrast so text remains legible even when the underlying image is
+ * detailed or dark.  These settings apply globally but can be overridden
+ * on individual pages if needed.
+ */
 .wrap {
   max-width: 960px;
   margin: 0 auto;
   padding: 24px;
-  backdrop-filter: blur(4px) brightness(0.9);
-  background-color: rgba(0, 0, 0, 0.4);
+  /* Apply stronger blur and brightness to soften complex backgrounds */
+  backdrop-filter: blur(8px) brightness(1);
+  /* Semi‑transparent dark panel for better contrast on mobile */
+  background-color: rgba(0, 0, 0, 0.55);
   border-radius: 8px;
 }
 
@@ -237,6 +247,18 @@ table {
   border-collapse: collapse;
   margin-bottom: 1rem;
   overflow-wrap: anywhere;
+  /* On small screens allow horizontal scrolling by wrapping table in div */
+  display: block;
+  overflow-x: auto;
+}
+
+/* Generic thumbnails used in meal and exercise tables */
+.meal-img, .exercise-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 th, td {
@@ -253,6 +275,21 @@ th {
 
 tr:last-child td {
   border-bottom: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  th, td {
+    padding: 6px 8px;
+    font-size: 0.85rem;
+  }
+  .wrap {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  input[type="text"], select, textarea {
+    width: 100%;
+  }
 }
 
 /* Form fields */

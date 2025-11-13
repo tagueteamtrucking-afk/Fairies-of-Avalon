@@ -1,12 +1,12 @@
 {
-  "generated": "2025-11-12T01:08:27Z",
+  "generated": "2025-11-13T01:09:04Z",
   "entrypoints": [
     "/index.html"
   ],
   "pages": [
     {
       "path": "/index.html",
-      "title": "Fairies of Avalon \u2014 Home"
+      "title": "Fairies of Avalon"
     },
     {
       "path": "/kill-sw.html",
@@ -30,11 +30,11 @@
     },
     {
       "path": "/pages/jem.html",
-      "title": "Jem \u2013 Fitness & Motion"
+      "title": "Jem \u2013 Weekly Training Plan"
     },
     {
       "path": "/pages/alexandria.html",
-      "title": "Alexandria \u2013 Stories & Spells"
+      "title": "Alexandria \u2013 Dungeon Master"
     },
     {
       "path": "/pages/stella.html",
@@ -42,7 +42,7 @@
     },
     {
       "path": "/pages/apps/abbey/index.html",
-      "title": "Abbey \u2013 Grand\u00a0Vault"
+      "title": "Abbey \u2013 Finance & Receipts"
     },
     {
       "path": "/pages/apps/tracy/character-designer.html",
@@ -50,7 +50,7 @@
     },
     {
       "path": "/pages/apps/tracy/index.html",
-      "title": "Tracy \u2013 Cathedral\u00a0Studio"
+      "title": "Tracy \u2013 Art & Design"
     },
     {
       "path": "/pages/apps/tracy/art-gallery.html",
@@ -70,7 +70,7 @@
     },
     {
       "path": "/pages/apps/billie/index.html",
-      "title": "Billie \u2013 Superstar\u00a0Mansion"
+      "title": "Billie \u2013 Social & Media"
     },
     {
       "path": "/pages/apps/billie/earnings-dashboard.html",
@@ -94,11 +94,11 @@
     },
     {
       "path": "/pages/apps/carol/index.html",
-      "title": "Carol's Kitchen"
+      "title": "Carol\u2019s Kitchen"
     },
     {
       "path": "/pages/apps/carol/menu.html",
-      "title": "Carol's Menu"
+      "title": "Carol \u2013 Menu"
     },
     {
       "path": "/pages/apps/carol/dashboard.html",
@@ -106,7 +106,7 @@
     },
     {
       "path": "/pages/apps/carol/meal-plan.html",
-      "title": "Carol \u2013 Two\u2011Week Meal Plan"
+      "title": "Carol \u2013 Meal Planner"
     },
     {
       "path": "/pages/apps/nina/index.html",
@@ -146,7 +146,7 @@
     },
     {
       "path": "/pages/apps/charlotte/index.html",
-      "title": "Charlotte \u2013 Relay\u00a0Hall"
+      "title": "Charlotte \u2013 Operations & Workshop"
     },
     {
       "path": "/pages/apps/charlotte/translations-board.html",
@@ -279,27 +279,45 @@
     "/assets/img/carol-kitchen-inside.jpg",
     "/assets/img/tracy-outside.jpg",
     "/assets/img/tracy-inside.jpg",
+    "/assets/img/abbey-inside.JPG",
     "/assets/img/jem-hall-inside.jpg",
+    "/assets/img/stella-inside.JPG",
+    "/assets/img/tracy-generated3.png",
     "/assets/img/billie-outside.jpg",
     "/assets/img/jem-hall-outside.jpg",
+    "/assets/img/avalon-outside.png",
+    "/assets/img/abbey-outside.JPG",
     "/assets/img/stella-inside.jpg",
+    "/assets/img/tracy-generated4.png",
     "/assets/img/billie-inside.jpg",
     "/assets/img/carol-kitchen-inside.png",
+    "/assets/img/avalon-castle.jpg",
+    "/assets/img/billie-inside.JPG",
+    "/assets/img/charlotte-inside.JPG",
     "/assets/img/charlotte-outside.jpg",
     "/assets/img/abbey-inside.jpg",
     "/assets/img/palace-inside.png",
+    "/assets/img/tracy-generated5.png",
+    "/assets/img/tracy-outside.JPG",
     "/assets/img/carol-kitchen-outside.jpg",
+    "/assets/img/billie-sample.png",
     "/assets/img/charlotte-inside.jpg",
+    "/assets/img/charlotte-outside.JPG",
     "/assets/img/carol-outside.jpg",
     "/assets/img/alexandria-outside.jpg",
+    "/assets/img/tracy-inside.JPG",
     "/assets/img/placeholder.svg",
     "/assets/img/stella-outside.jpg",
+    "/assets/img/billie-outside.JPG",
     "/assets/img/tracy-sample.png",
+    "/assets/img/stella-outside.JPG",
     "/assets/img/town-outside.png",
     "/assets/img/abbey-outside.jpg",
+    "/assets/img/tracy-generated1.png",
     "/assets/img/default-outside.png",
     "/assets/img/town-inside.png",
     "/assets/img/carol-inside.jpg",
+    "/assets/img/tracy-generated2.png",
     "/assets/css/avalon-dashboard.css",
     "/assets/css/avalon.css",
     "/assets/css/avalon-bright.css",

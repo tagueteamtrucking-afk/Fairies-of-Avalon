@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-13T02:05:56.942Z",
+  "generated": "2025-11-13T03:59:51.319Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -802,7 +802,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 85115,
-      "hash": "684c3729514c8cd827b84bd86b45a8f8",
+      "hash": "85e938ea66000bd764d197cca7ca0750",
       "purpose": "misc"
     },
     {
@@ -941,6 +941,12 @@
       "path": "memory/prompts/restaurant_interior.txt",
       "bytes": 172,
       "hash": "0e0d3869a6cbe5dce3ab8568ba41dfbe",
+      "purpose": "misc"
+    },
+    {
+      "path": "memory/roles.md",
+      "bytes": 1733,
+      "hash": "d2a4e811e40bdc0bff659b477b3d59fa",
       "purpose": "misc"
     },
     {
@@ -2487,8 +2493,8 @@
     },
     {
       "path": "pages/apps/abbey/index.html",
-      "bytes": 3570,
-      "hash": "2ef1e858a29fda8f3012f8c7961121a0",
+      "bytes": 2410,
+      "hash": "81ec9aceb4520bae99af981785690fa8",
       "purpose": "page"
     },
     {
@@ -2511,8 +2517,8 @@
     },
     {
       "path": "pages/apps/alexandria/index.html",
-      "bytes": 988,
-      "hash": "bbaf9dbbec9c151e8f02ad654ae9360f",
+      "bytes": 5838,
+      "hash": "7e1422daaa90b749c7e707567dea29e4",
       "purpose": "page"
     },
     {
@@ -2553,8 +2559,8 @@
     },
     {
       "path": "pages/apps/billie/index.html",
-      "bytes": 5674,
-      "hash": "3bd0af60139cabec04eed91299cf0a29",
+      "bytes": 4464,
+      "hash": "8d67543ff0310760ad91023f726423e7",
       "purpose": "page"
     },
     {
@@ -2667,8 +2673,8 @@
     },
     {
       "path": "pages/apps/charlotte/index.html",
-      "bytes": 1032,
-      "hash": "fa3c7ddfbd6b9b9916c5734a5d664211",
+      "bytes": 2442,
+      "hash": "b264182ff0f1fc0e5ae94709cfe6dc08",
       "purpose": "page"
     },
     {
@@ -2811,8 +2817,8 @@
     },
     {
       "path": "pages/apps/stella/index.html",
-      "bytes": 1038,
-      "hash": "d3664342378ac88237244dbad8e44201",
+      "bytes": 2415,
+      "hash": "300cafef6d5e497e86db7c2c8dfd24bf",
       "purpose": "page"
     },
     {
@@ -2847,8 +2853,8 @@
     },
     {
       "path": "pages/apps/tracy/index.html",
-      "bytes": 1033,
-      "hash": "4bffeb99d005ce6efe0da8da0e1fc27c",
+      "bytes": 4427,
+      "hash": "de6356c618ed46e12d23201fd1279343",
       "purpose": "page"
     },
     {

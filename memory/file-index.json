@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-13T05:52:47.195Z",
+  "generated": "2025-11-13T06:52:19.823Z",
   "files": [
     {
       "path": ".nojekyll",
@@ -125,6 +125,54 @@
       "path": "assets/designs/tshirt-fairy.png",
       "bytes": 2957505,
       "hash": "52298272a38e509f1044a71cac287028",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/fairies/Abbey-Inside.JPG",
+      "bytes": 277376,
+      "hash": "0a412ab37e0291fc52670de6c2854d28",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/fairies/Alexandria-Inside.JPG",
+      "bytes": 284573,
+      "hash": "09a58242fe05e367958e85c319dfc913",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/fairies/Billie-Inside.JPG",
+      "bytes": 302780,
+      "hash": "2210fa4326eff6daf2cdfa1326718681",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/fairies/Carol-Inside.JPG",
+      "bytes": 301588,
+      "hash": "12b90816d35b7c38bc413d379114434f",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/fairies/Charlotte-Inside.JPG",
+      "bytes": 289290,
+      "hash": "a2d47a8f1f34a4c8b50e390aab9ad77a",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/fairies/Jem-Inside.JPG",
+      "bytes": 286156,
+      "hash": "974d3dabfc8cce68d8da979a1eae5cb9",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/fairies/Stella-Inside.JPG",
+      "bytes": 110237,
+      "hash": "f5305adaddc556395975cd15a675197a",
+      "purpose": "misc"
+    },
+    {
+      "path": "assets/fairies/Tracy-Inside.JPG",
+      "bytes": 331004,
+      "hash": "13faddf9340f28f0ddfacefd29cbe571",
       "purpose": "misc"
     },
     {
@@ -802,7 +850,7 @@
     {
       "path": "memory/file-index.json",
       "bytes": 85258,
-      "hash": "fb73c75274f873f433943967e28faa6f",
+      "hash": "4cb30f279bd035e2dc304461437f64b1",
       "purpose": "misc"
     },
     {
@@ -2475,8 +2523,8 @@
     },
     {
       "path": "pages/alexandria.html",
-      "bytes": 6533,
-      "hash": "146c0956378ef73633784a46eaacda70",
+      "bytes": 6688,
+      "hash": "3fe11a04660bceab7d1294c129fceb2b",
       "purpose": "page"
     },
     {
@@ -2493,8 +2541,8 @@
     },
     {
       "path": "pages/apps/abbey/index.html",
-      "bytes": 3835,
-      "hash": "0fa3001c3ca47c0b5f51192ac0822510",
+      "bytes": 3987,
+      "hash": "cd388fea4ab2c50369d54791a5de2fed",
       "purpose": "page"
     },
     {
@@ -2517,8 +2565,8 @@
     },
     {
       "path": "pages/apps/alexandria/index.html",
-      "bytes": 4578,
-      "hash": "72ea298606a21b58e58106268a510c07",
+      "bytes": 4745,
+      "hash": "32e555bb0d7672983d1e440b500f82bc",
       "purpose": "page"
     },
     {
@@ -2559,8 +2607,8 @@
     },
     {
       "path": "pages/apps/billie/index.html",
-      "bytes": 3460,
-      "hash": "7d403e30aab88a02e92c50181feadc5c",
+      "bytes": 3627,
+      "hash": "e4e62f8534bdea073f5d29fb0d2af4ac",
       "purpose": "page"
     },
     {
@@ -2613,8 +2661,8 @@
     },
     {
       "path": "pages/apps/carol/index.html",
-      "bytes": 21463,
-      "hash": "a8acd2edc32a50b451ccb3a325802ca4",
+      "bytes": 5276,
+      "hash": "1df5e0e52add20250a6369e445b657a1",
       "purpose": "page"
     },
     {
@@ -2639,6 +2687,12 @@
       "path": "pages/apps/carol/menu.html",
       "bytes": 2524,
       "hash": "58290b827f3c916df2ee5cdc3bc821b1",
+      "purpose": "page"
+    },
+    {
+      "path": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+      "bytes": 27628,
+      "hash": "8ac603fd012798cc949ee4670fa3df3a",
       "purpose": "page"
     },
     {
@@ -2673,8 +2727,8 @@
     },
     {
       "path": "pages/apps/charlotte/index.html",
-      "bytes": 3925,
-      "hash": "d192a24e1f15b262852476b48c32b1b8",
+      "bytes": 4077,
+      "hash": "2903b92f5e1d8fdb533dd396fa90ea14",
       "purpose": "page"
     },
     {
@@ -2817,8 +2871,8 @@
     },
     {
       "path": "pages/apps/stella/index.html",
-      "bytes": 3575,
-      "hash": "7b55a1dc81b5b796e51c15e5bd5ac10f",
+      "bytes": 3742,
+      "hash": "5282cb52fa2c8794cf516522f75a7f49",
       "purpose": "page"
     },
     {
@@ -2853,8 +2907,8 @@
     },
     {
       "path": "pages/apps/tracy/index.html",
-      "bytes": 3490,
-      "hash": "68ad693cb447504a190094ead692348b",
+      "bytes": 3657,
+      "hash": "1db2d8f0ca04e6de78940982a50e7da3",
       "purpose": "page"
     },
     {
@@ -2865,8 +2919,8 @@
     },
     {
       "path": "pages/jem.html",
-      "bytes": 7881,
-      "hash": "012c5c0b3c7dd93f4b330511b06870b0",
+      "bytes": 7869,
+      "hash": "743860ad8fcacef477574d2384eec551",
       "purpose": "page"
     },
     {
@@ -2889,14 +2943,14 @@
     },
     {
       "path": "pages/overseers.html",
-      "bytes": 2908,
-      "hash": "d7ee07e7c91367dd0bae53e73c8b5211",
+      "bytes": 2896,
+      "hash": "26b8830959546039403bfc4a6ff59f41",
       "purpose": "page"
     },
     {
       "path": "pages/stella.html",
-      "bytes": 4556,
-      "hash": "b66f78eeffe11d7b98247bdea7b3dd7d",
+      "bytes": 4711,
+      "hash": "a8bd81c661fd11ec0622156a763ab803",
       "purpose": "page"
     },
     {

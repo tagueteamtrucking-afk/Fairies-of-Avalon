@@ -58,7 +58,10 @@
 
   <script>
     // Prefer a globally defined API key if available (e.g. injected at build time).  Fall back to localStorage.
-    const OPENAI_API_KEY = (typeof window.OPENAI_API_KEY !== 'undefined' && window.OPENAI_API_KEY) ? window.OPENAI_API_KEY : (localStorage.getItem('OPENAI_API_KEY') || '');
+    // Use globalThis so that environment variables injected at build time (e.g. OPENAI_API_KEY) can be read even if not on the window object.
+    const OPENAI_API_KEY = (typeof globalThis.OPENAI_API_KEY !== 'undefined' && globalThis.OPENAI_API_KEY)
+      ? globalThis.OPENAI_API_KEY
+      : (localStorage.getItem('OPENAI_API_KEY') || '');
 
     async function generateVideo() {
       const prompt = document.getElementById('videoPrompt').value.trim();

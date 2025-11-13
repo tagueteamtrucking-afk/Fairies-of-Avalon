@@ -1,0 +1,1072 @@
+{
+  "updated": "2025-10-15T02:23:00Z",
+  "region": "US",
+  "pattern": "DASH",
+  "weeks": 2,
+  "persons": [
+    {
+      "id": "A",
+      "name": "Ray",
+      "kcal": 1800,
+      "events_per_day_target": "6-8"
+    },
+    {
+      "id": "B",
+      "name": "Blanca",
+      "kcal": 1600,
+      "events_per_day_target": "6-8"
+    }
+  ],
+  "days": [
+    {
+      "index": 1,
+      "day_label": "Day 1",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "day_label": "Day 2",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "day_label": "Day 3",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "day_label": "Day 4",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "day_label": "Day 5",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "day_label": "Day 6",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "day_label": "Day 7",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "day_label": "Day 8",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "day_label": "Day 9",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "day_label": "Day 10",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "day_label": "Day 11",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "day_label": "Day 12",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "day_label": "Day 13",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "day_label": "Day 14",
+      "events": [
+        {
+          "name": "Overnight oats (LF) with chia & berries",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "early",
+          "kcal": 280,
+          "sodium_mg": 80,
+          "added_sugars_g": 6,
+          "fiber_g": 7,
+          "items": [
+            {
+              "ingredient": "rolled oats",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            },
+            {
+              "ingredient": "chia seeds",
+              "quantity": 1,
+              "unit": "tbsp",
+              "notes": ""
+            },
+            {
+              "ingredient": "lactose-free milk",
+              "quantity": 0.75,
+              "unit": "cup",
+              "notes": "or almond"
+            },
+            {
+              "ingredient": "frozen mixed berries",
+              "quantity": 0.5,
+              "unit": "cup",
+              "notes": ""
+            }
+          ],
+          "instructions": [
+            "Mix oats, chia, and milk in a jar.",
+            "Stir, cover, chill overnight.",
+            "Top with thawed berries."
+          ]
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "for": "Both",
+          "type": "snack",
+          "time_hint": "mid-morning",
+          "kcal": 220,
+          "sodium_mg": 2,
+          "added_sugars_g": 8,
+          "fiber_g": 4,
+          "items": [
+            {
+              "ingredient": "apple",
+              "quantity": 1,
+              "unit": "piece",
+              "notes": "medium"
+            },
+            {
+              "ingredient": "peanut butter",
+              "quantity": 2,
+              "unit": "tbsp",
+              "notes": "smooth"
+            }
+          ],
+          "instructions": [
+            "Slice apple thinly.",
+            "Spread PB or dip."
+          ]
+        }
+      ]
+    }
+  ]
+}

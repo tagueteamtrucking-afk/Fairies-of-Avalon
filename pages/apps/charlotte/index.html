@@ -2,21 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Charlotte — Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Charlotte – Operations & Workshop</title>
-  <link rel="stylesheet" href="../../../style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .image-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    #fairyImage {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .toggle-switch {
+      margin-top: 15px;
+      display: inline-block;
+    }
+    .toggle-switch label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ddd;
+      border-radius: 20px;
+      padding: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle-switch input {
+      display: none;
+    }
+    .toggle-switch span {
+      margin: 0 6px;
+      padding: 4px 10px;
+      border-radius: 15px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .toggle-switch input:checked + span {
+      background: #4caf50;
+      color: #fff;
+    }
+    a, button {
+      margin-top: 15px;
+      font-size: 16px;
+      text-decoration: none;
+    }
+    a {
+      color: #0066cc;
+      display: block;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
 </head>
-<body class="charlotte-outside">
-  <div class="wrap">
-    <h1 class="heading">Charlotte</h1>
-    <p class="lead">Charlotte manages translations and internal operations.  She translates words into major languages and oversees the hidden task queue that keeps Avalon running smoothly.</p>
-    <ul>
-      <li><a href="translations-board.html">🈳 Translations board</a> – translate words into Spanish, French, Chinese, Japanese, Korean or Hindi.</li>
-      <!-- The queues dashboard is reserved for internal use and not linked publicly. -->
-      <!-- Additional tools will be added here in future updates -->
-    </ul>
-    <!-- Navigate back to the site root from the Charlotte app folder. -->
-    <p><a href="../../../index.html">← back to home</a></p>
+<body>
+  <h1>Charlotte — Home</h1>
+  <div class="image-container">
+    <img id="fairyImage" src="/assets/fairies/Charlotte-Inside .JPG" alt="Charlotte Inside">
+    <div class="toggle-switch">
+      <label>
+        <input type="checkbox" id="imageToggle" onchange="toggleImage()">
+        <span id="insideLabel">Inside</span>
+        <span id="outsideLabel">Outside</span>
+      </label>
+    </div>
   </div>
+  <a href="/">Return to city map</a>
+  <script>
+    function toggleImage() {
+      const img = document.getElementById('fairyImage');
+      const toggle = document.getElementById('imageToggle');
+      if (toggle.checked) {
+        img.src = '/assets/fairies/Charlotte-Outside .JPG';
+        img.alt = 'Charlotte Outside';
+      } else {
+        img.src = '/assets/fairies/Charlotte-Inside .JPG';
+        img.alt = 'Charlotte Inside';
+      }
+    }
+  </script>
 </body>
 </html>

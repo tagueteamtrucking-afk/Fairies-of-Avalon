@@ -1,29 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alexandria – Gothic Library</title>
-    <!-- Use the common style sheet to apply the Gothic Library skins, then the Avalon theme. -->
-    <link rel="stylesheet" href="../common/style.css" />
-    <link rel="stylesheet" href="../../../assets/css/avalon.css" />
-  </head>
-  <body class="alexandria-outside">
-    <header>
-      <h1>Welcome to Alexandria’s Library</h1>
-      <p>Explore stories, character lore and Avalon’s living history.</p>
-    </header>
-    <main>
-      <nav>
-        <ul>
-          <li><a href="#">Story Shelf</a></li>
-          <li><a href="#">Character Sheets</a></li>
-          <li><a href="#">Timeline Explorer</a></li>
-        </ul>
-      </nav>
-      <section>
-        <p>The storytelling tools are being prepared.  Return soon for tales of Avalon.</p>
-      </section>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Alexandria — Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .image-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    #fairyImage {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .toggle-switch {
+      margin-top: 15px;
+      display: inline-block;
+    }
+    .toggle-switch label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ddd;
+      border-radius: 20px;
+      padding: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle-switch input {
+      display: none;
+    }
+    .toggle-switch span {
+      margin: 0 6px;
+      padding: 4px 10px;
+      border-radius: 15px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .toggle-switch input:checked + span {
+      background: #4caf50;
+      color: #fff;
+    }
+    a, button {
+      margin-top: 15px;
+      font-size: 16px;
+      text-decoration: none;
+    }
+    a {
+      color: #0066cc;
+      display: block;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    #chatBox {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 10px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      text-align: left;
+      height: 250px;
+      overflow-y: auto;
+    }
+    .user-message, .bot-message {
+      margin: 5px 0;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+    .user-message {
+      background: #e0f7fa;
+      align-self: flex-start;
+    }
+    .bot-message {
+      background: #ffe0b2;
+      align-self: flex-end;
+    }
+    #chatControls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    #userInput {
+      flex: 1;
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Alexandria — Library</h1>
+  <div class="image-container">
+    <img id="fairyImage" src="/assets/fairies/Alexandria-Inside.JPG" alt="Alexandria Inside">
+    <div class="toggle-switch">
+      <label>
+        <input type="checkbox" id="imageToggle" onchange="toggleImage()">
+        <span id="insideLabel">Inside</span>
+        <span id="outsideLabel">Outside</span>
+      </label>
+    </div>
+  </div>
+
+  <div id="chatBox"></div>
+  <div id="chatControls">
+    <input type="text" id="userInput" placeholder="Ask Alexandria a question...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <a href="/">Return to city map</a>
+
+  <script>
+    function toggleImage() {
+      const img = document.getElementById('fairyImage');
+      const toggle = document.getElementById('imageToggle');
+      if (toggle.checked) {
+        img.src = '/assets/fairies/Alexandria-Outside.JPG';
+        img.alt = 'Alexandria Outside';
+      } else {
+        img.src = '/assets/fairies/Alexandria-Inside.JPG';
+        img.alt = 'Alexandria Inside';
+      }
+    }
+
+    // Configure your OpenAI API key here.  You can store it in localStorage with key
+    // "OPENAI_API_KEY" or replace the empty string below with your key.  This key
+    // must be kept secure; do not expose it publicly.
+    const OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
+
+    async function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (!message) return;
+      const chatBox = document.getElementById('chatBox');
+      // append user message to chat
+      const userDiv = document.createElement('div');
+      userDiv.className = 'user-message';
+      userDiv.textContent = 'You: ' + message;
+      chatBox.appendChild(userDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      input.value = '';
+      // show a placeholder while waiting for the reply
+      const botDiv = document.createElement('div');
+      botDiv.className = 'bot-message';
+      botDiv.textContent = 'Alexandria: …';
+      chatBox.appendChild(botDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      try {
+        if (!OPENAI_API_KEY) {
+          throw new Error('Missing API key. Please set your OpenAI API key via localStorage with the key "OPENAI_API_KEY".');
+        }
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + OPENAI_API_KEY
+          },
+          body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: [
+              { role: 'system', content: 'You are Alexandria, the helpful librarian of Avalon. Answer questions with knowledge and creativity.' },
+              { role: 'user', content: message }
+            ],
+            max_tokens: 200
+          })
+        });
+        if (!response.ok) {
+          throw new Error('API error: ' + response.statusText);
+        }
+        const data = await response.json();
+        const reply = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content.trim() : 'No response';
+        botDiv.textContent = 'Alexandria: ' + reply;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      } catch (err) {
+        botDiv.textContent = 'Alexandria: ' + err.message;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+    }
+  </script>
+</body>
 </html>

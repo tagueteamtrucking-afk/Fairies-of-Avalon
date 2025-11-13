@@ -2,73 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Abbey — Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abbey – Finance & Receipts</title>
-  <link rel="stylesheet" href="../../../style.css">
-</head>
-<body class="abbey-inside">
-  <div class="wrap">
-    <h1 class="heading">Abbey</h1>
-    <p class="lead">Finance fairy. Abbey helps you organise receipts, subscriptions and transactions. To begin, connect your Gmail, QuickBooks and bank accounts. Abbey will retrieve receipts and statements automatically and compile detailed reports.</p>
-    <p>When you click a button below, you will be prompted to authenticate. For security reasons, you will need to take over the browser to complete the sign‑in process.</p>
-    <div class="account-buttons">
-      <button id="connect-gmail">Connect Gmail</button>
-      <button id="connect-quickbooks">Connect QuickBooks</button>
-      <button id="connect-bank">Connect Bank</button>
-    </div>
-    <div id="results" style="margin-top:1rem;"></div>
-    <h2 style="margin-top:2rem;">Optional: Parse Sample Transactions</h2>
-    <p>You can paste a few lines of transaction data here to see how Abbey groups and summarises purchases. This is optional—if you connect your accounts above, Abbey will fetch data automatically.</p>
-    <textarea id="transactions-input" rows="5" placeholder="e.g. 2025-03-03 Walmart 34.56\n2025-03-04 Amazon 12.99"></textarea><br>
-    <button id="parse-transactions">Parse Transactions</button>
-    <div id="parse-results" style="margin-top:1rem;"></div>
-    <p><a href="../../../index.html">← back to home</a></p>
-  </div>
-  <script>
-    function showConnectMessage(service) {
-      const results = document.getElementById('results');
-      results.innerHTML = `<p>Please take over the browser to authenticate your ${service} account. Once connected, Abbey will automatically retrieve your receipts and transactions.</p>`;
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
     }
-    document.getElementById('connect-gmail').addEventListener('click', () => {
-      showConnectMessage('Gmail');
-    });
-    document.getElementById('connect-quickbooks').addEventListener('click', () => {
-      showConnectMessage('QuickBooks');
-    });
-    document.getElementById('connect-bank').addEventListener('click', () => {
-      showConnectMessage('bank');
-    });
-    // Parse sample transactions when the button is clicked
-    document.getElementById('parse-transactions').addEventListener('click', () => {
-      const input = document.getElementById('transactions-input').value.trim();
-      const out = document.getElementById('parse-results');
-      if (!input) {
-        out.innerHTML = '<p>Please paste some transaction lines to parse.</p>';
-        return;
+    h1 {
+      margin-top: 0;
+    }
+    .image-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    #fairyImage {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .toggle-switch {
+      margin-top: 15px;
+      display: inline-block;
+    }
+    .toggle-switch label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ddd;
+      border-radius: 20px;
+      padding: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle-switch input {
+      display: none;
+    }
+    .toggle-switch span {
+      margin: 0 6px;
+      padding: 4px 10px;
+      border-radius: 15px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .toggle-switch input:checked + span {
+      background: #4caf50;
+      color: #fff;
+    }
+    a, button {
+      margin-top: 15px;
+      font-size: 16px;
+      text-decoration: none;
+    }
+    a {
+      color: #0066cc;
+      display: block;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Abbey — Vault</h1>
+  <div class="image-container">
+    <img id="fairyImage" src="/assets/fairies/Abbey-Inside.JPG" alt="Abbey Inside">
+    <div class="toggle-switch">
+      <label>
+        <input type="checkbox" id="imageToggle" onchange="toggleImage()">
+        <span id="insideLabel">Inside</span>
+        <span id="outsideLabel">Outside</span>
+      </label>
+    </div>
+  </div>
+  <a href="/">Return to city map</a>
+
+  <script>
+    function toggleImage() {
+      const img = document.getElementById('fairyImage');
+      const toggle = document.getElementById('imageToggle');
+      if (toggle.checked) {
+        img.src = '/assets/fairies/Abbey-Outside.JPG';
+        img.alt = 'Abbey Outside';
+      } else {
+        img.src = '/assets/fairies/Abbey-Inside.JPG';
+        img.alt = 'Abbey Inside';
       }
-      const lines = input.split(/\n+/);
-      const summary = {};
-      let total = 0;
-      lines.forEach(line => {
-        const parts = line.trim().split(/\s+/);
-        // Expect format: date merchant amount
-        if (parts.length >= 3) {
-          const amount = parseFloat(parts.pop());
-          const merchant = parts.slice(1).join(' ');
-          if (!isNaN(amount)) {
-            total += amount;
-            summary[merchant] = (summary[merchant] || 0) + amount;
-          }
-        }
-      });
-      let html = '<h3>Summary</h3><ul>';
-      Object.keys(summary).forEach(merchant => {
-        const amt = summary[merchant].toFixed(2);
-        html += `<li>${merchant}: $${amt}</li>`;
-      });
-      html += `</ul><p><strong>Total:</strong> $${total.toFixed(2)}</p>`;
-      out.innerHTML = html;
-    });
+    }
   </script>
 </body>
 </html>

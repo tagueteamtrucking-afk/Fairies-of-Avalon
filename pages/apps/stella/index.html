@@ -1,29 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stella – Observatory &amp; Apothecary</title>
-    <!-- Apply building backgrounds via the common stylesheet, then the Avalon theme. -->
-    <link rel="stylesheet" href="../common/style.css" />
-    <link rel="stylesheet" href="../../../assets/css/avalon.css" />
-  </head>
-  <body class="stella-outside">
-    <header>
-      <h1>Welcome to Stella’s Observatory &amp; Apothecary</h1>
-      <p>Explore soundscapes, guided meditations and resonance experiments.</p>
-    </header>
-    <main>
-      <nav>
-        <ul>
-          <li><a href="#">Sound Library</a></li>
-          <li><a href="#">Guided Sessions</a></li>
-          <li><a href="#">Script Library</a></li>
-        </ul>
-      </nav>
-      <section>
-        <p>Voice and sound tools are under construction.  Soon, you’ll be able to create and listen to custom sessions.</p>
-      </section>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Stella — Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .image-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    #fairyImage {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .toggle-switch {
+      margin-top: 15px;
+      display: inline-block;
+    }
+    .toggle-switch label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ddd;
+      border-radius: 20px;
+      padding: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle-switch input {
+      display: none;
+    }
+    .toggle-switch span {
+      margin: 0 6px;
+      padding: 4px 10px;
+      border-radius: 15px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .toggle-switch input:checked + span {
+      background: #4caf50;
+      color: #fff;
+    }
+    a, button {
+      margin-top: 15px;
+      font-size: 16px;
+      text-decoration: none;
+    }
+    a {
+      color: #0066cc;
+      display: block;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Stella — Home</h1>
+  <div class="image-container">
+    <img id="fairyImage" src="/assets/fairies/Stella-Inside.JPG" alt="Stella Inside">
+    <div class="toggle-switch">
+      <label>
+        <input type="checkbox" id="imageToggle" onchange="toggleImage()">
+        <span id="insideLabel">Inside</span>
+        <span id="outsideLabel">Outside</span>
+      </label>
+    </div>
+  </div>
+  <a href="/">Return to city map</a>
+  <script>
+    function toggleImage() {
+      const img = document.getElementById('fairyImage');
+      const toggle = document.getElementById('imageToggle');
+      if (toggle.checked) {
+        img.src = '/assets/fairies/Stella-Outside.JPG';
+        img.alt = 'Stella Outside';
+      } else {
+        img.src = '/assets/fairies/Stella-Inside.JPG';
+        img.alt = 'Stella Inside';
+      }
+    }
+  </script>
+</body>
 </html>

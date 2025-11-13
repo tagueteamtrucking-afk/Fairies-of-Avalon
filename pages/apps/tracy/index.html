@@ -2,21 +2,154 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Tracy — Cathedral Studio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tracy – Art & Design</title>
-  <link rel="stylesheet" href="../../../style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .image-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    #fairyImage {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .toggle-switch {
+      margin-top: 15px;
+      display: inline-block;
+    }
+    .toggle-switch label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ddd;
+      border-radius: 20px;
+      padding: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle-switch input {
+      display: none;
+    }
+    .toggle-switch span {
+      margin: 0 6px;
+      padding: 4px 10px;
+      border-radius: 15px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .toggle-switch input:checked + span {
+      background: #4caf50;
+      color: #fff;
+    }
+    a, button {
+      margin-top: 15px;
+      font-size: 16px;
+      text-decoration: none;
+    }
+    a {
+      color: #0066cc;
+      display: block;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    #generatedImage {
+      margin-top: 20px;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
-<body class="tracy-outside">
-  <div class="wrap">
-    <h1 class="heading">Tracy</h1>
-    <p class="lead">Tracy specialises in visual art and character design.  She creates illustrations based on your descriptions and keeps characters consistent across scenes.  Explore her art generator or build a character using the private designer.</p>
-    <ul>
-      <li><a href="art-gallery.html">🎨 Art gallery</a> – view sample art and generate prompts.</li>
-      <!-- Character designer is reserved for internal use and is not linked publicly. -->
-      <!-- Additional art tools will be added in future updates -->
-    </ul>
-    <!-- Relative path climbs back up to the site root from the Tracy app folder. -->
-    <p><a href="../../../index.html">← back to home</a></p>
+<body>
+  <h1>Tracy — Cathedral Studio</h1>
+  <div class="image-container">
+    <img id="fairyImage" src="/assets/fairies/Tracy-Inside.JPG" alt="Tracy Inside">
+    <div class="toggle-switch">
+      <label>
+        <input type="checkbox" id="imageToggle" onchange="toggleImage()">
+        <span id="insideLabel">Inside</span>
+        <span id="outsideLabel">Outside</span>
+      </label>
+    </div>
   </div>
+
+  <input type="text" id="imagePrompt" placeholder="Describe the image you want" style="width:100%;max-width:600px;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:20px;">
+  <button onclick="generateImage()">Generate Image</button>
+  <img id="generatedImage" alt="Generated art" style="display:block;margin-top:20px;max-width:600px;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
+
+  <a href="/">Return to city map</a>
+
+  <script>
+    function toggleImage() {
+      const img = document.getElementById('fairyImage');
+      const toggle = document.getElementById('imageToggle');
+      if (toggle.checked) {
+        img.src = '/assets/fairies/Tracy-Outside.JPG';
+        img.alt = 'Tracy Outside';
+      } else {
+        img.src = '/assets/fairies/Tracy-Inside.JPG';
+        img.alt = 'Tracy Inside';
+      }
+    }
+    // Configure your OpenAI API key; store it in localStorage under "OPENAI_API_KEY".
+    const OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
+    async function generateImage() {
+      const prompt = document.getElementById('imagePrompt').value.trim();
+      const img = document.getElementById('generatedImage');
+      if (!prompt) {
+        alert('Please enter a description for the image.');
+        return;
+      }
+      if (!OPENAI_API_KEY) {
+        alert('Missing API key. Set your OpenAI API key in localStorage under "OPENAI_API_KEY".');
+        return;
+      }
+      try {
+        const response = await fetch('https://api.openai.com/v1/images/generations', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + OPENAI_API_KEY
+          },
+          body: JSON.stringify({
+            model: 'dall-e-3',
+            prompt: prompt,
+            n: 1,
+            size: '1024x1024'
+          })
+        });
+        if (!response.ok) {
+          throw new Error('API error: ' + response.statusText);
+        }
+        const data = await response.json();
+        const imageUrl = data.data && data.data[0] && data.data[0].url;
+        if (!imageUrl) {
+          throw new Error('No image returned');
+        }
+        img.src = imageUrl;
+      } catch (err) {
+        alert('Failed to generate image: ' + err.message);
+      }
+    }
+  </script>
 </body>
 </html>

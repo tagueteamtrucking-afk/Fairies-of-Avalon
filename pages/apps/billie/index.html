@@ -19,38 +19,6 @@
       margin: 20px auto;
       max-width: 600px;
     }
-    #fairyImage {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    .toggle-switch {
-      margin-top: 15px;
-      display: inline-block;
-    }
-    .toggle-switch label {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #ddd;
-      border-radius: 20px;
-      padding: 5px;
-      cursor: pointer;
-      user-select: none;
-    }
-    .toggle-switch input {
-      display: none;
-    }
-    .toggle-switch span {
-      margin: 0 6px;
-      padding: 4px 10px;
-      border-radius: 15px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .toggle-switch input:checked + span {
-      background: #4caf50;
-      color: #fff;
-    }
     a, button {
       margin-top: 15px;
       font-size: 16px;
@@ -77,14 +45,7 @@
 <body>
   <h1>Billie — Film Studio</h1>
   <div class="image-container">
-    <img id="fairyImage" src="/assets/fairies/Billie-Inside.JPG" alt="Billie Inside">
-    <div class="toggle-switch">
-      <label>
-        <input type="checkbox" id="imageToggle" onchange="toggleImage()">
-        <span id="insideLabel">Inside</span>
-        <span id="outsideLabel">Outside</span>
-      </label>
-    </div>
+    <img src="/assets/fairies/Billie-Inside.JPG" alt="Billie" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
 
   <input type="text" id="videoPrompt" placeholder="Describe the video you want" style="width:100%;max-width:600px;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:20px;">
@@ -94,18 +55,6 @@
   <a href="/">Return to city map</a>
 
   <script>
-    function toggleImage() {
-      const img = document.getElementById('fairyImage');
-      const toggle = document.getElementById('imageToggle');
-      if (toggle.checked) {
-        img.src = '/assets/fairies/Billie-Outside.JPG';
-        img.alt = 'Billie Outside';
-      } else {
-        img.src = '/assets/fairies/Billie-Inside.JPG';
-        img.alt = 'Billie Inside';
-      }
-    }
-    // Configure your OpenAI API key; store it in localStorage under "OPENAI_API_KEY".
     const OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
 
     async function generateVideo() {
@@ -116,7 +65,7 @@
         return;
       }
       if (!OPENAI_API_KEY) {
-        alert('Missing API key. Set your OpenAI API key in localStorage under "OPENAI_API_KEY".');
+        alert('Missing API key.');
         return;
       }
       // hide video element until new video arrives

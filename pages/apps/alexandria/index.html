@@ -19,38 +19,7 @@
       margin: 20px auto;
       max-width: 600px;
     }
-    #fairyImage {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    .toggle-switch {
-      margin-top: 15px;
-      display: inline-block;
-    }
-    .toggle-switch label {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #ddd;
-      border-radius: 20px;
-      padding: 5px;
-      cursor: pointer;
-      user-select: none;
-    }
-    .toggle-switch input {
-      display: none;
-    }
-    .toggle-switch span {
-      margin: 0 6px;
-      padding: 4px 10px;
-      border-radius: 15px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .toggle-switch input:checked + span {
-      background: #4caf50;
-      color: #fff;
-    }
+    /* Styling for the librarian image is inline in the markup */
     a, button {
       margin-top: 15px;
       font-size: 16px;
@@ -113,40 +82,18 @@
 <body>
   <h1>Alexandria — Library</h1>
   <div class="image-container">
-    <img id="fairyImage" src="/assets/fairies/Alexandria-Inside.JPG" alt="Alexandria Inside">
-    <div class="toggle-switch">
-      <label>
-        <input type="checkbox" id="imageToggle" onchange="toggleImage()">
-        <span id="insideLabel">Inside</span>
-        <span id="outsideLabel">Outside</span>
-      </label>
-    </div>
+    <img src="/assets/fairies/Alexandria-Inside.JPG" alt="Alexandria" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
 
   <div id="chatBox"></div>
   <div id="chatControls">
-    <input type="text" id="userInput" placeholder="Ask Alexandria a question...">
+    <input type="text" id="userInput" placeholder="">
     <button onclick="sendMessage()">Send</button>
   </div>
 
   <a href="/">Return to city map</a>
 
   <script>
-    function toggleImage() {
-      const img = document.getElementById('fairyImage');
-      const toggle = document.getElementById('imageToggle');
-      if (toggle.checked) {
-        img.src = '/assets/fairies/Alexandria-Outside.JPG';
-        img.alt = 'Alexandria Outside';
-      } else {
-        img.src = '/assets/fairies/Alexandria-Inside.JPG';
-        img.alt = 'Alexandria Inside';
-      }
-    }
-
-    // Configure your OpenAI API key here.  You can store it in localStorage with key
-    // "OPENAI_API_KEY" or replace the empty string below with your key.  This key
-    // must be kept secure; do not expose it publicly.
     const OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
 
     async function sendMessage() {

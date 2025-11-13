@@ -77,8 +77,8 @@
 <body>
   <h1>Alexandria — Library</h1>
   <div class="image-container">
-    <!-- Use root‑relative path for the character image to ensure it resolves on GitHub Pages. -->
-    <img src="/assets/fairies/Alexandria-Inside.JPG" alt="Alexandria" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
+    <!-- Use a relative path so the image resolves correctly regardless of deployment path. -->
+    <img src="../assets/fairies/Alexandria-Inside.JPG" alt="Alexandria" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
   <div id="chatBox"></div>
   <div id="chatControls">
@@ -88,8 +88,8 @@
   </div>
   <a href="../index.html">Return to city map</a>
   <script>
-    // Read the API key from localStorage.  Users can store their key in the browser under this key.
-    const OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
+    // Read the API key from a global constant if provided (for example via build tooling).  Fall back to localStorage if not defined.
+    const OPENAI_API_KEY = (typeof window.OPENAI_API_KEY !== 'undefined' && window.OPENAI_API_KEY) ? window.OPENAI_API_KEY : (localStorage.getItem('OPENAI_API_KEY') || '');
     const chatBox = document.getElementById('chatBox');
     const inputEl = document.getElementById('userInput');
     const sendBtn = document.getElementById('sendBtn');
@@ -115,7 +115,7 @@
       const placeholderDiv = chatBox.lastChild;
       try {
         if (!OPENAI_API_KEY) {
-          throw new Error('Missing API key. Set your OPENAI_API_KEY in localStorage.');
+          throw new Error('Missing API key.');
         }
         const messagesForApi = [
           { role: 'system', content: 'You are Alexandria, the Dungeon Master of Avalon. Ask thoughtful questions when needed and collaboratively craft imaginative stories based on the user\'s input.' },
@@ -173,13 +173,7 @@
       // Hide the voice button if speech recognition is not supported.
       voiceBtn.style.display = 'none';
     }
-    // If no API key is stored, prompt the user once to provide one.
-    if (!OPENAI_API_KEY) {
-      const key = prompt('Please enter your OpenAI API key (it will be stored locally):');
-      if (key) {
-        localStorage.setItem('OPENAI_API_KEY', key);
-      }
-    }
+    // Do not automatically prompt the user for an API key here.  If OPENAI_API_KEY is not defined, calls will raise an error.
     // Greet the user on page load
     window.addEventListener('load', () => {
       const greeting = 'Welcome! What theme or idea would you like to explore in our story?';

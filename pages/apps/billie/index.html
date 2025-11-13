@@ -45,8 +45,8 @@
 <body>
   <h1>Billie — Film Studio</h1>
   <div class="image-container">
-    <!-- Root‑relative path so GitHub Pages can locate the image -->
-    <img src="/assets/fairies/Billie-Inside.JPG" alt="Billie" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
+    <!-- Use a relative path so the image resolves correctly regardless of deployment directory. -->
+    <img src="../../assets/fairies/Billie-Inside.JPG" alt="Billie" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
 
   <!-- The text field accepts a short description of the desired video.  Leaving the placeholder blank removes instructional text. -->
@@ -57,14 +57,8 @@
   <a href="/">Return to city map</a>
 
   <script>
-    let OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
-    if (!OPENAI_API_KEY) {
-      const key = prompt('Please enter your OpenAI API key (it will be stored locally):');
-      if (key) {
-        localStorage.setItem('OPENAI_API_KEY', key);
-        OPENAI_API_KEY = key;
-      }
-    }
+    // Prefer a globally defined API key if available (e.g. injected at build time).  Fall back to localStorage.
+    const OPENAI_API_KEY = (typeof window.OPENAI_API_KEY !== 'undefined' && window.OPENAI_API_KEY) ? window.OPENAI_API_KEY : (localStorage.getItem('OPENAI_API_KEY') || '');
 
     async function generateVideo() {
       const prompt = document.getElementById('videoPrompt').value.trim();

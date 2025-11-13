@@ -54,7 +54,8 @@
     <img src="/assets/fairies/Tracy-Inside.JPG" alt="Tracy" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
 
-  <input type="text" id="imagePrompt" placeholder="Describe the image you want" style="width:100%;max-width:600px;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:20px;">
+  <!-- The text field accepts a description of the image to generate.  Keeping the placeholder short avoids unnecessary instructions. -->
+  <input type="text" id="imagePrompt" placeholder="Image description" style="width:100%;max-width:600px;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:20px;">
   <button onclick="generateImage()">Generate Image</button>
   <img id="generatedImage" alt="Generated art" style="display:block;margin-top:20px;max-width:600px;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
 

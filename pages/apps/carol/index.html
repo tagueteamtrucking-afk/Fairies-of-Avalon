@@ -2,21 +2,214 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Carol — Meal Planner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carol’s Kitchen</title>
-  <link rel="stylesheet" href="../../../style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .image-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    label, select, input[type="number"] {
+      display: block;
+      margin: 10px auto;
+      font-size: 16px;
+      max-width: 600px;
+      width: 100%;
+    }
+    select, input[type="number"] {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    #meals, #shoppingList {
+      margin-top: 20px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #0066cc;
+      text-decoration: none;
+    }
+    h3 {
+      margin-bottom: 5px;
+    }
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+  </style>
 </head>
-<body class="carol-outside">
-  <div class="wrap">
-    <h1 class="heading">Welcome to Carol’s Kitchen</h1>
-    <p class="lead">Plan your meals, manage your pantry and enjoy the warmth of Avalon’s kitchen.</p>
-    <ul>
-      <li><a href="meal-plan.html">📆 Meal planner</a> – view and rate your meals for each day of the 14‑day programme.</li>
-      <li><a href="shopping-list.html">🛒 Shopping list</a> – see everything you need for the full two‑week menu.</li>
-      <li><a href="menu.html">📖 Full menu</a> – browse the entire 14‑day menu at a glance.</li>
-    </ul>
-    <!-- Use relative path that climbs three levels back to the site root. -->
-    <p><a href="../../../index.html">← back to home</a></p>
+<body>
+  <h1>Carol — Meal Planner</h1>
+  <div class="image-container">
+    <img src="../../assets/fairies/Carol-Inside.JPG" alt="Carol" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
+  <label for="daySelect"><strong>Select day (1–14):</strong></label>
+  <select id="daySelect"></select>
+  <label for="people"><strong>Number of people:</strong></label>
+  <input type="number" id="people" min="1" value="2" />
+  <div id="meals"></div>
+  <button id="shoppingBtn">Generate Shopping List</button>
+  <div id="shoppingList"></div>
+  <a href="../../index.html">Return to city map</a>
+  <script>
+    // Define a simple 14-day meal plan.  Quantities are for one person; they will be multiplied by the number of people.
+    const MEAL_PLAN = [
+      {
+        breakfast: { name: 'Oatmeal with berries', ingredients: [ { name: 'oatmeal (cups)', qty: 0.5 }, { name: 'milk (cups)', qty: 1 }, { name: 'berries (cups)', qty: 0.5 } ] },
+        lunch: { name: 'Chicken salad', ingredients: [ { name: 'chicken breast (g)', qty: 150 }, { name: 'lettuce (cups)', qty: 1 }, { name: 'cucumber', qty: 0.5 }, { name: 'tomato', qty: 0.5 } ] },
+        dinner: { name: 'Grilled salmon with rice', ingredients: [ { name: 'salmon (g)', qty: 150 }, { name: 'rice (cups)', qty: 0.5 }, { name: 'broccoli (cups)', qty: 1 } ] }
+      },
+      {
+        breakfast: { name: 'Greek yogurt with granola', ingredients: [ { name: 'Greek yogurt (cups)', qty: 1 }, { name: 'granola (cups)', qty: 0.5 }, { name: 'honey (tbsp)', qty: 1 } ] },
+        lunch: { name: 'Quinoa bowl', ingredients: [ { name: 'quinoa (cups)', qty: 0.5 }, { name: 'chickpeas (cups)', qty: 0.5 }, { name: 'spinach (cups)', qty: 1 } ] },
+        dinner: { name: 'Turkey tacos', ingredients: [ { name: 'ground turkey (g)', qty: 150 }, { name: 'taco shells', qty: 2 }, { name: 'salsa (tbsp)', qty: 2 }, { name: 'avocado', qty: 0.5 } ] }
+      },
+      {
+        breakfast: { name: 'Smoothie bowl', ingredients: [ { name: 'banana', qty: 1 }, { name: 'spinach (cups)', qty: 1 }, { name: 'almond milk (cups)', qty: 1 }, { name: 'protein powder (scoops)', qty: 1 } ] },
+        lunch: { name: 'Veggie wrap', ingredients: [ { name: 'whole‑wheat tortilla', qty: 1 }, { name: 'hummus (tbsp)', qty: 2 }, { name: 'mixed veggies (cups)', qty: 1 } ] },
+        dinner: { name: 'Stir‑fry tofu and veggies', ingredients: [ { name: 'tofu (g)', qty: 150 }, { name: 'mixed veggies (cups)', qty: 1.5 }, { name: 'soy sauce (tbsp)', qty: 2 }, { name: 'rice (cups)', qty: 0.5 } ] }
+      },
+      {
+        breakfast: { name: 'Scrambled eggs with toast', ingredients: [ { name: 'eggs', qty: 2 }, { name: 'whole‑wheat bread (slices)', qty: 1 }, { name: 'spinach (cups)', qty: 1 } ] },
+        lunch: { name: 'Caprese salad', ingredients: [ { name: 'mozzarella (g)', qty: 80 }, { name: 'tomato', qty: 1 }, { name: 'basil (cups)', qty: 0.25 } ] },
+        dinner: { name: 'Grilled chicken with sweet potato', ingredients: [ { name: 'chicken breast (g)', qty: 150 }, { name: 'sweet potato', qty: 1 }, { name: 'green beans (cups)', qty: 1 } ] }
+      },
+      {
+        breakfast: { name: 'Pancakes with fruit', ingredients: [ { name: 'pancake mix (servings)', qty: 1 }, { name: 'maple syrup (tbsp)', qty: 1 }, { name: 'berries (cups)', qty: 0.5 } ] },
+        lunch: { name: 'Lentil soup', ingredients: [ { name: 'cooked lentils (cups)', qty: 1 }, { name: 'carrots (cups)', qty: 0.5 }, { name: 'celery (cups)', qty: 0.5 } ] },
+        dinner: { name: 'Beef stir‑fry', ingredients: [ { name: 'beef strips (g)', qty: 150 }, { name: 'bell peppers (cups)', qty: 1 }, { name: 'broccoli (cups)', qty: 1 }, { name: 'rice (cups)', qty: 0.5 } ] }
+      },
+      {
+        breakfast: { name: 'Avocado toast', ingredients: [ { name: 'avocado', qty: 0.5 }, { name: 'whole‑wheat bread (slices)', qty: 1 }, { name: 'eggs', qty: 1 } ] },
+        lunch: { name: 'Sushi bowl', ingredients: [ { name: 'rice (cups)', qty: 0.5 }, { name: 'fish or tofu (g)', qty: 150 }, { name: 'cucumber', qty: 0.5 }, { name: 'avocado', qty: 0.5 } ] },
+        dinner: { name: 'Vegetable curry', ingredients: [ { name: 'mixed vegetables (cups)', qty: 2 }, { name: 'coconut milk (cups)', qty: 1 }, { name: 'curry paste (tbsp)', qty: 2 }, { name: 'rice (cups)', qty: 0.5 } ] }
+      },
+      {
+        breakfast: { name: 'Chia pudding', ingredients: [ { name: 'chia seeds (tbsp)', qty: 3 }, { name: 'almond milk (cups)', qty: 1 }, { name: 'honey (tbsp)', qty: 1 } ] },
+        lunch: { name: 'Chicken quesadilla', ingredients: [ { name: 'chicken (g)', qty: 150 }, { name: 'cheese (cups)', qty: 0.5 }, { name: 'tortilla', qty: 1 } ] },
+        dinner: { name: 'Pasta primavera', ingredients: [ { name: 'whole‑wheat pasta (cups)', qty: 1 }, { name: 'mixed veggies (cups)', qty: 2 }, { name: 'olive oil (tbsp)', qty: 1 }, { name: 'parmesan (tbsp)', qty: 2 } ] }
+      },
+      {
+        breakfast: { name: 'Bagel with cream cheese and salmon', ingredients: [ { name: 'bagel', qty: 1 }, { name: 'cream cheese (tbsp)', qty: 2 }, { name: 'smoked salmon (g)', qty: 50 } ] },
+        lunch: { name: 'Couscous salad', ingredients: [ { name: 'couscous (cups)', qty: 0.5 }, { name: 'cucumber', qty: 0.5 }, { name: 'tomato', qty: 0.5 }, { name: 'feta (cups)', qty: 0.25 } ] },
+        dinner: { name: 'Shrimp stir‑fry', ingredients: [ { name: 'shrimp (g)', qty: 150 }, { name: 'vegetables (cups)', qty: 1.5 }, { name: 'rice (cups)', qty: 0.5 } ] }
+      },
+      {
+        breakfast: { name: 'Fruit parfait', ingredients: [ { name: 'Greek yogurt (cups)', qty: 1 }, { name: 'mixed fruit (cups)', qty: 1 }, { name: 'granola (cups)', qty: 0.25 } ] },
+        lunch: { name: 'Turkey sandwich', ingredients: [ { name: 'turkey slices (g)', qty: 100 }, { name: 'whole‑wheat bread (slices)', qty: 2 }, { name: 'lettuce (cups)', qty: 0.5 }, { name: 'tomato', qty: 0.5 } ] },
+        dinner: { name: 'Baked cod with quinoa', ingredients: [ { name: 'cod (g)', qty: 150 }, { name: 'quinoa (cups)', qty: 0.5 }, { name: 'asparagus (cups)', qty: 1 } ] }
+      },
+      {
+        breakfast: { name: 'Protein pancakes', ingredients: [ { name: 'protein powder (scoops)', qty: 1 }, { name: 'pancake mix (servings)', qty: 1 }, { name: 'blueberries (cups)', qty: 0.5 } ] },
+        lunch: { name: 'Chickpea salad', ingredients: [ { name: 'chickpeas (cups)', qty: 1 }, { name: 'cucumber', qty: 0.5 }, { name: 'tomato', qty: 0.5 }, { name: 'olive oil (tbsp)', qty: 1 } ] },
+        dinner: { name: 'Stuffed bell peppers', ingredients: [ { name: 'bell peppers', qty: 2 }, { name: 'ground turkey (g)', qty: 150 }, { name: 'rice (cups)', qty: 0.5 }, { name: 'cheese (cups)', qty: 0.25 } ] }
+      },
+      {
+        breakfast: { name: 'Omelette with veggies', ingredients: [ { name: 'eggs', qty: 2 }, { name: 'mushrooms (cups)', qty: 0.5 }, { name: 'spinach (cups)', qty: 1 } ] },
+        lunch: { name: 'Spring rolls', ingredients: [ { name: 'rice paper sheets', qty: 2 }, { name: 'shrimp (g)', qty: 100 }, { name: 'vegetables (cups)', qty: 1 } ] },
+        dinner: { name: 'Beef tacos', ingredients: [ { name: 'ground beef (g)', qty: 150 }, { name: 'taco shells', qty: 2 }, { name: 'lettuce (cups)', qty: 0.5 }, { name: 'cheese (cups)', qty: 0.25 } ] }
+      },
+      {
+        breakfast: { name: 'French toast', ingredients: [ { name: 'bread slices', qty: 2 }, { name: 'eggs', qty: 1 }, { name: 'milk (cups)', qty: 0.25 }, { name: 'cinnamon (tsp)', qty: 1 } ] },
+        lunch: { name: 'Minestrone soup', ingredients: [ { name: 'mixed vegetables (cups)', qty: 2 }, { name: 'beans (cups)', qty: 1 }, { name: 'pasta (cups)', qty: 0.5 } ] },
+        dinner: { name: 'Salmon Buddha bowl', ingredients: [ { name: 'salmon (g)', qty: 150 }, { name: 'brown rice (cups)', qty: 0.5 }, { name: 'avocado', qty: 0.5 }, { name: 'edamame (cups)', qty: 0.5 } ] }
+      },
+      {
+        breakfast: { name: 'Banana pancakes', ingredients: [ { name: 'banana', qty: 1 }, { name: 'eggs', qty: 2 }, { name: 'oats (cups)', qty: 0.5 } ] },
+        lunch: { name: 'Caesar salad with chicken', ingredients: [ { name: 'romaine lettuce (cups)', qty: 2 }, { name: 'chicken (g)', qty: 150 }, { name: 'croutons (cups)', qty: 0.5 }, { name: 'parmesan (cups)', qty: 0.25 } ] },
+        dinner: { name: 'Shrimp pasta', ingredients: [ { name: 'shrimp (g)', qty: 150 }, { name: 'whole‑wheat pasta (cups)', qty: 1 }, { name: 'garlic (cloves)', qty: 1 }, { name: 'olive oil (tbsp)', qty: 1 } ] }
+      },
+      {
+        breakfast: { name: 'Granola with milk', ingredients: [ { name: 'granola (cups)', qty: 1 }, { name: 'milk (cups)', qty: 1 } ] },
+        lunch: { name: 'Falafel wrap', ingredients: [ { name: 'falafel balls', qty: 3 }, { name: 'pita bread', qty: 1 }, { name: 'lettuce (cups)', qty: 0.5 }, { name: 'tomato', qty: 0.5 } ] },
+        dinner: { name: 'Veggie burger', ingredients: [ { name: 'veggie patty', qty: 1 }, { name: 'bun', qty: 1 }, { name: 'lettuce (cups)', qty: 0.5 }, { name: 'tomato', qty: 0.5 } ] }
+      }
+    ];
+    const daySelect = document.getElementById('daySelect');
+    const peopleInput = document.getElementById('people');
+    const mealsDiv = document.getElementById('meals');
+    const shoppingBtn = document.getElementById('shoppingBtn');
+    const shoppingListDiv = document.getElementById('shoppingList');
+    // Populate day options
+    for (let i = 0; i < MEAL_PLAN.length; i++) {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = 'Day ' + (i + 1);
+      daySelect.appendChild(opt);
+    }
+    function renderDay() {
+      const idx = parseInt(daySelect.value, 10);
+      const day = MEAL_PLAN[idx];
+      const html = [];
+      ['breakfast','lunch','dinner'].forEach(mealKey => {
+        const meal = day[mealKey];
+        html.push(`<h3>${mealKey.charAt(0).toUpperCase() + mealKey.slice(1)}: ${meal.name}</h3>`);
+        html.push('<ul>');
+        meal.ingredients.forEach(item => {
+          html.push(`<li>${item.name}: ${item.qty}</li>`);
+        });
+        html.push('</ul>');
+      });
+      mealsDiv.innerHTML = html.join('');
+      shoppingListDiv.innerHTML = '';
+    }
+    daySelect.addEventListener('change', renderDay);
+    peopleInput.addEventListener('change', () => {
+      // If number of people changes, regenerate the shopping list if it is visible
+      if (shoppingListDiv.innerHTML) {
+        generateShoppingList();
+      }
+    });
+    shoppingBtn.addEventListener('click', generateShoppingList);
+    function generateShoppingList() {
+      const people = Math.max(1, parseInt(peopleInput.value, 10) || 1);
+      const totals = {};
+      MEAL_PLAN.forEach(day => {
+        ['breakfast','lunch','dinner'].forEach(mealKey => {
+          day[mealKey].ingredients.forEach(item => {
+            const key = item.name;
+            const qty = item.qty * people;
+            totals[key] = (totals[key] || 0) + qty;
+          });
+        });
+      });
+      const list = Object.keys(totals).sort().map(name => `<li>${name}: ${totals[name]}</li>`).join('');
+      shoppingListDiv.innerHTML = '<h3>Shopping List</h3><ul>' + list + '</ul>';
+    }
+    // Initialise
+    daySelect.value = '0';
+    renderDay();
+  </script>
 </body>
 </html>

@@ -48,7 +48,8 @@
     <img src="/assets/fairies/Billie-Inside.JPG" alt="Billie" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
 
-  <input type="text" id="videoPrompt" placeholder="Describe the video you want" style="width:100%;max-width:600px;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:20px;">
+  <!-- The text field accepts a short description of the desired video.  Leaving the placeholder blank removes instructional text. -->
+  <input type="text" id="videoPrompt" placeholder="Video description" style="width:100%;max-width:600px;padding:8px;border-radius:6px;border:1px solid #ccc;margin-top:20px;">
   <button onclick="generateVideo()">Generate Video</button>
   <video id="outputVideo" controls style="display:block;margin:20px auto;max-width:600px;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);"></video>
 

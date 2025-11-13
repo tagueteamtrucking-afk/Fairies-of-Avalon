@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Abbey — Vault</title>
+  <title>Abbey — Finance & Reporting</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -19,16 +19,17 @@
       margin: 20px auto;
       max-width: 600px;
     }
-    a, button {
+    textarea {
+      width: 100%;
+      max-width: 600px;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
       margin-top: 15px;
-      font-size: 16px;
-      text-decoration: none;
-    }
-    a {
-      color: #0066cc;
-      display: block;
+      box-sizing: border-box;
     }
     button {
+      margin-top: 15px;
       padding: 10px 20px;
       border: none;
       border-radius: 8px;
@@ -39,17 +40,72 @@
     button:hover {
       background: #45a049;
     }
+    pre {
+      white-space: pre-wrap;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: left;
+    }
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #0066cc;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
-  <h1>Abbey — Vault</h1>
+  <h1>Abbey — Finance & Reporting</h1>
   <div class="image-container">
-    <img src="/assets/fairies/Abbey-Inside.JPG" alt="Abbey" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
+    <img src="../../assets/fairies/Abbey-Inside.JPG" alt="Abbey" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
-  <a href="/">Return to city map</a>
-
+  <textarea id="transactions" rows="8" placeholder="Enter your transactions, one per line (e.g. Coffee Shop – 4.50)"></textarea>
+  <button id="analyzeBtn">Analyze</button>
+  <pre id="analysisOutput"></pre>
+  <a href="../../index.html">Return to city map</a>
   <script>
-    // No interactive script needed on this page
+    const OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
+    document.getElementById('analyzeBtn').addEventListener('click', async () => {
+      const input = document.getElementById('transactions').value.trim();
+      const output = document.getElementById('analysisOutput');
+      if (!input) {
+        alert('Please enter some transactions to analyse.');
+        return;
+      }
+      output.textContent = 'Analysing...';
+      try {
+        if (!OPENAI_API_KEY) {
+          throw new Error('Missing API key.');
+        }
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + OPENAI_API_KEY
+          },
+          body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: [
+              { role: 'system', content: 'You are a finance assistant. Given a list of personal spending transactions, group them into broad categories (e.g. groceries, dining, utilities, transport, entertainment) and provide the total spent in each category. Then offer a short summary of spending habits.' },
+              { role: 'user', content: input }
+            ],
+            max_tokens: 300
+          })
+        });
+        if (!response.ok) {
+          throw new Error('API error: ' + response.statusText);
+        }
+        const data = await response.json();
+        const summary = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content.trim() : '';
+        output.textContent = summary || 'No analysis returned.';
+      } catch (err) {
+        output.textContent = 'Error: ' + err.message;
+      }
+    });
   </script>
 </body>
 </html>

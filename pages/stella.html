@@ -2,201 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Stella — Meditation Studio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stella – Voice & Sound</title>
-  <link rel="stylesheet" href="../style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .image-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    textarea, input[type="text"], select {
+      width: 100%;
+      max-width: 600px;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 15px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    #script {
+      min-height: 200px;
+    }
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #0066cc;
+      text-decoration: none;
+    }
+  </style>
 </head>
-<body class="stella-inside">
-  <div class="wrap">
-    <h1 class="heading">Stella</h1>
-    <p class="lead">Voice &amp; sound. Generate guided meditation scripts using principles from NLP, hypnotherapy and the Gateway program. Enter any topic or goal below (e.g. stress relief, confidence, creativity) and Stella will craft a personalised meditation. You can play the script aloud with optional background music.</p>
-    <label for="theme">Meditation topic</label>
-    <input type="text" id="theme" placeholder="e.g. stress relief" />
-    <button id="generate-script">Generate Script</button>
-    <br><br>
-    <label for="script">Script</label>
-    <textarea id="script" rows="8" placeholder="Your generated meditation will appear here..."></textarea>
-    <br>
-    <button id="play">Play voice</button>
-    <button id="stop">Stop</button>
-    <br>
-    <label for="bg-volume">Background music volume:</label>
-    <input type="range" id="bg-volume" min="0" max="1" step="0.05" value="0.3">
-    <p><a href="../index.html">← back to home</a></p>
+<body>
+  <h1>Stella — Meditation Studio</h1>
+  <div class="image-container">
+    <img src="../assets/fairies/Stella-Inside.JPG" alt="Stella" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
+  <input type="text" id="theme" placeholder="" />
+  <button id="generateBtn">Generate Meditation</button>
+  <textarea id="script" placeholder="Your meditation script will appear here..."></textarea>
+  <button id="playBtn">Play</button>
+  <button id="stopBtn">Stop</button>
+  <div style="margin-top:10px;">
+    <label for="bgVolume">Background music volume:</label>
+    <input type="range" id="bgVolume" min="0" max="1" step="0.05" value="0.3" />
+  </div>
+  <a href="../index.html">Return to city map</a>
   <script>
-    const playBtn = document.getElementById('play');
-    const stopBtn = document.getElementById('stop');
-    const generateBtn = document.getElementById('generate-script');
-    const topicInput = document.getElementById('theme');
-    const volumeSlider = document.getElementById('bg-volume');
-    // Background audio element
+    const OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
+    // Preload the background music. This file should exist relative to the pages directory.
     const bgMusic = new Audio('../assets/audio/meditation-tone.wav');
     bgMusic.loop = true;
-    // Build a meditation script using random segments and the user-provided topic
-    function createMeditation(topic) {
-      const t = topic || 'your intention';
-      // Define arrays of segments
-      /*
-       * To craft meditations that last several minutes, each category below
-       * contains multi‑sentence paragraphs.  These paragraphs encourage deep
-       * relaxation and introspection.  When combined, the generated script
-       * spans roughly 500–700 words, which takes about five minutes to read
-       * aloud at a comfortable pace.  The user‑specified topic is inserted
-       * wherever you see ${t}.
-       */
-      const openings = [
-        `Find a comfortable position, whether sitting or lying down.  Let your
-shoulders relax away from your ears and allow your hands to rest
-loosely on your lap or by your sides.  Gently close your eyes and take
-a moment to settle into your body, noticing the weight of gravity and
-the support beneath you.`,
-        `Begin by sitting quietly or reclining somewhere you won’t be
-disturbed.  Feel the points of contact between your body and the
-surface you’re on.  Let your eyelids fall naturally and invite
-softness into your jaw, neck and shoulders.  Allow yourself to be
-completely present with this moment.`,
-        `Choose a posture that feels effortless, either seated with your back
-supported or lying flat with your spine elongated.  Close your eyes
-and notice the sensation of the air on your skin.  Allow any tension
-to melt away from your forehead, your jaw and your abdomen as you
-prepare to journey inward.`
-      ];
-      const breathing = [
-        `Begin by taking a slow, deep breath in through your nose, filling
-your lungs completely.  Hold the breath gently at the top of the
-inhalation, then release it through your mouth with a sigh.  Continue
-with this pattern, inhaling for a count of four, holding briefly,
-exhaling for a count of six.  Feel your belly rise and fall, and
-notice how your body begins to soften with each exhale.`,
-        `Draw a smooth breath in through your nostrils, letting the air
-travel all the way down into your abdomen.  Pause for a heartbeat,
-then slowly exhale through your mouth.  As you breathe, imagine
-inhaling calm and exhaling any tension.  Repeat this rhythm, perhaps
-lengthening your exhale a little longer each time to encourage deep
-relaxation.`,
-        `Let your breathing become your anchor.  Inhale gently through your
-nose, counting to three, and feel your chest and belly expand.  Hold
-for just a moment, then exhale steadily through your nose for a
-slightly longer count.  Notice the coolness of the air as it enters
-and the warmth as it leaves.  Continue for several breaths, letting
-each exhale carry away any lingering stress.`
-      ];
-      const visualisations = [
-        `Imagine a soft, radiant light representing ${t} glowing at the centre
-of your chest.  With every breath you take, this light expands and
-grows warmer, eventually filling your entire body.  Picture its
-colour—perhaps golden or the shade that comes to mind when you think
-of ${t}.  Let this light travel through your limbs, into your hands
-and feet, and out into the space around you.`,
-        `Visualise yourself standing in a tranquil landscape that embodies
-${t}.  Maybe you’re on a sunlit beach, a quiet forest path or a
-mountain top.  Notice the details—the sound of waves, the scent of
-pines, the feel of the breeze on your skin.  Allow the qualities of
-${t} in this environment to gently infuse your entire being.`,
-        `See a winding path ahead of you that leads toward ${t}.  As you
-walk along the path in your mind, observe what you encounter: plants,
-animals, perhaps friendly faces.  Each step takes you closer to the
-feeling of ${t}.  When you reach the end, you find a space bathed in
-light where you can rest and absorb this energy.`
-      ];
-      const affirmations = [
-        `Silently repeat the words: “I am aligned with ${t}.  I allow
-myself to fully experience ${t}.”  Feel the resonance of these
-statements in your heart and mind.  With each repetition, let the
-truth of the affirmation sink deeper into your subconscious.`,
-        `Affirm to yourself: “I invite ${t} into every aspect of my life.  I
-deserve to feel ${t}.”  As you repeat these phrases internally,
-notice how your body responds—maybe a gentle warmth, a sense of
-openness or an inner smile.`,
-        `Whisper in your mind: “I embrace ${t} fully and freely.  ${t} flows to
-me and through me.”  Envision the words wrapping around you like a
-comforting blanket, providing reassurance and support.`
-      ];
-      const guidance = [
-        `If stray thoughts arise, imagine placing them on a cloud and
-watching as the cloud drifts across a vast blue sky.  With each
-breath, return your awareness to the sensation of ${t} and to the
-steadiness of your breathing.  Over time you may notice longer gaps
-between thoughts and a deepening sense of peace.`,
-        `Should distractions capture your attention, gently acknowledge them
-without judgement.  Then, like turning a page, guide your focus back
-to the feeling of ${t}.  You might imagine yourself gently steering a
-boat back on course after a slight drift.`,
-        `Let your subconscious explore how ${t} feels physically,
-emotionally and mentally.  Sense where in your body ${t} resides—
-perhaps in your chest, your hands or your head.  Allow any insights
-or images that emerge to come and go, trusting that your mind knows
-how to integrate this experience.`
-      ];
-      const integration = [
-        `Take a few moments to bask in the sensation of ${t}.  See if you
-can expand this feeling beyond your physical body, filling the room
-you’re in and even extending outward to the people and places you
-care about.  Recognise that this state is always available to you
-whenever you choose to return to it.`,
-        `Imagine that ${t} has now taken root within you like a seed.  Even
-as you move through your daily life, this seed will continue to grow
-and blossom.  Picture it influencing your interactions, decisions
-and perceptions in positive ways long after this meditation ends.`,
-        `Consider how you might carry the essence of ${t} into the rest of
-your day.  You may bring the memory of this calm to stressful
-situations or share the energy of ${t} with others through kind
-words and actions.  Commit to nurturing this feeling when challenges
-arise.`
-      ];
-      const closings = [
-        `When you are ready, begin to deepen your breath once more.  Gently
-wiggle your fingers and toes, feeling the physical space around you.
-Take a final inhalation, and as you exhale, slowly open your eyes.
-Carry the sensation of ${t} with you as you return to the world,
-knowing you can revisit this state at any time.`,
-        `Bring your awareness back to the room.  Feel the support beneath
-you, listen for any ambient sounds, and notice the air touching your
-skin.  Take three deep breaths, and on your last exhale, blink your
-eyes open.  Smile softly, honouring the work you’ve done, and step
-forward into your day with a renewed connection to ${t}.`,
-        `Gradually turn your attention outward.  Perhaps stretch your
-arms above your head or roll your shoulders.  When you’re ready,
-open your eyes.  Carry forward the calm, clarity and sense of ${t}
-throughout the rest of your activities, returning to this practice
-whenever you need a reset.`
-      ];
-      function pick(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-      }
-      // Compose the meditation by choosing one paragraph from each category.
-      const scriptLines = [
-        pick(openings),
-        pick(breathing),
-        pick(visualisations),
-        pick(affirmations),
-        pick(guidance),
-        pick(integration),
-        pick(closings)
-      ];
-      return scriptLines.join('\n\n');
-    }
-    generateBtn.addEventListener('click', () => {
-      const topic = topicInput.value.trim();
-      const script = createMeditation(topic);
-      document.getElementById('script').value = script;
+    document.getElementById('bgVolume').addEventListener('input', (e) => {
+      bgMusic.volume = parseFloat(e.target.value);
     });
-    playBtn.addEventListener('click', () => {
-      const text = document.getElementById('script').value.trim();
+    document.getElementById('generateBtn').addEventListener('click', async () => {
+      const topic = document.getElementById('theme').value.trim();
+      const output = document.getElementById('script');
+      if (!topic) {
+        alert('Please enter a theme.');
+        return;
+      }
+      output.value = 'Generating...';
+      try {
+        if (!OPENAI_API_KEY) {
+          throw new Error('Missing API key.');
+        }
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + OPENAI_API_KEY
+          },
+          body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: [
+              { role: 'system', content: 'You are a meditation guide. Create a peaceful, detailed guided meditation script of roughly 500 words based on the provided theme.' },
+              { role: 'user', content: topic }
+            ],
+            max_tokens: 600
+          })
+        });
+        if (!response.ok) {
+          throw new Error('API error: ' + response.statusText);
+        }
+        const data = await response.json();
+        const content = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content.trim() : '';
+        output.value = content || 'No script returned.';
+      } catch (err) {
+        output.value = 'Error: ' + err.message;
+      }
+    });
+    document.getElementById('playBtn').addEventListener('click', () => {
+      const text = document.getElementById('script').value;
       if (!text) return;
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.rate = 1;
-      // Set volume for voice relative to slider (voice not adjustable via volume API but we can adjust audio volume)
-      speechSynthesis.cancel();
-      bgMusic.volume = parseFloat(volumeSlider.value);
       bgMusic.currentTime = 0;
       bgMusic.play();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      speechSynthesis.cancel();
       speechSynthesis.speak(utter);
     });
-    stopBtn.addEventListener('click', () => {
-      speechSynthesis.cancel();
+    document.getElementById('stopBtn').addEventListener('click', () => {
       bgMusic.pause();
+      speechSynthesis.cancel();
     });
   </script>
 </body>

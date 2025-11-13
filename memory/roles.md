@@ -14,13 +14,13 @@ Alexandria serves as the librarian of Avalon.  She organizes the vast store of k
 
 Billie runs the film studio.  She produces videos and can generate short video clips on demand.  Her tools allow her to record dynamic scenes and present them to visitors of Avalon.
 
-## Charlotte — ???
+## Charlotte — Translator
 
-Charlotte’s role within Avalon can be defined by the storyteller.  At the moment she does not expose any special tools on her page, but this memory entry exists so that her duties can be described once they are decided.
+Charlotte acts as Avalon’s translator.  She helps travellers and citizens communicate across languages.  Visitors can input text and select a target language, and Charlotte uses advanced AI translation tools to provide fluent translations.  She facilitates cross‑cultural understanding and ensures that stories and messages can be shared in many tongues.
 
-## Stella — ???
+## Stella — Meditation Guide
 
-Stella’s specific role has not yet been established.  Her page includes a basic interface and an inside/outside view, but the details of her work should be described here once known.
+Stella is Avalon’s meditation guide.  She assists visitors in finding calm and focus.  When given a theme, she uses creative AI to generate a personalised guided meditation script.  Visitors can read or listen to these scripts while soothing background audio plays.  Stella’s duties revolve around fostering peace and mindfulness within the city.
 
 ## Tracy — Cathedral Studio
 

@@ -2,21 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Jem — Training Hall</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jem – Weekly Training Plan</title>
-  <link rel="stylesheet" href="../style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    select {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+    table {
+      width: 100%;
+      max-width: 100%;
+      margin-top: 15px;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+      font-size: 14px;
+    }
+    th {
+      background: #e0e0e0;
+    }
+    input[type="number"] {
+      width: 60px;
+      padding: 4px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 16px;
+      margin: 10px 5px;
+      border: none;
+      border-radius: 8px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #0066cc;
+      text-decoration: none;
+    }
+  </style>
 </head>
-<body class="jem-inside">
-  <div class="wrap">
-    <h1 class="heading">Jem</h1>
-    <p class="lead">Fitness &amp; motion. Jem offers a structured 7‑day routine based on Joe Weider’s principles, adapted for calisthenics and resistance bands. Choose a day to view the exercises, record your reps and let Jem adjust your targets.</p>
-    <label for="day-select"><strong>Select day of the week:</strong></label>
-    <select id="day-select"></select>
-    <div id="day-content" style="margin-top:1rem;"></div>
-    <p><a href="../index.html">← back to home</a></p>
+<body>
+  <h1>Jem — Training Hall</h1>
+  <div>
+    <label for="daySelect"><strong>Select day of the week:</strong></label>
+    <select id="daySelect"></select>
   </div>
+  <div id="dayContent"></div>
+  <a href="../index.html">Return to city map</a>
   <script>
-    // Week plan definitions. Each day has a name and a list of exercises with sets and target reps per set.
+    // Define the default seven-day training plan.  Each exercise includes a name, number of sets and target reps per set.
     const DEFAULT_WEEK_PLAN = [
       {
         name: 'Day 1 – Chest & Triceps',
@@ -67,38 +123,43 @@
       {
         name: 'Day 5 – HIIT & Conditioning',
         exercises: [
-          { name: 'Warm‑up: Jump rope (seconds)', sets: 3, reps: 60 },
+          { name: 'Warm‑up: Jumping jacks', sets: 2, reps: 25 },
+          { name: 'Warm‑up: High knees', sets: 2, reps: 20 },
           { name: 'Burpees', sets: 3, reps: 12 },
-          { name: 'Mountain climbers', sets: 3, reps: 20 },
-          { name: 'Squat jumps', sets: 3, reps: 15 },
-          { name: 'Jump rope cool‑down (seconds)', sets: 2, reps: 60 }
+          { name: 'Mountain climbers', sets: 3, reps: 30 },
+          { name: 'Jump rope (minutes)', sets: 3, reps: 2 },
+          { name: 'Shadow boxing (minutes)', sets: 3, reps: 3 }
         ]
       },
       {
         name: 'Day 6 – Active Rest & Mobility',
         exercises: [
-          { name: 'Light yoga or mobility (minutes)', sets: 1, reps: 10 },
-          { name: 'Brisk walk or jog (minutes)', sets: 1, reps: 30 },
-          { name: 'Foam rolling or stretching (minutes)', sets: 1, reps: 10 }
+          { name: 'Yoga sun salutations', sets: 3, reps: 10 },
+          { name: 'Cat-cow stretches', sets: 3, reps: 15 },
+          { name: "Child’s pose (seconds)", sets: 3, reps: 30 },
+          { name: 'Hip flexor stretch (seconds)', sets: 3, reps: 30 },
+          { name: 'Foam rolling (minutes)', sets: 3, reps: 2 }
         ]
       },
       {
         name: 'Day 7 – Rest & Recovery',
         exercises: [
-          { name: 'Breathing exercises (minutes)', sets: 1, reps: 5 },
-          { name: 'Gentle stretching or foam rolling (minutes)', sets: 1, reps: 15 }
+          { name: 'Light walking (minutes)', sets: 1, reps: 30 },
+          { name: 'Deep breathing exercises', sets: 3, reps: 10 },
+          { name: 'Meditation (minutes)', sets: 1, reps: 10 }
         ]
       }
     ];
+    // Key for storing progress in localStorage
     const STORAGE_KEY = 'jemWeekPlan';
-    let weekPlan;
-    try {
-      weekPlan = JSON.parse(localStorage.getItem(STORAGE_KEY)) || JSON.parse(JSON.stringify(DEFAULT_WEEK_PLAN));
-    } catch {
+    // Load any existing plan from localStorage, otherwise clone the default
+    let weekPlan = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    if (!weekPlan) {
       weekPlan = JSON.parse(JSON.stringify(DEFAULT_WEEK_PLAN));
     }
-    const daySelect = document.getElementById('day-select');
-    // Populate day selection
+    const daySelect = document.getElementById('daySelect');
+    const contentDiv = document.getElementById('dayContent');
+    // Populate day options
     weekPlan.forEach((day, idx) => {
       const opt = document.createElement('option');
       opt.value = idx;
@@ -106,28 +167,13 @@
       daySelect.appendChild(opt);
     });
     daySelect.addEventListener('change', () => renderDay(parseInt(daySelect.value, 10)));
-    const contentDiv = document.getElementById('day-content');
+    /** Render a day of exercises as a table. */
     function renderDay(idx) {
       const day = weekPlan[idx];
       let html = `<h2>${day.name}</h2>`;
-      html += '<table><thead><tr><th>Picture</th><th>Exercise</th><th>Sets</th><th>Target reps</th><th>Achieved reps</th><th>Next target</th></tr></thead><tbody>';
+      html += '<table><thead><tr><th>Exercise</th><th>Sets</th><th>Target</th><th>Achieved</th><th>Next target</th></tr></thead><tbody>';
       day.exercises.forEach((ex, exIdx) => {
-        // determine image based on keywords in exercise name
-        const n = ex.name.toLowerCase();
-        let img;
-        if (n.includes('push') || n.includes('press') || n.includes('tricep')) {
-          img = '../assets/img/exercise-pushup.png';
-        } else if (n.includes('row') || n.includes('pull')) {
-          img = '../assets/img/exercise-row.png';
-        } else if (n.includes('squat') || n.includes('lunge') || n.includes('deadlift') || n.includes('leg')) {
-          img = '../assets/img/exercise-squat.png';
-        } else if (n.includes('jump') || n.includes('climber') || n.includes('hiit') || n.includes('burpee') || n.includes('rope')) {
-          img = '../assets/img/exercise-hiit.png';
-        } else {
-          img = '../assets/img/exercise-pushup.png';
-        }
         html += `<tr>
-          <td><img src="${img}" alt="${ex.name}" class="exercise-img"></td>
           <td>${ex.name}</td>
           <td>${ex.sets}</td>
           <td>${ex.reps}</td>
@@ -138,10 +184,10 @@
       html += '</tbody></table>';
       html += '<button id="evaluate">Evaluate Performance</button> <button id="reset">Reset Day</button>';
       contentDiv.innerHTML = html;
-      // Bind evaluate and reset
       document.getElementById('evaluate').addEventListener('click', () => evaluateDay(idx));
       document.getElementById('reset').addEventListener('click', () => resetDay(idx));
     }
+    /** Evaluate the current day's performance and adjust targets. */
     function evaluateDay(dayIdx) {
       const day = weekPlan[dayIdx];
       const rows = contentDiv.querySelectorAll('tbody tr');
@@ -156,14 +202,15 @@
           } else {
             next = Math.max(1, Math.floor(ex.reps * 0.9));
           }
+          // Update the plan in memory so next session reflects updated targets
           ex.reps = next;
         }
         row.querySelector('.next-target').textContent = next;
       });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(weekPlan));
     }
+    /** Reset the selected day back to its original targets. */
     function resetDay(dayIdx) {
-      // Reset just this day's exercises to default
       weekPlan[dayIdx] = JSON.parse(JSON.stringify(DEFAULT_WEEK_PLAN[dayIdx]));
       localStorage.setItem(STORAGE_KEY, JSON.stringify(weekPlan));
       renderDay(dayIdx);

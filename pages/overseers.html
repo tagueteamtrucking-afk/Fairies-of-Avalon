@@ -2,44 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Overseers — Palace & Governance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Overseers – Palace & Governance</title>
-  <link rel="stylesheet" href="../style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    form, ul {
+      text-align: left;
+      max-width: 600px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    button {
+      padding: 8px 16px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #0066cc;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1 class="heading">Overseers</h1>
-    <p class="lead">Palace &amp; governance. Participate in shaping Avalon’s future by casting your vote.</p>
-    <p>The Overseers manage and balance resources across all districts. Engage with this simple poll to let them know what you’d like to see next.</p>
-    <form id="poll-form">
-      <fieldset>
-        <legend>Which feature should Avalon develop next?</legend>
-        <label><input type="radio" name="feature" value="storyLibrary"> Expanded story library</label><br>
-        <label><input type="radio" name="feature" value="fitnessGuides"> Interactive fitness guides</label><br>
-        <label><input type="radio" name="feature" value="voiceActing"> Professional voice acting</label><br>
-        <label><input type="radio" name="feature" value="mealSuggestions"> AI meal suggestions</label>
-      </fieldset>
-      <button type="submit">Vote</button>
-    </form>
-    <h2>Current Results</h2>
-    <ul id="results"></ul>
-    <p><a href="../index.html">← back to home</a></p>
-  </div>
+  <h1>Overseers</h1>
+  <form id="poll-form">
+    <fieldset>
+      <legend>Select the next feature you would like Avalon to develop:</legend>
+      <label><input type="radio" name="feature" value="storyLibrary"> Expanded story library</label><br>
+      <label><input type="radio" name="feature" value="fitnessGuides"> Interactive fitness guides</label><br>
+      <label><input type="radio" name="feature" value="voiceActing"> Professional voice acting</label><br>
+      <label><input type="radio" name="feature" value="mealSuggestions"> AI meal suggestions</label>
+    </fieldset>
+    <button type="submit">Vote</button>
+  </form>
+  <h2>Current Results</h2>
+  <ul id="results"></ul>
+  <a href="../index.html">Return to city map</a>
   <script>
     const POLL_KEY = 'avalonPollResults';
     const resultsList = document.getElementById('results');
     const pollForm = document.getElementById('poll-form');
-    // Load existing poll results or initialise counts
+    // Load existing results or default counts
     const results = JSON.parse(localStorage.getItem(POLL_KEY) || '{"storyLibrary":0,"fitnessGuides":0,"voiceActing":0,"mealSuggestions":0}');
     function renderPoll() {
+      const labels = {
+        storyLibrary: 'Expanded story library',
+        fitnessGuides: 'Interactive fitness guides',
+        voiceActing: 'Professional voice acting',
+        mealSuggestions: 'AI meal suggestions'
+      };
       resultsList.innerHTML = Object.entries(results).map(([key, count]) => {
-        const label = {
-          storyLibrary: 'Expanded story library',
-          fitnessGuides: 'Interactive fitness guides',
-          voiceActing: 'Professional voice acting',
-          mealSuggestions: 'AI meal suggestions'
-        }[key];
-        return `<li>${label}: <strong>${count}</strong> vote${count === 1 ? '' : 's'}</li>`;
+        const text = labels[key];
+        return `<li>${text}: <strong>${count}</strong> vote${count === 1 ? '' : 's'}</li>`;
       }).join('');
     }
     renderPoll();

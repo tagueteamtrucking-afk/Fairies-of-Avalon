@@ -2,198 +2,159 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Alexandria — Library</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alexandria – Dungeon Master</title>
-  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Simple, clean styling shared across all pages */
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .image-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    #chatBox {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 10px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      text-align: left;
+      height: 300px;
+      overflow-y: auto;
+    }
+    .user-message, .bot-message {
+      margin: 5px 0;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+    .user-message {
+      background: #e0f7fa;
+    }
+    .bot-message {
+      background: #ffe0b2;
+    }
+    #chatControls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    #userInput {
+      flex: 1;
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #0066cc;
+      text-decoration: none;
+    }
+  </style>
 </head>
-<body class="alexandria-inside">
-  <div class="wrap">
-    <h1 class="heading">Alexandria the Story Weaver</h1>
-    <p class="lead">As your Dungeon Master, Alexandria listens to your ideas and guides you through a collaborative world‑building session.  Describe your vision, answer clarifying questions and provide as many details as you like—there is no limit.  When you are ready, tell Alexandria to begin and she will weave the tale.</p>
-
-    <div id="chat-section">
-      <div id="dm-log" style="background:rgba(0,0,0,0.3); padding:1rem; max-height:300px; overflow-y:auto; border-radius:6px; margin-bottom:1rem;"></div>
-      <textarea id="dm-input" rows="3" placeholder="Speak or type your answer here..."></textarea><br>
-      <button id="record-btn">🎤 Record</button>
-      <button id="send-btn">Send</button>
-    </div>
-
-    <div id="story-section" style="display:none;">
-      <h2>Your Story</h2>
-      <div id="story-output" style="white-space: pre-line;"></div>
-      <button id="play-story">🔊 Listen to Story</button>
-    </div>
-    <p><a href="../index.html">← back to home</a></p>
+<body>
+  <h1>Alexandria — Library</h1>
+  <div class="image-container">
+    <!-- Use relative path to the character image.  The trailing spaces in some file names are intentional to match existing assets. -->
+    <img src="../assets/fairies/Alexandria-Inside.JPG" alt="Alexandria" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
+  <div id="chatBox"></div>
+  <div id="chatControls">
+    <input type="text" id="userInput" placeholder="">
+    <button id="sendBtn">Send</button>
+  </div>
+  <a href="../index.html">Return to city map</a>
   <script>
-    /* Dungeon Master chat interface. Alexandria asks open-ended questions to help
-     * build a campaign. Users can provide as much detail as desired. Type
-     * "begin" when you are ready for the story to start. */
-    const dmLog = document.getElementById('dm-log');
-    const inputEl = document.getElementById('dm-input');
-    const sendBtn = document.getElementById('send-btn');
-    const recordBtn = document.getElementById('record-btn');
-    const storySection = document.getElementById('story-section');
-    const storyOutput = document.getElementById('story-output');
-    const speech = window.speechSynthesis;
-
-    // Categories Alexandria will ask about. After these, she will ask if you
-    // want to add anything else or begin the story. The list can be extended.
-    const prompts = [
-      'What theme or genre do you imagine for this adventure?',
-      'Describe the setting for the story.',
-      'Who is the main character? Include their name and description.',
-      'What goal drives the protagonist?',
-      'Who or what opposes them? Describe the villain or obstacle.',
-      'Is there a special weapon, magical item or secret skill involved?'
-    ];
-    let currentPromptIndex = 0;
-    // Stores user responses keyed by category index and any additional notes
-    const details = { extras: [] };
-
-    function appendLog(text, sender) {
-      const p = document.createElement('p');
-      p.textContent = text;
-      p.className = sender;
-      dmLog.appendChild(p);
-      dmLog.scrollTop = dmLog.scrollHeight;
+    // Read the API key from localStorage.  Users can store their key in the browser under this key.
+    const OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
+    const chatBox = document.getElementById('chatBox');
+    const inputEl = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+    // Maintain a running history so the model remembers the conversation.
+    const chatHistory = [];
+    /** Append a message to the chat UI */
+    function appendMessage(text, sender) {
+      const div = document.createElement('div');
+      div.className = sender === 'user' ? 'user-message' : 'bot-message';
+      div.textContent = (sender === 'user' ? 'You: ' : 'Alexandria: ') + text;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
     }
-    function askNextPrompt() {
-      if (currentPromptIndex < prompts.length) {
-        const q = prompts[currentPromptIndex];
-        appendLog(`Alexandria: ${q}`, 'dm');
-        speak(q);
-      } else {
-        const q = 'Do you want to add more details? Reply with more details or type "begin" to start your story.';
-        appendLog(`Alexandria: ${q}`, 'dm');
-        speak(q);
-      }
-    }
-    // Speech synthesis helper
-    function speak(msg) {
-      if (!speech) return;
-      const utter = new SpeechSynthesisUtterance(msg);
-      utter.lang = 'en-US';
-      speech.cancel();
-      speech.speak(utter);
-    }
-    // Speech recognition setup for STT
-    let recognition;
-    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognition = new SR();
-      recognition.lang = 'en-US';
-      recognition.interimResults = false;
-      recognition.maxAlternatives = 1;
-      recordBtn.addEventListener('click', () => {
-        recordBtn.disabled = true;
-        recognition.start();
-      });
-      recognition.addEventListener('result', (e) => {
-        const transcript = e.results[0][0].transcript;
-        inputEl.value = transcript;
-      });
-      recognition.addEventListener('end', () => {
-        recordBtn.disabled = false;
-      });
-    } else {
-      recordBtn.style.display = 'none';
-    }
-    sendBtn.addEventListener('click', () => {
-      const text = inputEl.value.trim();
-      if (!text) return;
-      appendLog(`You: ${text}`, 'user');
+    /** Send the current input to the OpenAI chat API and display the response. */
+    async function sendMessage() {
+      const message = inputEl.value.trim();
+      if (!message) return;
+      appendMessage(message, 'user');
+      chatHistory.push({ role: 'user', content: message });
       inputEl.value = '';
-      if (text.toLowerCase() === 'begin' || text.toLowerCase() === 'start') {
-        generateStory();
-        return;
+      // Show a placeholder while awaiting the response
+      appendMessage('…', 'assistant');
+      const placeholderDiv = chatBox.lastChild;
+      try {
+        if (!OPENAI_API_KEY) {
+          throw new Error('Missing API key. Set your OPENAI_API_KEY in localStorage.');
+        }
+        const messagesForApi = [
+          { role: 'system', content: 'You are Alexandria, the Dungeon Master of Avalon. Ask thoughtful questions when needed and collaboratively craft imaginative stories based on the user\'s input.' },
+          ...chatHistory
+        ];
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + OPENAI_API_KEY
+          },
+          body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: messagesForApi,
+            max_tokens: 300
+          })
+        });
+        if (!response.ok) {
+          throw new Error('API error: ' + response.statusText);
+        }
+        const data = await response.json();
+        const reply = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content.trim() : '';
+        placeholderDiv.textContent = 'Alexandria: ' + reply;
+        chatHistory.push({ role: 'assistant', content: reply });
+      } catch (err) {
+        placeholderDiv.textContent = 'Alexandria: ' + err.message;
       }
-      if (currentPromptIndex < prompts.length) {
-        // store response by prompt index
-        details[currentPromptIndex] = text;
-        // Generate a short acknowledgement based on the question asked.
-        respondToAnswer(currentPromptIndex, text);
-        currentPromptIndex++;
-      } else {
-        // additional details after main prompts
-        details.extras.push(text);
-        // Acknowledge extra details generically
-        appendLog(`Alexandria: Noted. I'll weave that into the narrative.`, 'dm');
-        speak("Noted. I'll weave that into the narrative.");
-      }
-      askNextPrompt();
-    });
-
-    /*
-     * Generate a short, friendly response after each answer to show that
-     * Alexandria is listening and understanding.  Uses the current prompt
-     * index to tailor the response.
-     */
-    function respondToAnswer(index, answer) {
-      const lower = answer.toLowerCase();
-      let response = '';
-      switch (index) {
-        case 0: // theme/genre
-        response = `Ah, ${answer}—this will set an exciting tone!`;
-          break;
-        case 1: // setting
-          response = `The setting of ${answer} sounds captivating. I can already picture it.`;
-          break;
-        case 2: // main character
-          response = `Interesting protagonist! ${answer.split(' ')[0]} will be central to our story.`;
-          break;
-        case 3: // goal
-          response = `A quest to ${answer}—a worthy goal.`;
-          break;
-        case 4: // villain/obstacle
-          response = `The antagonist ${answer} will add great tension to the tale.`;
-          break;
-        case 5: // weapon/item
-          response = `${answer} sounds like a powerful asset.`;
-          break;
-        default:
-          response = `Got it! I'll integrate that into the narrative.`;
-      }
-      appendLog(`Alexandria: ${response}`, 'dm');
-      speak(response);
     }
-    function generateStory() {
-      // Compose story using provided details. Use defaults if missing.
-      const idea = details[0] || 'an epic adventure';
-      const setting = details[1] || 'a mysterious land';
-      const character = details[2] || 'a nameless hero';
-      const goal = details[3] || 'an unknown quest';
-      const villain = details[4] || 'a hidden enemy';
-      const weapon = details[5] || '';
-      const extras = details.extras.join(' ');
-      let story = '';
-      story += `In the realm of Avalon, a new tale unfolds. You envisioned ${idea}.\n\n`;
-      story += `Our adventure begins in ${setting}, a place where the air shimmers with magic and mystery.\n\n`;
-      story += `The protagonist, ${character}, embarks on a quest: ${goal}.\n`;
-      story += `But lurking in the shadows is ${villain}, determined to thwart all efforts.\n`;
-      if (weapon) {
-        story += `${character.split(' ')[0]} wields ${weapon}, a tool of great significance.\n`;
+    sendBtn.addEventListener('click', sendMessage);
+    inputEl.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendMessage();
       }
-      if (extras) {
-        story += `${extras}\n`;
-      }
-      story += `Guided by your imagination, Alexandria conjures monsters, treasures and hidden cities. Through twists, alliances and battles, this narrative evolves with each choice you make.\n`;
-      storyOutput.textContent = story;
-      document.getElementById('chat-section').style.display = 'none';
-      storySection.style.display = 'block';
-    }
-    document.getElementById('play-story').addEventListener('click', () => {
-      const text = storyOutput.textContent;
-      if (!text) return;
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'en-US';
-      speech.cancel();
-      speech.speak(utter);
     });
-    // Start the conversation
+    // Greet the user on page load
     window.addEventListener('load', () => {
-      appendLog('Alexandria: Tell me, what theme or genre do you imagine for this adventure?', 'dm');
-      speak('Tell me, what theme or genre do you imagine for this adventure?');
+      const greeting = 'Welcome! What theme or idea would you like to explore in our story?';
+      appendMessage(greeting, 'assistant');
+      chatHistory.push({ role: 'assistant', content: greeting });
     });
   </script>
 </body>

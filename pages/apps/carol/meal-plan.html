@@ -805,12 +805,15 @@
       }
       const meals = mealPlan[day];
       let total = 0;
-      let html = '<table><thead><tr><th>Meal</th><th>Type</th><th>Calories</th><th>Ingredients</th><th>Instructions</th><th>Rating</th><th>Notes</th></tr></thead><tbody>';
+      let html = '<table><thead><tr><th>Picture</th><th>Meal</th><th>Type</th><th>Calories</th><th>Ingredients</th><th>Instructions</th><th>Rating</th><th>Notes</th></tr></thead><tbody>';
       meals.forEach((item, idx) => {
         total += item.nutrition;
         const savedRating = loadSaved(day, idx, 'rating');
         const savedNote = loadSaved(day, idx, 'note');
+        // choose image based on meal type
+        const imgSrc = item.mealType.toLowerCase().includes('mini') ? '../../../assets/img/meal-mini.png' : '../../../assets/img/meal-snack.png';
         html += `<tr>
+          <td><img src="${imgSrc}" alt="${item.mealType}" class="meal-img"></td>
           <td>${item.name}</td>
           <td>${item.mealType}</td>
           <td>${item.nutrition}</td>

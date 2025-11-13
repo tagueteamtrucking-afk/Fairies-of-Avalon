@@ -115,7 +115,26 @@
           result = dictHi[word];
           break;
       }
-      translationEl.textContent = result ? `"${word}" → ${result}` : `Sorry, no translation found for "${word}".`;
+      if (result) {
+        translationEl.textContent = `"${word}" → ${result}`;
+      } else {
+        // Attempt to fetch translation from MyMemory API via allorigins proxy
+        const url = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(word) + '&langpair=en|' + lang)}`;
+        translationEl.textContent = 'Looking up...';
+        fetch(url)
+          .then(resp => resp.json())
+          .then(data => {
+            const translated = data.responseData && data.responseData.translatedText;
+            if (translated) {
+              translationEl.textContent = `"${word}" → ${translated}`;
+            } else {
+              translationEl.textContent = `Sorry, no translation found for "${word}".`;
+            }
+          })
+          .catch(() => {
+            translationEl.textContent = `Sorry, no translation found for "${word}".`;
+          });
+      }
     });
   </script>
 </body>

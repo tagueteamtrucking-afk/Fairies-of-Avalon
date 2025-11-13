@@ -52,33 +52,153 @@
         output.textContent = 'Please enter a prompt first.';
         return;
       }
-      // Create deterministic random generator based on prompt hash
+      const ctx = canvas.getContext('2d');
+      const words = prompt.toLowerCase();
+      // helper to pick colours based on seed
       const seed = hashString(prompt);
       const rng = randomGenerator(seed);
-      const ctx = canvas.getContext('2d');
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // Fill background with dark colour inspired by theme
-      ctx.fillStyle = `hsl(${Math.floor(rng()*360)}, 40%, 15%)`;
+      // Background
+      const baseHue = Math.floor(rng()*360);
+      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      grad.addColorStop(0, `hsl(${baseHue},50%,30%)`);
+      grad.addColorStop(1, `hsl(${(baseHue+80)%360},60%,40%)`);
+      ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      // Draw random shapes
-      const shapeCount = 8 + Math.floor(rng() * 10);
-      for (let i = 0; i < shapeCount; i++) {
-        const x = rng() * canvas.width;
-        const y = rng() * canvas.height;
-        const size = 30 + rng() * 120;
-        const hue = (seed % 360 + i * 37) % 360;
+      // Draw elements based on keywords
+      function drawSun() {
+        const r = 50 + rng()*30;
+        const x = canvas.width * 0.8;
+        const y = canvas.height * 0.2;
+        ctx.fillStyle = 'rgba(255, 204, 0, 0.8)';
         ctx.beginPath();
-        if (rng() > 0.5) {
-          // circle
-          ctx.arc(x, y, size * 0.5, 0, Math.PI * 2);
-        } else {
-          // rectangle
-          ctx.rect(x - size/2, y - size/2, size, size);
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+        // rays
+        for (let i=0; i<12; i++) {
+          const angle = (i/12) * Math.PI * 2;
+          const length = r + 20 + rng()*10;
+          ctx.strokeStyle = 'rgba(255, 204, 0, 0.6)';
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.moveTo(x + r * Math.cos(angle), y + r * Math.sin(angle));
+          ctx.lineTo(x + length * Math.cos(angle), y + length * Math.sin(angle));
+          ctx.stroke();
         }
-        ctx.fillStyle = `hsla(${hue}, 70%, ${40 + rng()*30}%, 0.6)`;
+      }
+      function drawMoon() {
+        const x = canvas.width * 0.8;
+        const y = canvas.height * 0.2;
+        const r = 40 + rng()*20;
+        ctx.fillStyle = 'rgba(240,240,240,0.9)';
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0.5, 2.5);
+        ctx.fill();
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(x + r*0.3, y - r*0.1, r, 0.5, 2.5);
         ctx.fill();
       }
+      function drawStars() {
+        const count = 30;
+        for (let i=0; i<count; i++) {
+          const x = rng()*canvas.width;
+          const y = rng()*canvas.height*0.6;
+          const size = 2 + rng()*2;
+          ctx.fillStyle = 'rgba(255,255,255,' + (0.6 + rng()*0.4) + ')';
+          ctx.beginPath();
+          ctx.arc(x, y, size, 0, Math.PI*2);
+          ctx.fill();
+        }
+      }
+      function drawForest() {
+        const treeCount = 8;
+        for (let i=0; i<treeCount; i++) {
+          const x = rng()*canvas.width;
+          const h = 60 + rng()*60;
+          const trunkW = 8;
+          // trunk
+          ctx.fillStyle = '#5a3e2b';
+          ctx.fillRect(x - trunkW/2, canvas.height - h, trunkW, h);
+          // foliage
+          const canopyH = 30 + rng()*30;
+          const canopyW = canopyH * 1.2;
+          ctx.fillStyle = '#2e8b57';
+          ctx.beginPath();
+          ctx.moveTo(x, canvas.height - h - canopyH);
+          ctx.lineTo(x - canopyW/2, canvas.height - h);
+          ctx.lineTo(x + canopyW/2, canvas.height - h);
+          ctx.closePath();
+          ctx.fill();
+        }
+      }
+      function drawMountains() {
+        const peaks = 3 + Math.floor(rng()*3);
+        for (let i=0; i<peaks; i++) {
+          const baseX = (i/peaks) * canvas.width;
+          const peakX = baseX + rng() * (canvas.width/peaks);
+          const peakY = canvas.height * (0.4 + rng()*0.2);
+          const baseWidth = canvas.width/peaks * (0.8 + rng()*0.4);
+          ctx.fillStyle = '#4e5d6c';
+          ctx.beginPath();
+          ctx.moveTo(peakX, peakY);
+          ctx.lineTo(peakX - baseWidth/2, canvas.height);
+          ctx.lineTo(peakX + baseWidth/2, canvas.height);
+          ctx.closePath();
+          ctx.fill();
+        }
+      }
+      function drawCastle() {
+        const baseX = canvas.width * 0.2;
+        const baseY = canvas.height * 0.5;
+        const towerW = 40;
+        const towerH = 100;
+        const wallW = 200;
+        const wallH = 70;
+        // wall
+        ctx.fillStyle = '#b5b5c5';
+        ctx.fillRect(baseX, baseY, wallW, wallH);
+        // towers
+        ctx.fillRect(baseX - towerW, baseY - towerH + wallH, towerW, towerH);
+        ctx.fillRect(baseX + wallW, baseY - towerH + wallH, towerW, towerH);
+        // rooftops
+        ctx.fillStyle = '#8c5a3e';
+        function roof(x) {
+          ctx.beginPath();
+          ctx.moveTo(x, baseY - towerH + wallH);
+          ctx.lineTo(x - towerW/2, baseY - towerH - 20 + wallH);
+          ctx.lineTo(x + towerW/2, baseY - towerH - 20 + wallH);
+          ctx.closePath();
+          ctx.fill();
+        }
+        roof(baseX - towerW/2);
+        roof(baseX + wallW + towerW/2);
+      }
+      function drawDragon() {
+        // draw a simple serpentine dragon using bezier curves
+        ctx.strokeStyle = 'rgba(180,50,50,0.8)';
+        ctx.lineWidth = 6;
+        ctx.beginPath();
+        ctx.moveTo(canvas.width*0.1, canvas.height*0.6);
+        const steps = 5;
+        for (let i=1; i<=steps; i++) {
+          const x = canvas.width*0.1 + (canvas.width*0.8/steps)*i;
+          const y = canvas.height*0.6 + Math.sin(i + seed%10) * 60 * rng();
+          ctx.quadraticCurveTo(x - 50, y - 80*rng(), x, y);
+        }
+        ctx.stroke();
+      }
+      // Always draw mountains at the horizon for depth
+      drawMountains();
+      // Conditionals based on prompt
+      if (/sun|sunset|sunrise/.test(words)) drawSun();
+      if (/moon/.test(words)) drawMoon();
+      if (/star/.test(words)) drawStars();
+      if (/forest|tree/.test(words)) drawForest();
+      if (/mountain/.test(words) && !/castle/.test(words)) drawMountains();
+      if (/castle/.test(words)) drawCastle();
+      if (/dragon/.test(words)) drawDragon();
       // Convert to data URL and display
       const dataURL = canvas.toDataURL('image/png');
       img.style.display = 'block';

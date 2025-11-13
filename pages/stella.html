@@ -37,39 +37,145 @@
     function createMeditation(topic) {
       const t = topic || 'your intention';
       // Define arrays of segments
+      /*
+       * To craft meditations that last several minutes, each category below
+       * contains multi‑sentence paragraphs.  These paragraphs encourage deep
+       * relaxation and introspection.  When combined, the generated script
+       * spans roughly 500–700 words, which takes about five minutes to read
+       * aloud at a comfortable pace.  The user‑specified topic is inserted
+       * wherever you see ${t}.
+       */
       const openings = [
-        `Find a comfortable position and gently close your eyes.`,
-        `Sit quietly and let your hands rest on your lap.`,
-        `Begin by taking a seat or lying down, whatever feels most natural to you.`
+        `Find a comfortable position, whether sitting or lying down.  Let your
+shoulders relax away from your ears and allow your hands to rest
+loosely on your lap or by your sides.  Gently close your eyes and take
+a moment to settle into your body, noticing the weight of gravity and
+the support beneath you.`,
+        `Begin by sitting quietly or reclining somewhere you won’t be
+disturbed.  Feel the points of contact between your body and the
+surface you’re on.  Let your eyelids fall naturally and invite
+softness into your jaw, neck and shoulders.  Allow yourself to be
+completely present with this moment.`,
+        `Choose a posture that feels effortless, either seated with your back
+supported or lying flat with your spine elongated.  Close your eyes
+and notice the sensation of the air on your skin.  Allow any tension
+to melt away from your forehead, your jaw and your abdomen as you
+prepare to journey inward.`
       ];
       const breathing = [
-        `Take a slow, deep breath in through your nose, and exhale through your mouth.`,
-        `Inhale for a count of four, hold for a moment, then exhale for a count of six.`,
-        `Feel your belly rise as you breathe in, and soften as you breathe out.`
+        `Begin by taking a slow, deep breath in through your nose, filling
+your lungs completely.  Hold the breath gently at the top of the
+inhalation, then release it through your mouth with a sigh.  Continue
+with this pattern, inhaling for a count of four, holding briefly,
+exhaling for a count of six.  Feel your belly rise and fall, and
+notice how your body begins to soften with each exhale.`,
+        `Draw a smooth breath in through your nostrils, letting the air
+travel all the way down into your abdomen.  Pause for a heartbeat,
+then slowly exhale through your mouth.  As you breathe, imagine
+inhaling calm and exhaling any tension.  Repeat this rhythm, perhaps
+lengthening your exhale a little longer each time to encourage deep
+relaxation.`,
+        `Let your breathing become your anchor.  Inhale gently through your
+nose, counting to three, and feel your chest and belly expand.  Hold
+for just a moment, then exhale steadily through your nose for a
+slightly longer count.  Notice the coolness of the air as it enters
+and the warmth as it leaves.  Continue for several breaths, letting
+each exhale carry away any lingering stress.`
       ];
       const visualisations = [
-        `Imagine a soft light representing ${t} glowing in your heart, expanding with each breath.`,
-        `Picture yourself surrounded by an aura of ${t}, warm and comforting.`,
-        `Visualise a path leading you toward ${t}, and notice the colours and sensations along the way.`
+        `Imagine a soft, radiant light representing ${t} glowing at the centre
+of your chest.  With every breath you take, this light expands and
+grows warmer, eventually filling your entire body.  Picture its
+colour—perhaps golden or the shade that comes to mind when you think
+of ${t}.  Let this light travel through your limbs, into your hands
+and feet, and out into the space around you.`,
+        `Visualise yourself standing in a tranquil landscape that embodies
+${t}.  Maybe you’re on a sunlit beach, a quiet forest path or a
+mountain top.  Notice the details—the sound of waves, the scent of
+pines, the feel of the breeze on your skin.  Allow the qualities of
+${t} in this environment to gently infuse your entire being.`,
+        `See a winding path ahead of you that leads toward ${t}.  As you
+walk along the path in your mind, observe what you encounter: plants,
+animals, perhaps friendly faces.  Each step takes you closer to the
+feeling of ${t}.  When you reach the end, you find a space bathed in
+light where you can rest and absorb this energy.`
       ];
       const affirmations = [
-        `Repeat silently: 'I am aligned with ${t}.'`,
-        `Affirm to yourself: 'I invite ${t} into my life.'`,
-        `Whisper in your mind: 'I embrace ${t} fully and freely.'`
+        `Silently repeat the words: “I am aligned with ${t}.  I allow
+myself to fully experience ${t}.”  Feel the resonance of these
+statements in your heart and mind.  With each repetition, let the
+truth of the affirmation sink deeper into your subconscious.`,
+        `Affirm to yourself: “I invite ${t} into every aspect of my life.  I
+deserve to feel ${t}.”  As you repeat these phrases internally,
+notice how your body responds—maybe a gentle warmth, a sense of
+openness or an inner smile.`,
+        `Whisper in your mind: “I embrace ${t} fully and freely.  ${t} flows to
+me and through me.”  Envision the words wrapping around you like a
+comforting blanket, providing reassurance and support.`
       ];
       const guidance = [
-        `Allow any stray thoughts to drift away like clouds, returning your attention to ${t}.`,
-        `If distractions arise, acknowledge them and gently refocus on ${t}.`,
-        `Let your subconscious explore how ${t} feels in your body and mind.`
+        `If stray thoughts arise, imagine placing them on a cloud and
+watching as the cloud drifts across a vast blue sky.  With each
+breath, return your awareness to the sensation of ${t} and to the
+steadiness of your breathing.  Over time you may notice longer gaps
+between thoughts and a deepening sense of peace.`,
+        `Should distractions capture your attention, gently acknowledge them
+without judgement.  Then, like turning a page, guide your focus back
+to the feeling of ${t}.  You might imagine yourself gently steering a
+boat back on course after a slight drift.`,
+        `Let your subconscious explore how ${t} feels physically,
+emotionally and mentally.  Sense where in your body ${t} resides—
+perhaps in your chest, your hands or your head.  Allow any insights
+or images that emerge to come and go, trusting that your mind knows
+how to integrate this experience.`
+      ];
+      const integration = [
+        `Take a few moments to bask in the sensation of ${t}.  See if you
+can expand this feeling beyond your physical body, filling the room
+you’re in and even extending outward to the people and places you
+care about.  Recognise that this state is always available to you
+whenever you choose to return to it.`,
+        `Imagine that ${t} has now taken root within you like a seed.  Even
+as you move through your daily life, this seed will continue to grow
+and blossom.  Picture it influencing your interactions, decisions
+and perceptions in positive ways long after this meditation ends.`,
+        `Consider how you might carry the essence of ${t} into the rest of
+your day.  You may bring the memory of this calm to stressful
+situations or share the energy of ${t} with others through kind
+words and actions.  Commit to nurturing this feeling when challenges
+arise.`
       ];
       const closings = [
-        `When you are ready, take a final deep breath and slowly open your eyes.`,
-        `Carry the sensation of ${t} with you as you return to your day.`,
-        `Gently wiggle your fingers and toes, and come back to the present moment refreshed.`
+        `When you are ready, begin to deepen your breath once more.  Gently
+wiggle your fingers and toes, feeling the physical space around you.
+Take a final inhalation, and as you exhale, slowly open your eyes.
+Carry the sensation of ${t} with you as you return to the world,
+knowing you can revisit this state at any time.`,
+        `Bring your awareness back to the room.  Feel the support beneath
+you, listen for any ambient sounds, and notice the air touching your
+skin.  Take three deep breaths, and on your last exhale, blink your
+eyes open.  Smile softly, honouring the work you’ve done, and step
+forward into your day with a renewed connection to ${t}.`,
+        `Gradually turn your attention outward.  Perhaps stretch your
+arms above your head or roll your shoulders.  When you’re ready,
+open your eyes.  Carry forward the calm, clarity and sense of ${t}
+throughout the rest of your activities, returning to this practice
+whenever you need a reset.`
       ];
-      function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-      const scriptLines = [pick(openings), pick(breathing), pick(visualisations), pick(affirmations), pick(guidance), pick(closings)];
-      return scriptLines.join('\n');
+      function pick(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+      // Compose the meditation by choosing one paragraph from each category.
+      const scriptLines = [
+        pick(openings),
+        pick(breathing),
+        pick(visualisations),
+        pick(affirmations),
+        pick(guidance),
+        pick(integration),
+        pick(closings)
+      ];
+      return scriptLines.join('\n\n');
     }
     generateBtn.addEventListener('click', () => {
       const topic = topicInput.value.trim();

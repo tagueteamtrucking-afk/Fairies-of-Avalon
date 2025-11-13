@@ -110,9 +110,24 @@
     function renderDay(idx) {
       const day = weekPlan[idx];
       let html = `<h2>${day.name}</h2>`;
-      html += '<table><thead><tr><th>Exercise</th><th>Sets</th><th>Target reps</th><th>Achieved reps</th><th>Next target</th></tr></thead><tbody>';
+      html += '<table><thead><tr><th>Picture</th><th>Exercise</th><th>Sets</th><th>Target reps</th><th>Achieved reps</th><th>Next target</th></tr></thead><tbody>';
       day.exercises.forEach((ex, exIdx) => {
+        // determine image based on keywords in exercise name
+        const n = ex.name.toLowerCase();
+        let img;
+        if (n.includes('push') || n.includes('press') || n.includes('tricep')) {
+          img = '../assets/img/exercise-pushup.png';
+        } else if (n.includes('row') || n.includes('pull')) {
+          img = '../assets/img/exercise-row.png';
+        } else if (n.includes('squat') || n.includes('lunge') || n.includes('deadlift') || n.includes('leg')) {
+          img = '../assets/img/exercise-squat.png';
+        } else if (n.includes('jump') || n.includes('climber') || n.includes('hiit') || n.includes('burpee') || n.includes('rope')) {
+          img = '../assets/img/exercise-hiit.png';
+        } else {
+          img = '../assets/img/exercise-pushup.png';
+        }
         html += `<tr>
+          <td><img src="${img}" alt="${ex.name}" class="exercise-img"></td>
           <td>${ex.name}</td>
           <td>${ex.sets}</td>
           <td>${ex.reps}</td>

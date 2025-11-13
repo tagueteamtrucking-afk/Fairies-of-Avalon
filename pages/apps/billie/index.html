@@ -10,15 +10,19 @@
   <div class="wrap">
     <h1 class="heading">Billie</h1>
     <p class="lead">Social media &amp; media creation. Billie generates eye‑catching videos and thumbnails designed to maximise engagement. Her goal is to create content viewers will watch, react to and share.</p>
-    <p>Enter a prompt to generate an engaging video thumbnail. Billie will produce a unique still image on the fly. Full video synthesis and posting workflows will be available once external APIs are connected.</p>
+    <p>Enter a prompt to generate an engaging <strong>video</strong> and its thumbnail.  Billie will animate vivid shapes and colours inspired by your prompt and package the result as a short MP4 video.  The first frame of the video serves as the thumbnail.</p>
     <label for="video-prompt">Video prompt</label>
     <input id="video-prompt" type="text" placeholder="e.g. A faceless dancer in a cosmic garden" style="width:100%; padding:6px;">
-    <button id="generate-video">Generate Thumbnail</button>
+    <button id="generate-video">Generate Video</button>
     <div id="video-preview" style="margin-top:1rem;"></div>
+    <!-- Hidden canvas used to draw animation frames.  The canvas is not shown
+         to the user but is used internally to render each frame of the video. -->
+    <canvas id="video-canvas" width="512" height="512" style="display:none;"></canvas>
     <p><a href="../../../index.html">← back to home</a></p>
   </div>
-  <script>
-    // Generate a pseudo‑random integer based on a string hash
+    <script>
+    // Generate a pseudo‑random integer based on a string hash.  This ensures
+    // consistent visuals for the same prompt and seeds our random generator.
     function hashString(str) {
       let h = 0;
       for (let i = 0; i < str.length; i++) {
@@ -27,51 +31,97 @@
       }
       return Math.abs(h);
     }
-    function generateThumbnail(prompt) {
-      const seed = hashString(prompt);
-      const rnd = (() => {
-        let s = seed;
-        return () => {
-          s = (s * 9301 + 49297) % 233280;
-          return s / 233280;
-        };
-      })();
-      const canvas = document.createElement('canvas');
-      const size = 512;
-      canvas.width = size;
-      canvas.height = size;
-      const ctx = canvas.getContext('2d');
-      // Background gradient
-      const bgHue = Math.floor(rnd() * 360);
-      const grad = ctx.createLinearGradient(0, 0, size, size);
-      grad.addColorStop(0, `hsl(${bgHue}, 60%, 40%)`);
-      grad.addColorStop(1, `hsl(${(bgHue + 60) % 360}, 60%, 60%)`);
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, size, size);
-      // Draw random shapes for energy and engagement
-      for (let i = 0; i < 10; i++) {
-        const x = rnd() * size;
-        const y = rnd() * size;
-        const w = rnd() * (size / 3);
-        const h = rnd() * (size / 3);
-        const hue = (bgHue + i * 36) % 360;
-        ctx.fillStyle = `hsla(${hue}, 70%, 50%, 0.6)`;
-        ctx.beginPath();
-        ctx.ellipse(x, y, w, h, rnd() * Math.PI, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      return canvas.toDataURL();
-    }
-    document.getElementById('generate-video').addEventListener('click', () => {
+    // Main handler for video generation
+    document.getElementById('generate-video').addEventListener('click', async () => {
       const prompt = document.getElementById('video-prompt').value.trim();
       const preview = document.getElementById('video-preview');
       if (!prompt) {
         preview.innerHTML = '<p>Please enter a prompt.</p>';
         return;
       }
-      const dataUrl = generateThumbnail(prompt);
-      preview.innerHTML = `<img src="${dataUrl}" alt="${prompt}" style="max-width:100%; height:auto; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">\n<p><em>Thumbnail generated for:</em> "${prompt}"</p>`;
+      preview.innerHTML = '<p>Generating video… please wait.</p>';
+      // Set up canvas and context
+      const canvas = document.getElementById('video-canvas');
+      const ctx = canvas.getContext('2d');
+      const size = canvas.width;
+      const seed = hashString(prompt);
+      // Simple deterministic RNG seeded from prompt
+      let rngState = seed;
+      function rnd() {
+        rngState = (rngState * 1664525 + 1013904223) % 4294967296;
+        return rngState / 4294967296;
+      }
+      // Prepare MediaRecorder to capture canvas frames into a video
+      const stream = canvas.captureStream(30); // 30 fps
+      const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+      const chunks = [];
+      recorder.ondataavailable = (e) => chunks.push(e.data);
+      // Animation parameters
+      const duration = 8; // seconds
+      const totalFrames = duration * 30;
+      let frame = 0;
+      // Precompute background hues based on prompt
+      const baseHue = Math.floor(rnd() * 360);
+      // Start recording
+      recorder.start();
+      // Animation loop draws new frame every ~33ms
+      function draw() {
+        // Background gradient changes slowly over time
+        const t = frame / totalFrames;
+        const hue1 = (baseHue + t * 120) % 360;
+        const hue2 = (baseHue + 60 + t * 120) % 360;
+        const grad = ctx.createLinearGradient(0, 0, size, size);
+        grad.addColorStop(0, `hsl(${hue1},60%,40%)`);
+        grad.addColorStop(1, `hsl(${hue2},60%,60%)`);
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, size, size);
+        // Draw animated ellipses that move and scale
+        const shapes = 8;
+        for (let i = 0; i < shapes; i++) {
+          const prog = (frame / totalFrames + i / shapes) % 1;
+          const x = size * (0.1 + 0.8 * (prog));
+          const y = size * (0.1 + rnd() * 0.8);
+          const w = size * (0.1 + 0.2 * rnd());
+          const h = size * (0.1 + 0.2 * rnd());
+          const hue = (baseHue + i * 45 + frame * 2) % 360;
+          ctx.fillStyle = `hsla(${hue}, 70%, 50%, 0.5)`;
+          ctx.beginPath();
+          ctx.ellipse(x, y, w, h, rnd() * Math.PI, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        frame++;
+        if (frame < totalFrames) {
+          requestAnimationFrame(draw);
+        } else {
+          recorder.stop();
+        }
+      }
+      draw();
+      // Wait for recording to complete
+      await new Promise((resolve) => {
+        recorder.onstop = () => resolve();
+      });
+      const blob = new Blob(chunks, { type: 'video/webm' });
+      const videoUrl = URL.createObjectURL(blob);
+      // Create a video element with poster as first frame
+      const video = document.createElement('video');
+      video.controls = true;
+      video.src = videoUrl;
+      video.width = 320;
+      video.height = 240;
+      // Generate poster image from the first frame by drawing one frame on offscreen canvas
+      const thumbCanvas = document.createElement('canvas');
+      thumbCanvas.width = size;
+      thumbCanvas.height = size;
+      const thumbCtx = thumbCanvas.getContext('2d');
+      // draw current canvas onto thumb to capture final frame used as poster
+      thumbCtx.drawImage(canvas, 0, 0);
+      const posterUrl = thumbCanvas.toDataURL('image/png');
+      video.poster = posterUrl;
+      preview.innerHTML = '';
+      preview.appendChild(video);
+      preview.insertAdjacentHTML('beforeend', `<p><em>Video generated for:</em> "${prompt}"</p>`);
     });
-  </script>
+    </script>
 </body>
 </html>

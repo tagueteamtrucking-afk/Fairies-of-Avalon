@@ -111,13 +111,52 @@
       if (currentPromptIndex < prompts.length) {
         // store response by prompt index
         details[currentPromptIndex] = text;
+        // Generate a short acknowledgement based on the question asked.
+        respondToAnswer(currentPromptIndex, text);
         currentPromptIndex++;
       } else {
         // additional details after main prompts
         details.extras.push(text);
+        // Acknowledge extra details generically
+        appendLog(`Alexandria: Noted. I'll weave that into the narrative.`, 'dm');
+        speak("Noted. I'll weave that into the narrative.");
       }
       askNextPrompt();
     });
+
+    /*
+     * Generate a short, friendly response after each answer to show that
+     * Alexandria is listening and understanding.  Uses the current prompt
+     * index to tailor the response.
+     */
+    function respondToAnswer(index, answer) {
+      const lower = answer.toLowerCase();
+      let response = '';
+      switch (index) {
+        case 0: // theme/genre
+        response = `Ah, ${answer}—this will set an exciting tone!`;
+          break;
+        case 1: // setting
+          response = `The setting of ${answer} sounds captivating. I can already picture it.`;
+          break;
+        case 2: // main character
+          response = `Interesting protagonist! ${answer.split(' ')[0]} will be central to our story.`;
+          break;
+        case 3: // goal
+          response = `A quest to ${answer}—a worthy goal.`;
+          break;
+        case 4: // villain/obstacle
+          response = `The antagonist ${answer} will add great tension to the tale.`;
+          break;
+        case 5: // weapon/item
+          response = `${answer} sounds like a powerful asset.`;
+          break;
+        default:
+          response = `Got it! I'll integrate that into the narrative.`;
+      }
+      appendLog(`Alexandria: ${response}`, 'dm');
+      speak(response);
+    }
     function generateStory() {
       // Compose story using provided details. Use defaults if missing.
       const idea = details[0] || 'an epic adventure';

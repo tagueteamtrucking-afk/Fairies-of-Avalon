@@ -72,7 +72,8 @@
 <body>
   <h1>Carol — Meal Planner</h1>
   <div class="image-container">
-    <img src="../../assets/fairies/Carol-Inside.JPG" alt="Carol" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
+    <!-- Root‑relative path used so that the image resolves correctly on the live site. -->
+    <img src="/assets/fairies/Carol-Inside.JPG" alt="Carol" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
   <label for="daySelect"><strong>Select day (1–14):</strong></label>
   <select id="daySelect"></select>
@@ -83,77 +84,133 @@
   <div id="shoppingList"></div>
   <a href="../../index.html">Return to city map</a>
   <script>
-    // Define a simple 14-day meal plan.  Quantities are for one person; they will be multiplied by the number of people.
+    // Define a detailed 14‑day meal plan.  Each day includes seven mini‑meals: breakfast, morning snack, lunch, afternoon snack, dinner, evening snack and dessert.  Quantities are per person.
     const MEAL_PLAN = [
       {
-        breakfast: { name: 'Oatmeal with berries', ingredients: [ { name: 'oatmeal (cups)', qty: 0.5 }, { name: 'milk (cups)', qty: 1 }, { name: 'berries (cups)', qty: 0.5 } ] },
-        lunch: { name: 'Chicken salad', ingredients: [ { name: 'chicken breast (g)', qty: 150 }, { name: 'lettuce (cups)', qty: 1 }, { name: 'cucumber', qty: 0.5 }, { name: 'tomato', qty: 0.5 } ] },
-        dinner: { name: 'Grilled salmon with rice', ingredients: [ { name: 'salmon (g)', qty: 150 }, { name: 'rice (cups)', qty: 0.5 }, { name: 'broccoli (cups)', qty: 1 } ] }
+        breakfast: { name: 'Greek yogurt with granola and berries', ingredients: [ { name: 'Greek yogurt (cups)', qty: 1 }, { name: 'granola (cups)', qty: 0.5 }, { name: 'berries (cups)', qty: 0.5 } ] },
+        morningSnack: { name: 'Apple with almond butter', ingredients: [ { name: 'apple', qty: 1 }, { name: 'almond butter (tbsp)', qty: 2 } ] },
+        lunch: { name: 'Grilled chicken salad', ingredients: [ { name: 'chicken breast (g)', qty: 120 }, { name: 'lettuce (cups)', qty: 2 }, { name: 'cucumber', qty: 0.5 }, { name: 'tomato', qty: 0.5 } ] },
+        afternoonSnack: { name: 'Protein smoothie', ingredients: [ { name: 'protein powder (scoops)', qty: 1 }, { name: 'almond milk (cups)', qty: 1 }, { name: 'banana', qty: 1 } ] },
+        dinner: { name: 'Baked salmon with quinoa and asparagus', ingredients: [ { name: 'salmon (g)', qty: 150 }, { name: 'quinoa (cups)', qty: 0.5 }, { name: 'asparagus (cups)', qty: 1 } ] },
+        eveningSnack: { name: 'Cottage cheese with pineapple', ingredients: [ { name: 'cottage cheese (cups)', qty: 0.5 }, { name: 'pineapple (cups)', qty: 0.5 } ] },
+        dessert: { name: 'Dark chocolate', ingredients: [ { name: 'dark chocolate (squares)', qty: 2 } ] }
       },
       {
-        breakfast: { name: 'Greek yogurt with granola', ingredients: [ { name: 'Greek yogurt (cups)', qty: 1 }, { name: 'granola (cups)', qty: 0.5 }, { name: 'honey (tbsp)', qty: 1 } ] },
-        lunch: { name: 'Quinoa bowl', ingredients: [ { name: 'quinoa (cups)', qty: 0.5 }, { name: 'chickpeas (cups)', qty: 0.5 }, { name: 'spinach (cups)', qty: 1 } ] },
-        dinner: { name: 'Turkey tacos', ingredients: [ { name: 'ground turkey (g)', qty: 150 }, { name: 'taco shells', qty: 2 }, { name: 'salsa (tbsp)', qty: 2 }, { name: 'avocado', qty: 0.5 } ] }
+        breakfast: { name: 'Oatmeal with banana', ingredients: [ { name: 'oatmeal (cups)', qty: 0.5 }, { name: 'milk (cups)', qty: 1 }, { name: 'banana', qty: 1 } ] },
+        morningSnack: { name: 'Handful of mixed nuts', ingredients: [ { name: 'nuts (cups)', qty: 0.25 } ] },
+        lunch: { name: 'Turkey wrap', ingredients: [ { name: 'turkey slices (g)', qty: 100 }, { name: 'whole‑wheat tortilla', qty: 1 }, { name: 'spinach (cups)', qty: 1 }, { name: 'tomato', qty: 0.5 } ] },
+        afternoonSnack: { name: 'Veggies with hummus', ingredients: [ { name: 'carrot sticks (cups)', qty: 0.5 }, { name: 'celery sticks (cups)', qty: 0.5 }, { name: 'hummus (tbsp)', qty: 2 } ] },
+        dinner: { name: 'Tofu stir‑fry with brown rice', ingredients: [ { name: 'tofu (g)', qty: 150 }, { name: 'mixed veggies (cups)', qty: 1.5 }, { name: 'brown rice (cups)', qty: 0.5 }, { name: 'soy sauce (tbsp)', qty: 1 } ] },
+        eveningSnack: { name: 'Protein bar', ingredients: [ { name: 'protein bar', qty: 1 } ] },
+        dessert: { name: 'Greek yogurt with honey', ingredients: [ { name: 'Greek yogurt (cups)', qty: 1 }, { name: 'honey (tbsp)', qty: 1 } ] }
       },
       {
         breakfast: { name: 'Smoothie bowl', ingredients: [ { name: 'banana', qty: 1 }, { name: 'spinach (cups)', qty: 1 }, { name: 'almond milk (cups)', qty: 1 }, { name: 'protein powder (scoops)', qty: 1 } ] },
+        morningSnack: { name: 'Orange slices', ingredients: [ { name: 'orange', qty: 1 } ] },
         lunch: { name: 'Veggie wrap', ingredients: [ { name: 'whole‑wheat tortilla', qty: 1 }, { name: 'hummus (tbsp)', qty: 2 }, { name: 'mixed veggies (cups)', qty: 1 } ] },
-        dinner: { name: 'Stir‑fry tofu and veggies', ingredients: [ { name: 'tofu (g)', qty: 150 }, { name: 'mixed veggies (cups)', qty: 1.5 }, { name: 'soy sauce (tbsp)', qty: 2 }, { name: 'rice (cups)', qty: 0.5 } ] }
+        afternoonSnack: { name: 'Trail mix', ingredients: [ { name: 'trail mix (cups)', qty: 0.25 } ] },
+        dinner: { name: 'Stir‑fry tofu and veggies', ingredients: [ { name: 'tofu (g)', qty: 150 }, { name: 'mixed veggies (cups)', qty: 1.5 }, { name: 'soy sauce (tbsp)', qty: 2 }, { name: 'rice (cups)', qty: 0.5 } ] },
+        eveningSnack: { name: 'Rice cakes with peanut butter', ingredients: [ { name: 'rice cakes', qty: 2 }, { name: 'peanut butter (tbsp)', qty: 2 } ] },
+        dessert: { name: 'Frozen yogurt', ingredients: [ { name: 'frozen yogurt (cups)', qty: 0.5 } ] }
       },
       {
-        breakfast: { name: 'Scrambled eggs with toast', ingredients: [ { name: 'eggs', qty: 2 }, { name: 'whole‑wheat bread (slices)', qty: 1 }, { name: 'spinach (cups)', qty: 1 } ] },
+        breakfast: { name: 'Scrambled eggs with spinach and toast', ingredients: [ { name: 'eggs', qty: 2 }, { name: 'spinach (cups)', qty: 1 }, { name: 'whole‑wheat bread (slices)', qty: 1 } ] },
+        morningSnack: { name: 'Pear', ingredients: [ { name: 'pear', qty: 1 } ] },
         lunch: { name: 'Caprese salad', ingredients: [ { name: 'mozzarella (g)', qty: 80 }, { name: 'tomato', qty: 1 }, { name: 'basil (cups)', qty: 0.25 } ] },
-        dinner: { name: 'Grilled chicken with sweet potato', ingredients: [ { name: 'chicken breast (g)', qty: 150 }, { name: 'sweet potato', qty: 1 }, { name: 'green beans (cups)', qty: 1 } ] }
+        afternoonSnack: { name: 'Granola bar', ingredients: [ { name: 'granola bar', qty: 1 } ] },
+        dinner: { name: 'Grilled chicken with sweet potato and green beans', ingredients: [ { name: 'chicken breast (g)', qty: 150 }, { name: 'sweet potato', qty: 1 }, { name: 'green beans (cups)', qty: 1 } ] },
+        eveningSnack: { name: 'Yogurt with sliced strawberries', ingredients: [ { name: 'yogurt (cups)', qty: 0.5 }, { name: 'strawberries (cups)', qty: 0.5 } ] },
+        dessert: { name: 'Oatmeal cookie', ingredients: [ { name: 'oatmeal cookie', qty: 1 } ] }
       },
       {
-        breakfast: { name: 'Pancakes with fruit', ingredients: [ { name: 'pancake mix (servings)', qty: 1 }, { name: 'maple syrup (tbsp)', qty: 1 }, { name: 'berries (cups)', qty: 0.5 } ] },
-        lunch: { name: 'Lentil soup', ingredients: [ { name: 'cooked lentils (cups)', qty: 1 }, { name: 'carrots (cups)', qty: 0.5 }, { name: 'celery (cups)', qty: 0.5 } ] },
-        dinner: { name: 'Beef stir‑fry', ingredients: [ { name: 'beef strips (g)', qty: 150 }, { name: 'bell peppers (cups)', qty: 1 }, { name: 'broccoli (cups)', qty: 1 }, { name: 'rice (cups)', qty: 0.5 } ] }
+        breakfast: { name: 'Protein pancakes with fruit', ingredients: [ { name: 'protein powder (scoops)', qty: 1 }, { name: 'pancake mix (servings)', qty: 1 }, { name: 'berries (cups)', qty: 0.5 } ] },
+        morningSnack: { name: 'Banana', ingredients: [ { name: 'banana', qty: 1 } ] },
+        lunch: { name: 'Lentil soup with whole‑grain roll', ingredients: [ { name: 'cooked lentils (cups)', qty: 1 }, { name: 'carrots (cups)', qty: 0.5 }, { name: 'celery (cups)', qty: 0.5 }, { name: 'whole‑grain roll', qty: 1 } ] },
+        afternoonSnack: { name: 'String cheese and grapes', ingredients: [ { name: 'string cheese', qty: 1 }, { name: 'grapes (cups)', qty: 0.5 } ] },
+        dinner: { name: 'Beef stir‑fry with rice and broccoli', ingredients: [ { name: 'beef strips (g)', qty: 150 }, { name: 'bell peppers (cups)', qty: 1 }, { name: 'broccoli (cups)', qty: 1 }, { name: 'rice (cups)', qty: 0.5 } ] },
+        eveningSnack: { name: 'Hard‑boiled egg', ingredients: [ { name: 'egg', qty: 1 } ] },
+        dessert: { name: 'Dark chocolate almonds', ingredients: [ { name: 'dark chocolate almonds (pieces)', qty: 6 } ] }
       },
       {
-        breakfast: { name: 'Avocado toast', ingredients: [ { name: 'avocado', qty: 0.5 }, { name: 'whole‑wheat bread (slices)', qty: 1 }, { name: 'eggs', qty: 1 } ] },
+        breakfast: { name: 'Avocado toast with egg', ingredients: [ { name: 'avocado', qty: 0.5 }, { name: 'whole‑wheat bread (slices)', qty: 1 }, { name: 'egg', qty: 1 } ] },
+        morningSnack: { name: 'Cottage cheese with berries', ingredients: [ { name: 'cottage cheese (cups)', qty: 0.5 }, { name: 'berries (cups)', qty: 0.5 } ] },
         lunch: { name: 'Sushi bowl', ingredients: [ { name: 'rice (cups)', qty: 0.5 }, { name: 'fish or tofu (g)', qty: 150 }, { name: 'cucumber', qty: 0.5 }, { name: 'avocado', qty: 0.5 } ] },
-        dinner: { name: 'Vegetable curry', ingredients: [ { name: 'mixed vegetables (cups)', qty: 2 }, { name: 'coconut milk (cups)', qty: 1 }, { name: 'curry paste (tbsp)', qty: 2 }, { name: 'rice (cups)', qty: 0.5 } ] }
+        afternoonSnack: { name: 'Rice crackers with tuna', ingredients: [ { name: 'rice crackers', qty: 4 }, { name: 'canned tuna (g)', qty: 60 } ] },
+        dinner: { name: 'Vegetable curry with rice', ingredients: [ { name: 'mixed vegetables (cups)', qty: 2 }, { name: 'coconut milk (cups)', qty: 1 }, { name: 'curry paste (tbsp)', qty: 2 }, { name: 'rice (cups)', qty: 0.5 } ] },
+        eveningSnack: { name: 'Celery with peanut butter', ingredients: [ { name: 'celery sticks', qty: 2 }, { name: 'peanut butter (tbsp)', qty: 2 } ] },
+        dessert: { name: 'Frozen banana bites', ingredients: [ { name: 'banana', qty: 0.5 }, { name: 'dark chocolate (tbsp)', qty: 1 } ] }
       },
       {
-        breakfast: { name: 'Chia pudding', ingredients: [ { name: 'chia seeds (tbsp)', qty: 3 }, { name: 'almond milk (cups)', qty: 1 }, { name: 'honey (tbsp)', qty: 1 } ] },
+        breakfast: { name: 'Chia pudding with honey', ingredients: [ { name: 'chia seeds (tbsp)', qty: 3 }, { name: 'almond milk (cups)', qty: 1 }, { name: 'honey (tbsp)', qty: 1 } ] },
+        morningSnack: { name: 'Blueberries and almonds', ingredients: [ { name: 'blueberries (cups)', qty: 0.5 }, { name: 'almonds (cups)', qty: 0.25 } ] },
         lunch: { name: 'Chicken quesadilla', ingredients: [ { name: 'chicken (g)', qty: 150 }, { name: 'cheese (cups)', qty: 0.5 }, { name: 'tortilla', qty: 1 } ] },
-        dinner: { name: 'Pasta primavera', ingredients: [ { name: 'whole‑wheat pasta (cups)', qty: 1 }, { name: 'mixed veggies (cups)', qty: 2 }, { name: 'olive oil (tbsp)', qty: 1 }, { name: 'parmesan (tbsp)', qty: 2 } ] }
+        afternoonSnack: { name: 'Hummus with pita chips', ingredients: [ { name: 'hummus (tbsp)', qty: 3 }, { name: 'pita chips (cups)', qty: 0.5 } ] },
+        dinner: { name: 'Pasta primavera', ingredients: [ { name: 'whole‑wheat pasta (cups)', qty: 1 }, { name: 'mixed veggies (cups)', qty: 2 }, { name: 'olive oil (tbsp)', qty: 1 }, { name: 'parmesan (tbsp)', qty: 2 } ] },
+        eveningSnack: { name: 'Yogurt with nuts', ingredients: [ { name: 'yogurt (cups)', qty: 0.5 }, { name: 'mixed nuts (cups)', qty: 0.25 } ] },
+        dessert: { name: 'Baked apple', ingredients: [ { name: 'apple', qty: 1 }, { name: 'cinnamon (tsp)', qty: 0.5 } ] }
       },
       {
         breakfast: { name: 'Bagel with cream cheese and salmon', ingredients: [ { name: 'bagel', qty: 1 }, { name: 'cream cheese (tbsp)', qty: 2 }, { name: 'smoked salmon (g)', qty: 50 } ] },
+        morningSnack: { name: 'Kiwi', ingredients: [ { name: 'kiwi', qty: 1 } ] },
         lunch: { name: 'Couscous salad', ingredients: [ { name: 'couscous (cups)', qty: 0.5 }, { name: 'cucumber', qty: 0.5 }, { name: 'tomato', qty: 0.5 }, { name: 'feta (cups)', qty: 0.25 } ] },
-        dinner: { name: 'Shrimp stir‑fry', ingredients: [ { name: 'shrimp (g)', qty: 150 }, { name: 'vegetables (cups)', qty: 1.5 }, { name: 'rice (cups)', qty: 0.5 } ] }
+        afternoonSnack: { name: 'Apple slices with cheese', ingredients: [ { name: 'apple', qty: 1 }, { name: 'cheddar cheese (g)', qty: 30 } ] },
+        dinner: { name: 'Shrimp stir‑fry with rice', ingredients: [ { name: 'shrimp (g)', qty: 150 }, { name: 'vegetables (cups)', qty: 1.5 }, { name: 'rice (cups)', qty: 0.5 } ] },
+        eveningSnack: { name: 'Pumpkin seeds', ingredients: [ { name: 'pumpkin seeds (cups)', qty: 0.25 } ] },
+        dessert: { name: 'Sorbet', ingredients: [ { name: 'sorbet (cups)', qty: 0.5 } ] }
       },
       {
-        breakfast: { name: 'Fruit parfait', ingredients: [ { name: 'Greek yogurt (cups)', qty: 1 }, { name: 'mixed fruit (cups)', qty: 1 }, { name: 'granola (cups)', qty: 0.25 } ] },
-        lunch: { name: 'Turkey sandwich', ingredients: [ { name: 'turkey slices (g)', qty: 100 }, { name: 'whole‑wheat bread (slices)', qty: 2 }, { name: 'lettuce (cups)', qty: 0.5 }, { name: 'tomato', qty: 0.5 } ] },
-        dinner: { name: 'Baked cod with quinoa', ingredients: [ { name: 'cod (g)', qty: 150 }, { name: 'quinoa (cups)', qty: 0.5 }, { name: 'asparagus (cups)', qty: 1 } ] }
+        breakfast: { name: 'Fruit parfait with granola', ingredients: [ { name: 'Greek yogurt (cups)', qty: 1 }, { name: 'mixed fruit (cups)', qty: 1 }, { name: 'granola (cups)', qty: 0.25 } ] },
+        morningSnack: { name: 'Mandarin oranges', ingredients: [ { name: 'mandarin', qty: 2 } ] },
+        lunch: { name: 'Turkey sandwich on whole‑grain bread', ingredients: [ { name: 'turkey slices (g)', qty: 100 }, { name: 'whole‑wheat bread (slices)', qty: 2 }, { name: 'lettuce (cups)', qty: 0.5 }, { name: 'tomato', qty: 0.5 } ] },
+        afternoonSnack: { name: 'Smoothie with spinach and mango', ingredients: [ { name: 'spinach (cups)', qty: 1 }, { name: 'mango (cups)', qty: 1 }, { name: 'coconut water (cups)', qty: 1 } ] },
+        dinner: { name: 'Baked cod with quinoa and asparagus', ingredients: [ { name: 'cod (g)', qty: 150 }, { name: 'quinoa (cups)', qty: 0.5 }, { name: 'asparagus (cups)', qty: 1 } ] },
+        eveningSnack: { name: 'Cucumber with tzatziki', ingredients: [ { name: 'cucumber', qty: 0.5 }, { name: 'tzatziki (tbsp)', qty: 3 } ] },
+        dessert: { name: 'Fruit salad', ingredients: [ { name: 'mixed fruit (cups)', qty: 1 } ] }
       },
       {
-        breakfast: { name: 'Protein pancakes', ingredients: [ { name: 'protein powder (scoops)', qty: 1 }, { name: 'pancake mix (servings)', qty: 1 }, { name: 'blueberries (cups)', qty: 0.5 } ] },
-        lunch: { name: 'Chickpea salad', ingredients: [ { name: 'chickpeas (cups)', qty: 1 }, { name: 'cucumber', qty: 0.5 }, { name: 'tomato', qty: 0.5 }, { name: 'olive oil (tbsp)', qty: 1 } ] },
-        dinner: { name: 'Stuffed bell peppers', ingredients: [ { name: 'bell peppers', qty: 2 }, { name: 'ground turkey (g)', qty: 150 }, { name: 'rice (cups)', qty: 0.5 }, { name: 'cheese (cups)', qty: 0.25 } ] }
+        breakfast: { name: 'Protein pancakes with blueberries', ingredients: [ { name: 'protein powder (scoops)', qty: 1 }, { name: 'pancake mix (servings)', qty: 1 }, { name: 'blueberries (cups)', qty: 0.5 } ] },
+        morningSnack: { name: 'Carrot sticks and hummus', ingredients: [ { name: 'carrot sticks (cups)', qty: 0.5 }, { name: 'hummus (tbsp)', qty: 2 } ] },
+        lunch: { name: 'Chickpea salad with feta', ingredients: [ { name: 'chickpeas (cups)', qty: 1 }, { name: 'cucumber', qty: 0.5 }, { name: 'tomato', qty: 0.5 }, { name: 'feta (cups)', qty: 0.25 }, { name: 'olive oil (tbsp)', qty: 1 } ] },
+        afternoonSnack: { name: 'Popcorn', ingredients: [ { name: 'popcorn (cups)', qty: 2 } ] },
+        dinner: { name: 'Stuffed bell peppers with ground turkey', ingredients: [ { name: 'bell peppers', qty: 2 }, { name: 'ground turkey (g)', qty: 150 }, { name: 'rice (cups)', qty: 0.5 }, { name: 'cheese (cups)', qty: 0.25 } ] },
+        eveningSnack: { name: 'Celery with cream cheese', ingredients: [ { name: 'celery sticks', qty: 2 }, { name: 'cream cheese (tbsp)', qty: 2 } ] },
+        dessert: { name: 'Honey yogurt', ingredients: [ { name: 'Greek yogurt (cups)', qty: 0.5 }, { name: 'honey (tbsp)', qty: 1 } ] }
       },
       {
-        breakfast: { name: 'Omelette with veggies', ingredients: [ { name: 'eggs', qty: 2 }, { name: 'mushrooms (cups)', qty: 0.5 }, { name: 'spinach (cups)', qty: 1 } ] },
-        lunch: { name: 'Spring rolls', ingredients: [ { name: 'rice paper sheets', qty: 2 }, { name: 'shrimp (g)', qty: 100 }, { name: 'vegetables (cups)', qty: 1 } ] },
-        dinner: { name: 'Beef tacos', ingredients: [ { name: 'ground beef (g)', qty: 150 }, { name: 'taco shells', qty: 2 }, { name: 'lettuce (cups)', qty: 0.5 }, { name: 'cheese (cups)', qty: 0.25 } ] }
+        breakfast: { name: 'Omelette with mushrooms and spinach', ingredients: [ { name: 'eggs', qty: 2 }, { name: 'mushrooms (cups)', qty: 0.5 }, { name: 'spinach (cups)', qty: 1 } ] },
+        morningSnack: { name: 'Grapefruit', ingredients: [ { name: 'grapefruit', qty: 1 } ] },
+        lunch: { name: 'Spring rolls with shrimp', ingredients: [ { name: 'rice paper sheets', qty: 2 }, { name: 'shrimp (g)', qty: 100 }, { name: 'vegetables (cups)', qty: 1 } ] },
+        afternoonSnack: { name: 'Edamame', ingredients: [ { name: 'edamame (cups)', qty: 0.5 } ] },
+        dinner: { name: 'Beef tacos with lettuce and cheese', ingredients: [ { name: 'ground beef (g)', qty: 150 }, { name: 'taco shells', qty: 2 }, { name: 'lettuce (cups)', qty: 0.5 }, { name: 'cheese (cups)', qty: 0.25 } ] },
+        eveningSnack: { name: 'Greek yogurt with sunflower seeds', ingredients: [ { name: 'Greek yogurt (cups)', qty: 0.5 }, { name: 'sunflower seeds (tbsp)', qty: 2 } ] },
+        dessert: { name: 'Pineapple chunks', ingredients: [ { name: 'pineapple (cups)', qty: 0.5 } ] }
       },
       {
-        breakfast: { name: 'French toast', ingredients: [ { name: 'bread slices', qty: 2 }, { name: 'eggs', qty: 1 }, { name: 'milk (cups)', qty: 0.25 }, { name: 'cinnamon (tsp)', qty: 1 } ] },
-        lunch: { name: 'Minestrone soup', ingredients: [ { name: 'mixed vegetables (cups)', qty: 2 }, { name: 'beans (cups)', qty: 1 }, { name: 'pasta (cups)', qty: 0.5 } ] },
-        dinner: { name: 'Salmon Buddha bowl', ingredients: [ { name: 'salmon (g)', qty: 150 }, { name: 'brown rice (cups)', qty: 0.5 }, { name: 'avocado', qty: 0.5 }, { name: 'edamame (cups)', qty: 0.5 } ] }
+        breakfast: { name: 'French toast with cinnamon and berries', ingredients: [ { name: 'bread slices', qty: 2 }, { name: 'eggs', qty: 1 }, { name: 'milk (cups)', qty: 0.25 }, { name: 'cinnamon (tsp)', qty: 1 }, { name: 'berries (cups)', qty: 0.5 } ] },
+        morningSnack: { name: 'Banana and peanut butter', ingredients: [ { name: 'banana', qty: 1 }, { name: 'peanut butter (tbsp)', qty: 2 } ] },
+        lunch: { name: 'Minestrone soup with whole‑grain bread', ingredients: [ { name: 'mixed vegetables (cups)', qty: 2 }, { name: 'beans (cups)', qty: 1 }, { name: 'pasta (cups)', qty: 0.5 }, { name: 'whole‑grain bread slices', qty: 1 } ] },
+        afternoonSnack: { name: 'Cheese and crackers', ingredients: [ { name: 'cheese (g)', qty: 30 }, { name: 'whole‑grain crackers', qty: 4 } ] },
+        dinner: { name: 'Salmon Buddha bowl', ingredients: [ { name: 'salmon (g)', qty: 150 }, { name: 'brown rice (cups)', qty: 0.5 }, { name: 'avocado', qty: 0.5 }, { name: 'edamame (cups)', qty: 0.5 } ] },
+        eveningSnack: { name: 'Mixed nuts and dried fruit', ingredients: [ { name: 'mixed nuts (cups)', qty: 0.25 }, { name: 'dried fruit (cups)', qty: 0.25 } ] },
+        dessert: { name: 'Dark chocolate square', ingredients: [ { name: 'dark chocolate (squares)', qty: 1 } ] }
       },
       {
-        breakfast: { name: 'Banana pancakes', ingredients: [ { name: 'banana', qty: 1 }, { name: 'eggs', qty: 2 }, { name: 'oats (cups)', qty: 0.5 } ] },
+        breakfast: { name: 'Banana pancakes with oats', ingredients: [ { name: 'banana', qty: 1 }, { name: 'eggs', qty: 2 }, { name: 'oats (cups)', qty: 0.5 } ] },
+        morningSnack: { name: 'Sliced cucumber and hummus', ingredients: [ { name: 'cucumber', qty: 0.5 }, { name: 'hummus (tbsp)', qty: 2 } ] },
         lunch: { name: 'Caesar salad with chicken', ingredients: [ { name: 'romaine lettuce (cups)', qty: 2 }, { name: 'chicken (g)', qty: 150 }, { name: 'croutons (cups)', qty: 0.5 }, { name: 'parmesan (cups)', qty: 0.25 } ] },
-        dinner: { name: 'Shrimp pasta', ingredients: [ { name: 'shrimp (g)', qty: 150 }, { name: 'whole‑wheat pasta (cups)', qty: 1 }, { name: 'garlic (cloves)', qty: 1 }, { name: 'olive oil (tbsp)', qty: 1 } ] }
+        afternoonSnack: { name: 'Apple and cheese slices', ingredients: [ { name: 'apple', qty: 1 }, { name: 'cheese (g)', qty: 30 } ] },
+        dinner: { name: 'Shrimp pasta with garlic and olive oil', ingredients: [ { name: 'shrimp (g)', qty: 150 }, { name: 'whole‑wheat pasta (cups)', qty: 1 }, { name: 'garlic (cloves)', qty: 1 }, { name: 'olive oil (tbsp)', qty: 1 } ] },
+        eveningSnack: { name: 'Greek yogurt with chia seeds', ingredients: [ { name: 'Greek yogurt (cups)', qty: 0.5 }, { name: 'chia seeds (tbsp)', qty: 1 } ] },
+        dessert: { name: 'Chocolate‑covered strawberries', ingredients: [ { name: 'strawberries (cups)', qty: 0.5 }, { name: 'dark chocolate (tbsp)', qty: 1 } ] }
       },
       {
         breakfast: { name: 'Granola with milk', ingredients: [ { name: 'granola (cups)', qty: 1 }, { name: 'milk (cups)', qty: 1 } ] },
+        morningSnack: { name: 'Apple slices and almond butter', ingredients: [ { name: 'apple', qty: 1 }, { name: 'almond butter (tbsp)', qty: 2 } ] },
         lunch: { name: 'Falafel wrap', ingredients: [ { name: 'falafel balls', qty: 3 }, { name: 'pita bread', qty: 1 }, { name: 'lettuce (cups)', qty: 0.5 }, { name: 'tomato', qty: 0.5 } ] },
-        dinner: { name: 'Veggie burger', ingredients: [ { name: 'veggie patty', qty: 1 }, { name: 'bun', qty: 1 }, { name: 'lettuce (cups)', qty: 0.5 }, { name: 'tomato', qty: 0.5 } ] }
+        afternoonSnack: { name: 'Carrots and ranch dip', ingredients: [ { name: 'carrot sticks (cups)', qty: 0.5 }, { name: 'ranch dip (tbsp)', qty: 2 } ] },
+        dinner: { name: 'Veggie burger on whole‑grain bun', ingredients: [ { name: 'veggie patty', qty: 1 }, { name: 'bun', qty: 1 }, { name: 'lettuce (cups)', qty: 0.5 }, { name: 'tomato', qty: 0.5 } ] },
+        eveningSnack: { name: 'Trail mix', ingredients: [ { name: 'trail mix (cups)', qty: 0.25 } ] },
+        dessert: { name: 'Yogurt parfait with honey', ingredients: [ { name: 'Greek yogurt (cups)', qty: 0.5 }, { name: 'berries (cups)', qty: 0.5 }, { name: 'honey (tbsp)', qty: 1 } ] }
       }
     ];
     const daySelect = document.getElementById('daySelect');
@@ -161,20 +218,33 @@
     const mealsDiv = document.getElementById('meals');
     const shoppingBtn = document.getElementById('shoppingBtn');
     const shoppingListDiv = document.getElementById('shoppingList');
-    // Populate day options
-    for (let i = 0; i < MEAL_PLAN.length; i++) {
+    // Populate day options for all 14 days
+    MEAL_PLAN.forEach((_, i) => {
       const opt = document.createElement('option');
       opt.value = i;
       opt.textContent = 'Day ' + (i + 1);
       daySelect.appendChild(opt);
-    }
+    });
+    /**
+     * Render the selected day's meals.  Shows all seven mini‑meals (breakfast, morning snack, lunch, afternoon snack, dinner, evening snack and dessert).
+     */
     function renderDay() {
       const idx = parseInt(daySelect.value, 10);
       const day = MEAL_PLAN[idx];
+      const order = ['breakfast','morningSnack','lunch','afternoonSnack','dinner','eveningSnack','dessert'];
+      const labels = {
+        breakfast: 'Breakfast',
+        morningSnack: 'Morning snack',
+        lunch: 'Lunch',
+        afternoonSnack: 'Afternoon snack',
+        dinner: 'Dinner',
+        eveningSnack: 'Evening snack',
+        dessert: 'Dessert'
+      };
       const html = [];
-      ['breakfast','lunch','dinner'].forEach(mealKey => {
-        const meal = day[mealKey];
-        html.push(`<h3>${mealKey.charAt(0).toUpperCase() + mealKey.slice(1)}: ${meal.name}</h3>`);
+      order.forEach(key => {
+        const meal = day[key];
+        html.push(`<h3>${labels[key]}: ${meal.name}</h3>`);
         html.push('<ul>');
         meal.ingredients.forEach(item => {
           html.push(`<li>${item.name}: ${item.qty}</li>`);
@@ -186,18 +256,20 @@
     }
     daySelect.addEventListener('change', renderDay);
     peopleInput.addEventListener('change', () => {
-      // If number of people changes, regenerate the shopping list if it is visible
       if (shoppingListDiv.innerHTML) {
         generateShoppingList();
       }
     });
     shoppingBtn.addEventListener('click', generateShoppingList);
+    /**
+     * Generate a shopping list for the entire two‑week plan, multiplied by the selected number of people.
+     */
     function generateShoppingList() {
       const people = Math.max(1, parseInt(peopleInput.value, 10) || 1);
       const totals = {};
       MEAL_PLAN.forEach(day => {
-        ['breakfast','lunch','dinner'].forEach(mealKey => {
-          day[mealKey].ingredients.forEach(item => {
+        Object.values(day).forEach(meal => {
+          meal.ingredients.forEach(item => {
             const key = item.name;
             const qty = item.qty * people;
             totals[key] = (totals[key] || 0) + qty;

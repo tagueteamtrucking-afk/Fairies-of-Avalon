@@ -54,7 +54,8 @@
 <body>
   <h1>Stella — Meditation Studio</h1>
   <div class="image-container">
-    <img src="../assets/fairies/Stella-Inside.JPG" alt="Stella" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
+    <!-- Root‑relative path ensures the image loads correctly on GitHub Pages. -->
+    <img src="/assets/fairies/Stella-Inside.JPG" alt="Stella" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
   <input type="text" id="theme" placeholder="" />
   <button id="generateBtn">Generate Meditation</button>
@@ -67,7 +68,14 @@
   </div>
   <a href="../index.html">Return to city map</a>
   <script>
-    const OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
+    let OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
+    if (!OPENAI_API_KEY) {
+      const key = prompt('Please enter your OpenAI API key (it will be stored locally):');
+      if (key) {
+        localStorage.setItem('OPENAI_API_KEY', key);
+        OPENAI_API_KEY = key;
+      }
+    }
     // Preload the background music. This file should exist relative to the pages directory.
     const bgMusic = new Audio('../assets/audio/meditation-tone.wav');
     bgMusic.loop = true;

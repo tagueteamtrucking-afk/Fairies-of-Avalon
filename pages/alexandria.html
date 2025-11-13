@@ -77,13 +77,14 @@
 <body>
   <h1>Alexandria — Library</h1>
   <div class="image-container">
-    <!-- Use relative path to the character image.  The trailing spaces in some file names are intentional to match existing assets. -->
-    <img src="../assets/fairies/Alexandria-Inside.JPG" alt="Alexandria" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
+    <!-- Use root‑relative path for the character image to ensure it resolves on GitHub Pages. -->
+    <img src="/assets/fairies/Alexandria-Inside.JPG" alt="Alexandria" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
   <div id="chatBox"></div>
   <div id="chatControls">
     <input type="text" id="userInput" placeholder="">
     <button id="sendBtn">Send</button>
+    <button id="voiceBtn" title="Speak your message" style="margin-left:10px;">🎤</button>
   </div>
   <a href="../index.html">Return to city map</a>
   <script>
@@ -150,6 +151,35 @@
         sendMessage();
       }
     });
+    // Voice input using the Web Speech API.  When the microphone button is clicked, start recognition.
+    const voiceBtn = document.getElementById('voiceBtn');
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.addEventListener('result', (e) => {
+        const transcript = e.results[0][0].transcript;
+        inputEl.value = transcript;
+        sendMessage();
+      });
+      recognition.addEventListener('error', (e) => {
+        console.error('Speech recognition error:', e.error);
+      });
+      voiceBtn.addEventListener('click', () => {
+        recognition.start();
+      });
+    } else {
+      // Hide the voice button if speech recognition is not supported.
+      voiceBtn.style.display = 'none';
+    }
+    // If no API key is stored, prompt the user once to provide one.
+    if (!OPENAI_API_KEY) {
+      const key = prompt('Please enter your OpenAI API key (it will be stored locally):');
+      if (key) {
+        localStorage.setItem('OPENAI_API_KEY', key);
+      }
+    }
     // Greet the user on page load
     window.addEventListener('load', () => {
       const greeting = 'Welcome! What theme or idea would you like to explore in our story?';

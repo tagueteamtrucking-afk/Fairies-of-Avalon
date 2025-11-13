@@ -61,14 +61,22 @@
 <body>
   <h1>Abbey — Finance & Reporting</h1>
   <div class="image-container">
-    <img src="../../assets/fairies/Abbey-Inside.JPG" alt="Abbey" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
+    <!-- Root‑relative path ensures the image loads correctly on GitHub Pages. -->
+    <img src="/assets/fairies/Abbey-Inside.JPG" alt="Abbey" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
   <textarea id="transactions" rows="8" placeholder="Enter your transactions, one per line (e.g. Coffee Shop – 4.50)"></textarea>
   <button id="analyzeBtn">Analyze</button>
   <pre id="analysisOutput"></pre>
   <a href="../../index.html">Return to city map</a>
   <script>
-    const OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
+    let OPENAI_API_KEY = localStorage.getItem('OPENAI_API_KEY') || '';
+    if (!OPENAI_API_KEY) {
+      const key = prompt('Please enter your OpenAI API key (it will be stored locally):');
+      if (key) {
+        localStorage.setItem('OPENAI_API_KEY', key);
+        OPENAI_API_KEY = key;
+      }
+    }
     document.getElementById('analyzeBtn').addEventListener('click', async () => {
       const input = document.getElementById('transactions').value.trim();
       const output = document.getElementById('analysisOutput');

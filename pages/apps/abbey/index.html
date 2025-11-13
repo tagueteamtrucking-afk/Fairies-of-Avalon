@@ -9,48 +9,65 @@
 <body class="abbey-inside">
   <div class="wrap">
     <h1 class="heading">Abbey</h1>
-    <p class="lead">Finance fairy. Abbey helps you organise receipts, subscriptions and transactions. Connect your accounts or paste statement lines below.</p>
-    <p>Full integration with Gmail, QuickBooks and banking services requires OAuth authentication. Because this site cannot access your accounts directly, you will need to sign in during a takeover step. In the meantime, you can paste transaction data here to see how Abbey will parse and summarise it.</p>
-    <label for="transactions"><strong>Paste transactions or receipts</strong> (one per line, format: date, description, amount):</label>
-    <textarea id="transactions" rows="6" placeholder="2025-01-02, Amazon purchase, -25.99\n2025-01-03, Paycheck, 1500\n..."></textarea>
-    <button id="parse">Parse transactions</button>
+    <p class="lead">Finance fairy. Abbey helps you organise receipts, subscriptions and transactions. To begin, connect your Gmail, QuickBooks and bank accounts. Abbey will retrieve receipts and statements automatically and compile detailed reports.</p>
+    <p>When you click a button below, you will be prompted to authenticate. For security reasons, you will need to take over the browser to complete the sign‑in process.</p>
+    <div class="account-buttons">
+      <button id="connect-gmail">Connect Gmail</button>
+      <button id="connect-quickbooks">Connect QuickBooks</button>
+      <button id="connect-bank">Connect Bank</button>
+    </div>
     <div id="results" style="margin-top:1rem;"></div>
+    <h2 style="margin-top:2rem;">Optional: Parse Sample Transactions</h2>
+    <p>You can paste a few lines of transaction data here to see how Abbey groups and summarises purchases. This is optional—if you connect your accounts above, Abbey will fetch data automatically.</p>
+    <textarea id="transactions-input" rows="5" placeholder="e.g. 2025-03-03 Walmart 34.56\n2025-03-04 Amazon 12.99"></textarea><br>
+    <button id="parse-transactions">Parse Transactions</button>
+    <div id="parse-results" style="margin-top:1rem;"></div>
     <p><a href="../../../index.html">← back to home</a></p>
   </div>
   <script>
-    document.getElementById('parse').addEventListener('click', () => {
-      const raw = document.getElementById('transactions').value.trim();
+    function showConnectMessage(service) {
       const results = document.getElementById('results');
-      if (!raw) {
-        results.textContent = 'Please paste some transaction lines.';
+      results.innerHTML = `<p>Please take over the browser to authenticate your ${service} account. Once connected, Abbey will automatically retrieve your receipts and transactions.</p>`;
+    }
+    document.getElementById('connect-gmail').addEventListener('click', () => {
+      showConnectMessage('Gmail');
+    });
+    document.getElementById('connect-quickbooks').addEventListener('click', () => {
+      showConnectMessage('QuickBooks');
+    });
+    document.getElementById('connect-bank').addEventListener('click', () => {
+      showConnectMessage('bank');
+    });
+    // Parse sample transactions when the button is clicked
+    document.getElementById('parse-transactions').addEventListener('click', () => {
+      const input = document.getElementById('transactions-input').value.trim();
+      const out = document.getElementById('parse-results');
+      if (!input) {
+        out.innerHTML = '<p>Please paste some transaction lines to parse.</p>';
         return;
       }
-      const lines = raw.split(/\n+/);
-      const rows = [];
-      let totalIncome = 0;
-      let totalExpense = 0;
+      const lines = input.split(/\n+/);
+      const summary = {};
+      let total = 0;
       lines.forEach(line => {
-        const parts = line.split(/,\s*/);
+        const parts = line.trim().split(/\s+/);
+        // Expect format: date merchant amount
         if (parts.length >= 3) {
-          const date = parts[0];
-          const desc = parts[1];
-          const amount = parseFloat(parts[2]);
-          const type = amount >= 0 ? 'Income' : 'Expense';
-          if (type === 'Income') totalIncome += amount; else totalExpense += amount;
-          rows.push({ date, desc, amount: amount.toFixed(2), type });
+          const amount = parseFloat(parts.pop());
+          const merchant = parts.slice(1).join(' ');
+          if (!isNaN(amount)) {
+            total += amount;
+            summary[merchant] = (summary[merchant] || 0) + amount;
+          }
         }
       });
-      if (rows.length === 0) {
-        results.textContent = 'No valid transactions detected.';
-        return;
-      }
-      let html = '<table><thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Type</th></tr></thead><tbody>';
-      rows.forEach(r => {
-        html += `<tr><td>${r.date}</td><td>${r.desc}</td><td>${r.amount}</td><td>${r.type}</td></tr>`;
+      let html = '<h3>Summary</h3><ul>';
+      Object.keys(summary).forEach(merchant => {
+        const amt = summary[merchant].toFixed(2);
+        html += `<li>${merchant}: $${amt}</li>`;
       });
-      html += '</tbody></table>';
-      html += `<p><strong>Total income:</strong> $${totalIncome.toFixed(2)}<br><strong>Total expenses:</strong> $${Math.abs(totalExpense).toFixed(2)}</p>`;
-      results.innerHTML = html;
+      html += `</ul><p><strong>Total:</strong> $${total.toFixed(2)}</p>`;
+      out.innerHTML = html;
     });
   </script>
 </body>

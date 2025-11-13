@@ -8,9 +8,49 @@
 </head>
 <body class="carol-inside">
   <div class="wrap">
-    <h1 class="heading">Menu</h1>
-    <p class="lead">In future versions this page will showcase all dishes available in Avalon’s kitchen, complete with pictures and nutritional information. For now, please explore the meal planner and shopping list.</p>
-    <p><a href="index.html">← back to Carol</a></p>
+<h1 class="heading">14‑Day Menu Overview</h1>
+<p class="lead">Below you can browse the entire two‑week menu created by Carol.  Each day contains seven small meals designed to fuel you with lean proteins, whole grains, fruits and vegetables.  Select the down‑arrow to expand a day and view its dishes with calorie counts.  To rate and add notes for each meal, please use the <a href="meal-plan.html">meal planner</a>.</p>
+<details id="menu-container"></details>
+<p><a href="index.html">← back to Carol</a></p>
+<script>
+  // Build the full menu by reading the dataset in meal-plan.html.  We fetch
+  // the local HTML file, extract meal entries and group them by day.  Each
+  // day has seven meals.  We then populate a list of <details> sections.
+  fetch('meal-plan.html')
+    .then(resp => resp.text())
+    .then(text => {
+      const regex = /name: '([^']+)'\s*,\s*\n\s*mealType: '([^']+)'\s*,\s*\n\s*nutrition: (\d+)/g;
+      const meals = [];
+      let match;
+      while ((match = regex.exec(text)) !== null) {
+        meals.push({ name: match[1], type: match[2], cals: parseInt(match[3], 10) });
+      }
+      // Group into days of 7 meals each
+      const days = [];
+      for (let i = 0; i < meals.length; i += 7) {
+        days.push(meals.slice(i, i + 7));
+      }
+      const container = document.getElementById('menu-container');
+      container.innerHTML = '';
+      days.forEach((dayMeals, idx) => {
+        const dayName = `Day ${idx + 1}`;
+        const total = dayMeals.reduce((sum, m) => sum + m.cals, 0);
+        let html = `<summary><strong>${dayName}</strong> – Total: ${total} kcal</summary>`;
+        html += '<table><thead><tr><th>Meal</th><th>Type</th><th>Calories</th></tr></thead><tbody>';
+        dayMeals.forEach(meal => {
+          html += `<tr><td>${meal.name}</td><td>${meal.type}</td><td>${meal.cals}</td></tr>`;
+        });
+        html += '</tbody></table>';
+        const details = document.createElement('details');
+        details.innerHTML = html;
+        container.appendChild(details);
+      });
+    })
+    .catch(err => {
+      const container = document.getElementById('menu-container');
+      container.innerHTML = '<p>Failed to load menu data.</p>';
+    });
+</script>
   </div>
 </body>
 </html>

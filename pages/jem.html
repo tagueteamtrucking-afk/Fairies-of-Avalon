@@ -3,96 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jem – Fitness & Motion</title>
+  <title>Jem – Weekly Training Plan</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body class="jem-inside">
   <div class="wrap">
     <h1 class="heading">Jem</h1>
-    <p class="lead">Fitness &amp; motion. Jem guides you through a weekly training split inspired by Joe Weider’s methods. Each day mixes morning warmups, afternoon workouts and evening stretches. Log your performance and Jem will adapt your targets for next time.</p>
-    <p>Below is your current routine covering a full week. Record how many repetitions (or seconds) you actually complete for each item, then click <strong>Evaluate</strong>. Jem will increase or decrease the target by about 10% to help you progress sustainably. Use the <strong>Reset</strong> button to restore the original targets.</p>
-    <table id="routine-table">
-      <thead>
-        <tr><th>Exercise</th><th>Target reps</th><th>Achieved reps</th><th>Next target</th></tr>
-      </thead>
-      <tbody>
-        <!-- rows injected by script -->
-      </tbody>
-    </table>
-    <button id="evaluate">Evaluate Performance</button>
-    <button id="reset-routine">Reset Routine</button>
-    <p style="margin-top:1rem;"><a href="../index.html">← back to home</a></p>
+    <p class="lead">Fitness &amp; motion. Jem offers a structured 7‑day routine based on Joe Weider’s principles, adapted for calisthenics and resistance bands. Choose a day to view the exercises, record your reps and let Jem adjust your targets.</p>
+    <label for="day-select"><strong>Select day of the week:</strong></label>
+    <select id="day-select"></select>
+    <div id="day-content" style="margin-top:1rem;"></div>
+    <p><a href="../index.html">← back to home</a></p>
   </div>
   <script>
-    // Predefined routine based on a 7-day training split inspired by Joe Weider.
-    // The list blends morning warmups, afternoon workouts and evening stretches.
-    // Each exercise has a target count (reps or seconds).  Users log what
-    // they actually complete, and Jem adjusts the target up or down by 10%.
-    const DEFAULT_ROUTINE = [
-      { name: 'Morning: Jumping jacks', target: 30 },
-      { name: 'Morning: High knees', target: 30 },
-      { name: 'Afternoon: Push-ups', target: 15 },
-      { name: 'Afternoon: Resistance band rows', target: 15 },
-      { name: 'Afternoon: Squats', target: 20 },
-      { name: 'Afternoon: Lunges (per leg)', target: 16 },
-      { name: 'Afternoon: Glute bridges', target: 20 },
-      { name: 'Afternoon: Bicep curls (band)', target: 15 },
-      { name: 'Core: Plank (seconds)', target: 60 },
-      { name: 'Evening: Stretch routine', target: 1 }
+    // Week plan definitions. Each day has a name and a list of exercises with sets and target reps per set.
+    const DEFAULT_WEEK_PLAN = [
+      {
+        name: 'Day 1 – Chest & Triceps',
+        exercises: [
+          { name: 'Warm‑up: Arm circles', sets: 2, reps: 20 },
+          { name: 'Warm‑up: Shoulder rolls', sets: 2, reps: 20 },
+          { name: 'Incline push‑ups', sets: 3, reps: 15 },
+          { name: 'Resistance band chest press', sets: 3, reps: 12 },
+          { name: 'Incline band flyes', sets: 3, reps: 12 },
+          { name: 'Tricep dips', sets: 3, reps: 15 }
+        ]
+      },
+      {
+        name: 'Day 2 – Back & Biceps',
+        exercises: [
+          { name: 'Warm‑up: Band pull‑aparts', sets: 2, reps: 15 },
+          { name: 'Warm‑up: Scapular retractions', sets: 2, reps: 15 },
+          { name: 'Resistance band rows', sets: 3, reps: 12 },
+          { name: 'Assisted pull‑ups or inverted rows', sets: 3, reps: 8 },
+          { name: 'Reverse flyes (band)', sets: 3, reps: 12 },
+          { name: 'Bicep curls (band)', sets: 3, reps: 12 }
+        ]
+      },
+      {
+        name: 'Day 3 – Legs',
+        exercises: [
+          { name: 'Warm‑up: Body‑weight squats', sets: 2, reps: 15 },
+          { name: 'Warm‑up: Walking lunges', sets: 2, reps: 10 },
+          { name: 'Goblet squats', sets: 3, reps: 15 },
+          { name: 'Resistance band deadlifts', sets: 3, reps: 12 },
+          { name: 'Walking lunges', sets: 3, reps: 12 },
+          { name: 'Standing calf raises', sets: 3, reps: 20 }
+        ]
+      },
+      {
+        name: 'Day 4 – Shoulders & Core',
+        exercises: [
+          { name: 'Warm‑up: Arm circles', sets: 2, reps: 20 },
+          { name: 'Warm‑up: Dynamic chest opener', sets: 2, reps: 15 },
+          { name: 'Shoulder press (band)', sets: 3, reps: 12 },
+          { name: 'Lateral raises (band)', sets: 3, reps: 12 },
+          { name: 'Front raises (band)', sets: 3, reps: 12 },
+          { name: 'Plank (seconds)', sets: 3, reps: 45 },
+          { name: 'Bicycle crunches', sets: 3, reps: 20 },
+          { name: 'Leg raises', sets: 3, reps: 15 }
+        ]
+      },
+      {
+        name: 'Day 5 – HIIT & Conditioning',
+        exercises: [
+          { name: 'Warm‑up: Jump rope (seconds)', sets: 3, reps: 60 },
+          { name: 'Burpees', sets: 3, reps: 12 },
+          { name: 'Mountain climbers', sets: 3, reps: 20 },
+          { name: 'Squat jumps', sets: 3, reps: 15 },
+          { name: 'Jump rope cool‑down (seconds)', sets: 2, reps: 60 }
+        ]
+      },
+      {
+        name: 'Day 6 – Active Rest & Mobility',
+        exercises: [
+          { name: 'Light yoga or mobility (minutes)', sets: 1, reps: 10 },
+          { name: 'Brisk walk or jog (minutes)', sets: 1, reps: 30 },
+          { name: 'Foam rolling or stretching (minutes)', sets: 1, reps: 10 }
+        ]
+      },
+      {
+        name: 'Day 7 – Rest & Recovery',
+        exercises: [
+          { name: 'Breathing exercises (minutes)', sets: 1, reps: 5 },
+          { name: 'Gentle stretching or foam rolling (minutes)', sets: 1, reps: 15 }
+        ]
+      }
     ];
-    const STORAGE_KEY = 'jemRoutine';
-    let routine = [];
+    const STORAGE_KEY = 'jemWeekPlan';
+    let weekPlan;
     try {
-      routine = JSON.parse(localStorage.getItem(STORAGE_KEY)) || JSON.parse(JSON.stringify(DEFAULT_ROUTINE));
+      weekPlan = JSON.parse(localStorage.getItem(STORAGE_KEY)) || JSON.parse(JSON.stringify(DEFAULT_WEEK_PLAN));
     } catch {
-      routine = JSON.parse(JSON.stringify(DEFAULT_ROUTINE));
+      weekPlan = JSON.parse(JSON.stringify(DEFAULT_WEEK_PLAN));
     }
-    const tbody = document.querySelector('#routine-table tbody');
-    const evaluateBtn = document.getElementById('evaluate');
-    const resetBtn = document.getElementById('reset-routine');
-
-    function renderRoutine() {
-      tbody.innerHTML = '';
-      routine.forEach((ex, idx) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${ex.name}</td>
-          <td>${ex.target}</td>
-          <td><input type="number" min="0" data-idx="${idx}" placeholder="0"></td>
-          <td class="next-target">—</td>`;
-        tbody.appendChild(row);
+    const daySelect = document.getElementById('day-select');
+    // Populate day selection
+    weekPlan.forEach((day, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx;
+      opt.textContent = day.name;
+      daySelect.appendChild(opt);
+    });
+    daySelect.addEventListener('change', () => renderDay(parseInt(daySelect.value, 10)));
+    const contentDiv = document.getElementById('day-content');
+    function renderDay(idx) {
+      const day = weekPlan[idx];
+      let html = `<h2>${day.name}</h2>`;
+      html += '<table><thead><tr><th>Exercise</th><th>Sets</th><th>Target reps</th><th>Achieved reps</th><th>Next target</th></tr></thead><tbody>';
+      day.exercises.forEach((ex, exIdx) => {
+        html += `<tr>
+          <td>${ex.name}</td>
+          <td>${ex.sets}</td>
+          <td>${ex.reps}</td>
+          <td><input type="number" min="0" data-ex="${exIdx}" placeholder="0"></td>
+          <td class="next-target">—</td>
+        </tr>`;
       });
+      html += '</tbody></table>';
+      html += '<button id="evaluate">Evaluate Performance</button> <button id="reset">Reset Day</button>';
+      contentDiv.innerHTML = html;
+      // Bind evaluate and reset
+      document.getElementById('evaluate').addEventListener('click', () => evaluateDay(idx));
+      document.getElementById('reset').addEventListener('click', () => resetDay(idx));
     }
-
-    function evaluatePerformance() {
-      const inputs = tbody.querySelectorAll('input[type="number"]');
-      inputs.forEach(input => {
-        const idx = parseInt(input.dataset.idx, 10);
+    function evaluateDay(dayIdx) {
+      const day = weekPlan[dayIdx];
+      const rows = contentDiv.querySelectorAll('tbody tr');
+      rows.forEach((row, exRowIdx) => {
+        const input = row.querySelector('input');
         const achieved = parseInt(input.value, 10);
-        const current = routine[idx].target;
-        let nextTarget = current;
+        const ex = day.exercises[exRowIdx];
+        let next = ex.reps;
         if (!isNaN(achieved)) {
-          if (achieved >= current) {
-            nextTarget = Math.ceil(current * 1.1);
+          if (achieved >= ex.reps) {
+            next = Math.ceil(ex.reps * 1.1);
           } else {
-            nextTarget = Math.max(1, Math.ceil(current * 0.9));
+            next = Math.max(1, Math.floor(ex.reps * 0.9));
           }
+          ex.reps = next;
         }
-        routine[idx].target = nextTarget;
-        // update next target cell
-        input.closest('tr').querySelector('.next-target').textContent = nextTarget;
+        row.querySelector('.next-target').textContent = next;
       });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(routine));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(weekPlan));
     }
-
-    function resetRoutine() {
-      routine = JSON.parse(JSON.stringify(DEFAULT_ROUTINE));
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(routine));
-      renderRoutine();
+    function resetDay(dayIdx) {
+      // Reset just this day's exercises to default
+      weekPlan[dayIdx] = JSON.parse(JSON.stringify(DEFAULT_WEEK_PLAN[dayIdx]));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(weekPlan));
+      renderDay(dayIdx);
     }
-
-    evaluateBtn.addEventListener('click', evaluatePerformance);
-    resetBtn.addEventListener('click', resetRoutine);
-    renderRoutine();
+    // Render the first day by default
+    daySelect.value = '0';
+    renderDay(0);
   </script>
 </body>
 </html>

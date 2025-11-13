@@ -9,70 +9,225 @@
 <body class="carol-inside">
   <div class="wrap">
     <h1 class="heading">Shopping List</h1>
-    <p class="lead">This list aggregates all ingredients from the weekly meal plan. Check items off as you shop.</p>
+    <p class="lead">This list aggregates all ingredients from the 14‑day meal plan for two people. Check items off as you shop.</p>
     <div id="list"></div>
-    <button id="reset">Reset purchased items</button>
     <p><a href="index.html">← back to Carol</a></p>
   </div>
   <script>
-    // Reuse the same mealPlan definition from meal-plan.html by reconstructing it here.
+    // Ingredient lists for each day of the 14‑day plan.  Only the
+    // ingredients are included here; see meal-plan.html for names and
+    // instructions.  Quantities correspond to a single person; we will
+    // multiply by the number of persons when aggregating.
     const day1 = [
-      {ingredients: ['0.5 cup rolled oats','1 tbsp chia seeds','0.75 cup lactose‑free milk','0.5 cup frozen mixed berries']},
-      {ingredients: ['1 apple','2 tbsp peanut butter']},
-      {ingredients: ['4 oz cooked chicken breast','0.5 avocado','6 butter lettuce leaves','1 tsp olive oil','1 tsp lemon juice']},
-      {ingredients: ['3 tbsp hummus (no cumin)','0.5 cup cucumber','0.5 cup steamed carrots']},
-      {ingredients: ['0.75 cup lactose‑free Greek yogurt','0.5 cup pineapple (drained)']},
-      {ingredients: ['5 oz salmon fillet','2 tsp olive oil','2 cup mixed vegetables (frozen)','0.25 lemon','0.5 tsp garlic powder']},
-      {ingredients: ['1 banana','1 cup spinach','0.75 cup lactose‑free milk','1 tbsp ground flaxseed']}
+      {ingredients: ['1/2 cup rolled oats','1 tbsp chia seeds','3/4 cup lactose‑free milk','1/2 cup frozen mixed berries']},
+      {ingredients: ['1 apple','2 tbsp peanut butter']},
+      {ingredients: ['4 oz cooked chicken breast','1/2 ripe avocado','6 butter lettuce leaves','1 tsp olive oil','1 tsp lemon juice']},
+      {ingredients: ['3 tbsp hummus','1/2 cup cucumber slices','1/2 cup steamed carrots']},
+      {ingredients: ['3/4 cup lactose‑free Greek yogurt','1/2 cup pineapple chunks (drained)']},
+      {ingredients: ['5 oz salmon fillet','2 tsp olive oil','2 cups frozen mixed vegetables','1/4 lemon','1/2 tsp garlic powder']},
+      {ingredients: ['1 banana','1 cup baby spinach','3/4 cup lactose‑free milk','1 tbsp ground flaxseed']}
     ];
     const day2 = [
-      {ingredients: ['0.75 cup lactose‑free cottage cheese','0.5 cup peach (drained)','2 tbsp rolled oats']},
-      {ingredients: ['2 rice cakes','1.5 tbsp peanut butter','0.5 banana']},
-      {ingredients: ['1 soft whole‑wheat tortilla','3 oz turkey breast (low sodium)','1 cup spinach','1 tbsp lactose‑free cream cheese']},
-      {ingredients: ['1 ripe pear','1 oz slivered almonds']},
-      {ingredients: ['1.25 cup low‑sodium tomato soup','1 tsp olive oil']},
-      {ingredients: ['5 oz chicken breast','0.25 cup light panko','Olive oil spray']},
-      {ingredients: ['0.75 cup frozen berries','0.75 cup lactose‑free milk','1 tsp unsweetened cocoa']}
+      {ingredients: ['3/4 cup lactose‑free cottage cheese','1/2 cup peach slices (drained)','2 tbsp rolled oats']},
+      {ingredients: ['2 rice cakes','1 1/2 tbsp peanut butter','1/2 banana']},
+      {ingredients: ['1 whole‑wheat tortilla','3 oz low‑sodium turkey breast','1 cup fresh spinach','1 tbsp lactose‑free cream cheese']},
+      {ingredients: ['1 ripe pear','1 oz slivered almonds']},
+      {ingredients: ['1 1/4 cups low‑sodium tomato soup','1 tsp olive oil']},
+      {ingredients: ['5 oz chicken breast','1/4 cup light panko breadcrumbs','Olive oil spray']},
+      {ingredients: ['3/4 cup frozen berries','3/4 cup lactose‑free milk','1 tsp unsweetened cocoa powder']}
     ];
-    // Build a 14-day meal plan and aggregate ingredients for two people.  Odd
-    // numbered days use day1 and even days use day2.  Each ingredient is
-    // multiplied by the number of occurrences times the number of persons.
+    const day3 = [
+      {ingredients: ['3 eggs','1 cup chopped spinach','1/4 cup crumbled feta','1 tbsp milk','Salt and pepper']},
+      {ingredients: ['1 cup seedless grapes','1 oz raw almonds']},
+      {ingredients: ['1 can (5 oz) tuna in water, drained','1 tbsp mayonnaise','1 tbsp plain yogurt','1 stalk celery, diced','2 tbsp diced onion','6 butter lettuce leaves']},
+      {ingredients: ['1 cup strawberries','1 oz dark chocolate (70 % cocoa)']},
+      {ingredients: ['2 cups water','2 tbsp miso paste','1/2 cup diced tofu','1/2 cup sliced mushrooms','2 green onions, sliced']},
+      {ingredients: ['4 oz lean beef strips','2 cups mixed vegetables (broccoli, bell pepper, snap peas)','1 tbsp soy sauce','1 tsp sesame oil','1 clove garlic, minced']},
+      {ingredients: ['1 cucumber','1 apple','1/2 lemon']}
+    ];
+    const day4 = [
+      {ingredients: ['3 tbsp chia seeds','1 cup lactose‑free milk','1/2 mango, diced','1 tsp honey']},
+      {ingredients: ['1 pear','1 oz walnut halves']},
+      {ingredients: ['4 oz cooked chicken breast','1/2 cup cooked quinoa','1 cup roasted vegetables (e.g., zucchini, bell pepper)','1 tbsp olive oil','Salt and pepper']},
+      {ingredients: ['1 bell pepper, sliced','3 tbsp hummus']},
+      {ingredients: ['3/4 cup lactose‑free yogurt','2 tbsp granola','1/4 cup berries']},
+      {ingredients: ['4 oz shrimp, peeled and deveined','1/2 cup cooked brown rice','1 cup asparagus spears','1 tbsp olive oil','Salt and pepper']},
+      {ingredients: ['1 orange, peeled','1 carrot, chopped','1/2 cup water','1 tsp honey']}
+    ];
+    const day5 = [
+      {ingredients: ['1/2 cup oat flour','1 scoop protein powder','1 egg','1/2 cup milk','1/2 cup berries']},
+      {ingredients: ['1/2 cucumber','1/2 cup lactose‑free cottage cheese','Salt and pepper']},
+      {ingredients: ['1/2 cup cooked quinoa','1/2 cup black beans','1/2 cup corn kernels','1/2 avocado, diced','1 tbsp lime juice']},
+      {ingredients: ['1 cup carrot sticks','2 tbsp almond butter']},
+      {ingredients: ['1 cup diced pineapple','1 cup diced cucumber','1 tbsp chopped mint','1 tsp lime juice']},
+      {ingredients: ['2 bell peppers, halved','1/2 cup cooked brown rice','1/2 cup ground turkey','1/4 cup tomato sauce','1/4 cup shredded cheese']},
+      {ingredients: ['1 banana','1 tbsp cocoa powder','1 cup almond milk','1 tsp honey']}
+    ];
+    const day6 = [
+      {ingredients: ['1 cup diced mango','3/4 cup yogurt','1/2 cup water','1 tsp honey']},
+      {ingredients: ['2 stalks celery','2 tbsp cream cheese']},
+      {ingredients: ['2 tomatoes','1 cup cooked chicken, diced','1 tbsp mayo','1 tbsp mustard','1/4 cup diced celery']},
+      {ingredients: ['1 apple','1 oz cheddar cheese']},
+      {ingredients: ['1 cucumber, sliced','1 tbsp tahini','1 tsp lemon juice','Salt and pepper']},
+      {ingredients: ['5 oz cod fillet','1 cup asparagus','1 tbsp olive oil','1 tsp lemon zest','1 tsp fresh herbs (dill or parsley)']},
+      {ingredients: ['1 cup mixed berries','1 cup spinach','3/4 cup almond milk','1 tbsp chia seeds']}
+    ];
+    const day7 = [
+      {ingredients: ['1/2 cup rolled oats','1 cup water','1 tbsp raisins','1/2 tsp cinnamon','1 tsp honey']},
+      {ingredients: ['1 orange, peeled','3/4 cup yogurt']},
+      {ingredients: ['2 hard‑boiled eggs, chopped','1 tbsp mayonnaise','1 tsp dijon mustard','1/4 cup diced celery','4 romaine lettuce leaves']},
+      {ingredients: ['1 apple, thinly sliced','1/2 tsp cinnamon']},
+      {ingredients: ['2 medium beets','1 cup mixed greens','1 tbsp balsamic vinaigrette']},
+      {ingredients: ['4 oz ground turkey','1/4 cup breadcrumbs','1 egg','1 cup zucchini noodles','1/2 cup marinara sauce']},
+      {ingredients: ['1 grapefruit, juiced','1/4 cup fresh mint leaves','1 cup sparkling water','1 tsp honey']}
+    ];
+    const day8 = [
+      {ingredients: ['1 banana','1 cup frozen berries','1/2 cup yogurt','1 tbsp almond butter','2 tbsp chopped nuts']},
+      {ingredients: ['1 cup cherry tomatoes','2 oz mozzarella balls','1 tbsp balsamic glaze']},
+      {ingredients: ['1/2 cup cooked quinoa','1/2 cup shelled edamame','1 cup mixed vegetables','1 tbsp soy sauce','1 tsp sesame oil']},
+      {ingredients: ['1 whole‑wheat pita','1/4 cup tzatziki sauce','Cucumber slices']},
+      {ingredients: ['2 kiwis, peeled and sliced','1/2 cup strawberries']},
+      {ingredients: ['5 oz canned salmon, drained','1/2 cup cooked quinoa','1 egg','2 tbsp chopped parsley','2 tbsp whole‑wheat breadcrumbs']},
+      {ingredients: ['2 cups seedless watermelon, cubed','1 cup ice','1 tbsp lime juice']}
+    ];
+    const day9 = [
+      {ingredients: ['1 slice whole‑grain bread','1/2 avocado','1 tsp chia seeds','Salt and pepper']},
+      {ingredients: ['3/4 cup yogurt','1/2 cup blueberries','2 tbsp granola']},
+      {ingredients: ['1 cup cooked lentils','2 cups vegetable broth','1 cup spinach','1/2 onion, diced','1 clove garlic, minced','1 tsp cumin']},
+      {ingredients: ['1 carrot','1 cucumber','1/2 cup guacamole']},
+      {ingredients: ['1 cup red grapes','1 oz Gouda cheese']},
+      {ingredients: ['1 medium sweet potato','1/4 cup black beans','1/4 cup corn','2 tbsp shredded cheddar','1 tbsp salsa']},
+      {ingredients: ['1 cup pineapple chunks','1/4 cup mint leaves','1 cup coconut water','1 tbsp chia seeds']}
+    ];
+    const day10 = [
+      {ingredients: ['1/2 cup oats','1 cup water','1/2 cup mixed berries','1 tbsp honey']},
+      {ingredients: ['1 banana','2 tbsp almond butter']},
+      {ingredients: ['1 sheet nori','1/2 cup sushi rice, cooked','1/4 cucumber, julienned','1/4 avocado, sliced','1/4 carrot, julienned','Soy sauce for serving']},
+      {ingredients: ['1/2 cup diced peaches','3/4 cup cottage cheese']},
+      {ingredients: ['1 cup shelled edamame','Sea salt to taste']},
+      {ingredients: ['4 oz shrimp','1 cup rice noodles','1 cup mixed veggies','1 tbsp soy sauce','1 tsp sesame oil','1/2 lime']},
+      {ingredients: ['1 cup spinach','1 pear, cored','3/4 cup almond milk','1 tbsp chia seeds']}
+    ];
+    const day11 = [
+      {ingredients: ['3/4 cup Greek yogurt','1 tbsp honey','2 tbsp chopped nuts']},
+      {ingredients: ['2 stalks celery','2 tbsp peanut butter']},
+      {ingredients: ['1 cup cooked chickpeas','1/2 cup cherry tomatoes','1/4 cup diced cucumber','2 tbsp feta cheese','1 tbsp olive oil','1 tbsp lemon juice','Salt and pepper']},
+      {ingredients: ['1/2 cup mixed berries','1 oz dark chocolate']},
+      {ingredients: ['1 cup chopped carrots','2 cups vegetable broth','1 tsp grated ginger','1/4 onion, diced','Salt and pepper']},
+      {ingredients: ['4 oz lean beef slices','1 cup broccoli florets','1 tbsp soy sauce','1 tsp cornstarch','1/2 cup water','2 tsp sesame oil']},
+      {ingredients: ['1/2 lemon, sliced','1/4 cup blueberries','1 cup water','Ice']}
+    ];
+    const day12 = [
+      {ingredients: ['1 slice whole‑grain bread','1/2 avocado','1 egg','Salt and pepper']},
+      {ingredients: ['3/4 cup cottage cheese','1 tomato, sliced','Salt and pepper']},
+      {ingredients: ['1/2 cup cooked quinoa','1 cup roasted vegetables (e.g., Brussels sprouts, carrots)','1/4 cup chickpeas','1 tbsp tahini sauce']},
+      {ingredients: ['1 cup blueberries','1 oz almonds']},
+      {ingredients: ['1 cup diced tomatoes','1/2 cup cucumber','1/4 cup red bell pepper','1/4 cup onion','1 tbsp olive oil','1 tbsp red wine vinegar']},
+      {ingredients: ['5 oz shrimp','1/2 cup cooked quinoa','1 clove garlic, minced','1 tbsp lemon juice','1 tsp olive oil']},
+      {ingredients: ['1 cup mango chunks','1/2 cup coconut milk','1/2 cup water','1 tbsp chia seeds']}
+    ];
+    const day13 = [
+      {ingredients: ['1/2 cup oats','1 cup water','1/4 cup pumpkin puree','1 tbsp maple syrup','1/2 tsp pumpkin spice']},
+      {ingredients: ['1 bell pepper, sliced','2 tbsp ranch dressing']},
+      {ingredients: ['4 oz grilled chicken','1/2 cup brown rice','1/2 cup black beans','1/2 cup sautéed bell peppers and onions','1 tbsp salsa','1 tbsp sour cream (optional)']},
+      {ingredients: ['1/2 cup diced peaches','3/4 cup yogurt','1 tsp honey']},
+      {ingredients: ['1 cucumber, sliced','1 tbsp fresh dill','1 tsp lemon juice','Salt and pepper']},
+      {ingredients: ['5 oz tilapia fillet','1/2 mango, diced','1/4 cup diced red onion','1 tbsp cilantro, chopped','1 tsp lime juice','Salt and pepper']},
+      {ingredients: ['1 banana','1/2 cup strawberries','1/2 cup blueberries','3/4 cup almond milk','1 tbsp flaxseed']}
+    ];
+    const day14 = [
+      {ingredients: ['1/2 cup muesli','3/4 cup milk','1/2 cup mixed fruit']},
+      {ingredients: ['2 hard‑boiled eggs','1 cup baby carrots']},
+      {ingredients: ['1/2 cup cooked quinoa','1/4 cup dried cranberries','1/4 cup chopped cucumber','1/4 cup chickpeas','1 tbsp olive oil','1 tbsp apple cider vinegar']},
+      {ingredients: ['1 kiwi, peeled and cubed','1/2 cup pineapple chunks','Skewers']},
+      {ingredients: ['1/2 small cantaloupe, sliced','2 oz prosciutto']},
+      {ingredients: ['1 cup zucchini noodles','1/2 cup cherry tomatoes','2 tbsp pesto','2 tbsp pine nuts']},
+      {ingredients: ['1 cup strawberries','1/2 banana','3/4 cup almond milk','2 tbsp almond butter']}
+    ];
     const mealPlan = {
       'Day 1': day1,
       'Day 2': day2,
-      'Day 3': day1,
-      'Day 4': day2,
-      'Day 5': day1,
-      'Day 6': day2,
-      'Day 7': day1,
-      'Day 8': day2,
-      'Day 9': day1,
-      'Day 10': day2,
-      'Day 11': day1,
-      'Day 12': day2,
-      'Day 13': day1,
-      'Day 14': day2
+      'Day 3': day3,
+      'Day 4': day4,
+      'Day 5': day5,
+      'Day 6': day6,
+      'Day 7': day7,
+      'Day 8': day8,
+      'Day 9': day9,
+      'Day 10': day10,
+      'Day 11': day11,
+      'Day 12': day12,
+      'Day 13': day13,
+      'Day 14': day14
     };
     const persons = 2;
-    // Aggregate quantities by parsing numeric values where possible.
+    // Aggregate quantities by parsing numeric values where possible.  We build
+    // a summary object keyed by ingredient type (including unit) and also
+    // compute piece counts for items sold by the piece (e.g. bananas, eggs,
+    // lemons).  For lemon wedges we convert wedges (1/4 each) into whole
+    // lemons.  The totals are multiplied by the number of persons.
     const aggregate = {};
+    // Special accumulators for piece-based items
+    let lemonCount = 0;
+    let bananaCount = 0;
+    let eggCount = 0;
     Object.values(mealPlan).forEach(day => {
       day.forEach(item => {
         item.ingredients.forEach(ing => {
           const key = ing.trim();
-          // Try to parse a quantity and unit
+          // match fractional quantities (e.g. 0.5, 1/4) and units
+          let matched = false;
+          // Check for explicit fractional format like 1/4
+          const fracMatch = key.match(/^(\d+)\/(\d+)\s+(.*)$/);
+          if (fracMatch) {
+            const num = parseFloat(fracMatch[1]);
+            const den = parseFloat(fracMatch[2]);
+            const name = fracMatch[3].toLowerCase();
+            const qty = num / den;
+            // handle lemon wedges
+            if (name.includes('lemon')) {
+              lemonCount += qty;
+              matched = true;
+            } else if (name.includes('banana')) {
+              bananaCount += qty;
+              matched = true;
+            } else if (name.includes('egg')) {
+              eggCount += qty;
+              matched = true;
+            }
+          }
+          // numeric + unit + name
           const m = key.match(/^([0-9]*\.?[0-9]+)\s*([a-zA-Z\u00C0-\u024F\.]+)\s+(.*)$/);
-          if (m) {
+          if (!matched && m) {
             const qty = parseFloat(m[1]);
             const unit = m[2];
             const name = m[3];
-            const id = name.toLowerCase() + '_' + unit.toLowerCase();
-            if (!aggregate[id]) {
-              aggregate[id] = { name, unit, quantity: 0 };
+            const lowerName = name.toLowerCase();
+            // piece-based items
+            if (lowerName.includes('lemon') && (unit.toLowerCase().includes('wedge') || unit.toLowerCase().includes('wedges'))) {
+              lemonCount += qty / 4; // 4 wedges per lemon
+              matched = true;
+            } else if (lowerName.includes('lemon')) {
+              lemonCount += qty;
+              matched = true;
+            } else if (lowerName.includes('banana')) {
+              bananaCount += qty;
+              matched = true;
+            } else if (lowerName.includes('egg')) {
+              eggCount += qty;
+              matched = true;
             }
-            aggregate[id].quantity += qty;
-          } else {
-            // No quantity found; treat the whole string as an item count
+            if (!matched) {
+              const id = lowerName + '_' + unit.toLowerCase();
+              if (!aggregate[id]) {
+                aggregate[id] = { name, unit, quantity: 0 };
+              }
+              aggregate[id].quantity += qty;
+              matched = true;
+            }
+          }
+          if (!matched) {
+            // treat as count (no quantity/unit)
             const id = key.toLowerCase();
             if (!aggregate[id]) {
               aggregate[id] = { name: key, unit: null, quantity: 0, count: 0 };
@@ -90,25 +245,49 @@
         item.count *= persons;
       }
     });
-    // Special conversion: convert spinach cups to 8 oz bags.  One 8 oz bag (~227g) of spinach is roughly 7.5 cups raw.
-    function convertSpinach(item) {
-      const cupsPerBag = 7.5;
-      const bags = Math.ceil(item.quantity / cupsPerBag);
-      return bags;
-    }
+    lemonCount *= persons;
+    bananaCount *= persons;
+    eggCount *= persons;
+    // Convert partial counts to whole pieces
+    const lemonPieces = Math.ceil(lemonCount);
+    const bananaPieces = Math.ceil(bananaCount);
+    const eggPieces = Math.ceil(eggCount);
     const listDiv = document.getElementById('list');
     const PURCHASED_KEY = 'shoppingPurchased';
     const purchased = JSON.parse(localStorage.getItem(PURCHASED_KEY) || '{}');
     function render() {
-      const entries = Object.values(aggregate);
-      const html = entries.sort((a,b) => a.name.localeCompare(b.name)).map(item => {
+      // Build labels array including special piece items
+      const labels = [];
+      if (lemonPieces > 0) labels.push(`${lemonPieces} lemon${lemonPieces > 1 ? 's' : ''}`);
+      if (bananaPieces > 0) labels.push(`${bananaPieces} banana${bananaPieces > 1 ? 's' : ''}`);
+      if (eggPieces > 0) labels.push(`${eggPieces} egg${eggPieces > 1 ? 's' : ''}`);
+      Object.values(aggregate).forEach(item => {
         let label;
         if (item.unit && item.quantity) {
           const quantity = Math.round(item.quantity * 100) / 100;
-          // For spinach convert to bag count
-          if (item.name.toLowerCase().includes('spinach') && item.unit.toLowerCase() === 'cup') {
-            const bags = convertSpinach(item);
-            label = `${bags} bag(s) (8 oz) spinach`;
+          // convert specific produce into standard packages
+          const lname = item.name.toLowerCase();
+          const unit = item.unit.toLowerCase();
+          if (lname.includes('spinach') && unit === 'cup') {
+            // Baby spinach is typically sold in 10‑oz bags (~10 cups).  Round up.
+            const cupsPerBag = 10;
+            const bags = Math.ceil(quantity / cupsPerBag);
+            label = `${bags} bag(s) baby spinach (10 oz)`;
+          } else if (lname.includes('yogurt') && unit === 'cup') {
+            // Yogurt sold in 32‑oz (4 cup) tubs.  Round up.
+            const cupsPerTub = 4;
+            const tubs = Math.ceil(quantity / cupsPerTub);
+            label = `${tubs} tub(s) yogurt (32 oz)`;
+          } else if (lname.includes('cottage cheese') && unit === 'cup') {
+            // Cottage cheese sold in 24‑oz (3 cup) tubs.
+            const cupsPerTub = 3;
+            const tubs = Math.ceil(quantity / cupsPerTub);
+            label = `${tubs} tub(s) cottage cheese (24 oz)`;
+          } else if (lname.includes('milk') && unit === 'cup') {
+            // Convert cups of milk to half‑gallon containers (8 cups per half gallon)
+            const cupsPerHalfGal = 8;
+            const halfGals = Math.ceil(quantity / cupsPerHalfGal);
+            label = `${halfGals} half‑gallon(s) milk`;
           } else {
             label = `${quantity} ${item.unit} ${item.name}`;
           }
@@ -117,10 +296,15 @@
         } else {
           label = item.name;
         }
+        labels.push(label);
+      });
+      // Sort labels alphabetically
+      labels.sort((a,b) => a.localeCompare(b));
+      listDiv.innerHTML = labels.map(label => {
         const checked = purchased[label] ? 'checked' : '';
-        return `<div class="shopping-item"><input type="checkbox" data-label="${label}" ${checked}> <span${purchased[label] ? ' style="text-decoration: line-through; color: var(--muted);"' : ''}>${label}</span></div>`;
+        const style = purchased[label] ? ' style="text-decoration: line-through; color: var(--muted);"' : '';
+        return `<div class="shopping-item"><input type="checkbox" data-label="${label}" ${checked}> <span${style}>${label}</span></div>`;
       }).join('');
-      listDiv.innerHTML = html;
     }
     render();
     listDiv.addEventListener('change', e => {
@@ -130,11 +314,6 @@
         localStorage.setItem(PURCHASED_KEY, JSON.stringify(purchased));
         render();
       }
-    });
-    document.getElementById('reset').addEventListener('click', () => {
-      localStorage.removeItem(PURCHASED_KEY);
-      Object.keys(purchased).forEach(key => { delete purchased[key]; });
-      render();
     });
   </script>
 </body>

@@ -9,9 +9,10 @@
 <body class="tracy-inside">
   <div class="wrap">
     <h1 class="heading">🎨 Tracy – Art Gallery</h1>
-    <p class="lead">Browse sample art or generate new images from your prompts. Tracy will cycle through a set of locally generated illustrations inspired by your description.</p>
+    <p class="lead">Tracy crafts bespoke art on demand.  Describe the scene or character you envision and she will paint it using generative algorithms.  Each illustration is unique—there are no canned samples.</p>
     <div class="gallery">
-      <img id="art-image" src="../../../assets/img/tracy-sample.png" alt="Sample art by Tracy" style="max-width:100%; height:auto; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.2); margin-bottom:1rem;">
+      <img id="art-image" src="" alt="Generated art by Tracy" style="max-width:100%; height:auto; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.2); margin-bottom:1rem; display:none;">
+      <canvas id="art-canvas" width="512" height="384" style="display:none;"></canvas>
     </div>
     <div class="prompt-form">
       <label for="prompt">Enter a description to inspire a new illustration:</label>
@@ -22,27 +23,66 @@
     <p><a href="index.html">← back to Tracy</a></p>
   </div>
   <script>
-    // Simple image generator: cycles through pre-made illustrations in
-    // assets/img based on the user prompt.  This simulates an image
-    // generator without requiring external APIs.  New prompts advance to
-    // the next illustration.
-    const images = [
-      '../../../assets/img/tracy-generated1.png',
-      '../../../assets/img/tracy-generated2.png',
-      '../../../assets/img/tracy-generated3.png'
-    ];
-    let currentImageIndex = 0;
+    /* Generative art based on the prompt.  The algorithm hashes the prompt
+     * and uses the resulting values to choose colours, shapes and
+     * positions on the canvas.  Once drawn, the canvas is converted to a
+     * data URL and displayed in the image element. */
+    function hashString(str) {
+      // Simple hash to generate deterministic numbers from the prompt
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
+        hash |= 0;
+      }
+      return hash >>> 0; // ensure positive
+    }
+    function randomGenerator(seed) {
+      let value = seed;
+      return function() {
+        value = (value * 1664525 + 1013904223) % 4294967296;
+        return value / 4294967296;
+      };
+    }
     document.getElementById('generate').addEventListener('click', () => {
       const prompt = document.getElementById('prompt').value.trim();
       const output = document.getElementById('output');
       const img = document.getElementById('art-image');
+      const canvas = document.getElementById('art-canvas');
       if (!prompt) {
         output.textContent = 'Please enter a prompt first.';
         return;
       }
-      // Advance to next image
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      img.src = images[currentImageIndex];
+      // Create deterministic random generator based on prompt hash
+      const seed = hashString(prompt);
+      const rng = randomGenerator(seed);
+      const ctx = canvas.getContext('2d');
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Fill background with dark colour inspired by theme
+      ctx.fillStyle = `hsl(${Math.floor(rng()*360)}, 40%, 15%)`;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Draw random shapes
+      const shapeCount = 8 + Math.floor(rng() * 10);
+      for (let i = 0; i < shapeCount; i++) {
+        const x = rng() * canvas.width;
+        const y = rng() * canvas.height;
+        const size = 30 + rng() * 120;
+        const hue = (seed % 360 + i * 37) % 360;
+        ctx.beginPath();
+        if (rng() > 0.5) {
+          // circle
+          ctx.arc(x, y, size * 0.5, 0, Math.PI * 2);
+        } else {
+          // rectangle
+          ctx.rect(x - size/2, y - size/2, size, size);
+        }
+        ctx.fillStyle = `hsla(${hue}, 70%, ${40 + rng()*30}%, 0.6)`;
+        ctx.fill();
+      }
+      // Convert to data URL and display
+      const dataURL = canvas.toDataURL('image/png');
+      img.style.display = 'block';
+      img.src = dataURL;
       img.alt = prompt;
       output.textContent = `Illustration generated for: "${prompt}"`;
     });

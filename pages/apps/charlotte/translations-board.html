@@ -15,7 +15,6 @@
       <input type="text" id="word" placeholder="e.g. light" />
       <label for="lang">Target language</label>
       <select id="lang">
-        <option value="avalon">Avalonian (fantasy)</option>
         <option value="es">Spanish (es)</option>
         <option value="fr">French (fr)</option>
         <option value="zh">Chinese (zh)</option>
@@ -26,35 +25,9 @@
       <button type="submit">Translate</button>
     </form>
     <p id="translation" class="lead"></p>
-    <h2>Sample vocabulary</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>English</th>
-          <th>Avalonian</th>
-          <th>Spanish</th>
-          <th>French</th>
-          <th>Chinese</th>
-          <th>Japanese</th>
-          <th>Korean</th>
-          <th>Hindi</th>
-        </tr>
-      </thead>
-      <tbody id="vocab"></tbody>
-    </table>
     <p><a href="index.html">← back to Charlotte</a></p>
   </div>
   <script>
-    // Dictionaries for demonstration. Avalonian is a constructed language.
-    const dictAvalon = {
-      dragon: 'tery',
-      forest: 'selva',
-      light: 'lux',
-      star: 'astra',
-      water: 'lira',
-      moon: 'luna',
-      sun: 'sola'
-    };
     const dictEs = {
       dragon: 'dragón',
       forest: 'bosque',
@@ -114,21 +87,6 @@
       moon: 'चाँद', // chaand
       sun: 'सूरज' // sooraj
     };
-    const vocabTable = document.getElementById('vocab');
-    // Populate vocabulary table
-    const words = Object.keys(dictAvalon);
-    vocabTable.innerHTML = words.map(word => {
-      return `<tr>
-        <td>${word}</td>
-        <td>${dictAvalon[word]}</td>
-        <td>${dictEs[word] || ''}</td>
-        <td>${dictFr[word] || ''}</td>
-        <td>${dictZh[word] || ''}</td>
-        <td>${dictJa[word] || ''}</td>
-        <td>${dictKo[word] || ''}</td>
-        <td>${dictHi[word] || ''}</td>
-      </tr>`;
-    }).join('');
     const form = document.getElementById('translate-form');
     const translationEl = document.getElementById('translation');
     form.addEventListener('submit', e => {
@@ -138,9 +96,6 @@
       if (!word) return;
       let result;
       switch (lang) {
-        case 'avalon':
-          result = dictAvalon[word];
-          break;
         case 'es':
           result = dictEs[word];
           break;

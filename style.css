@@ -29,7 +29,8 @@ html, body {
  * <body> element will set a dramatic backdrop while still allowing
  * the content wrapper to apply a translucent overlay. */
 .home {
-  background-image: url('assets/img/avalon-castle.jpg');
+  /* Use the Avalon outside photo provided by the user as the home page backdrop */
+  background-image: url('assets/img/avalon-outside.png');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -78,73 +79,78 @@ html, body {
   background-position: center;
   min-height: 100vh;
 }
+/* Alexandria only provided an outside photo. Reuse it for the inside class. */
 .alexandria-inside {
-  /* Alexandria does not have an inside photo, reuse outside image */
   background-image: url('assets/img/alexandria-outside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
+/* Tracy only has an interior photo. Use it for both inside and outside backgrounds */
 .tracy-outside {
-  background-image: url('assets/img/tracy-outside.JPG');
+  background-image: url('assets/img/tracy-inside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
 .tracy-inside {
-  background-image: url('assets/img/tracy-inside.JPG');
+  background-image: url('assets/img/tracy-inside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
+/* Charlotte backgrounds */
 .charlotte-outside {
-  background-image: url('assets/img/charlotte-outside.JPG');
+  background-image: url('assets/img/charlotte-outside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
 .charlotte-inside {
-  background-image: url('assets/img/charlotte-inside.JPG');
+  background-image: url('assets/img/charlotte-inside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
+/* Stella backgrounds */
 .stella-outside {
-  background-image: url('assets/img/stella-outside.JPG');
+  background-image: url('assets/img/stella-outside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
 .stella-inside {
-  background-image: url('assets/img/stella-inside.JPG');
+  background-image: url('assets/img/stella-inside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
 
 /* Abbey backgrounds for finance & receipts fairy */
+/* Abbey backgrounds */
 .abbey-outside {
-  background-image: url('assets/img/abbey-outside.JPG');
+  background-image: url('assets/img/abbey-outside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
 .abbey-inside {
-  background-image: url('assets/img/abbey-inside.JPG');
+  background-image: url('assets/img/abbey-inside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
 
 /* Billie backgrounds for social & media fairy */
+/* Billie backgrounds */
 .billie-outside {
-  background-image: url('assets/img/billie-outside.JPG');
+  background-image: url('assets/img/billie-outside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
 }
 .billie-inside {
-  background-image: url('assets/img/billie-inside.JPG');
+  background-image: url('assets/img/billie-inside.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;

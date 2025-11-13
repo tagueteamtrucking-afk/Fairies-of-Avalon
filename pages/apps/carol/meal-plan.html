@@ -34,127 +34,754 @@
     <p><a href="index.html">← back to Carol</a></p>
   </div>
   <script>
-    // Two sample days of data based on the original Avalon meal plan.
+    /* Meal dataset for 14 unique days.  Each day contains seven small
+       meals (snacks or mini‑meals) designed for two people.  The
+       dishes focus on lean proteins, healthy fats, fruits, vegetables
+       and whole grains.  Calories are approximate and given per meal. */
     const day1 = [
       {
-        name: 'Overnight oats (LF) with chia & berries',
+        name: 'Overnight oats with chia & berries',
         mealType: 'Snack',
         nutrition: 280,
-        ingredients: ['0.5 cup rolled oats','1 tbsp chia seeds','0.75 cup lactose‑free milk','0.5 cup frozen mixed berries'],
-        instructions: ['Mix oats, chia and milk in a jar.','Stir, cover, chill overnight.','Top with thawed berries.']
+        ingredients: ['1/2 cup rolled oats','1 tbsp chia seeds','3/4 cup lactose‑free milk','1/2 cup frozen mixed berries'],
+        instructions: ['Combine oats, chia and milk in a jar.','Stir well, cover and refrigerate overnight.','Top with thawed berries before eating.']
       },
       {
         name: 'Apple slices with peanut butter',
         mealType: 'Snack',
         nutrition: 220,
-        ingredients: ['1 apple','2 tbsp peanut butter'],
-        instructions: ['Slice apple thinly.','Spread peanut butter or dip.']
+        ingredients: ['1 apple','2 tbsp peanut butter'],
+        instructions: ['Wash and slice the apple thinly.','Serve with peanut butter for dipping.']
       },
       {
         name: 'Chicken & avocado lettuce cups',
         mealType: 'Mini‑meal',
         nutrition: 380,
-        ingredients: ['4 oz cooked chicken breast','0.5 avocado','6 butter lettuce leaves','1 tsp olive oil','1 tsp lemon juice'],
-        instructions: ['Mash avocado with lemon and oil.','Mix with diced chicken.','Spoon into lettuce cups.']
+        ingredients: ['4 oz cooked chicken breast','1/2 ripe avocado','6 butter lettuce leaves','1 tsp olive oil','1 tsp lemon juice'],
+        instructions: ['Mash the avocado with lemon juice and olive oil.','Dice the chicken and mix into the avocado.','Spoon mixture into lettuce leaves and serve.']
       },
       {
-        name: 'Hummus (no cumin) with soft veg',
+        name: 'Hummus with soft vegetables',
         mealType: 'Snack',
         nutrition: 180,
-        ingredients: ['3 tbsp hummus (no cumin)','0.5 cup cucumber','0.5 cup steamed carrots'],
-        instructions: ['Steam carrots until soft.','Slice/peel cucumber.','Serve with hummus.']
+        ingredients: ['3 tbsp hummus','1/2 cup cucumber slices','1/2 cup steamed carrots'],
+        instructions: ['Steam carrots until soft.','Slice cucumber and peel if desired.','Serve vegetables with hummus.']
       },
       {
-        name: 'LF Greek yogurt + pineapple',
+        name: 'Greek yogurt with pineapple',
         mealType: 'Snack',
         nutrition: 210,
-        ingredients: ['0.75 cup lactose‑free Greek yogurt','0.5 cup pineapple (drained)'],
-        instructions: ['Drain pineapple well.','Spoon over yogurt.']
+        ingredients: ['3/4 cup lactose‑free Greek yogurt','1/2 cup pineapple chunks (drained)'],
+        instructions: ['Drain pineapple well to remove excess juice.','Top yogurt with pineapple chunks.']
       },
       {
-        name: 'Air‑fryer salmon + veg tray',
+        name: 'Air‑fried salmon & veg tray',
         mealType: 'Mini‑meal',
         nutrition: 520,
-        ingredients: ['5 oz salmon fillet','2 tsp olive oil','2 cup mixed vegetables (frozen)','0.25 lemon','0.5 tsp garlic powder'],
-        instructions: ['Preheat air fryer to 380 °F (193 °C).','Toss vegetables with 1 tsp oil + garlic; air‑fry 8–10 min.','Add salmon brushed with 1 tsp oil; cook 7–9 min to 145 °F.','Finish with lemon.']
+        ingredients: ['5 oz salmon fillet','2 tsp olive oil','2 cups frozen mixed vegetables','1/4 lemon','1/2 tsp garlic powder'],
+        instructions: ['Preheat air fryer to 380 °F (193 °C).','Toss vegetables with 1 tsp oil and garlic powder and air‑fry 8–10 minutes.','Brush salmon with remaining oil, add to fryer and cook 7–9 minutes until 145 °F.','Squeeze lemon over finished dish.']
       },
       {
-        name: 'Banana‑spinach smoothie (LF)',
+        name: 'Banana‑spinach smoothie',
         mealType: 'Snack',
         nutrition: 180,
-        ingredients: ['1 banana','1 cup spinach','0.75 cup lactose‑free milk','1 tbsp ground flaxseed'],
-        instructions: ['Blend until smooth.']
+        ingredients: ['1 banana','1 cup baby spinach','3/4 cup lactose‑free milk','1 tbsp ground flaxseed'],
+        instructions: ['Blend all ingredients together until smooth.']
       }
     ];
+
     const day2 = [
       {
-        name: 'Cottage bowl (LF) with peach & oats',
+        name: 'Cottage cheese bowl with peach & oats',
         mealType: 'Snack',
         nutrition: 260,
-        ingredients: ['0.75 cup lactose‑free cottage cheese','0.5 cup peach (drained)','2 tbsp rolled oats'],
-        instructions: ['Drain peaches.','Top cottage cheese with peaches + oats.']
+        ingredients: ['3/4 cup lactose‑free cottage cheese','1/2 cup peach slices (drained)','2 tbsp rolled oats'],
+        instructions: ['Drain peaches thoroughly.','Top cottage cheese with peaches and sprinkle with oats.']
       },
       {
-        name: 'Rice cake + PB + sliced banana',
+        name: 'Rice cakes with peanut butter & banana',
         mealType: 'Snack',
         nutrition: 210,
-        ingredients: ['2 rice cakes','1.5 tbsp peanut butter','0.5 banana'],
-        instructions: ['Spread peanut butter on cakes; add banana slices.']
+        ingredients: ['2 rice cakes','1 1/2 tbsp peanut butter','1/2 banana'],
+        instructions: ['Spread peanut butter over rice cakes.','Slice banana thinly and place on top.']
       },
       {
-        name: 'Turkey & spinach wrap (soft)',
+        name: 'Turkey & spinach wrap',
         mealType: 'Mini‑meal',
         nutrition: 360,
-        ingredients: ['1 soft whole‑wheat tortilla','3 oz turkey breast (low sodium)','1 cup spinach','1 tbsp lactose‑free cream cheese'],
-        instructions: ['Spread cream cheese on tortilla.','Layer turkey + spinach.','Roll up tightly.']
+        ingredients: ['1 whole‑wheat tortilla','3 oz low‑sodium turkey breast','1 cup fresh spinach','1 tbsp lactose‑free cream cheese'],
+        instructions: ['Spread cream cheese on tortilla.','Layer turkey and spinach evenly.','Roll tightly and slice in half.']
       },
       {
-        name: 'Soft pear + almonds (slivered)',
+        name: 'Pear & slivered almonds',
         mealType: 'Snack',
         nutrition: 190,
-        ingredients: ['1 ripe pear','1 oz slivered almonds'],
-        instructions: ['Slice pear; chew well.','Add slivered almonds.']
+        ingredients: ['1 ripe pear','1 oz slivered almonds'],
+        instructions: ['Slice pear into wedges.','Sprinkle with almonds before eating.']
       },
       {
-        name: 'Tomato‑basil soup (low‑Na)',
+        name: 'Tomato‑basil soup',
         mealType: 'Snack',
         nutrition: 220,
-        ingredients: ['1.25 cup low‑sodium tomato soup','1 tsp olive oil'],
-        instructions: ['Heat soup gently.','Stir in olive oil.']
+        ingredients: ['1 1/4 cups low‑sodium tomato soup','1 tsp olive oil'],
+        instructions: ['Heat soup gently on the stove or microwave.','Stir in olive oil before serving.']
       },
       {
-        name: 'Air‑fryer chicken bites (light panko)',
+        name: 'Air‑fried chicken bites',
         mealType: 'Mini‑meal',
         nutrition: 480,
-        ingredients: ['5 oz chicken breast','0.25 cup light panko','Olive oil spray'],
-        instructions: ['Toss chicken in light panko.','Mist basket with oil spray; air‑fry 380 °F 10–12 min, shaking once.']
+        ingredients: ['5 oz chicken breast','1/4 cup light panko breadcrumbs','Olive oil spray'],
+        instructions: ['Cut chicken into bite‑sized pieces and coat with panko.','Lightly coat air fryer basket with oil spray.','Air‑fry at 380 °F for 10–12 minutes, shaking once.']
       },
       {
-        name: 'Berry‑cocoa shake (LF)',
+        name: 'Berry‑cocoa shake',
         mealType: 'Snack',
         nutrition: 180,
-        ingredients: ['0.75 cup frozen berries','0.75 cup lactose‑free milk','1 tsp unsweetened cocoa'],
-        instructions: ['Blend until smooth.']
+        ingredients: ['3/4 cup frozen berries','3/4 cup lactose‑free milk','1 tsp unsweetened cocoa powder'],
+        instructions: ['Blend ingredients until smooth.']
       }
     ];
-    // Build a 14‑day plan by alternating between day1 and day2 menus.  Odd
-    // numbered days use the day1 array and even numbered days use day2.  This
-    // preserves the original meals while satisfying a longer schedule.
+
+    const day3 = [
+      {
+        name: 'Spinach & feta egg muffins',
+        mealType: 'Snack',
+        nutrition: 250,
+        ingredients: ['3 eggs','1 cup chopped spinach','1/4 cup crumbled feta','1 tbsp milk','Salt and pepper'],
+        instructions: ['Preheat oven to 350 °F (175 °C).','Whisk eggs with milk, salt and pepper.','Stir in spinach and feta.','Pour into greased muffin cups and bake 15–18 minutes until set.']
+      },
+      {
+        name: 'Grapes & almonds',
+        mealType: 'Snack',
+        nutrition: 160,
+        ingredients: ['1 cup seedless grapes','1 oz raw almonds'],
+        instructions: ['Rinse grapes and pat dry.','Serve with almonds.']
+      },
+      {
+        name: 'Tuna salad lettuce wraps',
+        mealType: 'Mini‑meal',
+        nutrition: 350,
+        ingredients: ['1 can (5 oz) tuna in water, drained','1 tbsp mayonnaise','1 tbsp plain yogurt','1 stalk celery, diced','2 tbsp diced onion','6 butter lettuce leaves'],
+        instructions: ['Mix tuna with mayo, yogurt, celery and onion.','Scoop into lettuce leaves and wrap.']
+      },
+      {
+        name: 'Strawberries with dark chocolate',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['1 cup strawberries','1 oz dark chocolate (70 % cocoa)'],
+        instructions: ['Wash strawberries.','Melt chocolate and drizzle over berries or dip berries into melted chocolate.']
+      },
+      {
+        name: 'Miso soup with tofu & mushrooms',
+        mealType: 'Snack',
+        nutrition: 200,
+        ingredients: ['2 cups water','2 tbsp miso paste','1/2 cup diced tofu','1/2 cup sliced mushrooms','2 green onions, sliced'],
+        instructions: ['Bring water to a simmer.','Add miso paste and whisk until dissolved.','Add tofu, mushrooms and green onions; simmer 3–5 minutes.']
+      },
+      {
+        name: 'Beef & veggie stir‑fry',
+        mealType: 'Mini‑meal',
+        nutrition: 500,
+        ingredients: ['4 oz lean beef strips','2 cups mixed vegetables (broccoli, bell pepper, snap peas)','1 tbsp soy sauce','1 tsp sesame oil','1 clove garlic, minced'],
+        instructions: ['Heat sesame oil in pan over medium‑high heat.','Add garlic and beef, stir‑fry until browned.','Add vegetables and soy sauce; cook until crisp‑tender.']
+      },
+      {
+        name: 'Cucumber‑apple juice',
+        mealType: 'Snack',
+        nutrition: 150,
+        ingredients: ['1 cucumber','1 apple','1/2 lemon'],
+        instructions: ['Juice cucumber, apple and lemon together.','Serve chilled.']
+      }
+    ];
+
+    const day4 = [
+      {
+        name: 'Chia pudding with mango',
+        mealType: 'Snack',
+        nutrition: 270,
+        ingredients: ['3 tbsp chia seeds','1 cup lactose‑free milk','1/2 mango, diced','1 tsp honey'],
+        instructions: ['Combine chia seeds and milk in a bowl.','Refrigerate at least 4 hours or overnight until thickened.','Top with diced mango and drizzle with honey.']
+      },
+      {
+        name: 'Pear & walnuts',
+        mealType: 'Snack',
+        nutrition: 210,
+        ingredients: ['1 pear','1 oz walnut halves'],
+        instructions: ['Slice pear and serve with walnut halves.']
+      },
+      {
+        name: 'Chicken quinoa bowl with roasted vegetables',
+        mealType: 'Mini‑meal',
+        nutrition: 450,
+        ingredients: ['4 oz cooked chicken breast','1/2 cup cooked quinoa','1 cup roasted vegetables (e.g., zucchini, bell pepper)','1 tbsp olive oil','Salt and pepper'],
+        instructions: ['Roast vegetables with olive oil, salt and pepper at 400 °F for 15–20 minutes.','Combine quinoa, chicken and vegetables in a bowl.']
+      },
+      {
+        name: 'Bell pepper sticks with hummus',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['1 bell pepper, sliced','3 tbsp hummus'],
+        instructions: ['Slice bell pepper into sticks.','Serve with hummus.']
+      },
+      {
+        name: 'Yogurt parfait with granola',
+        mealType: 'Snack',
+        nutrition: 220,
+        ingredients: ['3/4 cup lactose‑free yogurt','2 tbsp granola','1/4 cup berries'],
+        instructions: ['Layer yogurt, granola and berries in a glass or bowl.']
+      },
+      {
+        name: 'Grilled shrimp with brown rice and asparagus',
+        mealType: 'Mini‑meal',
+        nutrition: 480,
+        ingredients: ['4 oz shrimp, peeled and deveined','1/2 cup cooked brown rice','1 cup asparagus spears','1 tbsp olive oil','Salt and pepper'],
+        instructions: ['Preheat grill or grill pan over medium heat.','Toss shrimp and asparagus with olive oil, salt and pepper.','Grill shrimp 2–3 minutes per side; grill asparagus until tender.','Serve over brown rice.']
+      },
+      {
+        name: 'Orange‑carrot smoothie',
+        mealType: 'Snack',
+        nutrition: 160,
+        ingredients: ['1 orange, peeled','1 carrot, chopped','1/2 cup water','1 tsp honey'],
+        instructions: ['Blend orange, carrot and water until smooth.','Add honey to taste.']
+      }
+    ];
+
+    const day5 = [
+      {
+        name: 'Protein pancake with berries',
+        mealType: 'Snack',
+        nutrition: 300,
+        ingredients: ['1/2 cup oat flour','1 scoop protein powder','1 egg','1/2 cup milk','1/2 cup berries'],
+        instructions: ['Mix oat flour, protein powder, egg and milk to make batter.','Cook pancakes on a nonstick skillet until golden.','Serve with fresh berries.']
+      },
+      {
+        name: 'Sliced cucumber & cottage cheese',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['1/2 cucumber','1/2 cup lactose‑free cottage cheese','Salt and pepper'],
+        instructions: ['Slice cucumber into rounds.','Season cottage cheese with salt and pepper; use as a dip.']
+      },
+      {
+        name: 'Quinoa‑bean salad',
+        mealType: 'Mini‑meal',
+        nutrition: 400,
+        ingredients: ['1/2 cup cooked quinoa','1/2 cup black beans','1/2 cup corn kernels','1/2 avocado, diced','1 tbsp lime juice'],
+        instructions: ['Mix quinoa, beans, corn and avocado.','Toss with lime juice before serving.']
+      },
+      {
+        name: 'Carrot sticks & almond butter',
+        mealType: 'Snack',
+        nutrition: 210,
+        ingredients: ['1 cup carrot sticks','2 tbsp almond butter'],
+        instructions: ['Peel and cut carrots into sticks.','Serve with almond butter for dipping.']
+      },
+      {
+        name: 'Pineapple‑cucumber salad',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['1 cup diced pineapple','1 cup diced cucumber','1 tbsp chopped mint','1 tsp lime juice'],
+        instructions: ['Combine pineapple, cucumber and mint.','Drizzle with lime juice.']
+      },
+      {
+        name: 'Stuffed bell peppers',
+        mealType: 'Mini‑meal',
+        nutrition: 500,
+        ingredients: ['2 bell peppers, halved','1/2 cup cooked brown rice','1/2 cup ground turkey','1/4 cup tomato sauce','1/4 cup shredded cheese'],
+        instructions: ['Preheat oven to 375 °F (190 °C).','Mix rice, turkey and tomato sauce; stuff into pepper halves.','Top with cheese and bake 25–30 minutes.']
+      },
+      {
+        name: 'Chocolate‑banana smoothie',
+        mealType: 'Snack',
+        nutrition: 200,
+        ingredients: ['1 banana','1 tbsp cocoa powder','1 cup almond milk','1 tsp honey'],
+        instructions: ['Blend banana, cocoa powder, milk and honey until smooth.']
+      }
+    ];
+
+    const day6 = [
+      {
+        name: 'Mango lassi',
+        mealType: 'Snack',
+        nutrition: 220,
+        ingredients: ['1 cup diced mango','3/4 cup yogurt','1/2 cup water','1 tsp honey'],
+        instructions: ['Blend mango, yogurt, water and honey until creamy.']
+      },
+      {
+        name: 'Celery & cream cheese',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['2 stalks celery','2 tbsp cream cheese'],
+        instructions: ['Wash celery and cut into sticks.','Fill the grooves with cream cheese.']
+      },
+      {
+        name: 'Chicken salad stuffed tomatoes',
+        mealType: 'Mini‑meal',
+        nutrition: 420,
+        ingredients: ['2 tomatoes','1 cup cooked chicken, diced','1 tbsp mayo','1 tbsp mustard','1/4 cup diced celery'],
+        instructions: ['Cut tops off tomatoes and scoop out seeds.','Mix chicken, mayo, mustard and celery.','Stuff mixture into tomato shells.']
+      },
+      {
+        name: 'Apple slices & cheddar',
+        mealType: 'Snack',
+        nutrition: 230,
+        ingredients: ['1 apple','1 oz cheddar cheese'],
+        instructions: ['Slice apple and cheese; pair slices together.']
+      },
+      {
+        name: 'Cucumber‑tahini salad',
+        mealType: 'Snack',
+        nutrition: 190,
+        ingredients: ['1 cucumber, sliced','1 tbsp tahini','1 tsp lemon juice','Salt and pepper'],
+        instructions: ['Whisk tahini with lemon juice, salt and pepper.','Toss with cucumber slices.']
+      },
+      {
+        name: 'Lemon‑herb cod with asparagus',
+        mealType: 'Mini‑meal',
+        nutrition: 480,
+        ingredients: ['5 oz cod fillet','1 cup asparagus','1 tbsp olive oil','1 tsp lemon zest','1 tsp fresh herbs (dill or parsley)'],
+        instructions: ['Preheat oven to 375 °F (190 °C).','Place cod and asparagus on a baking sheet; drizzle with olive oil.','Season with lemon zest and herbs.','Bake 15–18 minutes until fish flakes easily.']
+      },
+      {
+        name: 'Berry‑spinach smoothie',
+        mealType: 'Snack',
+        nutrition: 190,
+        ingredients: ['1 cup mixed berries','1 cup spinach','3/4 cup almond milk','1 tbsp chia seeds'],
+        instructions: ['Blend all ingredients until smooth.']
+      }
+    ];
+
+    const day7 = [
+      {
+        name: 'Oatmeal with cinnamon & raisins',
+        mealType: 'Snack',
+        nutrition: 250,
+        ingredients: ['1/2 cup rolled oats','1 cup water','1 tbsp raisins','1/2 tsp cinnamon','1 tsp honey'],
+        instructions: ['Cook oats with water according to package directions.','Stir in raisins, cinnamon and honey.']
+      },
+      {
+        name: 'Orange & yogurt',
+        mealType: 'Snack',
+        nutrition: 190,
+        ingredients: ['1 orange, peeled','3/4 cup yogurt'],
+        instructions: ['Segment the orange and serve with yogurt.']
+      },
+      {
+        name: 'Egg salad lettuce boats',
+        mealType: 'Mini‑meal',
+        nutrition: 360,
+        ingredients: ['2 hard‑boiled eggs, chopped','1 tbsp mayonnaise','1 tsp dijon mustard','1/4 cup diced celery','4 romaine lettuce leaves'],
+        instructions: ['Mix eggs, mayo, mustard and celery.','Spoon mixture into lettuce leaves.']
+      },
+      {
+        name: 'Cinnamon‑apple chips',
+        mealType: 'Snack',
+        nutrition: 160,
+        ingredients: ['1 apple, thinly sliced','1/2 tsp cinnamon'],
+        instructions: ['Preheat oven to 225 °F (105 °C).','Arrange apple slices on a baking sheet and sprinkle with cinnamon.','Bake 60–75 minutes until crisp.']
+      },
+      {
+        name: 'Roasted beet salad',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['2 medium beets','1 cup mixed greens','1 tbsp balsamic vinaigrette'],
+        instructions: ['Preheat oven to 400 °F (204 °C).','Wrap beets in foil and roast 45–60 minutes until tender.','Peel and slice beets; serve over greens with vinaigrette.']
+      },
+      {
+        name: 'Turkey meatballs with zucchini noodles',
+        mealType: 'Mini‑meal',
+        nutrition: 480,
+        ingredients: ['4 oz ground turkey','1/4 cup breadcrumbs','1 egg','1 cup zucchini noodles','1/2 cup marinara sauce'],
+        instructions: ['Preheat oven to 375 °F (190 °C).','Mix turkey, breadcrumbs and egg; form into meatballs.','Bake 15–20 minutes until cooked through.','Sauté zucchini noodles and top with marinara and meatballs.']
+      },
+      {
+        name: 'Grapefruit‑mint spritzer',
+        mealType: 'Snack',
+        nutrition: 140,
+        ingredients: ['1 grapefruit, juiced','1/4 cup fresh mint leaves','1 cup sparkling water','1 tsp honey'],
+        instructions: ['Muddle mint leaves in a glass.','Add grapefruit juice, sparkling water and honey; stir gently.']
+      }
+    ];
+
+    const day8 = [
+      {
+        name: 'Smoothie bowl with bananas & nuts',
+        mealType: 'Snack',
+        nutrition: 300,
+        ingredients: ['1 banana','1 cup frozen berries','1/2 cup yogurt','1 tbsp almond butter','2 tbsp chopped nuts'],
+        instructions: ['Blend banana, berries, yogurt and almond butter.','Pour into a bowl and top with chopped nuts.']
+      },
+      {
+        name: 'Cherry tomatoes & mozzarella',
+        mealType: 'Snack',
+        nutrition: 190,
+        ingredients: ['1 cup cherry tomatoes','2 oz mozzarella balls','1 tbsp balsamic glaze'],
+        instructions: ['Combine tomatoes and mozzarella.','Drizzle with balsamic glaze before serving.']
+      },
+      {
+        name: 'Quinoa stir‑fry with edamame',
+        mealType: 'Mini‑meal',
+        nutrition: 450,
+        ingredients: ['1/2 cup cooked quinoa','1/2 cup shelled edamame','1 cup mixed vegetables','1 tbsp soy sauce','1 tsp sesame oil'],
+        instructions: ['Heat sesame oil in a skillet.','Add vegetables and sauté until tender.','Stir in quinoa and edamame; season with soy sauce.']
+      },
+      {
+        name: 'Pita wedges & tzatziki',
+        mealType: 'Snack',
+        nutrition: 200,
+        ingredients: ['1 whole‑wheat pita','1/4 cup tzatziki sauce','Cucumber slices'],
+        instructions: ['Cut pita into wedges.','Serve with tzatziki and cucumber slices.']
+      },
+      {
+        name: 'Kiwi & strawberries',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['2 kiwis, peeled and sliced','1/2 cup strawberries'],
+        instructions: ['Slice kiwis and mix with halved strawberries.']
+      },
+      {
+        name: 'Salmon quinoa cakes',
+        mealType: 'Mini‑meal',
+        nutrition: 500,
+        ingredients: ['5 oz canned salmon, drained','1/2 cup cooked quinoa','1 egg','2 tbsp chopped parsley','2 tbsp whole‑wheat breadcrumbs'],
+        instructions: ['Combine salmon, quinoa, egg, parsley and breadcrumbs.','Form into patties and pan‑fry in a nonstick skillet until golden on both sides.']
+      },
+      {
+        name: 'Watermelon slush',
+        mealType: 'Snack',
+        nutrition: 160,
+        ingredients: ['2 cups seedless watermelon, cubed','1 cup ice','1 tbsp lime juice'],
+        instructions: ['Blend watermelon, ice and lime juice until slushy.']
+      }
+    ];
+
+    const day9 = [
+      {
+        name: 'Avocado toast with chia seeds',
+        mealType: 'Snack',
+        nutrition: 320,
+        ingredients: ['1 slice whole‑grain bread','1/2 avocado','1 tsp chia seeds','Salt and pepper'],
+        instructions: ['Toast bread.','Mash avocado and spread on toast.','Sprinkle with chia seeds, salt and pepper.']
+      },
+      {
+        name: 'Blueberry yogurt parfait',
+        mealType: 'Snack',
+        nutrition: 200,
+        ingredients: ['3/4 cup yogurt','1/2 cup blueberries','2 tbsp granola'],
+        instructions: ['Layer yogurt, blueberries and granola in a glass or bowl.']
+      },
+      {
+        name: 'Lentil soup with spinach',
+        mealType: 'Mini‑meal',
+        nutrition: 420,
+        ingredients: ['1 cup cooked lentils','2 cups vegetable broth','1 cup spinach','1/2 onion, diced','1 clove garlic, minced','1 tsp cumin'],
+        instructions: ['Sauté onion and garlic until soft.','Add broth, lentils and cumin; simmer 10 minutes.','Stir in spinach until wilted.']
+      },
+      {
+        name: 'Carrot & cucumber sticks with guacamole',
+        mealType: 'Snack',
+        nutrition: 210,
+        ingredients: ['1 carrot','1 cucumber','1/2 cup guacamole'],
+        instructions: ['Cut carrot and cucumber into sticks.','Serve with guacamole for dipping.']
+      },
+      {
+        name: 'Grapes & cheese',
+        mealType: 'Snack',
+        nutrition: 230,
+        ingredients: ['1 cup red grapes','1 oz Gouda cheese'],
+        instructions: ['Rinse grapes and serve with sliced cheese.']
+      },
+      {
+        name: 'Stuffed sweet potato',
+        mealType: 'Mini‑meal',
+        nutrition: 500,
+        ingredients: ['1 medium sweet potato','1/4 cup black beans','1/4 cup corn','2 tbsp shredded cheddar','1 tbsp salsa'],
+        instructions: ['Bake sweet potato at 400 °F (204 °C) until tender.','Split open and top with beans, corn, cheddar and salsa.']
+      },
+      {
+        name: 'Pineapple‑mint smoothie',
+        mealType: 'Snack',
+        nutrition: 190,
+        ingredients: ['1 cup pineapple chunks','1/4 cup mint leaves','1 cup coconut water','1 tbsp chia seeds'],
+        instructions: ['Blend pineapple, mint, coconut water and chia seeds until smooth.']
+      }
+    ];
+
+    const day10 = [
+      {
+        name: 'Berry oatmeal',
+        mealType: 'Snack',
+        nutrition: 300,
+        ingredients: ['1/2 cup oats','1 cup water','1/2 cup mixed berries','1 tbsp honey'],
+        instructions: ['Cook oats in water until thick.','Top with berries and honey.']
+      },
+      {
+        name: 'Banana with almond butter',
+        mealType: 'Snack',
+        nutrition: 210,
+        ingredients: ['1 banana','2 tbsp almond butter'],
+        instructions: ['Slice banana into rounds.','Serve with almond butter for dipping.']
+      },
+      {
+        name: 'Veggie sushi rolls',
+        mealType: 'Mini‑meal',
+        nutrition: 360,
+        ingredients: ['1 sheet nori','1/2 cup sushi rice, cooked','1/4 cucumber, julienned','1/4 avocado, sliced','1/4 carrot, julienned','Soy sauce for serving'],
+        instructions: ['Spread rice over nori sheet.','Arrange cucumber, avocado and carrot.','Roll tightly and slice; serve with soy sauce.']
+      },
+      {
+        name: 'Peaches & cottage cheese',
+        mealType: 'Snack',
+        nutrition: 190,
+        ingredients: ['1/2 cup diced peaches','3/4 cup cottage cheese'],
+        instructions: ['Combine peaches with cottage cheese in a bowl.']
+      },
+      {
+        name: 'Edamame & sea salt',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['1 cup shelled edamame','Sea salt to taste'],
+        instructions: ['Steam or microwave edamame until tender.','Sprinkle with sea salt.']
+      },
+      {
+        name: 'Shrimp stir‑fry with rice noodles',
+        mealType: 'Mini‑meal',
+        nutrition: 520,
+        ingredients: ['4 oz shrimp','1 cup rice noodles','1 cup mixed veggies','1 tbsp soy sauce','1 tsp sesame oil','1/2 lime'],
+        instructions: ['Cook rice noodles according to package directions.','Sauté shrimp and vegetables in sesame oil until cooked.','Add noodles and soy sauce; toss to combine.','Serve with a squeeze of lime.']
+      },
+      {
+        name: 'Spinach‑pear smoothie',
+        mealType: 'Snack',
+        nutrition: 200,
+        ingredients: ['1 cup spinach','1 pear, cored','3/4 cup almond milk','1 tbsp chia seeds'],
+        instructions: ['Blend all ingredients until smooth.']
+      }
+    ];
+
+    const day11 = [
+      {
+        name: 'Greek yogurt with honey & nuts',
+        mealType: 'Snack',
+        nutrition: 230,
+        ingredients: ['3/4 cup Greek yogurt','1 tbsp honey','2 tbsp chopped nuts'],
+        instructions: ['Drizzle honey over yogurt and sprinkle with nuts.']
+      },
+      {
+        name: 'Celery sticks & peanut butter',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['2 stalks celery','2 tbsp peanut butter'],
+        instructions: ['Wash celery and cut into sticks.','Serve with peanut butter.']
+      },
+      {
+        name: 'Mediterranean chickpea salad',
+        mealType: 'Mini‑meal',
+        nutrition: 400,
+        ingredients: ['1 cup cooked chickpeas','1/2 cup cherry tomatoes','1/4 cup diced cucumber','2 tbsp feta cheese','1 tbsp olive oil','1 tbsp lemon juice','Salt and pepper'],
+        instructions: ['Mix chickpeas, tomatoes, cucumber and feta.','Whisk olive oil, lemon juice, salt and pepper; toss with salad.']
+      },
+      {
+        name: 'Mixed berries & dark chocolate',
+        mealType: 'Snack',
+        nutrition: 220,
+        ingredients: ['1/2 cup mixed berries','1 oz dark chocolate'],
+        instructions: ['Wash berries and serve with chocolate pieces.']
+      },
+      {
+        name: 'Carrot‑ginger soup',
+        mealType: 'Snack',
+        nutrition: 210,
+        ingredients: ['1 cup chopped carrots','2 cups vegetable broth','1 tsp grated ginger','1/4 onion, diced','Salt and pepper'],
+        instructions: ['Sauté onion and ginger.','Add carrots and broth; simmer until tender.','Blend until smooth and season to taste.']
+      },
+      {
+        name: 'Beef & broccoli stir‑fry',
+        mealType: 'Mini‑meal',
+        nutrition: 510,
+        ingredients: ['4 oz lean beef slices','1 cup broccoli florets','1 tbsp soy sauce','1 tsp cornstarch','1/2 cup water','2 tsp sesame oil'],
+        instructions: ['Heat sesame oil in a skillet.','Cook beef until browned.','Add broccoli and cook until bright green.','Whisk soy sauce, cornstarch and water; pour over mixture and simmer until thickened.']
+      },
+      {
+        name: 'Lemon‑blueberry water',
+        mealType: 'Snack',
+        nutrition: 120,
+        ingredients: ['1/2 lemon, sliced','1/4 cup blueberries','1 cup water','Ice'],
+        instructions: ['Combine lemon, blueberries and water in a glass.','Add ice and let infuse for 10 minutes before drinking.']
+      }
+    ];
+
+    const day12 = [
+      {
+        name: 'Avocado & egg on toast',
+        mealType: 'Snack',
+        nutrition: 320,
+        ingredients: ['1 slice whole‑grain bread','1/2 avocado','1 egg','Salt and pepper'],
+        instructions: ['Toast bread.','Mash avocado and spread on toast.','Top with a fried or poached egg; season with salt and pepper.']
+      },
+      {
+        name: 'Cottage cheese & tomato',
+        mealType: 'Snack',
+        nutrition: 190,
+        ingredients: ['3/4 cup cottage cheese','1 tomato, sliced','Salt and pepper'],
+        instructions: ['Place cottage cheese in a bowl.','Top with tomato slices and season with salt and pepper.']
+      },
+      {
+        name: 'Quinoa veggie bowl',
+        mealType: 'Mini‑meal',
+        nutrition: 430,
+        ingredients: ['1/2 cup cooked quinoa','1 cup roasted vegetables (e.g., Brussels sprouts, carrots)','1/4 cup chickpeas','1 tbsp tahini sauce'],
+        instructions: ['Combine quinoa, roasted vegetables and chickpeas.','Drizzle with tahini sauce.']
+      },
+      {
+        name: 'Blueberries & almonds',
+        mealType: 'Snack',
+        nutrition: 200,
+        ingredients: ['1 cup blueberries','1 oz almonds'],
+        instructions: ['Rinse blueberries and pat dry.','Serve with almonds.']
+      },
+      {
+        name: 'Gazpacho',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['1 cup diced tomatoes','1/2 cup cucumber','1/4 cup red bell pepper','1/4 cup onion','1 tbsp olive oil','1 tbsp red wine vinegar'],
+        instructions: ['Blend all vegetables until smooth.','Stir in olive oil and vinegar; chill before serving.']
+      },
+      {
+        name: 'Lemon‑garlic shrimp with quinoa',
+        mealType: 'Mini‑meal',
+        nutrition: 500,
+        ingredients: ['5 oz shrimp','1/2 cup cooked quinoa','1 clove garlic, minced','1 tbsp lemon juice','1 tsp olive oil'],
+        instructions: ['Sauté garlic in olive oil until fragrant.','Add shrimp and cook until pink.','Stir in lemon juice and quinoa.']
+      },
+      {
+        name: 'Mango‑coconut smoothie',
+        mealType: 'Snack',
+        nutrition: 190,
+        ingredients: ['1 cup mango chunks','1/2 cup coconut milk','1/2 cup water','1 tbsp chia seeds'],
+        instructions: ['Blend all ingredients until smooth.']
+      }
+    ];
+
+    const day13 = [
+      {
+        name: 'Pumpkin spice oats',
+        mealType: 'Snack',
+        nutrition: 310,
+        ingredients: ['1/2 cup oats','1 cup water','1/4 cup pumpkin puree','1 tbsp maple syrup','1/2 tsp pumpkin spice'],
+        instructions: ['Cook oats in water until thick.','Stir in pumpkin puree, maple syrup and spices.']
+      },
+      {
+        name: 'Sliced bell peppers & ranch',
+        mealType: 'Snack',
+        nutrition: 190,
+        ingredients: ['1 bell pepper, sliced','2 tbsp ranch dressing'],
+        instructions: ['Slice bell pepper and serve with ranch dressing.']
+      },
+      {
+        name: 'Chicken fajita bowl',
+        mealType: 'Mini‑meal',
+        nutrition: 460,
+        ingredients: ['4 oz grilled chicken','1/2 cup brown rice','1/2 cup black beans','1/2 cup sautéed bell peppers and onions','1 tbsp salsa','1 tbsp sour cream (optional)'],
+        instructions: ['Layer rice, beans, chicken and sautéed vegetables in a bowl.','Top with salsa and sour cream if desired.']
+      },
+      {
+        name: 'Peaches & cream yogurt',
+        mealType: 'Snack',
+        nutrition: 180,
+        ingredients: ['1/2 cup diced peaches','3/4 cup yogurt','1 tsp honey'],
+        instructions: ['Combine peaches, yogurt and honey in a bowl.']
+      },
+      {
+        name: 'Cucumber salad with dill',
+        mealType: 'Snack',
+        nutrition: 170,
+        ingredients: ['1 cucumber, sliced','1 tbsp fresh dill','1 tsp lemon juice','Salt and pepper'],
+        instructions: ['Toss cucumber slices with dill, lemon juice, salt and pepper.']
+      },
+      {
+        name: 'Tilapia with mango salsa',
+        mealType: 'Mini‑meal',
+        nutrition: 480,
+        ingredients: ['5 oz tilapia fillet','1/2 mango, diced','1/4 cup diced red onion','1 tbsp cilantro, chopped','1 tsp lime juice','Salt and pepper'],
+        instructions: ['Season tilapia with salt and pepper and grill or pan‑sear until cooked through.','Combine mango, red onion, cilantro and lime juice to make salsa.','Serve tilapia topped with mango salsa.']
+      },
+      {
+        name: 'Berry‑banana smoothie',
+        mealType: 'Snack',
+        nutrition: 200,
+        ingredients: ['1 banana','1/2 cup strawberries','1/2 cup blueberries','3/4 cup almond milk','1 tbsp flaxseed'],
+        instructions: ['Blend all ingredients until smooth.']
+      }
+    ];
+
+    const day14 = [
+      {
+        name: 'Muesli with milk & fruit',
+        mealType: 'Snack',
+        nutrition: 300,
+        ingredients: ['1/2 cup muesli','3/4 cup milk','1/2 cup mixed fruit'],
+        instructions: ['Combine muesli and milk.','Top with mixed fruit.']
+      },
+      {
+        name: 'Hard‑boiled eggs & veggies',
+        mealType: 'Snack',
+        nutrition: 220,
+        ingredients: ['2 hard‑boiled eggs','1 cup baby carrots'],
+        instructions: ['Boil eggs until hard; peel and halve.','Serve with baby carrots.']
+      },
+      {
+        name: 'Quinoa salad with cranberries',
+        mealType: 'Mini‑meal',
+        nutrition: 430,
+        ingredients: ['1/2 cup cooked quinoa','1/4 cup dried cranberries','1/4 cup chopped cucumber','1/4 cup chickpeas','1 tbsp olive oil','1 tbsp apple cider vinegar'],
+        instructions: ['Mix quinoa, cranberries, cucumber and chickpeas.','Whisk olive oil and vinegar; toss with salad.']
+      },
+      {
+        name: 'Kiwi & pineapple skewers',
+        mealType: 'Snack',
+        nutrition: 170,
+        ingredients: ['1 kiwi, peeled and cubed','1/2 cup pineapple chunks','Skewers'],
+        instructions: ['Thread kiwi and pineapple onto skewers.','Serve chilled.']
+      },
+      {
+        name: 'Cantaloupe & prosciutto',
+        mealType: 'Snack',
+        nutrition: 190,
+        ingredients: ['1/2 small cantaloupe, sliced','2 oz prosciutto'],
+        instructions: ['Wrap cantaloupe slices with prosciutto and serve.']
+      },
+      {
+        name: 'Pesto zoodles with cherry tomatoes',
+        mealType: 'Mini‑meal',
+        nutrition: 470,
+        ingredients: ['1 cup zucchini noodles','1/2 cup cherry tomatoes','2 tbsp pesto','2 tbsp pine nuts'],
+        instructions: ['Sauté zucchini noodles briefly in a skillet.','Add pesto and toss to coat.','Top with cherry tomatoes and pine nuts.']
+      },
+      {
+        name: 'Strawberry‑almond smoothie',
+        mealType: 'Snack',
+        nutrition: 200,
+        ingredients: ['1 cup strawberries','1/2 banana','3/4 cup almond milk','2 tbsp almond butter'],
+        instructions: ['Blend strawberries, banana, almond milk and almond butter until smooth.']
+      }
+    ];
+
+    // Map each day name to its corresponding array for the selector.  No days repeat.
     const mealPlan = {
       'Day 1': day1,
       'Day 2': day2,
-      'Day 3': day1,
-      'Day 4': day2,
-      'Day 5': day1,
-      'Day 6': day2,
-      'Day 7': day1,
-      'Day 8': day2,
-      'Day 9': day1,
-      'Day 10': day2,
-      'Day 11': day1,
-      'Day 12': day2,
-      'Day 13': day1,
-      'Day 14': day2
+      'Day 3': day3,
+      'Day 4': day4,
+      'Day 5': day5,
+      'Day 6': day6,
+      'Day 7': day7,
+      'Day 8': day8,
+      'Day 9': day9,
+      'Day 10': day10,
+      'Day 11': day11,
+      'Day 12': day12,
+      'Day 13': day13,
+      'Day 14': day14
     };
     const selector = document.getElementById('day-selector');
     const tableDiv = document.getElementById('meal-table');

@@ -9,62 +9,71 @@
 <body class="stella-inside">
   <div class="wrap">
     <h1 class="heading">Stella</h1>
-    <p class="lead">Voice &amp; sound. Experiment with spoken scripts using your browser’s speech synthesis.</p>
-    <p>Generate guided meditations based on principles of NLP, hypnotherapy and the Gateway program. Choose a theme, generate a script, then play it with built‑in text‑to‑speech. Background music support is planned for a future release.</p>
-    <label for="theme">Meditation theme</label>
-    <select id="theme">
-      <option value="relaxation">Relaxation</option>
-      <option value="confidence">Confidence</option>
-      <option value="focus">Focus</option>
-    </select>
+    <p class="lead">Voice &amp; sound. Generate guided meditation scripts using principles from NLP, hypnotherapy and the Gateway program. Enter any topic or goal below (e.g. stress relief, confidence, creativity) and Stella will craft a personalised meditation. You can play the script aloud with optional background music.</p>
+    <label for="theme">Meditation topic</label>
+    <input type="text" id="theme" placeholder="e.g. stress relief" />
     <button id="generate-script">Generate Script</button>
     <br><br>
     <label for="script">Script</label>
-    <textarea id="script" rows="6" placeholder="Your generated meditation will appear here..."></textarea>
+    <textarea id="script" rows="8" placeholder="Your generated meditation will appear here..."></textarea>
     <br>
     <button id="play">Play voice</button>
     <button id="stop">Stop</button>
+    <br>
+    <label for="bg-volume">Background music volume:</label>
+    <input type="range" id="bg-volume" min="0" max="1" step="0.05" value="0.3">
     <p><a href="../index.html">← back to home</a></p>
   </div>
   <script>
     const playBtn = document.getElementById('play');
     const stopBtn = document.getElementById('stop');
     const generateBtn = document.getElementById('generate-script');
-    const themeSelect = document.getElementById('theme');
-    // Generate meditation scripts based on selected theme
-    function createMeditation(theme) {
-      switch (theme) {
-        case 'relaxation':
-          return `Welcome. Find a comfortable position and gently close your eyes.\n` +
-                 `Take a deep breath in through your nose, and exhale slowly through your mouth.\n` +
-                 `With each breath, imagine a warm wave of light washing over you, releasing tension from your body.\n` +
-                 `As you relax, let the sounds around you fade and focus on the quiet inner space.\n` +
-                 `Repeat softly in your mind: 'I am safe, I am calm, I am at peace.'\n` +
-                 `Allow your subconscious mind to drift, exploring beautiful landscapes and memories.\n` +
-                 `When you are ready, slowly open your eyes and carry this serenity with you.`;
-        case 'confidence':
-          return `Begin by standing tall or sitting upright. Feel the ground beneath you supporting your journey.\n` +
-                 `Take a deep breath and imagine drawing in radiant energy from the universe.\n` +
-                 `As you exhale, release doubt and fear.\n` +
-                 `Visualise a door opening to a room filled with achievements and accolades. This room belongs to you.\n` +
-                 `Repeat: 'I am strong, I am capable, I am confident.'\n` +
-                 `Picture yourself accomplishing your goals with ease, your mind clear and focused.\n` +
-                 `When you are ready, open your eyes and step forward with newfound confidence.`;
-        case 'focus':
-          return `Sit comfortably and let your hands rest gently in your lap.\n` +
-                 `Take a slow, deep breath, holding for a moment at the top before exhaling.\n` +
-                 `Imagine a beam of light entering the top of your head and illuminating your mind.\n` +
-                 `Allow any stray thoughts to pass like clouds in the sky, returning your attention to the beam of light.\n` +
-                 `Repeat quietly: 'I am focused, I am alert, I am present.'\n` +
-                 `Feel a sense of clarity as distractions melt away.\n` +
-                 `When you are ready, open your eyes and carry this sharp focus with you into the rest of your day.`;
-        default:
-          return '';
-      }
+    const topicInput = document.getElementById('theme');
+    const volumeSlider = document.getElementById('bg-volume');
+    // Background audio element
+    const bgMusic = new Audio('../assets/audio/meditation-tone.wav');
+    bgMusic.loop = true;
+    // Build a meditation script using random segments and the user-provided topic
+    function createMeditation(topic) {
+      const t = topic || 'your intention';
+      // Define arrays of segments
+      const openings = [
+        `Find a comfortable position and gently close your eyes.`,
+        `Sit quietly and let your hands rest on your lap.`,
+        `Begin by taking a seat or lying down, whatever feels most natural to you.`
+      ];
+      const breathing = [
+        `Take a slow, deep breath in through your nose, and exhale through your mouth.`,
+        `Inhale for a count of four, hold for a moment, then exhale for a count of six.`,
+        `Feel your belly rise as you breathe in, and soften as you breathe out.`
+      ];
+      const visualisations = [
+        `Imagine a soft light representing ${t} glowing in your heart, expanding with each breath.`,
+        `Picture yourself surrounded by an aura of ${t}, warm and comforting.`,
+        `Visualise a path leading you toward ${t}, and notice the colours and sensations along the way.`
+      ];
+      const affirmations = [
+        `Repeat silently: 'I am aligned with ${t}.'`,
+        `Affirm to yourself: 'I invite ${t} into my life.'`,
+        `Whisper in your mind: 'I embrace ${t} fully and freely.'`
+      ];
+      const guidance = [
+        `Allow any stray thoughts to drift away like clouds, returning your attention to ${t}.`,
+        `If distractions arise, acknowledge them and gently refocus on ${t}.`,
+        `Let your subconscious explore how ${t} feels in your body and mind.`
+      ];
+      const closings = [
+        `When you are ready, take a final deep breath and slowly open your eyes.`,
+        `Carry the sensation of ${t} with you as you return to your day.`,
+        `Gently wiggle your fingers and toes, and come back to the present moment refreshed.`
+      ];
+      function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+      const scriptLines = [pick(openings), pick(breathing), pick(visualisations), pick(affirmations), pick(guidance), pick(closings)];
+      return scriptLines.join('\n');
     }
     generateBtn.addEventListener('click', () => {
-      const theme = themeSelect.value;
-      const script = createMeditation(theme);
+      const topic = topicInput.value.trim();
+      const script = createMeditation(topic);
       document.getElementById('script').value = script;
     });
     playBtn.addEventListener('click', () => {
@@ -72,11 +81,16 @@
       if (!text) return;
       const utter = new SpeechSynthesisUtterance(text);
       utter.rate = 1;
+      // Set volume for voice relative to slider (voice not adjustable via volume API but we can adjust audio volume)
       speechSynthesis.cancel();
+      bgMusic.volume = parseFloat(volumeSlider.value);
+      bgMusic.currentTime = 0;
+      bgMusic.play();
       speechSynthesis.speak(utter);
     });
     stopBtn.addEventListener('click', () => {
       speechSynthesis.cancel();
+      bgMusic.pause();
     });
   </script>
 </body>

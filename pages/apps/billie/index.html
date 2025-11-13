@@ -9,8 +9,8 @@
 <body class="billie-inside">
   <div class="wrap">
     <h1 class="heading">Billie</h1>
-    <p class="lead">Social media &amp; faceless videos. Billie crafts faceless visuals and plans posts across your social channels. Deepfake capabilities will be integrated in future versions.</p>
-    <p>Enter a prompt to generate a faceless video thumbnail. Billie will produce a still image that could represent your video. Full video synthesis and posting workflows require external tools and are not yet available.</p>
+    <p class="lead">Social media &amp; media creation. Billie generates eye‑catching videos and thumbnails designed to maximise engagement. Her goal is to create content viewers will watch, react to and share.</p>
+    <p>Enter a prompt to generate an engaging video thumbnail. Billie will produce a unique still image on the fly. Full video synthesis and posting workflows will be available once external APIs are connected.</p>
     <label for="video-prompt">Video prompt</label>
     <input id="video-prompt" type="text" placeholder="e.g. A faceless dancer in a cosmic garden" style="width:100%; padding:6px;">
     <button id="generate-video">Generate Thumbnail</button>
@@ -18,13 +18,50 @@
     <p><a href="../../../index.html">← back to home</a></p>
   </div>
   <script>
-    // Preloaded faceless thumbnails
-    const thumbnails = [
-      '../../../assets/img/billie-sample.png',
-      '../../../assets/img/tracy-generated3.png',
-      '../../../assets/img/tracy-generated2.png'
-    ];
-    let currentThumb = 0;
+    // Generate a pseudo‑random integer based on a string hash
+    function hashString(str) {
+      let h = 0;
+      for (let i = 0; i < str.length; i++) {
+        h = (h << 5) - h + str.charCodeAt(i);
+        h |= 0;
+      }
+      return Math.abs(h);
+    }
+    function generateThumbnail(prompt) {
+      const seed = hashString(prompt);
+      const rnd = (() => {
+        let s = seed;
+        return () => {
+          s = (s * 9301 + 49297) % 233280;
+          return s / 233280;
+        };
+      })();
+      const canvas = document.createElement('canvas');
+      const size = 512;
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      // Background gradient
+      const bgHue = Math.floor(rnd() * 360);
+      const grad = ctx.createLinearGradient(0, 0, size, size);
+      grad.addColorStop(0, `hsl(${bgHue}, 60%, 40%)`);
+      grad.addColorStop(1, `hsl(${(bgHue + 60) % 360}, 60%, 60%)`);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, size, size);
+      // Draw random shapes for energy and engagement
+      for (let i = 0; i < 10; i++) {
+        const x = rnd() * size;
+        const y = rnd() * size;
+        const w = rnd() * (size / 3);
+        const h = rnd() * (size / 3);
+        const hue = (bgHue + i * 36) % 360;
+        ctx.fillStyle = `hsla(${hue}, 70%, 50%, 0.6)`;
+        ctx.beginPath();
+        ctx.ellipse(x, y, w, h, rnd() * Math.PI, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      return canvas.toDataURL();
+    }
     document.getElementById('generate-video').addEventListener('click', () => {
       const prompt = document.getElementById('video-prompt').value.trim();
       const preview = document.getElementById('video-preview');
@@ -32,10 +69,8 @@
         preview.innerHTML = '<p>Please enter a prompt.</p>';
         return;
       }
-      // Cycle through thumbnails
-      currentThumb = (currentThumb + 1) % thumbnails.length;
-      const src = thumbnails[currentThumb];
-      preview.innerHTML = `<img src="${src}" alt="${prompt}" style="max-width:100%; height:auto; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">\n<p><em>Thumbnail generated for:</em> "${prompt}"</p>`;
+      const dataUrl = generateThumbnail(prompt);
+      preview.innerHTML = `<img src="${dataUrl}" alt="${prompt}" style="max-width:100%; height:auto; border-radius:4px; box-shadow:0 2px 4px rgba(0,0,0,0.2);">\n<p><em>Thumbnail generated for:</em> "${prompt}"</p>`;
     });
   </script>
 </body>

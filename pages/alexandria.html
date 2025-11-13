@@ -9,13 +9,13 @@
 <body class="alexandria-inside">
   <div class="wrap">
     <h1 class="heading">Alexandria the Story Weaver</h1>
-    <p class="lead">As your Dungeon Master, Alexandria listens to your ideas and guides you through a collaborative world‑building session. Describe your idea, answer a few questions and let her weave a tale complete with monsters, treasures and cities.</p>
+    <p class="lead">As your Dungeon Master, Alexandria listens to your ideas and guides you through a collaborative world‑building session.  Describe your vision, answer clarifying questions and provide as many details as you like—there is no limit.  When you are ready, tell Alexandria to begin and she will weave the tale.</p>
 
-    <div id="dm-section">
-      <p id="question"></p>
-      <textarea id="answer" rows="3" placeholder="Speak or type your answer here..."></textarea><br>
-      <button id="record-btn">🎤 Record Answer</button>
-      <button id="next-btn">Next</button>
+    <div id="chat-section">
+      <div id="dm-log" style="background:rgba(0,0,0,0.3); padding:1rem; max-height:300px; overflow-y:auto; border-radius:6px; margin-bottom:1rem;"></div>
+      <textarea id="dm-input" rows="3" placeholder="Speak or type your answer here..."></textarea><br>
+      <button id="record-btn">🎤 Record</button>
+      <button id="send-btn">Send</button>
     </div>
 
     <div id="story-section" style="display:none;">
@@ -26,38 +26,62 @@
     <p><a href="../index.html">← back to home</a></p>
   </div>
   <script>
-    // Dungeon Master interactive session
-    const questions = [
-      'Describe your overall idea of the story. What theme or genre do you imagine?',
-      'Describe the setting. Is it a mystical forest, a futuristic city, an ancient temple or something else?',
-      'Who is the main character? Give their name and a brief description.',
-      'What goal or quest drives the protagonist?',
-      'Who or what opposes them? Describe the villain, monster or obstacle.',
-      'Is there a special weapon, magical item or secret skill involved? If so, describe it.',
-      'Any other important details or twists you would like to include?'
-    ];
-    let answers = [];
-    let currentIndex = 0;
-
-    const questionEl = document.getElementById('question');
-    const answerEl = document.getElementById('answer');
+    /* Dungeon Master chat interface. Alexandria asks open-ended questions to help
+     * build a campaign. Users can provide as much detail as desired. Type
+     * "begin" when you are ready for the story to start. */
+    const dmLog = document.getElementById('dm-log');
+    const inputEl = document.getElementById('dm-input');
+    const sendBtn = document.getElementById('send-btn');
     const recordBtn = document.getElementById('record-btn');
-    const nextBtn = document.getElementById('next-btn');
     const storySection = document.getElementById('story-section');
     const storyOutput = document.getElementById('story-output');
+    const speech = window.speechSynthesis;
 
-    function askQuestion() {
-      if (currentIndex < questions.length) {
-        questionEl.textContent = questions[currentIndex];
-        answerEl.value = '';
+    // Categories Alexandria will ask about. After these, she will ask if you
+    // want to add anything else or begin the story. The list can be extended.
+    const prompts = [
+      'What theme or genre do you imagine for this adventure?',
+      'Describe the setting for the story.',
+      'Who is the main character? Include their name and description.',
+      'What goal drives the protagonist?',
+      'Who or what opposes them? Describe the villain or obstacle.',
+      'Is there a special weapon, magical item or secret skill involved?'
+    ];
+    let currentPromptIndex = 0;
+    // Stores user responses keyed by category index and any additional notes
+    const details = { extras: [] };
+
+    function appendLog(text, sender) {
+      const p = document.createElement('p');
+      p.textContent = text;
+      p.className = sender;
+      dmLog.appendChild(p);
+      dmLog.scrollTop = dmLog.scrollHeight;
+    }
+    function askNextPrompt() {
+      if (currentPromptIndex < prompts.length) {
+        const q = prompts[currentPromptIndex];
+        appendLog(`Alexandria: ${q}`, 'dm');
+        speak(q);
+      } else {
+        const q = 'Do you want to add more details? Reply with more details or type "begin" to start your story.';
+        appendLog(`Alexandria: ${q}`, 'dm');
+        speak(q);
       }
     }
-
-    // Set up speech recognition for STT
+    // Speech synthesis helper
+    function speak(msg) {
+      if (!speech) return;
+      const utter = new SpeechSynthesisUtterance(msg);
+      utter.lang = 'en-US';
+      speech.cancel();
+      speech.speak(utter);
+    }
+    // Speech recognition setup for STT
     let recognition;
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognition = new SpeechRecognition();
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SR();
       recognition.lang = 'en-US';
       recognition.interimResults = false;
       recognition.maxAlternatives = 1;
@@ -67,7 +91,7 @@
       });
       recognition.addEventListener('result', (e) => {
         const transcript = e.results[0][0].transcript;
-        answerEl.value = transcript;
+        inputEl.value = transcript;
       });
       recognition.addEventListener('end', () => {
         recordBtn.disabled = false;
@@ -75,55 +99,63 @@
     } else {
       recordBtn.style.display = 'none';
     }
-
-    nextBtn.addEventListener('click', () => {
-      const val = answerEl.value.trim();
-      if (!val) {
-        alert('Please answer the question before continuing.');
+    sendBtn.addEventListener('click', () => {
+      const text = inputEl.value.trim();
+      if (!text) return;
+      appendLog(`You: ${text}`, 'user');
+      inputEl.value = '';
+      if (text.toLowerCase() === 'begin' || text.toLowerCase() === 'start') {
+        generateStory();
         return;
       }
-      answers[currentIndex] = val;
-      currentIndex++;
-      if (currentIndex < questions.length) {
-        askQuestion();
+      if (currentPromptIndex < prompts.length) {
+        // store response by prompt index
+        details[currentPromptIndex] = text;
+        currentPromptIndex++;
       } else {
-        // Generate story
-        generateStory();
+        // additional details after main prompts
+        details.extras.push(text);
       }
+      askNextPrompt();
     });
-
     function generateStory() {
-      const [idea, setting, character, goal, villain, weapon, twist] = answers;
-      // Compose a story using a flexible template. The template utilises
-      // user-provided details and adds extra flavour text.
+      // Compose story using provided details. Use defaults if missing.
+      const idea = details[0] || 'an epic adventure';
+      const setting = details[1] || 'a mysterious land';
+      const character = details[2] || 'a nameless hero';
+      const goal = details[3] || 'an unknown quest';
+      const villain = details[4] || 'a hidden enemy';
+      const weapon = details[5] || '';
+      const extras = details.extras.join(' ');
       let story = '';
-      story += `In the realm of Avalon, there was a tale unlike any other. You envisioned ${idea}.\n\n`;
-      story += `Our adventure begins in ${setting}, where the air shimmers with ancient magic.\n\n`;
-      story += `The protagonist, ${character}, embarked on a quest: ${goal}.\n`;
-      story += `But lurking in the shadows was ${villain}, standing in the way of glory.\n`;
+      story += `In the realm of Avalon, a new tale unfolds. You envisioned ${idea}.\n\n`;
+      story += `Our adventure begins in ${setting}, a place where the air shimmers with magic and mystery.\n\n`;
+      story += `The protagonist, ${character}, embarks on a quest: ${goal}.\n`;
+      story += `But lurking in the shadows is ${villain}, determined to thwart all efforts.\n`;
       if (weapon) {
-        story += `${character.split(' ')[0]} carried ${weapon}, a source of power that could turn the tide.\n`;
+        story += `${character.split(' ')[0]} wields ${weapon}, a tool of great significance.\n`;
       }
-      if (twist) {
-        story += `${twist}\n`;
+      if (extras) {
+        story += `${extras}\n`;
       }
-      story += `Guided by you, Alexandria conjured monsters, treasures and hidden cities. Through challenges and riddles, the quest led to unexpected alliances and gripping battles. In the end, the story was yours to continue, to play and to evolve like the finest campaigns.\n`;
+      story += `Guided by your imagination, Alexandria conjures monsters, treasures and hidden cities. Through twists, alliances and battles, this narrative evolves with each choice you make.\n`;
       storyOutput.textContent = story;
-      document.getElementById('dm-section').style.display = 'none';
+      document.getElementById('chat-section').style.display = 'none';
       storySection.style.display = 'block';
     }
-
-    // Speech synthesis for TTS
     document.getElementById('play-story').addEventListener('click', () => {
-      const storyText = storyOutput.textContent;
-      if (!storyText) return;
-      const utterance = new SpeechSynthesisUtterance(storyText);
-      utterance.lang = 'en-US';
-      window.speechSynthesis.speak(utterance);
+      const text = storyOutput.textContent;
+      if (!text) return;
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      speech.cancel();
+      speech.speak(utter);
     });
-
-    // Initialize first question
-    askQuestion();
+    // Start the conversation
+    window.addEventListener('load', () => {
+      appendLog('Alexandria: Tell me, what theme or genre do you imagine for this adventure?', 'dm');
+      speak('Tell me, what theme or genre do you imagine for this adventure?');
+    });
   </script>
 </body>
 </html>

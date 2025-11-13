@@ -46,7 +46,8 @@
   <h1>Billie — Film Studio</h1>
   <div class="image-container">
     <!-- Use a relative path so the image resolves correctly regardless of deployment directory. -->
-    <img src="../../assets/fairies/Billie-Inside.JPG" alt="Billie" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
+    <!-- Use an absolute root path so the image is served from the proper location. -->
+    <img src="/assets/fairies/Billie-Inside.JPG" alt="Billie" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
 
   <!-- The text field accepts a short description of the desired video.  Leaving the placeholder blank removes instructional text. -->
@@ -59,9 +60,10 @@
   <script>
     // Prefer a globally defined API key if available (e.g. injected at build time).  Fall back to localStorage.
     // Use globalThis so that environment variables injected at build time (e.g. OPENAI_API_KEY) can be read even if not on the window object.
-    const OPENAI_API_KEY = (typeof globalThis.OPENAI_API_KEY !== 'undefined' && globalThis.OPENAI_API_KEY)
-      ? globalThis.OPENAI_API_KEY
-      : (localStorage.getItem('OPENAI_API_KEY') || '');
+    // Detect the API key from multiple possible injection points: a global constant, the globalThis object, or localStorage.
+    const OPENAI_API_KEY = (typeof OPENAI_API_KEY !== 'undefined' && OPENAI_API_KEY)
+      || (typeof globalThis !== 'undefined' && typeof globalThis.OPENAI_API_KEY !== 'undefined' && globalThis.OPENAI_API_KEY)
+      || localStorage.getItem('OPENAI_API_KEY') || '';
 
     async function generateVideo() {
       const prompt = document.getElementById('videoPrompt').value.trim();

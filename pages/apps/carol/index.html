@@ -73,7 +73,8 @@
   <h1>Carol — Meal Planner</h1>
   <div class="image-container">
     <!-- Use a relative path so the image resolves correctly regardless of deployment directory. -->
-    <img src="../../assets/fairies/Carol-Inside.JPG" alt="Carol" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
+    <!-- Use an absolute root path so the image loads properly on hosted pages. -->
+    <img src="/assets/fairies/Carol-Inside.JPG" alt="Carol" style="width:100%;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.3);">
   </div>
   <label for="daySelect"><strong>Select day (1–14):</strong></label>
   <select id="daySelect"></select>

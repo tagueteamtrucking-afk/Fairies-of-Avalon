@@ -92,8 +92,11 @@
     // Read the API key from a global constant if provided (for example via build tooling).  Fall back to localStorage if not defined.
     // Use globalThis so that environment variables injected at build time (e.g. OPENAI_API_KEY) can be read even if not on the window object.
     // Detect the API key from multiple possible injection points: a global constant, the globalThis object, or localStorage.
-    const OPENAI_API_KEY = (typeof OPENAI_API_KEY !== 'undefined' && OPENAI_API_KEY)
-      || (typeof globalThis !== 'undefined' && typeof globalThis.OPENAI_API_KEY !== 'undefined' && globalThis.OPENAI_API_KEY)
+    // Resolve the API key from any global injection.  Check both globalThis and window for a defined
+    // OPENAI_API_KEY property before falling back to localStorage.  Avoid referencing the variable
+    // during its own declaration.
+    const OPENAI_API_KEY = (typeof globalThis !== 'undefined' && typeof globalThis.OPENAI_API_KEY !== 'undefined' && globalThis.OPENAI_API_KEY)
+      || (typeof window !== 'undefined' && typeof window.OPENAI_API_KEY !== 'undefined' && window.OPENAI_API_KEY)
       || localStorage.getItem('OPENAI_API_KEY') || '';
     const chatBox = document.getElementById('chatBox');
     const inputEl = document.getElementById('userInput');

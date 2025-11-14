@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-13T01:09:04Z",
+  "generated": "2025-11-14T01:08:41Z",
   "entrypoints": [
     "/index.html"
   ],
@@ -22,7 +22,7 @@
     },
     {
       "path": "/pages/overseers.html",
-      "title": "Overseers \u2013 Palace & Governance"
+      "title": "Overseers \u2014 Palace & Governance"
     },
     {
       "path": "/pages/index.html",
@@ -30,19 +30,19 @@
     },
     {
       "path": "/pages/jem.html",
-      "title": "Jem \u2013 Weekly Training Plan"
+      "title": "Jem \u2014 Training Hall"
     },
     {
       "path": "/pages/alexandria.html",
-      "title": "Alexandria \u2013 Dungeon Master"
+      "title": "Alexandria \u2014 Library"
     },
     {
       "path": "/pages/stella.html",
-      "title": "Stella \u2013 Voice & Sound"
+      "title": "Stella \u2014 Meditation Studio"
     },
     {
       "path": "/pages/apps/abbey/index.html",
-      "title": "Abbey \u2013 Finance & Receipts"
+      "title": "Abbey \u2014 Finance & Reporting"
     },
     {
       "path": "/pages/apps/tracy/character-designer.html",
@@ -50,7 +50,7 @@
     },
     {
       "path": "/pages/apps/tracy/index.html",
-      "title": "Tracy \u2013 Art & Design"
+      "title": "Tracy \u2014 Cathedral Studio"
     },
     {
       "path": "/pages/apps/tracy/art-gallery.html",
@@ -70,7 +70,7 @@
     },
     {
       "path": "/pages/apps/billie/index.html",
-      "title": "Billie \u2013 Social & Media"
+      "title": "Billie \u2014 Film Studio"
     },
     {
       "path": "/pages/apps/billie/earnings-dashboard.html",
@@ -94,7 +94,7 @@
     },
     {
       "path": "/pages/apps/carol/index.html",
-      "title": "Carol\u2019s Kitchen"
+      "title": "Carol \u2014 Meal Planner"
     },
     {
       "path": "/pages/apps/carol/menu.html",
@@ -146,7 +146,7 @@
     },
     {
       "path": "/pages/apps/charlotte/index.html",
-      "title": "Charlotte \u2013 Operations & Workshop"
+      "title": "Charlotte \u2014 Translator"
     },
     {
       "path": "/pages/apps/charlotte/translations-board.html",
@@ -162,7 +162,7 @@
     },
     {
       "path": "/pages/apps/alexandria/index.html",
-      "title": "Alexandria \u2013 Gothic\u00a0Library"
+      "title": "Alexandria \u2014 Library"
     },
     {
       "path": "/pages/apps/alexandria/timeline-explorer.html",
@@ -202,7 +202,7 @@
     },
     {
       "path": "/pages/apps/stella/index.html",
-      "title": "Stella \u2013 Observatory & Apothecary"
+      "title": "Stella \u2014 Home"
     },
     {
       "path": "/pages/apps/stella/guided-sessions.html",
@@ -252,6 +252,7 @@
     "/memory-history/Codys-Memory.json",
     "/pages/apps/billie/data/social-posts.json",
     "/pages/apps/billie/data/earnings.json",
+    "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
     "/pages/apps/carol/data/twoperson-2wk-unique-20251015T022300Z.json",
     "/pages/apps/carol/data/menu.json",
     "/pages/apps/carol/data/meal-plan-upgraded.json",
@@ -318,6 +319,14 @@
     "/assets/img/town-inside.png",
     "/assets/img/carol-inside.jpg",
     "/assets/img/tracy-generated2.png",
+    "/assets/fairies/Stella-Inside.JPG",
+    "/assets/fairies/Tracy-Inside.JPG",
+    "/assets/fairies/Alexandria-Inside.JPG",
+    "/assets/fairies/Carol-Inside.JPG",
+    "/assets/fairies/Abbey-Inside.JPG",
+    "/assets/fairies/Charlotte-Inside.JPG",
+    "/assets/fairies/Jem-Inside.JPG",
+    "/assets/fairies/Billie-Inside.JPG",
     "/assets/css/avalon-dashboard.css",
     "/assets/css/avalon.css",
     "/assets/css/avalon-bright.css",

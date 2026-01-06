@@ -1,3143 +1,489 @@
 {
-  "generated": "2026-01-05T04:56:42.562Z",
+  "generated": "2026-01-06T01:14:27Z",
   "files": [
-    {
-      "path": ".nojekyll",
-      "bytes": 1,
-      "hash": "68b329da9893e34099c7d8ad5cb9c940",
-      "purpose": "misc"
-    },
-    {
-      "path": ".yamllint.yml",
-      "bytes": 65,
-      "hash": "16adb1c47a68709eff5693fa4e2d533a",
-      "purpose": "misc"
-    },
-    {
-      "path": "404.html",
-      "bytes": 550,
-      "hash": "61b5d2241d053404a62c569f1d3bd7e9",
-      "purpose": "misc"
-    },
-    {
-      "path": "Avalon-NodeParser-Content-20251030-051652/docs/BUILD-PATH.md",
-      "bytes": 64,
-      "hash": "bc0d2ff92f3089aa94bd3736141dfc93",
-      "purpose": "misc"
-    },
-    {
-      "path": "Avalon-NodeParser-Content-20251030-051652/docs/CHARACTERS.md",
-      "bytes": 72,
-      "hash": "9a962f56c88ea9313a7d6c4803e5e17b",
-      "purpose": "misc"
-    },
-    {
-      "path": "Avalon-NodeParser-Content-20251030-051652/docs/COSMIC-PROMPT.md",
-      "bytes": 61,
-      "hash": "8df882fa16f5eeb9671d4425be20610b",
-      "purpose": "misc"
-    },
-    {
-      "path": "Avalon-NodeParser-Content-20251030-051652/docs/RULES.md",
-      "bytes": 72,
-      "hash": "e0a75693da33a61c3f0a63103b9fc124",
-      "purpose": "misc"
-    },
-    {
-      "path": "Avalon-NodeParser-Content-20251030-051652/docs/SECURITY-NOTES.md",
-      "bytes": 133,
-      "hash": "f45fc13ac0e882d821118241de60c071",
-      "purpose": "misc"
-    },
-    {
-      "path": "Avalon-NodeParser-Content-20251030-051652/scripts/overseers/jem-program-plan.mjs",
-      "bytes": 5400,
-      "hash": "601cb262b407279747a56ffab9a3b6f5",
-      "purpose": "misc"
-    },
-    {
-      "path": "CNAME",
-      "bytes": 19,
-      "hash": "772ad82d1985db29e7d3aa3e514493d7",
-      "purpose": "misc"
-    },
-    {
-      "path": "Cody's Memory.yaml",
-      "bytes": 77,
-      "hash": "db498817901a9042030061fed59600f8",
-      "purpose": "misc"
-    },
-    {
-      "path": "Cody's Memory.yml",
-      "bytes": 1334,
-      "hash": "45caf96a7e3fecd9e0b04df5e528c54f",
-      "purpose": "misc"
-    },
-    {
-      "path": "UPDATED_PLAN.md",
-      "bytes": 4618,
-      "hash": "d7bb8efb525f62df4919cc4aa0b543c1",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/README.md",
-      "bytes": 638,
-      "hash": "e756e23f729c67cc029b5a170bf2e41c",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/audio/meditation-tone.wav",
-      "bytes": 2646044,
-      "hash": "0f467103182ea5feca857714269d4caa",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/css/avalon-bright.css",
-      "bytes": 927,
-      "hash": "9f33d9f265ac8733d356ca679300a750",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/css/avalon-dashboard.css",
-      "bytes": 785,
-      "hash": "54309ef7b95cf025dbc7fd06ae26b669",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/css/avalon.css",
-      "bytes": 4003,
-      "hash": "7f8febf367736b060e0603422cccdadb",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/designs/avalon-city.png",
-      "bytes": 3554896,
-      "hash": "d635ec2b69549a9e5d2280b041aa4681",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/designs/poster-fairy.png",
-      "bytes": 3169370,
-      "hash": "2e9b60c855594f0827e7c4a461ff2019",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/designs/tshirt-fairy.png",
-      "bytes": 2957505,
-      "hash": "52298272a38e509f1044a71cac287028",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/fairies/Abbey-Inside.JPG",
-      "bytes": 330417,
-      "hash": "414fda16ed7f260ab0672203c6b614c5",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/fairies/Alexandria-Inside.JPG",
-      "bytes": 289290,
-      "hash": "a2d47a8f1f34a4c8b50e390aab9ad77a",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/fairies/Billie-Inside.JPG",
-      "bytes": 301588,
-      "hash": "12b90816d35b7c38bc413d379114434f",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/fairies/Carol-Inside.JPG",
-      "bytes": 365670,
-      "hash": "d6ab171bb3927a3429db2dc6e8f78939",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/fairies/Charlotte-Inside.JPG",
-      "bytes": 328704,
-      "hash": "06e51b3fbd216554246297d31161d8e7",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/fairies/Jem-Inside.JPG",
-      "bytes": 286156,
-      "hash": "974d3dabfc8cce68d8da979a1eae5cb9",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/fairies/Stella-Inside.JPG",
-      "bytes": 277376,
-      "hash": "0a412ab37e0291fc52670de6c2854d28",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/fairies/Tracy-Inside.JPG",
-      "bytes": 331004,
-      "hash": "13faddf9340f28f0ddfacefd29cbe571",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/abbey-inside.JPG",
-      "bytes": 330417,
-      "hash": "414fda16ed7f260ab0672203c6b614c5",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/abbey-inside.img",
-      "bytes": 330417,
-      "hash": "414fda16ed7f260ab0672203c6b614c5",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/abbey-inside.jpg",
-      "bytes": 330417,
-      "hash": "414fda16ed7f260ab0672203c6b614c5",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/abbey-outside.JPG",
-      "bytes": 328704,
-      "hash": "06e51b3fbd216554246297d31161d8e7",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/abbey-outside.img",
-      "bytes": 328704,
-      "hash": "06e51b3fbd216554246297d31161d8e7",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/abbey-outside.jpg",
-      "bytes": 328704,
-      "hash": "06e51b3fbd216554246297d31161d8e7",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/alexandria-inside.img",
-      "bytes": 284573,
-      "hash": "09a58242fe05e367958e85c319dfc913",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/alexandria-inside.jpg",
-      "bytes": 223153,
-      "hash": "323adaddb99ae00a2bab958ba80d54a8",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/alexandria-outside.img",
-      "bytes": 110237,
-      "hash": "f5305adaddc556395975cd15a675197a",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/alexandria-outside.jpg",
-      "bytes": 110237,
-      "hash": "f5305adaddc556395975cd15a675197a",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/avalon-castle.jpg",
-      "bytes": 340644,
-      "hash": "f98a43534a39183ce1fb4c09fe4e2171",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/avalon-outside.png",
-      "bytes": 340644,
-      "hash": "f98a43534a39183ce1fb4c09fe4e2171",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/billie-inside.JPG",
-      "bytes": 277376,
-      "hash": "0a412ab37e0291fc52670de6c2854d28",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/billie-inside.img",
-      "bytes": 277376,
-      "hash": "0a412ab37e0291fc52670de6c2854d28",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/billie-inside.jpg",
-      "bytes": 277376,
-      "hash": "0a412ab37e0291fc52670de6c2854d28",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/billie-outside.JPG",
-      "bytes": 301588,
-      "hash": "12b90816d35b7c38bc413d379114434f",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/billie-outside.img",
-      "bytes": 301588,
-      "hash": "12b90816d35b7c38bc413d379114434f",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/billie-outside.jpg",
-      "bytes": 301588,
-      "hash": "12b90816d35b7c38bc413d379114434f",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/billie-sample.png",
-      "bytes": 2473872,
-      "hash": "8812af6f8789bb766a3f2400d4abf878",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/carol-inside.jpg",
-      "bytes": 26733,
-      "hash": "9b2a781d1ddd4005417e5f4b08c95f36",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/carol-kitchen-inside.jpg",
-      "bytes": 2935708,
-      "hash": "dfb4b8ab7ae58d0cdae7779c277e749f",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/carol-kitchen-inside.png",
-      "bytes": 9487,
-      "hash": "73ec0b7685e35d1be2f469c93b73ff29",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/carol-kitchen-outside.jpg",
-      "bytes": 2108161,
-      "hash": "484447d24cef338f9a2dcb8bf62eea48",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/carol-outside.jpg",
-      "bytes": 26733,
-      "hash": "9b2a781d1ddd4005417e5f4b08c95f36",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/charlotte-inside.JPG",
-      "bytes": 289290,
-      "hash": "a2d47a8f1f34a4c8b50e390aab9ad77a",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/charlotte-inside.img",
-      "bytes": 289290,
-      "hash": "a2d47a8f1f34a4c8b50e390aab9ad77a",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/charlotte-inside.jpg",
-      "bytes": 289290,
-      "hash": "a2d47a8f1f34a4c8b50e390aab9ad77a",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/charlotte-outside .img",
-      "bytes": 298325,
-      "hash": "49c8b07ee31484c1ef0cc87f740e2718",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/charlotte-outside.JPG",
-      "bytes": 298325,
-      "hash": "49c8b07ee31484c1ef0cc87f740e2718",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/charlotte-outside.jpg",
-      "bytes": 298325,
-      "hash": "49c8b07ee31484c1ef0cc87f740e2718",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/default-inside.png",
-      "bytes": 3110046,
-      "hash": "75af9bcf0b468e6a7f484ec5e84828e4",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/default-outside.png",
-      "bytes": 3370614,
-      "hash": "7f9dc6a85c8ca96cee9cf686f9fedcde",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/jem-hall-inside.jpg",
-      "bytes": 2995994,
-      "hash": "d41ff5f3c6f9c214ad3f3a315b7ba3e5",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/jem-hall-outside.jpg",
-      "bytes": 2453856,
-      "hash": "a21741c4111c7570b5c615eeac8c2633",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/palace-inside.png",
-      "bytes": 3110046,
-      "hash": "75af9bcf0b468e6a7f484ec5e84828e4",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/palace-outside.jpg",
-      "bytes": 0,
-      "hash": "d41d8cd98f00b204e9800998ecf8427e",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/palace-outside.png",
-      "bytes": 3016832,
-      "hash": "6b6affdf37995a8d67db107e92924769",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/placeholder.svg",
-      "bytes": 424,
-      "hash": "263b45c5fdc80e0517e7dedfc4bf4684",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/stella-inside.JPG",
-      "bytes": 302780,
-      "hash": "2210fa4326eff6daf2cdfa1326718681",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/stella-inside.img",
-      "bytes": 302780,
-      "hash": "2210fa4326eff6daf2cdfa1326718681",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/stella-inside.jpg",
-      "bytes": 302780,
-      "hash": "2210fa4326eff6daf2cdfa1326718681",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/stella-outside.JPG",
-      "bytes": 286156,
-      "hash": "974d3dabfc8cce68d8da979a1eae5cb9",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/stella-outside.img",
-      "bytes": 286156,
-      "hash": "974d3dabfc8cce68d8da979a1eae5cb9",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/stella-outside.jpg",
-      "bytes": 286156,
-      "hash": "974d3dabfc8cce68d8da979a1eae5cb9",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/town-inside.png",
-      "bytes": 3110046,
-      "hash": "75af9bcf0b468e6a7f484ec5e84828e4",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/town-outside.png",
-      "bytes": 3016832,
-      "hash": "6b6affdf37995a8d67db107e92924769",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-generated1.png",
-      "bytes": 3012170,
-      "hash": "8423a23d33e7a536b24902db1a0f3bf8",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-generated2.png",
-      "bytes": 2044323,
-      "hash": "72be0131bf70111edb05e1229d5355aa",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-generated3.png",
-      "bytes": 2711932,
-      "hash": "d1ba9cf61caac72f8584db1334318f11",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-generated4.png",
-      "bytes": 2943780,
-      "hash": "379e9ae08bef47e808b36b94be9c45f7",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-generated5.png",
-      "bytes": 3068055,
-      "hash": "30d9df88874393dcb0f70bf601571398",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-inside.JPG",
-      "bytes": 331004,
-      "hash": "13faddf9340f28f0ddfacefd29cbe571",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-inside.img",
-      "bytes": 331004,
-      "hash": "13faddf9340f28f0ddfacefd29cbe571",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-inside.jpg",
-      "bytes": 331004,
-      "hash": "13faddf9340f28f0ddfacefd29cbe571",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-outside.JPG",
-      "bytes": 331004,
-      "hash": "13faddf9340f28f0ddfacefd29cbe571",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-outside.img",
-      "bytes": 349791,
-      "hash": "d7618c06190a60d21310fd00cca8cc88",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-outside.jpg",
-      "bytes": 261709,
-      "hash": "08dee39af98fbc0c918fd35d42a2b7b5",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/img/tracy-sample.png",
-      "bytes": 1781757,
-      "hash": "11f7fc6430e6dbad32d84996ff9337a3",
-      "purpose": "misc"
-    },
-    {
-      "path": "assets/sounds/meditation.wav",
-      "bytes": 10584058,
-      "hash": "344245ba265c39e3bc39c4c7c304c33f",
-      "purpose": "misc"
-    },
-    {
-      "path": "avalon-carol-unique-2.9.4/pages/apps/carol/packages/us.json",
-      "bytes": 3157,
-      "hash": "b00f7978f40a901aafd8514ff563eb4b",
-      "purpose": "misc"
-    },
-    {
-      "path": "avalon-carol-unique-2.9.4/pages/apps/carol/plans/index.json",
-      "bytes": 106,
-      "hash": "95fe71a9a7c6d8025773cd7cf4b1a531",
-      "purpose": "misc"
-    },
-    {
-      "path": "avalon-carol-unique-2.9.4/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-      "bytes": 88106,
-      "hash": "28cb53200b7470d66560efa6f4e04065",
-      "purpose": "misc"
-    },
-    {
-      "path": "avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1",
-      "bytes": 7036,
-      "hash": "3d5d7c03bab329234d4d6fd15c80023c",
-      "purpose": "misc"
-    },
-    {
-      "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html",
-      "bytes": 7794,
-      "hash": "d59100dfcc33610c1750c02999013cd5",
-      "purpose": "misc"
-    },
-    {
-      "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/packages/us.json",
-      "bytes": 3405,
-      "hash": "5f2bac909c3025a5216b99838ffe2fe4",
-      "purpose": "misc"
-    },
-    {
-      "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/index.json",
-      "bytes": 106,
-      "hash": "c6ab444fc6a920aede70b9840cfe3a94",
-      "purpose": "misc"
-    },
-    {
-      "path": "avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/twoperson-2wk-unique-20251015T005600Z.json",
-      "bytes": 90325,
-      "hash": "8d466f00d47d919dcd558433bc522e0e",
-      "purpose": "misc"
-    },
-    {
-      "path": "avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1",
-      "bytes": 6702,
-      "hash": "2db45d95fb4ce49e2a2015baf6c47c09",
-      "purpose": "misc"
-    },
-    {
-      "path": "cleanup.sh",
-      "bytes": 1301,
-      "hash": "8d1b4c2737d57f6419c2e9bf65dd20df",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/README-auth.md",
-      "bytes": 1215,
-      "hash": "8aa2658a95557dfb8d5130a716fa210b",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/README.md",
-      "bytes": 561,
-      "hash": "5977a8f4f173c1991434f8746ad9201d",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/avalon-importmap-install.toml",
-      "bytes": 221,
-      "hash": "6bbf794f1de0a67064280f5d0d5c5979",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/carol.toml",
-      "bytes": 186,
-      "hash": "4f1a3ecf9c00d17356997382508f914b",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/hello.toml",
-      "bytes": 185,
-      "hash": "5ef1daa34a5c19ae839750af87d5741d",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/tracy-skin-llm.toml",
-      "bytes": 199,
-      "hash": "44a4267bfcfb980e9638b13f909d06c7",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/worker-alexandria.js",
-      "bytes": 3934,
-      "hash": "cceecbad27a7423164d8930d0d158f7f",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/worker-auth.js",
-      "bytes": 4739,
-      "hash": "02903892645979e39a4fe529d099096b",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/worker-billie-social.js",
-      "bytes": 333,
-      "hash": "0d3b73f62065ae25ee72887d85ad5dd1",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/worker-carol.js",
-      "bytes": 3129,
-      "hash": "4aa8d19ebd5ef8d0d45e5a23f213671e",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/worker-hello.js",
-      "bytes": 97,
-      "hash": "8ab034a3aed63b94de919e47b6ad88d7",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/worker-importmap-install.js",
-      "bytes": 207,
-      "hash": "4fa36ea77c44920ca37a176307b986d5",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/worker-market.js",
-      "bytes": 132,
-      "hash": "ae57672c7d8742ac2d42d7afafd989ce",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/worker-market.toml",
-      "bytes": 189,
-      "hash": "2f3aef9d1c75a355e401be205c599c5d",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/worker-skin-llm.js",
-      "bytes": 207,
-      "hash": "52458841024cd31c554af447c8f14bce",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/worker-tracy-skin-llm.js",
-      "bytes": 366,
-      "hash": "c51b1bf61bd3d1507b25c0b7eeee805b",
-      "purpose": "misc"
-    },
-    {
-      "path": "cloudflare/worker-tts.js",
-      "bytes": 330,
-      "hash": "9f0d0460b4daf890a3267000c05edf84",
-      "purpose": "misc"
-    },
-    {
-      "path": "crown_of_clarity/README.md",
-      "bytes": 3618,
-      "hash": "37b29eca8289fa36adfa60e11db5e182",
-      "purpose": "misc"
-    },
-    {
-      "path": "crown_of_clarity/crown_of_clarity.py",
-      "bytes": 6105,
-      "hash": "b25b20be10640088cc5976a4d320a50a",
-      "purpose": "misc"
-    },
-    {
-      "path": "docs/Avalon-Lore-Dossier.md",
-      "bytes": 113,
-      "hash": "10d1a432ef36a52d2f63a51744c362b7",
-      "purpose": "misc"
-    },
-    {
-      "path": "docs/Avalon-Visual-Bible.md",
-      "bytes": 7324,
-      "hash": "0a7e6bd22e6572873c4568906bc8d411",
-      "purpose": "misc"
-    },
-    {
-      "path": "docs/BUILD-PATH.md",
-      "bytes": 13,
-      "hash": "cd2edf0e7a58c580a70fb264fb3cafd4",
-      "purpose": "misc"
-    },
-    {
-      "path": "docs/CHARACTERS.md",
-      "bytes": 13,
-      "hash": "798f427ae9aa7c54799e6bb16ad9afb7",
-      "purpose": "misc"
-    },
-    {
-      "path": "docs/COSMIC-PROMPT.md",
-      "bytes": 16,
-      "hash": "3549f7826c69c37ee5fc0ee16a8115c1",
-      "purpose": "misc"
-    },
-    {
-      "path": "docs/OAuth-Notes.md",
-      "bytes": 268,
-      "hash": "89372621807cae0e7a2e5842cc11236d",
-      "purpose": "misc"
-    },
-    {
-      "path": "docs/PR-Automerge-Comment-Bot.md",
-      "bytes": 519,
-      "hash": "a9e465f1e429d6d04115f44f971f527e",
-      "purpose": "misc"
-    },
-    {
-      "path": "docs/RULES.md",
-      "bytes": 8,
-      "hash": "36358879e99cd265fdbc777dcd421e9a",
-      "purpose": "misc"
-    },
-    {
-      "path": "docs/SECURITY-NOTES.md",
-      "bytes": 22,
-      "hash": "1b98edb787a9822016f083b9bdf74c66",
-      "purpose": "misc"
-    },
-    {
-      "path": "fairies_rules_and_info.md",
-      "bytes": 4790,
-      "hash": "1e0604798e9a153b8f3e70708393cdca",
-      "purpose": "misc"
-    },
-    {
-      "path": "file-index.json",
-      "bytes": 375,
-      "hash": "5a5772dc9191d0370dbea738119814f4",
-      "purpose": "misc"
-    },
-    {
-      "path": "importmap.json",
-      "bytes": 248,
-      "hash": "0dd6750207808aafad113e80eb23457c",
-      "purpose": "misc"
-    },
-    {
-      "path": "index.html",
-      "bytes": 2573,
-      "hash": "2a3ccf3716ae3ca82553debfacfce578",
-      "purpose": "misc"
-    },
-    {
-      "path": "kill-sw.html",
-      "bytes": 620,
-      "hash": "05a006421c030ca47215e5695e8935c2",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/Cody-Memory.yaml",
-      "bytes": 916,
-      "hash": "d6351c8cd9b25f20d1c68a37649c8d99",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/Codys-Memory-characters.yaml",
-      "bytes": 4968,
-      "hash": "c142734b43000ba3d89b23561771f904",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/Codys-Memory-visuals.yaml",
-      "bytes": 4260,
-      "hash": "d00f65e65de350d00aa322ca592921ca",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/README.md",
-      "bytes": 777,
-      "hash": "05ed8c2084098c05202b2327e7acb5bf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/character-summary.md",
-      "bytes": 4655,
-      "hash": "045c224a66212a568ea83011e127f75a",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/cleanup-proposals.json",
-      "bytes": 29787,
-      "hash": "40857eea5e77dca22bb145511da1f080",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/cleanup-rules.json",
-      "bytes": 353,
-      "hash": "387df7e7eb67adbc6fe61d067759cc70",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/deadends.json",
-      "bytes": 92256,
-      "hash": "c3587e718d8fa1ccefe8c35c342d5d11",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/evolution-merge.patch.yaml",
-      "bytes": 903,
-      "hash": "18d421e09fc134aa3375c13087bfbdc4",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/fairy_function_matrix.json",
-      "bytes": 991,
-      "hash": "b1ffd04ec9f69bceb45eb07b7cdfbbf2",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/file-index.json",
-      "bytes": 23459,
-      "hash": "4dc5a6dddf003d13f336441daae9ebf1",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/owners.json",
-      "bytes": 1961,
-      "hash": "7837b127f1f6ee0d083cca66606840d3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/blue_lab_exterior.txt",
-      "bytes": 175,
-      "hash": "40629b4b747bd316721efc427a3565e4",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/blue_lab_interior.txt",
-      "bytes": 163,
-      "hash": "ff72bf3b5005b780c7f9f53f0e3cef99",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/cathedral_studio_exterior.txt",
-      "bytes": 210,
-      "hash": "c7de8e0d4ac9b0ca458f707ea8134514",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/cathedral_studio_interior.txt",
-      "bytes": 206,
-      "hash": "25f7c75650739a1e6a5554fe992cc217",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/city_hall_exterior.txt",
-      "bytes": 176,
-      "hash": "49153c21bc2ab5011155158ceb246fc0",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/city_hall_interior.txt",
-      "bytes": 158,
-      "hash": "f460872bd1eede8e7e7e9922d1dc6035",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/court_lab_exterior.txt",
-      "bytes": 100,
-      "hash": "597f60ab4e114e5a25cc7b67f5320c1d",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/court_lab_interior.txt",
-      "bytes": 101,
-      "hash": "d74663124b926ad5bd9e93855ea55ee6",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/dojo_interior.txt",
-      "bytes": 96,
-      "hash": "b0ded0b76e8396ee544c8210ec849bf5",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/grand_vault_exterior.txt",
-      "bytes": 212,
-      "hash": "a45d0556ffde044f1bfeabd529136263",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/grand_vault_interior.txt",
-      "bytes": 203,
-      "hash": "2270b28fd73f01e6cc49e3ca4b6d06ae",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/library_exterior.txt",
-      "bytes": 157,
-      "hash": "730be58cb5c0e1d66f95022fd46f1e36",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/library_interior.txt",
-      "bytes": 165,
-      "hash": "d31b0b00ecba25d92f681951191e5430",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/observatory_exterior.txt",
-      "bytes": 147,
-      "hash": "28cee7fb972327d94887d66e7ca3cc11",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/observatory_interior.txt",
-      "bytes": 196,
-      "hash": "9b7c73b3d150207fb7374e2e9628fcff",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/palace_exterior.txt",
-      "bytes": 173,
-      "hash": "eebb99c19b7048a09af71c9b5e8b53dd",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/palace_interior.txt",
-      "bytes": 180,
-      "hash": "00089f0bd8431f1cb4d05209ba7946eb",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/phoenix_pagoda.txt",
-      "bytes": 231,
-      "hash": "16e4f1f1d79bc6ac11ae92a3500f4420",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/relay_tower_exterior.txt",
-      "bytes": 174,
-      "hash": "1704cc82cfdddbc5144cea2c352afed4",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/relay_tower_interior.txt",
-      "bytes": 171,
-      "hash": "1eccb3324e617838a11adda19f2d7cfa",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/restaurant_exterior.txt",
-      "bytes": 186,
-      "hash": "297268018945bc152e6ba7c8d72022a3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/prompts/restaurant_interior.txt",
-      "bytes": 172,
-      "hash": "0e0d3869a6cbe5dce3ab8568ba41dfbe",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/roles.md",
-      "bytes": 2056,
-      "hash": "5945d623a1699ef2049ab9e0328cbbdc",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory/site-map.json",
-      "bytes": 10931,
-      "hash": "98fd02b714c630deaf357fbddeff5883",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T083955Z-Codys-Memory.yaml",
-      "bytes": 21661,
-      "hash": "f956c9093550652572ecf0eea84e7100",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T085610Z-Codys-Memory.yaml",
-      "bytes": 22003,
-      "hash": "d977ed6bb23668e69e899e311b7980e3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T184428Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T185031Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T192026Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T193745Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T195049Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T202952Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T204046Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T205141Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T211642Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T211643Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T212718Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T214031Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T215309Z-Codys-Memory.yaml",
-      "bytes": 16318,
-      "hash": "eeaa8cc6103b30ddfafb8dd7832e8c69",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T221734Z-Codys-Memory.yaml",
-      "bytes": 23513,
-      "hash": "f6fd4e9d93dbc4c9f7c76429a60d20bc",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T223028Z-Codys-Memory.yaml",
-      "bytes": 23513,
-      "hash": "f6fd4e9d93dbc4c9f7c76429a60d20bc",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T224153Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T224309Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T225621Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T232626Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T234050Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250913T235341Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T031341Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T035014Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T043733Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T045342Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T053153Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T055319Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T064519Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T065740Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T072712Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T074014Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T075306Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T083756Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T085322Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T092949Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T094145Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T095503Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T103142Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T105312Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T112148Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T113932Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T115332Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T115333Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T130223Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T133138Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T135313Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T142946Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T142947Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T144235Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T145545Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T152814Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T154026Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T154027Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T155324Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T163450Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T165329Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T172707Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T174000Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T175316Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T184046Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T185547Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T192153Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T193924Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T195318Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T203016Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T204233Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T205546Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T212618Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T212619Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T213955Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T215327Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T223147Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T225352Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T232647Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T234133Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T234134Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250914T235359Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T032853Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T035758Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T044252Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T045601Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T053818Z-Codys-Memory.yaml",
-      "bytes": 22534,
-      "hash": "71a5ce306b46a6d682d7a5fe24c3cb3e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T055731Z-Codys-Memory.yaml",
-      "bytes": 34824,
-      "hash": "53e153d1d8619d617e02bbd3962da0db",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T062707Z-Codys-Memory.yaml",
-      "bytes": 12044,
-      "hash": "3fddc4c4a2212f814786d4dff3bca5bd",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T065622Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T065739Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T073229Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T075358Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T084755Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T093811Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T095349Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T104121Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T105410Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T112630Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T114150Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T115456Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T133345Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T135354Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T143531Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T145349Z-Codys-Memory.yaml",
-      "bytes": 3551,
-      "hash": "df2961eca6c8ad5b2544895d6fcd4cd3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T150856Z-Codys-Memory.yaml",
-      "bytes": 10570,
-      "hash": "0459af5c5b9be110e7c0c4ebdca3dc30",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T151120Z-Codys-Memory.yaml",
-      "bytes": 10570,
-      "hash": "0459af5c5b9be110e7c0c4ebdca3dc30",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T152330Z-Codys-Memory.yaml",
-      "bytes": 10570,
-      "hash": "0459af5c5b9be110e7c0c4ebdca3dc30",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T153523Z-Codys-Memory.yaml",
-      "bytes": 10570,
-      "hash": "0459af5c5b9be110e7c0c4ebdca3dc30",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T155401Z-Codys-Memory.yaml",
-      "bytes": 10570,
-      "hash": "0459af5c5b9be110e7c0c4ebdca3dc30",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T160028Z-Codys-Memory.yaml",
-      "bytes": 2119,
-      "hash": "b0f4737af2716c4b8c8345e6e9bc9010",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T163307Z-Codys-Memory.yaml",
-      "bytes": 7426,
-      "hash": "9df0ef3367afd23dd3d5337ee4bc49db",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T164733Z-Codys-Memory.yaml",
-      "bytes": 7426,
-      "hash": "9df0ef3367afd23dd3d5337ee4bc49db",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T164734Z-Codys-Memory.yaml",
-      "bytes": 7426,
-      "hash": "9df0ef3367afd23dd3d5337ee4bc49db",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T173146Z-Codys-Memory.yaml",
-      "bytes": 7426,
-      "hash": "9df0ef3367afd23dd3d5337ee4bc49db",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T173147Z-Codys-Memory.yaml",
-      "bytes": 7426,
-      "hash": "9df0ef3367afd23dd3d5337ee4bc49db",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T175348Z-Codys-Memory.yaml",
-      "bytes": 919,
-      "hash": "8e403fac20c91f70cce963b62440dfa5",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T184924Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T184925Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T192414Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T194046Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T195345Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T203329Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T205352Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T212903Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T212904Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T214127Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T215424Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T223318Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T225330Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T232717Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T234059Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250915T235346Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T030600Z-Codys-Memory.yaml",
-      "bytes": 597,
-      "hash": "6eae8a6359e2929fa2b831ff863bafbf",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T044014Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T044015Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T045301Z-BROKEN-Codys-Memory.yaml",
-      "bytes": 30374,
-      "hash": "49da775b11b0e1e54be0521a4e6be89e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T045301Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T051838Z-BROKEN-Codys-Memory.yaml",
-      "bytes": 26927,
-      "hash": "0c135420b2d82fb07429256beed87494",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T053453Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T053454Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T055206Z-BROKEN-Codys-Memory.yaml",
-      "bytes": 21858,
-      "hash": "2805a5a58d8c16fed011c5cdab4b19d0",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T055342Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T055343Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T065214Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T073114Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T073115Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T075350Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T084909Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T093747Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T095343Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T104018Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T105336Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T112630Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T114121Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T115415Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T133641Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T135432Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T144101Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T145326Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T145327Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T153621Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T155352Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T164525Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T164526Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T165831Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T173244Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T175321Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T184839Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T192411Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T194032Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T195354Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T203442Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T205313Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T212837Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T214115Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T214116Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T215405Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T222941Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T224238Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T224239Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T225550Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T232454Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T234039Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250916T235337Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T030528Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T030529Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T034708Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T043946Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T045335Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T053440Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T053441Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T055327Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T065153Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T072949Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T074258Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T075554Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T084658Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T093430Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T095336Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T103915Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T105321Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T105322Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T112627Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T114119Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T115422Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T133436Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T135419Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T143902Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T145408Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T153449Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T155330Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T164515Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T165749Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T173207Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T175310Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T184849Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T192359Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T192400Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T194119Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T194120Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T195332Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T203404Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T205316Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T205317Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T205541Z-Codys-Memory.yaml",
-      "bytes": 20083,
-      "hash": "ab900d73e7eaf0bffbb6754291c7b196",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T205634Z-BROKEN-Codys-Memory.yaml",
-      "bytes": 20083,
-      "hash": "ab900d73e7eaf0bffbb6754291c7b196",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T205748Z-BROKEN-Codys-Memory.yaml",
-      "bytes": 21858,
-      "hash": "2805a5a58d8c16fed011c5cdab4b19d0",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T212554Z-Codys-Memory.yaml",
-      "bytes": 996,
-      "hash": "7619e6a2013d521e8769a1f6a2d7007b",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T214108Z-Codys-Memory.yaml",
-      "bytes": 4853,
-      "hash": "c8cf62ef792433af775320f0f381a4ad",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T223023Z-Codys-Memory.yaml",
-      "bytes": 448,
-      "hash": "6c171548ba9e782121bd3c8e129da823",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T224146Z-Codys-Memory.yaml",
-      "bytes": 448,
-      "hash": "6c171548ba9e782121bd3c8e129da823",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T224147Z-Codys-Memory.yaml",
-      "bytes": 448,
-      "hash": "6c171548ba9e782121bd3c8e129da823",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T225437Z-Codys-Memory.yaml",
-      "bytes": 448,
-      "hash": "6c171548ba9e782121bd3c8e129da823",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T232747Z-Codys-Memory.yaml",
-      "bytes": 448,
-      "hash": "6c171548ba9e782121bd3c8e129da823",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T234052Z-Codys-Memory.yaml",
-      "bytes": 448,
-      "hash": "6c171548ba9e782121bd3c8e129da823",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250917T235350Z-Codys-Memory.yaml",
-      "bytes": 2155,
-      "hash": "8af971aa1f8c26e8a00840a6bce09114",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250918T001302Z-BROKEN-Codys-Memory.yaml",
-      "bytes": 11851,
-      "hash": "1fd3a46f0e3f72ed719bf4a8c6adf047",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250918T005814Z-Codys-Memory.yaml",
-      "bytes": 4682,
-      "hash": "021bbc7ca95aecc60d836f25cf5b96c0",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20250918T012606Z-Codys-Memory.yaml",
-      "bytes": 1866,
-      "hash": "99ac0454f1727a34269ad3d7cd0b470d",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20251017T224658Z-Codys-Memory.yaml",
-      "bytes": 2344,
-      "hash": "7742375452016ed2729f5fe4ea24644d",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20251021T033227Z-Codys-Memory.yaml",
-      "bytes": 1688,
-      "hash": "4de7327ea5490fb72f3576e8393d0c99",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/20251021T035452Z-Codys-Memory.yaml",
-      "bytes": 1477,
-      "hash": "53bf447a3ae566e43c74ada19507dc8e",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/Codys-Memory-20251021T064919Z.yaml",
-      "bytes": 1342,
-      "hash": "a189a1418513f296f8e10a92d75bf890",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/Codys-Memory-ops.yaml",
-      "bytes": 1013,
-      "hash": "f53ee73151a7fe13af4f2e0a960e5622",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/Codys-Memory.json",
-      "bytes": 725,
-      "hash": "302a59a2ee0f8f02c204a38c600148f3",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/Codys-Memory.yaml",
-      "bytes": 812,
-      "hash": "7dad2720a255e9f5b29b5a10b7602c74",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/repo-index.json",
-      "bytes": 121570,
-      "hash": "9d4813885c8ae8d4653557dcdf3ad11c",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/repo-inventory.json",
-      "bytes": 199405,
-      "hash": "30afef0a6d814eaf74be65aa34673e4a",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/repo-read-index.json",
-      "bytes": 862574,
-      "hash": "d1ab49a179606d706c7bd14dcde95a08",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/repo-refs.json",
-      "bytes": 633,
-      "hash": "42dfa1d330ca31b47c7bd9cba069cb7f",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/repo-usage-report.json",
-      "bytes": 8544,
-      "hash": "f348d2148cc7885d8f0180aa8d5b94da",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory-history/retired/odessa/index.html",
-      "bytes": 400,
-      "hash": "361a7476f512ddb07dea4682c0a9383c",
-      "purpose": "misc"
-    },
-    {
-      "path": "memory_summary.md",
-      "bytes": 10422,
-      "hash": "4ae978986ee57bb2ec0273638c27dd6b",
-      "purpose": "misc"
-    },
-    {
-      "path": "package.json",
-      "bytes": 259,
-      "hash": "80f00f3039270387c92a3c90336fea05",
-      "purpose": "misc"
-    },
-    {
-      "path": "pages/_city/index.html",
-      "bytes": 1431,
-      "hash": "8d0386323b45f6c285be8cc9f1a72d54",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/alexandria.html",
-      "bytes": 7257,
-      "hash": "e56c239bcc926b6d52e84001a7e32359",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/_city/index.html",
-      "bytes": 736,
-      "hash": "06b3e3f79ee63d05215c8cb72517d284",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/_city/map.svg",
-      "bytes": 2495,
-      "hash": "cbc8f0e39e6f6ac6a11a80d430962190",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/abbey/index.html",
-      "bytes": 4579,
-      "hash": "fc186ee7905e673c4770e556f16486be",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/alexandria/character-sheets.html",
-      "bytes": 1578,
-      "hash": "03630c5e6d766d8300b596a51b5db940",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/alexandria/data/characters.json",
-      "bytes": 1717,
-      "hash": "84a1cf3d1c43c131b515ea843bd961f1",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/alexandria/data/story.json",
-      "bytes": 1042,
-      "hash": "5271d2dea4ae0eded5d41ae7257bb6d0",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/alexandria/index.html",
-      "bytes": 5427,
-      "hash": "4152ce087196d72688bd46ea07dc778c",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/alexandria/story-assistant.html",
-      "bytes": 2271,
-      "hash": "2ce952c0973a39f054964b8324a715c3",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/alexandria/story-shelf.html",
-      "bytes": 1550,
-      "hash": "db339de804efab4b363c535360f1c482",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/alexandria/timeline-explorer.html",
-      "bytes": 1421,
-      "hash": "f108be5a1a9dded5a3f7b887bae578cc",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/billie/data/earnings.json",
-      "bytes": 217,
-      "hash": "ce2de7775c0dbdfe8caead21cd0c1f2c",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/billie/data/social-posts.json",
-      "bytes": 360,
-      "hash": "940397fd852896bdc4f018900d2721b9",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/billie/earnings-dashboard.html",
-      "bytes": 1728,
-      "hash": "44c59ca72bc94c39abf62238b0ba24b4",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/billie/index.html",
-      "bytes": 4132,
-      "hash": "11938d63054007857e73abe61f2614ca",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/billie/social-posts.html",
-      "bytes": 1499,
-      "hash": "5f36429425cf86a4dd15731bf34b63c4",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/billie/video-maker.html",
-      "bytes": 2318,
-      "hash": "2cbed110eab900c4321284001d8509c5",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/dashboard.html",
-      "bytes": 375,
-      "hash": "4b105d49d43f980e091bcbf2210254be",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/data/meal-plan-upgraded.json",
-      "bytes": 3997,
-      "hash": "67cb5fee10a372047c5ba4e1b680e7a7",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/data/meal-plan.json",
-      "bytes": 2170,
-      "hash": "780f48e18353a8b0ce33d8d55afd0669",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/data/menu.json",
-      "bytes": 485,
-      "hash": "60a1017d72c46bb82d922629478a6877",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/data/shopping-list.json",
-      "bytes": 1878,
-      "hash": "1d9fb1b09c92089ac14589520e565627",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/data/twoperson-2wk-unique-20251015T022300Z.json",
-      "bytes": 10766,
-      "hash": "a8c4d6f743af51d6d65c2d93f1fb19ad",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/index.html",
-      "bytes": 5355,
-      "hash": "f40f94bcc0026d821317df8e51294d66",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/meal-plan-upgraded.html",
-      "bytes": 3731,
-      "hash": "d75861ad7c604ee797885c34028f71aa",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/meal-plan.html",
-      "bytes": 38767,
-      "hash": "d75761982a50b7e1c5f220859028bb35",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/mealplan.html",
-      "bytes": 1148,
-      "hash": "9e1a9b836ded4b9c4c0a5e193109b031",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/menu.html",
-      "bytes": 2524,
-      "hash": "58290b827f3c916df2ee5cdc3bc821b1",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-      "bytes": 67943,
-      "hash": "3991bb4f95101c594d5185476f55748a",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/carol/shopping-list.html",
-      "bytes": 18579,
-      "hash": "da787db9be4bd66a6d484cae1d568289",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/charlotte/armor-builder.html",
-      "bytes": 2304,
-      "hash": "62481409978ffa0accf2019b91fbe218",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/charlotte/data/expirations.json",
-      "bytes": 211,
-      "hash": "13da28f31310e1f6367888e9565c64f6",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/charlotte/data/reminders.json",
-      "bytes": 257,
-      "hash": "34f0a48a20cd69a052790c33894f59e9",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/charlotte/expirations-registry.html",
-      "bytes": 1509,
-      "hash": "1ae0a4ecb30bd8ac9c733564df365ea0",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/charlotte/index.html",
-      "bytes": 4592,
-      "hash": "65c875b7371e9a7b51b3261929100566",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/charlotte/queues-dashboard.html",
-      "bytes": 3396,
-      "hash": "28655c98544e5657106064ce91e6d7eb",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/charlotte/reminders.html",
-      "bytes": 1407,
-      "hash": "741fb3099833b02f659bd47815ad7179",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/charlotte/translations-board.html",
-      "bytes": 4493,
-      "hash": "9c7dd7be20c88e160ead2d03a47be296",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/charlotte/vrm-viewer.html",
-      "bytes": 1211,
-      "hash": "5ee80bec122bab2bf560f4b611817be7",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/common/js/json-table.js",
-      "bytes": 1875,
-      "hash": "fa5751594b1cfb9c4a62846f70bcf3cd",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/common/style.css",
-      "bytes": 5769,
-      "hash": "ef0384e502c8aca6bfa5a0da765b7879",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/jem/dashboard.html",
-      "bytes": 373,
-      "hash": "6b861f5c1f8dffd4991b6b7bbf8817ff",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/jem/data/gallery.json",
-      "bytes": 68,
-      "hash": "e25c0ba1c403c663da394227ca82bc88",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/jem/data/training-plan.json",
-      "bytes": 4163,
-      "hash": "5646bf2b121b13670af0483468c743ba",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/jem/fitness-planner.html",
-      "bytes": 1738,
-      "hash": "839ddfe359b946169f0784908a419410",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/jem/gallery.html",
-      "bytes": 1592,
-      "hash": "de5817ea9fd3638ed9a1e448e0efb178",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/jem/index.html",
-      "bytes": 972,
-      "hash": "d263ec0fc272fd37d09de6f07770f566",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/jem/progress-tracker.html",
-      "bytes": 2591,
-      "hash": "19f2114b658669b8d155905a0bf8268e",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/jem/workout-calendar.html",
-      "bytes": 1893,
-      "hash": "de94732723a2422d0b3fe13f160dfcfc",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/nina/data/security-reports.json",
-      "bytes": 909,
-      "hash": "69b3107647f4dc77aa440760a566f939",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/nina/import-map-validation.html",
-      "bytes": 1728,
-      "hash": "85ea0e652cee2306cab9216db542a52d",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/nina/index.html",
-      "bytes": 992,
-      "hash": "f3d9269f9642fb6864e8bf80f963c33f",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/nina/security-reports.html",
-      "bytes": 1638,
-      "hash": "5a6c4863e69f8bc10dbf821aaef13ceb",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/nina/vrm-viewer.html",
-      "bytes": 629,
-      "hash": "524f83ba16a6b433d3c9ce38c34dfa97",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/overseers/index.html",
-      "bytes": 787,
-      "hash": "20334f931de83544b5cb1a99de52d850",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/stella/data/scripts.json",
-      "bytes": 419,
-      "hash": "34ee9d53ba4d05c9b41481433b0d62df",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/stella/data/sounds.json",
-      "bytes": 198,
-      "hash": "bb1a41c509839245d323288e228ef5cf",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/stella/guided-sessions.html",
-      "bytes": 1301,
-      "hash": "0b96e91a0600af6156dc348cc76d1df8",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/stella/index.html",
-      "bytes": 4233,
-      "hash": "dfff47aa5a72106500c04412044aa147",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/stella/script-library.html",
-      "bytes": 2224,
-      "hash": "73e6b84f8f28fcaa839ef0ae2ae0a286",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/stella/sound-library.html",
-      "bytes": 2150,
-      "hash": "e097d1b5f87ee37fb1011ede7ad6332e",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/tracy/art-gallery.html",
-      "bytes": 8254,
-      "hash": "cd4f3db470b0e43b5c052378e5b4719b",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/tracy/catalog.html",
-      "bytes": 1224,
-      "hash": "cc63949fbf4ae4a6fea8121043a9ab22",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/tracy/character-designer.html",
-      "bytes": 1897,
-      "hash": "77a4df980e2df0820d3d880f211e6a63",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/apps/tracy/index.html",
-      "bytes": 4218,
-      "hash": "6a1e1f42fdaf5fb9c1b3e7c10d61b12c",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/index.html",
-      "bytes": 2254,
-      "hash": "57982323b1f2eeba3f8d76f201148e47",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/jem.html",
-      "bytes": 8228,
-      "hash": "1aece34772c28f2cf37add85a90caf5a",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/js/avalon-skins.js",
-      "bytes": 1960,
-      "hash": "5cd8538f4883c675b2f107591a0ea393",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/js/meal-plan.js",
-      "bytes": 9104,
-      "hash": "0eca42764fe21c953654e294bab566d2",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/js/mealplan.js",
-      "bytes": 4437,
-      "hash": "e7e7ca336b17f7b0840ca183b426076e",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/overseers.html",
-      "bytes": 2896,
-      "hash": "26b8830959546039403bfc4a6ff59f41",
-      "purpose": "page"
-    },
-    {
-      "path": "pages/stella.html",
-      "bytes": 5294,
-      "hash": "3470b36820355aef0b344fe419a004b7",
-      "purpose": "page"
-    },
-    {
-      "path": "prompts/court_lab_exterior.txt",
-      "bytes": 100,
-      "hash": "597f60ab4e114e5a25cc7b67f5320c1d",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/court_lab_interior.txt",
-      "bytes": 101,
-      "hash": "d74663124b926ad5bd9e93855ea55ee6",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/dojo_exterior.txt",
-      "bytes": 55,
-      "hash": "0164df3766cfe5c226aae545f5e1e8d8",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/dojo_interior.txt",
-      "bytes": 96,
-      "hash": "b0ded0b76e8396ee544c8210ec849bf5",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/library_exterior.txt",
-      "bytes": 144,
-      "hash": "861f9c3027cc356ae113e915326704fb",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/library_interior.txt",
-      "bytes": 206,
-      "hash": "117efe291c634e8e0c4a68da70a98837",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/mansion_exterior.txt",
-      "bytes": 93,
-      "hash": "50a0e39c9754e6c019f97de446bcb2b2",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/mansion_interior.txt",
-      "bytes": 138,
-      "hash": "c8de65b31c8a4c91421007b95999760f",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/observatory_exterior.txt",
-      "bytes": 71,
-      "hash": "64668d9ad18d0f05277f05c8da4c1e05",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/observatory_interior.txt",
-      "bytes": 71,
-      "hash": "16341f2e1c5feff653666d9c19ed0fd7",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/palace_exterior.txt",
-      "bytes": 224,
-      "hash": "1e25492c6b455a7617c0c47d2e0a856d",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/relay_hall_exterior.txt",
-      "bytes": 94,
-      "hash": "232e6e431af7c949f4d87b363438506d",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/relay_hall_interior.txt",
-      "bytes": 98,
-      "hash": "ce62fb993a4f85e8bddf2ef744bf9a9a",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/restaurant_exterior.txt",
-      "bytes": 75,
-      "hash": "c2be09ae9a77dc9fde3dc980dd3987af",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/restaurant_interior.txt",
-      "bytes": 109,
-      "hash": "635527b54dd53ffc2d5027b8b9331796",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/studio_exterior.txt",
-      "bytes": 93,
-      "hash": "4367e070e43e5c82bcd7b4d475eb53b2",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/studio_interior.txt",
-      "bytes": 109,
-      "hash": "2651f9ed4f26dfc6baccd06c9e45f869",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/vault_exterior.txt",
-      "bytes": 59,
-      "hash": "900268cb272a439fabdaafa6c7974087",
-      "purpose": "misc"
-    },
-    {
-      "path": "prompts/vault_interior.txt",
-      "bytes": 78,
-      "hash": "c1e119efd581521242bda528c25f61bc",
-      "purpose": "misc"
-    },
-    {
-      "path": "reports/clarity/catalog.json",
-      "bytes": 184273,
-      "hash": "455ae8ca990011007f2f7d772d57b2ab",
-      "purpose": "misc"
-    },
-    {
-      "path": "reports/clarity/files-index.json",
-      "bytes": 3398467,
-      "hash": "b3a77e7b2b10c734fddbe8a8e4e7e745",
-      "purpose": "misc"
-    },
-    {
-      "path": "reports/clarity/pages-map.json",
-      "bytes": 40154,
-      "hash": "4c0b3e154b3df419b88f76b533c76d1a",
-      "purpose": "misc"
-    },
-    {
-      "path": "reports/clarity/workers-map.json",
-      "bytes": 487,
-      "hash": "3ccd81b0b4edddd11c3e04081bb9a9b2",
-      "purpose": "misc"
-    },
-    {
-      "path": "reports/clarity/workflows-map.json",
-      "bytes": 22872,
-      "hash": "fc5cd2853f5b07458d98c4723664be4d",
-      "purpose": "misc"
-    },
-    {
-      "path": "robots.txt",
-      "bytes": 25,
-      "hash": "9152d7f1724ed8fbcd2e0c87029f193c",
-      "purpose": "misc"
-    },
-    {
-      "path": "runtime/memory/crossrepo.json",
-      "bytes": 150432,
-      "hash": "209af39fdd9d43983db198c1d3a87b44",
-      "purpose": "misc"
-    },
-    {
-      "path": "scripts/generate_art.py",
-      "bytes": 2951,
-      "hash": "dbc474caacc6960647df349cbbc053aa",
-      "purpose": "misc"
-    },
-    {
-      "path": "site-map.json",
-      "bytes": 941,
-      "hash": "a8b61d31e000f65d3f7a49b63cbb826c",
-      "purpose": "misc"
-    },
-    {
-      "path": "style.css",
-      "bytes": 8186,
-      "hash": "73c9ceabf65998cda459d9f62544d82a",
-      "purpose": "misc"
-    },
-    {
-      "path": "ui/ui-kit.css",
-      "bytes": 8,
-      "hash": "a748e91433d12c79bc98105a7ee1f7ae",
-      "purpose": "misc"
-    },
-    {
-      "path": "workers/stella-voice-worker.js",
-      "bytes": 3501,
-      "hash": "1d507bc8c3c429b320a689a2d020c711",
-      "purpose": "misc"
-    }
+    "importmap.json",
+    "cleanup.sh",
+    "memory_summary.md",
+    "UPDATED_PLAN.md",
+    "index.html",
+    "kill-sw.html",
+    "style.css",
+    "fairies_rules_and_info.md",
+    "Cody's Memory.yaml",
+    "robots.txt",
+    "package.json",
+    "CNAME",
+    "404.html",
+    "Cody's Memory.yml",
+    "site-map.json",
+    "file-index.json",
+    "cloudflare/worker-market.toml",
+    "cloudflare/worker-tracy-skin-llm.js",
+    "cloudflare/worker-tts.js",
+    "cloudflare/worker-auth.js",
+    "cloudflare/worker-importmap-install.js",
+    "cloudflare/README.md",
+    "cloudflare/hello.toml",
+    "cloudflare/carol.toml",
+    "cloudflare/avalon-importmap-install.toml",
+    "cloudflare/tracy-skin-llm.toml",
+    "cloudflare/worker-alexandria.js",
+    "cloudflare/README-auth.md",
+    "cloudflare/worker-hello.js",
+    "cloudflare/worker-skin-llm.js",
+    "cloudflare/worker-market.js",
+    "cloudflare/worker-billie-social.js",
+    "cloudflare/worker-carol.js",
+    "avalon-carol-unique-2.9.4/scripts/Carol-Aggregate-Packages.ps1",
+    "avalon-carol-unique-2.9.4/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+    "avalon-carol-unique-2.9.4/pages/apps/carol/plans/index.json",
+    "avalon-carol-unique-2.9.4/pages/apps/carol/packages/us.json",
+    "memory-history/20250913T221734Z-Codys-Memory.yaml",
+    "memory-history/20250917T194119Z-Codys-Memory.yaml",
+    "memory-history/20250917T192359Z-Codys-Memory.yaml",
+    "memory-history/20250916T222941Z-Codys-Memory.yaml",
+    "memory-history/20250913T214031Z-Codys-Memory.yaml",
+    "memory-history/20250915T225330Z-Codys-Memory.yaml",
+    "memory-history/20250917T165749Z-Codys-Memory.yaml",
+    "memory-history/20250917T195332Z-Codys-Memory.yaml",
+    "memory-history/20250913T184428Z-Codys-Memory.yaml",
+    "memory-history/20250916T055206Z-BROKEN-Codys-Memory.yaml",
+    "memory-history/20250915T153523Z-Codys-Memory.yaml",
+    "memory-history/20250915T173147Z-Codys-Memory.yaml",
+    "memory-history/20250917T072949Z-Codys-Memory.yaml",
+    "memory-history/20250915T194046Z-Codys-Memory.yaml",
+    "memory-history/20250918T005814Z-Codys-Memory.yaml",
+    "memory-history/20250914T172707Z-Codys-Memory.yaml",
+    "memory-history/20250917T143902Z-Codys-Memory.yaml",
+    "memory-history/20250914T053153Z-Codys-Memory.yaml",
+    "memory-history/20250916T044014Z-Codys-Memory.yaml",
+    "memory-history/20250917T115422Z-Codys-Memory.yaml",
+    "memory-history/20250914T203016Z-Codys-Memory.yaml",
+    "memory-history/20250913T224309Z-Codys-Memory.yaml",
+    "memory-history/20250913T193745Z-Codys-Memory.yaml",
+    "memory-history/20250914T094145Z-Codys-Memory.yaml",
+    "memory-history/20250915T150856Z-Codys-Memory.yaml",
+    "memory-history/20250915T095349Z-Codys-Memory.yaml",
+    "memory-history/20250917T133436Z-Codys-Memory.yaml",
+    "memory-history/20250917T214108Z-Codys-Memory.yaml",
+    "memory-history/20250917T224147Z-Codys-Memory.yaml",
+    "memory-history/repo-inventory.json",
+    "memory-history/20250915T114150Z-Codys-Memory.yaml",
+    "memory-history/20250915T045601Z-Codys-Memory.yaml",
+    "memory-history/20250916T194032Z-Codys-Memory.yaml",
+    "memory-history/20250914T213955Z-Codys-Memory.yaml",
+    "memory-history/20250914T154026Z-Codys-Memory.yaml",
+    "memory-history/20250916T225550Z-Codys-Memory.yaml",
+    "memory-history/20250915T164734Z-Codys-Memory.yaml",
+    "memory-history/20250914T095503Z-Codys-Memory.yaml",
+    "memory-history/20250916T055343Z-Codys-Memory.yaml",
+    "memory-history/repo-usage-report.json",
+    "memory-history/20250915T232717Z-Codys-Memory.yaml",
+    "memory-history/20250913T211642Z-Codys-Memory.yaml",
+    "memory-history/Codys-Memory-20251021T064919Z.yaml",
+    "memory-history/20250914T112148Z-Codys-Memory.yaml",
+    "memory-history/20250917T223023Z-Codys-Memory.yaml",
+    "memory-history/repo-index.json",
+    "memory-history/20250914T075306Z-Codys-Memory.yaml",
+    "memory-history/20250914T204233Z-Codys-Memory.yaml",
+    "memory-history/20250917T030529Z-Codys-Memory.yaml",
+    "memory-history/20250915T133345Z-Codys-Memory.yaml",
+    "memory-history/20250915T044252Z-Codys-Memory.yaml",
+    "memory-history/20250917T053440Z-Codys-Memory.yaml",
+    "memory-history/20250917T194120Z-Codys-Memory.yaml",
+    "memory-history/20250916T165831Z-Codys-Memory.yaml",
+    "memory-history/20250914T035014Z-Codys-Memory.yaml",
+    "memory-history/20250917T205634Z-BROKEN-Codys-Memory.yaml",
+    "memory-history/20250915T164733Z-Codys-Memory.yaml",
+    "memory-history/20250916T175321Z-Codys-Memory.yaml",
+    "memory-history/20250916T073115Z-Codys-Memory.yaml",
+    "memory-history/20250914T234134Z-Codys-Memory.yaml",
+    "memory-history/20250916T114121Z-Codys-Memory.yaml",
+    "memory-history/20251017T224658Z-Codys-Memory.yaml",
+    "memory-history/20250917T084658Z-Codys-Memory.yaml",
+    "memory-history/20250914T225352Z-Codys-Memory.yaml",
+    "memory-history/20250913T235341Z-Codys-Memory.yaml",
+    "memory-history/20250915T192414Z-Codys-Memory.yaml",
+    "memory-history/20250916T115415Z-Codys-Memory.yaml",
+    "memory-history/repo-read-index.json",
+    "memory-history/20250916T084909Z-Codys-Memory.yaml",
+    "memory-history/20250914T083756Z-Codys-Memory.yaml",
+    "memory-history/20250915T053818Z-Codys-Memory.yaml",
+    "memory-history/20250917T105321Z-Codys-Memory.yaml",
+    "memory-history/20250917T112627Z-Codys-Memory.yaml",
+    "memory-history/20250913T085610Z-Codys-Memory.yaml",
+    "memory-history/20250915T215424Z-Codys-Memory.yaml",
+    "memory-history/20250915T212904Z-Codys-Memory.yaml",
+    "memory-history/20250913T204046Z-Codys-Memory.yaml",
+    "memory-history/20250915T065622Z-Codys-Memory.yaml",
+    "memory-history/20250916T053453Z-Codys-Memory.yaml",
+    "memory-history/20250916T075350Z-Codys-Memory.yaml",
+    "memory-history/20250915T195345Z-Codys-Memory.yaml",
+    "memory-history/20250915T105410Z-Codys-Memory.yaml",
+    "memory-history/20250916T093747Z-Codys-Memory.yaml",
+    "memory-history/20250914T142947Z-Codys-Memory.yaml",
+    "memory-history/20250914T065740Z-Codys-Memory.yaml",
+    "memory-history/20250913T202952Z-Codys-Memory.yaml",
+    "memory-history/20250913T185031Z-Codys-Memory.yaml",
+    "memory-history/20250916T234039Z-Codys-Memory.yaml",
+    "memory-history/20250917T205316Z-Codys-Memory.yaml",
+    "memory-history/20250916T073114Z-Codys-Memory.yaml",
+    "memory-history/20250917T065153Z-Codys-Memory.yaml",
+    "memory-history/20250915T184924Z-Codys-Memory.yaml",
+    "memory-history/20250917T164515Z-Codys-Memory.yaml",
+    "memory-history/20250916T055342Z-Codys-Memory.yaml",
+    "memory-history/20250917T145408Z-Codys-Memory.yaml",
+    "memory-history/20250916T214116Z-Codys-Memory.yaml",
+    "memory-history/20250916T184839Z-Codys-Memory.yaml",
+    "memory-history/20250917T095336Z-Codys-Memory.yaml",
+    "memory-history/20250913T225621Z-Codys-Memory.yaml",
+    "memory-history/20250917T055327Z-Codys-Memory.yaml",
+    "memory-history/20250916T095343Z-Codys-Memory.yaml",
+    "memory-history/20250915T062707Z-Codys-Memory.yaml",
+    "memory-history/20250913T195049Z-Codys-Memory.yaml",
+    "memory-history/20250917T135419Z-Codys-Memory.yaml",
+    "memory-history/20250918T012606Z-Codys-Memory.yaml",
+    "memory-history/20250914T234133Z-Codys-Memory.yaml",
+    "memory-history/20250915T163307Z-Codys-Memory.yaml",
+    "memory-history/20250916T133641Z-Codys-Memory.yaml",
+    "memory-history/20250916T112630Z-Codys-Memory.yaml",
+    "memory-history/20250917T205317Z-Codys-Memory.yaml",
+    "memory-history/20250915T173146Z-Codys-Memory.yaml",
+    "memory-history/20250916T215405Z-Codys-Memory.yaml",
+    "memory-history/20250914T105312Z-Codys-Memory.yaml",
+    "memory-history/20250917T045335Z-Codys-Memory.yaml",
+    "memory-history/20250914T074014Z-Codys-Memory.yaml",
+    "memory-history/20250917T235350Z-Codys-Memory.yaml",
+    "memory-history/20250917T225437Z-Codys-Memory.yaml",
+    "memory-history/20250913T212718Z-Codys-Memory.yaml",
+    "memory-history/20250914T103142Z-Codys-Memory.yaml",
+    "memory-history/20250915T203329Z-Codys-Memory.yaml",
+    "memory-history/20250916T053454Z-Codys-Memory.yaml",
+    "memory-history/20250914T175316Z-Codys-Memory.yaml",
+    "memory-history/20250916T145326Z-Codys-Memory.yaml",
+    "memory-history/20250917T043946Z-Codys-Memory.yaml",
+    "memory-history/20250914T045342Z-Codys-Memory.yaml",
+    "memory-history/20250914T193924Z-Codys-Memory.yaml",
+    "memory-history/20250914T232647Z-Codys-Memory.yaml",
+    "memory-history/20250916T105336Z-Codys-Memory.yaml",
+    "memory-history/20250914T235359Z-Codys-Memory.yaml",
+    "memory-history/20250917T175310Z-Codys-Memory.yaml",
+    "memory-history/20250914T215327Z-Codys-Memory.yaml",
+    "memory-history/20250916T135432Z-Codys-Memory.yaml",
+    "memory-history/20250914T185547Z-Codys-Memory.yaml",
+    "memory-history/20250915T075358Z-Codys-Memory.yaml",
+    "memory-history/20250916T045301Z-BROKEN-Codys-Memory.yaml",
+    "memory-history/20250913T234050Z-Codys-Memory.yaml",
+    "memory-history/20250915T214127Z-Codys-Memory.yaml",
+    "memory-history/20250914T055319Z-Codys-Memory.yaml",
+    "memory-history/20250916T232454Z-Codys-Memory.yaml",
+    "memory-history/20250914T163450Z-Codys-Memory.yaml",
+    "memory-history/20250917T173207Z-Codys-Memory.yaml",
+    "memory-history/Codys-Memory-ops.yaml",
+    "memory-history/20250914T142946Z-Codys-Memory.yaml",
+    "memory-history/Codys-Memory.yaml",
+    "memory-history/20250913T211643Z-Codys-Memory.yaml",
+    "memory-history/20250914T223147Z-Codys-Memory.yaml",
+    "memory-history/20250917T103915Z-Codys-Memory.yaml",
+    "memory-history/20250914T212619Z-Codys-Memory.yaml",
+    "memory-history/20250915T065739Z-Codys-Memory.yaml",
+    "memory-history/20250914T043733Z-Codys-Memory.yaml",
+    "memory-history/20250914T152814Z-Codys-Memory.yaml",
+    "memory-history/20250916T164525Z-Codys-Memory.yaml",
+    "memory-history/20250913T224153Z-Codys-Memory.yaml",
+    "memory-history/20250914T144235Z-Codys-Memory.yaml",
+    "memory-history/20250914T130223Z-Codys-Memory.yaml",
+    "memory-history/20250917T212554Z-Codys-Memory.yaml",
+    "memory-history/20251021T033227Z-Codys-Memory.yaml",
+    "memory-history/20250914T133138Z-Codys-Memory.yaml",
+    "memory-history/20250913T223028Z-Codys-Memory.yaml",
+    "memory-history/20250916T205313Z-Codys-Memory.yaml",
+    "memory-history/20250914T135313Z-Codys-Memory.yaml",
+    "memory-history/20250915T152330Z-Codys-Memory.yaml",
+    "memory-history/20250916T235337Z-Codys-Memory.yaml",
+    "memory-history/20250915T234059Z-Codys-Memory.yaml",
+    "memory-history/20250915T135354Z-Codys-Memory.yaml",
+    "memory-history/20250917T205541Z-Codys-Memory.yaml",
+    "memory-history/20250914T064519Z-Codys-Memory.yaml",
+    "memory-history/20250915T143531Z-Codys-Memory.yaml",
+    "memory-history/20250917T074258Z-Codys-Memory.yaml",
+    "memory-history/20250914T072712Z-Codys-Memory.yaml",
+    "memory-history/repo-refs.json",
+    "memory-history/20250917T075554Z-Codys-Memory.yaml",
+    "memory-history/20250918T001302Z-BROKEN-Codys-Memory.yaml",
+    "memory-history/20250915T223318Z-Codys-Memory.yaml",
+    "memory-history/20250915T212903Z-Codys-Memory.yaml",
+    "memory-history/20250915T084755Z-Codys-Memory.yaml",
+    "memory-history/20250917T184849Z-Codys-Memory.yaml",
+    "memory-history/20250914T031341Z-Codys-Memory.yaml",
+    "memory-history/20250915T151120Z-Codys-Memory.yaml",
+    "memory-history/20250914T165329Z-Codys-Memory.yaml",
+    "memory-history/20250913T232626Z-Codys-Memory.yaml",
+    "memory-history/20250915T104121Z-Codys-Memory.yaml",
+    "memory-history/20250916T153621Z-Codys-Memory.yaml",
+    "memory-history/20250917T203404Z-Codys-Memory.yaml",
+    "memory-history/20250916T044015Z-Codys-Memory.yaml",
+    "memory-history/20250917T155330Z-Codys-Memory.yaml",
+    "memory-history/20250916T051838Z-BROKEN-Codys-Memory.yaml",
+    "memory-history/20250914T092949Z-Codys-Memory.yaml",
+    "memory-history/20251021T035452Z-Codys-Memory.yaml",
+    "memory-history/20250916T224238Z-Codys-Memory.yaml",
+    "memory-history/20250914T115333Z-Codys-Memory.yaml",
+    "memory-history/20250917T034708Z-Codys-Memory.yaml",
+    "memory-history/20250916T164526Z-Codys-Memory.yaml",
+    "memory-history/20250914T184046Z-Codys-Memory.yaml",
+    "memory-history/20250917T224146Z-Codys-Memory.yaml",
+    "memory-history/20250913T083955Z-Codys-Memory.yaml",
+    "memory-history/20250916T203442Z-Codys-Memory.yaml",
+    "memory-history/20250914T145545Z-Codys-Memory.yaml",
+    "memory-history/20250916T212837Z-Codys-Memory.yaml",
+    "memory-history/20250916T104018Z-Codys-Memory.yaml",
+    "memory-history/20250914T192153Z-Codys-Memory.yaml",
+    "memory-history/20250915T160028Z-Codys-Memory.yaml",
+    "memory-history/20250916T030600Z-Codys-Memory.yaml",
+    "memory-history/20250916T065214Z-Codys-Memory.yaml",
+    "memory-history/20250916T155352Z-Codys-Memory.yaml",
+    "memory-history/20250914T085322Z-Codys-Memory.yaml",
+    "memory-history/20250914T154027Z-Codys-Memory.yaml",
+    "memory-history/20250916T045301Z-Codys-Memory.yaml",
+    "memory-history/20250915T175348Z-Codys-Memory.yaml",
+    "memory-history/20250917T053441Z-Codys-Memory.yaml",
+    "memory-history/20250913T205141Z-Codys-Memory.yaml",
+    "memory-history/20250915T145349Z-Codys-Memory.yaml",
+    "memory-history/20250917T114119Z-Codys-Memory.yaml",
+    "memory-history/20250914T212618Z-Codys-Memory.yaml",
+    "memory-history/20250917T105322Z-Codys-Memory.yaml",
+    "memory-history/20250914T174000Z-Codys-Memory.yaml",
+    "memory-history/20250915T093811Z-Codys-Memory.yaml",
+    "memory-history/20250916T214115Z-Codys-Memory.yaml",
+    "memory-history/Codys-Memory.json",
+    "memory-history/20250917T030528Z-Codys-Memory.yaml",
+    "memory-history/20250917T153449Z-Codys-Memory.yaml",
+    "memory-history/20250915T032853Z-Codys-Memory.yaml",
+    "memory-history/20250916T145327Z-Codys-Memory.yaml",
+    "memory-history/20250913T215309Z-Codys-Memory.yaml",
+    "memory-history/20250914T113932Z-Codys-Memory.yaml",
+    "memory-history/20250914T115332Z-Codys-Memory.yaml",
+    "memory-history/20250917T234052Z-Codys-Memory.yaml",
+    "memory-history/20250914T205546Z-Codys-Memory.yaml",
+    "memory-history/20250916T173244Z-Codys-Memory.yaml",
+    "memory-history/20250916T144101Z-Codys-Memory.yaml",
+    "memory-history/20250915T184925Z-Codys-Memory.yaml",
+    "memory-history/20250913T192026Z-Codys-Memory.yaml",
+    "memory-history/20250917T093430Z-Codys-Memory.yaml",
+    "memory-history/20250914T195318Z-Codys-Memory.yaml",
+    "memory-history/20250915T112630Z-Codys-Memory.yaml",
+    "memory-history/20250915T155401Z-Codys-Memory.yaml",
+    "memory-history/20250915T073229Z-Codys-Memory.yaml",
+    "memory-history/20250916T195354Z-Codys-Memory.yaml",
+    "memory-history/20250915T115456Z-Codys-Memory.yaml",
+    "memory-history/20250915T035758Z-Codys-Memory.yaml",
+    "memory-history/20250917T232747Z-Codys-Memory.yaml",
+    "memory-history/20250917T205748Z-BROKEN-Codys-Memory.yaml",
+    "memory-history/20250915T205352Z-Codys-Memory.yaml",
+    "memory-history/20250914T155324Z-Codys-Memory.yaml",
+    "memory-history/20250915T235346Z-Codys-Memory.yaml",
+    "memory-history/20250915T055731Z-Codys-Memory.yaml",
+    "memory-history/20250917T192400Z-Codys-Memory.yaml",
+    "memory-history/20250916T224239Z-Codys-Memory.yaml",
+    "memory-history/20250916T192411Z-Codys-Memory.yaml",
+    "memory-history/retired/odessa/index.html",
+    "scripts/generate_art.py",
+    "pages/overseers.html",
+    "pages/index.html",
+    "pages/jem.html",
+    "pages/alexandria.html",
+    "pages/stella.html",
+    "pages/apps/abbey/index.html",
+    "pages/apps/tracy/character-designer.html",
+    "pages/apps/tracy/index.html",
+    "pages/apps/tracy/art-gallery.html",
+    "pages/apps/tracy/catalog.html",
+    "pages/apps/billie/social-posts.html",
+    "pages/apps/billie/video-maker.html",
+    "pages/apps/billie/index.html",
+    "pages/apps/billie/earnings-dashboard.html",
+    "pages/apps/billie/data/social-posts.json",
+    "pages/apps/billie/data/earnings.json",
+    "pages/apps/overseers/index.html",
+    "pages/apps/carol/shopping-list.html",
+    "pages/apps/carol/mealplan.html",
+    "pages/apps/carol/meal-plan-upgraded.html",
+    "pages/apps/carol/index.html",
+    "pages/apps/carol/menu.html",
+    "pages/apps/carol/dashboard.html",
+    "pages/apps/carol/meal-plan.html",
+    "pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+    "pages/apps/carol/data/twoperson-2wk-unique-20251015T022300Z.json",
+    "pages/apps/carol/data/menu.json",
+    "pages/apps/carol/data/meal-plan-upgraded.json",
+    "pages/apps/carol/data/shopping-list.json",
+    "pages/apps/carol/data/meal-plan.json",
+    "pages/apps/nina/index.html",
+    "pages/apps/nina/security-reports.html",
+    "pages/apps/nina/vrm-viewer.html",
+    "pages/apps/nina/import-map-validation.html",
+    "pages/apps/nina/data/security-reports.json",
+    "pages/apps/_city/index.html",
+    "pages/apps/_city/map.svg",
+    "pages/apps/charlotte/reminders.html",
+    "pages/apps/charlotte/queues-dashboard.html",
+    "pages/apps/charlotte/armor-builder.html",
+    "pages/apps/charlotte/expirations-registry.html",
+    "pages/apps/charlotte/index.html",
+    "pages/apps/charlotte/translations-board.html",
+    "pages/apps/charlotte/vrm-viewer.html",
+    "pages/apps/charlotte/data/reminders.json",
+    "pages/apps/charlotte/data/expirations.json",
+    "pages/apps/common/style.css",
+    "pages/apps/common/js/json-table.js",
+    "pages/apps/alexandria/story-shelf.html",
+    "pages/apps/alexandria/index.html",
+    "pages/apps/alexandria/timeline-explorer.html",
+    "pages/apps/alexandria/story-assistant.html",
+    "pages/apps/alexandria/character-sheets.html",
+    "pages/apps/alexandria/data/characters.json",
+    "pages/apps/alexandria/data/story.json",
+    "pages/apps/jem/fitness-planner.html",
+    "pages/apps/jem/progress-tracker.html",
+    "pages/apps/jem/workout-calendar.html",
+    "pages/apps/jem/index.html",
+    "pages/apps/jem/dashboard.html",
+    "pages/apps/jem/gallery.html",
+    "pages/apps/jem/data/gallery.json",
+    "pages/apps/jem/data/training-plan.json",
+    "pages/apps/stella/index.html",
+    "pages/apps/stella/guided-sessions.html",
+    "pages/apps/stella/sound-library.html",
+    "pages/apps/stella/script-library.html",
+    "pages/apps/stella/data/scripts.json",
+    "pages/apps/stella/data/sounds.json",
+    "pages/_city/index.html",
+    "pages/js/avalon-skins.js",
+    "pages/js/meal-plan.js",
+    "pages/js/mealplan.js",
+    "assets/README.md",
+    "assets/img/alexandria-inside.jpg",
+    "assets/img/palace-outside.png",
+    "assets/img/alexandria-inside.img",
+    "assets/img/abbey-inside.img",
+    "assets/img/charlotte-inside.img",
+    "assets/img/palace-outside.jpg",
+    "assets/img/default-inside.png",
+    "assets/img/stella-inside.img",
+    "assets/img/carol-kitchen-inside.jpg",
+    "assets/img/tracy-outside.jpg",
+    "assets/img/tracy-inside.jpg",
+    "assets/img/abbey-inside.JPG",
+    "assets/img/jem-hall-inside.jpg",
+    "assets/img/stella-inside.JPG",
+    "assets/img/tracy-generated3.png",
+    "assets/img/tracy-outside.img",
+    "assets/img/billie-outside.jpg",
+    "assets/img/jem-hall-outside.jpg",
+    "assets/img/avalon-outside.png",
+    "assets/img/abbey-outside.JPG",
+    "assets/img/stella-inside.jpg",
+    "assets/img/tracy-generated4.png",
+    "assets/img/billie-inside.jpg",
+    "assets/img/carol-kitchen-inside.png",
+    "assets/img/tracy-inside.img",
+    "assets/img/avalon-castle.jpg",
+    "assets/img/billie-inside.JPG",
+    "assets/img/billie-inside.img",
+    "assets/img/charlotte-inside.JPG",
+    "assets/img/charlotte-outside.jpg",
+    "assets/img/stella-outside.img",
+    "assets/img/abbey-inside.jpg",
+    "assets/img/palace-inside.png",
+    "assets/img/tracy-generated5.png",
+    "assets/img/alexandria-outside.img",
+    "assets/img/charlotte-outside .img",
+    "assets/img/tracy-outside.JPG",
+    "assets/img/carol-kitchen-outside.jpg",
+    "assets/img/billie-sample.png",
+    "assets/img/charlotte-inside.jpg",
+    "assets/img/charlotte-outside.JPG",
+    "assets/img/carol-outside.jpg",
+    "assets/img/alexandria-outside.jpg",
+    "assets/img/abbey-outside.img",
+    "assets/img/tracy-inside.JPG",
+    "assets/img/placeholder.svg",
+    "assets/img/stella-outside.jpg",
+    "assets/img/billie-outside.JPG",
+    "assets/img/tracy-sample.png",
+    "assets/img/stella-outside.JPG",
+    "assets/img/billie-outside.img",
+    "assets/img/town-outside.png",
+    "assets/img/abbey-outside.jpg",
+    "assets/img/tracy-generated1.png",
+    "assets/img/default-outside.png",
+    "assets/img/town-inside.png",
+    "assets/img/carol-inside.jpg",
+    "assets/img/tracy-generated2.png",
+    "assets/fairies/Stella-Inside.JPG",
+    "assets/fairies/Tracy-Inside.JPG",
+    "assets/fairies/Alexandria-Inside.JPG",
+    "assets/fairies/Carol-Inside.JPG",
+    "assets/fairies/Abbey-Inside.JPG",
+    "assets/fairies/Charlotte-Inside.JPG",
+    "assets/fairies/Jem-Inside.JPG",
+    "assets/fairies/Billie-Inside.JPG",
+    "assets/css/avalon-dashboard.css",
+    "assets/css/avalon.css",
+    "assets/css/avalon-bright.css",
+    "assets/audio/meditation-tone.wav",
+    "assets/sounds/meditation.wav",
+    "assets/designs/tshirt-fairy.png",
+    "assets/designs/avalon-city.png",
+    "assets/designs/poster-fairy.png",
+    "reports/clarity/pages-map.json",
+    "reports/clarity/workflows-map.json",
+    "reports/clarity/catalog.json",
+    "reports/clarity/files-index.json",
+    "reports/clarity/workers-map.json",
+    "ui/ui-kit.css",
+    "Avalon-NodeParser-Content-20251030-051652/scripts/overseers/jem-program-plan.mjs",
+    "Avalon-NodeParser-Content-20251030-051652/docs/RULES.md",
+    "Avalon-NodeParser-Content-20251030-051652/docs/CHARACTERS.md",
+    "Avalon-NodeParser-Content-20251030-051652/docs/BUILD-PATH.md",
+    "Avalon-NodeParser-Content-20251030-051652/docs/COSMIC-PROMPT.md",
+    "Avalon-NodeParser-Content-20251030-051652/docs/SECURITY-NOTES.md",
+    "docs/PR-Automerge-Comment-Bot.md",
+    "docs/RULES.md",
+    "docs/CHARACTERS.md",
+    "docs/BUILD-PATH.md",
+    "docs/COSMIC-PROMPT.md",
+    "docs/Avalon-Visual-Bible.md",
+    "docs/OAuth-Notes.md",
+    "docs/Avalon-Lore-Dossier.md",
+    "docs/SECURITY-NOTES.md",
+    "workers/stella-voice-worker.js",
+    "avalon-carol-upgrade-2.9.0/scripts/Carol-Aggregate-Packages.ps1",
+    "avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html",
+    "avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/twoperson-2wk-unique-20251015T005600Z.json",
+    "avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/index.json",
+    "avalon-carol-upgrade-2.9.0/pages/apps/carol/packages/us.json",
+    "prompts/court_lab_exterior.txt",
+    "prompts/observatory_interior.txt",
+    "prompts/dojo_exterior.txt",
+    "prompts/palace_exterior.txt",
+    "prompts/vault_exterior.txt",
+    "prompts/observatory_exterior.txt",
+    "prompts/studio_exterior.txt",
+    "prompts/relay_hall_exterior.txt",
+    "prompts/restaurant_exterior.txt",
+    "prompts/library_interior.txt",
+    "prompts/restaurant_interior.txt",
+    "prompts/mansion_interior.txt",
+    "prompts/vault_interior.txt",
+    "prompts/mansion_exterior.txt",
+    "prompts/relay_hall_interior.txt",
+    "prompts/court_lab_interior.txt",
+    "prompts/dojo_interior.txt",
+    "prompts/studio_interior.txt",
+    "prompts/library_exterior.txt",
+    "crown_of_clarity/README.md",
+    "crown_of_clarity/crown_of_clarity.py"
   ]
 }

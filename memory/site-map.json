@@ -1,28 +1,24 @@
 {
-  "generated": "2026-07-16T02:00:45Z",
+  "generated": "2026-07-17T02:04:28Z",
   "entrypoints": [
     "/index.html"
   ],
   "pages": [
     {
-      "path": "/kill-sw.html",
-      "title": "Kill Service Worker"
+      "path": "/index.html",
+      "title": "Fairies of Avalon"
     },
     {
       "path": "/404.html",
       "title": "Page Not Found"
     },
     {
-      "path": "/index.html",
-      "title": "Fairies of Avalon"
+      "path": "/kill-sw.html",
+      "title": "Kill Service Worker"
     },
     {
-      "path": "/memory-history/retired/odessa/index.html",
-      "title": "Odessa \u2014 Room"
-    },
-    {
-      "path": "/avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html",
-      "title": "Carol \u2014 Two\u2011Week Plan"
+      "path": "/pages/index.html",
+      "title": "Fairies of Avalon \u2013 Home"
     },
     {
       "path": "/pages/stella.html",
@@ -33,10 +29,6 @@
       "title": "Overseers \u2014 Palace & Governance"
     },
     {
-      "path": "/pages/index.html",
-      "title": "Fairies of Avalon \u2013 Home"
-    },
-    {
       "path": "/pages/jem.html",
       "title": "Jem \u2014 Training Hall"
     },
@@ -45,88 +37,56 @@
       "title": "Alexandria \u2014 Library"
     },
     {
-      "path": "/pages/apps/abbey/index.html",
-      "title": "Abbey \u2014 Finance & Reporting"
+      "path": "/pages/_city/index.html",
+      "title": "Avalon \u2014 City Map"
+    },
+    {
+      "path": "/pages/apps/nina/index.html",
+      "title": "Nina \u2013 Engineering & Security"
+    },
+    {
+      "path": "/pages/apps/nina/import-map-validation.html",
+      "title": "Nina \u2013 Import Map Validation"
+    },
+    {
+      "path": "/pages/apps/nina/security-reports.html",
+      "title": "Nina \u2013 Security Reports"
+    },
+    {
+      "path": "/pages/apps/nina/vrm-viewer.html",
+      "title": "Nina \u2014 VRM Viewer"
     },
     {
       "path": "/pages/apps/tracy/index.html",
       "title": "Tracy \u2014 Cathedral Studio"
     },
     {
-      "path": "/pages/apps/tracy/character-designer.html",
-      "title": "Tracy \u2013 Character Designer"
+      "path": "/pages/apps/tracy/catalog.html",
+      "title": "Tracy \u2014 Assets Catalog"
     },
     {
       "path": "/pages/apps/tracy/art-gallery.html",
       "title": "Tracy \u2013 Art Gallery"
     },
     {
-      "path": "/pages/apps/tracy/catalog.html",
-      "title": "Tracy \u2014 Assets Catalog"
+      "path": "/pages/apps/tracy/character-designer.html",
+      "title": "Tracy \u2013 Character Designer"
     },
     {
-      "path": "/pages/apps/billie/video-maker.html",
-      "title": "Billie \u2013 Video Maker"
+      "path": "/pages/apps/charlotte/index.html",
+      "title": "Charlotte \u2014 Translator"
     },
     {
-      "path": "/pages/apps/billie/social-posts.html",
-      "title": "Billie's Social Posts"
+      "path": "/pages/apps/charlotte/reminders.html",
+      "title": "Charlotte's Reminders"
     },
     {
-      "path": "/pages/apps/billie/index.html",
-      "title": "Billie \u2014 Film Studio"
+      "path": "/pages/apps/charlotte/vrm-viewer.html",
+      "title": "Charlotte \u2013 VRM Viewer"
     },
     {
-      "path": "/pages/apps/billie/earnings-dashboard.html",
-      "title": "Billie's Earnings Dashboard"
-    },
-    {
-      "path": "/pages/apps/carol/mealplan.html",
-      "title": "Carol Meal Plan"
-    },
-    {
-      "path": "/pages/apps/carol/shopping-list.html",
-      "title": "Carol \u2013 Shopping List"
-    },
-    {
-      "path": "/pages/apps/carol/dashboard.html",
-      "title": "Redirecting\u2026"
-    },
-    {
-      "path": "/pages/apps/carol/index.html",
-      "title": "Carol \u2014 Meal Planner"
-    },
-    {
-      "path": "/pages/apps/carol/meal-plan-upgraded.html",
-      "title": "Carol \u2013 Meal Planner (Enhanced)"
-    },
-    {
-      "path": "/pages/apps/carol/menu.html",
-      "title": "Carol \u2013 Menu"
-    },
-    {
-      "path": "/pages/apps/carol/meal-plan.html",
-      "title": "Carol \u2013 Meal Planner"
-    },
-    {
-      "path": "/pages/apps/alexandria/story-assistant.html",
-      "title": "Alexandria \u2013 Story Assistant"
-    },
-    {
-      "path": "/pages/apps/alexandria/index.html",
-      "title": "Alexandria \u2014 Library"
-    },
-    {
-      "path": "/pages/apps/alexandria/character-sheets.html",
-      "title": "Alexandria \u2013 Character Sheets"
-    },
-    {
-      "path": "/pages/apps/alexandria/story-shelf.html",
-      "title": "Alexandria \u2013 Story Shelf"
-    },
-    {
-      "path": "/pages/apps/alexandria/timeline-explorer.html",
-      "title": "Alexandria \u2013 Timeline Explorer"
+      "path": "/pages/apps/charlotte/translations-board.html",
+      "title": "Charlotte \u2013 Translations Board"
     },
     {
       "path": "/pages/apps/charlotte/expirations-registry.html",
@@ -141,52 +101,24 @@
       "title": "Charlotte \u2013 Armor & Accessories Builder"
     },
     {
-      "path": "/pages/apps/charlotte/index.html",
-      "title": "Charlotte \u2014 Translator"
-    },
-    {
-      "path": "/pages/apps/charlotte/translations-board.html",
-      "title": "Charlotte \u2013 Translations Board"
-    },
-    {
-      "path": "/pages/apps/charlotte/reminders.html",
-      "title": "Charlotte's Reminders"
-    },
-    {
-      "path": "/pages/apps/charlotte/vrm-viewer.html",
-      "title": "Charlotte \u2013 VRM Viewer"
-    },
-    {
-      "path": "/pages/apps/stella/script-library.html",
-      "title": "Stella \u2013 Script Library"
+      "path": "/pages/apps/stella/index.html",
+      "title": "Stella \u2014 Home"
     },
     {
       "path": "/pages/apps/stella/sound-library.html",
       "title": "Stella \u2013 Sound Library"
     },
     {
+      "path": "/pages/apps/stella/script-library.html",
+      "title": "Stella \u2013 Script Library"
+    },
+    {
       "path": "/pages/apps/stella/guided-sessions.html",
       "title": "Stella \u2013 Guided Sessions"
     },
     {
-      "path": "/pages/apps/stella/index.html",
-      "title": "Stella \u2014 Home"
-    },
-    {
-      "path": "/pages/apps/jem/workout-calendar.html",
-      "title": "Jem \u2013 Workout Calendar"
-    },
-    {
-      "path": "/pages/apps/jem/gallery.html",
-      "title": "Jem \u2013 Gallery"
-    },
-    {
-      "path": "/pages/apps/jem/dashboard.html",
-      "title": "Redirecting\u2026"
-    },
-    {
-      "path": "/pages/apps/jem/progress-tracker.html",
-      "title": "Jem \u2013 Progress Tracker"
+      "path": "/pages/apps/_city/index.html",
+      "title": "Avalon City Map"
     },
     {
       "path": "/pages/apps/jem/index.html",
@@ -197,152 +129,220 @@
       "title": "Jem \u2013 Fitness Planner"
     },
     {
+      "path": "/pages/apps/jem/workout-calendar.html",
+      "title": "Jem \u2013 Workout Calendar"
+    },
+    {
+      "path": "/pages/apps/jem/gallery.html",
+      "title": "Jem \u2013 Gallery"
+    },
+    {
+      "path": "/pages/apps/jem/progress-tracker.html",
+      "title": "Jem \u2013 Progress Tracker"
+    },
+    {
+      "path": "/pages/apps/jem/dashboard.html",
+      "title": "Redirecting\u2026"
+    },
+    {
       "path": "/pages/apps/overseers/index.html",
       "title": "Overseers \u2013 Palace & Governance"
     },
     {
-      "path": "/pages/apps/nina/index.html",
-      "title": "Nina \u2013 Engineering & Security"
+      "path": "/pages/apps/carol/index.html",
+      "title": "Carol \u2014 Meal Planner"
     },
     {
-      "path": "/pages/apps/nina/import-map-validation.html",
-      "title": "Nina \u2013 Import Map Validation"
+      "path": "/pages/apps/carol/menu.html",
+      "title": "Carol \u2013 Menu"
     },
     {
-      "path": "/pages/apps/nina/vrm-viewer.html",
-      "title": "Nina \u2014 VRM Viewer"
+      "path": "/pages/apps/carol/meal-plan-upgraded.html",
+      "title": "Carol \u2013 Meal Planner (Enhanced)"
     },
     {
-      "path": "/pages/apps/nina/security-reports.html",
-      "title": "Nina \u2013 Security Reports"
+      "path": "/pages/apps/carol/mealplan.html",
+      "title": "Carol Meal Plan"
     },
     {
-      "path": "/pages/apps/_city/index.html",
-      "title": "Avalon City Map"
+      "path": "/pages/apps/carol/dashboard.html",
+      "title": "Redirecting\u2026"
     },
     {
-      "path": "/pages/_city/index.html",
-      "title": "Avalon \u2014 City Map"
+      "path": "/pages/apps/carol/meal-plan.html",
+      "title": "Carol \u2013 Meal Planner"
+    },
+    {
+      "path": "/pages/apps/carol/shopping-list.html",
+      "title": "Carol \u2013 Shopping List"
+    },
+    {
+      "path": "/pages/apps/abbey/index.html",
+      "title": "Abbey \u2014 Finance & Reporting"
+    },
+    {
+      "path": "/pages/apps/billie/index.html",
+      "title": "Billie \u2014 Film Studio"
+    },
+    {
+      "path": "/pages/apps/billie/video-maker.html",
+      "title": "Billie \u2013 Video Maker"
+    },
+    {
+      "path": "/pages/apps/billie/earnings-dashboard.html",
+      "title": "Billie's Earnings Dashboard"
+    },
+    {
+      "path": "/pages/apps/billie/social-posts.html",
+      "title": "Billie's Social Posts"
+    },
+    {
+      "path": "/pages/apps/alexandria/index.html",
+      "title": "Alexandria \u2014 Library"
+    },
+    {
+      "path": "/pages/apps/alexandria/character-sheets.html",
+      "title": "Alexandria \u2013 Character Sheets"
+    },
+    {
+      "path": "/pages/apps/alexandria/story-assistant.html",
+      "title": "Alexandria \u2013 Story Assistant"
+    },
+    {
+      "path": "/pages/apps/alexandria/timeline-explorer.html",
+      "title": "Alexandria \u2013 Timeline Explorer"
+    },
+    {
+      "path": "/pages/apps/alexandria/story-shelf.html",
+      "title": "Alexandria \u2013 Story Shelf"
+    },
+    {
+      "path": "/avalon-carol-upgrade-2.9.0/pages/apps/carol/menu.html",
+      "title": "Carol \u2014 Two\u2011Week Plan"
+    },
+    {
+      "path": "/memory-history/retired/odessa/index.html",
+      "title": "Odessa \u2014 Room"
     }
   ],
   "assets": [
-    "/style.css",
-    "/file-index.json",
     "/importmap.json",
-    "/site-map.json",
+    "/file-index.json",
     "/package.json",
-    "/cloudflare/worker-alexandria.js",
-    "/cloudflare/worker-tracy-skin-llm.js",
-    "/cloudflare/worker-billie-social.js",
+    "/site-map.json",
+    "/style.css",
+    "/pages/js/avalon-skins.js",
+    "/pages/js/meal-plan.js",
+    "/pages/js/mealplan.js",
+    "/pages/apps/nina/data/security-reports.json",
+    "/pages/apps/charlotte/data/expirations.json",
+    "/pages/apps/charlotte/data/reminders.json",
+    "/pages/apps/stella/data/scripts.json",
+    "/pages/apps/stella/data/sounds.json",
+    "/pages/apps/_city/map.svg",
+    "/pages/apps/jem/data/training-plan.json",
+    "/pages/apps/jem/data/gallery.json",
+    "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
+    "/pages/apps/carol/data/menu.json",
+    "/pages/apps/carol/data/twoperson-2wk-unique-20251015T022300Z.json",
+    "/pages/apps/carol/data/meal-plan.json",
+    "/pages/apps/carol/data/meal-plan-upgraded.json",
+    "/pages/apps/carol/data/shopping-list.json",
+    "/pages/apps/common/style.css",
+    "/pages/apps/common/js/json-table.js",
+    "/pages/apps/billie/data/earnings.json",
+    "/pages/apps/billie/data/social-posts.json",
+    "/pages/apps/alexandria/data/story.json",
+    "/pages/apps/alexandria/data/characters.json",
+    "/avalon-carol-upgrade-2.9.0/pages/apps/carol/packages/us.json",
+    "/avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/twoperson-2wk-unique-20251015T005600Z.json",
+    "/avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/index.json",
+    "/reports/clarity/workflows-map.json",
+    "/reports/clarity/workers-map.json",
+    "/reports/clarity/catalog.json",
+    "/reports/clarity/files-index.json",
+    "/reports/clarity/pages-map.json",
     "/cloudflare/worker-hello.js",
-    "/cloudflare/worker-carol.js",
-    "/cloudflare/worker-importmap-install.js",
-    "/cloudflare/worker-market.js",
-    "/cloudflare/worker-tts.js",
     "/cloudflare/worker-skin-llm.js",
     "/cloudflare/worker-auth.js",
+    "/cloudflare/worker-billie-social.js",
+    "/cloudflare/worker-alexandria.js",
+    "/cloudflare/worker-tracy-skin-llm.js",
+    "/cloudflare/worker-tts.js",
+    "/cloudflare/worker-importmap-install.js",
+    "/cloudflare/worker-market.js",
+    "/cloudflare/worker-carol.js",
     "/workers/stella-voice-worker.js",
-    "/assets/designs/poster-fairy.png",
-    "/assets/designs/tshirt-fairy.png",
-    "/assets/designs/avalon-city.png",
-    "/assets/img/charlotte-inside.JPG",
-    "/assets/img/alexandria-outside.jpg",
-    "/assets/img/stella-inside.JPG",
-    "/assets/img/tracy-generated5.png",
-    "/assets/img/town-outside.png",
-    "/assets/img/abbey-inside.JPG",
-    "/assets/img/stella-outside.JPG",
-    "/assets/img/tracy-generated3.png",
-    "/assets/img/carol-kitchen-inside.jpg",
-    "/assets/img/carol-kitchen-outside.jpg",
-    "/assets/img/charlotte-outside.jpg",
-    "/assets/img/billie-inside.JPG",
-    "/assets/img/carol-outside.jpg",
-    "/assets/img/charlotte-outside.JPG",
-    "/assets/img/billie-inside.jpg",
-    "/assets/img/palace-inside.png",
-    "/assets/img/abbey-outside.jpg",
-    "/assets/img/carol-inside.jpg",
-    "/assets/img/placeholder.svg",
-    "/assets/img/avalon-castle.jpg",
-    "/assets/img/tracy-inside.jpg",
-    "/assets/img/default-inside.png",
-    "/assets/img/stella-inside.jpg",
-    "/assets/img/tracy-inside.JPG",
-    "/assets/img/charlotte-inside.jpg",
-    "/assets/img/billie-outside.jpg",
-    "/assets/img/tracy-generated2.png",
-    "/assets/img/carol-kitchen-inside.png",
-    "/assets/img/jem-hall-inside.jpg",
-    "/assets/img/jem-hall-outside.jpg",
-    "/assets/img/billie-sample.png",
-    "/assets/img/tracy-generated4.png",
-    "/assets/img/tracy-sample.png",
-    "/assets/img/default-outside.png",
-    "/assets/img/abbey-inside.jpg",
-    "/assets/img/alexandria-inside.jpg",
-    "/assets/img/tracy-generated1.png",
-    "/assets/img/town-inside.png",
-    "/assets/img/tracy-outside.JPG",
-    "/assets/img/palace-outside.jpg",
-    "/assets/img/tracy-outside.jpg",
-    "/assets/img/avalon-outside.png",
-    "/assets/img/billie-outside.JPG",
-    "/assets/img/stella-outside.jpg",
-    "/assets/img/abbey-outside.JPG",
-    "/assets/img/palace-outside.png",
-    "/assets/css/avalon-dashboard.css",
-    "/assets/css/avalon.css",
-    "/assets/css/avalon-bright.css",
-    "/assets/fairies/Alexandria-Inside.JPG",
-    "/assets/fairies/Stella-Inside.JPG",
-    "/assets/fairies/Abbey-Inside.JPG",
-    "/assets/fairies/Jem-Inside.JPG",
-    "/assets/fairies/Carol-Inside.JPG",
-    "/assets/fairies/Billie-Inside.JPG",
-    "/assets/fairies/Tracy-Inside.JPG",
-    "/assets/fairies/Charlotte-Inside.JPG",
-    "/ui/ui-kit.css",
     "/avalon-carol-unique-2.9.4/pages/apps/carol/packages/us.json",
     "/avalon-carol-unique-2.9.4/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
     "/avalon-carol-unique-2.9.4/pages/apps/carol/plans/index.json",
-    "/memory-history/Codys-Memory.json",
-    "/memory-history/repo-refs.json",
-    "/memory-history/repo-usage-report.json",
     "/memory-history/repo-inventory.json",
+    "/memory-history/repo-refs.json",
     "/memory-history/repo-index.json",
     "/memory-history/repo-read-index.json",
-    "/avalon-carol-upgrade-2.9.0/pages/apps/carol/packages/us.json",
-    "/avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/index.json",
-    "/avalon-carol-upgrade-2.9.0/pages/apps/carol/plans/twoperson-2wk-unique-20251015T005600Z.json",
-    "/pages/js/mealplan.js",
-    "/pages/js/avalon-skins.js",
-    "/pages/js/meal-plan.js",
-    "/pages/apps/billie/data/social-posts.json",
-    "/pages/apps/billie/data/earnings.json",
-    "/pages/apps/carol/data/twoperson-2wk-unique-20251015T022300Z.json",
-    "/pages/apps/carol/data/meal-plan.json",
-    "/pages/apps/carol/data/shopping-list.json",
-    "/pages/apps/carol/data/meal-plan-upgraded.json",
-    "/pages/apps/carol/data/menu.json",
-    "/pages/apps/carol/plans/twoperson-2wk-unique-20251015T022300Z.json",
-    "/pages/apps/alexandria/data/characters.json",
-    "/pages/apps/alexandria/data/story.json",
-    "/pages/apps/charlotte/data/expirations.json",
-    "/pages/apps/charlotte/data/reminders.json",
-    "/pages/apps/stella/data/sounds.json",
-    "/pages/apps/stella/data/scripts.json",
-    "/pages/apps/jem/data/gallery.json",
-    "/pages/apps/jem/data/training-plan.json",
-    "/pages/apps/common/style.css",
-    "/pages/apps/common/js/json-table.js",
-    "/pages/apps/nina/data/security-reports.json",
-    "/pages/apps/_city/map.svg",
-    "/reports/clarity/catalog.json",
-    "/reports/clarity/pages-map.json",
-    "/reports/clarity/workflows-map.json",
-    "/reports/clarity/workers-map.json",
-    "/reports/clarity/files-index.json"
+    "/memory-history/repo-usage-report.json",
+    "/memory-history/Codys-Memory.json",
+    "/assets/img/carol-kitchen-inside.jpg",
+    "/assets/img/carol-kitchen-inside.png",
+    "/assets/img/tracy-generated4.png",
+    "/assets/img/stella-outside.JPG",
+    "/assets/img/tracy-generated5.png",
+    "/assets/img/carol-kitchen-outside.jpg",
+    "/assets/img/abbey-inside.jpg",
+    "/assets/img/alexandria-outside.jpg",
+    "/assets/img/stella-outside.jpg",
+    "/assets/img/tracy-outside.jpg",
+    "/assets/img/default-outside.png",
+    "/assets/img/billie-outside.jpg",
+    "/assets/img/placeholder.svg",
+    "/assets/img/town-inside.png",
+    "/assets/img/palace-outside.jpg",
+    "/assets/img/jem-hall-inside.jpg",
+    "/assets/img/charlotte-outside.JPG",
+    "/assets/img/town-outside.png",
+    "/assets/img/carol-outside.jpg",
+    "/assets/img/charlotte-outside.jpg",
+    "/assets/img/tracy-outside.JPG",
+    "/assets/img/avalon-castle.jpg",
+    "/assets/img/jem-hall-outside.jpg",
+    "/assets/img/abbey-outside.jpg",
+    "/assets/img/charlotte-inside.JPG",
+    "/assets/img/billie-inside.jpg",
+    "/assets/img/charlotte-inside.jpg",
+    "/assets/img/tracy-inside.JPG",
+    "/assets/img/abbey-outside.JPG",
+    "/assets/img/tracy-generated1.png",
+    "/assets/img/tracy-inside.jpg",
+    "/assets/img/default-inside.png",
+    "/assets/img/billie-sample.png",
+    "/assets/img/tracy-sample.png",
+    "/assets/img/tracy-generated2.png",
+    "/assets/img/palace-outside.png",
+    "/assets/img/palace-inside.png",
+    "/assets/img/avalon-outside.png",
+    "/assets/img/stella-inside.JPG",
+    "/assets/img/abbey-inside.JPG",
+    "/assets/img/tracy-generated3.png",
+    "/assets/img/alexandria-inside.jpg",
+    "/assets/img/billie-outside.JPG",
+    "/assets/img/billie-inside.JPG",
+    "/assets/img/stella-inside.jpg",
+    "/assets/img/carol-inside.jpg",
+    "/assets/css/avalon.css",
+    "/assets/css/avalon-dashboard.css",
+    "/assets/css/avalon-bright.css",
+    "/assets/fairies/Abbey-Inside.JPG",
+    "/assets/fairies/Alexandria-Inside.JPG",
+    "/assets/fairies/Jem-Inside.JPG",
+    "/assets/fairies/Tracy-Inside.JPG",
+    "/assets/fairies/Carol-Inside.JPG",
+    "/assets/fairies/Charlotte-Inside.JPG",
+    "/assets/fairies/Billie-Inside.JPG",
+    "/assets/fairies/Stella-Inside.JPG",
+    "/assets/designs/tshirt-fairy.png",
+    "/assets/designs/avalon-city.png",
+    "/assets/designs/poster-fairy.png",
+    "/ui/ui-kit.css"
   ],
   "importmap": null
 }

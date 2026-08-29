@@ -2826,6 +2826,8 @@
   },
   {
     "path": "memory/cleanup-rules.json",
+    "sha256": "aa396012ec5e8122732f6389cd8a38aa53bc89b7cc1f68a8db4ef733a5b788f3",
+    "bytes": 1253
     "sha256": "fa8ca19770ed1d21f9441be87c251ff41b8c0f035914aecd9769a35adc50c683",
     "bytes": 353
   },
@@ -2846,6 +2848,8 @@
   },
   {
     "path": "memory/file-index.json",
+    "sha256": "3f725000b61417df42bbc7e10d4ce22796d309ff329bf746d05b554b3b04d0fb",
+    "bytes": 187678
     "sha256": "782939e8e2b4dc42486b1a167d675491520c7e1e01e2660ecd05e93c9a2aee5e",
     "bytes": 38
   },
@@ -3866,6 +3870,8 @@
   },
   {
     "path": "pages/apps/common/js/json-table.js",
+    "sha256": "7472bea538ac5bdb030fa98b4c032d961ee3e4be00aefdc72243b147991fdd0f",
+    "bytes": 1243
     "sha256": "e9ae95c54c485c51f30efa6a558120fe8ed28ec4bdf2d0e403ac0269126fe534",
     "bytes": 1875
   },

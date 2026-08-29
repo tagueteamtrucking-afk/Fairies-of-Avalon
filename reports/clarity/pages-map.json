@@ -14,16 +14,15 @@
   {
     "path": "index.html",
     "links": [
-      "/pages/apps/common/style.css",
-      "/pages/apps/nina/index.html",
-      "/pages/apps/charlotte/index.html",
-      "/pages/apps/billie/index.html",
-      "/pages/apps/carol/index.html",
-      "/pages/apps/jem/index.html",
-      "/pages/apps/alexandria/index.html",
-      "/pages/apps/stella/index.html",
-      "/pages/apps/tracy/skins/index.html",
-      "/pages/apps/overseers/ci-dashboard.html"
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/_city/index.html",
+      "/pages/apps/nina/overview.html",
+      "/pages/apps/nina/security.html",
+      "/pages/apps/charlotte/queues.html",
+      "/pages/apps/charlotte/compliance/expirations.html",
+      "/pages/apps/billie/social.html",
+      "/pages/apps/billie/earnings.html"
     ]
   },
   {
@@ -49,15 +48,12 @@
   {
     "path": "pages/_city/index.html",
     "links": [
-      "../../assets/css/avalon.css",
-      "../alexandria/index.html",
-      "../tracy/skins/generator.html",
-      "../jem/index.html",
-      "../carol/index.html",
-      "../stella/index.html",
-      "../charlotte/highlights.html",
-      "../../index.html"
+      "/index.html"
     ]
+  },
+  {
+    "path": "pages/_city/map.svg",
+    "links": []
   },
   {
     "path": "pages/_city/plaza.html",
@@ -80,14 +76,7 @@
   {
     "path": "pages/apps/Index.html",
     "links": [
-      "/pages/apps/alexandria/dm/play.html",
-      "/pages/apps/alexandria/worlds/",
-      "/pages/apps/stella/guided.html",
-      "/pages/apps/jem/dashboard.html",
-      "/pages/apps/carol/",
-      "/pages/apps/charlotte/",
-      "/pages/apps/nina/",
-      "/pages/apps/clarice/"
+      "/pages/plaza.html"
     ]
   },
   {
@@ -109,11 +98,16 @@
   {
     "path": "pages/apps/_city/index.html",
     "links": [
-      "/pages/apps/carol/menu.html"
+      "/pages/apps/common/style.css",
+      "/index.html"
     ]
   },
   {
     "path": "pages/apps/_city/map.js",
+    "links": []
+  },
+  {
+    "path": "pages/apps/_city/map.svg",
     "links": []
   },
   {
@@ -232,7 +226,10 @@
   },
   {
     "path": "pages/apps/alexandria/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/common/style.css",
+      "/index.html"
+    ]
   },
   {
     "path": "pages/apps/alexandria/index.json",
@@ -491,6 +488,14 @@
     ]
   },
   {
+    "path": "pages/apps/billie/earnings.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
+    ]
+  },
+  {
     "path": "pages/apps/billie/faceless.html",
     "links": [
       "../_shared/ui-lite.css"
@@ -501,8 +506,19 @@
     "links": []
   },
   {
+    "path": "pages/apps/billie/grants.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
+    ]
+  },
+  {
     "path": "pages/apps/billie/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/common/style.css",
+      "/index.html"
+    ]
   },
   {
     "path": "pages/apps/billie/index.json",
@@ -514,6 +530,14 @@
       "../theme/tokens.css",
       "storyboards.html",
       "index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/billie/social.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
     ]
   },
   {
@@ -543,7 +567,8 @@
   {
     "path": "pages/apps/carol/index.html",
     "links": [
-      "../../assets/css/avalon.css"
+      "/pages/apps/common/style.css",
+      "/index.html"
     ]
   },
   {
@@ -766,6 +791,22 @@
     ]
   },
   {
+    "path": "pages/apps/charlotte/compliance/expirations.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/charlotte/compliance/reminders.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
+    ]
+  },
+  {
     "path": "pages/apps/charlotte/crawler/index.html",
     "links": [
       "https://github.com/public-apis/public-apis",
@@ -835,7 +876,10 @@
   },
   {
     "path": "pages/apps/charlotte/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/common/style.css",
+      "/index.html"
+    ]
   },
   {
     "path": "pages/apps/charlotte/index.json",
@@ -874,8 +918,24 @@
     "links": []
   },
   {
+    "path": "pages/apps/charlotte/queues.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
+    ]
+  },
+  {
     "path": "pages/apps/charlotte/sources.json",
     "links": []
+  },
+  {
+    "path": "pages/apps/charlotte/translations.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/charlotte/index.html"
+    ]
   },
   {
     "path": "pages/apps/charlotte/voiceovers/20250918T031302Z-avalon/opening.txt",
@@ -907,6 +967,10 @@
   },
   {
     "path": "pages/apps/common/health/shared.json",
+    "links": []
+  },
+  {
+    "path": "pages/apps/common/js/json-table.js",
     "links": []
   },
   {
@@ -959,7 +1023,10 @@
   },
   {
     "path": "pages/apps/jem/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/common/style.css",
+      "/index.html"
+    ]
   },
   {
     "path": "pages/apps/jem/index.json",
@@ -1064,11 +1131,38 @@
   },
   {
     "path": "pages/apps/nina/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/common/style.css",
+      "/index.html"
+    ]
   },
   {
     "path": "pages/apps/nina/index.json",
     "links": []
+  },
+  {
+    "path": "pages/apps/nina/overview.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/nina/security.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
+    ]
+  },
+  {
+    "path": "pages/apps/nina/security/reports.html",
+    "links": [
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/pages/apps/nina/index.html"
+    ]
   },
   {
     "path": "pages/apps/nina/viewer.html",
@@ -1136,7 +1230,10 @@
   },
   {
     "path": "pages/apps/overseers/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/common/style.css",
+      "/index.html"
+    ]
   },
   {
     "path": "pages/apps/overseers/index.json",
@@ -1322,7 +1419,8 @@
   {
     "path": "pages/apps/stella/index.html",
     "links": [
-      "../../assets/css/avalon.css"
+      "/pages/apps/common/style.css",
+      "/index.html"
     ]
   },
   {
@@ -1601,7 +1699,10 @@
   },
   {
     "path": "pages/apps/tracy/index.html",
-    "links": []
+    "links": [
+      "/pages/apps/common/style.css",
+      "/index.html"
+    ]
   },
   {
     "path": "pages/apps/tracy/index.json",
@@ -1652,6 +1753,10 @@
     "links": []
   },
   {
+    "path": "pages/apps/tracy/skins/base.css",
+    "links": []
+  },
+  {
     "path": "pages/apps/tracy/skins/cathedral-gold.css",
     "links": []
   },
@@ -1662,11 +1767,17 @@
   {
     "path": "pages/apps/tracy/skins/index.html",
     "links": [
-      "avalon-sunlit.css"
+      "/pages/apps/tracy/skins/variables.css",
+      "/pages/apps/tracy/skins/base.css",
+      "/index.html"
     ]
   },
   {
     "path": "pages/apps/tracy/skins/night-abyss.css",
+    "links": []
+  },
+  {
+    "path": "pages/apps/tracy/skins/variables.css",
     "links": []
   },
   {
@@ -1690,7 +1801,18 @@
   {
     "path": "pages/index.html",
     "links": [
-      "/pages/plaza.html"
+      "/pages/apps/common/style.css",
+      "/pages/apps/nina/index.html",
+      "/pages/apps/charlotte/index.html",
+      "/pages/apps/billie/index.html",
+      "/pages/apps/carol/index.html",
+      "/pages/apps/jem/index.html",
+      "/pages/apps/alexandria/index.html",
+      "/pages/apps/stella/index.html",
+      "/pages/apps/tracy/index.html",
+      "/pages/apps/overseers/index.html",
+      "/pages/apps/_city/index.html",
+      "/pages/apps/overseers/ci-dashboard.html"
     ]
   },
   {
